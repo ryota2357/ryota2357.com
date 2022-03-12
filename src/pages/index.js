@@ -6,16 +6,18 @@ import Seo from "../components/seo"
 import BlogCards from "../components/blogCards"
 import GameCards from "../components/gameCards"
 
-
 const Index = ({ location }) => {
   const ToALl = ({ to }) => (
-    <Link to={to} style={{
-      color: '#000000',
-      fontSize: '2rem',
-      marginTop: '10px',
-      display: 'flex',
-      justifyContent: 'flex-end'
-    }}>
+    <Link
+      to={to}
+      style={{
+        color: "#000000",
+        fontSize: "2rem",
+        marginTop: "10px",
+        display: "flex",
+        justifyContent: "flex-end",
+      }}
+    >
       一覧 &gt;&gt;
     </Link>
   )
@@ -28,9 +30,8 @@ const Index = ({ location }) => {
       <ToALl to="/blog" />
 
       <h2>GameDev</h2>
-      <GameCards count={3}/>
+      <GameCards count={3} />
       <ToALl to="/gamedev" />
-
     </Layout>
   )
 }

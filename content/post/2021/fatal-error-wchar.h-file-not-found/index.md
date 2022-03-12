@@ -8,18 +8,18 @@ tags: ["C++"]
 
 ## 解決策
 
-Xcodeのコマンドラインツールを再度インストールする。  
+Xcode のコマンドラインツールを再度インストールする。  
 [参考(StackOverflow)](https://stackoverflow.com/questions/26185978/macos-wchar-h-file-not-found)
 
 ```bash
 $ xcode-select --install
 ```
 
-最近Xcodeの更新をしたのが原因かと。  
-Xcodeのアップデートでコマンドラインツールが消えてしまった(?)ようである。
+最近 Xcode の更新をしたのが原因かと。  
+Xcode のアップデートでコマンドラインツールが消えてしまった(?)ようである。
 
 ## それでも解決しない
 
-StackOverflowにて同様の質問がありましたので、それを参考に色々するのが良いかと思います。
+StackOverflow にて同様の質問がありましたので、それを参考に色々するのが良いかと思います。
 ↓
 [https://stackoverflow.com/questions/46342411/wchar-h-file-not-found](https://stackoverflow.com/questions/46342411/wchar-h-file-not-found)

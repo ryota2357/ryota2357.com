@@ -6,19 +6,19 @@ tags: ["CSharp", "Unity", "VisualStudio"]
 
 ## 目標
 
-- VisualStudioでUnityEngine等のUnity関連ライブラリを参照可能にする。  
-- DLLを作成し、Unityに読み込ませて利用可能にする。
+- VisualStudio で UnityEngine 等の Unity 関連ライブラリを参照可能にする。
+- DLL を作成し、Unity に読み込ませて利用可能にする。
 
 ## 作業
 
-VisualStudio for Mac (バージョン8.8.6) を使っています。
+VisualStudio for Mac (バージョン 8.8.6) を使っています。
 
 ### プロジェクトの作成
 
-***スタートウィンドウ ＞ 新規 ＞ その他 ＞ .Net***  
+**_スタートウィンドウ ＞ 新規 ＞ その他 ＞ .Net_**  
 より「ライブラリ」というテンプレートがあるので、それを選択します。
 
-プロジェクト名、ソリューション名は同じでOKです。
+プロジェクト名、ソリューション名は同じで OK です。
 
 ディレクトリ構成は以下のようになっているかと思います。  
 多少異なっていても問題ないです。
@@ -45,7 +45,7 @@ TestLibrary/
     └ パッケージ/
 ```
 
-### UnityEngineの参照を追加する
+### UnityEngine の参照を追加する
 
 現在の状態で
 
@@ -58,20 +58,20 @@ using UnityEngine;
 
 1. 「参照」ディレクトリの上で「右クリック、参照の追加...」を選択
 1. 「.NET アセンブリ ＞ 参照...」
-1. Finderにて「Shift + ⌘ ＋ G」
-1. */Applications/Unity/Unity.app/Contents/Managed*  と入力
+1. Finder にて「Shift + ⌘ ＋ G」
+1. _/Applications/Unity/Unity.app/Contents/Managed_ と入力
 1. 「UnityEngine.dll」を開く
 
-無事に見つかって参照が追加できればOKですが、できなかった場合は次の方法で可能かと思われます。
+無事に見つかって参照が追加できれば OK ですが、できなかった場合は次の方法で可能かと思われます。
 
-1. UnityHubを開いて、右上の歯車マークから「一般 ＞ Unityエディタフォルダー」の場所を確認します。
-1. VisualStudio「.NET アセンブリ ＞ 参照...」より1を参考に「Unity.app」を探します。
-1. 「Shift + ⌘ ＋ G」を押して*hoge/Unity.app/Contents/Managed*と入力します。(hogeの部分は各自)
+1. UnityHub を開いて、右上の歯車マークから「一般 ＞ Unity エディタフォルダー」の場所を確認します。
+1. VisualStudio「.NET アセンブリ ＞ 参照...」より 1 を参考に「Unity.app」を探します。
+1. 「Shift + ⌘ ＋ G」を押して*hoge/Unity.app/Contents/Managed*と入力します。(hoge の部分は各自)
 1. UnityEngine.dll」を開く
 
 ### コンパイラ設定
 
-初期のの設定では、DLLにするとXMLコメントが表示されないので変更します。
+初期のの設定では、DLL にすると XML コメントが表示されないので変更します。
 
 ```txt
 TestLibrary/
@@ -80,15 +80,15 @@ TestLibrary/
     └ パッケージ/
 ```
 
-オプション ＞ ビルド ＞ コンパイラ ＞ XMLドキュメントを生成する  
+オプション ＞ ビルド ＞ コンパイラ ＞ XML ドキュメントを生成する  
 にテェックを入れます。  
 他にも「オーバーフローチェック」や「最適化を有効」などのオプションがあるので必要に応じて有効にします。
 
-### Unityで利用可能にする
+### Unity で利用可能にする
 
-1. ビルドします。「⌘ + K」またはTestLibraryを右クリックで行います。
-1. Finderからプロジェクトのディレクトリに移動します。
-1. Unityのプロジェクトに「Plugins」フォルダを作成し、dll、pdb、xmlを入れます。
+1. ビルドします。「⌘ + K」または TestLibrary を右クリックで行います。
+1. Finder からプロジェクトのディレクトリに移動します。
+1. Unity のプロジェクトに「Plugins」フォルダを作成し、dll、pdb、xml を入れます。
 
 ```txt
 TestLibrary/
@@ -101,10 +101,10 @@ TestLibrary/
 ....
 ```
 
-これで、Unity側から自作のDLLを呼ぶことができます。  
+これで、Unity 側から自作の DLL を呼ぶことができます。  
 以上で全ての目標を達成しました。
 
 ## 参考
 
-[Mac版Visual StudioでUnity用のDLLを出力する方法](https://blog.ariari.biz/2018/03/17/post-72/)  
-[Visual StudioユーザーがReleaseビルドをするときに必ずやってほしい2つの設定](https://qiita.com/lainzero/items/27681ddc96638e33758b)
+[Mac 版 Visual Studio で Unity 用の DLL を出力する方法](https://blog.ariari.biz/2018/03/17/post-72/)  
+[Visual Studio ユーザーが Release ビルドをするときに必ずやってほしい 2 つの設定](https://qiita.com/lainzero/items/27681ddc96638e33758b)

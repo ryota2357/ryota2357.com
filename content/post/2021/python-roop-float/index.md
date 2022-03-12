@@ -4,11 +4,11 @@ postdate: "2021-07-31T15:43"
 tags: ["Python"]
 ---
 
-rangeの第3引数で小数を指定したいと思ったので、いい感じになるように頑張った記録を残しておきます。
+range の第 3 引数で小数を指定したいと思ったので、いい感じになるように頑張った記録を残しておきます。
 
 ## どんなのができたか
 
-区間[1, 5)を1.021刻みでループするコードは以下になります。  
+区間[1, 5)を 1.021 刻みでループするコードは以下になります。
 
 ```python
 for i in Range(1, 5, "1.021"):
@@ -22,13 +22,13 @@ for i in Range(1, 5, "1.021"):
 """
 ```
 
-## Rangeの実装
+## Range の実装
 
 先に実装を載せておきます。  
 配列(list)を使わずに実装してます。  
 次の「[説明](#toc_headline_3)」から読んだ方がいいかもです。
 
-ちょっと長いですが、複数の引数パターンを作るためのただのif文です。  
+ちょっと長いですが、複数の引数パターンを作るためのただの if 文です。  
 あと、例外処理はしてないです。
 
 ```python
@@ -67,14 +67,14 @@ class Range(Sequence):
         ret = (self._start*self._ep)+(index*self._rp)
         ret /= self._ep
         if ret >= self._end: raise IndexError()
-        return ret                                       
+        return ret
 ```
 
 ## 説明
 
-第3引数を浮動小数点ではなく文字列にすることで分数のように扱い、誤差を減らしています。  
-実行速度はrangeの4倍程度でした。(AtCoderのコードテストで測定)  
-引数の取り方は4種類想定しています。
+第 3 引数を浮動小数点ではなく文字列にすることで分数のように扱い、誤差を減らしています。  
+実行速度は range の 4 倍程度でした。(AtCoder のコードテストで測定)  
+引数の取り方は 4 種類想定しています。
 
 ```python
 Range(100)
@@ -85,9 +85,9 @@ Range(1, 100, "0.1")
 
 ### 内部処理について
 
-#### &#095;&#095;init&#095;&#095;(self)
+#### \_\_init\_\_(self)
 
-イニシャライザではまず、4つの引数パターンをカバーするための分岐をします。  
+イニシャライザではまず、4 つの引数パターンをカバーするための分岐をします。  
 ここはコード読んでください。
 
 続いて`step`を解析します。  
@@ -98,7 +98,7 @@ Range(1, 100, "0.1")
 0.25 -> 25 / 100
 ```
 
-と言った感じで10の累乗の分数にしてそれぞれ分子の値を`_rp`、分母の値を`_ep`に保存します。
+と言った感じで 10 の累乗の分数にしてそれぞれ分子の値を`_rp`、分母の値を`_ep`に保存します。
 
 該当部分にコメントを追加して再掲
 
@@ -118,10 +118,10 @@ self._ep = 10**dot
 self._rp = int(self._step.replace('.',''))
 ```
 
-#### &#095;&#095;getitem&#095;&#095;(self, index)
+#### \_\_getitem\_\_(self, index)
 
 インデックスアクセスを定義します。  
-例えば Range(1, 2, 0.2) の1番目は1.0、2番は1.2、3番目は1.4という感じです。
+例えば Range(1, 2, 0.2) の 1 番目は 1.0、2 番は 1.2、3 番目は 1.4 という感じです。
 
 誤差を減らすために除算を最後に行います。
 
@@ -138,7 +138,7 @@ def __getitem__(self, index):
 
     # 終了値以上であったらエラーを出すとforを抜ける
     if ret >= self._end: raise IndexError()
-    return ret                                     
+    return ret
 ```
 
 ## 補足
@@ -147,7 +147,7 @@ def __getitem__(self, index):
 
 ### 速度計測
 
-ACoderのコードテストを使いました。
+ACoder のコードテストを使いました。
 
 <details>
   <summary>使用したコード[開く]</summary>
@@ -220,14 +220,14 @@ s = time.time()
 for i in range(start, end):
     sum += i
 
-    
+
 elapsed_time2 = time.time() - s
-print ("elapsed_time:{0}".format(elapsed_time2) + "[sec]")  
+print ("elapsed_time:{0}".format(elapsed_time2) + "[sec]")
 ```
 
 </details>
 
-標準入力には何十通りかやったところ大体速度差が4倍程度でした。
+標準入力には何十通りかやったところ大体速度差が 4 倍程度でした。
 
 結果一例
 
@@ -244,7 +244,7 @@ elapsed_time:0.5733368396759033[sec]
 ### 他の方法との比較
 
 ネット検索するとよくでてくるやつとの違いです。  
-NumPy使うやり方は[これ](https://snowtree-injune.com/2019/07/07/arange-linspace)見てください。誤差でます。
+NumPy 使うやり方は[これ](https://snowtree-injune.com/2019/07/07/arange-linspace)見てください。誤差でます。
 
 他にも`i`に何かを割るとか掛けるとかのやり方があるけど、そもそもスタートがずれるし、誤差でます。こんな感じです。
 
@@ -262,5 +262,6 @@ for i in range(1, 5):
 ```
 
 ## 参考
-[【Python】rangeを再実装し、計算量について学ぶ](https://qiita.com/tanuk1647/items/6051599e8eeff510a453)  
+
+[【Python】range を再実装し、計算量について学ぶ](https://qiita.com/tanuk1647/items/6051599e8eeff510a453)  
 [【Python】処理にかかる時間を計測して表示](https://qiita.com/fantm21/items/3dc7fbf4e935311488bc)

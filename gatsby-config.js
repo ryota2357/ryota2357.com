@@ -8,7 +8,7 @@ module.exports = {
       `,
     },
     description: `namespace ryota2357;`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`, // TODO: 変更
+    siteUrl: `https://ryota2357.com`,
     repository: `https://github.com/ryota2357/ryota2357`,
     social: {
       atcoder: `R2357`,

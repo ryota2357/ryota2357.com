@@ -10,7 +10,9 @@ const Blog = ({ location }) => {
     <Layout location={location}>
       <Seo title="Blog List" />
       <h1>Blog</h1>
-      <p><Link to="/blog/tag">タグの一覧</Link></p>
+      <p>
+        <Link to="/blog/tag">タグの一覧</Link>
+      </p>
       <BlogCards count={1000} />
     </Layout>
   )

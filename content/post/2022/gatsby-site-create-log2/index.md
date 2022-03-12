@@ -7,17 +7,17 @@ tags: ["Gatsby"]
 
 <span style="font-size: 200%; color: red;">ここのやり方は悪いやり方です。</span>
 
-<span style="font-size: 200%; color: red;">より良い方法は[8.tag個別ページ作成](../gatsby-site-create-log8/)の前半で行ってます。</span>
+<span style="font-size: 200%; color: red;">より良い方法は[8.tag 個別ページ作成](../gatsby-site-create-log8/)の前半で行ってます。</span>
 
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは2022年の3月上旬。
-> `gatsby-cli`のバージョンは4.9.0
+> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
+> `gatsby-cli`のバージョンは 4.9.0
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
-## ブログ記事を`/blog`下のURLに変更
+## ブログ記事を`/blog`下の URL に変更
 
 `gatsby-node.js`を編集
 
@@ -42,7 +42,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 }
 ```
 
-これでブログ記事は/blog下になったんだけど、index.jsからのリンクが変わってないからindexのページからリンクで飛べない。  
+これでブログ記事は/blog 下になったんだけど、index.js からのリンクが変わってないから index のページからリンクで飛べない。  
 `pages/index.js`を編集してリンクも /blog/... に変える
 
 ```jsx
@@ -60,7 +60,7 @@ const BlogIndex = ({ data, location }) => {
                   </h2>
                   <small>{post.frontmatter.date}</small>
                 </header>
-                
+
 ...
 ```
 
@@ -92,12 +92,12 @@ const BlogIndex = ({ data, location }) => {
 ## `content/post/YYYY`にブログ記事データを置きたい
 
 `content/blog`を`content/post`に変更  
-初期で入ってるサンプルデータは2015だったので`content/post/2015`に入れとく  
+初期で入ってるサンプルデータは 2015 だったので`content/post/2015`に入れとく  
 ついでに`content/post/2021`も作っておく
 
 ![ディレクトリ構成](screenshot_dir.png)
 
-こうするとURLも /blog/YYYY 下になる。
+こうすると URL も /blog/YYYY 下になる。
 
 ブログのファイルのパスが変わったので`gatsby-config.js`も変更しておく
 
@@ -114,4 +114,4 @@ plugins: [
 ...
 ```
 
-YYYYを消したければindex.jsとgatsby-node.jsをいじればいいいのかな?わからん。
+YYYY を消したければ index.js と gatsby-node.js をいじればいいいのかな?わからん。

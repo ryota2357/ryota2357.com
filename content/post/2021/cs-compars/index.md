@@ -20,9 +20,9 @@ C#にて、比較に関係する
 IComparable / IComparable\<T\> は「自身と他」の比較  
 IComparer / IComparer\<T\> は「他と他」の比較  
 Comparison\<T\> は比較のデリゲート  
-Comparer\<T\> は比較の抽象クラス  
+Comparer\<T\> は比較の抽象クラス
 
-1つずつみていきます。
+1 つずつみていきます。
 
 ## IComparable / IComparable\<T\>
 
@@ -40,7 +40,7 @@ Comparer\<T\> は比較の抽象クラス
 
 ### 使用例
 
-TestCompというクラスを作り、昇順に並べ替えてみました。
+TestComp というクラスを作り、昇順に並べ替えてみました。
 
 <details>
   <summary>IComparableを使った場合</summary>
@@ -118,15 +118,15 @@ class TestComp : IComparable<TestComp> {
 > 2 つのオブジェクトを比較するために型が実装するメソッドを定義します。
 
 「他のオブジェクトと、他のオブジェクト」との比較を定義するインターフェースです。  
-IComparable名前が似ていますが全くの別物で「自身と」ではなく、「他と他」との比較を比較します。
+IComparable 名前が似ていますが全くの別物で「自身と」ではなく、「他と他」との比較を比較します。
 
 また、[Compare(Object, Object)](https://docs.microsoft.com/ja-jp/dotnet/api/system.collections.icomparer.compare?view=net-5.0) / [Compare\<T\>(T, T)](https://docs.microsoft.com/ja-jp/dotnet/api/system.collections.generic.icomparer-1.compare?view=net-5.0) メソッドを実装させます。
 
 ### 使用例
 
-intの配列を降順にソートしてみます。  
+int の配列を降順にソートしてみます。  
 Array.Sort()を使います。  
-(List\<T\>.Sort()はIComparerには対応していません。ジェネリックの方は対応してます。)
+(List\<T\>.Sort()は IComparer には対応していません。ジェネリックの方は対応してます。)
 
 <details>
   <summary>ICompareを使った場合</summary>
@@ -188,7 +188,7 @@ class MyComp : IComparer<int> {
 
 ### 使用例
 
-先ほどと同様にintの配列を降順ソートしてみます。  
+先ほどと同様に int の配列を降順ソートしてみます。  
 かなり短いコードになりました。
 
 <details>
@@ -217,13 +217,13 @@ public class Program {
 > public abstract class Comparer<T> : System.Collections.Generic.IComparer<T>, System.Collections.ICompar
 > ```
 
-IComparerとIComparer\<T\>の2つを継承するならば、このクラスを継承することでその2つの恩恵＋便利なメソッドがついてくるよ、という感じのものだろうか。
+IComparer と IComparer\<T\>の 2 つを継承するならば、このクラスを継承することでその 2 つの恩恵＋便利なメソッドがついてくるよ、という感じのものだろうか。
 
 ### 使用例
 
-これら2つの継承が必要な状況としてはC++でいう比較関数の様なものを作成するのに良いかもしれないです。  
-非ジェネリックなArrayListと、ジェネリックなListの両方に対応できる様になります。  
-(普通ArrayListって使わないから...)
+これら 2 つの継承が必要な状況としては C++でいう比較関数の様なものを作成するのに良いかもしれないです。  
+非ジェネリックな ArrayList と、ジェネリックな List の両方に対応できる様になります。  
+(普通 ArrayList って使わないから...)
 
 <details>
   <summary>いまいち必要な状況がわからないですが、比較関数の様なものを作ってみました。</summary>

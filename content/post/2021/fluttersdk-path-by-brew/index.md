@@ -4,9 +4,9 @@ postdate: "2021-05-22T13:26"
 tags: ["Flutter"]
 ---
 
-flutter webやってようとした時のこと。
+flutter web やってようとした時のこと。
 
-新規プロジェクトを作成しようとしたら、flutter sdkのパスを入れろと言われた。  
+新規プロジェクトを作成しようとしたら、flutter sdk のパスを入れろと言われた。  
 brew cask で flutter sdk 入れてたのでどこにあるのかわからなかった。
 
 ## 結論
@@ -15,7 +15,7 @@ brew cask で flutter sdk 入れてたのでどこにあるのかわからなか
 $ flutter doctor -v
 ```
 
-とすればOK
+とすれば OK
 
 ```txt
 [✓]  Flutter (Channel stable, 2.0.6, on macOS 11.2.3 darwin-x64, locale ja-JP)
@@ -25,7 +25,7 @@ $ flutter doctor -v
     • Dart version 2.12.3
 ```
 
-2行目の
+2 行目の
 
 ```txt
 ~~~ at /usr/local/Caskroom/flutter/2.0.6/flutter

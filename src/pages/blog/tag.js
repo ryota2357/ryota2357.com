@@ -14,26 +14,29 @@ const Tag = ({ data, location }) => {
       <Seo title="Tag List" />
       <h1>Tag</h1>
       <ul>
-      {
-        counter.keys
-          .sort()                                          // 文字列ソート(アルファベット, 50音)
+        {counter.keys
+          .sort() // 文字列ソート(アルファベット, 50音)
           .sort((a, b) => counter.get(b) - counter.get(a)) // 数が多い順のソート
           .map(key => (
-            <li style={{ margin: '1rem 0' }}>
-              <Link to={`/blog/tag/${key}`} style={{
-                fontSize: '1.1rem',
-              }}>{key}</Link>
+            <li style={{ margin: "1rem 0" }}>
+              <Link
+                to={`/blog/tag/${key}`}
+                style={{
+                  fontSize: "1.1rem",
+                }}
+              >
+                {key}
+              </Link>
               {` : ${counter.get(key)}`}
             </li>
-          ))
-      }
+          ))}
       </ul>
     </Layout>
   )
 }
 
 export const pageQuery = graphql`
-  query TagOnlyQuery{
+  query TagOnlyQuery {
     allMarkdownRemark {
       nodes {
         frontmatter {

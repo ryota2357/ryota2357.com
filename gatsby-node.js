@@ -2,28 +2,28 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const createBlogPostPage = (posts) => {
+  const createBlogPostPage = posts => {
     posts?.forEach((post, index) => {
       actions.createPage({
         path: post.fields.slug,
         component: path.resolve(`./src/templates/blog-post.js`),
         context: {
           id: post.id,
-          previousPostId: (index === 0 ? null : posts[index - 1].id),
-          nextPostId: (index === posts.length - 1 ? null : posts[index + 1].id),
+          previousPostId: index === 0 ? null : posts[index - 1].id,
+          nextPostId: index === posts.length - 1 ? null : posts[index + 1].id,
         },
       })
     })
   }
 
-  const createTagPage = (tags) => {
+  const createTagPage = tags => {
     tags?.forEach(tag => {
       actions.createPage({
         path: `blog/tag/${tag}`,
         component: path.resolve(`./src/templates/tagPage.js`),
         context: {
-          tag: tag
-        }
+          tag: tag,
+        },
       })
     })
   }
@@ -48,7 +48,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   `)
 
   if (result.errors) {
-    reporter.panicOnBuild(`There was an error loading your blog posts`, result.errors)
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      result.errors
+    )
     return
   }
 

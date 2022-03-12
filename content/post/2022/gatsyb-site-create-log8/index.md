@@ -7,12 +7,12 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは2022年の3月上旬。
-> `gatsby-cli`のバージョンは4.9.0
+> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
+> `gatsby-cli`のバージョンは 4.9.0
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
-## gatsby-node.jsの整理
+## gatsby-node.js の整理
 
 ローカル変数の削除とインライン化、関数化、コメントの追加を行なった。
 
@@ -24,15 +24,15 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const createBlogPostPage = (posts) => {
+  const createBlogPostPage = posts => {
     posts?.forEach((post, index) => {
       actions.createPage({
         path: post.fields.slug,
         component: path.resolve(`./src/templates/blog-post.js`),
         context: {
           id: post.id,
-          previousPostId: (index === 0 ? null : posts[index - 1].id),
-          nextPostId: (index === posts.length - 1 ? null : posts[index + 1].id),
+          previousPostId: index === 0 ? null : posts[index - 1].id,
+          nextPostId: index === posts.length - 1 ? null : posts[index + 1].id,
         },
       })
     })
@@ -55,7 +55,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   `)
 
   if (result.errors) {
-    reporter.panicOnBuild(`There was an error loading your blog posts`, result.errors)
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      result.errors
+    )
     return
   }
 
@@ -129,11 +132,11 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 </details>
 
-## URLリンクの修正
+## URL リンクの修正
 
-`gatsby-node.js`を整理してわかったのだけど、`exports.onCreateNode`で各ブログ記事のurlを生成しているみたい。
+`gatsby-node.js`を整理してわかったのだけど、`exports.onCreateNode`で各ブログ記事の url を生成しているみたい。
 
-現在、ブログ記事のurlは`/blog/YYYY/hoge-fuga`って感じに先頭に`blog`とつけている。  
+現在、ブログ記事の url は`/blog/YYYY/hoge-fuga`って感じに先頭に`blog`とつけている。  
 そのためいろいろなところで
 
 ```jsx
@@ -143,9 +146,9 @@ exports.createSchemaCustomization = ({ actions }) => {
 というようにめんどくさいことをしている。  
 このことは [2.サイトのディレクトリ変更](../gatsby-site-create-log2/) を見るとよくわかると思う。
 
-urlの生成方法がわかったのでいい感じに修正する。
+url の生成方法がわかったのでいい感じに修正する。
 
-### URL生成部分の修正
+### URL 生成部分の修正
 
 `gatsby-node.js`にて
 
@@ -176,8 +179,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 ### リンクの修正
 
-今、ブログ記事にアクセスすると`/blog/blog/YYYY/hoge-fuga`のようにblogが2回続いた形になっている。  
-まず、`gatsby-node.js`で生成されるURLを正しいものにする
+今、ブログ記事にアクセスすると`/blog/blog/YYYY/hoge-fuga`のように blog が 2 回続いた形になっている。  
+まず、`gatsby-node.js`で生成される URL を正しいものにする
 
 ```jsx
 ...
@@ -191,7 +194,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 ```
 
 続いて、`components/blogCard.js`と`templates/blog-post.js`を修正する。  
-Linkのtoパラメータを直す。
+Link の to パラメータを直す。
 
 ```jsx
 // components/blogCard.js
@@ -232,7 +235,7 @@ Linkのtoパラメータを直す。
 
 以上で期待通りのものになった。
 
-## tag個別ページの作成
+## tag 個別ページの作成
 
 本題
 
@@ -253,13 +256,11 @@ const TagsTemplate = ({ data, location, pageContext }) => {
       <Seo title={`tag: ${pageContext.tag}`} />
       <h1>{pageContext.tag}</h1>
       <p>{data.allMarkdownRemark.totalCount}件</p>
-      {
-        data.allMarkdownRemark.nodes.map(post => (
-          <p>
-            <Link to={post.fields.slug}>{ post.frontmatter.title }</Link>
-          </p>
-        ))
-      }
+      {data.allMarkdownRemark.nodes.map(post => (
+        <p>
+          <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
+        </p>
+      ))}
     </Layout>
   )
 }
@@ -267,12 +268,10 @@ const TagsTemplate = ({ data, location, pageContext }) => {
 export default TagsTemplate
 
 export const pageQuery = graphql`
-  query BlogPostByTag(
-    $tag: String!
-  ) {
+  query BlogPostByTag($tag: String!) {
     allMarkdownRemark(
-      filter: {frontmatter: {tags: {eq: $tag }}}
-      sort: {order: DESC, fields: frontmatter___postdate}
+      filter: { frontmatter: { tags: { eq: $tag } } }
+      sort: { order: DESC, fields: frontmatter___postdate }
     ) {
       totalCount
       nodes {
@@ -285,13 +284,13 @@ export const pageQuery = graphql`
           slug
         }
       }
-   }
- }
+    }
+  }
 `
 ```
 
-次に、`gatsby-node.js`でtagページを生成する。  
-set使って全てのブログ記事のfrontmatterからtagを収集してる。
+次に、`gatsby-node.js`で tag ページを生成する。  
+set 使って全てのブログ記事の frontmatter から tag を収集してる。
 
 ```jsx
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -328,9 +327,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 ### 整える
 
-BlogCardsコンポーネントをパクってきた感じ。
+BlogCards コンポーネントをパクってきた感じ。
 
-Tag一覧ページに表示したいブログ記事のリストのための処理と、BlogCardsが行ってる処理が微妙に処理が違うし、共通化部分を切り出すのも面倒だったのでコピペしていじった。
+Tag 一覧ページに表示したいブログ記事のリストのための処理と、BlogCards が行ってる処理が微妙に処理が違うし、共通化部分を切り出すのも面倒だったのでコピペしていじった。
 
 <details>
 
@@ -345,26 +344,39 @@ import Seo from "../components/seo"
 
 const TagsTemplate = ({ data, location, pageContext }) => {
   const Card = ({ post, style }) => {
-    const Date = () => (<p style={{ color: '#747474', marginBottom: '0' }}>{ post.frontmatter.postdate }</p>)
+    const Date = () => (
+      <p style={{ color: "#747474", marginBottom: "0" }}>
+        {post.frontmatter.postdate}
+      </p>
+    )
     const Title = () => (
-      <h3 style={{ margin: '0' }}>
-        <Link to={post.fields.slug} itemProp="url" style={{ color: '#242424' }}>
-          <span itemProp="headline">{ post.frontmatter.title || post.fields.slug }</span>
+      <h3 style={{ margin: "0" }}>
+        <Link to={post.fields.slug} itemProp="url" style={{ color: "#242424" }}>
+          <span itemProp="headline">
+            {post.frontmatter.title || post.fields.slug}
+          </span>
         </Link>
       </h3>
     )
     const Tag = () => (
-      <p style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        {post.frontmatter.tags && (post.frontmatter.tags.map((tag, i)=> (
-          <span style={{
-            backgroundColor: '#000000',
-            borderRadius: '2px',
-            padding: '0.3rem 1rem',
-            marginLeft: '0.3rem'
-          }} key={i}>
-            <Link to={`/blog/tag/${tag}`} style={{ color: '#ffffff' }}> { tag } </Link>
-          </span>
-        )))}
+      <p style={{ display: "flex", justifyContent: "flex-end" }}>
+        {post.frontmatter.tags &&
+          post.frontmatter.tags.map((tag, i) => (
+            <span
+              style={{
+                backgroundColor: "#000000",
+                borderRadius: "2px",
+                padding: "0.3rem 1rem",
+                marginLeft: "0.3rem",
+              }}
+              key={i}
+            >
+              <Link to={`/blog/tag/${tag}`} style={{ color: "#ffffff" }}>
+                {" "}
+                {tag}{" "}
+              </Link>
+            </span>
+          ))}
       </p>
     )
     return (
@@ -381,22 +393,33 @@ const TagsTemplate = ({ data, location, pageContext }) => {
       <Seo title={`Tag: ${pageContext.tag}`} />
       <h1>{pageContext.tag}</h1>
       <p>{data.allMarkdownRemark.totalCount}件</p>
-      <p><Link to="/blog/tag">タグの一覧</Link></p>
-      {<div style={{
-        display: 'flex',
-        flexFlow: 'column',
-        backgroundColor: '#ffffff',
-        border: 'solid 1px #999999',
-        padding: '0 10px',
-        }}>
-        {
-          data.allMarkdownRemark.nodes.map((post, i) => {
+      <p>
+        <Link to="/blog/tag">タグの一覧</Link>
+      </p>
+      {
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "column",
+            backgroundColor: "#ffffff",
+            border: "solid 1px #999999",
+            padding: "0 10px",
+          }}
+        >
+          {data.allMarkdownRemark.nodes.map((post, i) => {
             // 最後の一個以外ボーダーで区切り線を入れる
-            if (i >= data.allMarkdownRemark.nodes.length -1) return <Card post={post} key={i}/>
-            return <Card post={post} style={{ borderBottom: 'solid 1px #E3E3E3' }} key={i}/>
-          })
-        }
-      </div>}
+            if (i >= data.allMarkdownRemark.nodes.length - 1)
+              return <Card post={post} key={i} />
+            return (
+              <Card
+                post={post}
+                style={{ borderBottom: "solid 1px #E3E3E3" }}
+                key={i}
+              />
+            )
+          })}
+        </div>
+      }
     </Layout>
   )
 }
@@ -404,12 +427,10 @@ const TagsTemplate = ({ data, location, pageContext }) => {
 export default TagsTemplate
 
 export const pageQuery = graphql`
-  query BlogPostByTag(
-    $tag: String!
-  ) {
+  query BlogPostByTag($tag: String!) {
     allMarkdownRemark(
-      filter: {frontmatter: {tags: {eq: $tag }}}
-      sort: {order: DESC, fields: frontmatter___postdate}
+      filter: { frontmatter: { tags: { eq: $tag } } }
+      sort: { order: DESC, fields: frontmatter___postdate }
     ) {
       totalCount
       nodes {
@@ -433,15 +454,15 @@ export const pageQuery = graphql`
 
 ちなみに、ここで`C#`タグが問題となった。
 
-`http://localhost:8000/blog/tag/C#`とアクセスすると404になる。  
-Pagesにはちゃんとあるのに。。。
+`http://localhost:8000/blog/tag/C#`とアクセスすると 404 になる。  
+Pages にはちゃんとあるのに。。。
 
 ![404Cs](screenshot_404.png)
 
 まあ、それはそうなんだけど。
 
-エスケープとか面倒なのでfrontmatterのtagsの`C#`を無くして`CSharp`にした。  
-ついでにタグの名前が他は全てUpperCamelなので`gatsby`を`Gatsby`にしておいた。
+エスケープとか面倒なので frontmatter の tags の`C#`を無くして`CSharp`にした。  
+ついでにタグの名前が他は全て UpperCamel なので`gatsby`を`Gatsby`にしておいた。
 
 ## タグの一覧ページの作成
 
@@ -468,26 +489,29 @@ const Tag = ({ data, location }) => {
       <Seo title="Tag List" />
       <h1>Tag</h1>
       <ul>
-      {
-        counter.keys
-          .sort()                                          // 文字列ソート(アルファベット, 50音)
+        {counter.keys
+          .sort() // 文字列ソート(アルファベット, 50音)
           .sort((a, b) => counter.get(b) - counter.get(a)) // 数が多い順のソート
           .map(key => (
-            <li style={{ margin: '1rem 0' }}>
-              <Link to={`/blog/tag/${key}`} style={{
-                fontSize: '1.1rem',
-              }}>{key}</Link>
+            <li style={{ margin: "1rem 0" }}>
+              <Link
+                to={`/blog/tag/${key}`}
+                style={{
+                  fontSize: "1.1rem",
+                }}
+              >
+                {key}
+              </Link>
               {` : ${counter.get(key)}`}
             </li>
-          ))
-      }
+          ))}
       </ul>
     </Layout>
   )
 }
 
 export const pageQuery = graphql`
-  query TagOnlyQuery{
+  query TagOnlyQuery {
     allMarkdownRemark {
       nodes {
         frontmatter {

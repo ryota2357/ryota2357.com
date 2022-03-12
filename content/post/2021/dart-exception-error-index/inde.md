@@ -4,14 +4,15 @@ postdate: "2021-05-29T09:23"
 tags: ["Dart"]
 ---
 
-dart SKDのエラー・例外の一覧がなかったので。
+dart SKD のエラー・例外の一覧がなかったので。
 [https://api.dart.dev/stable/2.13.1/index.html](https://api.dart.dev/stable/2.13.1/index.html)
 
 <details>
   <summary>エラーと例外の違い</summary>
 
-  > DartにはExceptionとErrorの型があり、また数多くのあらかじめ定義されたそれらの副型がある。無論自分自身の例外を定義することも可能である。しかしながら、Dartのプログラムは非nullオブジェクト（単にExceptionとErrorのオブジェクトでなく）を例外としてスローし得る。ErrorとExceptionに関しては、基本的にErrorとそのサブクラスはプログラム・エラーであり、そのプログラムは修正が必要である。一方非エラーのExceptionは実行時エラーである。これは通常プログラムであらかじめスローされるのを防止出来ない。  
-  > [Dart 2 Language Guide](https://www.cresc.co.jp/tech/java/Google_Dart2/language/exceptions/exceptions.html)
+> Dart には Exception と Error の型があり、また数多くのあらかじめ定義されたそれらの副型がある。無論自分自身の例外を定義することも可能である。しかしながら、Dart のプログラムは非 null オブジェクト（単に Exception と Error のオブジェクトでなく）を例外としてスローし得る。Error と Exception に関しては、基本的に Error とそのサブクラスはプログラム・エラーであり、そのプログラムは修正が必要である。一方非エラーの Exception は実行時エラーである。これは通常プログラムであらかじめスローされるのを防止出来ない。  
+> [Dart 2 Language Guide](https://www.cresc.co.jp/tech/java/Google_Dart2/language/exceptions/exceptions.html)
+
 </details>
 
 ## 例外
@@ -113,7 +114,6 @@ A secure networking exception caused by a failure in the TLS/SSL protocol.
 ### WebSocketException
 
 [https://api.dart.dev/stable/2.13.1/dart-io/WebSocketException-class.html](https://api.dart.dev/stable/2.13.1/dart-io/WebSocketException-class.html)
-
 
 ## エラー
 

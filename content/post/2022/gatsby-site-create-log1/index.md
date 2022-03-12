@@ -7,8 +7,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは2022年の3月上旬。
-> `gatsby-cli`のバージョンは4.9.0
+> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
+> `gatsby-cli`のバージョンは 4.9.0
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -18,7 +18,7 @@ tags: ["Gatsby"]
 
 を使って作業する。
 
-Gatsby Extension PackとGatsbyHubっての入れとく。(GatsbyHubはいらないかもしれない)
+Gatsby Extension Pack と GatsbyHub っての入れとく。(GatsbyHub はいらないかもしれない)
 
 - [Gatsby Extension Pack](https://marketplace.visualstudio.com/items?itemName=nickytonline.gatsby-extension-pack)
 - [GatsbyHub](https://marketplace.visualstudio.com/items?itemName=GatsbyHub.gatsbyhub)
@@ -35,8 +35,8 @@ $ gatsby new [YOUR_BLOG_NAME] https://github.com/gatsbyjs/gatsby-starter-blog
 
 `src/images/profile-pic.png`を自分の画像に変更する。
 
-ファイル名はなんでも良いが、僕は`profile-pic.jpg`にした。(pngのプロフィール画像持ってなかったからjpg)  
-ファイル名を変えた場合は`src/components/bio.js`の33行目を変更する必要がある。
+ファイル名はなんでも良いが、僕は`profile-pic.jpg`にした。(png のプロフィール画像持ってなかったから jpg)  
+ファイル名を変えた場合は`src/components/bio.js`の 33 行目を変更する必要がある。
 
 ```jsx
 <StaticImage
@@ -51,10 +51,10 @@ $ gatsby new [YOUR_BLOG_NAME] https://github.com/gatsbyjs/gatsby-starter-blog
 />
 ```
 
-## siteMetadataの編集
+## siteMetadata の編集
 
-`gatsby-config.js`のsocialの欄に github と unityroom を追加しておいた。  
-siteUrlは後ほど設定する。有効な(存在する?)URLじゃないと`gatsby develop`とかした時に怒られるので今はデフォルトのままに。
+`gatsby-config.js`の social の欄に github と unityroom を追加しておいた。  
+siteUrl は後ほど設定する。有効な(存在する?)URL じゃないと`gatsby develop`とかした時に怒られるので今はデフォルトのままに。
 
 ```jsx
 // gatsby-config.js
@@ -82,7 +82,7 @@ module.exports = {
 
 追加したのを反映するため`src/components/bio.js`を編集していく。
 
-GraphQLクエリにgithub、unityroomを追加。  
+GraphQL クエリに github、unityroom を追加。  
 あと、リンクを設置。
 
 ```jsx
@@ -132,8 +132,8 @@ const Bio = () => {
 export default Bio
 ```
 
-`gatsby-node.js`ではsiteMetadataオブジェクトを明示的に定義してある。  
-siteMetadataオブジェクトにプロパティを追加したので、これらも明示的に定義しておく。なお、必須ではない模様
+`gatsby-node.js`では siteMetadata オブジェクトを明示的に定義してある。  
+siteMetadata オブジェクトにプロパティを追加したので、これらも明示的に定義しておく。なお、必須ではない模様
 
 ```jsx
 // gatsby-node.js
@@ -142,14 +142,14 @@ exports.createSchemaCustomization = ({ actions }) => {
 ...
    type Social {
       twitter: String
-      
+
     }
 ...
 ```
 
-## 日付をYYYY/MM/DDに
+## 日付を YYYY/MM/DD に
 
-`index.js`のfromtmatter内date(formatString: )を編集
+`index.js`の fromtmatter 内 date(formatString: )を編集
 
 ```jsx
 ...
@@ -177,9 +177,9 @@ export const pageQuery = graphql`
 `
 ```
 
-## Seoコンポーネント
+## Seo コンポーネント
 
-components/seo.jsのところ、langがenになってるのでjaに
+components/seo.js のところ、lang が en になってるので ja に
 
 ```jsx
 ...
@@ -191,7 +191,7 @@ Seo.defaultProps = {
 ...
 ```
 
-## plugin調べ
+## plugin 調べ
 
 `gatsby-config.js`
 

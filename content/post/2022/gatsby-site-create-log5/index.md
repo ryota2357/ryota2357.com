@@ -7,16 +7,16 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは2022年の3月上旬。
-> `gatsby-cli`のバージョンは4.9.0
+> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
+> `gatsby-cli`のバージョンは 4.9.0
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
-blog記事のレイアウトを整えていく。
+blog 記事のレイアウトを整えていく。
 
-## scssを使う
+## scss を使う
 
-今までにscss使ったことないけど、便利そうなので使ってみたかった。  
+今までに scss 使ったことないけど、便利そうなので使ってみたかった。  
 プラグインを追加して使えるようにする。
 
 ```bash
@@ -40,7 +40,8 @@ $ npm i sass gatsby-plugin-sass
 
 ```scss
 html {
-  font-family: YuGothic,'Yu Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','ＭＳ ゴシック',sans-serif;
+  font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
+    "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
   background-color: #f6f5f5;
   color: #242424;
   font-size: 14px;
@@ -76,8 +77,8 @@ html {
 
 </details>
 
-`gastby-browser.js`のimportパスを修正  
-ついでにtypeface-*は使ってないから削除
+`gastby-browser.js`の import パスを修正  
+ついでに typeface-\*は使ってないから削除
 
 ```js {diff}
 -// custom typefaces
@@ -91,12 +92,12 @@ html {
 +import "./src/style/style.scss"
 ```
 
-package.jsonkからも消してnpm installしておく
+package.jsonk からも消して npm install しておく
 
-## blog個別記事のcssを作る
+## blog 個別記事の css を作る
 
-`templates/blog-post.js`の本文部分にclassName=”markdown”を設置  
-ついでにh1タグになんかstyleつけてたので全部取り除いた。
+`templates/blog-post.js`の本文部分に className=”markdown”を設置  
+ついでに h1 タグになんか style つけてたので全部取り除いた。
 
 ```jsx
 const BlogPostTemplate = ({ data, location }) => {
@@ -118,14 +119,14 @@ const BlogPostTemplate = ({ data, location }) => {
 ...
 ```
 
-`style/markdown.scss`を作って、`gatsby-browser.js`にこのscssを読み込むように追記
+`style/markdown.scss`を作って、`gatsby-browser.js`にこの scss を読み込むように追記
 
 ```jsx
 ...
 import "./src/style/markdown.scss"
 ```
 
-`style/markdown.scss`の内容はこんな感じ、[githubマークダウンのcss](https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown-light.css)を参考にしてる。
+`style/markdown.scss`の内容はこんな感じ、[github マークダウンの css](https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown-light.css)を参考にしてる。
 
 <details>
   <summary>style/markdown.scss</summary>
@@ -133,7 +134,7 @@ import "./src/style/markdown.scss"
 ```scss
 .markdown {
   h2 {
-    border-bottom: solid 2.5px #E3E3E3;
+    border-bottom: solid 2.5px #e3e3e3;
   }
   pre {
     border-radius: 10px;
@@ -159,7 +160,7 @@ import "./src/style/markdown.scss"
     overflow: auto;
     tr {
       background-color: #ffffff;
-      border-top: 1px solid #D5DBE2;
+      border-top: 1px solid #d5dbe2;
       &:nth-child(2n) {
         background-color: #f6f8fa;
       }
@@ -181,16 +182,16 @@ import "./src/style/markdown.scss"
 
 ## コードのハイライトプラグインの変更
 
-gatsby-remark-prismjsからgatsby-remark-vscodeにする。
+gatsby-remark-prismjs から gatsby-remark-vscode にする。
 
 ```bash
 $ npm i gatsby-remark-vscode
 ```
 
 で導入。  
-gatsby-remark-prismjsを`gatsby-config.js`とか`package.json`とかから削除
+gatsby-remark-prismjs を`gatsby-config.js`とか`package.json`とかから削除
 
-gatsby-remark-vscodeのオプションはこんな感じ。
+gatsby-remark-vscode のオプションはこんな感じ。
 
 ```js
 ...
@@ -205,11 +206,11 @@ gatsby-remark-vscodeのオプションはこんな感じ。
 ...
 ```
 
-gatsby-remark-vscodeはdartに対応してないので対応させてる。  
+gatsby-remark-vscode は dart に対応してないので対応させてる。  
 詳しくは TODO:リンクを追加
 
 続いてスタイルを調整する。  
-`style/code-highlight.scss`を作って以下のようにする。もちろん、`gatsby-brower.js`にimportしておく。
+`style/code-highlight.scss`を作って以下のようにする。もちろん、`gatsby-brower.js`に import しておく。
 
 ```scss
 // gatsby-remark-vscode
@@ -221,7 +222,7 @@ gatsby-remark-vscodeはdartに対応してないので対応させてる。
   p {
     code {
       font-size: 1rem;
-      background-color: #E6E6E6;
+      background-color: #e6e6e6;
       border-radius: 6px;
       padding: 0.2em 0.4em;
     }

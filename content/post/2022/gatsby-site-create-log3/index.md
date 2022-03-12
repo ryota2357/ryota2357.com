@@ -7,8 +7,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは2022年の3月上旬。
-> `gatsby-cli`のバージョンは4.9.0
+> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
+> `gatsby-cli`のバージョンは 4.9.0
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -22,41 +22,42 @@ tags: ["Gatsby"]
 
 ```css
 html {
-    font-family: YuGothic,'Yu Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','ＭＳ ゴシック',sans-serif;
-    background-color: #f6f5f5;
-    color: #242424;
+  font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
+    "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
+  background-color: #f6f5f5;
+  color: #242424;
 }
 
 h1 {
-    font-size: 2rem;
-    font-weight: bold;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 h2 {
-    font-size: 1.7rem;
-    font-weight: bold;
+  font-size: 1.7rem;
+  font-weight: bold;
 }
 
 h3 {
-    font-size: 1.3rem;
-    font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
 h4 {
-    font-size: 1.1rem;
-    font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 p {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 a {
-    color: blue;
-    text-decoration: none;
+  color: blue;
+  text-decoration: none;
 }
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 ```
 
@@ -66,8 +67,8 @@ a:hover {
 
 ### pages/index.js
 
-なんかネスト深くて読みにくいし、list表示じゃなくて、ただのdivの羅列にしたかったので適当に編集  
-記事が1つもない時の処理があったけど必要なさそうだったから削除
+なんかネスト深くて読みにくいし、list 表示じゃなくて、ただの div の羅列にしたかったので適当に編集  
+記事が 1 つもない時の処理があったけど必要なさそうだったから削除
 
 ```jsx
 import * as React from "react"
@@ -87,7 +88,9 @@ const Index = ({ data, location }) => {
       <div>
         <h2>
           <Link to={`/blog${post.fields.slug}`} itemProp="url">
-            <span itemProp="headline">{ post.frontmatter.title || post.fields.slug }</span>
+            <span itemProp="headline">
+              {post.frontmatter.title || post.fields.slug}
+            </span>
           </Link>
         </h2>
         <p>{post.frontmatter.date}</p>
@@ -105,15 +108,15 @@ const Index = ({ data, location }) => {
     <Layout location={location} title={data.site.siteMetadata.title}>
       <Seo title="Home" />
       <Bio />
-      <div style={{
-        display: 'flex',
-        flexFlow: 'column'
-        }}>
-        {
-          data.allMarkdownRemark.nodes.map(post => {
-            return <BlogCard post={post} />
-          })
-        }
+      <div
+        style={{
+          display: "flex",
+          flexFlow: "column",
+        }}
+      >
+        {data.allMarkdownRemark.nodes.map(post => {
+          return <BlogCard post={post} />
+        })}
       </div>
     </Layout>
   )
@@ -148,17 +151,16 @@ export const pageQuery = graphql`
 ### components/layout.js
 
 原型とどめないほどにいじってしまった。  
-最初はコンポーネントに分離とかさせてただけなんだけど、styleとか変えてるうちになんかこうなった。
+最初はコンポーネントに分離とかさせてただけなんだけど、style とか変えてるうちになんかこうなった。
 
-引数に`title`あったけど不要な気がしたので削除、StaticQueryで直接取得してる。  
-`title`削除してビルドしてもエラー出ないから、Layoutコンポーネントが使われているところを見つけ次第順次変更しておく。
+引数に`title`あったけど不要な気がしたので削除、StaticQuery で直接取得してる。  
+`title`削除してビルドしてもエラー出ないから、Layout コンポーネントが使われているところを見つけ次第順次変更しておく。
 
-あと、`data-is-root-path`って何？一箇所だけdivで使われてるのだが、何をしてるのだろう...まあ、そのままにしといた。
+あと、`data-is-root-path`って何？一箇所だけ div で使われてるのだが、何をしてるのだろう...まあ、そのままにしといた。
 
 ```jsx
-
 import * as React from "react"
-import { Link, useStaticQuery, graphql} from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 const Layout = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -176,36 +178,51 @@ const Layout = ({ location, children }) => {
   `)
 
   const Header = () => (
-    <header style={{ margin: '20px 0'}}>
-      <Link to="/" style={{
-        color: '#000000',
-        fontSize: '2rem',
-        fontWeight: 'bold',
-        padding: '0 10px',
-      }}>
-        { site.siteMetadata.title }
+    <header style={{ margin: "20px 0" }}>
+      <Link
+        to="/"
+        style={{
+          color: "#000000",
+          fontSize: "2rem",
+          fontWeight: "bold",
+          padding: "0 10px",
+        }}
+      >
+        {site.siteMetadata.title}
       </Link>
     </header>
   )
 
   const Footer = () => (
-    <footer style={{
-      textAlign: 'center',
-      fontSize: '0.7rem'
-    }}>
-      <p>Built with <a href="https://www.gatsbyjs.com" style={{color: 'inherit'}}>Gatsby</a></p>
+    <footer
+      style={{
+        textAlign: "center",
+        fontSize: "0.7rem",
+      }}
+    >
+      <p>
+        Built with{" "}
+        <a href="https://www.gatsbyjs.com" style={{ color: "inherit" }}>
+          Gatsby
+        </a>
+      </p>
       <p>©2022 {site.siteMetadata.author.name} All Rights Reserved.</p>
     </footer>
   )
 
   return (
-    <div className="global-layout" data-is-root-path={location.pathname === rootPath}>
+    <div
+      className="global-layout"
+      data-is-root-path={location.pathname === rootPath}
+    >
       <Header />
-      <main style={{
-        maxWidth: '1080px',
-        margin: 'auto',
-      }}>
-        { children }
+      <main
+        style={{
+          maxWidth: "1080px",
+          margin: "auto",
+        }}
+      >
+        {children}
       </main>
       <Footer />
     </div>
@@ -234,11 +251,12 @@ const BlogPostTemplate = ({ data, location }) => {
       itemType="http://schema.org/Article"
     >
       <div>
-        <h1 itemProp="headline">{ post.frontmatter.title }</h1>
-        <p>{ post.frontmatter.date }</p>
+        <h1 itemProp="headline">{post.frontmatter.title}</h1>
+        <p>{post.frontmatter.date}</p>
       </div>
 
-      <div itemProp="articleBody"
+      <div
+        itemProp="articleBody"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
     </article>
@@ -246,12 +264,13 @@ const BlogPostTemplate = ({ data, location }) => {
 
   const BlogNav = ({ previous, next }) => (
     <nav>
-      <ul style={{
-        display: `flex`,
-        flexWrap: `wrap`,
-        justifyContent: `space-between`,
-        listStyle: `none`,
-        padding: 0,
+      <ul
+        style={{
+          display: `flex`,
+          flexWrap: `wrap`,
+          justifyContent: `space-between`,
+          listStyle: `none`,
+          padding: 0,
         }}
       >
         <li>
@@ -276,7 +295,10 @@ const BlogPostTemplate = ({ data, location }) => {
     <Layout location={location}>
       <Seo
         title={data.markdownRemark.frontmatter.title}
-        description={data.markdownRemark.frontmatter.description || data.markdownRemark.excerpt}
+        description={
+          data.markdownRemark.frontmatter.description ||
+          data.markdownRemark.excerpt
+        }
       />
       <BlogBody post={data.markdownRemark} />
       <BlogNav previous={data.previous} next={data.next} />

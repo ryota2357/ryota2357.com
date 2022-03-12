@@ -4,7 +4,7 @@ postdate: "2021-08-29T21:45"
 tags: ["Dart"]
 ---
 
-Dart公式のmeta.dartとdart:coreライブラリに定義されているアノテーションの一覧が欲しかったので作った。  
+Dart 公式の meta.dart と dart:core ライブラリに定義されているアノテーションの一覧が欲しかったので作った。
 
 日本語はかなりざっくり書いてるので、原文ドキュメントも読むことも推奨。
 
@@ -39,7 +39,7 @@ Further lints  can be used to enable more warnings based on @override annotation
 </details>
 
 インターフェースメンバーをオーバーライドすることを示す。  
-親に存在しないメンバをオーバーライドしようとした時(typoとか)に警告を出してくれる。  
+親に存在しないメンバをオーバーライドしようとした時(typo とか)に警告を出してくれる。  
 このアノテーションにより、オーバーライドできてることをアナライザーが保証してくれる。
 
 ### @alwaysThrows
@@ -66,6 +66,7 @@ int fn(bool b) {
 
 Without the annotation on toss, it would look as though fn doesn't always return a value. The annotation shows that fn does always exit. In addition, the annotation reveals that any statements following a call to toss (like the print call) are dead code.
 Tools, such as the analyzer, can also expect this contract to be enforced; that is, tools may emit warnings if a function with this annotation doesn't always throw.
+
 </details>
 
 常に例外を投げる関数(メソッド)につける。  
@@ -73,7 +74,7 @@ Tools, such as the analyzer, can also expect this contract to be enforced; that 
 
 ### @checked
 
-よくわからかったのでdeepl翻訳そのまま。
+よくわからかったので deepl 翻訳そのまま。
 
 <details>
   <summary>ドキュメント</summary>
@@ -95,7 +96,7 @@ the annotation is associated with a declaration that is not part of the public i
 the declaration is referenced by a package that has not explicitly indicated its intention to use experimental APIs (details TBD).
 </details>
 
-アノテーションをつけたAPIは実験的(experimental)であることを示す。  
+アノテーションをつけた API は実験的(experimental)であることを示す。
 
 クラスにつけた場合はそのメンバも、ライブラリにつけるとライブラリ内のトップレベルメンバ全てにこのアノテーションをつけたことと同じになる。  
 サブクラスは親にアノテーションがついていても適応されない。
@@ -129,7 +130,7 @@ a class that has this annotation or extends, implements or mixes in a class that
 
 ### @isTest
 
-deepl翻訳そのまま
+deepl 翻訳そのまま
 
 <details>
   <summary>ドキュメント</summary>
@@ -138,13 +139,13 @@ Tools, such as IDEs, can show invocations of such function in a file structure v
 The first parameter of the function must be the description of the test.
 </details>
 
-1つのテストを実行するテストフレームワーク関数に注釈を付けるために使用します。
+1 つのテストを実行するテストフレームワーク関数に注釈を付けるために使用します。
 IDE などのツールでは、このような関数の呼び出しをファイル構造ビューに表示して、ユーザーが大きなテストファイルの中を移動するのを助けることができます。
 この関数の最初のパラメータには、テストの説明を指定します。
 
 ### @isTestGroup
 
-deepl翻訳そのまま
+deepl 翻訳そのまま
 
 <details>
   <summary>ドキュメント</summary>
@@ -167,7 +168,7 @@ the annotation is associated with anything other than a const constructor, or
 an invocation of a constructor that has this annotation is not invoked using the `const` keyword unless one or more of the arguments to the constructor is not a compile-time constant.
 </details>
 
-コンストラクタの引数のうち1つ以上がコンパイル時の定数でない場合を除き、コンストラクタの呼び出しにはキーワード`const`を使用しなければならないことを示す。
+コンストラクタの引数のうち 1 つ以上がコンパイル時の定数でない場合を除き、コンストラクタの呼び出しにはキーワード`const`を使用しなければならないことを示す。
 
 ### @mustCallSuper
 
@@ -180,7 +181,7 @@ the annotation is associated with anything other than an instance method, or
 a method that overrides a method that has this annotation can return without invoking the overridden method.
 </details>
 
-メソッドmをオーバーライドした時、その親のメソッドmも呼びたす必要があることを示す。  またメソッドmはオーバーライドされたとしても、暗黙的にこのアノテーションがつけられる。
+メソッド m をオーバーライドした時、その親のメソッド m も呼びたす必要があることを示す。 またメソッド m はオーバーライドされたとしても、暗黙的にこのアノテーションがつけられる。
 
 ### @optionalTypeArgs
 
@@ -245,7 +246,7 @@ Deprecated: Most of strong mode is now the default in 2.0, but the notion of vir
 </details>
 
 非推奨。
-Dart2.0でデフォルトになったので。
+Dart2.0 でデフォルトになったので。
 
 ### @visibleForOverriding
 
@@ -269,4 +270,4 @@ the annotation is associated with a declaration not in the `lib` folder of a pac
 the declaration is referenced outside of its defining library or a library which is in the `test` folder of the defining package.
 </details>
 
-テスト用のコードであることを示し、testフォルダ下以外で呼ばれると警告を出す。
+テスト用のコードであることを示し、test フォルダ下以外で呼ばれると警告を出す。
