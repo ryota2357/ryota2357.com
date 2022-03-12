@@ -103,7 +103,7 @@ const About = ({ data, location }) => {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `ryota2357 memo, log, record...`,
+        name: `ryota2357`,
         short_name: `ryota2357`,
         start_url: `/`,
         background_color: `#f6f5f5`,
@@ -112,5 +112,4 @@ const About = ({ data, location }) => {
         icon: `src/images/profile-pic.jpg`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-offline`,
 ```

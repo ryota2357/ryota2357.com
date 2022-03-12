@@ -9,7 +9,7 @@ module.exports = {
     },
     description: `namespace ryota2357;`,
     siteUrl: `https://ryota2357.com`,
-    repository: `https://github.com/ryota2357/ryota2357`,
+    repository: `ryota2357/ryota2357`,
     social: {
       atcoder: `R2357`,
       github: `ryota2357`,
@@ -48,6 +48,9 @@ module.exports = {
 
   - gatsby-plugin-sharp (https://www.gatsbyjs.com/plugins/gatsby-plugin-sharp/)
       画像処理の低レイヤのプラグイン
+
+  - gatsby-plugin-google-gtag (https://www.gatsbyjs.com/plugins/gatsby-plugin-google-gtag/)
+      gtag
 
   - gatsby-plugin-feed (https://www.gatsbyjs.com/plugins/gatsby-plugin-feed/)
       RSS feed を作ってくれる
@@ -119,9 +122,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: 'gatsby-plugin-google-gtag',
       options: {
-        trackingId: `G-PHXJBM615E`,
+        trackingIds: ['G-PHXJBM615E'],
+        pluginConfig: {
+          head: true,
+        },
       },
     },
     {

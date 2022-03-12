@@ -64,6 +64,12 @@ const About = ({ data, location }) => {
     )
   }
 
+  const LiLink = ({ title, url }) => (
+    <li>
+      title{` `}<a href={url}>url</a>
+    </li>
+  )
+
   return (
     <Layout location={location}>
       <Seo title="About" />
@@ -76,17 +82,14 @@ const About = ({ data, location }) => {
         このサイトはReactベースのSSGである{" "}
         <a href="https://www.gatsbyjs.com">Gatsby</a> を用いて作成しました。
         <br />
-        また、ホスティングサービスに
-        <a href="https://pages.github.com/">Github Pages</a>を利用しています。 [
-        <a href={`https://github.com/${data.site.siteMetadata.repository}`}>
-          GitHubリポジトリ
-        </a>
-        ]
+        また、ホスティングサービスに<a href="https://pages.github.com/">Github Pages</a>を利用しています。
+        <br />
+        [<a href={`https://github.com/${data.site.siteMetadata.repository}`}>GitHubリポジトリ</a>]
       </p>
       <p>
         <Link to="/blog">Blog</Link>では様々なテーマで好き勝手に書いています。
         <br />
-        間違いに気がついた時は随時修正いますが、私の勘違いや見落としによって誤った情報がある可能性があります。
+        間違いに気がついた時は随時修正していますが、私の勘違いや見落としによって誤った情報がある可能性があります。
         <br />
         主に開発備忘録や参加記について書いています。
       </p>
@@ -102,48 +105,13 @@ const About = ({ data, location }) => {
       <p>また、修正依頼についてはGithubにPRでも可能です。</p>
 
       <h2>リンク集</h2>
-      <p>
-        -{" "}
-        <a
-          href={`https://atcoder.jp/users/${data.site.siteMetadata.social.atcoder}`}
-        >
-          {" "}
-          atcoder{" "}
-        </a>
-      </p>
-      <p>
-        -{" "}
-        <a href={`https://github.com/${data.site.siteMetadata.social.github}`}>
-          {" "}
-          github{" "}
-        </a>
-      </p>
-      <p>
-        -{" "}
-        <a
-          href={`https://twitter.com/${data.site.siteMetadata.social.twitter}`}
-        >
-          {" "}
-          twitter(メイン垢)
-        </a>
-      </p>
-      <p>
-        -{" "}
-        <a
-          href={`https://twitter.com/${data.site.siteMetadata.social.twitter}_log`}
-        >
-          {" "}
-          twitter(サブ?垢){" "}
-        </a>
-      </p>
-      <p>
-        -{" "}
-        <a
-          href={`https://unityroom.com/users/${data.site.siteMetadata.social.unityroom}`}
-        >
-          unityroom{" "}
-        </a>
-      </p>
+      <ul>
+        <LiLink title="atcoder" url={`https://atcoder.jp/users/${data.site.siteMetadata.social.atcoder}`} />
+        <LiLink title="github" url={`https://github.com/${data.site.siteMetadata.social.github}`} />
+        <LiLink title="twitter(メイン垢)" url={`https://twitter.com/${data.site.siteMetadata.social.twitter}`} />
+        <LiLink title="twitter(サブ?垢)" url={`https://twitter.com/${data.site.siteMetadata.social.twitter}_log`} />
+        <LiLink title="unityroom" url={`https://unityroom.com/users/${data.site.siteMetadata.social.unityroom}`} />
+      </ul>
     </Layout>
   )
 }
