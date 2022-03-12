@@ -1,0 +1,238 @@
+---
+title: "5.blog個別記事のデザイン (Gatsby-jsによるサイト構築記録)"
+postdate: "2022-03-09T18:15"
+tags: ["Gatsby"]
+---
+
+> このサイトを作るまでの記録。(時系列順)  
+> 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
+>
+> スターターを`gatsby new`したのは2022年の3月上旬。
+> `gatsby-cli`のバージョンは4.9.0
+>
+> [一覧はここ](../gatsby-site-create-log0/)
+
+blog記事のレイアウトを整えていく。
+
+## scssを使う
+
+今までにscss使ったことないけど、便利そうなので使ってみたかった。  
+プラグインを追加して使えるようにする。
+
+```bash
+$ npm i sass gatsby-plugin-sass
+```
+
+```jsx
+...
+  plugins: [
+    ...
+    `gatsby-plugin-sass`,
+  ],
+}
+```
+
+`style.css` → `style.scss`にして階層構造に変更  
+`src/normalize.css`,`src/style.scss`を`src/style`下に移動
+
+<details>
+  <summary>style/style.scss</summary>
+
+```scss
+html {
+  font-family: YuGothic,'Yu Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','ＭＳ ゴシック',sans-serif;
+  background-color: #f6f5f5;
+  color: #242424;
+  font-size: 14px;
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: 1.7rem;
+    font-weight: bold;
+  }
+  h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  a {
+    color: #3a71af;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+```
+
+</details>
+
+`gastby-browser.js`のimportパスを修正  
+ついでにtypeface-*は使ってないから削除
+
+```js {diff}
+-// custom typefaces
+-import "typeface-montserrat"
+-import "typeface-merriweather"
+// normalize CSS across browsers
+-import "./src/normalize.css"
++import "./src/style/normalize.css"
+// custom CSS styles
+-import "./src/style.css"
++import "./src/style/style.scss"
+```
+
+package.jsonkからも消してnpm installしておく
+
+## blog個別記事のcssを作る
+
+`templates/blog-post.js`の本文部分にclassName=”markdown”を設置  
+ついでにh1タグになんかstyleつけてたので全部取り除いた。
+
+```jsx
+const BlogPostTemplate = ({ data, location }) => {
+  const BlogBody = ({ post }) => (
+     ...
+      <div style={{ marginBottom: '30px' }}>
+        <h1 itemProp="headline">{ post.frontmatter.title }</h1>
+        <p style={{
+          fontSize: '0.8rem',
+          color: '#747474',
+        }}>{ post.frontmatter.date }</p>
+      </div>
+
+      <div className="markdown" itemProp="articleBody"
+        dangerouslySetInnerHTML={{ __html: post.html }}
+      />
+    </article>
+  )
+...
+```
+
+`style/markdown.scss`を作って、`gatsby-browser.js`にこのscssを読み込むように追記
+
+```jsx
+...
+import "./src/style/markdown.scss"
+```
+
+`style/markdown.scss`の内容はこんな感じ、[githubマークダウンのcss](https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown-light.css)を参考にしてる。
+
+<details>
+  <summary>style/markdown.scss</summary>
+
+```scss
+.markdown {
+  h2 {
+    border-bottom: solid 2.5px #E3E3E3;
+  }
+  pre {
+    border-radius: 10px;
+  }
+  blockquote {
+    margin: 0;
+    padding: 0 1rem;
+    color: #57606a;
+    border-left: 0.25em solid #d0d7de;
+  }
+  details {
+    summary {
+      cursor: pointer;
+    }
+  }
+  table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    white-space: nowrap;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    tr {
+      background-color: #ffffff;
+      border-top: 1px solid #D5DBE2;
+      &:nth-child(2n) {
+        background-color: #f6f8fa;
+      }
+    }
+    th {
+      font-weight: bold;
+      padding: 0.5rem;
+      border: 1px solid #d0d7de;
+    }
+    td {
+      padding: 0.5rem;
+      border: 1px solid #d0d7de;
+    }
+  }
+}
+```
+
+</details>
+
+## コードのハイライトプラグインの変更
+
+gatsby-remark-prismjsからgatsby-remark-vscodeにする。
+
+```bash
+$ npm i gatsby-remark-vscode
+```
+
+で導入。  
+gatsby-remark-prismjsを`gatsby-config.js`とか`package.json`とかから削除
+
+gatsby-remark-vscodeのオプションはこんな感じ。
+
+```js
+...
+{
+  resolve: `gatsby-remark-vscode`,
+  options: {
+    theme: 'Default Dark+',
+    languageAliases: { txt: 'ignore' },
+    extensions: ['dart-code'],
+  },
+},
+...
+```
+
+gatsby-remark-vscodeはdartに対応してないので対応させてる。  
+詳しくは TODO:リンクを追加
+
+続いてスタイルを調整する。  
+`style/code-highlight.scss`を作って以下のようにする。もちろん、`gatsby-brower.js`にimportしておく。
+
+```scss
+// gatsby-remark-vscode
+:root {
+  --grvsc-border-radius: 10px;
+}
+
+.markdown {
+  p {
+    code {
+      font-size: 1rem;
+      background-color: #E6E6E6;
+      border-radius: 6px;
+      padding: 0.2em 0.4em;
+    }
+  }
+  pre {
+    background-color: #282828;
+    font-size: 85%;
+  }
+}
+```
+
+### こんな感じになる
+
+![コード見本](screenshot_code.png)

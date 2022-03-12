@@ -1,0 +1,32 @@
+---
+title: "Gatsby-jsによるサイト構築記録"
+postdate: "2022-03-09T16:28"
+update: "2022-03-10T09:38"
+tags: ["Gatsby"]
+---
+
+このサイトを作るまでの記録。(時系列順)  
+実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
+
+スターターを`gatsby new`したのは2022年の3月上旬。
+`gatsby-cli`のバージョンは4.9.0
+
+随時更新。
+
+[1.セットアップ](../gatsby-site-create-log1/)
+
+[2.サイトのディレクトリ変更](../gatsby-site-create-log2/)
+
+[3.整理](../gatsby-site-create-log3)
+
+[4.ページの追加とデザイン](../gatsby-site-create-log4/)
+
+[5.blog個別記事のデザイン](../gatsby-site-create-log5/)
+
+[6.投稿日と更新日を設置する](../gatsby-site-create-log6/)
+
+[7.Markdown内の相対パスによるリンクが上手くできない](../gatsby-site-create-log7/)
+
+[8.tag個別ページ作成](../gatsyb-site-create-log8/)
+
+[9.細かい変更](../gatsyb-site-create-log9/)

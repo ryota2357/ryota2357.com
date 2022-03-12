@@ -1,0 +1,110 @@
+---
+title: "VisualStudio for MacでUnity用のDLLを作成する"
+postdate: "2021-01-31T00:02"
+tags: ["CSharp", "Unity", "VisualStudio"]
+---
+
+## 目標
+
+- VisualStudioでUnityEngine等のUnity関連ライブラリを参照可能にする。  
+- DLLを作成し、Unityに読み込ませて利用可能にする。
+
+## 作業
+
+VisualStudio for Mac (バージョン8.8.6) を使っています。
+
+### プロジェクトの作成
+
+***スタートウィンドウ ＞ 新規 ＞ その他 ＞ .Net***  
+より「ライブラリ」というテンプレートがあるので、それを選択します。
+
+プロジェクト名、ソリューション名は同じでOKです。
+
+ディレクトリ構成は以下のようになっているかと思います。  
+多少異なっていても問題ないです。
+
+```txt
+TestLibrary/
+└ TestLibrary
+    ├ 参照/
+    │   └ System
+    ├ パッケージ/
+    ├ Properties/
+    │   └ AssemblyInfo.cs
+    └MyClass.cs
+```
+
+必要最小限のもの以外を削除しても構いません。  
+削除したいものの上で「右クリック、削除」で削除できます。  
+最小限のものだけにすると、以下のようになります。
+
+```txt
+TestLibrary/
+└ TestLibrary
+    ├ 参照/
+    └ パッケージ/
+```
+
+### UnityEngineの参照を追加する
+
+現在の状態で
+
+```cs
+using UnityEngine;
+```
+
+とすると、エラーになります。  
+なので、参照を追加します。
+
+1. 「参照」ディレクトリの上で「右クリック、参照の追加...」を選択
+1. 「.NET アセンブリ ＞ 参照...」
+1. Finderにて「Shift + ⌘ ＋ G」
+1. */Applications/Unity/Unity.app/Contents/Managed*  と入力
+1. 「UnityEngine.dll」を開く
+
+無事に見つかって参照が追加できればOKですが、できなかった場合は次の方法で可能かと思われます。
+
+1. UnityHubを開いて、右上の歯車マークから「一般 ＞ Unityエディタフォルダー」の場所を確認します。
+1. VisualStudio「.NET アセンブリ ＞ 参照...」より1を参考に「Unity.app」を探します。
+1. 「Shift + ⌘ ＋ G」を押して*hoge/Unity.app/Contents/Managed*と入力します。(hogeの部分は各自)
+1. UnityEngine.dll」を開く
+
+### コンパイラ設定
+
+初期のの設定では、DLLにするとXMLコメントが表示されないので変更します。
+
+```txt
+TestLibrary/
+└ TestLibrary ＜ー 右クリック、オプション
+    ├ 参照/
+    └ パッケージ/
+```
+
+オプション ＞ ビルド ＞ コンパイラ ＞ XMLドキュメントを生成する  
+にテェックを入れます。  
+他にも「オーバーフローチェック」や「最適化を有効」などのオプションがあるので必要に応じて有効にします。
+
+### Unityで利用可能にする
+
+1. ビルドします。「⌘ + K」またはTestLibraryを右クリックで行います。
+1. Finderからプロジェクトのディレクトリに移動します。
+1. Unityのプロジェクトに「Plugins」フォルダを作成し、dll、pdb、xmlを入れます。
+
+```txt
+TestLibrary/
+├ bin/
+│   └ Debug
+│       ├ TestLibrary.dll
+│       ├ TestLibrary.pdb
+│       └ TestLibrary.xml
+├ obj/
+....
+```
+
+これで、Unity側から自作のDLLを呼ぶことができます。  
+以上で全ての目標を達成しました。
+
+## 参考
+
+[Mac版Visual StudioでUnity用のDLLを出力する方法](https://blog.ariari.biz/2018/03/17/post-72/)  
+[Visual StudioユーザーがReleaseビルドをするときに必ずやってほしい2つの設定](https://qiita.com/lainzero/items/27681ddc96638e33758b)

@@ -1,0 +1,19 @@
+// gatsby-remark-vscode
+:root {
+  --grvsc-border-radius: 10px;
+}
+
+.markdown {
+  p {
+    code {
+      font-size: 1rem;
+      background-color: #E6E6E6;
+      border-radius: 6px;
+      padding: 0.2em 0.4em;
+    }
+  }
+  pre {
+    background-color: #282828;
+    font-size: 85%;
+  }
+}
