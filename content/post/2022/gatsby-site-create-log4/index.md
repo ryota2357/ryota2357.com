@@ -656,8 +656,7 @@ const About = ({ data, location }) => {
         また、修正依頼についてはGithubにPRでも可能です。(
         <a href={`https://github.com/${data.site.siteMetadata.social.github}`}>
           Githubリポジトリ
-        </a>
-        )
+        </a>)
       </p>
     </Layout>
   )

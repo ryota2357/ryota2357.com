@@ -100,9 +100,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-vscode`,
             options: {
-              theme: 'Default Dark+',
-              languageAliases: { txt: 'ignore' },
-              extensions: ['dart-code'],
+              theme: "Default Dark+",
+              languageAliases: { txt: "ignore" },
+              extensions: ["dart-code"],
             },
           },
           `gatsby-remark-copy-linked-files`,
@@ -111,8 +111,8 @@ module.exports = {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
               elements: [`h2`, `h3`],
-            }
-          }
+            },
+          },
         ],
       },
     },
