@@ -66,7 +66,7 @@ const About = ({ data, location }) => {
 
   const LiLink = ({ title, url }) => (
     <li>
-      title{` `}<a href={url}>url</a>
+      {title}{` : `}<a href={url}>{url}</a>
     </li>
   )
 
@@ -94,8 +94,7 @@ const About = ({ data, location }) => {
         主に開発備忘録や参加記について書いています。
       </p>
       <p>
-        僕が作成したゲームは<Link to="/gamedev">開発したゲームの一覧</Link>
-        に載せています。
+        僕が作成したゲームは<Link to="/gamedev">GameDev</Link>に載せています。
         <br />
         <a href="https://unityroom.com/">unityroom</a>にて公開しています。
       </p>

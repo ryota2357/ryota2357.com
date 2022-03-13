@@ -9,7 +9,7 @@ module.exports = {
     },
     description: `namespace ryota2357;`,
     siteUrl: `https://ryota2357.com`,
-    repository: `ryota2357/ryota2357`,
+    repository: `ryota2357/ryota2357-github-pages`,
     social: {
       atcoder: `R2357`,
       github: `ryota2357`,
