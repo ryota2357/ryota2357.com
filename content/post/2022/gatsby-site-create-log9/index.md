@@ -1,5 +1,5 @@
 ---
-title: "9.細かい変更(Gatsby-jsによるサイト構築記録)"
+title: "9.細かい変更 (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-11T18:30"
 tags: ["Gatsby"]
 ---
@@ -8,7 +8,7 @@ tags: ["Gatsby"]
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
 > スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby-cli`のバージョンは 4.9.0
+> `gatsby`のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 

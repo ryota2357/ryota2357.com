@@ -1,8 +1,16 @@
 ---
-title: "10.Github Pagesでデプロイとアナリティクス設定"
-postdate: "2022-03-12T13:30"
+title: "10.Github Pagesでデプロイとアナリティクスとサイトマップ (Gatsby-jsによるサイト構築記録)"
+postdate: "2022-03-13T09:01"
 tags: ["Gatsby"]
 ---
+
+> このサイトを作るまでの記録。(時系列順)  
+> 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
+>
+> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
+> `gatsby`のバージョンは 4.9
+>
+> [一覧はここ](../gatsby-site-create-log0/)
 
 デプロイする。
 
@@ -163,3 +171,21 @@ module.exports = {
   ]
 }
 ```
+
+## sitemap
+
+```sh
+$ npm i gatsby-plugin-sitemap
+```
+
+```js
+module.exports = {
+  plugins: [
+  ...
+  `gatsby-plugin-sitemap`
+  ...
+  ]
+}
+```
+
+サーチコンソールとアナリティクスの連携もしておいた。
