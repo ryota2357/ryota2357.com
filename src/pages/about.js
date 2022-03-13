@@ -66,7 +66,9 @@ const About = ({ data, location }) => {
 
   const LiLink = ({ title, url }) => (
     <li>
-      {title}{` : `}<a href={url}>{url}</a>
+      {title}
+      {` : `}
+      <a href={url}>{url}</a>
     </li>
   )
 
@@ -82,9 +84,13 @@ const About = ({ data, location }) => {
         このサイトはReactベースのSSGである{" "}
         <a href="https://www.gatsbyjs.com">Gatsby</a> を用いて作成しました。
         <br />
-        また、ホスティングサービスに<a href="https://pages.github.com/">Github Pages</a>を利用しています。
-        <br />
-        [<a href={`https://github.com/${data.site.siteMetadata.repository}`}>GitHubリポジトリ</a>]
+        また、ホスティングサービスに
+        <a href="https://pages.github.com/">Github Pages</a>を利用しています。
+        <br />[
+        <a href={`https://github.com/${data.site.siteMetadata.repository}`}>
+          GitHubリポジトリ
+        </a>
+        ]
       </p>
       <p>
         <Link to="/blog">Blog</Link>では様々なテーマで好き勝手に書いています。
@@ -105,11 +111,26 @@ const About = ({ data, location }) => {
 
       <h2>リンク集</h2>
       <ul>
-        <LiLink title="atcoder" url={`https://atcoder.jp/users/${data.site.siteMetadata.social.atcoder}`} />
-        <LiLink title="github" url={`https://github.com/${data.site.siteMetadata.social.github}`} />
-        <LiLink title="twitter(メイン垢)" url={`https://twitter.com/${data.site.siteMetadata.social.twitter}`} />
-        <LiLink title="twitter(サブ?垢)" url={`https://twitter.com/${data.site.siteMetadata.social.twitter}_log`} />
-        <LiLink title="unityroom" url={`https://unityroom.com/users/${data.site.siteMetadata.social.unityroom}`} />
+        <LiLink
+          title="atcoder"
+          url={`https://atcoder.jp/users/${data.site.siteMetadata.social.atcoder}`}
+        />
+        <LiLink
+          title="github"
+          url={`https://github.com/${data.site.siteMetadata.social.github}`}
+        />
+        <LiLink
+          title="twitter(メイン垢)"
+          url={`https://twitter.com/${data.site.siteMetadata.social.twitter}`}
+        />
+        <LiLink
+          title="twitter(サブ?垢)"
+          url={`https://twitter.com/${data.site.siteMetadata.social.twitter}_log`}
+        />
+        <LiLink
+          title="unityroom"
+          url={`https://unityroom.com/users/${data.site.siteMetadata.social.unityroom}`}
+        />
       </ul>
     </Layout>
   )

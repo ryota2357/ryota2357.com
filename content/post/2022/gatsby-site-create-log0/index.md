@@ -31,4 +31,4 @@ tags: ["Gatsby"]
 
 [9.細かい変更](../gatsyb-site-create-log9/)
 
-[10.Github Pagesでデプロイとアナリティクスとサイトマップ](../gatsby-site-create-log10/)
+[10.Github Pages でデプロイとアナリティクスとサイトマップ](../gatsby-site-create-log10/)

@@ -78,7 +78,7 @@ html {
 </details>
 
 `gastby-browser.js`の import パスを修正  
-ついでに typeface-\*は使ってないから削除
+ついでに typeface-\*は使ってないから削除、npm uninstall しておく。
 
 ```js {diff}
 -// custom typefaces
@@ -91,8 +91,6 @@ html {
 -import "./src/style.css"
 +import "./src/style/style.scss"
 ```
-
-package.jsonk からも消して npm install しておく
 
 ## blog 個別記事の css を作る
 
@@ -207,7 +205,7 @@ gatsby-remark-vscode のオプションはこんな感じ。
 ```
 
 gatsby-remark-vscode は dart に対応してないので対応させてる。  
-詳しくは TODO:リンクを追加
+詳しくは[gatsby-remark-vscode にハイライト可能な言語を追加する](../gatsby-hilight-vscode-add/)を参照
 
 続いてスタイルを調整する。  
 `style/code-highlight.scss`を作って以下のようにする。もちろん、`gatsby-brower.js`に import しておく。

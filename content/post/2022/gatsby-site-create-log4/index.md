@@ -511,7 +511,7 @@ const Blog = ({ location }) => {
 </details>
 
 <details>
-  <summary>pages/game.js</details>
+  <summary>pages/game.js</summary>
 
 ```jsx
 const Blog = ({ location }) => {

@@ -44,7 +44,7 @@ $ npm i gatsby-remark-autolink-headers
 ```txt
 game -> gamedev
 Game -> GameDev
-2357の日記 -> 2357.記録
+2357の日記 -> ryota2357
 ```
 
 ## css
@@ -109,7 +109,7 @@ const About = ({ data, location }) => {
         background_color: `#f6f5f5`,
         theme_color: `#f6f5f5`,
         display: `minimal-ui`,
-        icon: `src/images/profile-pic.jpg`, // This path is relative to the root of the site.
+        icon: `src/images/profile-pic-circle.jpg`, // This path is relative to the root of the site.
       },
     },
 ```
