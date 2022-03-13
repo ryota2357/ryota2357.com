@@ -189,3 +189,8 @@ module.exports = {
 ```
 
 サーチコンソールとアナリティクスの連携もしておいた。
+
+`https://ryota2357.com/sitemap.xml`にサイトマップが出力されるかと思いきや、`https://ryota2357.com/sitemap/sitemap-index.xml`に出力されるみたい。  
+`/sitemap.xml`にサイトマップがなくてびっくりした。
+
+参考 : [【Gatsbyブログ】gatsby-plugin-sitemapが3系から4系で仕様が変わっていた](https://takagi.blog/diff-v3-and-v4-of-gatsby-plugin-sitemap/)
