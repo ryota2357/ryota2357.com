@@ -11,7 +11,7 @@ module.exports = {
     siteUrl: `https://ryota2357.com`,
     repository: `ryota2357/ryota2357-github-pages`,
     social: {
-      atcoder: `R2357`,
+      atcoder: `ryota2357`,
       github: `ryota2357`,
       twitter: `95s7k84695a`,
       unityroom: `ryota2357`,
