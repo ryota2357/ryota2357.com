@@ -3,7 +3,7 @@ module.exports = {
     title: `ryota2357`,
     author: {
       name: `ryota2357`,
-      summary: `電気通信大学0年<br />
+      summary: `電気通信大学1年<br />
       Unity、C#、競プロなど。
       `,
     },
