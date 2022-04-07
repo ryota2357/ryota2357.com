@@ -5,8 +5,6 @@ update: ""
 tags: ["zsh"]
 ---
 
-# zsh プロンプトをカスタマイズする
-
 プラグインを入れずにカスタマイズをする。
 
 ## 基本
@@ -38,7 +36,7 @@ RPROMPT="///"
 
 ### 僕のプロンプト
 
-僕はできる限りシンプルにしたかったので、以下のような見た目になっている。
+僕はできる限りシンプルにしたかったので、以下のような見た目になっている。  
 (普段はこれに tmux を起動して、その他の情報を載せてたりする)
 
 ![スクリーンショット 2022-04-03 18.03.57.png](terminal_my.png)
@@ -47,24 +45,25 @@ RPROMPT="///"
 
 <details>
   <summary>設定ファイル</summary>
-    
-    ```bash
-    left-prompt() {
-      local dir="%F{11}%~%f"
-      local next="%F{47}❯%f "
-      echo -e "\n${user}${dir}\n${next}"
-    }
-    right-prompt() {
-      local time="%F{242}%T%f"
-      echo "${time}"
-    }
-    
-    PROMPT=`left-prompt`
-    RPROMPT=`right-prompt`
-    
-    unset -f left-prompt
-    unset -f right-prompt
-    ```
+
+```bash
+left-prompt() {
+  local dir="%F{11}%~%f"
+  local next="%F{47}❯%f "
+  echo -e "\n${user}${dir}\n${next}"
+}
+right-prompt() {
+  local time="%F{242}%T%f"
+  echo "${time}"
+}
+
+PROMPT=`left-prompt`
+RPROMPT=`right-prompt`
+
+unset -f left-prompt
+unset -f right-prompt
+```
+
 </details>
 
 ## 情報の追加
@@ -173,12 +172,16 @@ print "\n"
 
 ## わかりやすく設定する
 
-エスケープ文字を使って PROMPT を設定するの読みにくい。
+エスケープ文字を使って PROMPT を設定するの読みにくい。  
 変数や関数を用いてわかりやすくすると良いと思う。
 
 僕の設定を再掲する。
 
 ![僕の](terminal_my.png)
+
+`local`をつけると変数のスコープを制限できるので zsh が汚れず良い。  
+`left-prompt()`と`right-prompt()`の関数を用いることで`PROMPT`, `RPROMPT`の意味がわかりやすくなる。  
+関数の返り値の扱いは`echo`と`` `function` ``を使ってる人がいたので真似した(あってるの?)
 
 ```bash
 left-prompt() {
@@ -198,7 +201,8 @@ unset -f left-prompt
 unset -f right-prompt
 ```
 
-shell スクリプトで`local`な関数を設定する方法がわからなかったので最後に`unset`している。
+関数の宣言もスクリプトローカルにしたかったのだけど、やり方がわからなかった。  
+ひとまず最後に`unset`するとこで同じ結果は得られるのでそうした。
 
 ## 参考
 
