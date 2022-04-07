@@ -27,8 +27,8 @@ tags: ["Gatsby"]
 
 [7.Markdown 内の相対パスによるリンクが上手くできない](../gatsby-site-create-log7/)
 
-[8.tag 個別ページ作成](../gatsyb-site-create-log8/)
+[8.tag 個別ページ作成](../gatsby-site-create-log8/)
 
-[9.細かい変更](../gatsyb-site-create-log9/)
+[9.細かい変更](../gatsby-site-create-log9/)
 
 [10.Github Pages でデプロイとアナリティクスとサイトマップ](../gatsby-site-create-log10/)
