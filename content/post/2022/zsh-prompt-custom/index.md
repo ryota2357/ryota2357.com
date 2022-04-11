@@ -1,7 +1,6 @@
 ---
 title: "zshプロンプトをカスタマイズする"
 postdate: "2022-04-07T15:46"
-update: ""
 tags: ["zsh"]
 ---
 
