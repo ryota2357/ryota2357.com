@@ -1,7 +1,6 @@
 ---
 title: "[NeoVim] python,rubyのglobal変更されない問題はREADME読んでないだけだった件"
 postdate: "2022-04-11T13:14"
-update: ""
 tags: ["NeoVim"]
 ---
 
@@ -12,13 +11,15 @@ NeoVim の`:checkhealth`で python, ruby の global 切り替わらない問題�
 新しい Macbook を買って NeoVim 環境を再構築した。  
 その時 python と ruby の設定に pyenv, rbenv を使ったけど、global が切り替わらない問題に遭遇した。
 
-pyenv, rbenv の README の Installation を終わららせていにだけだった...
+pyenv, rbenv の README の Installation を終わらせていないだけだった...
 
 google で調べる前にまず公式の README なりリファレンスは読みましょう、ということ。
 
 ## 解決方法
 
-google で「pyenv global 切り替わらない」とか検索すると、path を通せやら init しろやら出てくるが、README にちゃんとしたやり方書いてある。
+google で「pyenv global 切り替わらない」とか検索すると、path を通せやら init しろやら出てくる。  
+記事によって内容が若干違ってどれが正しいの？ってなるけど、README に正しい方法が書いてある。  
+ちゃんと README に従おう。
 
 ### python
 
