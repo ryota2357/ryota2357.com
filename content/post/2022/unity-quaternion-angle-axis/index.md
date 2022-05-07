@@ -10,7 +10,7 @@ tags: ["unity"]
 
 ベクトル `axis` を回転軸として、`angle` 度回転する、回転(Quaternion)を作成する。
 
-```
+```cs
 public static Quaternion AngleAxis (float angle, Vector3 axis);
 ```
 
@@ -48,6 +48,6 @@ public class Example : MonoBehaviour
 }
 ```
 
-### 参考
+## 参考
 
 [Unity スクリプトリファレンス Quaternion.AngleAxis](https://docs.unity3d.com/ja/current/ScriptReference/Quaternion.AngleAxis.html)
