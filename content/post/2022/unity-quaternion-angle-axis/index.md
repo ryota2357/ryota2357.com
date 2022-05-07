@@ -43,7 +43,7 @@ public class Example : MonoBehaviour
      private void Update()
      {
           this.gameObject.transform.rotation
-               = startAngle * Quaternion.AngleAxis(this.angle, this.axis);
+               = Quaternion.AngleAxis(this.angle, this.axis) * startAngle;
      }
 }
 ```
