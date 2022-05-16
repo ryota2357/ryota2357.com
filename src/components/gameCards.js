@@ -1,11 +1,26 @@
 import * as React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
+import soroeruGIF from "../images/icon_game_1week_soroeru.gif"
 import hueruGIF from "../images/icon_game_1week_hueru.gif"
 import mituGIF from "../images/icon_game_1week_mitu.gif"
 
 const GameCards = ({ count }) => {
   const Games = [
+    {
+      title: "そろえる",
+      description: "unity1week「そろえる」にて制作したサイコロそろえるゲーム",
+      href: "https://unityroom.com/games/soroeru_dice",
+      img: (
+        <img
+          alt="soroeru_icon"
+          src={soroeruGIF}
+          style={{ width: "8rem", height: "8rem" }}
+        />
+      ),
+      posted: "2022/05/14 15:04",
+      update: "2022/05/15 08:17",
+    },
     {
       title: "回回回回",
       description: `unity1week「回」にて作成した落ちものパズルゲーム<br />テトリスを円柱形にしてみた`,
