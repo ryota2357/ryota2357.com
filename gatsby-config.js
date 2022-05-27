@@ -105,7 +105,7 @@ module.exports = {
             options: {
               theme: "Default Dark+",
               languageAliases: { txt: "ignore" },
-              extensions: ["dart-code"],
+              extensions: ["dart-code", "viml"],
             },
           },
           `gatsby-remark-copy-linked-files`,
