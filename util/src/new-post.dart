@@ -13,18 +13,30 @@ void main(List<String> args) async {
     return;
   }
 
-  final template = await File('./src/template.md').readAsString();
   final date = DateTime.now();
   final slug = args[0];
-  final title = args.length > 1 ? args[1] : question('Input post title');
-  final tags = args.length > 2 ? args.skip(2).toList() : List.empty();
-
   final filePath = '../content/post/${date.year}/${slug}/index.md';
+  if (await File(filePath).exists()) {
+    print('ERROR: You have alread usedysame slug : $slug');
+    return;
+  }
+
+  final template = await File('./src/template.md').readAsString();
+  final title = args.length > 1 ? args[1] : question('Input post title');
+  final tags = args.length > 2
+      ? args.skip(2).toList()
+      : question('Input post tag (split by ",")')
+          .replaceAll(' ', '')
+          .split(',');
+
   await File(filePath).create(recursive: true);
-  File(filePath).writeAsString(template
-      .replaceFirst('"{title}"', '"${title}"')
-      .replaceFirst('"{date}"', '"${date.toIso8601String().substring(0, 16)}"')
-      .replaceFirst('"{tags}"', tags.map((i) => '"${i}"').join(', ')));
+  final file = await File(filePath).writeAsString(template
+      .replaceAll('"{title}"', '"${title}"')
+      .replaceAll('"{date}"', '"${date.toIso8601String().substring(0, 16)}"')
+      .replaceAll('"{tags}"', tags.map((i) => '"${i}"').join(', ')));
+
+  print('Created new post');
+  print(' cd ${file.parent.absolute.uri.path}');
 }
 
 void help() {
@@ -43,6 +55,7 @@ arg[2] (optional) : tags
 }
 
 String question(String msg) {
-  print(msg);
+  stdout.writeln(msg);
+  stdout.write('> ');
   return stdin.readLineSync() ?? '';
 }

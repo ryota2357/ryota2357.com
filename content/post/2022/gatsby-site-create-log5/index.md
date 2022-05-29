@@ -1,6 +1,7 @@
 ---
 title: "5.blog個別記事のデザイン (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-09T18:15"
+update: "2022-03-09T18:15"
 tags: ["Gatsby"]
 ---
 

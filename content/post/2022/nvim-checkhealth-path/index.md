@@ -1,6 +1,7 @@
 ---
 title: "[NeoVim] python,rubyのglobal変更されない問題はREADME読んでないだけだった件"
 postdate: "2022-04-11T13:14"
+update: "2022-04-11T13:14"
 tags: ["NeoVim"]
 ---
 

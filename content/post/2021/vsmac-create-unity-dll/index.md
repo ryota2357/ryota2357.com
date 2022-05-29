@@ -1,6 +1,7 @@
 ---
 title: "VisualStudio for MacでUnity用のDLLを作成する"
 postdate: "2021-01-31T00:02"
+update: "2021-01-31T00:02"
 tags: ["CSharp", "Unity", "VisualStudio"]
 ---
 

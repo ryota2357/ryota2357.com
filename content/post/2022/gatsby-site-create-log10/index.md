@@ -1,6 +1,7 @@
 ---
 title: "10.Github Pagesでデプロイとアナリティクスとサイトマップ (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-13T09:01"
+update: "2022-03-13T09:01"
 tags: ["Gatsby"]
 ---
 

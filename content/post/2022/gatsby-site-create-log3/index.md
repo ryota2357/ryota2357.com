@@ -1,6 +1,7 @@
 ---
 title: "3.整理 (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-09T17:27"
+update: "2022-03-09T17:27"
 tags: ["Gatsby"]
 ---
 

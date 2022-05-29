@@ -1,6 +1,7 @@
 ---
 title: "[C#] 比較の定義 (IComparable, IComparer, Comparison, Comparer)"
 postdate: "2021-02-09T09:39"
+update: "2021-02-09T09:39"
 tags: ["CSharp"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "[Vim] latexで保存時に句読点をカンマ・ピリオドに修正する"
 postdate: "2022-05-27T09:40"
-update: ""
+update: "2022-05-27T09:40"
 tags: ["Vim", "Latex"]
 ---
 

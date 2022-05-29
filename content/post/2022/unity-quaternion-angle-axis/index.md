@@ -1,6 +1,7 @@
 ---
 title: "[Unity] Quaternion.AngleAxis について簡潔に"
 postdate: "2022-05-07T15:14"
+update: "2022-05-07T17:23"
 tags: ["Unity"]
 ---
 

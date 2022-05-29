@@ -1,6 +1,6 @@
 ---
 title: "{title}"
 postdate: "{date}"
-update: ""
+update: "{date}"
 tags: ["{tags}"]
 ---

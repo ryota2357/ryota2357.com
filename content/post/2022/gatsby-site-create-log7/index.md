@@ -1,6 +1,7 @@
 ---
 title: "7.Markdown内の相対パスによるリンクが上手くできない (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-10T09:35"
+update: "2022-03-10T09:35"
 tags: ["Gatsby"]
 ---
 

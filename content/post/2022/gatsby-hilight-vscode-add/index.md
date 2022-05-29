@@ -1,6 +1,7 @@
 ---
 title: "gatsby-remark-vscodeにハイライト可能な言語を追加する"
 postdate: "2022-03-11T19:13"
+update: "2022-03-11T19:13"
 tags: ["Gatsby"]
 ---
 
