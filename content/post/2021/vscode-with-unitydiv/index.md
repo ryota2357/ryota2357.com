@@ -1,6 +1,7 @@
 ---
 title: "VSCodeでのUnity開発(MacOS)"
 postdate: "2021-02-21T00:58"
+update: "2021-02-21T00:58"
 tags: ["Unity", VSCode]
 ---
 

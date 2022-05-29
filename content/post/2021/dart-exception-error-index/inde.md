@@ -1,6 +1,7 @@
 ---
 title: "[Dart]エラー・例外一覧"
 postdate: "2021-05-29T09:23"
+update: "2021-05-29T09:23"
 tags: ["Dart"]
 ---
 

@@ -1,7 +1,7 @@
 .markdown {
   h2 {
     margin-top: 3rem;
-    border-bottom: solid 2.5px #E3E3E3;
+    border-bottom: solid 2.5px #e3e3e3;
   }
   blockquote {
     margin: 0;
@@ -11,6 +11,7 @@
   }
   details {
     summary {
+      font-weight: bold;
       cursor: pointer;
     }
   }
@@ -27,7 +28,7 @@
     overflow: auto;
     tr {
       background-color: #ffffff;
-      border-top: 1px solid #D5DBE2;
+      border-top: 1px solid #d5dbe2;
       &:nth-child(2n) {
         background-color: #f6f8fa;
       }

@@ -17,11 +17,11 @@ const BlogPostTemplate = ({ data, location }) => {
         }}
       >
         <p style={{ margin: "0" }}>投稿日: {post.frontmatter.postdate}</p>
-        {post.frontmatter.update && (
+      {post.frontmatter.update !== post.frontmatter.postdate ? (
           <p style={{ margin: "0 0 0 1rem" }}>
             更新日: {post.frontmatter.update}
           </p>
-        )}
+      ) : (<></>) }
       </div>
     )
     const Tags = () => (

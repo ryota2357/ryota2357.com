@@ -1,6 +1,7 @@
 ---
 title: "[Dart] meta.dart アノテーション一覧"
 postdate: "2021-08-29T21:45"
+update: "2021-08-29T21:45"
 tags: ["Dart"]
 ---
 

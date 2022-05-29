@@ -124,10 +124,6 @@ const About = ({ data, location }) => {
           url={`https://twitter.com/${data.site.siteMetadata.social.twitter}`}
         />
         <LiLink
-          title="twitter(サブ?垢)"
-          url={`https://twitter.com/${data.site.siteMetadata.social.twitter}_log`}
-        />
-        <LiLink
           title="unityroom"
           url={`https://unityroom.com/users/${data.site.siteMetadata.social.unityroom}`}
         />

@@ -1,6 +1,7 @@
 ---
 title: "brew cask で入れた Flutter SDK のパスの取得方法"
 postdate: "2021-05-22T13:26"
+update: "2021-05-22T13:26"
 tags: ["Flutter"]
 ---
 
