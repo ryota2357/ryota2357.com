@@ -58,7 +58,7 @@ const BlogPostTemplate = ({ data, location }) => {
         style={{
           backgroundColor: "#ffffff",
           boxShadow: "0 0 10px #323232",
-          padding: "2em",
+          padding: "1.4em",
         }}
       >
         <div style={{ marginBottom: "30px" }}>
