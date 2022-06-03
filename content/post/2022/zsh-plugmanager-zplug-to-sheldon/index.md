@@ -105,8 +105,8 @@ defer = { value = 'zsh-defer source "{{ file }}"', each = true }
 自分が書いてる設定ファイルは`[plugin-dotfiles-sync]`と`[plugin-dotfiles-defer]`で読み込んでいる。  
 `sync`の方には起動に読み込んでおく必要があるもをおいて、それ以外は`defer`って感じにしてる。`option.zsh`は`defer`にしたかったのだけど、一部オプションは遅延読み込みが上手くいかないっぽい。だからと言って`alias.zsh`みたいに分離するのも面倒だったので全部`sync`にしている。
 
-あと、`env-init.zsh`には`pyenv`と`rbenv`の init を行っている。最適化をしてない場合、zsh 起動時間で`○○env`の init は大きな時間を占めていると思う(もちろん僕も 1 人であった)。  
-`defer`を指定するだけでそれが解消されるのは非常に手軽で嬉しい。
+あと、`env-init.zsh`には`pyenv`と`rbenv`の init を行っている。最適化をしてない場合、zsh 起動時間で`○○env`の init は大きな時間を占めていると思う(もちろん僕もその 1 人であった)。  
+`defer`を指定するだけでこれが解消されるのは非常に手軽で嬉しい。
 
 ## 速度
 
