@@ -1,7 +1,7 @@
 ---
 title: "zplugからsheldonに乗り換えた"
 postdate: "2022-06-03T18:33"
-update: "2022-06-03T18:33"
+update: "2022-06-04T00:18"
 tags: ["Zsh"]
 ---
 
@@ -27,8 +27,8 @@ Homebrew とかで sheldon 入れて、`sheldon init`を実行、`eval "$(sheldo
 
 アップデートは次のコマンドで実行する。
 
-```shell
-sheldon lock --update
+```
+$ sheldon lock --update
 ```
 
 `plugin.toml`の書き方は[README のここ](https://github.com/rossmacarthur/sheldon#%EF%B8%8F-configuration)読めば、だいたいわかる。
