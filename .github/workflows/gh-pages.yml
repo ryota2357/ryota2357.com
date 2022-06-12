@@ -5,6 +5,8 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -29,15 +31,8 @@ jobs:
 
       - run: npm ci
       - run: npm run format
-      # - run: npm run test
       - run: npm run build
 
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   if: ${{ github.ref == 'refs/heads/main' }}
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
