@@ -1,9 +1,9 @@
-name: Error check
+name: GitHub Pages
 
 on:
   push:
     branches:
-      - draft
+      - main
 
 jobs:
   deploy:
@@ -29,3 +29,11 @@ jobs:
       - run: npm ci
       - run: npm run format
       - run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: ryota2357/ryota2357-github-pages
+          publish_branch: gh-pages
+          cname: ryota2357.com
