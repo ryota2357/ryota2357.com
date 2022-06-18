@@ -4,13 +4,12 @@
 }
 
 .markdown {
-  p,
-  li {
+  p, li {
     code {
       font-size: 1rem;
       background-color: #e6e6e6;
       border-radius: 6px;
-      padding: 0.2em 0.4em;
+      padding: 0.1rem 0.3rem;
     }
   }
   pre {
