@@ -14,7 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "dart-code": "github:Dart-Code/Dart-Code",
     "gatsby": "^4.17.0",
-    "gatsby-plugin-catch-links": "^4.16.0",
+    "gatsby-plugin-catch-links": "^4.17.0",
     "gatsby-plugin-feed": "^4.17.0",
     "gatsby-plugin-fontawesome-css": "^1.2.0",
     "gatsby-plugin-google-gtag": "^4.16.0",
