@@ -1,7 +1,7 @@
 ---
 title: "vim(nvim)とskimでsynctexできるようにするプラグイン作った"
-postdate: "2022-06-20T12:49"
-update: "2022-06-20T12:49"
+postdate: "2022-06-22T23:18"
+update: "2022-06-22T23:18"
 tags: ["Vim", "NeoVim"]
 ---
 
@@ -15,11 +15,7 @@ https://github.com/ryota2357/vim-skim-synctex
 
 ddc.vim, nvim-lsp, vsnip で基本的には問題ないのだけど、synctex あったら便利だなーと思ってたので作った。
 
-## できたもの
-
-こんな感じになった。
-
-**TODO: GIF 画像**
+## 説明
 
 関数のみを提供するプラグインにした。
 
@@ -133,7 +129,7 @@ this.server.setListener(async (request: Request) => {
 })
 ```
 
-### Vim Script 部分について
+### Vim Script 部分
 
 ここが一番苦労したところ、`autoload`の部分。
 
