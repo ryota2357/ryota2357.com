@@ -1,17 +1,20 @@
 ---
-title: "vim(nvim)とskimでsynctexできるようにするプラグイン作った"
+title: "neovim(vim)とskimでsynctexできるようにするプラグイン作った"
 postdate: "2022-06-22T23:18"
-update: "2022-06-22T23:18"
+update: "2022-06-23T22:08"
 tags: ["Vim", "NeoVim"]
 ---
 
-vimtex 使えば synctex できるのだけど、僕は vimtex を使いたくないので自作した。
+vimtex 使えば synctex できるのだけど、僕は vimtex を使いたくないので自作した。  
+vim と neovim の両方対応[^1]。
+
+[^1]: 両方とも最小構成で動くことを確認済み。
 
 https://github.com/ryota2357/vim-skim-synctex
 
 ## 動機
 
-僕は latex を vim で書いていのだけど、vimtex を使っていない。オールインワンな雰囲気のある vimtex は使いたくなかったからである。
+僕は latex を neovim で書いているのだけど、vimtex を使っていない。オールインワンな雰囲気のある vimtex は使いたくなかったからである。
 
 ddc.vim, nvim-lsp, vsnip で基本的には問題ないのだけど、synctex あったら便利だなーと思ってたので作った。
 
@@ -26,10 +29,9 @@ ddc.vim, nvim-lsp, vsnip で基本的には問題ないのだけど、synctex �
 | synctex#option()       | オプションをセットする (`:h synctex-option`) |
 | synctex#forwardSerch() | マウスカーソルの位置で forward serch を行う  |
 
-まあ、あとデバッグように`synctex#status()`っていうのもあるんだけど、使うことはほぼないと思う。
+あとデバッグ用に`synctex#status()`っていうのもあるんだけど、使うことはほぼないと思う。
 
-注意点として、synctex を有効にできるのは 1 つのバッファに対してのみである。複数扱う場合は`stop()`して有効にしたいバッファで`start()`する必要がある。停止(`stop()`)はどこからでも ok。
-
+注意点として、synctex を有効にできるのは 1 つのバッファに対してのみである。複数扱う場合は`stop()`して有効にしたいバッファで`start()`する必要がある。停止(`stop()`)はどこからでも ok。  
 他細かいことは [README](https://github.com/ryota2357/vim-skim-synctex/blob/main/README.md) か [help](https://github.com/ryota2357/vim-skim-synctex/blob/main/doc/synctex.txt) に書いた。
 
 僕は次のように設定して使用している。(dein 使用)
@@ -52,17 +54,16 @@ tex = '''
 
 ### 補足
 
-synctex を使用するには、そもそも latex のコンパイル時に`synctex`オプションを有効にする必要がある。
+synctex を使用するには、そもそも latex のコンパイル時に`synctex`オプションを有効にする必要がある。  
+latexmk を使ってるなら`.latexmkrc`の`$latex`の部分はこんな感じで有効にできる。
 
-latexmk を使ってるなら`.latexmkrc`の`$latex`の部分はこんな感じにする必要がある。
-
-```parl
+```perl
 $latex = 'platex -synctex=1';
 ```
 
 `platex`じゃなくて`uplatex`を使ってる人(僕もそう)も、同じ。
 
-```parl
+```perl
 $latex = 'uplatex -synctex=1';
 ```
 
@@ -74,9 +75,8 @@ $latex = 'uplatex -synctex=1';
 ほとんどを typescript で実装できたのはとても快適だった。
 
 実装は 2 つのクラスに分けた。  
-メインの処理は [Application クラス](https://github.com/ryota2357/vim-skim-synctex/blob/main/denops/synctex/lib/application.ts)で、外部との通信関係は [SynctexServer クラス](https://github.com/ryota2357/vim-skim-synctex/blob/main/denops/synctex/lib/synctexServer.ts)で行っている。
-
-denops から呼ばれる`main()`がある [main.ts](https://github.com/ryota2357/vim-skim-synctex/blob/main/denops/synctex/main.ts) は Application クラスの public メソッドを呼ぶだけのシンプルな内容にした。
+メインの処理は [Application クラス](https://github.com/ryota2357/vim-skim-synctex/blob/main/denops/synctex/lib/application.ts)で、外部との通信関係は [SynctexServer クラス](https://github.com/ryota2357/vim-skim-synctex/blob/main/denops/synctex/lib/synctexServer.ts)で行っている。  
+denops から呼ばれる`main()`は、Application クラスの public メソッドを呼ぶだけのシンプルな内容にした。
 
 ### forward serch
 
@@ -86,24 +86,20 @@ apple script (javascript) を`call system()`で実行してる。
 ```typescript
 // class SynctexServer
 public async request(denops: Denops, request: ForwardSearchRequest) {
-  await denops.cmd("call system(['sh', '-c', script])", {
-    script: [
-      `osascript -l JavaScript -e '`,
-      `var app = Application("Skim");`,
-      `if(app.exists()) {`,
-      `  ${request.activate ? "app.activate();" : ""}`,
-      `  app.open("${request.pdfFile}");`,
-      `  app.document.go({to: ${request.line}, from: "${request.texFile}", showingReadingBar: ${request.readingBar}});`,
-      `}'`,
-    ].join(" "),
-  });
+  await func.system(denops, "osascript -l JavaScript", [
+    `var app = Application("Skim");`,
+    `if(app.exists()) {`,
+    `  ${request.activate ? "app.activate();" : ""}`,
+    `  app.open("${request.pdfFile}");`,
+    `  app.document.go({to: ${request.line}, from: "${request.texFile}", showingReadingBar: ${request.readingBar}});`,
+    `}`,
+  ]);
 }
 ```
 
 ### backward serch
 
-サーバーを立てて、skim がそのサーバーに情報を`POST`、denops 側でそのリクエストを処理している。
-
+サーバーを立てて、skim がそのサーバーに情報を`POST`、denops 側でそのリクエストを処理している。  
 リクエストの処理部分を抜き出すとこんな感じ。  
 面倒なところは全て SynctexServer に投げてる。SynctexServer に listener をセットするスタイルにしてみた。
 
@@ -131,11 +127,8 @@ this.server.setListener(async (request: Request) => {
 
 ### Vim Script 部分
 
-ここが一番苦労したところ、`autoload`の部分。
-
-前提として denops は vim を開いた後、非同期に denops サーバーが立ち上がって、その後に各種プラグイン(typescript 部分)を読み込む。ここにある程度時間がかかる。  
-そのため、vim によってプラグインが読み込まれていたとしても、denops サーバーが立ち上がっていないことや、typescript 部分のプラグインが読み込まれてないことがある。
-
+ここが一番苦労したところ、`autoload`の部分。  
+前提として denops は vim を開いた後、非同期に denops サーバーが立ち上がって、その後に各種プラグイン(typescript 部分)を読み込む。ここにある程度時間がかかる。そのため、vim によってプラグインが読み込まれていたとしても、denops サーバーが立ち上がっていないことや、typescript 部分のプラグインが読み込まれてないことがある。  
 つまり、`autoload/synctex.vim`に
 
 ```vim
@@ -149,8 +142,7 @@ endfunction
 
 ### 解決策
 
-ddc.vim の実装では、その問題を解決していた。
-
+ddc.vim の実装では、その問題を解決していた。  
 ほぼそのままパクってきた。次の関数を用意する。
 
 ```vim
@@ -184,5 +176,3 @@ endfunction
 ## 最後に
 
 denops 初挑戦以前に、Deno 開発初めてだし、そもそも typescript 書いたことなかったので、色々調べながら(聞きながら)で少し時間かかったけど楽しかった。
-
-ありがとうございました。
