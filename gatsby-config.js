@@ -17,6 +17,7 @@ module.exports = {
       unityroom: `ryota2357`,
     },
   },
+  graphqlTypegen: true,
   /*
   - gatsby-plugin-image (https://www.gatsbyjs.com/plugins/gatsby-plugin-image/)
       画像のレスポンシブ化。複数の画像サイズを自動生成してくれる
