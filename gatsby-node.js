@@ -93,7 +93,13 @@ exports.createSchemaCustomization = ({ actions }) => {
   // この方法により、"content/blog" 内にブログ記事が格納されていない場合でも、
   // "MarkdownRemark" クエリはエラーを返すのではなく、`null` を返すようになります。
   actions.createTypes(`
-    type SiteSiteMetadata {
+    type Site {
+      siteMetadata: SiteMetadata!
+    }
+
+    type SiteMetadata {
+      title: String!
+      description: String!
       author: Author
       siteUrl: String
       social: Social
