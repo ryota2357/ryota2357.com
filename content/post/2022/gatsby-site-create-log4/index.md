@@ -59,11 +59,11 @@ index.js の Index コンポーネント内に書いていたけど長くなっ�
 引数に count で何個表示するか指定できるようにした。
 
 ```jsx
-import * as React from "react"
+import * as React from "react";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import BlogCards from "../components/blogCards"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import BlogCards from "../components/blogCards";
 
 const Index = ({ location }) => {
   return (
@@ -72,10 +72,10 @@ const Index = ({ location }) => {
       <h2>Blog</h2>
       <BlogCards count={20} />
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
 ```
 
 BlogCards コンポーネントはこんな感じ。
@@ -84,8 +84,8 @@ BlogCards コンポーネントはこんな感じ。
   <summary>components/blogCards.js</summary>
 
 ```jsx
-import * as React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import * as React from "react";
+import { Link, graphql, useStaticQuery } from "gatsby";
 
 const BlogCards = ({ count }) => {
   const data = useStaticQuery(graphql`
@@ -104,14 +104,14 @@ const BlogCards = ({ count }) => {
         }
       }
     }
-  `)
+  `);
 
   const Card = ({ post, style }) => {
     const Date = () => (
       <p style={{ color: "#999999", marginBottom: "0" }}>
         {post.frontmatter.date}
       </p>
-    )
+    );
     const Title = () => (
       <h3 style={{ margin: "0" }}>
         <Link
@@ -124,7 +124,7 @@ const BlogCards = ({ count }) => {
           </span>
         </Link>
       </h3>
-    )
+    );
     const Tag = () => (
       <p style={{ display: "flex", justifyContent: "flex-end" }}>
         {post.frontmatter.tags &&
@@ -145,15 +145,15 @@ const BlogCards = ({ count }) => {
             </span>
           ))}
       </p>
-    )
+    );
     return (
       <div itemScope itemType="http://schema.org/Article" style={style}>
         <Date />
         <Title />
         <Tag />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div
@@ -167,20 +167,20 @@ const BlogCards = ({ count }) => {
     >
       {data.allMarkdownRemark.nodes.slice(0, count).map((post, i) => {
         // 最後の一個以外ボーダーで区切り線を入れる
-        if (i >= count - 1) return <Card post={post} key={i} />
+        if (i >= count - 1) return <Card post={post} key={i} />;
         return (
           <Card
             post={post}
             style={{ borderBottom: "solid 1px #E3E3E3" }}
             key={i}
           />
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default BlogCards
+export default BlogCards;
 ```
 
 </details>
@@ -205,11 +205,11 @@ html {
 `pages/blog.js`を作り以下にする。
 
 ```jsx
-import * as React from "react"
+import * as React from "react";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import BlogCards from "../components/blogCards"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import BlogCards from "../components/blogCards";
 
 const Blog = ({ location }) => {
   return (
@@ -218,10 +218,10 @@ const Blog = ({ location }) => {
       <h2>Blog</h2>
       <BlogCards count={1000} />
     </Layout>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;
 ```
 
 `pages/index.js`の BlogCards コンポーネントの count を 5 にして、blog ページへのリンクを設置して、
@@ -230,12 +230,12 @@ export default Blog
   <summary>pages/index.js</summary>
 
 ```jsx
-import * as React from "react"
-import { Link } from "gatsby"
+import * as React from "react";
+import { Link } from "gatsby";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import BlogCards from "../components/blogCards"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import BlogCards from "../components/blogCards";
 
 const Index = ({ location }) => {
   const ToALl = ({ to }) => (
@@ -251,7 +251,7 @@ const Index = ({ location }) => {
     >
       一覧 &gt;&gt;
     </Link>
-  )
+  );
   return (
     <Layout location={location}>
       <Seo title="Home" />
@@ -264,10 +264,10 @@ const Index = ({ location }) => {
 
       <h2>Repository</h2>
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
 ```
 
 </details>
@@ -312,11 +312,11 @@ Games 配列オブジェクトを作って、map で回して GameCards を作�
   <summary>components/gameCards.js</summary>
 
 ```jsx
-import * as React from "react"
-import { StaticImage } from "gatsby-plugin-image"
+import * as React from "react";
+import { StaticImage } from "gatsby-plugin-image";
 
-import hueruGIF from "../images/icon_game_1week_hueru.gif"
-import mituGIF from "../images/icon_game_1week_mitu.gif"
+import hueruGIF from "../images/icon_game_1week_hueru.gif";
+import mituGIF from "../images/icon_game_1week_mitu.gif";
 
 const GameCards = ({ count }) => {
   const Games = [
@@ -390,7 +390,7 @@ const GameCards = ({ count }) => {
       posted: "2020/03/01 19:48",
       update: "2020/03/02 14:41",
     },
-  ]
+  ];
   const Card = ({ aGame }) => (
     <div
       style={{
@@ -427,11 +427,11 @@ const GameCards = ({ count }) => {
       </div>
       <div style={{ marginLeft: "5px" }}>{aGame.img}</div>
     </div>
-  )
-  return Games.slice(0, count).map((game, i) => <Card aGame={game} key={i} />)
-}
+  );
+  return Games.slice(0, count).map((game, i) => <Card aGame={game} key={i} />);
+};
 
-export default GameCards
+export default GameCards;
 ```
 
 </details>
@@ -465,11 +465,11 @@ index.js には 3 つ並べる。
   <summary>pages/game.js</summary>
 
 ```jsx
-import * as React from "react"
+import * as React from "react";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import GameCards from "../components/gameCards"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import GameCards from "../components/gameCards";
 
 const Game = ({ location }) => {
   return (
@@ -478,10 +478,10 @@ const Game = ({ location }) => {
       <h2>Game</h2>
       <GameCards count={1000} />
     </Layout>
-  )
-}
+  );
+};
 
-export default Game
+export default Game;
 ```
 
 </details>
@@ -522,8 +522,8 @@ const Blog = ({ location }) => {
       <h1>Game</h1> {/* h2 -> h1 */}
       <GameCards count={1000} />
     </Layout>
-  )
-}
+  );
+};
 ```
 
 </details>
@@ -559,14 +559,14 @@ siteMetadata に repository を追加した。
   <summary>pages/abou.js</summary>
 
 ```jsx
-import * as React from "react"
-import { graphql, Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
+import * as React from "react";
+import { graphql, Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const About = ({ data, location }) => {
   const Profile = ({ metaData }) => {
@@ -585,7 +585,7 @@ const About = ({ data, location }) => {
           <span> {id}</span>
         </a>
       </div>
-    )
+    );
     return (
       <div style={{ display: "flex", margin: "30px 0" }}>
         <div style={{ width: "13.5rem", height: "13.5rem" }}>
@@ -620,8 +620,8 @@ const About = ({ data, location }) => {
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <Layout location={location}>
@@ -660,8 +660,8 @@ const About = ({ data, location }) => {
         </a>)
       </p>
     </Layout>
-  )
-}
+  );
+};
 
 export const pageQuery = graphql`
   query QueryForAboutPage {
@@ -683,9 +683,9 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default About
+export default About;
 ```
 
 </details>
@@ -715,11 +715,11 @@ Nav を追加した。それに伴って margin をいじった。
   <summary>components/layout.js</summary>
 
 ```jsx
-import * as React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import * as React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
 const Layout = ({ location, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
+  const rootPath = `${__PATH_PREFIX__}/`;
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -731,7 +731,7 @@ const Layout = ({ location, children }) => {
         }
       }
     }
-  `)
+  `);
 
   const Header = () => (
     <header style={{ margin: "20px 0 10px 0" }}>
@@ -748,7 +748,7 @@ const Layout = ({ location, children }) => {
         {site.siteMetadata.title}
       </span>
     </header>
-  )
+  );
 
   const Nav = () => {
     const Li = ({ name, to }) => (
@@ -757,7 +757,7 @@ const Layout = ({ location, children }) => {
           {name}
         </Link>
       </li>
-    )
+    );
     return (
       <nav>
         <ul
@@ -776,8 +776,8 @@ const Layout = ({ location, children }) => {
           <Li name="Game" to="/game" key={`game`} />
         </ul>
       </nav>
-    )
-  }
+    );
+  };
 
   const Footer = () => (
     <footer
@@ -797,7 +797,7 @@ const Layout = ({ location, children }) => {
       </p>
       <p>©2022 {site.siteMetadata.author.name} All Rights Reserved.</p>
     </footer>
-  )
+  );
 
   return (
     <div
@@ -817,10 +817,10 @@ const Layout = ({ location, children }) => {
       </main>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
 ```
 
 </details>

@@ -1,4 +1,4 @@
-import type { GatsbyConfig } from "gatsby"
+import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   // module.exports = {
   siteMetadata: {
@@ -158,8 +158,8 @@ const config: GatsbyConfig = {
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
+                });
+              });
             },
             query: `
               {
@@ -204,6 +204,6 @@ const config: GatsbyConfig = {
       },
     },
   ],
-}
+};
 
 export default config;

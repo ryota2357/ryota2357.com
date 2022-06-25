@@ -1,9 +1,9 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import * as React from "react";
+import { Link } from "gatsby";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import BlogCards from "../components/blogCards"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import BlogCards from "../components/blogCards";
 
 const Blog = ({ location }) => {
   return (
@@ -15,7 +15,7 @@ const Blog = ({ location }) => {
       </p>
       <BlogCards count={1000} />
     </Layout>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

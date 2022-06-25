@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
+import * as React from "react";
+import { Link, graphql, useStaticQuery } from "gatsby";
 
 const BlogCards = ({ count }) => {
   const data = useStaticQuery(graphql`
@@ -21,14 +21,14 @@ const BlogCards = ({ count }) => {
         }
       }
     }
-  `)
+  `);
 
   const Card = ({ post, style }) => {
     const Date = () => (
       <p style={{ color: "#747474", marginBottom: "0" }}>
         {post.frontmatter.postdate}
       </p>
-    )
+    );
     const Title = () => (
       <h3 style={{ margin: "0" }}>
         <Link to={post.fields.slug} itemProp="url" style={{ color: "#242424" }}>
@@ -37,7 +37,7 @@ const BlogCards = ({ count }) => {
           </span>
         </Link>
       </h3>
-    )
+    );
     const Tag = () => (
       <p style={{ display: "flex", justifyContent: "flex-end" }}>
         {post.frontmatter.tags &&
@@ -57,15 +57,15 @@ const BlogCards = ({ count }) => {
             </span>
           ))}
       </p>
-    )
+    );
     return (
       <div itemScope itemType="http://schema.org/Article" style={style}>
         <Date />
         <Title />
         <Tag />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div
@@ -79,17 +79,17 @@ const BlogCards = ({ count }) => {
     >
       {data.allMarkdownRemark.nodes.slice(0, count).map((post, i) => {
         // 最後の一個以外ボーダーで区切り線を入れる
-        if (i >= count - 1) return <Card post={post} key={i} />
+        if (i >= count - 1) return <Card post={post} key={i} />;
         return (
           <Card
             post={post}
             style={{ borderBottom: "solid 1px #E3E3E3" }}
             key={i}
           />
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default BlogCards
+export default BlogCards;

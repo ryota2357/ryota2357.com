@@ -1,14 +1,14 @@
-import * as React from "react"
-import { graphql, Link } from "gatsby"
+import * as React from "react";
+import { graphql, Link } from "gatsby";
 
-import Layout from "../../components/layout"
-import Seo from "../../components/seo"
+import Layout from "../../components/layout";
+import Seo from "../../components/seo";
 
 const Tag = ({ data, location }) => {
-  const counter = new Counter()
-  data.allMarkdownRemark.nodes?.forEach(node => {
-    node.frontmatter.tags?.forEach(tag => counter.increment(tag))
-  })
+  const counter = new Counter();
+  data.allMarkdownRemark.nodes?.forEach((node) => {
+    node.frontmatter.tags?.forEach((tag) => counter.increment(tag));
+  });
   return (
     <Layout location={location}>
       <Seo title="Tag List" />
@@ -17,7 +17,7 @@ const Tag = ({ data, location }) => {
         {counter.keys
           .sort() // 文字列ソート(アルファベット, 50音)
           .sort((a, b) => counter.get(b) - counter.get(a)) // 数が多い順のソート
-          .map(key => (
+          .map((key) => (
             <li style={{ margin: "1rem 0" }}>
               <Link
                 to={`/blog/tag/${key}`}
@@ -32,8 +32,8 @@ const Tag = ({ data, location }) => {
           ))}
       </ul>
     </Layout>
-  )
-}
+  );
+};
 
 export const pageQuery = graphql`
   query TagOnlyQuery {
@@ -45,26 +45,26 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 class Counter {
   constructor() {
-    this.map = {}
+    this.map = {};
   }
 
   increment(key) {
-    if (this.map.hasOwnProperty(key)) this.map[key] += 1
-    else this.map[key] = 1
+    if (this.map.hasOwnProperty(key)) this.map[key] += 1;
+    else this.map[key] = 1;
   }
 
   get keys() {
-    return Object.keys(this.map)
+    return Object.keys(this.map);
   }
 
   get(key) {
-    if (this.map.hasOwnProperty(key)) return this.map[key]
-    else return 0
+    if (this.map.hasOwnProperty(key)) return this.map[key];
+    else return 0;
   }
 }
 
-export default Tag
+export default Tag;

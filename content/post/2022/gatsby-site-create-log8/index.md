@@ -21,11 +21,11 @@ tags: ["Gatsby"]
   <summary>gatsby-node.js</summary>
 
 ```jsx
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require(`path`);
+const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const createBlogPostPage = posts => {
+  const createBlogPostPage = (posts) => {
     posts?.forEach((post, index) => {
       actions.createPage({
         path: post.fields.slug,
@@ -35,9 +35,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           previousPostId: index === 0 ? null : posts[index - 1].id,
           nextPostId: index === posts.length - 1 ? null : posts[index + 1].id,
         },
-      })
-    })
-  }
+      });
+    });
+  };
 
   const result = await graphql(`
     {
@@ -53,24 +53,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
     }
-  `)
+  `);
 
   if (result.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
       result.errors
-    )
-    return
+    );
+    return;
   }
 
-  createBlogPostPage(result.data.allMarkdownRemark.nodes)
-}
+  createBlogPostPage(result.data.allMarkdownRemark.nodes);
+};
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === `MarkdownRemark`) {
     // ファイルパスからurlを生成
     // https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/#createfilepath
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode });
 
     // nodeに
     // "fields": {
@@ -82,9 +82,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       name: `slug`,
       value,
-    })
+    });
   }
-}
+};
 
 exports.createSchemaCustomization = ({ actions }) => {
   // siteMetadata {} オブジェクトを明示的に定義します。
@@ -127,8 +127,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Fields {
       slug: String
     }
-  `)
-}
+  `);
+};
 ```
 
 </details>
@@ -245,11 +245,11 @@ Link の to パラメータを直す。
 `pageContext`プロパティについては[ここの公式リファレンス](https://www.gatsbyjs.com/docs/reference/config-files/actions/#createPage)に書いてあった。
 
 ```jsx
-import * as React from "react"
-import { graphql, Link } from "gatsby"
+import * as React from "react";
+import { graphql, Link } from "gatsby";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const TagsTemplate = ({ data, location, pageContext }) => {
   return (
@@ -257,16 +257,16 @@ const TagsTemplate = ({ data, location, pageContext }) => {
       <Seo title={`tag: ${pageContext.tag}`} />
       <h1>{pageContext.tag}</h1>
       <p>{data.allMarkdownRemark.totalCount}件</p>
-      {data.allMarkdownRemark.nodes.map(post => (
+      {data.allMarkdownRemark.nodes.map((post) => (
         <p>
           <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
         </p>
       ))}
     </Layout>
-  )
-}
+  );
+};
 
-export default TagsTemplate
+export default TagsTemplate;
 
 export const pageQuery = graphql`
   query BlogPostByTag($tag: String!) {
@@ -287,7 +287,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 ```
 
 次に、`gatsby-node.js`で tag ページを生成する。  
@@ -337,11 +337,11 @@ Tag 一覧ページに表示したいブログ記事のリストのための処�
 <summary>templates/tagPage.js</summary>
 
 ```jsx
-import * as React from "react"
-import { graphql, Link } from "gatsby"
+import * as React from "react";
+import { graphql, Link } from "gatsby";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const TagsTemplate = ({ data, location, pageContext }) => {
   const Card = ({ post, style }) => {
@@ -349,7 +349,7 @@ const TagsTemplate = ({ data, location, pageContext }) => {
       <p style={{ color: "#747474", marginBottom: "0" }}>
         {post.frontmatter.postdate}
       </p>
-    )
+    );
     const Title = () => (
       <h3 style={{ margin: "0" }}>
         <Link to={post.fields.slug} itemProp="url" style={{ color: "#242424" }}>
@@ -358,7 +358,7 @@ const TagsTemplate = ({ data, location, pageContext }) => {
           </span>
         </Link>
       </h3>
-    )
+    );
     const Tag = () => (
       <p style={{ display: "flex", justifyContent: "flex-end" }}>
         {post.frontmatter.tags &&
@@ -379,15 +379,15 @@ const TagsTemplate = ({ data, location, pageContext }) => {
             </span>
           ))}
       </p>
-    )
+    );
     return (
       <div itemScope itemType="http://schema.org/Article" style={style}>
         <Date />
         <Title />
         <Tag />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <Layout location={location}>
@@ -410,22 +410,22 @@ const TagsTemplate = ({ data, location, pageContext }) => {
           {data.allMarkdownRemark.nodes.map((post, i) => {
             // 最後の一個以外ボーダーで区切り線を入れる
             if (i >= data.allMarkdownRemark.nodes.length - 1)
-              return <Card post={post} key={i} />
+              return <Card post={post} key={i} />;
             return (
               <Card
                 post={post}
                 style={{ borderBottom: "solid 1px #E3E3E3" }}
                 key={i}
               />
-            )
+            );
           })}
         </div>
       }
     </Layout>
-  )
-}
+  );
+};
 
-export default TagsTemplate
+export default TagsTemplate;
 
 export const pageQuery = graphql`
   query BlogPostByTag($tag: String!) {
@@ -446,7 +446,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 ```
 
 </details>
@@ -474,17 +474,17 @@ Pages にはちゃんとあるのに。。。
 <summary>src/pages/blog/tag.js</summary>
 
 ```jsx
-import * as React from "react"
-import { graphql, Link } from "gatsby"
+import * as React from "react";
+import { graphql, Link } from "gatsby";
 
-import Layout from "../../components/layout"
-import Seo from "../../components/seo"
+import Layout from "../../components/layout";
+import Seo from "../../components/seo";
 
 const Tag = ({ data, location }) => {
-  const counter = new Counter()
-  data.allMarkdownRemark.nodes?.forEach(node => {
-    node.frontmatter.tags?.forEach(tag => counter.increment(tag))
-  })
+  const counter = new Counter();
+  data.allMarkdownRemark.nodes?.forEach((node) => {
+    node.frontmatter.tags?.forEach((tag) => counter.increment(tag));
+  });
   return (
     <Layout location={location}>
       <Seo title="Tag List" />
@@ -493,7 +493,7 @@ const Tag = ({ data, location }) => {
         {counter.keys
           .sort() // 文字列ソート(アルファベット, 50音)
           .sort((a, b) => counter.get(b) - counter.get(a)) // 数が多い順のソート
-          .map(key => (
+          .map((key) => (
             <li style={{ margin: "1rem 0" }}>
               <Link
                 to={`/blog/tag/${key}`}
@@ -508,8 +508,8 @@ const Tag = ({ data, location }) => {
           ))}
       </ul>
     </Layout>
-  )
-}
+  );
+};
 
 export const pageQuery = graphql`
   query TagOnlyQuery {
@@ -521,29 +521,29 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
 class Counter {
   constructor() {
-    this.map = {}
+    this.map = {};
   }
 
   increment(key) {
-    if (this.map.hasOwnProperty(key)) this.map[key] += 1
-    else this.map[key] = 1
+    if (this.map.hasOwnProperty(key)) this.map[key] += 1;
+    else this.map[key] = 1;
   }
 
   get keys() {
-    return Object.keys(this.map)
+    return Object.keys(this.map);
   }
 
   get(key) {
-    if (this.map.hasOwnProperty(key)) return this.map[key]
-    else return 0
+    if (this.map.hasOwnProperty(key)) return this.map[key];
+    else return 0;
   }
 }
 
-export default Tag
+export default Tag;
 ```
 
 </details>

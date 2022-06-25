@@ -1,10 +1,10 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import * as React from "react";
+import { Link } from "gatsby";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import BlogCards from "../components/blogCards"
-import GameCards from "../components/gameCards"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
+import BlogCards from "../components/blogCards";
+import GameCards from "../components/gameCards";
 
 const Index = ({ location }) => {
   const ToALl = ({ to }) => (
@@ -20,7 +20,7 @@ const Index = ({ location }) => {
     >
       一覧 &gt;&gt;
     </Link>
-  )
+  );
   return (
     <Layout location={location}>
       <Seo title="Home" />
@@ -33,7 +33,7 @@ const Index = ({ location }) => {
       <GameCards count={3} />
       <ToALl to="/gamedev" />
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

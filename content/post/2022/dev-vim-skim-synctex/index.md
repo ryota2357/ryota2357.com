@@ -108,21 +108,21 @@ public async request(denops: Denops, request: ForwardSearchRequest) {
 this.server.setListener(async (request: Request) => {
   switch (request.method) {
     case "GET":
-      return null
+      return null;
     case "PUT": {
-      const data = await request.text()
-      const line = parseInt(data.split(" ")[0])
-      const file = data.split(" ")[1]
-      const currentBuf = (await func.expand(this.denops, "%:p")) as string
+      const data = await request.text();
+      const line = parseInt(data.split(" ")[0]);
+      const file = data.split(" ")[1];
+      const currentBuf = (await func.expand(this.denops, "%:p")) as string;
       if (file == this.attachedBuf && file == currentBuf) {
-        await func.cursor(this.denops, line, 1)
+        await func.cursor(this.denops, line, 1);
       }
-      return data
+      return data;
     }
     default:
-      return undefined
+      return undefined;
   }
-})
+});
 ```
 
 ### Vim Script 部分

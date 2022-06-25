@@ -1,11 +1,11 @@
-import * as React from "react"
-import { graphql, Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons"
+import * as React from "react";
+import { graphql, Link } from "gatsby";
+import { StaticImage } from "gatsby-plugin-image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const About = ({ data, location }) => {
   const Profile = ({ metaData }) => {
@@ -24,7 +24,7 @@ const About = ({ data, location }) => {
           <span> {id}</span>
         </a>
       </div>
-    )
+    );
     return (
       <div style={{ display: "flex", margin: "30px 0" }}>
         <div style={{ width: "13.5rem", height: "13.5rem" }}>
@@ -61,8 +61,8 @@ const About = ({ data, location }) => {
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const LiLink = ({ title, url }) => (
     <li>
@@ -70,7 +70,7 @@ const About = ({ data, location }) => {
       {` : `}
       <a href={url}>{url}</a>
     </li>
-  )
+  );
 
   return (
     <Layout location={location}>
@@ -129,8 +129,8 @@ const About = ({ data, location }) => {
         />
       </ul>
     </Layout>
-  )
-}
+  );
+};
 
 export const pageQuery = graphql`
   query QueryForAboutPage {
@@ -153,6 +153,6 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default About
+export default About;

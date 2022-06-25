@@ -1,8 +1,8 @@
-import * as React from "react"
-import { graphql, Link } from "gatsby"
+import * as React from "react";
+import { graphql, Link } from "gatsby";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const TagsTemplate = ({ data, location, pageContext }) => {
   const Card = ({ post, style }) => {
@@ -10,7 +10,7 @@ const TagsTemplate = ({ data, location, pageContext }) => {
       <p style={{ color: "#747474", marginBottom: "0" }}>
         {post.frontmatter.postdate}
       </p>
-    )
+    );
     const Title = () => (
       <h3 style={{ margin: "0" }}>
         <Link to={post.fields.slug} itemProp="url" style={{ color: "#242424" }}>
@@ -19,7 +19,7 @@ const TagsTemplate = ({ data, location, pageContext }) => {
           </span>
         </Link>
       </h3>
-    )
+    );
     const Tag = () => (
       <p style={{ display: "flex", justifyContent: "flex-end" }}>
         {post.frontmatter.tags &&
@@ -40,15 +40,15 @@ const TagsTemplate = ({ data, location, pageContext }) => {
             </span>
           ))}
       </p>
-    )
+    );
     return (
       <div itemScope itemType="http://schema.org/Article" style={style}>
         <Date />
         <Title />
         <Tag />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <Layout location={location}>
@@ -71,22 +71,22 @@ const TagsTemplate = ({ data, location, pageContext }) => {
           {data.allMarkdownRemark.nodes.map((post, i) => {
             // 最後の一個以外ボーダーで区切り線を入れる
             if (i >= data.allMarkdownRemark.nodes.length - 1)
-              return <Card post={post} key={i} />
+              return <Card post={post} key={i} />;
             return (
               <Card
                 post={post}
                 style={{ borderBottom: "solid 1px #E3E3E3" }}
                 key={i}
               />
-            )
+            );
           })}
         </div>
       }
     </Layout>
-  )
-}
+  );
+};
 
-export default TagsTemplate
+export default TagsTemplate;
 
 export const pageQuery = graphql`
   query BlogPostByTag($tag: String!) {
@@ -107,4 +107,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

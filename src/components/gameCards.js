@@ -1,9 +1,9 @@
-import * as React from "react"
-import { StaticImage } from "gatsby-plugin-image"
+import * as React from "react";
+import { StaticImage } from "gatsby-plugin-image";
 
-import soroeruGIF from "../images/icon_game_1week_soroeru.gif"
-import hueruGIF from "../images/icon_game_1week_hueru.gif"
-import mituGIF from "../images/icon_game_1week_mitu.gif"
+import soroeruGIF from "../images/icon_game_1week_soroeru.gif";
+import hueruGIF from "../images/icon_game_1week_hueru.gif";
+import mituGIF from "../images/icon_game_1week_mitu.gif";
 
 const GameCards = ({ count }) => {
   const Games = [
@@ -91,7 +91,7 @@ const GameCards = ({ count }) => {
       posted: "2020/03/01 19:48",
       update: "2020/03/02 14:41",
     },
-  ]
+  ];
   const Card = ({ aGame }) => (
     <div
       style={{
@@ -128,8 +128,8 @@ const GameCards = ({ count }) => {
       </div>
       <div style={{ marginLeft: "5px" }}>{aGame.img}</div>
     </div>
-  )
-  return Games.slice(0, count).map((game, i) => <Card aGame={game} key={i} />)
-}
+  );
+  return Games.slice(0, count).map((game, i) => <Card aGame={game} key={i} />);
+};
 
-export default GameCards
+export default GameCards;

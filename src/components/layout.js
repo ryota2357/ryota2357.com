@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import * as React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
 const Layout = ({ location, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
+  const rootPath = `${__PATH_PREFIX__}/`;
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -14,7 +14,7 @@ const Layout = ({ location, children }) => {
         }
       }
     }
-  `)
+  `);
 
   const Header = () => (
     <header style={{ margin: "20px 0 10px 0" }}>
@@ -31,7 +31,7 @@ const Layout = ({ location, children }) => {
         {site.siteMetadata.title}
       </span>
     </header>
-  )
+  );
 
   const Nav = () => {
     const Li = ({ name, to }) => (
@@ -40,7 +40,7 @@ const Layout = ({ location, children }) => {
           {name}
         </Link>
       </li>
-    )
+    );
     return (
       <nav>
         <ul
@@ -59,8 +59,8 @@ const Layout = ({ location, children }) => {
           <Li name="GameDev" to="/gamedev" key={`gamedev`} />
         </ul>
       </nav>
-    )
-  }
+    );
+  };
 
   const Footer = () => (
     <footer
@@ -80,7 +80,7 @@ const Layout = ({ location, children }) => {
       </p>
       <p>©2022 {site.siteMetadata.author.name} All Rights Reserved.</p>
     </footer>
-  )
+  );
 
   return (
     <div
@@ -100,7 +100,7 @@ const Layout = ({ location, children }) => {
       </main>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

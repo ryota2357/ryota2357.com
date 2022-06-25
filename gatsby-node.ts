@@ -1,8 +1,12 @@
-import type { GatsbyNode } from "gatsby"
-import { resolve } from "path"
-import { createFilePath } from "gatsby-source-filesystem"
+import type { GatsbyNode } from "gatsby";
+import { resolve } from "path";
+import { createFilePath } from "gatsby-source-filesystem";
 
-export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
+export const createPages: GatsbyNode["createPages"] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
   const createBlogPostPage = (query: Queries.CreatePagesQuery) => {
     const posts = query.allMarkdownRemark.nodes;
     posts.forEach((post, index) => {
@@ -14,21 +18,21 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions,
           previousPostId: index === 0 ? null : posts[index - 1].id,
           nextPostId: index === posts.length - 1 ? null : posts[index + 1].id,
         },
-      })
-    })
-  }
+      });
+    });
+  };
 
   const createTagPage = (tags: Set<string>) => {
-    tags.forEach(tag => {
+    tags.forEach((tag) => {
       actions.createPage({
         path: `blog/tag/${tag}`,
         component: resolve(`./src/templates/tagPage.js`),
         context: {
           tag: tag,
         },
-      })
-    })
-  }
+      });
+    });
+  };
 
   const result = await graphql(`
     query CreatePages {
@@ -47,30 +51,34 @@ export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions,
         }
       }
     }
-  `)
+  `);
   if (result.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
       result.errors
-    )
-    return
+    );
+    return;
   }
   const data = result.data as Queries.CreatePagesQuery;
 
-  createBlogPostPage(data)
+  createBlogPostPage(data);
 
-  const set = new Set<string>()
-  data.allMarkdownRemark.nodes.forEach(node => {
-    node.frontmatter?.tags?.forEach(tag => tag ? set.add(tag) : 0);
-  })
-  createTagPage(set)
-}
+  const set = new Set<string>();
+  data.allMarkdownRemark.nodes.forEach((node) => {
+    node.frontmatter?.tags?.forEach((tag) => (tag ? set.add(tag) : 0));
+  });
+  createTagPage(set);
+};
 
-export const onCreateNode: GatsbyNode["onCreateNode"] = ({ node, actions, getNode }) => {
+export const onCreateNode: GatsbyNode["onCreateNode"] = ({
+  node,
+  actions,
+  getNode,
+}) => {
   if (node.internal.type === "MarkdownRemark") {
     // ファイルパスからurlを生成
     // https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/#createfilepath
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ node, getNode });
 
     // nodeに
     // "fields": {
@@ -82,18 +90,19 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({ node, actions, getNod
       node,
       name: `slug`,
       value: `/blog${value}`,
-    })
+    });
   }
-}
+};
 
-export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({ actions }) => {
-  // siteMetadata {} オブジェクトを明示的に定義します。
-  // こうすることで、gatsby-config.jsから削除されても、常に定義されるようになります。
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
+  ({ actions }) => {
+    // siteMetadata {} オブジェクトを明示的に定義します。
+    // こうすることで、gatsby-config.jsから削除されても、常に定義されるようになります。
 
-  // Markdown のフロントマターも明示的に定義します。
-  // この方法により、"content/blog" 内にブログ記事が格納されていない場合でも、
-  // "MarkdownRemark" クエリはエラーを返すのではなく、`null` を返すようになります。
-  actions.createTypes(`
+    // Markdown のフロントマターも明示的に定義します。
+    // この方法により、"content/blog" 内にブログ記事が格納されていない場合でも、
+    // "MarkdownRemark" クエリはエラーを返すのではなく、`null` を返すようになります。
+    actions.createTypes(`
     type Site {
       siteMetadata: SiteMetadata!
     }
@@ -135,5 +144,5 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
     type Fields {
       slug: String!
     }
-  `)
-}
+  `);
+  };
