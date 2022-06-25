@@ -1,10 +1,9 @@
-import * as React from "react";
+import { ReactNode } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-const Layout = ({ location, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`;
-  const { site } = useStaticQuery(graphql`
-    query {
+const Layout = ({ children }: { children: ReactNode }) => {
+  const { site } = useStaticQuery<Queries.LayoutComponentQuery>(graphql`
+    query LayoutComponent {
       site {
         siteMetadata {
           title
@@ -19,7 +18,6 @@ const Layout = ({ location, children }) => {
   const Header = () => (
     <header style={{ margin: "20px 0 10px 0" }}>
       <span
-        to="/"
         style={{
           color: "#000000",
           fontSize: "2rem",
@@ -28,13 +26,13 @@ const Layout = ({ location, children }) => {
           userSelect: "none",
         }}
       >
-        {site.siteMetadata.title}
+        {site?.siteMetadata.title}
       </span>
     </header>
   );
 
   const Nav = () => {
-    const Li = ({ name, to }) => (
+    const List = ({ name, to }: { name: string; to: string }) => (
       <li style={{ margin: "0 10px" }}>
         <Link to={to} style={{ color: "#242424" }}>
           {name}
@@ -53,10 +51,10 @@ const Layout = ({ location, children }) => {
             padding: "0",
           }}
         >
-          <Li name="Home" to="/" key={`/`} />
-          <Li name="About" to="/about" key={`about`} />
-          <Li name="Blog" to="/blog" key={`blog`} />
-          <Li name="GameDev" to="/gamedev" key={`gamedev`} />
+          <List name="Home" to="/" key={`/`} />
+          <List name="About" to="/about" key={`about`} />
+          <List name="Blog" to="/blog" key={`blog`} />
+          <List name="GameDev" to="/gamedev" key={`gamedev`} />
         </ul>
       </nav>
     );
@@ -78,15 +76,12 @@ const Layout = ({ location, children }) => {
           Gatsby
         </a>
       </p>
-      <p>©2022 {site.siteMetadata.author.name} All Rights Reserved.</p>
+      <p>©2022 {site?.siteMetadata.author.name} All Rights Reserved.</p>
     </footer>
   );
 
   return (
-    <div
-      className="global-layout"
-      data-is-root-path={location.pathname === rootPath}
-    >
+    <div className="global-layout">
       <Header />
       <Nav />
       <main
