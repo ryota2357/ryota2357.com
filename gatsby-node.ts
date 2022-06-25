@@ -1,12 +1,14 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+import type { GatsbyNode } from "gatsby"
+import { resolve } from "path"
+import { createFilePath } from "gatsby-source-filesystem"
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  const createBlogPostPage = posts => {
-    posts?.forEach((post, index) => {
+export const createPages: GatsbyNode["createPages"] = async ({ graphql, actions, reporter }) => {
+  const createBlogPostPage = (query: Queries.CreatePagesQuery) => {
+    const posts = query.allMarkdownRemark.nodes;
+    posts.forEach((post, index) => {
       actions.createPage({
         path: post.fields.slug,
-        component: path.resolve(`./src/templates/blog-post.js`),
+        component: resolve(`./src/templates/blog-post.js`),
         context: {
           id: post.id,
           previousPostId: index === 0 ? null : posts[index - 1].id,
@@ -16,11 +18,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   }
 
-  const createTagPage = tags => {
-    tags?.forEach(tag => {
+  const createTagPage = (tags: Set<string>) => {
+    tags.forEach(tag => {
       actions.createPage({
         path: `blog/tag/${tag}`,
-        component: path.resolve(`./src/templates/tagPage.js`),
+        component: resolve(`./src/templates/tagPage.js`),
         context: {
           tag: tag,
         },
@@ -29,7 +31,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const result = await graphql(`
-    {
+    query CreatePages {
       allMarkdownRemark(
         sort: { fields: [frontmatter___postdate], order: ASC }
         limit: 1000
@@ -46,7 +48,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     }
   `)
-
   if (result.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
@@ -54,26 +55,26 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     )
     return
   }
+  const data = result.data as Queries.CreatePagesQuery;
 
-  createBlogPostPage(result.data.allMarkdownRemark.nodes)
+  createBlogPostPage(data)
 
-  // タグの一覧をsetに取得する
-  const set = new Set()
-  result.data.allMarkdownRemark.nodes?.forEach(node => {
-    node.frontmatter.tags?.forEach(tag => set.add(tag))
+  const set = new Set<string>()
+  data.allMarkdownRemark.nodes.forEach(node => {
+    node.frontmatter?.tags?.forEach(tag => tag ? set.add(tag) : 0);
   })
   createTagPage(set)
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  if (node.internal.type === `MarkdownRemark`) {
+export const onCreateNode: GatsbyNode["onCreateNode"] = ({ node, actions, getNode }) => {
+  if (node.internal.type === "MarkdownRemark") {
     // ファイルパスからurlを生成
     // https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/#createfilepath
     const value = createFilePath({ node, getNode })
 
     // nodeに
     // "fields": {
-    //   "slug": `"${value}"
+    //   "slug": `"/blog${value}"
     // `}
     // を追加する。
     // https://www.gatsbyjs.com/docs/reference/config-files/actions/#createNodeField
@@ -85,7 +86,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 
-exports.createSchemaCustomization = ({ actions }) => {
+export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] = ({ actions }) => {
   // siteMetadata {} オブジェクトを明示的に定義します。
   // こうすることで、gatsby-config.jsから削除されても、常に定義されるようになります。
 
@@ -99,27 +100,28 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type SiteMetadata {
       title: String!
+      author: Author!
       description: String!
-      author: Author
       siteUrl: String
-      social: Social
+      social: Social!
+      repository: String!
     }
 
     type Author {
-      name: String
-      summary: String
+      name: String!
+      summary: String!
     }
 
     type Social {
-      atcoder: String
-      github: String
-      twitter: String
-      unityroom: String
+      atcoder: String!
+      github: String!
+      twitter: String!
+      unityroom: String!
     }
 
     type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-      fields: Fields
+      frontmatter: Frontmatter!
+      fields: Fields!
     }
 
     type Frontmatter {
@@ -131,7 +133,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type Fields {
-      slug: String
+      slug: String!
     }
   `)
 }
