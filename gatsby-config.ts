@@ -20,6 +20,7 @@ const config: GatsbyConfig = {
     },
   },
   graphqlTypegen: true,
+  jsxRuntime: `automatic`,
   /*{{{ 説明
   - gatsby-plugin-image (https://www.gatsbyjs.com/plugins/gatsby-plugin-image/)
       画像のレスポンシブ化。複数の画像サイズを自動生成してくれる
