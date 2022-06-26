@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
+import "../style/layout.scss"
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { site } = useStaticQuery<Queries.LayoutComponentQuery>(graphql`
@@ -16,22 +17,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   `);
 
   const Header = () => (
-    <header style={{ margin: "20px 0 10px 0" }}>
-      <span
-        style={{
-          color: "#000000",
-          fontSize: "2rem",
-          fontWeight: "bold",
-          padding: "0 10px",
-          userSelect: "none",
-        }}
-      >
-        {site?.siteMetadata.title}
-      </span>
+    <header>
+      {site?.siteMetadata.title}
     </header>
   );
 
-  const Nav = () => {
+  const Navigation = () => {
     const List = ({ name, to }: { name: string; to: string }) => (
       <li style={{ margin: "0 10px" }}>
         <Link to={to} style={{ color: "#242424" }}>
@@ -41,16 +32,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     );
     return (
       <nav>
-        <ul
-          style={{
-            fontSize: "1.2rem",
-            display: "flex",
-            justifyContent: "flex-start",
-            listStyle: "none",
-            margin: "0 10px 20px 10px",
-            padding: "0",
-          }}
-        >
+        <ul>
           <List name="Home" to="/" key={`/`} />
           <List name="About" to="/about" key={`about`} />
           <List name="Blog" to="/blog" key={`blog`} />
@@ -61,12 +43,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   };
 
   const Footer = () => (
-    <footer
-      style={{
-        textAlign: "center",
-        fontSize: "0.7rem",
-      }}
-    >
+    <footer>
       <p>
         Built with{" "}
         <a
@@ -81,16 +58,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 
   return (
-    <div className="global-layout">
+    <div id="layout">
       <Header />
-      <Nav />
-      <main
-        style={{
-          maxWidth: "1080px",
-          margin: "auto",
-          padding: "0 5px",
-        }}
-      >
+      <Navigation />
+      <main>
         {children}
       </main>
       <Footer />
