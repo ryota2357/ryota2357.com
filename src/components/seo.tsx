@@ -1,29 +1,32 @@
-import * as React from "react";
-import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-const Seo = ({ description, lang, meta, title }) => {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            social {
-              twitter
-              github
-              unityroom
-            }
+type SeoProp = {
+  description: string;
+  lang: string;
+  meta: any[];
+  title: string;
+};
+
+const Seo = ({ description = "", lang = "ja", meta = [], title }: SeoProp) => {
+  const { site } = useStaticQuery<Queries.SeoComponentQuery>(graphql`
+    query SeoComponent {
+      site {
+        siteMetadata {
+          title
+          description
+          social {
+            twitter
+            github
+            unityroom
           }
         }
       }
-    `
-  );
+    }
+  `);
 
-  const metaDescription = description || site.siteMetadata.description;
-  const defaultTitle = site.siteMetadata?.title;
+  const metaDescription = description || site?.siteMetadata.description;
+  const defaultTitle = site?.siteMetadata.title;
 
   return (
     <Helmet
@@ -31,7 +34,7 @@ const Seo = ({ description, lang, meta, title }) => {
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
       meta={[
         {
           name: `description`,
@@ -55,7 +58,7 @@ const Seo = ({ description, lang, meta, title }) => {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.social?.twitter || ``,
+          content: site?.siteMetadata.social.twitter || ``,
         },
         {
           name: `twitter:title`,
@@ -68,19 +71,6 @@ const Seo = ({ description, lang, meta, title }) => {
       ].concat(meta)}
     />
   );
-};
-
-Seo.defaultProps = {
-  lang: `ja`,
-  meta: [],
-  description: ``,
-};
-
-Seo.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 };
 
 export default Seo;
