@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import "../style/components/layout.scss";
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ id, children }: { id: string; children: ReactNode }) => {
   const { site } = useStaticQuery<Queries.LayoutComponentQuery>(graphql`
     query LayoutComponent {
       site {
@@ -35,7 +35,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           </li>
         </ul>
       </nav>
-      <main>{children}</main>
+      <main id={id}>{children}</main>
       <footer>
         <p>
           Built with{" "}

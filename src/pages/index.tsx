@@ -5,7 +5,7 @@ import ContentBlock from "../components/contentBlock";
 import "../style/pages/index.scss";
 
 const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
-  <Layout>
+  <Layout id="index-page">
     <div className="top-profile">
       <StaticImage
         src="../images/profile-pic.jpg"
