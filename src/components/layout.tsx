@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import "../style/layout.scss";
+import "../style/components/layout.scss";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const { site } = useStaticQuery<Queries.LayoutComponentQuery>(graphql`

@@ -1,5 +1,4 @@
-// normalize CSS across browsers
-import "./src/style/normalize.css";
+import "destyle.css";
 
 // custom CSS styles
 import "./src/style/global.scss";
