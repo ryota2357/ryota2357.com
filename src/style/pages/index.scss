@@ -19,11 +19,8 @@
     ul {
       list-style: inside;
     }
-    a {
-      color: $text-black;
-      &:hover {
-        text-decoration: underline;
-      }
+    a:hover {
+      text-decoration: underline;
     }
     .align-horizontal {
       display: flex;

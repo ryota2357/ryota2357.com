@@ -27,6 +27,13 @@
     font-size: 1rem;
     line-height: 1.7;
   }
+  a {
+    color: #0969da;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   li {
     line-height: 1.5;
   }
