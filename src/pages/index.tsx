@@ -23,8 +23,8 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
     <div className="content-blocks">
       <ContentBlock title="Affiliation">
         <ul>
-          <li>電気通信大学 情報理工学域 1年</li>
-          <li>電気通信大学MMA(サークル)</li>
+          <li key={1}>電気通信大学 情報理工学域 1年</li>
+          <li key={2}>電気通信大学MMA(サークル)</li>
         </ul>
       </ContentBlock>
       <ContentBlock title="Blog">
@@ -40,9 +40,9 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
               );
               return [...cnt.entries()]
                 .sort((a, b) => b[1] - a[1])
-                .map((tag) => (
-                  <span style={{ paddingLeft: "0.3rem" }}>
-                    <Link to={`/blog/tag/${tag[0]}`} className="gray-link">
+                .map((tag, index) => (
+                  <span style={{ paddingLeft: "0.3rem" }} key={index}>
+                    <Link to={`/blog/tag/${tag[0]}`}>
                       {`${tag[0]}(${tag[1]})`}
                     </Link>
                   </span>
@@ -54,8 +54,8 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
           <h3>更新</h3>
           <div className="item">
             <ul>
-              {data.allMarkdownRemark.nodes.slice(0, 7).map((post) => (
-                <li>
+              {data.allMarkdownRemark.nodes.slice(0, 7).map((post, index) => (
+                <li key={index}>
                   <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
                 </li>
               ))}
