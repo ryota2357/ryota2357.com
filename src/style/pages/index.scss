@@ -1,3 +1,5 @@
+@import "../variables";
+
 .top-profile {
   display: flex;
   flex-direction: column;
@@ -16,12 +18,9 @@
   .content-block {
     ul {
       list-style: inside;
-      li {
-        line-height: 1.5;
-      }
     }
     a {
-      color: #242424;
+      color: $text-black;
       &:hover {
         text-decoration: underline;
       }

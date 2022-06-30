@@ -16,21 +16,23 @@ const Layout = ({ children }: { children: ReactNode }) => {
     }
   `);
 
-  const List = ({ name, to }: { name: string; to: string }) => (
-    <li>
-      <Link to={to}>{name}</Link>
-    </li>
-  );
-
   return (
     <div id="layout">
       <header>{site?.siteMetadata.title}</header>
       <nav>
         <ul>
-          <List name="Home" to="/" />
-          <List name="About" to="/about" />
-          <List name="Blog" to="/blog" />
-          <List name="GameDev" to="/gamedev" />
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/blog">Blog</Link>
+          </li>
+          <li>
+            <Link to="/gamedev">GameDev</Link>
+          </li>
         </ul>
       </nav>
       <main>{children}</main>
