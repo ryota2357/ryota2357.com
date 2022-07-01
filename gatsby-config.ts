@@ -1,6 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
-  // module.exports = {
   siteMetadata: {
     title: `ryota2357`,
     author: {
@@ -11,7 +10,7 @@ const config: GatsbyConfig = {
     },
     description: `namespace ryota2357;`,
     siteUrl: `https://ryota2357.com`,
-    repository: `ryota2357/ryota2357-github-pages`,
+    repository: `https://github.com/ryota2357/ryota2357-github-pages`,
     social: {
       atcoder: `ryota2357`,
       github: `ryota2357`,

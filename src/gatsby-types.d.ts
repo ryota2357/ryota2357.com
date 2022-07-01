@@ -4414,6 +4414,11 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
+type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AboutPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly repository: string } } | null };
+
 type BlogPostBySlugQueryVariables = Exact<{
   id: Scalars['String'];
   previousPostId: InputMaybe<Scalars['String']>;
@@ -4465,11 +4470,6 @@ type LayoutComponentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type LayoutComponentQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: { readonly name: string } } } | null };
-
-type QueryForAboutPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type QueryForAboutPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string, readonly siteUrl: string | null, readonly repository: string, readonly author: { readonly name: string, readonly summary: string }, readonly social: { readonly github: string, readonly unityroom: string, readonly twitter: string, readonly atcoder: string } } } | null };
 
 type SeoComponentQueryVariables = Exact<{ [key: string]: never; }>;
 
