@@ -4419,6 +4419,11 @@ type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type AboutPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly repository: string } } | null };
 
+type BlogPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BlogPageQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string | null> | null }, readonly fields: { readonly slug: string } }> } };
+
 type BlogPostBySlugQueryVariables = Exact<{
   id: Scalars['String'];
   previousPostId: InputMaybe<Scalars['String']>;
