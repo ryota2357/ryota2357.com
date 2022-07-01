@@ -26,7 +26,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     tags.forEach((tag) => {
       actions.createPage({
         path: `blog/tag/${tag}`,
-        component: resolve(`./src/templates/tagPage.js`),
+        component: resolve(`./src/templates/tag-page.tsx`),
         context: {
           tag: tag,
         },

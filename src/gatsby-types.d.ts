@@ -4433,13 +4433,6 @@ type BlogPostBySlugQueryVariables = Exact<{
 
 type BlogPostBySlugQuery = { readonly markdownRemark: { readonly id: string, readonly excerpt: string | null, readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string> | null } } | null, readonly previous: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null, readonly next: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null };
 
-type BlogPostByTagQueryVariables = Exact<{
-  tag: Scalars['String'];
-}>;
-
-
-type BlogPostByTagQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
-
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
 type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
@@ -4485,6 +4478,13 @@ type TagOnlyQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type TagOnlyQueryQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly tags: ReadonlyArray<string> | null } }> } };
+
+type TagPageQueryVariables = Exact<{
+  tag: Scalars['String'];
+}>;
+
+
+type TagPageQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
 
 type CreatePagesQueryVariables = Exact<{ [key: string]: never; }>;
 
