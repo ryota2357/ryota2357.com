@@ -1,5 +1,4 @@
-import Layout from "../components/layout";
-import Seo from "../components/seo";
+import { Layout, Seo } from "../components/mod";
 import "../style/pages/404.scss";
 
 const NotFoundPage = () => (

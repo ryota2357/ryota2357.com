@@ -1,7 +1,5 @@
 import { graphql, PageProps } from "gatsby";
-import Layout from "../components/layout";
-import Seo from "../components/seo";
-import ContentBlock from "../components/contentBlock";
+import { Layout, Seo, ContentBlock } from "../components/mod";
 import "../style/pages/about.scss";
 
 const About = ({ data }: PageProps<Queries.AboutPageQuery>) => (
