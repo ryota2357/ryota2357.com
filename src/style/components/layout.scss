@@ -3,20 +3,27 @@
 #layout {
   margin: 10px 5px;
   header {
-    color: #000000;
-    font-size: 2rem;
-    font-weight: bold;
-    user-select: none;
-  }
-  nav {
-    ul {
-      display: flex;
-      justify-content: flex-start;
-      font-size: 1.2rem;
-      li {
-        margin: 0 0.7rem;
-        a:hover {
-          text-decoration: underline;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .logo {
+      color: #000000;
+      font-size: 2rem;
+      font-weight: bold;
+      user-select: none;
+    }
+    nav {
+      margin-top: auto;
+      ul {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 1.3rem;
+        li {
+          margin: 0 0.7rem;
+          a:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
@@ -27,6 +34,6 @@
   }
   main {
     max-width: 1080px;
-    margin: auto;
+    margin: 1rem auto;
   }
 }

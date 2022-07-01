@@ -18,23 +18,27 @@ const Layout = ({ id, children }: { id: string; children: ReactNode }) => {
 
   return (
     <div id="layout">
-      <header>{site?.siteMetadata.title}</header>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/blog">Blog</Link>
-          </li>
-          <li>
-            <Link to="/gamedev">GameDev</Link>
-          </li>
-        </ul>
-      </nav>
+      <header>
+        <div className="logo">
+          <Link to="/">{site?.siteMetadata.title}</Link>
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="/gamedev">GameDev</Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
       <main id={id}>{children}</main>
       <footer>
         <p>
