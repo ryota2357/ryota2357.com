@@ -1,5 +1,5 @@
 import { graphql, PageProps, Link } from "gatsby";
-import { Layout, Seo } from "../components/mod";
+import { Layout, Seo, BlogList } from "../components/mod";
 import "../style/pages/blog.scss";
 
 const Blog = ({ data }: PageProps<Queries.BlogPageQuery>) => (
@@ -9,23 +9,16 @@ const Blog = ({ data }: PageProps<Queries.BlogPageQuery>) => (
     <p>
       <Link to="/blog/tag">タグの一覧</Link>
     </p>
-    <ul className="blog-list">
-      {data.allMarkdownRemark.nodes.map((post) => (
-        <li>
-          <div className="item-date">{post.frontmatter.postdate}</div>
-          <div className="item-title">
-            <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
-          </div>
-          <div className="item-tags">
-            {post.frontmatter.tags?.map((tag) => (
-              <Link to={`/blog/tag/${tag}`} className="item-tag">
-                {tag}
-              </Link>
-            ))}
-          </div>
-        </li>
-      ))}
-    </ul>
+    <BlogList
+      data={data.allMarkdownRemark.nodes.map((post) => {
+        return {
+          title: post.frontmatter.title ?? "No title",
+          date: post.frontmatter.postdate ?? "No date",
+          tags: post.frontmatter.tags,
+          slug: post.fields.slug,
+        };
+      })}
+    />
   </Layout>
 );
 

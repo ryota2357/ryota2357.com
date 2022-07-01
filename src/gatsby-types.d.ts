@@ -1067,7 +1067,7 @@ type FloatQueryOperatorInput = {
 type Frontmatter = {
   readonly description: Maybe<Scalars['String']>;
   readonly postdate: Maybe<Scalars['Date']>;
-  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly tags: Maybe<ReadonlyArray<Scalars['String']>>;
   readonly title: Maybe<Scalars['String']>;
   readonly update: Maybe<Scalars['Date']>;
 };
@@ -4422,7 +4422,7 @@ type AboutPageQuery = { readonly site: { readonly siteMetadata: { readonly title
 type BlogPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type BlogPageQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string | null> | null }, readonly fields: { readonly slug: string } }> } };
+type BlogPageQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
 
 type BlogPostBySlugQueryVariables = Exact<{
   id: Scalars['String'];
@@ -4431,14 +4431,14 @@ type BlogPostBySlugQueryVariables = Exact<{
 }>;
 
 
-type BlogPostBySlugQuery = { readonly markdownRemark: { readonly id: string, readonly excerpt: string | null, readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string | null> | null } } | null, readonly previous: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null, readonly next: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null };
+type BlogPostBySlugQuery = { readonly markdownRemark: { readonly id: string, readonly excerpt: string | null, readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string> | null } } | null, readonly previous: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null, readonly next: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null };
 
 type BlogPostByTagQueryVariables = Exact<{
   tag: Scalars['String'];
 }>;
 
 
-type BlogPostByTagQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly tags: ReadonlyArray<string | null> | null }, readonly fields: { readonly slug: string } }> } };
+type BlogPostByTagQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
@@ -4469,7 +4469,7 @@ type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string } } | null, readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null }, readonly fields: { readonly slug: string } }> } };
+type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string } } | null, readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
 
 type LayoutComponentQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -4484,12 +4484,12 @@ type SeoComponentQuery = { readonly site: { readonly siteMetadata: { readonly ti
 type TagOnlyQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TagOnlyQueryQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly tags: ReadonlyArray<string | null> | null } }> } };
+type TagOnlyQueryQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly tags: ReadonlyArray<string> | null } }> } };
 
 type CreatePagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type CreatePagesQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string }, readonly frontmatter: { readonly tags: ReadonlyArray<string | null> | null } }> } };
+type CreatePagesQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly fields: { readonly slug: string }, readonly frontmatter: { readonly tags: ReadonlyArray<string> | null } }> } };
 
 
 }

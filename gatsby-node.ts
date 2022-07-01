@@ -138,7 +138,7 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
       description: String
       postdate: Date @dateformat
       update: Date @dateformat
-      tags: [String]
+      tags: [String!]
     }
 
     type Fields {
