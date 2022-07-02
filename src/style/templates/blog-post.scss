@@ -21,6 +21,20 @@
         gap: 1rem;
         color: $text-gray;
       }
+      .tags {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3rem;
+        a {
+          &:hover {
+            text-decoration: underline;
+          }
+          &:not(:last-child)::after {
+            content: ",";
+          }
+        }
+      }
     }
   }
   nav {

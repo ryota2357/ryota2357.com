@@ -35,21 +35,20 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
               </p>
             )}
           </div>
-          <div>
+          <div className="tags">
             <FontAwesomeIcon
               icon={faTags as any}
               style={{ color: "#2E2E2E", marginRight: "5px" }}
             />
-            {post.tags.map((tag, i) => {
-              if (i < post.tags.length - 1) tag += ",";
-              return <Link to={`/blog/tag/${tag}`}> {tag} </Link>;
+            {post.tags.map((tag) => {
+              return <Link to={`/blog/tag/${tag}`}>{tag}</Link>;
             })}
           </div>
         </div>
         <div
           className="markdown"
           itemProp="articleBody"
-          dangerouslySetInnerHTML={{ __html: data.markdownRemark?.html! }}
+          dangerouslySetInnerHTML={{ __html: data.markdownRemark?.html ?? "" }}
         />
       </article>
       <nav>
