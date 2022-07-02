@@ -1,0 +1,49 @@
+@import "../variables";
+
+#blog-post {
+  article {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px #323232;
+    padding: 1.4em;
+    .post-front {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+      h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+      .date {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        color: $text-gray;
+      }
+      .tags {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3rem;
+        a {
+          &:hover {
+            text-decoration: underline;
+          }
+          &:not(:last-child)::after {
+            content: ",";
+          }
+        }
+      }
+    }
+  }
+  nav {
+    ul {
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: space-between;
+      margin: 1rem 0;
+      gap: 0.7rem;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@import "../variables";
+
+#index-page {
+  .top-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    .name {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+  }
+  .content-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    .content-block {
+      ul {
+        list-style: inside;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .align-horizontal {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+        h3 {
+          flex: none;
+          margin: 0;
+          font-size: 1.3rem;
+          font-weight: bold;
+        }
+        .item {
+          display: flex;
+          flex-wrap: wrap;
+          margin: auto 0;
+        }
+      }
+    }
+  }
+}

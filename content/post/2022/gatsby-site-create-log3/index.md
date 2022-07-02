@@ -72,12 +72,12 @@ a:hover {
 記事が 1 つもない時の処理があったけど必要なさそうだったから削除
 
 ```jsx
-import * as React from "react"
-import { Link, graphql } from "gatsby"
+import * as React from "react";
+import { Link, graphql } from "gatsby";
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Bio from "../components/bio";
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const Index = ({ data, location }) => {
   const BlogCard = ({ post }) => (
@@ -103,7 +103,7 @@ const Index = ({ data, location }) => {
         />
       </div>
     </article>
-  )
+  );
 
   return (
     <Layout location={location} title={data.site.siteMetadata.title}>
@@ -115,15 +115,15 @@ const Index = ({ data, location }) => {
           flexFlow: "column",
         }}
       >
-        {data.allMarkdownRemark.nodes.map(post => {
-          return <BlogCard post={post} />
+        {data.allMarkdownRemark.nodes.map((post) => {
+          return <BlogCard post={post} />;
         })}
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
 
 export const pageQuery = graphql`
   query {
@@ -146,7 +146,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 ```
 
 ### components/layout.js
@@ -160,11 +160,11 @@ export const pageQuery = graphql`
 あと、`data-is-root-path`って何？一箇所だけ div で使われてるのだが、何をしてるのだろう...まあ、そのままにしといた。
 
 ```jsx
-import * as React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import * as React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
 const Layout = ({ location, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
+  const rootPath = `${__PATH_PREFIX__}/`;
   const { site } = useStaticQuery(graphql`
     query {
       site {
@@ -176,7 +176,7 @@ const Layout = ({ location, children }) => {
         }
       }
     }
-  `)
+  `);
 
   const Header = () => (
     <header style={{ margin: "20px 0" }}>
@@ -192,7 +192,7 @@ const Layout = ({ location, children }) => {
         {site.siteMetadata.title}
       </Link>
     </header>
-  )
+  );
 
   const Footer = () => (
     <footer
@@ -209,7 +209,7 @@ const Layout = ({ location, children }) => {
       </p>
       <p>©2022 {site.siteMetadata.author.name} All Rights Reserved.</p>
     </footer>
-  )
+  );
 
   return (
     <div
@@ -227,10 +227,10 @@ const Layout = ({ location, children }) => {
       </main>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
 ```
 
 ### templates/blog-post.js
@@ -238,11 +238,11 @@ export default Layout
 コンポーネントを分割して、ローカル変数を消したくらい
 
 ```jsx
-import * as React from "react"
-import { Link, graphql } from "gatsby"
+import * as React from "react";
+import { Link, graphql } from "gatsby";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const BlogPostTemplate = ({ data, location }) => {
   const BlogBody = ({ post }) => (
@@ -261,7 +261,7 @@ const BlogPostTemplate = ({ data, location }) => {
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
     </article>
-  )
+  );
 
   const BlogNav = ({ previous, next }) => (
     <nav>
@@ -290,7 +290,7 @@ const BlogPostTemplate = ({ data, location }) => {
         </li>
       </ul>
     </nav>
-  )
+  );
 
   return (
     <Layout location={location}>
@@ -304,10 +304,10 @@ const BlogPostTemplate = ({ data, location }) => {
       <BlogBody post={data.markdownRemark} />
       <BlogNav previous={data.previous} next={data.next} />
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug(
@@ -347,7 +347,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 ```
 
 ## 現在

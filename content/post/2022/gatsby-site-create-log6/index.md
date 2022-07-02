@@ -51,7 +51,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 ```jsx
 exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
+  const { createTypes } = actions;
 
   // siteMetadata {} オブジェクトを明示的に定義します。
   // こうすることで、gatsby-config.jsから削除されても、常に定義されるようになります。
@@ -71,8 +71,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Fields {
       slug: String
     }
-  `)
-}
+  `);
+};
 ```
 
 ### gatsby-config.js
@@ -133,13 +133,13 @@ RSS feed のプラグインで`date`が 4 ヶ所いたので訂正する。
   <summary>templates/blog-post.js</summary>
 
 ```jsx
-import * as React from "react"
-import { Link, graphql } from "gatsby"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTags } from "@fortawesome/free-solid-svg-icons"
+import * as React from "react";
+import { Link, graphql } from "gatsby";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTags } from "@fortawesome/free-solid-svg-icons";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+import Layout from "../components/layout";
+import Seo from "../components/seo";
 
 const BlogPostTemplate = ({ data, location }) => {
   const BlogBody = ({ post }) => {
@@ -158,7 +158,7 @@ const BlogPostTemplate = ({ data, location }) => {
           </p>
         )}
       </div>
-    )
+    );
     const Tags = () => (
       <div style={{ marginTop: "10px" }}>
         <FontAwesomeIcon
@@ -167,8 +167,8 @@ const BlogPostTemplate = ({ data, location }) => {
         />
         {post.frontmatter.tags &&
           post.frontmatter.tags.map((tag, i) => {
-            var t = tag
-            if (i < post.frontmatter.tags.length - 1) t += ","
+            var t = tag;
+            if (i < post.frontmatter.tags.length - 1) t += ",";
             return (
               <Link
                 to="/"
@@ -179,10 +179,10 @@ const BlogPostTemplate = ({ data, location }) => {
               >
                 {t}
               </Link>
-            )
+            );
           })}
       </div>
-    )
+    );
 
     return (
       <article
@@ -206,8 +206,8 @@ const BlogPostTemplate = ({ data, location }) => {
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
       </article>
-    )
-  }
+    );
+  };
 
   const BlogNav = ({ previous, next }) => (
     <nav>
@@ -236,7 +236,7 @@ const BlogPostTemplate = ({ data, location }) => {
         </li>
       </ul>
     </nav>
-  )
+  );
 
   return (
     <Layout location={location}>
@@ -250,10 +250,10 @@ const BlogPostTemplate = ({ data, location }) => {
       <BlogBody post={data.markdownRemark} />
       <BlogNav previous={data.previous} next={data.next} />
     </Layout>
-  )
-}
+  );
+};
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug(
@@ -289,7 +289,7 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
 ```
 
 </details>

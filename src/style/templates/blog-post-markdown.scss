@@ -1,7 +1,50 @@
-.markdown {
+#markdown {
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
   h2 {
+    font-size: 1.7rem;
+    font-weight: bold;
     margin-top: 3rem;
+    margin-bottom: 1.5rem;
     border-bottom: solid 2.5px #e3e3e3;
+  }
+  h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  h4 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 1rem 0;
+  }
+  a {
+    color: #0969da;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+    // gatsby-remark-autolink-headers
+    &.anchor {
+      fill: #57606a;
+    }
+    svg {
+      vertical-align: baseline;
+    }
+  }
+  li {
+    line-height: 1.5;
   }
   blockquote {
     margin: 0;
@@ -26,6 +69,7 @@
     width: max-content;
     max-width: 100%;
     overflow: auto;
+    line-height: 1.15;
     tr {
       background-color: #ffffff;
       border-top: 1px solid #d5dbe2;

@@ -1,4 +1,5 @@
-module.exports = {
+import type { GatsbyConfig } from "gatsby";
+const config: GatsbyConfig = {
   siteMetadata: {
     title: `ryota2357`,
     author: {
@@ -9,7 +10,7 @@ module.exports = {
     },
     description: `namespace ryota2357;`,
     siteUrl: `https://ryota2357.com`,
-    repository: `ryota2357/ryota2357-github-pages`,
+    repository: `https://github.com/ryota2357/ryota2357-github-pages`,
     social: {
       atcoder: `ryota2357`,
       github: `ryota2357`,
@@ -17,7 +18,9 @@ module.exports = {
       unityroom: `ryota2357`,
     },
   },
-  /*
+  graphqlTypegen: true,
+  jsxRuntime: `automatic`,
+  /*{{{ 説明
   - gatsby-plugin-image (https://www.gatsbyjs.com/plugins/gatsby-plugin-image/)
       画像のレスポンシブ化。複数の画像サイズを自動生成してくれる
 
@@ -67,7 +70,7 @@ module.exports = {
 
   - gatsby-plugin-manifest
       参考: https://takumon.com/2018/10/08/
-  */
+  }}}*/
   plugins: [
     `gatsby-plugin-image`,
     {
@@ -147,16 +150,16 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
+            serialize: ({ query: { site, allMarkdownRemark } }: any) => {
+              return allMarkdownRemark.nodes.map((node: any) => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   postdate: node.frontmatter.postdate,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
+                });
+              });
             },
             query: `
               {
@@ -201,4 +204,6 @@ module.exports = {
       },
     },
   ],
-}
+};
+
+export default config;
