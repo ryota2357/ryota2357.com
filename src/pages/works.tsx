@@ -56,8 +56,8 @@ const Works = () => {
                   )}
                 </div>
                 <div className="description">
-                  {game.description.split("\n").map((line) => (
-                    <p>{line}</p>
+                  {game.description.split("\n").map((line, index) => (
+                    <p key={index}>{line}</p>
                   ))}
                 </div>
               </div>

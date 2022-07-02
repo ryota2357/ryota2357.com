@@ -16,14 +16,14 @@ const BlogList = ({ data }: BlogListProp) => (
   <div className="blog-list">
     <ul>
       {data.map((post) => (
-        <li>
+        <li key={post.slug}>
           <div className="item-date">{post.date}</div>
           <div className="item-title">
             <Link to={post.slug}>{post.title}</Link>
           </div>
           <div className="item-tags">
-            {post.tags?.map((tag) => (
-              <Link to={`/blog/tag/${tag}`} className="item-tag">
+            {post.tags?.map((tag, index) => (
+              <Link to={`/blog/tag/${tag}`} className="item-tag" key={index}>
                 {tag}
               </Link>
             ))}
