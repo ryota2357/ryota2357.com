@@ -4,6 +4,8 @@ import { Layout, Seo } from "../components/mod";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
 import "../style/templates/blog-post.scss";
+import "../style/templates/blog-post-markdown.scss";
+import "../style/templates/blog-post-markdown-code.scss";
 
 const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
   const post = {
@@ -46,7 +48,7 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
           </div>
         </div>
         <div
-          className="markdown"
+          id="markdown"
           itemProp="articleBody"
           dangerouslySetInnerHTML={{ __html: data.markdownRemark?.html ?? "" }}
         />

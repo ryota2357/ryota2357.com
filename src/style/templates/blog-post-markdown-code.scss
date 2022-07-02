@@ -3,7 +3,10 @@
   --grvsc-border-radius: 10px;
 }
 
-.markdown {
+#markdown {
+  code {
+    font-family: monospace;
+  }
   p,
   li,
   table {
@@ -16,7 +19,9 @@
   }
   pre {
     background-color: #282828;
-    font-size: 90%;
-    line-height: 1rem;
+    code {
+      font-size: 0.9rem;
+      line-height: 1.3;
+    }
   }
 }

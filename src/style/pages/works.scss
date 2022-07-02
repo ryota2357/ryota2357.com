@@ -5,8 +5,9 @@
     font-size: 2.5rem;
   }
   h2 {
-    font-size: 2rem;
-    margin-top: 3rem;
+    font-size: 1.6rem;
+    margin-top: 2rem;
+    font-weight: bold;
   }
   a:hover {
     text-decoration: underline;
@@ -14,10 +15,11 @@
   .table-of-contents {
     ul {
       list-style: inside;
+      margin-left: 1rem;
       li {
         ul {
           list-style: square;
-          margin-left: 2.5em;
+          margin-left: 2em;
         }
       }
     }
