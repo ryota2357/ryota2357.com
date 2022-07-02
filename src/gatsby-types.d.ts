@@ -662,7 +662,88 @@ type FileFieldsEnum =
   | 'childImageSharp.resize.src'
   | 'childImageSharp.resize.tracedSVG'
   | 'childImageSharp.resize.width'
+  | 'childMarkdownRemark.childGrvscCodeBlock.additionalThemes'
+  | 'childMarkdownRemark.childGrvscCodeBlock.additionalThemes.conditions'
+  | 'childMarkdownRemark.childGrvscCodeBlock.additionalThemes.identifier'
+  | 'childMarkdownRemark.childGrvscCodeBlock.additionalThemes.path'
+  | 'childMarkdownRemark.childGrvscCodeBlock.children'
+  | 'childMarkdownRemark.childGrvscCodeBlock.children.children'
+  | 'childMarkdownRemark.childGrvscCodeBlock.children.id'
+  | 'childMarkdownRemark.childGrvscCodeBlock.codeClassName'
+  | 'childMarkdownRemark.childGrvscCodeBlock.defaultTheme.conditions'
+  | 'childMarkdownRemark.childGrvscCodeBlock.defaultTheme.identifier'
+  | 'childMarkdownRemark.childGrvscCodeBlock.defaultTheme.path'
+  | 'childMarkdownRemark.childGrvscCodeBlock.html'
+  | 'childMarkdownRemark.childGrvscCodeBlock.id'
+  | 'childMarkdownRemark.childGrvscCodeBlock.index'
+  | 'childMarkdownRemark.childGrvscCodeBlock.internal.content'
+  | 'childMarkdownRemark.childGrvscCodeBlock.internal.contentDigest'
+  | 'childMarkdownRemark.childGrvscCodeBlock.internal.description'
+  | 'childMarkdownRemark.childGrvscCodeBlock.internal.fieldOwners'
+  | 'childMarkdownRemark.childGrvscCodeBlock.internal.ignoreType'
+  | 'childMarkdownRemark.childGrvscCodeBlock.internal.mediaType'
+  | 'childMarkdownRemark.childGrvscCodeBlock.internal.owner'
+  | 'childMarkdownRemark.childGrvscCodeBlock.internal.type'
+  | 'childMarkdownRemark.childGrvscCodeBlock.language'
+  | 'childMarkdownRemark.childGrvscCodeBlock.meta'
+  | 'childMarkdownRemark.childGrvscCodeBlock.parent.children'
+  | 'childMarkdownRemark.childGrvscCodeBlock.parent.id'
+  | 'childMarkdownRemark.childGrvscCodeBlock.preClassName'
+  | 'childMarkdownRemark.childGrvscCodeBlock.text'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.attrs'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.className'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.data'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.diff'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.gutterCells'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.html'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.isHighlighted'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.lineNumber'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.setContainerClassName'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.text'
+  | 'childMarkdownRemark.childGrvscCodeBlock.tokenizedLines.tokens'
   | 'childMarkdownRemark.children'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.additionalThemes'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.additionalThemes.conditions'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.additionalThemes.identifier'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.additionalThemes.path'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.children'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.children.children'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.children.id'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.codeClassName'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.defaultTheme.conditions'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.defaultTheme.identifier'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.defaultTheme.path'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.html'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.id'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.index'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.internal.content'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.internal.contentDigest'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.internal.description'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.internal.fieldOwners'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.internal.ignoreType'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.internal.mediaType'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.internal.owner'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.internal.type'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.language'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.meta'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.parent.children'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.parent.id'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.preClassName'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.text'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.attrs'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.className'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.data'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.diff'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.gutterCells'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.html'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.isHighlighted'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.lineNumber'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.setContainerClassName'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.text'
+  | 'childMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.tokens'
   | 'childMarkdownRemark.children.children'
   | 'childMarkdownRemark.children.children.children'
   | 'childMarkdownRemark.children.children.id'
@@ -794,7 +875,88 @@ type FileFieldsEnum =
   | 'childrenImageSharp.resize.tracedSVG'
   | 'childrenImageSharp.resize.width'
   | 'childrenMarkdownRemark'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.additionalThemes'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.additionalThemes.conditions'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.additionalThemes.identifier'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.additionalThemes.path'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.children'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.children.children'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.children.id'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.codeClassName'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.defaultTheme.conditions'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.defaultTheme.identifier'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.defaultTheme.path'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.html'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.id'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.index'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.internal.content'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.internal.contentDigest'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.internal.description'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.internal.fieldOwners'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.internal.ignoreType'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.internal.mediaType'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.internal.owner'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.internal.type'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.language'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.meta'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.parent.children'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.parent.id'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.preClassName'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.text'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.attrs'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.className'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.data'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.diff'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.gutterCells'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.html'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.isHighlighted'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.lineNumber'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.setContainerClassName'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.text'
+  | 'childrenMarkdownRemark.childGrvscCodeBlock.tokenizedLines.tokens'
   | 'childrenMarkdownRemark.children'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.additionalThemes'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.additionalThemes.conditions'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.additionalThemes.identifier'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.additionalThemes.path'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.children'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.children.children'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.children.id'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.codeClassName'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.defaultTheme.conditions'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.defaultTheme.identifier'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.defaultTheme.path'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.html'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.id'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.index'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.internal.content'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.internal.contentDigest'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.internal.description'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.internal.fieldOwners'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.internal.ignoreType'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.internal.mediaType'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.internal.owner'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.internal.type'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.language'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.meta'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.parent.children'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.parent.id'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.preClassName'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.text'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.attrs'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.className'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.data'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.diff'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.gutterCells'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.html'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.isHighlighted'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.lineNumber'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.setContainerClassName'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.text'
+  | 'childrenMarkdownRemark.childrenGrvscCodeBlock.tokenizedLines.tokens'
   | 'childrenMarkdownRemark.children.children'
   | 'childrenMarkdownRemark.children.children.children'
   | 'childrenMarkdownRemark.children.children.id'
@@ -1274,6 +1436,7 @@ type GRVSCCodeBlockFieldsEnum =
   | 'tokenizedLines.html'
   | 'tokenizedLines.isHighlighted'
   | 'tokenizedLines.lineNumber'
+  | 'tokenizedLines.setContainerClassName'
   | 'tokenizedLines.text'
   | 'tokenizedLines.tokens'
   | 'tokenizedLines.tokens.additionalThemeTokenData'
@@ -1313,6 +1476,10 @@ type GRVSCCodeBlockFilterInput = {
   readonly preClassName: InputMaybe<StringQueryOperatorInput>;
   readonly text: InputMaybe<StringQueryOperatorInput>;
   readonly tokenizedLines: InputMaybe<GRVSCTokenizedLineFilterListInput>;
+};
+
+type GRVSCCodeBlockFilterListInput = {
+  readonly elemMatch: InputMaybe<GRVSCCodeBlockFilterInput>;
 };
 
 type GRVSCCodeBlockGroupConnection = {
@@ -1935,6 +2102,7 @@ type GRVSCTokenizedLine = {
   readonly html: Scalars['String'];
   readonly isHighlighted: Maybe<Scalars['Boolean']>;
   readonly lineNumber: Maybe<Scalars['Int']>;
+  readonly setContainerClassName: Maybe<Scalars['String']>;
   readonly text: Scalars['String'];
   readonly tokens: ReadonlyArray<GRVSCToken>;
 };
@@ -1948,6 +2116,7 @@ type GRVSCTokenizedLineFilterInput = {
   readonly html: InputMaybe<StringQueryOperatorInput>;
   readonly isHighlighted: InputMaybe<BooleanQueryOperatorInput>;
   readonly lineNumber: InputMaybe<IntQueryOperatorInput>;
+  readonly setContainerClassName: InputMaybe<StringQueryOperatorInput>;
   readonly text: InputMaybe<StringQueryOperatorInput>;
   readonly tokens: InputMaybe<GRVSCTokenFilterListInput>;
 };
@@ -2516,7 +2685,11 @@ type MarkdownHeadingLevels =
   | 'h6';
 
 type MarkdownRemark = Node & {
+  /** Returns the first child node of type GRVSCCodeBlock or null if there are no children of given type on this node */
+  readonly childGrvscCodeBlock: Maybe<GRVSCCodeBlock>;
   readonly children: ReadonlyArray<Node>;
+  /** Returns all children nodes filtered by type GRVSCCodeBlock */
+  readonly childrenGrvscCodeBlock: Maybe<ReadonlyArray<Maybe<GRVSCCodeBlock>>>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly excerptAst: Maybe<Scalars['JSON']>;
   readonly fields: Fields;
@@ -2608,7 +2781,162 @@ type MarkdownRemarkEdge = {
 };
 
 type MarkdownRemarkFieldsEnum =
+  | 'childGrvscCodeBlock.additionalThemes'
+  | 'childGrvscCodeBlock.additionalThemes.conditions'
+  | 'childGrvscCodeBlock.additionalThemes.conditions.condition'
+  | 'childGrvscCodeBlock.additionalThemes.conditions.value'
+  | 'childGrvscCodeBlock.additionalThemes.identifier'
+  | 'childGrvscCodeBlock.additionalThemes.path'
+  | 'childGrvscCodeBlock.children'
+  | 'childGrvscCodeBlock.children.children'
+  | 'childGrvscCodeBlock.children.children.children'
+  | 'childGrvscCodeBlock.children.children.id'
+  | 'childGrvscCodeBlock.children.id'
+  | 'childGrvscCodeBlock.children.internal.content'
+  | 'childGrvscCodeBlock.children.internal.contentDigest'
+  | 'childGrvscCodeBlock.children.internal.description'
+  | 'childGrvscCodeBlock.children.internal.fieldOwners'
+  | 'childGrvscCodeBlock.children.internal.ignoreType'
+  | 'childGrvscCodeBlock.children.internal.mediaType'
+  | 'childGrvscCodeBlock.children.internal.owner'
+  | 'childGrvscCodeBlock.children.internal.type'
+  | 'childGrvscCodeBlock.children.parent.children'
+  | 'childGrvscCodeBlock.children.parent.id'
+  | 'childGrvscCodeBlock.codeClassName'
+  | 'childGrvscCodeBlock.defaultTheme.conditions'
+  | 'childGrvscCodeBlock.defaultTheme.conditions.condition'
+  | 'childGrvscCodeBlock.defaultTheme.conditions.value'
+  | 'childGrvscCodeBlock.defaultTheme.identifier'
+  | 'childGrvscCodeBlock.defaultTheme.path'
+  | 'childGrvscCodeBlock.html'
+  | 'childGrvscCodeBlock.id'
+  | 'childGrvscCodeBlock.index'
+  | 'childGrvscCodeBlock.internal.content'
+  | 'childGrvscCodeBlock.internal.contentDigest'
+  | 'childGrvscCodeBlock.internal.description'
+  | 'childGrvscCodeBlock.internal.fieldOwners'
+  | 'childGrvscCodeBlock.internal.ignoreType'
+  | 'childGrvscCodeBlock.internal.mediaType'
+  | 'childGrvscCodeBlock.internal.owner'
+  | 'childGrvscCodeBlock.internal.type'
+  | 'childGrvscCodeBlock.language'
+  | 'childGrvscCodeBlock.meta'
+  | 'childGrvscCodeBlock.parent.children'
+  | 'childGrvscCodeBlock.parent.children.children'
+  | 'childGrvscCodeBlock.parent.children.id'
+  | 'childGrvscCodeBlock.parent.id'
+  | 'childGrvscCodeBlock.parent.internal.content'
+  | 'childGrvscCodeBlock.parent.internal.contentDigest'
+  | 'childGrvscCodeBlock.parent.internal.description'
+  | 'childGrvscCodeBlock.parent.internal.fieldOwners'
+  | 'childGrvscCodeBlock.parent.internal.ignoreType'
+  | 'childGrvscCodeBlock.parent.internal.mediaType'
+  | 'childGrvscCodeBlock.parent.internal.owner'
+  | 'childGrvscCodeBlock.parent.internal.type'
+  | 'childGrvscCodeBlock.parent.parent.children'
+  | 'childGrvscCodeBlock.parent.parent.id'
+  | 'childGrvscCodeBlock.preClassName'
+  | 'childGrvscCodeBlock.text'
+  | 'childGrvscCodeBlock.tokenizedLines'
+  | 'childGrvscCodeBlock.tokenizedLines.attrs'
+  | 'childGrvscCodeBlock.tokenizedLines.className'
+  | 'childGrvscCodeBlock.tokenizedLines.data'
+  | 'childGrvscCodeBlock.tokenizedLines.diff'
+  | 'childGrvscCodeBlock.tokenizedLines.gutterCells'
+  | 'childGrvscCodeBlock.tokenizedLines.gutterCells.className'
+  | 'childGrvscCodeBlock.tokenizedLines.gutterCells.text'
+  | 'childGrvscCodeBlock.tokenizedLines.html'
+  | 'childGrvscCodeBlock.tokenizedLines.isHighlighted'
+  | 'childGrvscCodeBlock.tokenizedLines.lineNumber'
+  | 'childGrvscCodeBlock.tokenizedLines.setContainerClassName'
+  | 'childGrvscCodeBlock.tokenizedLines.text'
+  | 'childGrvscCodeBlock.tokenizedLines.tokens'
+  | 'childGrvscCodeBlock.tokenizedLines.tokens.additionalThemeTokenData'
+  | 'childGrvscCodeBlock.tokenizedLines.tokens.className'
+  | 'childGrvscCodeBlock.tokenizedLines.tokens.endIndex'
+  | 'childGrvscCodeBlock.tokenizedLines.tokens.html'
+  | 'childGrvscCodeBlock.tokenizedLines.tokens.scopes'
+  | 'childGrvscCodeBlock.tokenizedLines.tokens.startIndex'
+  | 'childGrvscCodeBlock.tokenizedLines.tokens.text'
   | 'children'
+  | 'childrenGrvscCodeBlock'
+  | 'childrenGrvscCodeBlock.additionalThemes'
+  | 'childrenGrvscCodeBlock.additionalThemes.conditions'
+  | 'childrenGrvscCodeBlock.additionalThemes.conditions.condition'
+  | 'childrenGrvscCodeBlock.additionalThemes.conditions.value'
+  | 'childrenGrvscCodeBlock.additionalThemes.identifier'
+  | 'childrenGrvscCodeBlock.additionalThemes.path'
+  | 'childrenGrvscCodeBlock.children'
+  | 'childrenGrvscCodeBlock.children.children'
+  | 'childrenGrvscCodeBlock.children.children.children'
+  | 'childrenGrvscCodeBlock.children.children.id'
+  | 'childrenGrvscCodeBlock.children.id'
+  | 'childrenGrvscCodeBlock.children.internal.content'
+  | 'childrenGrvscCodeBlock.children.internal.contentDigest'
+  | 'childrenGrvscCodeBlock.children.internal.description'
+  | 'childrenGrvscCodeBlock.children.internal.fieldOwners'
+  | 'childrenGrvscCodeBlock.children.internal.ignoreType'
+  | 'childrenGrvscCodeBlock.children.internal.mediaType'
+  | 'childrenGrvscCodeBlock.children.internal.owner'
+  | 'childrenGrvscCodeBlock.children.internal.type'
+  | 'childrenGrvscCodeBlock.children.parent.children'
+  | 'childrenGrvscCodeBlock.children.parent.id'
+  | 'childrenGrvscCodeBlock.codeClassName'
+  | 'childrenGrvscCodeBlock.defaultTheme.conditions'
+  | 'childrenGrvscCodeBlock.defaultTheme.conditions.condition'
+  | 'childrenGrvscCodeBlock.defaultTheme.conditions.value'
+  | 'childrenGrvscCodeBlock.defaultTheme.identifier'
+  | 'childrenGrvscCodeBlock.defaultTheme.path'
+  | 'childrenGrvscCodeBlock.html'
+  | 'childrenGrvscCodeBlock.id'
+  | 'childrenGrvscCodeBlock.index'
+  | 'childrenGrvscCodeBlock.internal.content'
+  | 'childrenGrvscCodeBlock.internal.contentDigest'
+  | 'childrenGrvscCodeBlock.internal.description'
+  | 'childrenGrvscCodeBlock.internal.fieldOwners'
+  | 'childrenGrvscCodeBlock.internal.ignoreType'
+  | 'childrenGrvscCodeBlock.internal.mediaType'
+  | 'childrenGrvscCodeBlock.internal.owner'
+  | 'childrenGrvscCodeBlock.internal.type'
+  | 'childrenGrvscCodeBlock.language'
+  | 'childrenGrvscCodeBlock.meta'
+  | 'childrenGrvscCodeBlock.parent.children'
+  | 'childrenGrvscCodeBlock.parent.children.children'
+  | 'childrenGrvscCodeBlock.parent.children.id'
+  | 'childrenGrvscCodeBlock.parent.id'
+  | 'childrenGrvscCodeBlock.parent.internal.content'
+  | 'childrenGrvscCodeBlock.parent.internal.contentDigest'
+  | 'childrenGrvscCodeBlock.parent.internal.description'
+  | 'childrenGrvscCodeBlock.parent.internal.fieldOwners'
+  | 'childrenGrvscCodeBlock.parent.internal.ignoreType'
+  | 'childrenGrvscCodeBlock.parent.internal.mediaType'
+  | 'childrenGrvscCodeBlock.parent.internal.owner'
+  | 'childrenGrvscCodeBlock.parent.internal.type'
+  | 'childrenGrvscCodeBlock.parent.parent.children'
+  | 'childrenGrvscCodeBlock.parent.parent.id'
+  | 'childrenGrvscCodeBlock.preClassName'
+  | 'childrenGrvscCodeBlock.text'
+  | 'childrenGrvscCodeBlock.tokenizedLines'
+  | 'childrenGrvscCodeBlock.tokenizedLines.attrs'
+  | 'childrenGrvscCodeBlock.tokenizedLines.className'
+  | 'childrenGrvscCodeBlock.tokenizedLines.data'
+  | 'childrenGrvscCodeBlock.tokenizedLines.diff'
+  | 'childrenGrvscCodeBlock.tokenizedLines.gutterCells'
+  | 'childrenGrvscCodeBlock.tokenizedLines.gutterCells.className'
+  | 'childrenGrvscCodeBlock.tokenizedLines.gutterCells.text'
+  | 'childrenGrvscCodeBlock.tokenizedLines.html'
+  | 'childrenGrvscCodeBlock.tokenizedLines.isHighlighted'
+  | 'childrenGrvscCodeBlock.tokenizedLines.lineNumber'
+  | 'childrenGrvscCodeBlock.tokenizedLines.setContainerClassName'
+  | 'childrenGrvscCodeBlock.tokenizedLines.text'
+  | 'childrenGrvscCodeBlock.tokenizedLines.tokens'
+  | 'childrenGrvscCodeBlock.tokenizedLines.tokens.additionalThemeTokenData'
+  | 'childrenGrvscCodeBlock.tokenizedLines.tokens.className'
+  | 'childrenGrvscCodeBlock.tokenizedLines.tokens.endIndex'
+  | 'childrenGrvscCodeBlock.tokenizedLines.tokens.html'
+  | 'childrenGrvscCodeBlock.tokenizedLines.tokens.scopes'
+  | 'childrenGrvscCodeBlock.tokenizedLines.tokens.startIndex'
+  | 'childrenGrvscCodeBlock.tokenizedLines.tokens.text'
   | 'children.children'
   | 'children.children.children'
   | 'children.children.children.children'
@@ -2717,7 +3045,9 @@ type MarkdownRemarkFieldsEnum =
   | 'wordCount.words';
 
 type MarkdownRemarkFilterInput = {
+  readonly childGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
+  readonly childrenGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFilterListInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly excerptAst: InputMaybe<JSONQueryOperatorInput>;
   readonly fields: InputMaybe<FieldsFilterInput>;
@@ -2864,6 +3194,7 @@ type Query = {
   readonly allSiteFunction: SiteFunctionConnection;
   readonly allSitePage: SitePageConnection;
   readonly allSitePlugin: SitePluginConnection;
+  readonly allStaticImage: StaticImageConnection;
   readonly directory: Maybe<Directory>;
   readonly file: Maybe<File>;
   readonly grvscCodeBlock: Maybe<GRVSCCodeBlock>;
@@ -2877,6 +3208,7 @@ type Query = {
   readonly siteFunction: Maybe<SiteFunction>;
   readonly sitePage: Maybe<SitePage>;
   readonly sitePlugin: Maybe<SitePlugin>;
+  readonly staticImage: Maybe<StaticImage>;
 };
 
 
@@ -2973,6 +3305,14 @@ type Query_allSitePluginArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<SitePluginSortInput>;
+};
+
+
+type Query_allStaticImageArgs = {
+  filter: InputMaybe<StaticImageFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<StaticImageSortInput>;
 };
 
 
@@ -3125,7 +3465,9 @@ type Query_imageSharpArgs = {
 
 
 type Query_markdownRemarkArgs = {
+  childGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
+  childrenGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFilterListInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   excerptAst: InputMaybe<JSONQueryOperatorInput>;
   fields: InputMaybe<FieldsFilterInput>;
@@ -3214,6 +3556,46 @@ type Query_sitePluginArgs = {
   resolve: InputMaybe<StringQueryOperatorInput>;
   ssrAPIs: InputMaybe<StringQueryOperatorInput>;
   version: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+type Query_staticImageArgs = {
+  absolutePath: InputMaybe<StringQueryOperatorInput>;
+  accessTime: InputMaybe<DateQueryOperatorInput>;
+  atime: InputMaybe<DateQueryOperatorInput>;
+  atimeMs: InputMaybe<FloatQueryOperatorInput>;
+  base: InputMaybe<StringQueryOperatorInput>;
+  birthTime: InputMaybe<DateQueryOperatorInput>;
+  birthtime: InputMaybe<DateQueryOperatorInput>;
+  birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  blksize: InputMaybe<IntQueryOperatorInput>;
+  blocks: InputMaybe<IntQueryOperatorInput>;
+  changeTime: InputMaybe<DateQueryOperatorInput>;
+  children: InputMaybe<NodeFilterListInput>;
+  ctime: InputMaybe<DateQueryOperatorInput>;
+  ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+  dev: InputMaybe<IntQueryOperatorInput>;
+  dir: InputMaybe<StringQueryOperatorInput>;
+  ext: InputMaybe<StringQueryOperatorInput>;
+  extension: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  ino: InputMaybe<IntQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  mode: InputMaybe<IntQueryOperatorInput>;
+  modifiedTime: InputMaybe<DateQueryOperatorInput>;
+  mtime: InputMaybe<DateQueryOperatorInput>;
+  mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  nlink: InputMaybe<IntQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  prettySize: InputMaybe<StringQueryOperatorInput>;
+  rdev: InputMaybe<IntQueryOperatorInput>;
+  relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+  relativePath: InputMaybe<StringQueryOperatorInput>;
+  root: InputMaybe<StringQueryOperatorInput>;
+  size: InputMaybe<IntQueryOperatorInput>;
+  sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+  uid: InputMaybe<IntQueryOperatorInput>;
 };
 
 type Site = Node & {
@@ -4391,6 +4773,359 @@ type SocialFilterInput = {
 type SortOrderEnum =
   | 'ASC'
   | 'DESC';
+
+type StaticImage = Node & {
+  readonly absolutePath: Maybe<Scalars['String']>;
+  readonly accessTime: Maybe<Scalars['Date']>;
+  readonly atime: Maybe<Scalars['Date']>;
+  readonly atimeMs: Maybe<Scalars['Float']>;
+  readonly base: Maybe<Scalars['String']>;
+  readonly birthTime: Maybe<Scalars['Date']>;
+  readonly birthtime: Maybe<Scalars['Date']>;
+  readonly birthtimeMs: Maybe<Scalars['Float']>;
+  readonly blksize: Maybe<Scalars['Int']>;
+  readonly blocks: Maybe<Scalars['Int']>;
+  readonly changeTime: Maybe<Scalars['Date']>;
+  readonly children: ReadonlyArray<Node>;
+  readonly ctime: Maybe<Scalars['Date']>;
+  readonly ctimeMs: Maybe<Scalars['Float']>;
+  readonly dev: Maybe<Scalars['Int']>;
+  readonly dir: Maybe<Scalars['String']>;
+  readonly ext: Maybe<Scalars['String']>;
+  readonly extension: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly ino: Maybe<Scalars['Int']>;
+  readonly internal: Internal;
+  readonly mode: Maybe<Scalars['Int']>;
+  readonly modifiedTime: Maybe<Scalars['Date']>;
+  readonly mtime: Maybe<Scalars['Date']>;
+  readonly mtimeMs: Maybe<Scalars['Float']>;
+  readonly name: Maybe<Scalars['String']>;
+  readonly nlink: Maybe<Scalars['Int']>;
+  readonly parent: Maybe<Node>;
+  readonly prettySize: Maybe<Scalars['String']>;
+  readonly rdev: Maybe<Scalars['Int']>;
+  readonly relativeDirectory: Maybe<Scalars['String']>;
+  readonly relativePath: Maybe<Scalars['String']>;
+  readonly root: Maybe<Scalars['String']>;
+  readonly size: Maybe<Scalars['Int']>;
+  readonly sourceInstanceName: Maybe<Scalars['String']>;
+  readonly uid: Maybe<Scalars['Int']>;
+};
+
+
+type StaticImage_accessTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type StaticImage_atimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type StaticImage_birthTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type StaticImage_birthtimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type StaticImage_changeTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type StaticImage_ctimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type StaticImage_modifiedTimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type StaticImage_mtimeArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type StaticImageConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<StaticImageEdge>;
+  readonly group: ReadonlyArray<StaticImageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<StaticImage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type StaticImageConnection_distinctArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageConnection_groupArgs = {
+  field: StaticImageFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type StaticImageConnection_maxArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageConnection_minArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageConnection_sumArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+type StaticImageEdge = {
+  readonly next: Maybe<StaticImage>;
+  readonly node: StaticImage;
+  readonly previous: Maybe<StaticImage>;
+};
+
+type StaticImageFieldsEnum =
+  | 'absolutePath'
+  | 'accessTime'
+  | 'atime'
+  | 'atimeMs'
+  | 'base'
+  | 'birthTime'
+  | 'birthtime'
+  | 'birthtimeMs'
+  | 'blksize'
+  | 'blocks'
+  | 'changeTime'
+  | 'children'
+  | 'children.children'
+  | 'children.children.children'
+  | 'children.children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.id'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.children.parent.children'
+  | 'children.children.parent.id'
+  | 'children.id'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'children.parent.children'
+  | 'children.parent.children.children'
+  | 'children.parent.children.id'
+  | 'children.parent.id'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.parent.parent.children'
+  | 'children.parent.parent.id'
+  | 'ctime'
+  | 'ctimeMs'
+  | 'dev'
+  | 'dir'
+  | 'ext'
+  | 'extension'
+  | 'id'
+  | 'ino'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'mode'
+  | 'modifiedTime'
+  | 'mtime'
+  | 'mtimeMs'
+  | 'name'
+  | 'nlink'
+  | 'parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.id'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.children.parent.children'
+  | 'parent.children.parent.id'
+  | 'parent.id'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'parent.parent.children'
+  | 'parent.parent.children.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.id'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.parent.id'
+  | 'prettySize'
+  | 'rdev'
+  | 'relativeDirectory'
+  | 'relativePath'
+  | 'root'
+  | 'size'
+  | 'sourceInstanceName'
+  | 'uid';
+
+type StaticImageFilterInput = {
+  readonly absolutePath: InputMaybe<StringQueryOperatorInput>;
+  readonly accessTime: InputMaybe<DateQueryOperatorInput>;
+  readonly atime: InputMaybe<DateQueryOperatorInput>;
+  readonly atimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly base: InputMaybe<StringQueryOperatorInput>;
+  readonly birthTime: InputMaybe<DateQueryOperatorInput>;
+  readonly birthtime: InputMaybe<DateQueryOperatorInput>;
+  readonly birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly blksize: InputMaybe<IntQueryOperatorInput>;
+  readonly blocks: InputMaybe<IntQueryOperatorInput>;
+  readonly changeTime: InputMaybe<DateQueryOperatorInput>;
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly ctime: InputMaybe<DateQueryOperatorInput>;
+  readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly dev: InputMaybe<IntQueryOperatorInput>;
+  readonly dir: InputMaybe<StringQueryOperatorInput>;
+  readonly ext: InputMaybe<StringQueryOperatorInput>;
+  readonly extension: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly ino: InputMaybe<IntQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly mode: InputMaybe<IntQueryOperatorInput>;
+  readonly modifiedTime: InputMaybe<DateQueryOperatorInput>;
+  readonly mtime: InputMaybe<DateQueryOperatorInput>;
+  readonly mtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly nlink: InputMaybe<IntQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly prettySize: InputMaybe<StringQueryOperatorInput>;
+  readonly rdev: InputMaybe<IntQueryOperatorInput>;
+  readonly relativeDirectory: InputMaybe<StringQueryOperatorInput>;
+  readonly relativePath: InputMaybe<StringQueryOperatorInput>;
+  readonly root: InputMaybe<StringQueryOperatorInput>;
+  readonly size: InputMaybe<IntQueryOperatorInput>;
+  readonly sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
+  readonly uid: InputMaybe<IntQueryOperatorInput>;
+};
+
+type StaticImageGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<StaticImageEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<StaticImageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<StaticImage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type StaticImageGroupConnection_distinctArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageGroupConnection_groupArgs = {
+  field: StaticImageFieldsEnum;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type StaticImageGroupConnection_maxArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageGroupConnection_minArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+
+type StaticImageGroupConnection_sumArgs = {
+  field: StaticImageFieldsEnum;
+};
+
+type StaticImageSortInput = {
+  readonly fields: InputMaybe<ReadonlyArray<InputMaybe<StaticImageFieldsEnum>>>;
+  readonly order: InputMaybe<ReadonlyArray<InputMaybe<SortOrderEnum>>>;
+};
 
 type StringQueryOperatorInput = {
   readonly eq: InputMaybe<Scalars['String']>;

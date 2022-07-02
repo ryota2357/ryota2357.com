@@ -34,7 +34,7 @@ const Layout = ({ id, children }: { id: string; children: ReactNode }) => {
               <Link to="/blog">Blog</Link>
             </li>
             <li>
-              <Link to="/gamedev">GameDev</Link>
+              <Link to="/works">Works</Link>
             </li>
           </ul>
         </nav>
