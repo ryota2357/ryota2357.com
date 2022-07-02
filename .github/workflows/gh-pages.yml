@@ -27,6 +27,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
+      - run: npm run type-check
       - run: npm run format
       - run: npm run build
 
