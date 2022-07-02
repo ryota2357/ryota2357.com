@@ -50,7 +50,7 @@ export function getImageComponent(name: ImageName, style?: CSSProperties) {
       return (
         <StaticImage
           alt="icon-unity1week-kai"
-          src="./icon-unity1week-kai.png"
+          src="./icon-unity1week-kai.jpg"
           style={style}
         />
       );
