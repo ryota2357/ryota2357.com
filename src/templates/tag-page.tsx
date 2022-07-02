@@ -5,8 +5,8 @@ import "../style/templates/tag-page.scss";
 const TagPage = ({
   data,
   pageContext,
-}: PageProps<Queries.TagPageQuery, { tag: string }>) => (
-  <Layout id="tag-page">
+}: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => (
+  <Layout id="tag-page-template">
     <Seo title={`Tag: ${pageContext.tag}`} />
     <h1>{pageContext.tag}</h1>
     <p>{data.allMarkdownRemark.totalCount}件</p>
@@ -29,7 +29,7 @@ const TagPage = ({
 export default TagPage;
 
 export const query = graphql`
-  query TagPage($tag: String!) {
+  query TagPageTemplate($tag: String!) {
     allMarkdownRemark(
       filter: { frontmatter: { tags: { eq: $tag } } }
       sort: { order: DESC, fields: frontmatter___postdate }

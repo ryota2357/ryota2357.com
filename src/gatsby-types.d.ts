@@ -4474,17 +4474,17 @@ type SeoComponentQueryVariables = Exact<{ [key: string]: never; }>;
 
 type SeoComponentQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string, readonly social: { readonly twitter: string, readonly github: string, readonly unityroom: string } } } | null };
 
-type TagOnlyQueryQueryVariables = Exact<{ [key: string]: never; }>;
+type TagPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TagOnlyQueryQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly tags: ReadonlyArray<string> | null } }> } };
+type TagPageQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly tags: ReadonlyArray<string> | null } }> } };
 
-type TagPageQueryVariables = Exact<{
+type TagPageTemplateQueryVariables = Exact<{
   tag: Scalars['String'];
 }>;
 
 
-type TagPageQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
+type TagPageTemplateQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
 
 type CreatePagesQueryVariables = Exact<{ [key: string]: never; }>;
 
