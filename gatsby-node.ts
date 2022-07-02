@@ -12,7 +12,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     posts.forEach((post, index) => {
       actions.createPage({
         path: post.fields.slug,
-        component: resolve(`./src/templates/blog-post.js`),
+        component: resolve(`./src/templates/blog-post.tsx`),
         context: {
           id: post.id,
           previousPostId: index === 0 ? null : posts[index - 1].id,

@@ -4424,14 +4424,14 @@ type BlogPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 type BlogPageQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
 
-type BlogPostBySlugQueryVariables = Exact<{
+type BlogPostQueryVariables = Exact<{
   id: Scalars['String'];
   previousPostId: InputMaybe<Scalars['String']>;
   nextPostId: InputMaybe<Scalars['String']>;
 }>;
 
 
-type BlogPostBySlugQuery = { readonly markdownRemark: { readonly id: string, readonly excerpt: string | null, readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string> | null } } | null, readonly previous: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null, readonly next: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null };
+type BlogPostQuery = { readonly markdownRemark: { readonly id: string, readonly excerpt: string | null, readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly description: string | null, readonly postdate: string | null, readonly update: string | null, readonly tags: ReadonlyArray<string> | null } } | null, readonly previous: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null, readonly next: { readonly fields: { readonly slug: string }, readonly frontmatter: { readonly title: string | null } } | null };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
