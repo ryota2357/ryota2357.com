@@ -1,6 +1,11 @@
 import { CSSProperties } from "react";
 import { StaticImage } from "gatsby-plugin-image";
 
+// gif は import しないと表示されない
+import u1w_mitu from "./icon-unity1week-mitu.gif";
+import u1w_hueru from "./icon-unity1week-hueru.gif";
+import u1w_soroeru from "./icon-unity1week-soroeru.gif";
+
 const imageName = {
   _gyaku__: "u1w-逆",
   _mitu___: "u1w-密",
@@ -23,21 +28,9 @@ export function getImageComponent(name: ImageName, style?: CSSProperties) {
         />
       );
     case "u1w-密":
-      return (
-        <img
-          alt="icon-unity1week-mitu"
-          src="./icon-unity1week-mitu.gif"
-          style={style}
-        />
-      );
+      return <img alt="icon-unity1week-mitu" src={u1w_mitu} style={style} />;
     case "u1w-ふえる":
-      return (
-        <img
-          alt="icon-unity1week-hueru"
-          src="./icon-unity1week-hueru.gif"
-          style={style}
-        />
-      );
+      return <img alt="icon-unity1week-hueru" src={u1w_hueru} style={style} />;
     case "u1w-あける":
       return (
         <StaticImage
@@ -56,11 +49,7 @@ export function getImageComponent(name: ImageName, style?: CSSProperties) {
       );
     case "u1w-そろえる":
       return (
-        <img
-          alt="icon-unity1week-soroeru"
-          src="./icon-unity1week-soroeru.gif"
-          style={style}
-        />
+        <img alt="icon-unity1week-soroeru" src={u1w_soroeru} style={style} />
       );
     default:
       throw new Error("!!");
