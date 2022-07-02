@@ -13,7 +13,7 @@ const Works = () => {
 
   return (
     <Layout id="works-page">
-      <Seo title="GameDev" />
+      <Seo title="Works" />
       <h1>Works</h1>
       <div className="table-of-contents">
         <h2>Table of Contents</h2>
@@ -43,15 +43,11 @@ const Works = () => {
                 </h3>
                 <div className="time">
                   <p>
-                    公開:{" "}
-                    <time itemProp="datePublished">{timeFmt(game.posted)}</time>
+                    公開: <time>{timeFmt(game.posted)}</time>
                   </p>
                   {game.update !== game.posted && (
                     <p>
-                      最終更新:{" "}
-                      <time itemProp="dateModified">
-                        {timeFmt(game.update)}
-                      </time>
+                      最終更新: <time>{timeFmt(game.update)}</time>
                     </p>
                   )}
                 </div>
