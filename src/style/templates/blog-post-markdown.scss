@@ -1,3 +1,5 @@
+@import "../variables";
+
 #markdown {
   h1 {
     font-size: 2rem;
@@ -30,7 +32,7 @@
     margin: 1rem 0;
   }
   a {
-    color: #0969da;
+    color: $text-link;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
@@ -43,8 +45,11 @@
       vertical-align: baseline;
     }
   }
-  li {
-    line-height: 1.5;
+  ul {
+    list-style: inside;
+    li {
+      line-height: 1.5;
+    }
   }
   blockquote {
     margin: 0;
