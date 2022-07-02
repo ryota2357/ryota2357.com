@@ -39,11 +39,11 @@
   }
   nav {
     ul {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-auto-flow: column;
       justify-content: space-between;
-      list-style: none;
-      padding: 0;
+      margin: 1rem 0;
+      gap: 0.7rem;
     }
   }
 }
