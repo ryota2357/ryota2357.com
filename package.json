@@ -15,7 +15,7 @@
     "dart-code": "github:Dart-Code/Dart-Code",
     "dayjs": "^1.11.3",
     "destyle.css": "^3.0.2",
-    "gatsby": "^4.17.2",
+    "gatsby": "^4.18.0",
     "gatsby-plugin-catch-links": "^4.17.0",
     "gatsby-plugin-feed": "^4.17.0",
     "gatsby-plugin-fontawesome-css": "^1.2.0",
@@ -43,8 +43,8 @@
     "viml": "github:XadillaX/vscode-language-viml"
   },
   "devDependencies": {
-    "@types/node": "^18.0.1",
-    "@types/react": "^18.0.14",
+    "@types/node": "^18.0.3",
+    "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@types/react-helmet": "^6.1.5",
     "gh-pages": "^4.0.0",
