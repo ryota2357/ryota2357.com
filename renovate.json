@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "timezone": "Asia/Tokyo",
+  "schedule": "at any time",
+  "prHourlyLimit": 0,
+  "pin": {
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "packagePatterns": ["^@types/"],
+      "automerge": true,
+      "major": {
+        "automerge": false
+      }
+    },
+    {
+      "groupName": "gatsby",
+      "packagePatterns": ["^gatsby"],
+    },
+  ]
+}
