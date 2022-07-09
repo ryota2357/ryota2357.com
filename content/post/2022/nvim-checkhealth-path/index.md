@@ -1,15 +1,15 @@
 ---
-title: "[NeoVim] python,rubyのglobal変更されない問題はREADME読んでないだけだった件"
+title: "[Neovim] python,rubyのglobal変更されない問題はREADME読んでないだけだった件"
 postdate: "2022-04-11T13:14"
 update: "2022-04-11T13:14"
-tags: ["NeoVim"]
+tags: ["Neovim"]
 ---
 
-NeoVim の`:checkhealth`で python, ruby の global 切り替わらない問題の話。
+Neovim の`:checkhealth`で python, ruby の global 切り替わらない問題の話。
 
 ## 反省
 
-新しい Macbook を買って NeoVim 環境を再構築した。  
+新しい Macbook を買って Neovim 環境を再構築した。  
 その時 python と ruby の設定に pyenv, rbenv を使ったけど、global が切り替わらない問題に遭遇した。
 
 pyenv, rbenv の README の Installation を終わらせていないだけだった...
@@ -46,7 +46,7 @@ eval "$(pyenv init -)"
 
 をそれぞれ追記する。
 
-最後に python のインストール、global と NeoVim プラグインのインストール
+最後に python のインストール、global と Neovim プラグインのインストール
 
 ```sh
 # install できるバージョンの確認
@@ -84,7 +84,7 @@ rbenv init
 
 指示が出るから、それに従う。
 
-最後に ruby のインストール、global と NeoVim プラグインのインストール
+最後に ruby のインストール、global と Neovim プラグインのインストール
 
 ```sh
 # install できるバージョンの確認

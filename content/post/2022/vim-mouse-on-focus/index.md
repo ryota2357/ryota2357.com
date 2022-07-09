@@ -2,7 +2,7 @@
 title: "Vimにフォーカスを戻した時だけマウスを無効にする"
 postdate: "2022-06-18T12:37"
 update: "2022-06-18T12:37"
-tags: ["Vim", "NeoVim"]
+tags: ["Vim", "Neovim"]
 ---
 
 `set mouse=a`にしてる時、

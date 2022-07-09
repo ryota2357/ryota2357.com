@@ -2,7 +2,7 @@
 title: "neovim(vim)とskimでsynctexできるようにするプラグイン作った"
 postdate: "2022-06-22T23:18"
 update: "2022-06-23T22:08"
-tags: ["Vim", "NeoVim"]
+tags: ["Vim", "Neovim"]
 ---
 
 vimtex 使えば synctex できるのだけど、僕は vimtex を使いたくないので自作した。  
