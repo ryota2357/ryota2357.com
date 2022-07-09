@@ -11,7 +11,7 @@ lexima.vim は内部でマッピング(`inoremap`)を生成する。そのため
 
 このことについて先日、lexima.vim でオプションを設定することで解決できるようにする PR を作成した。
 
-https://github.com/cohama/lexima.vim/pull/13
+https://github.com/cohama/lexima.vim/pull/134
 
 作者の cohama さんからの返信は「他のプラグインに依存する機能をつけたくない」とのことで、マージはされなかった。各自\<CR\>を lexima.vim にも対応するようにマッピングしてくださいとのこと。
 
