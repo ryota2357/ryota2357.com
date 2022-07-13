@@ -1,7 +1,7 @@
 ---
 title: "lexima.vimとpum.vimと<CR>"
 postdate: "2022-07-09T20:31"
-update: "2022-07-09T20:31"
+update: "2022-07-14T08:25"
 tags: ["Vim", "Neovim"]
 ---
 
@@ -28,7 +28,7 @@ execute printf("inoremap <expr><silent> <CR> pum#visible() ? pum#map#confirm() :
 
 ## 注意点
 
-前提として lexima.vim は読み込まれた時にデフォルトのルールを設定する。この時に\<CR\>のマッピングが生成されるので上記のマッピングは必ず lexima.vim が読み込まれた後に設定する必要がある。  
-(もしくは`let g:lexima_no_default_rules = v:false`や`call lexima#clear_rules()`を用いて lexima.vim のルール設定の制御を行った上で、設定する必要がある。)
+前提として lexima.vim は読み込まれた時にデフォルトのルールを設定する。この時に\<CR\>のマッピングが生成されるので上記のマッピングは必ず lexima.vim が読み込まれた後に設定する必要がある。
 
-dein.vim + toml を利用している場合マッピングを`hook_add`に書くことが多いかもしれないが、今回の場合は`hook_source`の最後に書く必要があるということである。
+lexima.vim には`g:lexima_no_default_rules`や`lexima#clear_rules()`、`lexima#set_default_rules()`と言ったルール定義を制御できる機能がついている。  
+これらを利用して上に示した\<CR\>マッピングが一番最後になるようにすれば良い。
