@@ -38,7 +38,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-helmet": "6.1.0",
-    "sass": "1.53.0",
+    "sass": "1.54.0",
     "toml": "github:oovm/vscode-toml",
     "viml": "github:XadillaX/vscode-language-viml"
   },
