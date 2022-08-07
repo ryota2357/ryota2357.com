@@ -1,4 +1,197 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 07 Aug 2022 05:38:26 GMT</lastBuildDate><item><title><![CDATA[ddu-ui-filerでアイコン表示するcolumn作った(ddu-column-icon_filename)]]></title><description><![CDATA[python 依存をなくすため、defx から ddu-ui-filer に乗り換えをした。 アイコン表示がないのは寂しいし、ファイルタイプを一目で確認できないのはひょっと不便なので作って見た。 defx-iconsを参考に作成している。 https://github.com…]]></description><link>https://ryota2357.com/blog/2022/dev-ddu-column-icon_filename/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/dev-ddu-column-icon_filename/</guid><content:encoded>&lt;p&gt;python 依存をなくすため、defx から ddu-ui-filer に乗り換えをした。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 07 Aug 2022 07:16:05 GMT</lastBuildDate><item><title><![CDATA[dein.vimのluaラッパー -αなプラグイン作った(dein-snip)]]></title><description><![CDATA[タイトルの通り、「+α」ではなく「-α」。 dein の一般的な設定をまとめて lua でシンプルに記述できるようにした。そのため、そのままの dein.vim ほどの自由さはない。なので「-α」。 まあ、けど「α」程度なので、ほとんどの人が問題ないんじゃないかな？ https…]]></description><link>https://ryota2357.com/blog/2022/dev-dein-snip/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/dev-dein-snip/</guid><content:encoded>&lt;p&gt;タイトルの通り、「+α」ではなく「-α」。&lt;br&gt;
+dein の一般的な設定をまとめて lua でシンプルに記述できるようにした。そのため、そのままの dein.vim ほどの自由さはない。なので「-α」。&lt;/p&gt;
+&lt;p&gt;まあ、けど「α」程度なので、ほとんどの人が問題ないんじゃないかな？&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ryota2357/dein-snip.lua&quot;&gt;https://github.com/ryota2357/dein-snip.lua&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;example&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#example&quot; aria-label=&quot;example permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Example&lt;/h2&gt;
+&lt;p&gt;こんな感じで lua で設定できる。&lt;br&gt;
+dein.vim のダウンロードとかも内部で勝手にやるのでこれだけ。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;lua&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;dein-snip&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;setup&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    load = {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        vim = {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;~/dotfiles/vim/rc/option.rc.vim&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;~/dotfiles/vim/rc/maping.rc.vim&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        },&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        toml = {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            { &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;~/dotfiles/vim/rc/dein.toml&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; },&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            { &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;~/dotfiles/vim/rc/dein-lazy.toml&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, { lazy = &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; } }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        },&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        raw = {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            { &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;vim-jp/vimdoc-ja&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, { hook_add = &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;set helplang=ja,en&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; } }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    },&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    notification = {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        enable = &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        time = &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;3000&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    },&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    auto_recache = &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;true&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ryota2357/dein-snip.lua/blob/main/doc/dein-snip.txt&quot;&gt;help&lt;/a&gt; にも書いてある通り、dein.vim のインストール場所変更やプラグインを入れる場所もちゃんと変えられる。&lt;/p&gt;
+&lt;p&gt;デフォルトでは dein.vim は&lt;code&gt;~/.cache/dein/repos/github.com/Shougo/dein.vim&lt;/code&gt;に、プラグインたちは&lt;code&gt;~/.cache/dein&lt;/code&gt;をルートに入る。ここに入れてる人が一番多いのではないかと思う。&lt;/p&gt;
+&lt;h2 id=&quot;内部でやってること&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%86%85%E9%83%A8%E3%81%A7%E3%82%84%E3%81%A3%E3%81%A6%E3%82%8B%E3%81%93%E3%81%A8&quot; aria-label=&quot;内部でやってること permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;内部でやってること&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ryota2357/dein-snip.lua/blob/main/lua/dein-snip/init.lua&quot;&gt;/lua/dein-snip/init.lua&lt;/a&gt; に setup 関数を定義してある。それの説明。&lt;/p&gt;
+&lt;h3 id=&quot;dein-のセットアップ&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#dein-%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97&quot; aria-label=&quot;dein のセットアップ permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;dein のセットアップ&lt;/h3&gt;
+&lt;p&gt;コード引用&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;lua&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;-- プラグインをインストールする場所を作っとく。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; not vim.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;isdirectory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    vim.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;mkdir&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;p&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;-- deinがrtpに入れる&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;-- deinがダウンロードされてなかったらgit cloneしてくる。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; not &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;string.match&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(vim.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;runtimepath&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;/dein.vim&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; vim.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;isdirectory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;dein&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) == &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;os.execute&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;git clone https://github.com/Shougo/dein.vim &amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; .. config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;dein&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    vim.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;opt&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;runtimepath&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;prepend&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;dein&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;dein-の変数設定&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#dein-%E3%81%AE%E5%A4%89%E6%95%B0%E8%A8%AD%E5%AE%9A&quot; aria-label=&quot;dein の変数設定 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;dein の変数設定&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;g:dein#ほげほげ&lt;/code&gt;も lua で設定できる。lua で書いた設定から&lt;code&gt;let g:dein#ほげほげ&lt;/code&gt;して dein に反映していく。&lt;br&gt;
+対応表は &lt;a href=&quot;https://github.com/ryota2357/dein-snip.lua#correspondence-table&quot;&gt;README の Correspondence Table&lt;/a&gt; に書いておいた。ほぼ全ての変数を lua で設定できるようにした。&lt;/p&gt;
+&lt;p&gt;実装は、こんな感じの関数&lt;code&gt;g&lt;/code&gt;を作って&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;lua&quot; data-index=&quot;2&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;local&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; g = &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;variable&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; value ~= &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        vim.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;[variable] = value&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;こんな感じでひたすら呼び出す。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;lua&quot; data-index=&quot;3&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;dein#auto_recache&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;auto_recache&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;プラグインのロード&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%AE%E3%83%AD%E3%83%BC%E3%83%89&quot; aria-label=&quot;プラグインのロード permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;プラグインのロード&lt;/h3&gt;
+&lt;p&gt;いろいろ省略した実装コードにコメントで説明すると、&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;lua&quot; data-index=&quot;4&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;-- if dein#load_state()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; dein.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;load_state&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) == &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;-- load.vim に設定した vimrc ファイルを g:dein#inline_vimrcs に入れる&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;dein#inline_vimrcs&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, inline_vim)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;-- call dein#begin()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    dein.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, vimrcs)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;-- load.raw に設定したプラグインたちを call dein#add() する&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    dein.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(value[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;], value[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;])&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;-- load.toml に設定したtomlファイルを call dein#load_toml() する&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    dein.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;load_toml&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(value[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;], value[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;])&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;-- load.directory に設定したルールを call dein#loacl() して反映する&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    dein.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;local0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, config.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;names&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;-- call dein#end()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    dein.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;end0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;-- call dein#save_state()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    dein.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;save_state&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;まあ、vim スクリプトで書いてることをそのまま実装した感じ。&lt;/p&gt;
+&lt;h2 id=&quot;最後に&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%9C%80%E5%BE%8C%E3%81%AB&quot; aria-label=&quot;最後に permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;最後に&lt;/h2&gt;
+&lt;p&gt;作る必要あったか？って言われると微妙なところあるけど、dein-snip 使えば init.lua の行数は短くなるし他の lua プラグインっぽく設定できるから、コードの見た目は良くなったよね、って感じかな。&lt;/p&gt;
+&lt;p&gt;あと、toml パーサー lua で実装し直したら速くできるんじゃないか？とか思ってるので今後作るかもしれないです。面倒なのでやらない可能性高いけど。&lt;/p&gt;
+&lt;p&gt;何はともあれ、初の lua プラグイン作成、楽しかった。&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line &gt; * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: &apos; &apos;;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting &gt; .grvsc-code &gt; .grvsc-line::before {
+    content: &apos; &apos;;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .default-dark .mtk11 { color: #DCDCAA; }
+  .default-dark .mtk1 { color: #D4D4D4; }
+  .default-dark .mtk8 { color: #CE9178; }
+  .default-dark .mtk4 { color: #569CD6; }
+  .default-dark .mtk7 { color: #B5CEA8; }
+  .default-dark .mtk3 { color: #6A9955; }
+  .default-dark .mtk15 { color: #C586C0; }
+  .default-dark .mtk12 { color: #9CDCFE; }
+  .default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[ddu-ui-filerでアイコン表示するcolumn作った(ddu-column-icon_filename)]]></title><description><![CDATA[python 依存をなくすため、defx から ddu-ui-filer に乗り換えをした。 アイコン表示がないのは寂しいし、ファイルタイプを一目で確認できないのはひょっと不便なので作って見た。 defx-iconsを参考に作成している。 https://github.com…]]></description><link>https://ryota2357.com/blog/2022/dev-ddu-column-icon_filename/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/dev-ddu-column-icon_filename/</guid><content:encoded>&lt;p&gt;python 依存をなくすため、defx から ddu-ui-filer に乗り換えをした。&lt;/p&gt;
 &lt;p&gt;アイコン表示がないのは寂しいし、ファイルタイプを一目で確認できないのはひょっと不便なので作って見た。&lt;br&gt;
 &lt;a href=&quot;https://github.com/kristijanhusak/defx-icons&quot;&gt;defx-icons&lt;/a&gt;を参考に作成している。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/ryota2357/ddu-column-icon_filename&quot;&gt;https://github.com/ryota2357/ddu-column-icon_filename&lt;/a&gt;&lt;/p&gt;
