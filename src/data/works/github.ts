@@ -1,4 +1,4 @@
-import type { WorksData } from "../types"
+import type { WorksData } from "../types";
 
 const githubProducts: WorksData[] = [
   {
@@ -8,7 +8,7 @@ const githubProducts: WorksData[] = [
                   init.luaでdeinをいい感じにするために作った`,
     created: new Date("2022-08-04"),
     update: new Date("2022-08-04"),
-    kind: "vim/neovim"
+    kind: "vim/neovim",
   },
   {
     title: "ddu-column-icon_filename",
@@ -18,7 +18,7 @@ const githubProducts: WorksData[] = [
                   ddu-ui-filerでファイルアイコン付きのcolumnが欲しかったので作った`,
     created: new Date("2022-07-11"),
     update: new Date("2022-08-05"),
-    kind: "vim/neovim"
+    kind: "vim/neovim",
   },
   {
     title: "vim-skim-synctex",
@@ -28,7 +28,7 @@ const githubProducts: WorksData[] = [
                   vimでlatex書くときsynctexがしたかったので作った`,
     created: new Date("2022-06-04"),
     update: new Date("2022-07-25"),
-    kind: "vim/neovim"
-  }
+    kind: "vim/neovim",
+  },
 ];
 export default githubProducts;

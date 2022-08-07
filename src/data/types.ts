@@ -1,4 +1,4 @@
-type DataKind = "u1w" | "vim/neovim" | "other"
+type DataKind = "u1w" | "vim/neovim" | "other";
 
 type WorksData = {
   title: string;
@@ -8,6 +8,6 @@ type WorksData = {
   created: Date;
   update: Date;
   kind: DataKind;
-}
+};
 
-export { DataKind, WorksData }
+export { DataKind, WorksData };
