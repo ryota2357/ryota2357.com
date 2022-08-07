@@ -7,5 +7,13 @@
   color: $text-black;
   font-size: 15px;
   line-height: 1.5;
-  scroll-behavior: smooth;
+  @media screen and (max-width: 425px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 375px) {
+    font-size: 13px;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 12px;
+  }
 }

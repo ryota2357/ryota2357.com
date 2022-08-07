@@ -24,46 +24,32 @@
       }
     }
   }
-  .games {
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      grid-auto-flow: column;
-      li {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        background: #ffffff;
-        border: 1px solid #000;
-        border-radius: 1em;
-        padding: 0.5rem;
-        .item {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          h3 {
-            font-size: 1.5rem;
-            font-weight: bold;
-          }
-          .time {
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-            color: $text-gray;
-          }
-          .description {
-            margin-top: 1rem;
-          }
-          a:hover {
-            text-decoration: underline;
-          }
-        }
-        .image {
-          width: 8rem;
-          height: 8rem;
-        }
-      }
+  h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0.7rem;
+    &::before{
+      content: "- ";
     }
+  }
+  .italic {
+    font-style: italic;
+  }
+  .gray {
+    color: $text-gray;
+  }
+  .indent {
+    padding-left: 1rem;
+  }
+  .game-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .time {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    color: $text-gray;
   }
 }

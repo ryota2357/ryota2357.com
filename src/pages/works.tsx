@@ -1,66 +1,83 @@
-import { Layout, Seo } from "../components/mod";
+import { Layout, Seo, ContentBlock } from "../components/mod";
 import { works } from "../data/mod";
 import dayjs from "dayjs";
 import "../style/pages/works.scss";
 
 const Works = () => {
-  const timeFmt = (time: Date) =>
-    time ? dayjs(new Date(time)).format("YYYY/MM/DD (HH:mm)") : "";
+  const timeFmt = (time: Date, template: string) =>
+    time ? dayjs(new Date(time)).format(template) : "";
 
+  const sortByDate = (a: Date, b: Date) => (a < b ? 1 : -1);
   const gameData =
-    works.get("u1w")?.sort((a, b) => (a.created < b.created ? 1 : -1)) ?? [];
+    works.get("u1w")?.sort((a, b) => sortByDate(a.created, b.created)) ?? [];
+  const plugins =
+    works.get("vim/neovim")?.sort((a, b) => sortByDate(a.created, b.created)) ??
+    [];
 
   return (
     <Layout id="works-page">
       <Seo title="Works" />
       <h1>Works</h1>
-      <div className="table-of-contents">
-        <h2>Table of Contents</h2>
+      <div className="vim-neovim-plug" />
+      <ContentBlock title="Vim/Neovim Plugins">
         <ul>
-          <li>
-            <a href="#jump-id-works-games">Games</a>
-            <ul>
-              {gameData.map((game) => (
-                <li key={game.url}>
-                  <a href={`#jump-id-works-games-${game.title}`}>
-                    {game.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </li>
-        </ul>
-      </div>
-      <div className="games" id="jump-id-works-games">
-        <h2>Games</h2>
-        <ul>
-          {gameData.map((game, index) => (
-            <li key={index} id={`jump-id-works-games-${game.title}`}>
-              <div className="item">
-                <h3>
-                  <a href={game.url}>{game.title}</a>
-                </h3>
-                <div className="time">
-                  <p>
-                    公開: <time>{timeFmt(game.created)}</time>
+          {plugins.map((plug, index) => (
+            <li key={index}>
+              <h3>
+                <a href={plug.url}>{plug.title}</a>
+              </h3>
+              <p className="italic gray indent">
+                {plug.description.split("\n")[0] +
+                  "\u00A0\u00A0" +
+                  `(last commit: ${timeFmt(plug.update, "YYYY/MM/DD")})`}
+              </p>
+              {plug.description
+                .split("\n")
+                .slice(1)
+                .map((line, index) => (
+                  <p className="indent" key={index}>
+                    {line}
                   </p>
-                  {game.update !== game.created && (
-                    <p>
-                      最終更新: <time>{timeFmt(game.update)}</time>
-                    </p>
-                  )}
-                </div>
-                <div className="description">
-                  {game.description.split("\n").map((line, index) => (
-                    <p key={index}>{line}</p>
-                  ))}
-                </div>
-              </div>
-              <div className="image">{game.img}</div>
+                ))}
             </li>
           ))}
         </ul>
-      </div>
+      </ContentBlock>
+      <ContentBlock title="Games">
+        <ul>
+          {gameData.map((game, index) => (
+            <li key={index}>
+              <h3>
+                <a href={game.url}>{game.title}</a>
+              </h3>
+              <div className="game-item">
+                <div>
+                  <div className="time indent">
+                    <p>
+                      公開:{" "}
+                      <time>{timeFmt(game.created, "YYYY/MM/DD (HH:mm)")}</time>
+                    </p>
+                    {game.update !== game.created && (
+                      <p>
+                        最終更新:{" "}
+                        <time>
+                          {timeFmt(game.update, "YYYY/MM/DD (HH:mm)")}
+                        </time>
+                      </p>
+                    )}
+                  </div>
+                  {game.description.split("\n").map((line, index) => (
+                    <p className="indent" key={index}>
+                      {line}
+                    </p>
+                  ))}
+                </div>
+                <div className="image">{game.img}</div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </ContentBlock>
     </Layout>
   );
 };
