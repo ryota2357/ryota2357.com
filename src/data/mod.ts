@@ -1,3 +1,10 @@
-import unity1WeekGames from "./u1w-games";
+import unity1WeekGames from "./works/u1w-games";
+import githubProducts from "./works/github";
+import type { DataKind, WorksData } from "./types"
 
-export { unity1WeekGames };
+const works = new Map<DataKind, WorksData[]>;
+
+works.set("u1w", unity1WeekGames);
+works.set("vim/neovim", githubProducts)
+
+export { works };

@@ -1,5 +1,5 @@
 import { Layout, Seo } from "../components/mod";
-import { unity1WeekGames } from "../data/mod";
+import { works } from "../data/mod";
 import dayjs from "dayjs";
 import "../style/pages/works.scss";
 
@@ -7,9 +7,8 @@ const Works = () => {
   const timeFmt = (time: Date) =>
     time ? dayjs(new Date(time)).format("YYYY/MM/DD (HH:mm)") : "";
 
-  const gameData = unity1WeekGames.sort((a, b) =>
-    a.posted < b.posted ? 1 : -1
-  );
+  const gameData =
+    works.get("u1w")?.sort((a, b) => (a.created < b.created ? 1 : -1)) ?? [];
 
   return (
     <Layout id="works-page">
@@ -22,7 +21,7 @@ const Works = () => {
             <a href="#jump-id-works-games">Games</a>
             <ul>
               {gameData.map((game) => (
-                <li key={game.href}>
+                <li key={game.url}>
                   <a href={`#jump-id-works-games-${game.title}`}>
                     {game.title}
                   </a>
@@ -39,13 +38,13 @@ const Works = () => {
             <li key={index} id={`jump-id-works-games-${game.title}`}>
               <div className="item">
                 <h3>
-                  <a href={game.href}>{game.title}</a>
+                  <a href={game.url}>{game.title}</a>
                 </h3>
                 <div className="time">
                   <p>
-                    公開: <time>{timeFmt(game.posted)}</time>
+                    公開: <time>{timeFmt(game.created)}</time>
                   </p>
-                  {game.update !== game.posted && (
+                  {game.update !== game.created && (
                     <p>
                       最終更新: <time>{timeFmt(game.update)}</time>
                     </p>
