@@ -2,7 +2,7 @@
 title: "denops.vimでvimscriptの関数をtypescriptに渡したかった"
 postdate: "2022-06-12T21:33"
 update: "2022-06-12T21:33"
-tags: ["Vim", "Denops"]
+tags: ["Vim", "Neovim", "Denops"]
 ---
 
 vim プラグインを作ってる時、vimscript で作った匿名関数を typescript に渡して任意のタイミングで typescript から実行したい時があった。  
