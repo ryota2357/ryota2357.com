@@ -10,7 +10,7 @@ vim と neovim の両方対応[^1]。
 
 [^1]: 両方とも最小構成で動くことを確認済み。
 
-https://github.com/ryota2357/vim-skim-synctex
+**https://github.com/ryota2357/vim-skim-synctex**
 
 ## 動機
 

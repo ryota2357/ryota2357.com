@@ -10,7 +10,21 @@ python 依存をなくすため、defx から ddu-ui-filer に乗り換えをし
 アイコン表示がないのは寂しいし、ファイルタイプを一目で確認できないのはひょっと不便なので作って見た。  
 [defx-icons](https://github.com/kristijanhusak/defx-icons)を参考に作成している。
 
-https://github.com/ryota2357/ddu-column-icon_filename
+**https://github.com/ryota2357/ddu-column-icon_filename**
+
+## 導入
+
+ddu-column-filename と同じように、
+
+```vim
+call ddu#custom#patch_global({
+    \   'columns': ['icon_filename'],
+    \ })
+```
+
+としてあげれば良い。
+
+詳しくは[help](https://github.com/ryota2357/ddu-column-icon_filename/blob/main/doc/ddu-column-icon_filename.txt)を。
 
 ## columParam について
 

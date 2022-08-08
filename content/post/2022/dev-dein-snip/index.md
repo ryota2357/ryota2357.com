@@ -10,7 +10,7 @@ dein の一般的な設定をまとめて lua でシンプルに記述できる�
 
 まあ、けど「α」程度なので、ほとんどの人が問題ないんじゃないかな？
 
-https://github.com/ryota2357/dein-snip.lua
+**https://github.com/ryota2357/dein-snip.lua**
 
 ## Example
 
