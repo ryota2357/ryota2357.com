@@ -8,12 +8,14 @@
     {
       "groupName": "pin",
       "matchUpdateTypes": ["pin"],
-      "automerge": true
+      "automerge": true,
+      "ignoreTests": true,
     },
     {
       "groupName": "types",
       "packagePatterns": ["^@types/"],
       "automerge": true,
+      "ignoreTests": true,
       "major": {
         "automerge": false
       }
