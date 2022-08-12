@@ -13,7 +13,7 @@
     "@fortawesome/free-solid-svg-icons": "6.1.2",
     "@fortawesome/react-fontawesome": "0.2.0",
     "dart-code": "github:Dart-Code/Dart-Code",
-    "dayjs": "1.11.4",
+    "dayjs": "1.11.5",
     "destyle.css": "3.0.2",
     "gatsby": "4.20.0",
     "gatsby-plugin-catch-links": "4.20.0",
