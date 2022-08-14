@@ -42,7 +42,7 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
                 .sort()
                 .sort((a, b) => b[1] - a[1])
                 .map((tag, index) => (
-                  <span style={{ paddingLeft: "0.3rem" }} key={index}>
+                  <span style={{ padding: "0.2rem" }} key={index}>
                     <Link to={`/blog/tag/${tag[0]}`}>
                       {`${tag[0]}(${tag[1]})`}
                     </Link>
