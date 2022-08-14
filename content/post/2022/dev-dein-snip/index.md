@@ -1,7 +1,7 @@
 ---
 title: "dein.vimのluaラッパー -αなプラグイン作った(dein-snip)"
 postdate: "2022-08-07T16:12"
-update: "2022-08-07T16:12"
+update: "2022-08-14T18:21"
 tags: ["Neovim"]
 ---
 
@@ -30,7 +30,8 @@ require('dein-snip').setup {
         },
         raw = {
             { 'vim-jp/vimdoc-ja', { hook_add = 'set helplang=ja,en' } }
-        }
+        },
+        check_install = true
     },
     notification = {
         enable = true,
@@ -111,6 +112,11 @@ if dein.load_state(config.path.plugins) == 1 then
 
     -- load.directory に設定したルールを call dein#loacl() して反映する
     dein.local0(config.load.directory.path, config.load.directory.options, config.load.directory.names)
+
+    -- load.check_install に true が設定されてば、プラグインがインストールされてるかのチェックを行う
+    if dein.check_install() == 1 then
+        dein.install()
+    end
 
     -- call dein#end()
     dein.end0()
