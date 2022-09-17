@@ -1,4 +1,4 @@
-name: udd
+name: npm-update
 
 on:
   schedule:
