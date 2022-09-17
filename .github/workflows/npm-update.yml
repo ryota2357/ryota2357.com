@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  udd:
+  npm-update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,15 +15,27 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18"
-
-      - run: npm update
+          
+      - name: run npm update
+      - run: npm update > ../output.txt
+      
+      - name: Read ../output.txt
+        id: log
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ../output.txt
         
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: "npm update"
           title: "npm update"
-          body: ""
+          body: |
+            The output of `npm update` is
+            
+            ```
+            ${{ steps.log.outputs.content }}
+            ```
           branch: npm-update
           author: GitHub <noreply@github.com>
           delete-branch: true
