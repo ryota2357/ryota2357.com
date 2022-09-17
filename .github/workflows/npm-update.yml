@@ -17,7 +17,7 @@ jobs:
           node-version: "18"
           
       - name: run npm update
-      - run: npm update > ../output.txt
+        run: npm update > ../output.txt
       
       - name: Read ../output.txt
         id: log
