@@ -1,0 +1,29 @@
+name: udd
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+jobs:
+  udd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - run: npm update
+        
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "npm update"
+          title: "npm update"
+          body: ""
+          branch: npm-update
+          author: GitHub <noreply@github.com>
+          delete-branch: true
