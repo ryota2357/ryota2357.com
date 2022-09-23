@@ -15,16 +15,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18"
-          
+
       - name: run npm update
         run: npm update > ../output.txt
-      
+
       - name: Read ../output.txt
         id: log
         uses: juliangruber/read-file-action@v1
         with:
           path: ../output.txt
-        
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
@@ -32,7 +32,7 @@ jobs:
           title: "npm update"
           body: |
             The output of `npm update` is
-            
+
             ```
             ${{ steps.log.outputs.content }}
             ```
