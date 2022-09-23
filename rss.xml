@@ -1,4 +1,169 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 22 Sep 2022 18:19:32 GMT</lastBuildDate><item><title><![CDATA[Neovimでcodelldbを使ってC++をデバッグする(nvim-dap, Mason.nvim)]]></title><description><![CDATA[Neovim に C++のデバッグ環境を作った。 こんな感じのできた。  フローティングなウィンドウも出せた。  使ったもの 次の 3 つのプラグインを使った。 mfussenegger/nvim-dap rcarriga/nvim-dap-ui williamboman…]]></description><link>https://ryota2357.com/blog/2022/cpp-codelldb-debug-nvim/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/cpp-codelldb-debug-nvim/</guid><content:encoded>&lt;p&gt;Neovim に C++のデバッグ環境を作った。&lt;br&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 23 Sep 2022 03:51:14 GMT</lastBuildDate><item><title><![CDATA[Activator.CreateInstanceでオプション引数を扱う]]></title><description><![CDATA[Activator.CreateInstance(typeof(T)) で T のコンストラクタがオプション引数を使ってる場合、オプション引数を考慮したインスタンス生成をする方法 問題 こんな感じのTest…]]></description><link>https://ryota2357.com/blog/2022/activator-createinstance-option-args/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/activator-createinstance-option-args/</guid><content:encoded>&lt;p&gt;&lt;code&gt;Activator.CreateInstance(typeof(T))&lt;/code&gt; で &lt;code&gt;T&lt;/code&gt; のコンストラクタがオプション引数を使ってる場合、オプション引数を考慮したインスタンス生成をする方法&lt;/p&gt;
+&lt;h2 id=&quot;問題&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%95%8F%E9%A1%8C&quot; aria-label=&quot;問題 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;問題&lt;/h2&gt;
+&lt;p&gt;こんな感じの&lt;code&gt;Test&lt;/code&gt;クラスがある時、&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;次のようになってしまう。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// これはエラーになってしまう&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Activator&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CreateInstance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;));&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// OK&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Activator&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CreateInstance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;), &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;オプション引数を考慮してほしい。&lt;/p&gt;
+&lt;h2 id=&quot;解決&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E8%A7%A3%E6%B1%BA&quot; aria-label=&quot;解決 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;解決&lt;/h2&gt;
+&lt;p&gt;次のオーバーロードを使う。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;2&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;? &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CreateInstance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Reflection&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;bindingAttr&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Reflection&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Binder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;? &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;binder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, object?[]? args, &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Globalization&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;CultureInfo&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;? &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;culture&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/dotnet/api/system.activator.createinstance?view=net-6.0#system-activator-createinstance(system-type-system-reflection-bindingflags-system-reflection-binder-system-object()-system-globalization-cultureinfo&quot;&gt;ドキュメント&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;それぞれの引数はこんな感じにすれば期待通りになる。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;3&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Activator&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CreateInstance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;),&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;bindingAttr&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;CreateInstance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; | &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; | &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Instance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; | &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;OptionalParamBinding&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;binder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;culture&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;null&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;サンプル&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB&quot; aria-label=&quot;サンプル permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;サンプル&lt;/h2&gt;
+&lt;p&gt;次のスクリプトを実行すると 10 が表示される。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;4&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;using&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;using&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Reflection&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Program&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Main&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;() {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;// ↓これはエラー&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;// var i = Activator.CreateInstance(typeof(Test));&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Activator&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CreateInstance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;typeof&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;),&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;CreateInstance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; | &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; | &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Instance&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; | &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BindingFlags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;OptionalParamBinding&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;[]{}, &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;// nullでもOK&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Globalization&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;CultureInfo&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;CurrentCulture&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        );&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;参考&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%8F%82%E8%80%83&quot; aria-label=&quot;参考 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;参考&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/11002523/activator-createinstance-with-optional-parameters&quot;&gt;https://stackoverflow.com/questions/11002523/activator-createinstance-with-optional-parameters&lt;/a&gt;&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line &gt; * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: &apos; &apos;;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting &gt; .grvsc-code &gt; .grvsc-line::before {
+    content: &apos; &apos;;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .default-dark .mtk4 { color: #569CD6; }
+  .default-dark .mtk1 { color: #D4D4D4; }
+  .default-dark .mtk10 { color: #4EC9B0; }
+  .default-dark .mtk12 { color: #9CDCFE; }
+  .default-dark .mtk11 { color: #DCDCAA; }
+  .default-dark .mtk7 { color: #B5CEA8; }
+  .default-dark .mtk3 { color: #6A9955; }
+  .default-dark .mtk15 { color: #C586C0; }
+  .default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[Neovimでcodelldbを使ってC++をデバッグする(nvim-dap, Mason.nvim)]]></title><description><![CDATA[Neovim に C++のデバッグ環境を作った。 こんな感じのできた。  フローティングなウィンドウも出せた。  使ったもの 次の 3 つのプラグインを使った。 mfussenegger/nvim-dap rcarriga/nvim-dap-ui williamboman…]]></description><link>https://ryota2357.com/blog/2022/cpp-codelldb-debug-nvim/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/cpp-codelldb-debug-nvim/</guid><content:encoded>&lt;p&gt;Neovim に C++のデバッグ環境を作った。&lt;br&gt;
 こんな感じのできた。&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
