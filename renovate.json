@@ -9,7 +9,7 @@
       "groupName": "pin",
       "matchUpdateTypes": ["pin"],
       "automerge": true,
-      "ignoreTests": true,
+      "ignoreTests": true
     },
     {
       "groupName": "types",
