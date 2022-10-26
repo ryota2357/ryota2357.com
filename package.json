@@ -43,7 +43,7 @@
     "viml": "github:XadillaX/vscode-language-viml"
   },
   "devDependencies": {
-    "@types/node": "18.11.5",
+    "@types/node": "18.11.6",
     "@types/react": "18.0.23",
     "@types/react-dom": "18.0.7",
     "@types/react-helmet": "6.1.5",
