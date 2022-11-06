@@ -4,9 +4,6 @@ const config: GatsbyConfig = {
     title: `ryota2357`,
     author: {
       name: `ryota2357`,
-      summary: `電気通信大学1年<br />
-      Unity、C#、競プロなど。
-      `,
     },
     description: `namespace ryota2357;`,
     siteUrl: `https://ryota2357.com`,

@@ -23,7 +23,7 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
     <div className="content-blocks">
       <ContentBlock title="Affiliation">
         <ul>
-          <li key={1}>電気通信大学 情報理工学域 1年</li>
+          <li key={1}>電気通信大学 情報理工学域I類 1年</li>
           <li key={2}>電気通信大学MMA(サークル)</li>
         </ul>
       </ContentBlock>
