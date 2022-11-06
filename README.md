@@ -21,11 +21,11 @@ gh repo clone ryota2357/ryota2357-github-pages
 arg[0] (required) : slug
                     /blog/YYYY/{slug}
 arg[1] (optional) : title
-                    投稿のタイトル。ない場合は質問されます。
+                    投稿のタイトル。省略した場合は質問されます。
 arg[2] (optional) : tags
-                    投稿のタグになります。この引数は可変長です。
+                    投稿のタグになります。この引数は可変長です。省略した場合は質問されます。
 ```
 
-## deplo
+## deploy
 
 main ブランチに push すると github action によって自動的にデプロイされる。
