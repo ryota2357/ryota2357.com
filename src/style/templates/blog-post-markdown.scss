@@ -47,9 +47,20 @@
   }
   ul {
     list-style: inside;
-    li {
-      line-height: 1.5;
+    list-style-type: disc;
+    ul, ol {
+      margin-left: 1.2rem;
     }
+  }
+  ol {
+    list-style: inside;
+    list-style-type: decimal;
+    ul, ol {
+      margin-left: 1.2rem;
+    }
+  }
+  li {
+    line-height: 1.5;
   }
   blockquote {
     margin: 0;
