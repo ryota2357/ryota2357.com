@@ -14,7 +14,7 @@
     "@fortawesome/react-fontawesome": "0.2.0",
     "dart-code": "github:Dart-Code/Dart-Code",
     "dayjs": "1.11.6",
-    "destyle.css": "3.0.2",
+    "destyle.css": "4.0.0",
     "gatsby": "4.24.4",
     "gatsby-plugin-catch-links": "4.24.0",
     "gatsby-plugin-feed": "4.24.0",
