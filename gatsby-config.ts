@@ -55,12 +55,8 @@ const config: GatsbyConfig = {
   - gatsby-plugin-feed (https://www.gatsbyjs.com/plugins/gatsby-plugin-feed/)
       RSS feed を作ってくれる
 
-  - gatsby-plugin-react-helmet (https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/)
-      Reactコンポーネントでドキュメントヘッダを編集できるようにしてくれるやつ
-      src/components/seo.jsとかで使ってる。
-
-  - gatsby-plugin-fontawesome-css (https://www.gatsbyjs.com/plugins/gatsby-plugin-fontawesome-css/)
-      fontawesome使えるように
+  - gatsby-plugin-robots-txt (https://www.gatsbyjs.com/plugins/gatsby-plugin-robots-txt/)
+      robots.txt を作ってくれる
 
   - gatsby-plugin-sass (https://www.gatsbyjs.com/plugins/gatsby-plugin-sass/)
       scss使えるように
@@ -160,20 +156,20 @@ const config: GatsbyConfig = {
               });
             },
             query: `{
-  allMarkdownRemark(sort: {frontmatter: {postdate: DESC}}) {
-    nodes {
-      excerpt
-      html
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-        postdate
-      }
-    }
-  }
-}`,
+              allMarkdownRemark(sort: {frontmatter: {postdate: DESC}}) {
+                nodes {
+                  excerpt
+                  html
+                  fields {
+                    slug
+                  }
+                  frontmatter {
+                    title
+                    postdate
+                  }
+                }
+              }
+            }`,
             output: "/rss.xml",
             title: "ryota2357 RSS Feed",
           },
@@ -181,6 +177,7 @@ const config: GatsbyConfig = {
       },
     },
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-twitter`,
     {
