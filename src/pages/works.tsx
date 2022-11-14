@@ -16,7 +16,6 @@ const Works = () => {
 
   return (
     <Layout id="works-page">
-      <Seo title="Works" />
       <h1>Works</h1>
       <div className="vim-neovim-plug" />
       <ContentBlock title="Vim/Neovim Plugins">
@@ -81,5 +80,7 @@ const Works = () => {
     </Layout>
   );
 };
+
+export const Head = () => <Seo title="Works" type="website" />
 
 export default Works;

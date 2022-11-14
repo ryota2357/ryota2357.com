@@ -4,7 +4,6 @@ import "../style/pages/about.scss";
 
 const About = ({ data }: PageProps<Queries.AboutPageQuery>) => (
   <Layout id="about-page">
-    <Seo title="About" />
     <h1>About</h1>
     <ContentBlock title="このサイトについて">
       <div>
@@ -33,6 +32,10 @@ const About = ({ data }: PageProps<Queries.AboutPageQuery>) => (
   </Layout>
 );
 
+export const Head = () => <Seo title="About" type="website" />
+
+export default About;
+
 export const query = graphql`
   query AboutPage {
     site {
@@ -43,5 +46,3 @@ export const query = graphql`
     }
   }
 `;
-
-export default About;

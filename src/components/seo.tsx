@@ -1,14 +1,12 @@
-import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
 type SeoProp = {
-  description?: string;
-  lang?: string;
-  meta?: any[];
   title: string;
+  type: "website" | "article"
+  description?: string;
 };
 
-const Seo = ({ description = "", lang = "ja", meta = [], title }: SeoProp) => {
+const Seo = ({ title, type, description = undefined }: SeoProp) => {
   const { site } = useStaticQuery<Queries.SeoComponentQuery>(graphql`
     query SeoComponent {
       site {
@@ -17,59 +15,28 @@ const Seo = ({ description = "", lang = "ja", meta = [], title }: SeoProp) => {
           description
           social {
             twitter
-            github
-            unityroom
           }
         }
       }
     }
   `);
 
-  const metaDescription = description || site?.siteMetadata.description;
-  const defaultTitle = site?.siteMetadata.title;
+  const metaDescription = description ?? site?.siteMetadata.description;
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : undefined}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site?.siteMetadata.social.twitter || ``,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    <>
+      <meta charSet="utf-8" />
+      <title>{title}</title>
+      <meta name="description" content={metaDescription} />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:type" content={type}/>
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:creator" content={site?.siteMetadata.social.twitter || ``} />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={metaDescription} />
+    </>
   );
 };
 

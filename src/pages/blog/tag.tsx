@@ -5,7 +5,6 @@ import "../../style/pages/tag.scss";
 const Tag = ({ data }: PageProps<Queries.TagPageQuery>) => {
   return (
     <Layout id="tag-page">
-      <Seo title="Blog" />
       <h1>Tag</h1>
       <ul>
         {(() => {
@@ -29,6 +28,10 @@ const Tag = ({ data }: PageProps<Queries.TagPageQuery>) => {
   );
 };
 
+export const Head = () => <Seo title="Blog" type="website" />
+
+export default Tag;
+
 export const query = graphql`
   query TagPage {
     allMarkdownRemark {
@@ -40,5 +43,3 @@ export const query = graphql`
     }
   }
 `;
-
-export default Tag;

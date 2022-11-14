@@ -7,21 +7,24 @@ import "../style/templates/blog-post.scss";
 import "../style/templates/blog-post-markdown.scss";
 import "../style/templates/blog-post-markdown-code.scss";
 
-const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
-  const post = {
+const formatPostQuery = (data: Queries.BlogPostQuery) => {
+  return {
     postdate: data.markdownRemark?.frontmatter.postdate,
     update: data.markdownRemark?.frontmatter.update,
     title: data.markdownRemark?.frontmatter.title ?? "No title",
     tags: data.markdownRemark?.frontmatter.tags ?? [],
     description: data.markdownRemark?.excerpt ?? "",
-  };
+  }
+}
+
+const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
+  const post = formatPostQuery(data);
 
   const timeFmt = (time: string | null | undefined) =>
     time ? dayjs(new Date(time)).format("YYYY/MM/DD (HH:mm)") : "";
 
   return (
     <Layout id="blog-post">
-      <Seo title={post.title} description={post.description} />
       <article itemScope itemType="http://schema.org/Article">
         <div className="post-front">
           <h1 itemProp="headline">{post.title}</h1>
@@ -74,6 +77,13 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
     </Layout>
   );
 };
+
+export const Head = ({ data }: PageProps<Queries.BlogPostQuery>) => {
+  const post = formatPostQuery(data);
+  return (
+    <Seo title={post.title} description={post.description} type="article" />
+  )
+}
 
 export default BlogPostTemplate;
 

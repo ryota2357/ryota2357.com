@@ -7,7 +7,6 @@ const TagPage = ({
   pageContext,
 }: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => (
   <Layout id="tag-page-template">
-    <Seo title={`Tag: ${pageContext.tag}`} />
     <h1>{pageContext.tag}</h1>
     <p>{data.allMarkdownRemark.totalCount}件</p>
     <p>
@@ -25,6 +24,8 @@ const TagPage = ({
     />
   </Layout>
 );
+
+export const Head = ({ pageContext }: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => <Seo title={`Tag: ${pageContext.tag}`} type="website"/>
 
 export default TagPage;
 

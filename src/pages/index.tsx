@@ -5,7 +5,6 @@ import "../style/pages/index.scss";
 
 const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
   <Layout id="index-page">
-    <Seo title="Home" />
     <div className="top-profile">
       <StaticImage
         src="../images/profile-pic.jpg"
@@ -85,6 +84,8 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
     </div>
   </Layout>
 );
+
+export const Head = () => <Seo title="Home" type="website" />
 
 export default Index;
 

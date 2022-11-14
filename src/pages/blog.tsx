@@ -4,7 +4,6 @@ import "../style/pages/blog.scss";
 
 const Blog = ({ data }: PageProps<Queries.BlogPageQuery>) => (
   <Layout id="blog-page">
-    <Seo title="Blog" />
     <h1>Blog</h1>
     <p>
       <Link to="/blog/tag">タグの一覧</Link>
@@ -21,6 +20,8 @@ const Blog = ({ data }: PageProps<Queries.BlogPageQuery>) => (
     />
   </Layout>
 );
+
+export const Head = () => <Seo title="Blog" type="website" />
 
 export default Blog;
 

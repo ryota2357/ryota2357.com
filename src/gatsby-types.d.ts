@@ -4584,7 +4584,7 @@ type LayoutComponentQuery = { readonly site: { readonly siteMetadata: { readonly
 type SeoComponentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SeoComponentQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string, readonly social: { readonly twitter: string, readonly github: string, readonly unityroom: string } } } | null };
+type SeoComponentQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string, readonly social: { readonly twitter: string } } } | null };
 
 type TagPageQueryVariables = Exact<{ [key: string]: never; }>;
 
