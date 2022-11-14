@@ -185,7 +185,6 @@ const config: GatsbyConfig = {
       },
     },
     `gatsby-plugin-sitemap`,
-    `gatsby-plugin-fontawesome-css`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-twitter`,
     {
