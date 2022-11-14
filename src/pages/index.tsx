@@ -89,24 +89,22 @@ export const Head = () => <Seo title="Home" type="website" />
 
 export default Index;
 
-export const query = graphql`
-  query IndexPage {
-    site {
-      siteMetadata {
-        title
-        description
-      }
+export const query = graphql`query IndexPage {
+  site {
+    siteMetadata {
+      title
+      description
     }
-    allMarkdownRemark(sort: { order: DESC, fields: frontmatter___update }) {
-      nodes {
-        frontmatter {
-          title
-          tags
-        }
-        fields {
-          slug
-        }
+  }
+  allMarkdownRemark(sort: {frontmatter: {update: DESC}}) {
+    nodes {
+      frontmatter {
+        title
+        tags
+      }
+      fields {
+        slug
       }
     }
   }
-`;
+}`;

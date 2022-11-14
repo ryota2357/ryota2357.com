@@ -29,23 +29,21 @@ export const Head = ({ pageContext }: PageProps<Queries.TagPageTemplateQuery, { 
 
 export default TagPage;
 
-export const query = graphql`
-  query TagPageTemplate($tag: String!) {
-    allMarkdownRemark(
-      filter: { frontmatter: { tags: { eq: $tag } } }
-      sort: { order: DESC, fields: frontmatter___postdate }
-    ) {
-      totalCount
-      nodes {
-        frontmatter {
-          title
-          postdate(formatString: "YYYY/MM/DD")
-          tags
-        }
-        fields {
-          slug
-        }
+export const query = graphql`query TagPageTemplate($tag: String!) {
+  allMarkdownRemark(
+    filter: {frontmatter: {tags: {eq: $tag}}}
+    sort: {frontmatter: {postdate: DESC}}
+  ) {
+    totalCount
+    nodes {
+      frontmatter {
+        title
+        postdate(formatString: "YYYY/MM/DD")
+        tags
+      }
+      fields {
+        slug
       }
     }
   }
-`;
+}`;

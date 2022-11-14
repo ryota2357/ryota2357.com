@@ -25,20 +25,18 @@ export const Head = () => <Seo title="Blog" type="website" />
 
 export default Blog;
 
-export const query = graphql`
-  query BlogPage {
-    allMarkdownRemark(sort: { order: DESC, fields: frontmatter___postdate }) {
-      nodes {
-        frontmatter {
-          title
-          postdate(formatString: "YYYY/MM/DD")
-          update(formatString: "YYYY/MM/DD")
-          tags
-        }
-        fields {
-          slug
-        }
+export const query = graphql`query BlogPage {
+  allMarkdownRemark(sort: {frontmatter: {postdate: DESC}}) {
+    nodes {
+      frontmatter {
+        title
+        postdate(formatString: "YYYY/MM/DD")
+        update(formatString: "YYYY/MM/DD")
+        tags
+      }
+      fields {
+        slug
       }
     }
   }
-`;
+}`;

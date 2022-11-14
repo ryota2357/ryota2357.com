@@ -34,24 +34,19 @@ export const createPages: GatsbyNode["createPages"] = async ({
     });
   };
 
-  const result = await graphql(`
-    query CreatePages {
-      allMarkdownRemark(
-        sort: { fields: [frontmatter___postdate], order: ASC }
-        limit: 1000
-      ) {
-        nodes {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            tags
-          }
-        }
+  const result = await graphql(`query CreatePages {
+  allMarkdownRemark(sort: {frontmatter: {postdate: ASC}}, limit: 1000) {
+    nodes {
+      id
+      fields {
+        slug
+      }
+      frontmatter {
+        tags
       }
     }
-  `);
+  }
+}`);
   if (result.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
