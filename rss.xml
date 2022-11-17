@@ -1,4 +1,546 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 14 Nov 2022 19:17:00 GMT</lastBuildDate><item><title><![CDATA[homebrew-cask-fonts に新しいフォントを追加したのでそのメモ]]></title><description><![CDATA[1 ヶ月ほど前にPlemolJPを homebrew-cask-fonts に追加した。 数日前に PlemolJP にに新しいフォントスタイルができて、cask を追加する必要があった。cask 追加方法を忘れてたのでメモしておくことにした。 手順メモ CONTRIBUTING…]]></description><link>https://ryota2357.com/blog/2022/create-cask-font-memo/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/create-cask-font-memo/</guid><content:encoded>&lt;p&gt;1 ヶ月ほど前に&lt;a href=&quot;https://github.com/yuru7/PlemolJP&quot;&gt;PlemolJP&lt;/a&gt;を homebrew-cask-fonts に追加した。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 17 Nov 2022 16:10:00 GMT</lastBuildDate><item><title><![CDATA[Neovim/Vim で LaTeX を書く (MMA部誌2022秋)]]></title><description><![CDATA[これは MMA 部誌 2022 秋 に投稿した内容です。 MMA の部誌はここで読めます。 はじめに なぜ neovim なのか vimtex を使わない / 使用プラグイン紹介 日本語を扱う 入力 option と autocmd completion ddcvim…]]></description><link>https://ryota2357.com/blog/2022/latex-with-neovim-vim-mma2020b/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/latex-with-neovim-vim-mma2020b/</guid><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;これは MMA 部誌 2022 秋 に投稿した内容です。&lt;/p&gt;
+&lt;p&gt;MMA の部誌は&lt;a href=&quot;https://www.mma.club.uec.ac.jp/chofu-festa/index.html&quot;&gt;ここ&lt;/a&gt;で読めます。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB&quot;&gt;はじめに&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#11-%E3%81%AA%E3%81%9C-neovim-%E3%81%AA%E3%81%AE%E3%81%8B&quot;&gt;なぜ neovim なのか&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#12-vimtex-%E3%82%92%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84--%E4%BD%BF%E7%94%A8%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E7%B4%B9%E4%BB%8B&quot;&gt;vimtex を使わない / 使用プラグイン紹介&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#2-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%82%92%E6%89%B1%E3%81%86&quot;&gt;日本語を扱う&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#21-%E5%85%A5%E5%8A%9B&quot;&gt;入力&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#22-option-%E3%81%A8-autocmd&quot;&gt;option と autocmd&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#3-completion&quot;&gt;completion&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#31-ddcvim&quot;&gt;ddcvim&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#32-ddcvim-%E3%81%AE%E8%A8%AD%E5%AE%9A&quot;&gt;ddcvim の設定&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#4-%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%A8%AD%E5%AE%9A&quot;&gt;その他の設定&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#41-synctex&quot;&gt;synctex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#42-%E6%AE%8B%E3%82%8A%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3&quot;&gt;残りのプラグイン&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB&quot;&gt;おわりに&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-はじめに&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-%E3%81%AF%E3%81%98%E3%82%81%E3%81%AB&quot; aria-label=&quot;1 はじめに permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. はじめに&lt;/h2&gt;
+&lt;p&gt;初めまして、1 年の ryota2357 です。先に書いておくと、これは「Vim・Neovim 入門」の投稿ではありません。
+Vim・Noevim の説明から始まりますが、本題は僕の設定を紹介する、自己満足な投稿です。&lt;/p&gt;
+&lt;p&gt;また、最近では Neovim の設定に Lua を使うことが増えていますが、ここではすべて Vim script で掲載してます。
+それと、僕の vimrc(init.lua) は &lt;a href=&quot;https://github.com/ryota2357/dotfiles/tree/master/vim&quot;&gt;https://github.com/ryota2357/dotfiles/tree/master/vim&lt;/a&gt; においてあるので見たい人はどうぞ。&lt;/p&gt;
+&lt;p&gt;それでは、よろしくお願いします。&lt;/p&gt;
+&lt;small&gt;
+注意: 以降では「Vim」と書いた場合、それは Neovim を含みます。「Neovim」と書いた場合はそれは Vim にはなく Neovim にのみあるものを指します。「Vim (not Neovim)」と書いた場合は Vim のみのものを指します。
+&lt;/small&gt;
+&lt;h3 id=&quot;11-なぜ-neovim-なのか&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#11-%E3%81%AA%E3%81%9C-neovim-%E3%81%AA%E3%81%AE%E3%81%8B&quot; aria-label=&quot;11 なぜ neovim なのか permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.1 なぜ Neovim なのか&lt;/h3&gt;
+&lt;p&gt;VSCode, Emacs, Atom, ... などたくさんのエディタがある中でなぜ Neovim か、と問われても、具体的な利点は言えません。サックっと環境構築したいなら VSCode を使うことを勧めます。
+僕が Neovim を利用する理由はただ「Vim 系 Editor が好きだから」に限ります。じゃあ Vim (not Neovim) ではないの？って言われると、それはそれで色々あるのですが。&lt;/p&gt;
+&lt;p&gt;それはさておき、Vim の利点を上げましょう。&lt;/p&gt;
+&lt;p&gt;Vim は非常に柔軟なカスタマイズが可能です。設定ファイルをプログラミング言語(Vim script / Lua)で書きます。
+それに日本語版も含めドキュメントが非常に充実してるため、初学者に優しい作りになってます。
+また、Vim 系の操作は非常に強力です。
+モードという概念、ホームポジションから離れないカーソル移動、独自のキーマッピング、テキストオブジェクトと呼ばれる概念の組み合わせで非常に高速・快適にテキストを編集可能です。
+さらに、Vim のプラグインは作りやすく、組み合わせやすいです。初めから高度な知識は必要ありません。Node が必要、なんてこともありません。ファイル１つを適切な場所に置くだけでプラグイン開発を開始できます。
+他のエディタではあまりない、UI 自体を作成することも容易です。ちなみに、僕自身が入れているプラグインの数は 60 を超えます。&lt;/p&gt;
+&lt;p&gt;Vim を使えば、僕がエディタに合わせるのではなく、僕にエディタを合わせることができます。最高ですね。&lt;/p&gt;
+&lt;p&gt;Vim のどこがいいか、それは人によって異なりますが、僕は Vim の幅広いカスタマイズ性とテキスト編集能力が気に入って使っています。
+今回の投稿ではテキスト編集の方には触れず、カスタマイズの方を書いていきます。僕は Vim に詳しいわけではないのでもっと良い方法があるのかもしれませんが、参考になるものがあれば嬉しいです。&lt;/p&gt;
+&lt;h3 id=&quot;12-vimtex-を使わない--使用プラグイン紹介&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#12-vimtex-%E3%82%92%E4%BD%BF%E3%82%8F%E3%81%AA%E3%81%84--%E4%BD%BF%E7%94%A8%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%E7%B4%B9%E4%BB%8B&quot; aria-label=&quot;12 vimtex を使わない  使用プラグイン紹介 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1.2 VimTeX を使わない / 使用プラグイン紹介&lt;/h3&gt;
+&lt;p&gt;「Vim LaTeX 構築」などと検索すると、多くの記事で紹介されているのは「lervag/vimtex」というプラグインを使う構築です。&lt;/p&gt;
+&lt;p&gt;vimtex がどのようなプラグインなのかは次の図 lervag/vimtex の README #Features を見れば大体わかるでしょう。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/698a05ec56a839133e0ec6966d68fc0b/1a238/vimtex.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 59.49367088607595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACfklEQVQoz2VTy27UMBTNn7R5Ok/bsfOYvGaaebQS/4oEEnsWLJFg1GlQAxLddDawq7qB1rnoOh2BxOLItnx97jknN0Ys6jdxWn21fX5wQzEgnIAPTpAibpwwHW2fv7cIfc3y7ltW94e8Xg95sxmyej3wfDmQOLsxveSLRdhHg8pmLNot5M0Giu4KyuUV5O1OnxFlt4NYVD8tQgdZrSGtdxDnFxCyBThBChZhGiahYHr0t+FF8loXlqunSHSK0Eq5ca7sIFW2z55tn+ODe4uwT3mzBbHon5wgVWdOpM7dRJ27sYbpJWAR+mC4kTywcg2JbFQsKvBpDpaH3RLsOJnz/mj7fI+ErLhQPm+A0BJInEFAC4h4NaFa00seDQuz4yswCVP4+CTfmjFZs5WjRdieF0vI6o3CSETVA5UNBKxEMZMbyRMhO0RZjx2VFwnwYgluJP4jNAndp+UKc1WYOZLHaaVzPHPi6cXyo+EE6YFlLV4oJ+C6YA5bE/2jkGqFZXep0DrNWk2aiBpdTS8CHg2LsAN25sVShXwBIS8hSivAvR3wac4yOXqR3Gf1WlvO6g0EtNRO8KOZXjI3nhXyg1z0wLJWzeo4OGEKXpyBG4rJ9vVYHG2f7UW5gqLdacJENhDxBXhzdn8JTY9eY7h5vXmSVa/koldpuVIBLZSf5M+Yqe3zeydIP9OiB5Z3zzgRXiQ13FAoizD1YvnBILG85eUF5MtXIOqtHgO0glbP3eS0/iBJPkSi0ffo4JQ1js5cE2PWv9DyO1mv74ru6jZvtmNWr8eyuxx5sRzdMB0twr6bXvKByuZt0W7uinZ7y7J2TGQzJqIe8U+jWYPnb24k9n8AuYhnJiHZREAAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;vimtex Features&quot;
+        title=&quot;vimtex Features&quot;
+        src=&quot;/static/698a05ec56a839133e0ec6966d68fc0b/f058b/vimtex.png&quot;
+        srcset=&quot;/static/698a05ec56a839133e0ec6966d68fc0b/c26ae/vimtex.png 158w,
+/static/698a05ec56a839133e0ec6966d68fc0b/6bdcf/vimtex.png 315w,
+/static/698a05ec56a839133e0ec6966d68fc0b/f058b/vimtex.png 630w,
+/static/698a05ec56a839133e0ec6966d68fc0b/40601/vimtex.png 945w,
+/static/698a05ec56a839133e0ec6966d68fc0b/78612/vimtex.png 1260w,
+/static/698a05ec56a839133e0ec6966d68fc0b/1a238/vimtex.png 3294w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;必要な機能をしっかりと備えた素晴らしいプラグインであることがわかると思います。&lt;/p&gt;
+&lt;p&gt;しかし、僕の好みには合いません。必要な機能のみを入れて使わない機能は入れない。僕はそれが好きです。&lt;/p&gt;
+&lt;p&gt;では、何を使うか、ですが、次に僕の LaTeX を書く時に使用している主要プラグインを列挙しました。(アルファベット順)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;cohama/lexima.vim&lt;/li&gt;
+&lt;li&gt;hrsh7th/vim-vsnip&lt;/li&gt;
+&lt;li&gt;neovim/nvim-lspconfig&lt;/li&gt;
+&lt;li&gt;nvim-treesitter/nvim-treesitter-context&lt;/li&gt;
+&lt;li&gt;ryota2357/vim-skim-synctex&lt;/li&gt;
+&lt;li&gt;Shougo/ddc.vim&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;これらの個々の説明は後に書いてあります。一部は Neovim 専用ですが、Vim (not Neovim) にも同様の機能を提供しているプラグインは存在します。&lt;/p&gt;
+&lt;h2 id=&quot;2-日本語を扱う&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%82%92%E6%89%B1%E3%81%86&quot; aria-label=&quot;2 日本語を扱う permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. 日本語を扱う&lt;/h2&gt;
+&lt;p&gt;ここから本題です。僕の設定について紹介していきます。&lt;/p&gt;
+&lt;h3 id=&quot;21-入力&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#21-%E5%85%A5%E5%8A%9B&quot; aria-label=&quot;21 入力 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.1 入力&lt;/h3&gt;
+&lt;p&gt;ご存じのとおり Vim は日本語の扱いが得意ではありません。それは GVim でもターミナル上の Vim でも同じです。
+特にターミナルにおいては、そもそもターミナルが日本語入力に対応していない、なんてこともあり得ます、が、まあ有名どころのターミナルではちゃんと日本語入力できます。&lt;/p&gt;
+&lt;p&gt;さて、僕の使用しているターミナルですが、iTerm2 です。WezTerm もいいと思いますが ASCII と non-ASCII で違うフォントを割り当てる方法がわからない(なさそう？)ため iTerm2 を使っています。
+おそらく iTerm2 において日本語入力は不便しないでしょう。ウィンドウ分割が重いらしいですが、僕は tmux で行っているため、全く気になりません。
+それでも iTerm2 での日本語入力はメモ帳に入力するよりは少し不便かもしれません。Emacs のように IME がターミナルに組み込まれているわけではありませんから。
+しかし、それも問題ないのです。「vim-skk/skkeleton」というプラグインがあります。SKK という入力システムを提供する Vim プラグインです。&lt;/p&gt;
+&lt;p&gt;次に「vim-skk/skkeleton」の REAME から画像を引用してきました。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6999bff86023b0a27950b605bf518455/6af66/SKK.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAABbElEQVQoz5WS226bQBRF/f+/1NfEcWzAXGYGDPhGzMUOrtK0OAzgrgqcm9pKrR+2juZhltbZOqP02xNJsWdT7FlsE9RqwzLNiJIdYfKApQLsIMReRKj1llW2J9plLJOMXfl1SPJ45Efd8EU4jL5XL/zUHW3d0umWs+7o6st8C2fYF0dMS+J5IWlaYjsBhimw5goVbGhPLXe+ZPRcnWjqBv2iP+XjXZ80rW7J8hJjrpg7AQ9ZiSdjHBHiyQgVbtFVw616BfZ2F8jfoumajjwvmcxc7u5t0vzI3PExLMnc9pGLDU3VMPbfgZfPvenn/A7sDWemYL3JESrG9V4N/wS2/wRm2SP3M3cA9YaWrTCsvkN5MTw1jNW1hpZkPLFIdoeLoQiH2RvqSl+/8mTqfHRo+8xMb7AM4oRzfeZWif9fuSiOTA2BUEuKw9PQnZAxnohYbfPhtG6kd53hzdgcQIfyeTCbzlymhku8Tt+BvwAtAOm3j5hUigAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;vim-skk/skkeleton&quot;
+        title=&quot;vim-skk/skkeleton&quot;
+        src=&quot;/static/6999bff86023b0a27950b605bf518455/f058b/SKK.png&quot;
+        srcset=&quot;/static/6999bff86023b0a27950b605bf518455/c26ae/SKK.png 158w,
+/static/6999bff86023b0a27950b605bf518455/6bdcf/SKK.png 315w,
+/static/6999bff86023b0a27950b605bf518455/f058b/SKK.png 630w,
+/static/6999bff86023b0a27950b605bf518455/6af66/SKK.png 640w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;僕はこれを使わず、macOS 標準の IME で入力してます、が、ここで紹介するのに使ったことないのは良くないな、と思って先日少し使ってみました。
+結論から言うと、僕には合いませんでした。
+skkeleton、SKK の入力は非常に素晴らしいと思います。実際、通常の変換(スペースバー押して変換するやつ)と SKK の変換どちらを使いたいか、と言われれば僕は SKK を選びます。
+しかし、僕が普段使っているライブ変換の方が僕は快適だと感じました。
+SKK が僕に合わないと感じた最大の理由は「送り仮名」です。僕は送り仮名を考えながら打つのがしんどかったです。慣れれば SKK は非常に快適に入力できると思います。僕はもう少し使ってみようと思ってます。&lt;/p&gt;
+&lt;h3 id=&quot;22-option-と-autocmd&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#22-option-%E3%81%A8-autocmd&quot; aria-label=&quot;22 option と autocmd permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2.2 option と autocmd&lt;/h3&gt;
+&lt;p&gt;続いて日本語を入力する上で設定しておくといいかも？ってやつです。&lt;/p&gt;
+&lt;p&gt;まず option からです。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;vim&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; 行の折り返しを無効&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; LaTeX では横に長い表を書いたりするので、無効にしておくとよさそうです。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; あと、描画量が減るからか、少し軽くなるそうです。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;nowrap&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; 全角カッコペアの追加&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; Vim には標準で対応する括弧をハイライトしてくれます。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; それを日本語にも適用できるよう拡張しておきます。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;matchpairs&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;+=（:）,「:」,『:』,【:】,［:］,＜:＞&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; スクロールの余裕を設定&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; scrolloff は縦スクロール、sidescrolloff は横スクロールです。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; 縦スクロールは普通のプログラム書く時の設定と同じでいと思いますが、&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; 横スクロールは大きめにしておくと良いでしょう。日本語は 1 文字で 2 幅です。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;scrolloff&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;sidescrolloff&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;10&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; マーカー位置 !!!&amp;gt; ~~~ &amp;lt;!!! で折りたたむ&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; これはマーカーで折り畳みを使っている人についてです。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; デフォルトのマーカーは {{{ ~~~ }}} です。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; これは LaTeX 文書中にそこそこの数出てきます。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; そのため意図しない位置で折り畳みが発生します。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; マーカーを LaTeX 文書で現れないようなものに変更すると良いです。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;foldmethod&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=marker&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;foldmarker&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;!!!&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;&amp;lt;!!!&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; 表示文字設定&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; extends: 行が画面よりも伸びているときの最終列に表示&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; precedes: 行が画面よりも伸びているときの最初の列に表示&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; 横に長い表などを書く + nowrap の時、文章が画面外に続いているのか&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; 一目でわかりません。このオプションで可視化しておきましょう。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;&amp;quot; (詳しくは`h &amp;#39;listchars&amp;#39;` 参照)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;list&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;listchars&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=extend&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;s:&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;,precede&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;s:&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;続いて autocmd です。この投稿で紹介する autocmd は 3 つありますが、ここでは 2 つ。最後の方にもう 1 つ出てきます。
+まずは 1 つ目&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;vim&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;autocmd&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;BufWritePre&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;\*.tex&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; :&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;FixPunctuation&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;function!&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;FixPunctuation&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;() &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;abort&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;let&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;l:&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;getpos&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;:%s/。/. /g&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;:%s/、/, /g&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;:%s/\\\@&amp;lt;!\s\+$//&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;setpos&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;l:&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;endfunction&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;この autocmd は tex ファイルを保存時に「、」と「。」を「,」と「.」に変換し、末尾の不要なスペースを削除するものです。&lt;/p&gt;
+&lt;p&gt;例えば、次のようなテキストがあったとき、&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;2&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;このような、日本語の文章がある時、句読点を修正します。いい感じに空白も入ります。\\&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;カーソルの位置が動くこともありません。&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;こうなります。(↓)&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;3&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;このような, 日本語の文章がある時, 句読点を修正します. いい感じに空白も入ります. \\&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;カーソルの位置が動くこともありません.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;続いて 2 つ目は macOS 専用です。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;vim&quot; data-index=&quot;4&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;augroup&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;IME&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;autocmd&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;!&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;autocmd&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CmdlineLeave&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;/,?&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; :&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;osascript -e &amp;quot;tell application \&amp;quot;System Events\&amp;quot; to key code 102&amp;quot;&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;augroup&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;END&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;\ と ? で、検索をした後、IME を off にするものです。
+プログラミングの時は検索対象が英語なのでいらないのですが、日本語書いているときは検索で IME on にして &lt;code&gt;Enter&lt;/code&gt; とかで Cmdline を 離れることがあるかと思います。
+その時 IME が off になってれば、すぐに &lt;code&gt;i&lt;/code&gt; や &lt;code&gt;n&lt;/code&gt; が入力できるので快適になります。&lt;/p&gt;
+&lt;h2 id=&quot;3-completion&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-completion&quot; aria-label=&quot;3 completion permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. Completion&lt;/h2&gt;
+&lt;p&gt;LaTeX のコマンドを全て覚えるのは大変です。やはり入力補完(completion)は必須です。&lt;/p&gt;
+&lt;h3 id=&quot;31-ddcvim&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#31-ddcvim&quot; aria-label=&quot;31 ddcvim permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.1 ddc.vim&lt;/h3&gt;
+&lt;p&gt;Vimmer であれば Shougo さんを知っている人は多いでしょう。
+知らない人も「deoplete.nvim」「dein.vim」「unite.vim」「neobundle.vim」「denite.nvim」「defx.nvim」「neosnippet.vim」のいずれかは使った、もしくは聞いたことがあるかと思います。
+いずれも GitHub で 1000 スターを超える Vim・Neovim プラグインです。
+「ddc.vim」はその Shougo さんによって作られた「deoplete.nvim」の後継となる新しい入力補完プラグインです。&lt;/p&gt;
+&lt;p&gt;ddc.vim の README の 1 行目を見てみましょう。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Dark deno-powered completion framework for neovim/Vim8&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;さて、少し逸れますが注目したいのは「deno-powered」です。Deno です。&lt;/p&gt;
+&lt;p&gt;Deno を知らない人向けに言うと、Deno とは Node.js の反省を踏まえて、Node.js の作者本人が作成している新しい Javascript/Typescript のランタイムのことです。Node.js と異なり、node_modules を生成しませんし、package.json もありません。
+詳細は省きますが Deno はその設計のため、インストール・アップデートが容易であり、依存関係が自動解決され、スクリプト言語のような使い心地であり、環境を汚しにくいという、多くの素晴らしい特徴を持っています。
+この Deno を Vim でも使えるようにするプラグインが「vim-denops/denops.vim」です。lambdalisue さん中心に開発されています。(lambdalisue さんは「jupyter-vim-binding」「fern.vim」「gina.vim」の作者です。)&lt;/p&gt;
+&lt;p&gt;次の引用は denops.vim のリポジトリの Description です。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An ecosystem of Vim/Neovim which allows developers to write cross-platform plugins in Deno&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;denops.vim によって、Vim プラグインを Typescript で実装できるようになりました。
+これの嬉しいことは、より親しみやすい言語で開発ができるのはもちろん、Typescirpt で作られてきた Vim 以外の分野のライブラリ資源も活用できると言うことです。
+さらに、Typescript で書かれた部分は別のプロセスで動き、非同期処理も十分に行えるため、Vim への負荷を下げ、 Vim script よりも高速に処理が行えます。
+つまり、denops.vim を用いて作成されるプラグインは、実行速度・開発速度の両面で高速化されるのです。&lt;/p&gt;
+&lt;p&gt;話を戻します、ddc.vim は denops.vim を用いて作成されたプラグインです。
+ddc.vim は設定なしでは何も動きません。自分で 1 から設定する必要があります。さらに、他の補完プラグインにはよくあるスニペット展開や floating window によるプレビューといった機能もありません。
+純粋に補完機能のみを提供するプラグインです。
+しかしそのおかけで、自分が欲しい機能のみを取り入れた自動補完機能を作っていけるようになっています。
+より詳しく ddc.vim を知りたい人は Shougo さん本人による記事、&lt;a href=&quot;https://zenn.dev/shougo/articles/ddc-vim-beta&quot;&gt;https://zenn.dev/shougo/articles/ddc-vim-beta&lt;/a&gt; を読んでみるとその設計思想や特養がよくわかると思います。&lt;/p&gt;
+&lt;h3 id=&quot;32-ddcvim-の設定&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#32-ddcvim-%E3%81%AE%E8%A8%AD%E5%AE%9A&quot; aria-label=&quot;32 ddcvim の設定 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3.2 ddc.vim の設定&lt;/h3&gt;
+&lt;p&gt;これ以降は ddc.vim について最低限の知識がある、という前提になります。&lt;/p&gt;
+&lt;p&gt;次に僕が tex を書く時に使用している ddc プラグインを列挙しました。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Source
+&lt;ul&gt;
+&lt;li&gt;Shougo/ddc-source-around&lt;/li&gt;
+&lt;li&gt;Shougo/ddc-source-nvim-lsp&lt;/li&gt;
+&lt;li&gt;hrsh7th/vim-vsnip-integ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Filter
+&lt;ul&gt;
+&lt;li&gt;Shougo/ddc-matcher_head&lt;/li&gt;
+&lt;li&gt;Shougo/matcher_length&lt;/li&gt;
+&lt;li&gt;tani/ddc-fuzzy&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;UI
+&lt;ul&gt;
+&lt;li&gt;Shougo/ddc-ui-pum&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;また、ddc の tex での設定は次のようにしてます。(実際に書いている設定ではありません。global な設定も追記したり、mark や autoCompleteEvents など、ここでは重要でないものは省いています。)&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;vim&quot; data-index=&quot;5&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;ddc#custom#patch_filetype&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;tex&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;], {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;sources&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: [&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;nvim-lsp&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;vsnip&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;around&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;],&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;sorters&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: [&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;sorter_fuzzy&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;],&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;converters&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: [&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;converter_remove_overlap&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;],&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;sourceOptions&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;nvim-lsp&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;minAutoCompleteLength&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;matchers&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: [&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;matcher_head&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;    },&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;vsnip&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;minAutoCompleteLength&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;matchers&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: [&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;matcher_fuzzy&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;],&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;dup&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;keep&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;    },&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;around&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;minAutoCompleteLength&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;      &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;matchers&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: [&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;matcher_head&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;matcher_length&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;]&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;  }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;})&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;僕は tex を基本的に、vsnip で書いてます。数式や画像や表のテンプレート挿入だけでなく、「\lambda」などの単純なものまでスニペット化してます。
+こうすることでバックスラッシュをタイプせず tex を書くことができるようになります。
+このような snippet 主体で tex を書くため、vsnip には matcher_fuzzy を、nvim-lsp には matcher_head を割り当ててます。&lt;/p&gt;
+&lt;p&gt;ちなみに、Language Server には texlab を利用してます。
+これは特に説明することはないけど、「williamboman/mason.nvim」を使ってインストールすると、グローバルに LSP をインストールすることなく利用できるのでとても良い、とだけ触れておきます。
+Vim (not Neovim) の人は「prabirshrestha/vim-lsp」と「mattn/vim-lsp-settings」があります。これらを使えば Neovim と同様に快適に Language Server が使えると思います。&lt;/p&gt;
+&lt;h2 id=&quot;4-その他の設定&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%A8%AD%E5%AE%9A&quot; aria-label=&quot;4 その他の設定 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. その他の設定&lt;/h2&gt;
+&lt;p&gt;残りの設定を「その他」として書いていきます。まずは、どのセクションに書けばいいかわからなかったやつを 2 つ。ちょっと Vim から離れます。&lt;/p&gt;
+&lt;p&gt;1 つ目は PDF ビューワーについてです。&lt;/p&gt;
+&lt;p&gt;僕は Skim を使っています、macOS 専用です。SynctTeX や自動リロード、ダークモードに対応している、シンプルで使いやすい PDF ビューワーです。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/f9a828b19afd9d9360bd84ccc90c46f9/9c701/skim-dark.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 72.15189873417721%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAACAUlEQVQ4y21TWbKbMBDkOPG+gDFIgNDC+nguJ3GS+5+kUz1+ovKRj6kZCanV0z0kwzDChwBjLMZxRgg9Nptv2O/3a+x2OwnWh8Phv7HdblFVNZKPZUHdlTCtwev1G953cqCua3jvkWXZGpfLBcfjcY3T6SSZ+6y1rpB8//ETofcIXYfXrz8CyEN93yOEsGaCt20LpRSKooC1Fk3TSM29FXCaPtC2FlXVYJwWeB9wPp8xDAO6rhNAArF2zgn4PM9YlkVqY4ycud1uUEojsS4gBI88L2BM+AI8yctsJUae50jTVC7GmjLEPcokDI1xwiBNc5TKIIROxL/f75imCY/HQ9abzUaEZ471v8E9MaW1Ho0xyLI7lGoFkBrGVqhdNIdMr9er1JQlBlny0aqqkFjr4IzB5ZKikZbfDMmaQeEJyMw1WfMhdsDWy7KUiVhNcS4I4C0voHS7mkLBCUKmETiCR7fJSGstmczFlGGY5IDWNXyY4JwXU8iCrhKQINFlrsmKIAQlIDPlYJ1M8yKX68ZgnD5hrRf6cSQIFEcosouPESi2TB3fDMdZTFGKf8YoLe/3u3Wgqdnz+ZS5i8DMBKE51JKxjg1dts4hy3Kor7Hhx6gT2yBTAvDvYGa7/M59Psp6bXnoRzhnoUqNcZiFIVtmS2QTL7511uIsB5k1mcVBjy7/BQdy2jRYIyVtAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;skim のダークモード&quot;
+        title=&quot;skim のダークモード&quot;
+        src=&quot;/static/f9a828b19afd9d9360bd84ccc90c46f9/f058b/skim-dark.png&quot;
+        srcset=&quot;/static/f9a828b19afd9d9360bd84ccc90c46f9/c26ae/skim-dark.png 158w,
+/static/f9a828b19afd9d9360bd84ccc90c46f9/6bdcf/skim-dark.png 315w,
+/static/f9a828b19afd9d9360bd84ccc90c46f9/f058b/skim-dark.png 630w,
+/static/f9a828b19afd9d9360bd84ccc90c46f9/40601/skim-dark.png 945w,
+/static/f9a828b19afd9d9360bd84ccc90c46f9/78612/skim-dark.png 1260w,
+/static/f9a828b19afd9d9360bd84ccc90c46f9/9c701/skim-dark.png 1774w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;2 つ目は tex ファイルのコンパイルについてです。&lt;/p&gt;
+&lt;p&gt;僕は tmux にて別のウィンドウで「latexmk -pvc」をしてます。
+実は先ほど紹介した Language Server、texlab には tex をコンパイルするコマンドが提供されてます、が使ってません、と言うより使い方がよく分かってないです。
+なんかビルド失敗しちゃいます。(エラーの見方もよく分かってません...)
+どうにかしたいなとは思うけど、tmux 使って直接 latexmk な現状に困ってないので放置してます。&lt;/p&gt;
+&lt;p&gt;以上です。ここから Vim の話に戻ります。&lt;/p&gt;
+&lt;h3 id=&quot;41-synctex&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#41-synctex&quot; aria-label=&quot;41 synctex permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.1 SyncTeX&lt;/h3&gt;
+&lt;p&gt;SyncTeX とは「TeX ソースを開いたエディタと PDF ビューワとの間での相互ジャンプを実現する仕組み (TeX Wiki から引用)」のことです。
+名前は知らなかったけど、使ってる。そんな感じの機能だと思います。&lt;/p&gt;
+&lt;p&gt;Skim は SyncTeX に対応している PDF ビューワーです。そのため Vim の方で Skim と連携するようにすれば SyncTeX を行えます。
+これについては、いい感じのプラグインが見つからなかったので自作しました、「ryota2357/vim-skim-synctex」です。denops.vim を利用してます。vim-skim-synctex は forward-search と backward-search の両方が行えます。
+denops.vim を利用したことによって他の SyncTeX 系プラグインが Python や外部コマンドに頼るところを内部で Deno サーバーを立てることと、 AppleScript を使うことで回避してます。
+詳しいことは過去に記事を書いたのでそれのリンクを置いときます。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ryota2357.com/blog/2022/dev-vim-skim-synctex/&quot;&gt;https://ryota2357.com/blog/2022/dev-vim-skim-synctex/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;vim-skim-synctex は基本的には問題なく使えると思うのですが、気にするものではない程度のバグがいくつかあります。そのうち修正したいなとは思ってるのですが、困ることがないので放置しちゃってます。&lt;/p&gt;
+&lt;p&gt;ちなみに、SyncTeX と set mouse=a は相性が悪いです。
+SyncTeX の backward-search では PDF ビューワーをクリックする必要があります。その時、ウィンドウのフォーカスは Vim を起動しているターミナルではなく、PDF ビューワーに当てられます。
+backward-search の後、Vim で編集を再開するには ターミナルをクリックしてフォーカスを戻す必要があります。この時 mouse=a が設定されていると、せっかく backward-search で移動したマウスカーソルがフォーカスを戻すためにクリックした場所に移動していまします。
+これを解決するには、次のような autocmd を用意すればいい感じにできます。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;vim&quot; data-index=&quot;6&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;augroup&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Mouse&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;autocmd&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;!&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;autocmd&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;FocusGained&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;s:&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;OnFocusGained&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;autocmd&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;FocusLost&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;s:&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;OnFocusLost&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;augroup&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;END&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;function!&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;s:&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;OnFocusGained&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;() &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;abort&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;autocmd&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CursorMoved&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CursorMovedI&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,ModeChanged,WinScrolled &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;++once&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;s:&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;EnebleLeftMouse&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;noremap&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;lt;LeftMouse&amp;gt; &amp;lt;Cmd&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;lt;SID&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;EnebleLeftMouse&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&amp;lt;CR&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;inoremap&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;lt;LeftMouse&amp;gt; &amp;lt;Cmd&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;lt;SID&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;EnebleLeftMouse&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&amp;lt;CR&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;endfunction&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;function!&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;s:&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;EnebleLeftMouse&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;() &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;abort&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;noremap&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;lt;LeftMouse&amp;gt; &amp;lt;LeftMouse&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;inoremap&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;lt;LeftMouse&amp;gt; &amp;lt;LeftMouse&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;endfunction&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;function!&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;s:&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;OnFocusLost&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;() &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;abort&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;noremap&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;lt;LeftMouse&amp;gt; &amp;lt;nop&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;inoremap&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;lt;LeftMouse&amp;gt; &amp;lt;nop&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;endfunction&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;この autocmd については過去に記事を書いたのでこれもリンク置いときます。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ryota2357.com/blog/2022/vim-mouse-on-focus/&quot;&gt;https://ryota2357.com/blog/2022/vim-mouse-on-focus/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;42-残りのプラグイン&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#42-%E6%AE%8B%E3%82%8A%E3%81%AE%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3&quot; aria-label=&quot;42 残りのプラグイン permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4.2 残りのプラグイン&lt;/h3&gt;
+&lt;p&gt;ここまでで、節 1.2 で列挙したプラグインのうち「lexima.vim」と「nvim-treesitter-context」について触れてなかったので短めに書きます。&lt;/p&gt;
+&lt;p&gt;lexima.vim は 自動括弧閉じとドットリピートのプラグイン、という説明ですがそれ以外の使い方が非常に強力です。 (もちろん、括弧補完にも使ってますが)
+例えばこんなことができます。(| はカーソル位置です)&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;tex&quot; data-index=&quot;7&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;\begin&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;{enumerate}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;\item&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; 要素 1 つ目 |&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;\end&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;{enumerate}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ここでエンターを押すと&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;tex&quot; data-index=&quot;8&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;\begin&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;{enumerate}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;\item&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; 要素 1 つ目&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;\item&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; |&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;\nd&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;{enumerate}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;というように、\item を自動入力することができます。
+これは次のように設定すると、実現できます。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;vim&quot; data-index=&quot;9&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk11&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; lexima#&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;rule&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;({&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;char&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;&amp;lt;CR&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;at&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;^ *\\item.\_\%#&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;input&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;&amp;lt;CR&amp;gt;\item &amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;except&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;\\\\\%#&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;filetype&amp;#39;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;#39;tex&amp;#39;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\ &lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;})&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;これは comments オプションと formatoptions オプションをいい感じに設定することで似たような、またはこれ以上のことができるかもしれません。
+しかしおそらく除外設定はできないと思ってます(comments オプションよく分かってない)。
+上記の設定では行末が \\ で終わっている場合は次の行に \item を自動入力しないよう設定してます。&lt;/p&gt;
+&lt;p&gt;最後に、nvim-treesitter-context ですが、これは次の画像を見たほうが良いでしょう。現在のネスト位置がよくわかるようになるプラグインです。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5b6b6163f243a1fb574d676cadcca95f/c830c/ts-context.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.56962025316456%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAABZ0lEQVQoz42SW27bMBBFvZnasklRpKgHRUqWIkVw3KRK5BT9Kbr/ZZzCsgM0cQPk48xwBuSdwQVXsfHM8yvz6ReP0x+O02/6w0/q4YW2f2bsfyznephpvsBKGs/QPDF0E21/orv7Tj9OuP0BXzQMpsQZj9EOqSuE9kv+jNU5hPyBzr/SuImyvKOq7wntgTQLxCqQKIcWGrPTxDvDWqQLm/+wEokjMQGV7a9THJHM2Aj7jrXM2MoMKS1OaKwwSy/6wLKhMQ0qrZG2wRY1KvVE0l55u2zZyGwREcKyE5c6EvZW0BcH+mqmCyf24YF9f6RpH6mqHqmyy8N/2Mjb3jtBl4+0fqZxT+R5h3UtpRswJiy+fNuaq0eW9e6Sow+WvLEI6rRG5S3CVKjEkyQ1cVIhz7UN2LJdvBVJiUoDZ9+jzzZMshqd77FlR2IbCjdSlPekWUfuBwo/MB7n65epiM+CumKrCraqvOEvfRojXKZKO0EAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;te-comtext&quot;
+        title=&quot;te-comtext&quot;
+        src=&quot;/static/5b6b6163f243a1fb574d676cadcca95f/f058b/ts-context.png&quot;
+        srcset=&quot;/static/5b6b6163f243a1fb574d676cadcca95f/c26ae/ts-context.png 158w,
+/static/5b6b6163f243a1fb574d676cadcca95f/6bdcf/ts-context.png 315w,
+/static/5b6b6163f243a1fb574d676cadcca95f/f058b/ts-context.png 630w,
+/static/5b6b6163f243a1fb574d676cadcca95f/40601/ts-context.png 945w,
+/static/5b6b6163f243a1fb574d676cadcca95f/78612/ts-context.png 1260w,
+/static/5b6b6163f243a1fb574d676cadcca95f/c830c/ts-context.png 1754w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;これは 1 つのセクションが長い時に役立ちます。今どこのセクションについて書いているのか素早く確認できます。
+このプラグインは唯一、僕が節 1.2 で挙げた中で Vim(not Neovim) 代替プラグインがないものです(僕が知らないだけかもですが)。&lt;/p&gt;
+&lt;h2 id=&quot;5-おわりに&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-%E3%81%8A%E3%82%8F%E3%82%8A%E3%81%AB&quot; aria-label=&quot;5 おわりに permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. おわりに&lt;/h2&gt;
+&lt;p&gt;ここまでで紹介した設定は僕の vimrc (init.lua) の一部です。 vimrc は常に変化し続けます。
+今はこの設定を使っていますが、明日には大きく変わってるかもしれません。これがベストではありません。永遠に未完成です。&lt;/p&gt;
+&lt;p&gt;以上でこの投稿は終わりです。ちょっと長くなってしまいました。(僕だったらこれ、あんまり読む気しないな...)&lt;/p&gt;
+&lt;p&gt;もし、ここまで読んでくれた人がいたら、本当にありがとうございます。何か一つでも参考になるものがあれば良いなと思います。&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line &gt; * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: &apos; &apos;;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting &gt; .grvsc-code &gt; .grvsc-line::before {
+    content: &apos; &apos;;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .default-dark .mtk3 { color: #6A9955; }
+  .default-dark .mtk11 { color: #DCDCAA; }
+  .default-dark .mtk1 { color: #D4D4D4; }
+  .default-dark .mtk12 { color: #9CDCFE; }
+  .default-dark .mtk7 { color: #B5CEA8; }
+  .default-dark .mtk8 { color: #CE9178; }
+  .default-dark .mtk4 { color: #569CD6; }
+  .default-dark .mtk6 { color: #D7BA7D; }
+  .default-dark .mtk15 { color: #C586C0; }
+  .default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[homebrew-cask-fonts に新しいフォントを追加したのでそのメモ]]></title><description><![CDATA[1 ヶ月ほど前にPlemolJPを homebrew-cask-fonts に追加した。 数日前に PlemolJP にに新しいフォントスタイルができて、cask を追加する必要があった。cask 追加方法を忘れてたのでメモしておくことにした。 手順メモ CONTRIBUTING…]]></description><link>https://ryota2357.com/blog/2022/create-cask-font-memo/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/create-cask-font-memo/</guid><content:encoded>&lt;p&gt;1 ヶ月ほど前に&lt;a href=&quot;https://github.com/yuru7/PlemolJP&quot;&gt;PlemolJP&lt;/a&gt;を homebrew-cask-fonts に追加した。&lt;/p&gt;
 &lt;p&gt;数日前に PlemolJP にに新しいフォントスタイルができて、cask を追加する必要があった。cask 追加方法を忘れてたのでメモしておくことにした。&lt;/p&gt;
 &lt;h2 id=&quot;手順メモ&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%89%8B%E9%A0%86%E3%83%A1%E3%83%A2&quot; aria-label=&quot;手順メモ permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;手順メモ&lt;/h2&gt;
 &lt;ol&gt;
