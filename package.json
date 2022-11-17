@@ -1,12 +1,7 @@
 {
   "name": "ryota2357",
   "private": true,
-  "description": "build with Gatsby",
-  "version": "1.0.0",
   "author": "ryota2357",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "6.2.0",
     "@fortawesome/free-regular-svg-icons": "6.2.0",
@@ -50,20 +45,15 @@
     "prettier": "2.7.1",
     "typescript": "4.8.4"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
   "license": "0BSD",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "https://github.com/ryota2357/ryota2357-github-pages"
   },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "deploy": "gatsby build && gh-pages -d public",
