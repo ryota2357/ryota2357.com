@@ -101,7 +101,7 @@ const config: GatsbyConfig = {
             options: {
               theme: "Default Dark+",
               languageAliases: { txt: "ignore" },
-              extensions: ["dart-code", "viml", "toml"],
+              extensions: ["dart-code", "viml", "toml", "latex-workshop"],
             },
           },
           `gatsby-remark-copy-linked-files`,

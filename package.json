@@ -34,6 +34,7 @@
     "gatsby-source-filesystem": "5.0.0",
     "gatsby-transformer-remark": "6.0.0",
     "gatsby-transformer-sharp": "5.0.0",
+    "latex-workshop": "github:James-Yu/LaTeX-Workshop",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sass": "1.56.1",
