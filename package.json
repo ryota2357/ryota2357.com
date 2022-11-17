@@ -3,9 +3,9 @@
   "private": true,
   "author": "ryota2357",
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "6.2.0",
-    "@fortawesome/free-regular-svg-icons": "6.2.0",
-    "@fortawesome/free-solid-svg-icons": "6.2.0",
+    "@fortawesome/free-brands-svg-icons": "6.2.1",
+    "@fortawesome/free-regular-svg-icons": "6.2.1",
+    "@fortawesome/free-solid-svg-icons": "6.2.1",
     "@fortawesome/react-fontawesome": "0.2.0",
     "dart-code": "github:Dart-Code/Dart-Code",
     "dayjs": "1.11.6",
