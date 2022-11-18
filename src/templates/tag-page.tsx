@@ -1,6 +1,6 @@
 import { graphql, PageProps, Link } from "gatsby";
-import { Layout, Seo, BlogList } from "../components/mod";
-import "../style/templates/tag-page.scss";
+import { Layout, Seo, BlogList } from "@/components";
+import "@/style/templates/tag-page.scss";
 
 const TagPage = ({
   data,

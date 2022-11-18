@@ -1,11 +1,11 @@
 import { Link, graphql, PageProps } from "gatsby";
 import dayjs from "dayjs";
-import { Layout, Seo } from "../components/mod";
+import { Layout, Seo } from "@/components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTags } from "@fortawesome/free-solid-svg-icons";
-import "../style/templates/blog-post.scss";
-import "../style/templates/blog-post-markdown.scss";
-import "../style/templates/blog-post-markdown-code.scss";
+import "@/style/templates/blog-post.scss";
+import "@/style/templates/blog-post-markdown.scss";
+import "@/style/templates/blog-post-markdown-code.scss";
 
 const formatPostQuery = (data: Queries.BlogPostQuery) => {
   return {

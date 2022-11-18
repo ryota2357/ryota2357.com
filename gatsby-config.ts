@@ -15,7 +15,9 @@ const config: GatsbyConfig = {
       unityroom: `ryota2357`,
     },
   },
-  graphqlTypegen: true,
+  graphqlTypegen: {
+    typesOutputPath: "./src/types/gatsby-types.d.ts"
+  },
   jsxRuntime: `automatic`,
   /*{{{ 説明
   - gatsby-plugin-image (https://www.gatsbyjs.com/plugins/gatsby-plugin-image/)

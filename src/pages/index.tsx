@@ -1,7 +1,7 @@
 import { graphql, PageProps, Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import { Layout, Seo, ContentBlock } from "../components/mod";
-import "../style/pages/index.scss";
+import { Layout, Seo, ContentBlock } from "@/components";
+import "@/style/pages/index.scss";
 
 const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
   <Layout id="index-page">

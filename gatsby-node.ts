@@ -1,6 +1,7 @@
 import type { GatsbyNode } from "gatsby";
 import { resolve } from "path";
 import { createFilePath } from "gatsby-source-filesystem";
+import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,
@@ -88,6 +89,14 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     });
   }
 };
+
+export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      plugins: [new TsconfigPathsPlugin()],
+    },
+  });
+}
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
   ({ actions }) => {

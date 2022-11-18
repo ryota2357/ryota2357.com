@@ -1,7 +1,7 @@
-import { Layout, Seo, ContentBlock } from "../components/mod";
-import { works } from "../data/mod";
+import { Layout, Seo, ContentBlock } from "@/components";
+import { works } from "@/data";
 import dayjs from "dayjs";
-import "../style/pages/works.scss";
+import "@/style/pages/works.scss";
 
 const Works = () => {
   const timeFmt = (time: Date, template: string) =>

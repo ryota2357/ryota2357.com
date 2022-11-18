@@ -1,5 +1,5 @@
-import { Layout, Seo } from "../components/mod";
-import "../style/pages/404.scss";
+import { Layout, Seo } from "@/components";
+import "@/style/pages/404.scss";
 
 const NotFoundPage = () => (
   <Layout id="not-found-page">
@@ -10,6 +10,6 @@ const NotFoundPage = () => (
   </Layout>
 );
 
-export const Head = () => <Seo title="404: Not Found" type="website"/>
+export const Head = () => <Seo title="404: Not Found" type="website" />;
 
 export default NotFoundPage;

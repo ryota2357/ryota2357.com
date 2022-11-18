@@ -1,4 +1,4 @@
-import { getImageComponent } from "../../images/mod";
+import { getImageComponent } from "@/images";
 import { WorksData } from "../types";
 
 // GIF は object-fit とかが作用しないみたい (なんで？)

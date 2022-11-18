@@ -1,6 +1,6 @@
 import { graphql, PageProps, Link } from "gatsby";
-import { Layout, Seo } from "../../components/mod";
-import "../../style/pages/tag.scss";
+import { Layout, Seo } from "@/components";
+import "@/style/pages/tag.scss";
 
 const Tag = ({ data }: PageProps<Queries.TagPageQuery>) => {
   return (

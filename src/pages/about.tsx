@@ -1,6 +1,6 @@
 import { graphql, PageProps } from "gatsby";
-import { Layout, Seo, ContentBlock } from "../components/mod";
-import "../style/pages/about.scss";
+import { Layout, Seo, ContentBlock } from "@/components";
+import "@/style/pages/about.scss";
 
 const About = ({ data }: PageProps<Queries.AboutPageQuery>) => (
   <Layout id="about-page">

@@ -1,6 +1,6 @@
 import { graphql, PageProps, Link } from "gatsby";
-import { Layout, Seo, BlogList } from "../components/mod";
-import "../style/pages/blog.scss";
+import { Layout, Seo, BlogList } from "@/components";
+import "@/style/pages/blog.scss";
 
 const Blog = ({ data }: PageProps<Queries.BlogPageQuery>) => (
   <Layout id="blog-page">
