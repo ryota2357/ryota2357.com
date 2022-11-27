@@ -1,7 +1,7 @@
 ---
 title: "[C#] LowerBoundとUpperBoundの実装と例外処理"
-postdate: "2021-04-18T08:49"
-update: "2021-04-18T08:49"
+postdate: "2021-04-18T10:27"
+update: "2021-04-18T10:27"
 tags: ["CSharp"]
 ---
 

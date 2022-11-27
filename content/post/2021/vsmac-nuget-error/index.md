@@ -1,7 +1,7 @@
 ---
 title: "VisualStudio for Mac で Nugetの復元・更新ができない"
-postdate: "2021-03-27T17:27"
-update: "2021-03-27T17:27"
+postdate: "2021-03-27T15:44"
+update: "2021-03-27T15:44"
 tags: ["VisualStudio"]
 ---
 

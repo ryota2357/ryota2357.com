@@ -1,7 +1,7 @@
 ---
 title: "VSCodeでテーマを設定→拡張機能へ"
-postdate: "2021-02-21T21:56"
-update: "2021-02-21T21:56"
+postdate: "2021-02-22T23:53"
+update: "2021-02-22T23:53"
 tags: ["VSCode"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Pythonのforループでrangeを小数点刻み、かつ誤差を出さないようにする"
-postdate: "2021-07-31T15:43"
-update: "2021-07-31T15:43"
+postdate: "2021-07-13T15:43"
+update: "2021-07-13T15:43"
 tags: ["Python"]
 ---
 
