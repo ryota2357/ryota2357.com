@@ -29,9 +29,22 @@ export const createPages: GatsbyNode["createPages"] = async ({
         path: Path.join("/", "blog", "tag", tag),
         component: Path.resolve("./src/templates/tag-page.tsx"),
         context: {
-          tag: tag,
+          tag,
         },
       });
+    });
+  };
+
+  const createYearPage = (year: number) => {
+    const begin = `${year}-01-01T00:00`;
+    const end = `${year + 1}-01-01T00:00`;
+    actions.createPage({
+      path: Path.join("/", "blog", year.toString()),
+      component: Path.resolve("./src/templates/year-page.tsx"),
+      context: {
+        begin,
+        end,
+      },
     });
   };
 
@@ -66,6 +79,9 @@ export const createPages: GatsbyNode["createPages"] = async ({
     node.frontmatter?.tags?.forEach((tag) => (tag ? set.add(tag) : 0));
   });
   createTagPage(set);
+
+  createYearPage(2021);
+  createYearPage(2022);
 };
 
 export const onCreateNode: GatsbyNode["onCreateNode"] = ({

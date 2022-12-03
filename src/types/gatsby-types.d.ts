@@ -3616,6 +3616,14 @@ type TagPageTemplateQueryVariables = Exact<{
 
 type TagPageTemplateQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
 
+type YearPageTemplateQueryVariables = Exact<{
+  begin: Scalars['Date'];
+  end: Scalars['Date'];
+}>;
+
+
+type YearPageTemplateQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly tags: ReadonlyArray<string> | null, readonly postdate: string | null }, readonly fields: { readonly slug: string } }> } };
+
 type CreatePagesQueryVariables = Exact<{ [key: string]: never; }>;
 
 

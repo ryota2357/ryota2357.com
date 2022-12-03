@@ -41,7 +41,7 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
               return [...cnt.entries()]
                 .sort()
                 .sort((a, b) => b[1] - a[1])
-                .filter(a => a[1] > 1)
+                .filter((a) => a[1] > 1)
                 .map((tag, index) => {
                   const [tagName, count] = tag;
                   return (
