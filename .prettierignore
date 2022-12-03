@@ -2,4 +2,4 @@
 package.json
 package-lock.json
 public
-src/gatsby-types.d.ts
+src/types/gatsby-types.d.ts

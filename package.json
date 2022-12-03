@@ -53,7 +53,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write \"!**/*.d.ts\"",
+    "format": "prettier --write '**/*.{ts,tsx,json,md}'",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "deploy": "gatsby build && gh-pages -d public",
