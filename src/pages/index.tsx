@@ -22,8 +22,9 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
     <div className="content-blocks">
       <ContentBlock title="Affiliation">
         <ul>
-          <li key={1}>電気通信大学 情報理工学域I類 1年</li>
-          <li key={2}>電気通信大学MMA(サークル)</li>
+          {data.site?.siteMetadata.author.affiliation!.map((line, idx) => (
+            <li key={idx}>{line}</li>
+          ))}
         </ul>
       </ContentBlock>
       <ContentBlock title="Blog">
@@ -40,13 +41,22 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
               return [...cnt.entries()]
                 .sort()
                 .sort((a, b) => b[1] - a[1])
-                .map((tag, index) => (
-                  <span style={{ padding: "0.2rem" }} key={index}>
-                    <Link to={`/blog/tag/${tag[0]}`}>
-                      {`${tag[0]}(${tag[1]})`}
-                    </Link>
+                .filter(a => a[1] > 1)
+                .map((tag, index) => {
+                  const [tagName, count] = tag;
+                  return (
+                    <span style={{ padding: "0.3rem" }} key={index}>
+                      <Link to={`/blog/tag/${tagName}`}>
+                        {`${tagName}(${count})`}
+                      </Link>
+                    </span>
+                  );
+                })
+                .concat(
+                  <span style={{ padding: "0.3rem" }} key={1000}>
+                    <Link to="/blog/tag/">一覧</Link>
                   </span>
-                ));
+                );
             })()}
           </div>
         </div>
@@ -66,17 +76,23 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
       <ContentBlock title="Links">
         <ul>
           <li>
-            <a href="https://twitter.com/95s7k84695a">Twitter (@95s7k84695a)</a>
+            <a href={data.site?.siteMetadata.social.twitter.url}>
+              Twitter ({data.site?.siteMetadata.social.twitter.name})
+            </a>
           </li>
           <li>
-            <a href="https://github.com/ryota2357">Github (ryota2357)</a>
+            <a href={data.site?.siteMetadata.social.github.url}>
+              Github ({data.site?.siteMetadata.social.github.name})
+            </a>
           </li>
           <li>
-            <a href="https://atcoder.jp/users/ryota2357">AtCoder (ryota2357)</a>
+            <a href={data.site?.siteMetadata.social.atcoder.url}>
+              AtCoder ({data.site?.siteMetadata.social.atcoder.name})
+            </a>
           </li>
           <li>
-            <a href="https://unityroom.com/users/ryota2357">
-              UnityRoom (ryota2357)
+            <a href={data.site?.siteMetadata.social.unityroom.url}>
+              UnityRoom ({data.site?.siteMetadata.social.unityroom.name})
             </a>
           </li>
         </ul>
@@ -94,7 +110,27 @@ export const query = graphql`
     site {
       siteMetadata {
         title
-        description
+        author {
+          affiliation
+        }
+        social {
+          atcoder {
+            url
+            name
+          }
+          github {
+            url
+            name
+          }
+          twitter {
+            url
+            name
+          }
+          unityroom {
+            url
+            name
+          }
+        }
       }
     }
     allMarkdownRemark(sort: { frontmatter: { update: DESC } }) {

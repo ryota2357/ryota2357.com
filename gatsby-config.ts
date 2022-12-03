@@ -1,24 +1,40 @@
 import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `ryota2357`,
+    title: "ryota2357",
     author: {
-      name: `ryota2357`,
+      name: "ryota2357",
+      affiliation: [
+        "電気通信大学 情報理工学域I類 1年",
+        "電気通信大学MMA(サークル)",
+      ],
     },
-    description: `namespace ryota2357;`,
-    siteUrl: `https://ryota2357.com`,
-    repository: `https://github.com/ryota2357/ryota2357-github-pages`,
+    description: "namespace ryota2357;",
+    siteUrl: "https://ryota2357.com",
+    repository: "https://github.com/ryota2357/ryota2357-github-pages",
     social: {
-      atcoder: `ryota2357`,
-      github: `ryota2357`,
-      twitter: `95s7k84695a`,
-      unityroom: `ryota2357`,
+      atcoder: {
+        url: "https://atcoder.jp/users/ryota2357",
+        name: "ryota2357",
+      },
+      github: {
+        url: "https://github.com/ryota2357",
+        name: "ryota2357",
+      },
+      twitter: {
+        url: "https://twitter.com/95s7k84695a",
+        name: "@95s7k84695a",
+      },
+      unityroom: {
+        url: "https://unityroom.com/users/ryota2357",
+        name: "ryota2357",
+      },
     },
   },
   graphqlTypegen: {
     typesOutputPath: "./src/types/gatsby-types.d.ts",
   },
-  jsxRuntime: `automatic`,
+  jsxRuntime: "automatic",
   /*{{{ 説明
   - gatsby-plugin-image (https://www.gatsbyjs.com/plugins/gatsby-plugin-image/)
       画像のレスポンシブ化。複数の画像サイズを自動生成してくれる

@@ -14,7 +14,9 @@ const Seo = ({ title, type, description = undefined }: SeoProp) => {
           title
           description
           social {
-            twitter
+            twitter {
+              name
+            }
           }
         }
       }
@@ -38,7 +40,7 @@ const Seo = ({ title, type, description = undefined }: SeoProp) => {
       <meta property="twitter:card" content="summary" />
       <meta
         property="twitter:creator"
-        content={site?.siteMetadata.social.twitter || ``}
+        content={site?.siteMetadata.social.twitter.name || ``}
       />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={metaDescription} />

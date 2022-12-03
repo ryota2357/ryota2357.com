@@ -35,18 +35,22 @@ type AVIFOptions = {
 };
 
 type Author = {
+  readonly affiliation: Maybe<ReadonlyArray<Scalars['String']>>;
   readonly name: Scalars['String'];
 };
 
 type AuthorFieldSelector = {
+  readonly affiliation: InputMaybe<FieldSelectorEnum>;
   readonly name: InputMaybe<FieldSelectorEnum>;
 };
 
 type AuthorFilterInput = {
+  readonly affiliation: InputMaybe<StringQueryOperatorInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
 };
 
 type AuthorSortInput = {
+  readonly affiliation: InputMaybe<SortOrderEnum>;
   readonly name: InputMaybe<SortOrderEnum>;
 };
 
@@ -3467,31 +3471,51 @@ type SiteSortInput = {
 };
 
 type Social = {
-  readonly atcoder: Scalars['String'];
-  readonly github: Scalars['String'];
-  readonly twitter: Scalars['String'];
-  readonly unityroom: Scalars['String'];
+  readonly atcoder: SocialData;
+  readonly github: SocialData;
+  readonly twitter: SocialData;
+  readonly unityroom: SocialData;
+};
+
+type SocialData = {
+  readonly name: Scalars['String'];
+  readonly url: Scalars['String'];
+};
+
+type SocialDataFieldSelector = {
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly url: InputMaybe<FieldSelectorEnum>;
+};
+
+type SocialDataFilterInput = {
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type SocialDataSortInput = {
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly url: InputMaybe<SortOrderEnum>;
 };
 
 type SocialFieldSelector = {
-  readonly atcoder: InputMaybe<FieldSelectorEnum>;
-  readonly github: InputMaybe<FieldSelectorEnum>;
-  readonly twitter: InputMaybe<FieldSelectorEnum>;
-  readonly unityroom: InputMaybe<FieldSelectorEnum>;
+  readonly atcoder: InputMaybe<SocialDataFieldSelector>;
+  readonly github: InputMaybe<SocialDataFieldSelector>;
+  readonly twitter: InputMaybe<SocialDataFieldSelector>;
+  readonly unityroom: InputMaybe<SocialDataFieldSelector>;
 };
 
 type SocialFilterInput = {
-  readonly atcoder: InputMaybe<StringQueryOperatorInput>;
-  readonly github: InputMaybe<StringQueryOperatorInput>;
-  readonly twitter: InputMaybe<StringQueryOperatorInput>;
-  readonly unityroom: InputMaybe<StringQueryOperatorInput>;
+  readonly atcoder: InputMaybe<SocialDataFilterInput>;
+  readonly github: InputMaybe<SocialDataFilterInput>;
+  readonly twitter: InputMaybe<SocialDataFilterInput>;
+  readonly unityroom: InputMaybe<SocialDataFilterInput>;
 };
 
 type SocialSortInput = {
-  readonly atcoder: InputMaybe<SortOrderEnum>;
-  readonly github: InputMaybe<SortOrderEnum>;
-  readonly twitter: InputMaybe<SortOrderEnum>;
-  readonly unityroom: InputMaybe<SortOrderEnum>;
+  readonly atcoder: InputMaybe<SocialDataSortInput>;
+  readonly github: InputMaybe<SocialDataSortInput>;
+  readonly twitter: InputMaybe<SocialDataSortInput>;
+  readonly unityroom: InputMaybe<SocialDataSortInput>;
 };
 
 type SortOrderEnum =
@@ -3568,7 +3592,7 @@ type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: 
 type IndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string } } | null, readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
+type IndexPageQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly author: { readonly affiliation: ReadonlyArray<string> | null }, readonly social: { readonly atcoder: { readonly url: string, readonly name: string }, readonly github: { readonly url: string, readonly name: string }, readonly twitter: { readonly url: string, readonly name: string }, readonly unityroom: { readonly url: string, readonly name: string } } } } | null, readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
 
 type LayoutComponentQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3578,7 +3602,7 @@ type LayoutComponentQuery = { readonly site: { readonly siteMetadata: { readonly
 type SeoComponentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SeoComponentQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string, readonly social: { readonly twitter: string } } } | null };
+type SeoComponentQuery = { readonly site: { readonly siteMetadata: { readonly title: string, readonly description: string, readonly social: { readonly twitter: { readonly name: string } } } } | null };
 
 type TagPageQueryVariables = Exact<{ [key: string]: never; }>;
 

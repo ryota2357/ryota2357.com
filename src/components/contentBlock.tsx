@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import "../style/components/contentBlock.scss";
+import "@/style/components/contentBlock.scss";
 
 type ContentBlockProp = {
   title: string;

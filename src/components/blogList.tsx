@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import "../style/components/blogList.scss";
+import "@/style/components/blogList.scss";
 
 type Post = {
   readonly title: string;

@@ -13,7 +13,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     posts.forEach((post, index) => {
       actions.createPage({
         path: post.fields.slug,
-        component: Path.resolve(`./src/templates/blog-post.tsx`),
+        component: Path.resolve("./src/templates/blog-post.tsx"),
         context: {
           id: post.id,
           previousPostId: index === 0 ? null : posts[index - 1].id,
@@ -26,8 +26,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const createTagPage = (tags: Set<string>) => {
     tags.forEach((tag) => {
       actions.createPage({
-        path: Path.join("blog", "tab", tag),
-        component: Path.resolve(`./src/templates/tag-page.tsx`),
+        path: Path.join("/", "blog", "tag", tag),
+        component: Path.resolve("./src/templates/tag-page.tsx"),
         context: {
           tag: tag,
         },
@@ -52,7 +52,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   `);
   if (result.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      "There was an error loading your blog posts",
       result.errors
     );
     return;
@@ -86,8 +86,8 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     // https://www.gatsbyjs.com/docs/reference/config-files/actions/#createNodeField
     actions.createNodeField({
       node,
-      name: `slug`,
-      value: Path.join("blog", value),
+      name: "slug",
+      value: Path.join("/", "blog", value),
     });
   }
 };
@@ -126,13 +126,19 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
 
     type Author {
       name: String!
+      affiliation : [String!]
     }
 
     type Social {
-      atcoder: String!
-      github: String!
-      twitter: String!
-      unityroom: String!
+      atcoder: SocialData!
+      github: SocialData!
+      twitter: SocialData!
+      unityroom: SocialData!
+    }
+
+    type SocialData {
+      url: String!
+      name: String!
     }
 
     type MarkdownRemark implements Node {
