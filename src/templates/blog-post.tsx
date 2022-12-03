@@ -14,8 +14,8 @@ const formatPostQuery = (data: Queries.BlogPostQuery) => {
     title: data.markdownRemark?.frontmatter.title ?? "No title",
     tags: data.markdownRemark?.frontmatter.tags ?? [],
     description: data.markdownRemark?.excerpt ?? "",
-  }
-}
+  };
+};
 
 const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
   const post = formatPostQuery(data);
@@ -82,8 +82,8 @@ export const Head = ({ data }: PageProps<Queries.BlogPostQuery>) => {
   const post = formatPostQuery(data);
   return (
     <Seo title={post.title} description={post.description} type="article" />
-  )
-}
+  );
+};
 
 export default BlogPostTemplate;
 

@@ -85,26 +85,28 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
   </Layout>
 );
 
-export const Head = () => <Seo title="Home" type="website" />
+export const Head = () => <Seo title="Home" type="website" />;
 
 export default Index;
 
-export const query = graphql`query IndexPage {
-  site {
-    siteMetadata {
-      title
-      description
-    }
-  }
-  allMarkdownRemark(sort: {frontmatter: {update: DESC}}) {
-    nodes {
-      frontmatter {
+export const query = graphql`
+  query IndexPage {
+    site {
+      siteMetadata {
         title
-        tags
+        description
       }
-      fields {
-        slug
+    }
+    allMarkdownRemark(sort: { frontmatter: { update: DESC } }) {
+      nodes {
+        frontmatter {
+          title
+          tags
+        }
+        fields {
+          slug
+        }
       }
     }
   }
-}`;
+`;

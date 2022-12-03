@@ -25,25 +25,31 @@ const TagPage = ({
   </Layout>
 );
 
-export const Head = ({ pageContext }: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => <Seo title={`Tag: ${pageContext.tag}`} type="website"/>
+export const Head = ({
+  pageContext,
+}: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => (
+  <Seo title={`Tag: ${pageContext.tag}`} type="website" />
+);
 
 export default TagPage;
 
-export const query = graphql`query TagPageTemplate($tag: String!) {
-  allMarkdownRemark(
-    filter: {frontmatter: {tags: {eq: $tag}}}
-    sort: {frontmatter: {postdate: DESC}}
-  ) {
-    totalCount
-    nodes {
-      frontmatter {
-        title
-        postdate(formatString: "YYYY/MM/DD")
-        tags
-      }
-      fields {
-        slug
+export const query = graphql`
+  query TagPageTemplate($tag: String!) {
+    allMarkdownRemark(
+      filter: { frontmatter: { tags: { eq: $tag } } }
+      sort: { frontmatter: { postdate: DESC } }
+    ) {
+      totalCount
+      nodes {
+        frontmatter {
+          title
+          postdate(formatString: "YYYY/MM/DD")
+          tags
+        }
+        fields {
+          slug
+        }
       }
     }
   }
-}`;
+`;

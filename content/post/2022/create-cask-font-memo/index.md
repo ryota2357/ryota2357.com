@@ -5,9 +5,9 @@ update: "2022-11-06T14:38"
 tags: ["Homebrew"]
 ---
 
-1ヶ月ほど前に[PlemolJP](https://github.com/yuru7/PlemolJP)を homebrew-cask-fonts に追加した。
+1 ヶ月ほど前に[PlemolJP](https://github.com/yuru7/PlemolJP)を homebrew-cask-fonts に追加した。
 
-数日前にPlemolJPにに新しいフォントスタイルができて、caskを追加する必要があった。cask追加方法を忘れてたのでメモしておくことにした。
+数日前に PlemolJP にに新しいフォントスタイルができて、cask を追加する必要があった。cask 追加方法を忘れてたのでメモしておくことにした。
 
 ## 手順メモ
 
