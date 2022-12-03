@@ -12,6 +12,9 @@
       font-size: 2.1rem;
       font-weight: bold;
       user-select: none;
+      a:hover {
+        text-decoration: none;
+      }
     }
     nav {
       margin-top: auto;
@@ -21,9 +24,6 @@
         font-size: 1.4rem;
         li {
           margin: 0 0.7rem;
-          a:hover {
-            text-decoration: underline;
-          }
         }
       }
     }

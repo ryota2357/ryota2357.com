@@ -5,10 +5,5 @@
   ul {
     list-style: inside;
     margin-top: 2rem;
-    li {
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 }

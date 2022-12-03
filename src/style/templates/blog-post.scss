@@ -27,9 +27,6 @@
         align-items: center;
         gap: 0.3rem;
         a {
-          &:hover {
-            text-decoration: underline;
-          }
           &:not(:last-child)::after {
             content: ",";
           }
