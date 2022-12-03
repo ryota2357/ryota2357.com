@@ -1,5 +1,5 @@
 import type { GatsbyNode } from "gatsby";
-import { resolve } from "path";
+import * as Path from "path";
 import { createFilePath } from "gatsby-source-filesystem";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 
@@ -13,7 +13,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
     posts.forEach((post, index) => {
       actions.createPage({
         path: post.fields.slug,
-        component: resolve(`./src/templates/blog-post.tsx`),
+        component: Path.resolve(`./src/templates/blog-post.tsx`),
         context: {
           id: post.id,
           previousPostId: index === 0 ? null : posts[index - 1].id,
@@ -26,8 +26,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
   const createTagPage = (tags: Set<string>) => {
     tags.forEach((tag) => {
       actions.createPage({
-        path: `blog/tag/${tag}`,
-        component: resolve(`./src/templates/tag-page.tsx`),
+        path: Path.join("blog", "tab", tag),
+        component: Path.resolve(`./src/templates/tag-page.tsx`),
         context: {
           tag: tag,
         },
@@ -35,19 +35,21 @@ export const createPages: GatsbyNode["createPages"] = async ({
     });
   };
 
-  const result = await graphql(`query CreatePages {
-  allMarkdownRemark(sort: {frontmatter: {postdate: ASC}}, limit: 1000) {
-    nodes {
-      id
-      fields {
-        slug
-      }
-      frontmatter {
-        tags
+  const result = await graphql(`
+    query CreatePages {
+      allMarkdownRemark(sort: { frontmatter: { postdate: ASC } }, limit: 1000) {
+        nodes {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            tags
+          }
+        }
       }
     }
-  }
-}`);
+  `);
   if (result.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
@@ -85,18 +87,20 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
     actions.createNodeField({
       node,
       name: `slug`,
-      value: `/blog${value}`,
+      value: Path.join("blog", value),
     });
   }
 };
 
-export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({ actions }) => {
+export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
+  actions,
+}) => {
   actions.setWebpackConfig({
     resolve: {
       plugins: [new TsconfigPathsPlugin()],
     },
   });
-}
+};
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
   ({ actions }) => {
@@ -122,7 +126,6 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
 
     type Author {
       name: String!
-      summary: String!
     }
 
     type Social {

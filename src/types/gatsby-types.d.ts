@@ -36,22 +36,18 @@ type AVIFOptions = {
 
 type Author = {
   readonly name: Scalars['String'];
-  readonly summary: Scalars['String'];
 };
 
 type AuthorFieldSelector = {
   readonly name: InputMaybe<FieldSelectorEnum>;
-  readonly summary: InputMaybe<FieldSelectorEnum>;
 };
 
 type AuthorFilterInput = {
   readonly name: InputMaybe<StringQueryOperatorInput>;
-  readonly summary: InputMaybe<StringQueryOperatorInput>;
 };
 
 type AuthorSortInput = {
   readonly name: InputMaybe<SortOrderEnum>;
-  readonly summary: InputMaybe<SortOrderEnum>;
 };
 
 type BlurredOptions = {
