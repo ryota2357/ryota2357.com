@@ -8,7 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "6.2.1",
     "@fortawesome/react-fontawesome": "0.2.0",
     "dart-code": "github:Dart-Code/Dart-Code",
-    "dayjs": "1.11.6",
+    "dayjs": "1.11.7",
     "destyle.css": "4.0.0",
     "gatsby": "5.2.0",
     "gatsby-plugin-catch-links": "5.2.0",
