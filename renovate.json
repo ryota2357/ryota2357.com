@@ -24,6 +24,7 @@
     {
       "groupName": "gatsby",
       "packagePatterns": ["^gatsby"],
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
       "automerge": false
     }
   ]
