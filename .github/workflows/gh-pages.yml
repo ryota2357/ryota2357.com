@@ -47,5 +47,5 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $TOKEN"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/OWNER/REPO/dispatches \
+            https://api.github.com/repos/ryota2357/ryota2357-github-pages-images/dispatches \
             -d '{"event_type":"gen-og-image"}'
