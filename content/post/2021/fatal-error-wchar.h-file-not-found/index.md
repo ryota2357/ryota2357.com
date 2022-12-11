@@ -1,5 +1,5 @@
 ---
-title: fatal error- 'wchar.h' file not found の対処法
+title: "fatal error- 'wchar.h' file not found の対処法"
 postdate: "2021-02-20T22:02"
 update: "2021-02-20T22:02"
 tags: ["C++"]
