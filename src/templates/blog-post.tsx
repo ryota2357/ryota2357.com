@@ -80,7 +80,7 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
 
 export const Head = ({ data }: PageProps<Queries.BlogPostQuery>) => {
   const post = formatPostQuery(data);
-  const imagePath = data.markdownRemark?.fields.slug.split("/");
+  const imagePath = data.markdownRemark?.fields.slug.split("/").filter((x) => x.length > 0);
   return (
     <Seo
       title={post.title}

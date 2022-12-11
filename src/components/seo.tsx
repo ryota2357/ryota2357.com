@@ -31,9 +31,8 @@ const Seo = ({ title, type, image, description = undefined }: SeoProp) => {
     if (image == "default") {
       return "https://raw.githubusercontent.com/ryota2357/ryota2357-github-pages/main/src/images/profile-pic.jpg";
     }
-    image[image.length - 1] += ".png";
     // "path" をインポートできない(エラー出る)ので
-    return repo + image.join("/");
+    return repo + image.join("/") + ".png";
   })();
 
   return (
