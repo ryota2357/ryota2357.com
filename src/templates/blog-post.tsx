@@ -80,8 +80,14 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
 
 export const Head = ({ data }: PageProps<Queries.BlogPostQuery>) => {
   const post = formatPostQuery(data);
+  const imagePath = data.markdownRemark?.fields.slug.split("/");
   return (
-    <Seo title={post.title} description={post.description} type="article" />
+    <Seo
+      title={post.title}
+      description={post.description}
+      type="article"
+      image={imagePath ?? "default"}
+    />
   );
 };
 
@@ -93,6 +99,9 @@ export const query = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         description

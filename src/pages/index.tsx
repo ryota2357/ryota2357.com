@@ -101,7 +101,7 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
   </Layout>
 );
 
-export const Head = () => <Seo title="Home" type="website" />;
+export const Head = () => <Seo title="Home" type="website" image="default" />;
 
 export default Index;
 

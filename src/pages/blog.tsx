@@ -21,7 +21,7 @@ const Blog = ({ data }: PageProps<Queries.BlogPageQuery>) => (
   </Layout>
 );
 
-export const Head = () => <Seo title="Blog" type="website" />;
+export const Head = () => <Seo title="Blog" type="website" image="default" />;
 
 export default Blog;
 

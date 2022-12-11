@@ -24,9 +24,11 @@ const YearPage = ({
 
 export const Head = ({
   pageContext,
-}: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => (
-  <Seo title={`Tag: ${pageContext.tag}`} type="website" />
-);
+}: PageProps<Queries.TagPageTemplateQuery, { begin: string }>) => {
+  const year = pageContext.begin.slice(0, 4);
+
+  return <Seo title={`Blog in ${year}`} type="website" image="default" />;
+};
 
 export default YearPage;
 

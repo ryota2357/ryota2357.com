@@ -28,7 +28,7 @@ const TagPage = ({
 export const Head = ({
   pageContext,
 }: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => (
-  <Seo title={`Tag: ${pageContext.tag}`} type="website" />
+  <Seo title={`Tag: ${pageContext.tag}`} type="website" image="default" />
 );
 
 export default TagPage;
