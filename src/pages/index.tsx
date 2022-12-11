@@ -7,7 +7,7 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
   <Layout id="index-page">
     <div className="top-profile">
       <StaticImage
-        src="../images/profile-pic.jpg"
+        src="../images/profile-pic.png"
         alt="profile-pic"
         style={{
           position: "relative",

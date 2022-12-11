@@ -37,18 +37,13 @@ const Seo = ({ title, type, image, description = undefined }: SeoProp) => {
 
   return (
     <>
-      <meta charSet="utf-8" />
       <title>{title}</title>
       <meta name="description" content={metaDescription} />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content={type} />
       <meta property="og:image" content={metaImage} />
-      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:card" content="summary_large_image" />
       <meta
         property="twitter:creator"
         content={site?.siteMetadata.social.twitter.name || ``}
