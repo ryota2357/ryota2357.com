@@ -81,6 +81,6 @@ const Works = () => {
   );
 };
 
-export const Head = () => <Seo title="Works" type="website" image="default" />;
+export const Head = () => <Seo title="Works" type="website" image={["works"]} />;
 
 export default Works;

@@ -11,7 +11,7 @@ const NotFoundPage = () => (
 );
 
 export const Head = () => (
-  <Seo title="404: Not Found" type="website" image="default" />
+  <Seo title="404: Not Found" type="website" image={["404"]} />
 );
 
 export default NotFoundPage;
