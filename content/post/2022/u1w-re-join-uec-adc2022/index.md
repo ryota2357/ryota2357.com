@@ -1,11 +1,11 @@
 ---
 title: "Unity1Week Re 参加記録 (UECアドカレ2022)"
 postdate: "2022-12-21T01:23"
-update: "2022-12-21T01:23"
+update: "2022-12-21T01:46"
 tags: ["Unity", "Event"]
 ---
 
-この記事は[UEC Advent Calend ar](https://adventar.org/calendars/7581)2022 の 20 日目の記事です。(遅刻しました、すみません。)
+この記事は[UEC Advent Calendar 2022](https://adventar.org/calendars/7581) の 20 日目の記事です。(遅刻しました、すみません。)
 
 昨日は random さんの「[内部シラバスを Web APP にして見る話](https://zenn.dev/rand0m/articles/syllabus-viewer)」でした。
 
