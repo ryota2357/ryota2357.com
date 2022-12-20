@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 20 Dec 2022 16:49:52 GMT</lastBuildDate><item><title><![CDATA[Unity1Week Re 参加記録 (UECアドカレ2022)]]></title><description><![CDATA[この記事はUEC Advent Calendar 2022 の 20 日目の記事です。(遅刻しました、すみません。) 昨日は random さんの「内部シラバスを Web APP…]]></description><link>https://ryota2357.com/blog/2022/u1w-re-join-uec-adc2022/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/u1w-re-join-uec-adc2022/</guid><content:encoded>&lt;p&gt;この記事は&lt;a href=&quot;https://adventar.org/calendars/7581&quot;&gt;UEC Advent Calendar 2022&lt;/a&gt; の 20 日目の記事です。(遅刻しました、すみません。)&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 20 Dec 2022 22:24:01 GMT</lastBuildDate><item><title><![CDATA[Unity1Week Re 参加記録 (UECアドカレ2022)]]></title><description><![CDATA[この記事はUEC Advent Calendar 2022 の 20 日目の記事です。(遅刻しました、すみません。) 昨日は random さんの「内部シラバスを Web APP…]]></description><link>https://ryota2357.com/blog/2022/u1w-re-join-uec-adc2022/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/u1w-re-join-uec-adc2022/</guid><content:encoded>&lt;p&gt;この記事は&lt;a href=&quot;https://adventar.org/calendars/7581&quot;&gt;UEC Advent Calendar 2022&lt;/a&gt; の 20 日目の記事です。(遅刻しました、すみません。)&lt;/p&gt;
 &lt;p&gt;昨日は random さんの「&lt;a href=&quot;https://zenn.dev/rand0m/articles/syllabus-viewer&quot;&gt;内部シラバスを Web APP にして見る話&lt;/a&gt;」でした。&lt;/p&gt;
 &lt;p&gt;大学のシラバス、検索機能弱いし、色々読みづらいし、目的のもの(classroom のコード)見つけにくいので、いい感じの WebApp あると嬉しいですね。random さんのとても良さそうです。公開されたら使ってみたいです。&lt;/p&gt;
 &lt;hr&gt;
@@ -6,16 +6,17 @@
 &lt;h2 id=&quot;unity1week-とは&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#unity1week-%E3%81%A8%E3%81%AF&quot; aria-label=&quot;unity1week とは permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Unity1Week とは&lt;/h2&gt;
 &lt;p&gt;(以下 Unity1Week を u1w と略します)&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Unity を使って 1 週間でゲームを作るイベントです。
-Unity がインストールされた PC とインターネット環境があればどなたでも参加可能です。
-月曜 0 時にお題が発表されます。日曜 20 時までにゲームを作って投稿しましょう。
-お題については多少こじつけでも大丈夫。ゲーム作りを楽しむことを心がけてください。
+&lt;p&gt;Unity を使って 1 週間でゲームを作るイベントです。&lt;br&gt;
+Unity がインストールされた PC とインターネット環境があればどなたでも参加可能です。&lt;br&gt;
+月曜 0 時にお題が発表されます。日曜 20 時までにゲームを作って投稿しましょう。&lt;br&gt;
+お題については多少こじつけでも大丈夫。ゲーム作りを楽しむことを心がけてください。&lt;br&gt;
 ブラウザで遊べる WebGL 形式でビルドし、unityroom に投稿します。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;簡単にいうと、「指定されたお題に沿って 1 週間でゲーム作ろう！」というイベントです。おそらく、多くの参加者が個人開発であり、プログラミング初心者からゲーム開発者まで幅広い層が参加してます。&lt;/p&gt;
 &lt;p&gt;今回のお題は「Re」でした。12/12 にこのお題が発表され、12/18 に開発期間が終了し、現在(~1/1 まで)評価期間中です。&lt;br&gt;
 評価期間といっても、審査員が評価するわけではなく、u1w に参加した他の開発者同士でゲームを遊びあって、評価する、という感じです。&lt;/p&gt;
 &lt;p&gt;また、u1w の開発に参加してなくても twitter アカウントがあれば評価できます。300 程度のゲームが投稿されてると思うので、気が向いたら遊んで評価していただけると嬉しいです。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://unityroom.com/unity1weeks/57&quot;&gt;Unity 1 週間ゲームジャム/お題「Re」&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;作ったもの&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E4%BD%9C%E3%81%A3%E3%81%9F%E3%82%82%E3%81%AE&quot; aria-label=&quot;作ったもの permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;作ったもの&lt;/h2&gt;
 &lt;p&gt;「RepeatableCube」というゲームを作りました。(タイトルは適当)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://unityroom.com/games/repeatablecube&quot;&gt;https://unityroom.com/games/repeatablecube&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
