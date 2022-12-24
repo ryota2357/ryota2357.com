@@ -28,7 +28,9 @@ const Tag = ({ data }: PageProps<Queries.TagPageQuery>) => {
   );
 };
 
-export const Head = () => <Seo title="Blog" type="website" image={["blog", "tag"]} />;
+export const Head = () => (
+  <Seo title="Blog" type="website" image={["blog", "tag"]} noindex={true} />
+);
 
 export default Tag;
 

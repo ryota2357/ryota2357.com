@@ -5,9 +5,16 @@ type SeoProp = {
   type: "website" | "article";
   image: string[] | "default"; // TODO: defaultなくす
   description?: string;
+  noindex?: boolean;
 };
 
-const Seo = ({ title, type, image, description = undefined }: SeoProp) => {
+const Seo = ({
+  title,
+  type,
+  image,
+  description = undefined,
+  noindex = false,
+}: SeoProp) => {
   const { site } = useStaticQuery<Queries.SeoComponentQuery>(graphql`
     query SeoComponent {
       site {
@@ -50,6 +57,7 @@ const Seo = ({ title, type, image, description = undefined }: SeoProp) => {
       />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content={metaDescription} />
+      {noindex ? <meta property="robots" content="noindex" /> : <></>}
     </>
   );
 };
