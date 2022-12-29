@@ -810,7 +810,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 .fad.fa-inverse,
 .fa-duotone.fa-inverse {
   color: var(--fa-inverse, #fff);
-}</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div id="layout"><header><div class="logo"><a href="/">ryota2357</a></div><nav><ul><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/works/">Works</a></li></ul></nav></header><main id="blog-post"><article itemscope="" itemType="http://schema.org/Article"><div class="post-front"><h1 itemProp="headline">node-canvasで雑にOG画像を生成する</h1><div class="date"><p>投稿日:<!-- --> <time itemProp="datePublished">2022/12/30 (00:32)</time></p></div><div class="tags"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tags" class="svg-inline--fa fa-tags " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color:#2E2E2E;margin-right:5px"><path fill="currentColor" d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z"></path></svg><a href="/blog/tag/Node/">Node</a></div></div><div id="markdown" itemProp="articleBody"><p>ブログの OG 画像を Qiita と Zenn みたいにタイトルが書かれてるやつにしたかったので作った。<br>
+}</style></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div id="layout"><header><div class="logo"><a href="/">ryota2357</a></div><nav><ul><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/works/">Works</a></li></ul></nav></header><main id="blog-post"><article itemscope="" itemType="http://schema.org/Article"><div class="post-front"><h1 itemProp="headline">node-canvasで雑にOG画像を生成する</h1><div class="date"><p>投稿日:<!-- --> <time itemProp="datePublished">2022/12/30 (00:32)</time></p><p>更新日:<!-- --> <time itemProp="dateModified">2022/12/30 (00:49)</time></p></div><div class="tags"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tags" class="svg-inline--fa fa-tags " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color:#2E2E2E;margin-right:5px"><path fill="currentColor" d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144c0-17.7-14.3-32-32-32s-32 14.3-32 32s14.3 32 32 32s32-14.3 32-32z"></path></svg><a href="/blog/tag/Node/">Node</a></div></div><div id="markdown" itemProp="articleBody"><p>ブログの OG 画像を Qiita と Zenn みたいにタイトルが書かれてるやつにしたかったので作った。<br>
 生成は GithubAction で自動化した。</p>
 <h2 id="npm-プロジェクトの作成" style="position:relative;"><a href="#npm-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90" aria-label="npm プロジェクトの作成 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>npm プロジェクトの作成</h2>
 <p>Node18 と Typescript 使ってやる。<br>
@@ -1269,7 +1269,73 @@ Fine-grained personal access tokens を使うなら permission を次のよう�
     </span></p>
 <h2 id="完成品" style="position:relative;"><a href="#%E5%AE%8C%E6%88%90%E5%93%81" aria-label="完成品 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>完成品</h2>
 <p>生成した画像のリンクを適当に配置すると次のように og 画像が設定できていることが確認できる。</p>
-<p><img src="image.png" alt="image"></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5e4d1e505f45803cf91810f7a6c1d771/1ffbd/image1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 70.88607594936708%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAACz0lEQVR42oVTS2sTURSePyAorW1t3snEyWsmmUzaNK+WJqVQwUVXdSEu3BVREKVVLEL1H7gQRFAUBZ/oRlARBbUt6KLWWJSYpImlaZrWRkrzwCZ+ck8etiJ44eOcuee759xzvjuc3hWC1dkDq+yHIPVAY3ZCbZKg5qVtVqyBl6Dh/47VLe8ky7XrrdijNhNatAJadRbs1Vl22Da9FW0GG1o0AqFVK1CM4loBHbwIizcCXg6AM0te+MIH0NM/BLG7F46u0A6wPYvsg00JEodxleAA7J4ggXFsSgCq/U508iK446fOgK1isYhCoYhisUR+qVxGoVAA8Auzc1FcvX6zzitRrFiq8ba2trCQSkPy9tGNufGJC0Tc3NxEuVwmyxLl83lsbGygWq0iFk/g7oNHKJWKyGZXkMlksLi4iHg8jmx2GUtLGXhCA9Q+N3ZuEuVyCalUmoiJRALJZBKfolHyc7kcPkbnce/hYypcqVSoCLOl8k9UKxWsrq5BCURqCccnJvG/lUp/w7Ubt6jFtbXvWF/PYz3/A+nMMmKxr5j9MAfZHyYBudETp7GykkM8kUQylaZ5JBdSmI99xcy795iansHrt9NQghESx9EVhNgdIvCiBwabG0a7ApVZwj6TAxzbkH39UAJhdIUG4AlGIHl7YRY9sLp9pKLR4SEFO4x2QrvBRmh8M7BkpLLaLEFvlWFklWxu8nmHB6Y6WHXGUZlFOtA4+C/QDVW8BK1VblZuBBro5B1QsQNmCWrBBZPY3WzvD2dbwuGRI3jy9Dlu37kPdyBMm1qLDJ1VhtbigkZwYbeKx7GTY3j24iV6Bw8Sx0Dd1KCpP2pKePb8RVKSvb2h4RHYFD/N0+0P0yzZHHe1G3Dp8hVUqxUMDR+iGzKBGASXjwo3Ex4+Oor5z1/w6s0UvH2D0AoSzU1ncdVma1egEZwkDPsNtYKrOYpGy6ptLf8GF1VljiF2ZesAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="image1"
+        title="image1"
+        src="/static/5e4d1e505f45803cf91810f7a6c1d771/f058b/image1.png"
+        srcset="/static/5e4d1e505f45803cf91810f7a6c1d771/c26ae/image1.png 158w,
+/static/5e4d1e505f45803cf91810f7a6c1d771/6bdcf/image1.png 315w,
+/static/5e4d1e505f45803cf91810f7a6c1d771/f058b/image1.png 630w,
+/static/5e4d1e505f45803cf91810f7a6c1d771/40601/image1.png 945w,
+/static/5e4d1e505f45803cf91810f7a6c1d771/78612/image1.png 1260w,
+/static/5e4d1e505f45803cf91810f7a6c1d771/1ffbd/image1.png 2108w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>複数行のものはこんな感じ</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8b0f27bb8b289a441f78fd5ce0a8675c/a4f52/image2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 29.746835443037973%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAABSUlEQVR42m2OXUsCQRiF92d2VxcV0RelfSyYUVHQTwoqMsj0SlB3/dikXXd0d8c0R9ESNntiJ5AueuAwzJnzvnOMu4dH6o0mFcumXLX0mahq1ShXbepNh5vbe5KclD1Ep0unG+CLDm1f4AuB1/aJpOTpuYihRiMS5vM5f/mK44U3VEoP8f2NED5CCMIwZDAY4LoujuPoXBhJjDCKCIKAUqlELpcjn89TLBYpFAqUKxUmkwndIKD50tJDrVYL27ap1WpYlkWjUddLE9y2jxHJnr7EcUzSdjqdMpvN+PicaS8hCCMazsuivVJKt/Q8j7f+YOG7XhtjPB7zH1/ASClGaki/3+fV9f7NJV9KKRm+v/8uTJtZTi+vyZxdaR2dnGNmL8icX5IyT0iZWTZ206ysb7N3lGFj94Ct1DE7aVNra/9Qv69u7rG0vMYPsN6j/zU7SLcAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="image2"
+        title="image2"
+        src="/static/8b0f27bb8b289a441f78fd5ce0a8675c/f058b/image2.png"
+        srcset="/static/8b0f27bb8b289a441f78fd5ce0a8675c/c26ae/image2.png 158w,
+/static/8b0f27bb8b289a441f78fd5ce0a8675c/6bdcf/image2.png 315w,
+/static/8b0f27bb8b289a441f78fd5ce0a8675c/f058b/image2.png 630w,
+/static/8b0f27bb8b289a441f78fd5ce0a8675c/40601/image2.png 945w,
+/static/8b0f27bb8b289a441f78fd5ce0a8675c/78612/image2.png 1260w,
+/static/8b0f27bb8b289a441f78fd5ce0a8675c/a4f52/image2.png 2024w"
+        sizes="(max-width: 630px) 100vw, 630px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
 <style class="grvsc-styles">
   .grvsc-container {
     overflow: auto;
