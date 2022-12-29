@@ -1,7 +1,7 @@
 ---
 title: "node-canvasで雑にOG画像を生成する"
 postdate: "2022-12-30T00:32"
-update: "2022-12-30T00:49"
+update: "2022-12-30T01:31"
 tags: ["Node"]
 ---
 
@@ -213,7 +213,7 @@ export const generateImage = async (params: Params) => {
 };
 ```
 
-`setupCanvas()`で Canvas 型の`canvas`を生成、`writeText()`で Canvas の Context に色々テキスト描画、Canvas を png 画像となる Image オブジェクトにして return してる。
+`setupCanvas()`で Canvas 型の`canvas`を生成、`writeText()`で Canvas の Context に色々テキスト描画、Canvas を png 画像用の Image オブジェクトにして return してる。
 
 また、引数(`Params`型)で生成する画像をどのようにするのかを制御できるようにしてある。
 
@@ -308,7 +308,7 @@ const setupCanvas = async ({
 };
 ```
 
-`createCanvas()`をする前に`registerFont()`をしなきゃいけない、みたいなことを何処かで読んだ、順番を逆にするとどうなるかは試してない。
+`createCanvas()`をする前に`registerFont()`をしなきゃいけない、みたいなことを何処かで読んだ。順番を逆にするとどうなるかは試してない。
 
 OG 画像ということで、文字列は画像の中央に配置したい。そこで`context.textAlign`に center を指定している。また、この後の複数行の文字列を配置する時に計算をしやすくするために`context.textBaseline`を middle にしておくと良いであろう。
 
@@ -378,7 +378,7 @@ const splitLine = ({
 
 複雑な処理はしていないので読めばわかると思うが大まかに説明をする。
 
-1. 与えられた文字列(text)を単語に分解する(`splitWord`)。この時、英字と一部記号の連続を 1 単語として数える(`isEnChar`、記号は今後増やすかもしれない)
+1. 与えられた文字列(text)を単語に分解する(`splitWord`)。この時、英字と一部記号の連続を 1 単語として数え(`isEnChar`、記号は今後増やすかもしれない)、日本語は 1 文字 1 単語とした。
 2. 分解された単語をそれぞれ`textSize()`に渡して横幅を取得する。
 3. maxWidth を超えないように「1 行」を作っていく。
 
@@ -500,7 +500,7 @@ Fine-grained personal access tokens を使うなら permission を次のよう�
 
 ## 完成品
 
-生成した画像のリンクを適当に配置すると次のように og 画像が設定できていることが確認できる。
+生成した画像のリンクを適当に配置すると次のように OG 画像が設定できていることが確認できる。
 
 ![image1](image1.png)
 
