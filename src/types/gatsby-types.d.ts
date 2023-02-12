@@ -418,11 +418,15 @@ type File = Node & {
   readonly childImageSharp: Maybe<ImageSharp>;
   /** Returns the first child node of type MarkdownRemark or null if there are no children of given type on this node */
   readonly childMarkdownRemark: Maybe<MarkdownRemark>;
+  /** Returns the first child node of type WorksDataYaml or null if there are no children of given type on this node */
+  readonly childWorksDataYaml: Maybe<WorksDataYaml>;
   readonly children: ReadonlyArray<Node>;
   /** Returns all children nodes filtered by type ImageSharp */
   readonly childrenImageSharp: Maybe<ReadonlyArray<Maybe<ImageSharp>>>;
   /** Returns all children nodes filtered by type MarkdownRemark */
   readonly childrenMarkdownRemark: Maybe<ReadonlyArray<Maybe<MarkdownRemark>>>;
+  /** Returns all children nodes filtered by type WorksDataYaml */
+  readonly childrenWorksDataYaml: Maybe<ReadonlyArray<Maybe<WorksDataYaml>>>;
   readonly ctime: Scalars['Date'];
   readonly ctimeMs: Scalars['Float'];
   readonly dev: Scalars['Int'];
@@ -567,9 +571,11 @@ type FileFieldSelector = {
   readonly changeTime: InputMaybe<FieldSelectorEnum>;
   readonly childImageSharp: InputMaybe<ImageSharpFieldSelector>;
   readonly childMarkdownRemark: InputMaybe<MarkdownRemarkFieldSelector>;
+  readonly childWorksDataYaml: InputMaybe<WorksDataYamlFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly childrenImageSharp: InputMaybe<ImageSharpFieldSelector>;
   readonly childrenMarkdownRemark: InputMaybe<MarkdownRemarkFieldSelector>;
+  readonly childrenWorksDataYaml: InputMaybe<WorksDataYamlFieldSelector>;
   readonly ctime: InputMaybe<FieldSelectorEnum>;
   readonly ctimeMs: InputMaybe<FieldSelectorEnum>;
   readonly dev: InputMaybe<FieldSelectorEnum>;
@@ -612,9 +618,11 @@ type FileFilterInput = {
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
   readonly childImageSharp: InputMaybe<ImageSharpFilterInput>;
   readonly childMarkdownRemark: InputMaybe<MarkdownRemarkFilterInput>;
+  readonly childWorksDataYaml: InputMaybe<WorksDataYamlFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
   readonly childrenMarkdownRemark: InputMaybe<MarkdownRemarkFilterListInput>;
+  readonly childrenWorksDataYaml: InputMaybe<WorksDataYamlFilterListInput>;
   readonly ctime: InputMaybe<DateQueryOperatorInput>;
   readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   readonly dev: InputMaybe<IntQueryOperatorInput>;
@@ -698,9 +706,11 @@ type FileSortInput = {
   readonly changeTime: InputMaybe<SortOrderEnum>;
   readonly childImageSharp: InputMaybe<ImageSharpSortInput>;
   readonly childMarkdownRemark: InputMaybe<MarkdownRemarkSortInput>;
+  readonly childWorksDataYaml: InputMaybe<WorksDataYamlSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly childrenImageSharp: InputMaybe<ImageSharpSortInput>;
   readonly childrenMarkdownRemark: InputMaybe<MarkdownRemarkSortInput>;
+  readonly childrenWorksDataYaml: InputMaybe<WorksDataYamlSortInput>;
   readonly ctime: InputMaybe<SortOrderEnum>;
   readonly ctimeMs: InputMaybe<SortOrderEnum>;
   readonly dev: InputMaybe<SortOrderEnum>;
@@ -882,10 +892,6 @@ type GRVSCCodeBlockFilterInput = {
   readonly preClassName: InputMaybe<StringQueryOperatorInput>;
   readonly text: InputMaybe<StringQueryOperatorInput>;
   readonly tokenizedLines: InputMaybe<GRVSCTokenizedLineFilterListInput>;
-};
-
-type GRVSCCodeBlockFilterListInput = {
-  readonly elemMatch: InputMaybe<GRVSCCodeBlockFilterInput>;
 };
 
 type GRVSCCodeBlockGroupConnection = {
@@ -2045,11 +2051,7 @@ type MarkdownHeadingSortInput = {
 };
 
 type MarkdownRemark = Node & {
-  /** Returns the first child node of type GRVSCCodeBlock or null if there are no children of given type on this node */
-  readonly childGrvscCodeBlock: Maybe<GRVSCCodeBlock>;
   readonly children: ReadonlyArray<Node>;
-  /** Returns all children nodes filtered by type GRVSCCodeBlock */
-  readonly childrenGrvscCodeBlock: Maybe<ReadonlyArray<Maybe<GRVSCCodeBlock>>>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly excerptAst: Maybe<Scalars['JSON']>;
   readonly fields: Fields;
@@ -2141,9 +2143,7 @@ type MarkdownRemarkEdge = {
 };
 
 type MarkdownRemarkFieldSelector = {
-  readonly childGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
-  readonly childrenGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFieldSelector>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly excerptAst: InputMaybe<FieldSelectorEnum>;
   readonly fields: InputMaybe<FieldsFieldSelector>;
@@ -2162,9 +2162,7 @@ type MarkdownRemarkFieldSelector = {
 };
 
 type MarkdownRemarkFilterInput = {
-  readonly childGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
-  readonly childrenGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFilterListInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly excerptAst: InputMaybe<JSONQueryOperatorInput>;
   readonly fields: InputMaybe<FieldsFilterInput>;
@@ -2228,9 +2226,7 @@ type MarkdownRemarkGroupConnection_sumArgs = {
 };
 
 type MarkdownRemarkSortInput = {
-  readonly childGrvscCodeBlock: InputMaybe<GRVSCCodeBlockSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
-  readonly childrenGrvscCodeBlock: InputMaybe<GRVSCCodeBlockSortInput>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly excerptAst: InputMaybe<SortOrderEnum>;
   readonly fields: InputMaybe<FieldsSortInput>;
@@ -2353,6 +2349,7 @@ type Query = {
   readonly allSiteFunction: SiteFunctionConnection;
   readonly allSitePage: SitePageConnection;
   readonly allSitePlugin: SitePluginConnection;
+  readonly allWorksDataYaml: WorksDataYamlConnection;
   readonly directory: Maybe<Directory>;
   readonly file: Maybe<File>;
   readonly grvscCodeBlock: Maybe<GRVSCCodeBlock>;
@@ -2366,6 +2363,7 @@ type Query = {
   readonly siteFunction: Maybe<SiteFunction>;
   readonly sitePage: Maybe<SitePage>;
   readonly sitePlugin: Maybe<SitePlugin>;
+  readonly worksDataYaml: Maybe<WorksDataYaml>;
 };
 
 
@@ -2465,6 +2463,14 @@ type Query_allSitePluginArgs = {
 };
 
 
+type Query_allWorksDataYamlArgs = {
+  filter: InputMaybe<WorksDataYamlFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<WorksDataYamlSortInput>>>;
+};
+
+
 type Query_directoryArgs = {
   absolutePath: InputMaybe<StringQueryOperatorInput>;
   accessTime: InputMaybe<DateQueryOperatorInput>;
@@ -2518,9 +2524,11 @@ type Query_fileArgs = {
   changeTime: InputMaybe<DateQueryOperatorInput>;
   childImageSharp: InputMaybe<ImageSharpFilterInput>;
   childMarkdownRemark: InputMaybe<MarkdownRemarkFilterInput>;
+  childWorksDataYaml: InputMaybe<WorksDataYamlFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
   childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
   childrenMarkdownRemark: InputMaybe<MarkdownRemarkFilterListInput>;
+  childrenWorksDataYaml: InputMaybe<WorksDataYamlFilterListInput>;
   ctime: InputMaybe<DateQueryOperatorInput>;
   ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   dev: InputMaybe<IntQueryOperatorInput>;
@@ -2614,9 +2622,7 @@ type Query_imageSharpArgs = {
 
 
 type Query_markdownRemarkArgs = {
-  childGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
-  childrenGrvscCodeBlock: InputMaybe<GRVSCCodeBlockFilterListInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   excerptAst: InputMaybe<JSONQueryOperatorInput>;
   fields: InputMaybe<FieldsFilterInput>;
@@ -2705,6 +2711,16 @@ type Query_sitePluginArgs = {
   resolve: InputMaybe<StringQueryOperatorInput>;
   ssrAPIs: InputMaybe<StringQueryOperatorInput>;
   version: InputMaybe<StringQueryOperatorInput>;
+};
+
+
+type Query_worksDataYamlArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  data: InputMaybe<WorksDataYamlDataFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
 };
 
 type Site = Node & {
@@ -3564,6 +3580,188 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
+type WorksDataYaml = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly data: ReadonlyArray<WorksDataYamlData>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly name: Scalars['String'];
+  readonly parent: Maybe<Node>;
+};
+
+type WorksDataYamlConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<WorksDataYamlEdge>;
+  readonly group: ReadonlyArray<WorksDataYamlGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<WorksDataYaml>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type WorksDataYamlConnection_distinctArgs = {
+  field: WorksDataYamlFieldSelector;
+};
+
+
+type WorksDataYamlConnection_groupArgs = {
+  field: WorksDataYamlFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type WorksDataYamlConnection_maxArgs = {
+  field: WorksDataYamlFieldSelector;
+};
+
+
+type WorksDataYamlConnection_minArgs = {
+  field: WorksDataYamlFieldSelector;
+};
+
+
+type WorksDataYamlConnection_sumArgs = {
+  field: WorksDataYamlFieldSelector;
+};
+
+type WorksDataYamlData = {
+  readonly created: Scalars['Date'];
+  readonly description: Scalars['String'];
+  readonly image: Maybe<File>;
+  readonly title: Scalars['String'];
+  readonly update: Scalars['Date'];
+  readonly url: Scalars['String'];
+};
+
+
+type WorksDataYamlData_createdArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type WorksDataYamlData_updateArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type WorksDataYamlDataFieldSelector = {
+  readonly created: InputMaybe<FieldSelectorEnum>;
+  readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly image: InputMaybe<FileFieldSelector>;
+  readonly title: InputMaybe<FieldSelectorEnum>;
+  readonly update: InputMaybe<FieldSelectorEnum>;
+  readonly url: InputMaybe<FieldSelectorEnum>;
+};
+
+type WorksDataYamlDataFilterInput = {
+  readonly created: InputMaybe<DateQueryOperatorInput>;
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly image: InputMaybe<FileFilterInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
+  readonly update: InputMaybe<DateQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
+};
+
+type WorksDataYamlDataFilterListInput = {
+  readonly elemMatch: InputMaybe<WorksDataYamlDataFilterInput>;
+};
+
+type WorksDataYamlDataSortInput = {
+  readonly created: InputMaybe<SortOrderEnum>;
+  readonly description: InputMaybe<SortOrderEnum>;
+  readonly image: InputMaybe<FileSortInput>;
+  readonly title: InputMaybe<SortOrderEnum>;
+  readonly update: InputMaybe<SortOrderEnum>;
+  readonly url: InputMaybe<SortOrderEnum>;
+};
+
+type WorksDataYamlEdge = {
+  readonly next: Maybe<WorksDataYaml>;
+  readonly node: WorksDataYaml;
+  readonly previous: Maybe<WorksDataYaml>;
+};
+
+type WorksDataYamlFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly data: InputMaybe<WorksDataYamlDataFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type WorksDataYamlFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly data: InputMaybe<WorksDataYamlDataFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type WorksDataYamlFilterListInput = {
+  readonly elemMatch: InputMaybe<WorksDataYamlFilterInput>;
+};
+
+type WorksDataYamlGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<WorksDataYamlEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<WorksDataYamlGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<WorksDataYaml>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type WorksDataYamlGroupConnection_distinctArgs = {
+  field: WorksDataYamlFieldSelector;
+};
+
+
+type WorksDataYamlGroupConnection_groupArgs = {
+  field: WorksDataYamlFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type WorksDataYamlGroupConnection_maxArgs = {
+  field: WorksDataYamlFieldSelector;
+};
+
+
+type WorksDataYamlGroupConnection_minArgs = {
+  field: WorksDataYamlFieldSelector;
+};
+
+
+type WorksDataYamlGroupConnection_sumArgs = {
+  field: WorksDataYamlFieldSelector;
+};
+
+type WorksDataYamlSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly data: InputMaybe<WorksDataYamlDataSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
 type AboutPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3635,6 +3833,11 @@ type TagPageTemplateQueryVariables = Exact<{
 
 
 type TagPageTemplateQuery = { readonly allMarkdownRemark: { readonly totalCount: number, readonly nodes: ReadonlyArray<{ readonly frontmatter: { readonly title: string | null, readonly postdate: string | null, readonly tags: ReadonlyArray<string> | null }, readonly fields: { readonly slug: string } }> } };
+
+type WorksPageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type WorksPageQuery = { readonly allWorksDataYaml: { readonly nodes: ReadonlyArray<{ readonly name: string, readonly data: ReadonlyArray<{ readonly title: string, readonly description: string, readonly url: string, readonly created: string, readonly update: string, readonly image: { readonly publicURL: string | null } | null }> }> } };
 
 type YearPageTemplateQueryVariables = Exact<{
   begin: Scalars['Date'];

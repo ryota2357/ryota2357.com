@@ -29,24 +29,16 @@
       content: "- ";
     }
   }
-  .italic {
-    font-style: italic;
-  }
   .gray {
     color: $text-gray;
   }
   .indent {
     padding-left: 1rem;
   }
-  .game-item {
+  .item {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
-  .time {
-    display: flex;
-    flex-direction: row;
     gap: 1rem;
-    color: $text-gray;
   }
 }

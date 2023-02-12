@@ -1,4 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
+import { join } from "path";
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: "ryota2357",
@@ -84,18 +86,39 @@ const config: GatsbyConfig = {
   }}}*/
   plugins: [
     `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/post`,
         name: `blog`,
+        path: join(__dirname, "content", "post"),
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: join(__dirname, "src", "images"),
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: join(__dirname, "content", "works", "images"),
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: join(__dirname, "content", "works", "data"),
+      },
+    },
+    {
+      resolve: `gatsby-transformer-yaml`,
+      options: {
+        typeName: `WorksDataYaml`,
       },
     },
     {
@@ -134,8 +157,6 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     {
       resolve: "gatsby-plugin-google-gtag",
       options: {

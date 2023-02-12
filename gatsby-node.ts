@@ -90,20 +90,15 @@ export const onCreateNode: GatsbyNode["onCreateNode"] = ({
   getNode,
 }) => {
   if (node.internal.type === "MarkdownRemark") {
-    // ファイルパスからurlを生成
-    // https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/#createfilepath
-    const value = createFilePath({ node, getNode });
-
-    // nodeに
+    // node (MarkdownRemark)に
     // "fields": {
-    //   "slug": `"/blog${value}"
+    //   "slug": `"/blog/~~"
     // `}
     // を追加する。
-    // https://www.gatsbyjs.com/docs/reference/config-files/actions/#createNodeField
     actions.createNodeField({
       node,
       name: "slug",
-      value: Path.join("/", "blog", value),
+      value: Path.join("/", "blog", createFilePath({ node, getNode })),
     });
   }
 };
@@ -120,12 +115,6 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 
 export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] =
   ({ actions }) => {
-    // siteMetadata {} オブジェクトを明示的に定義します。
-    // こうすることで、gatsby-config.jsから削除されても、常に定義されるようになります。
-
-    // Markdown のフロントマターも明示的に定義します。
-    // この方法により、"content/blog" 内にブログ記事が格納されていない場合でも、
-    // "MarkdownRemark" クエリはエラーを返すのではなく、`null` を返すようになります。
     actions.createTypes(`
     type Site {
       siteMetadata: SiteMetadata!
@@ -155,6 +144,19 @@ export const createSchemaCustomization: GatsbyNode["createSchemaCustomization"] 
     type SocialData {
       url: String!
       name: String!
+    }
+
+    type WorksDataYaml implements Node {
+      name: String!
+      data: [WorksDataYamlData!]!
+    }
+
+    type WorksDataYamlData {
+      title: String!,
+      description: String!,
+      url: String!
+      created: Date! @dateformat
+      update: Date! @dateformat
     }
 
     type MarkdownRemark implements Node {

@@ -1,86 +1,82 @@
+import { graphql, PageProps } from "gatsby";
 import { Layout, Seo, ContentBlock } from "@/components";
-import { works } from "@/data";
 import dayjs from "dayjs";
 import "@/style/pages/works.scss";
 
-const Works = () => {
-  const timeFmt = (time: Date, template: string) =>
-    time ? dayjs(new Date(time)).format(template) : "";
+function formatTime(time: Date): string {
+  return dayjs(new Date(time)).format("YYYY/MM/DD (HH:mm)");
+}
 
-  const sortByDate = (a: Date, b: Date) => (a < b ? 1 : -1);
-  const gameData =
-    works.get("u1w")?.sort((a, b) => sortByDate(a.created, b.created)) ?? [];
-  const plugins =
-    works.get("vim/neovim")?.sort((a, b) => sortByDate(a.created, b.created)) ??
-    [];
-
+const Works = ({ data }: PageProps<Queries.WorksPageQuery>) => {
   return (
     <Layout id="works-page">
       <h1>Works</h1>
-      <div className="vim-neovim-plug" />
-      <ContentBlock title="Vim/Neovim Plugins">
-        <ul>
-          {plugins.map((plug, index) => (
-            <li key={index}>
-              <h3>
-                <a href={plug.url}>{plug.title}</a>
-              </h3>
-              <p className="italic gray indent">
-                {plug.description.split("\n")[0] +
-                  "\u00A0\u00A0" +
-                  `(last commit: ${timeFmt(plug.update, "YYYY/MM/DD")})`}
-              </p>
-              {plug.description
-                .split("\n")
-                .slice(1)
-                .map((line, index) => (
-                  <p className="indent" key={index}>
-                    {line}
-                  </p>
-                ))}
-            </li>
-          ))}
-        </ul>
-      </ContentBlock>
-      <ContentBlock title="Games">
-        <ul>
-          {gameData.map((game, index) => (
-            <li key={index}>
-              <h3>
-                <a href={game.url}>{game.title}</a>
-              </h3>
-              <div className="game-item">
-                <div>
-                  <div className="time indent">
-                    <p>
-                      公開:{" "}
-                      <time>{timeFmt(game.created, "YYYY/MM/DD (HH:mm)")}</time>
+      {data.allWorksDataYaml.nodes.map((one) => (
+        <ContentBlock title={one.name}>
+          <ul>
+            {one.data.map((item, index) => (
+              <li key={index}>
+                <h3>
+                  <a href={item.url} target="_blank">
+                    {item.title}
+                  </a>
+                </h3>
+                <div className="item">
+                  <div className="indent">
+                    <p className="gray">
+                      公開: <time>{formatTime(new Date(item.created))}</time>
                     </p>
-                    {game.update !== game.created && (
-                      <p>
+                    {item.created != item.update && (
+                      <p className="gray">
                         最終更新:{" "}
-                        <time>
-                          {timeFmt(game.update, "YYYY/MM/DD (HH:mm)")}
-                        </time>
+                        <time>{formatTime(new Date(item.update))}</time>
                       </p>
                     )}
+                    {item.description.split("\n").map((line) => (
+                      <p>{line}</p>
+                    ))}
                   </div>
-                  {game.description.split("\n").map((line, index) => (
-                    <p className="indent" key={index}>
-                      {line}
-                    </p>
-                  ))}
+                  <img
+                    src={item.image?.publicURL!}
+                    alt={`${item.title} icon`}
+                    style={{
+                      objectFit: "cover",
+                      width: "8rem",
+                      height: "8rem",
+                    }}
+                  />
                 </div>
-                <div className="image">{game.img}</div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </ContentBlock>
+              </li>
+            ))}
+          </ul>
+        </ContentBlock>
+      ))}
     </Layout>
   );
 };
 
-export const Head = () => <Seo title="Works" type="website" image={["works"]} />;
+export const Head = () => (
+  <Seo title="Works" type="website" image={["works"]} />
+);
 
 export default Works;
+
+export const query = graphql`
+  query WorksPage {
+    allWorksDataYaml(sort: { name: ASC }) {
+      nodes {
+        name
+        data {
+          title
+          description
+          url
+          created
+          update
+          image {
+            publicURL
+          }
+        }
+      }
+    }
+  }
+`;

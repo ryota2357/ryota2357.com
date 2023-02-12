@@ -32,7 +32,9 @@ const About = ({ data }: PageProps<Queries.AboutPageQuery>) => (
   </Layout>
 );
 
-export const Head = () => <Seo title="About" type="website" image={["about"]} />;
+export const Head = () => (
+  <Seo title="About" type="website" image={["about"]} />
+);
 
 export default About;
 
