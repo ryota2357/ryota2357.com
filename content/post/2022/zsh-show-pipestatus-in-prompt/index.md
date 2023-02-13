@@ -122,7 +122,7 @@ precmd() {
 
 ちなみに、この保存方法だけど、
 
-```zhs
+```zsh
 __save_pipestatus=$pipestatus
 ```
 
