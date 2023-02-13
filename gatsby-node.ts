@@ -82,6 +82,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
 
   createYearPage(2021);
   createYearPage(2022);
+  createYearPage(2023);
 };
 
 export const onCreateNode: GatsbyNode["onCreateNode"] = ({
