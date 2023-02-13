@@ -1,4 +1,511 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 12 Feb 2023 07:06:07 GMT</lastBuildDate><item><title><![CDATA[node-canvasで雑にOG画像を生成する]]></title><description><![CDATA[ブログの OG 画像を Qiita と Zenn みたいにタイトルが書かれてるやつにしたかったので作った。 生成は GithubAction で自動化した。 npm プロジェクトの作成 Node18 と Typescript 使ってやる。 適当に Node…]]></description><link>https://ryota2357.com/blog/2022/og-image-with-node-canvas/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/og-image-with-node-canvas/</guid><content:encoded>&lt;p&gt;ブログの OG 画像を Qiita と Zenn みたいにタイトルが書かれてるやつにしたかったので作った。&lt;br&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 13 Feb 2023 14:37:14 GMT</lastBuildDate><item><title><![CDATA[大学の授業でBadAppleの動画作った記録]]></title><description><![CDATA[大学の授業「基礎プログラミングおよび演習」で作った動画の開発記録 課題は「C 言語を用いて、PPM ファイル生成するプログラムを作成 → そのプログラムによって作られた PPM ファイルを繋げて動画を作成する」というもの。 Repository: https://github…]]></description><link>https://ryota2357.com/blog/2023/dev-fp-badapple/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/dev-fp-badapple/</guid><content:encoded>&lt;p&gt;大学の授業「基礎プログラミングおよび演習」で作った動画の開発記録&lt;/p&gt;
+&lt;p&gt;課題は「C 言語を用いて、PPM ファイル生成するプログラムを作成 → そのプログラムによって作られた PPM ファイルを繋げて動画を作成する」というもの。&lt;/p&gt;
+&lt;p&gt;Repository: &lt;strong&gt;&lt;a href=&quot;https://github.com/ryota2357/fp15-project&quot;&gt;https://github.com/ryota2357/fp15-project&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;ja&quot; dir=&quot;ltr&quot;&gt;大学の授業(基礎プログラミングおよび演習)で、C言語で画像(PPMファイル)を生成するプログラムを作って、それらを繋げて動画を作る、という課題があった&lt;br&gt;ちょっと頑張ってみた&lt;br&gt;&lt;br&gt;初めてCMake使った&lt;br&gt;repo: &lt;a href=&quot;https://t.co/MwCfVi0ydR&quot;&gt;https://t.co/MwCfVi0ydR&lt;/a&gt;&lt;br&gt;共同作成者: &lt;a href=&quot;https://twitter.com/yktr_drm06?ref_src=twsrc%5Etfw&quot;&gt;@yktr_drm06&lt;/a&gt; &lt;a href=&quot;https://t.co/gOSscTrzkk&quot;&gt;pic.twitter.com/gOSscTrzkk&lt;/a&gt;&lt;/p&gt;&amp;mdash; ryota2357 (@95s7k84695a) &lt;a href=&quot;https://twitter.com/95s7k84695a/status/1623828960265244672?ref_src=twsrc%5Etfw&quot;&gt;February 9, 2023&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;p&gt;このプログラムは&lt;a href=&quot;https://github.com/darumakka2&quot;&gt;やきとり&lt;/a&gt;くんと共同で作成した。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E5%85%A8%E4%BD%93%E3%81%AE%E8%AA%AC%E6%98%8E&quot;&gt;プログラム全体の説明&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#mainc&quot;&gt;main.c&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E5%85%A8%E4%BD%93%E5%83%8F&quot;&gt;プログラム全体像&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%90%84%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E5%AE%9F%E8%A3%85%E3%81%AE%E8%A9%B1&quot;&gt;各モジュール実装の話&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#movie-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB&quot;&gt;movie モジュール&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#badapple-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB&quot;&gt;badapple モジュール&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#typography-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB&quot;&gt;typography モジュール&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#main.c-%E5%AE%9F%E8%A3%85%E3%81%AE%E8%A9%B1&quot;&gt;main.c 実装の話&lt;/a&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#badapple_renderer&quot;&gt;badapple_renderer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#lyrics_renderer&quot;&gt;lyrics_renderer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#draw_char_at&quot;&gt;draw_char_at&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E6%9C%80%E5%BE%8C%E3%81%AB&quot;&gt;最後に&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;プログラム全体の説明&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E5%85%A8%E4%BD%93%E3%81%AE%E8%AA%AC%E6%98%8E&quot; aria-label=&quot;プログラム全体の説明 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;プログラム全体の説明&lt;/h2&gt;
+&lt;p&gt;まず、全体的な説明をする。&lt;/p&gt;
+&lt;h3 id=&quot;mainc&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#mainc&quot; aria-label=&quot;mainc permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;main.c&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ryota2357/fp15-project/blob/main/src/main.c&quot;&gt;src/main.c&lt;/a&gt; は今回のプログラムのエントリーポイントである。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;main()&lt;/code&gt; 関数の実装はシンプルである。重要な部分のみにしたものを次に示す。説明は後ほど行う。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;c&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;argc&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;* &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;[]&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;* build_dir = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;];&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;font_bitmap_init&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;badapple_init&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    Movie movie = &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Movie_new&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        BADAPPLE_FRAME_WIDTH * &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        BADAPPLE_FRAME_HEIGHT * &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        BADAPPLE_FRAME_COUNT + &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;30&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    );&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Movie_add_renderer&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&amp;amp;movie, badapple_renderer, &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;// ... (たくさんrenderer追加)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Movie_add_renderer&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&amp;amp;movie, credit_renderer, BADAPPLE_FRAME_COUNT);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Movie_build&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&amp;amp;movie, build_dir);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Movie_free&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&amp;amp;movie);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;今回、動画の作成する過程を次の概念に分割している。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Movie&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Frame&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Renderer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;Movie&lt;/code&gt; はその名の通り「動画」を表す class である。今回は C 言語を用いた開発なので class ではなく struct であるが、class と呼ばせてもらう。
+インスタンスの生成は &lt;code&gt;Movie_new(width, height, length)&lt;/code&gt;で行える。&lt;code&gt;width&lt;/code&gt;は動画の幅(ピクセル数)、&lt;code&gt;height&lt;/code&gt;は動画の高さ(ピクセル数)、&lt;code&gt;length&lt;/code&gt;は動画の長さ(フレーム数)である。
+メソッドは&lt;code&gt;Movie_.*(&amp;#x26;self, ...)&lt;/code&gt;というようにして呼び出す。&lt;/p&gt;
+&lt;p&gt;2 つ目の&lt;code&gt;Frame&lt;/code&gt;は動画をパラパラ漫画のようにして捉えた時の 1 枚の画像(1 フレーム)を表す class である(実際は struct であるが&lt;code&gt;Movie&lt;/code&gt;の時と同様...)。&lt;code&gt;main()&lt;/code&gt;内では使われているところはない。
+これは次に説明する&lt;code&gt;Renderer&lt;/code&gt;が使用している。
+&lt;code&gt;Frame&lt;/code&gt;も&lt;code&gt;Movie&lt;/code&gt;と同様、&lt;code&gt;Frame_new(width, height)&lt;/code&gt;としてインスタンスを生成、&lt;code&gt;Frame_.*(&amp;#x26;self, ...)&lt;/code&gt;でメソッドが呼べる。&lt;/p&gt;
+&lt;p&gt;最後に&lt;code&gt;Renderer&lt;/code&gt;であるが、これは&lt;code&gt;Frame&lt;/code&gt;に色を塗る delegate、関数オプジェクトである(実際は関数ポインタ)。
+&lt;code&gt;void Renderer(frame, time)&lt;/code&gt;という関数であり、引数で受け取った frame (&lt;code&gt;Frame&lt;/code&gt;のインスタンス)に自由に図形や文字などを塗ることが出来る。引数の time は自身(&lt;code&gt;Renderer&lt;/code&gt;)が有効になってからの経過フレーム数であり、これを使うことでアニメーション等が実装できるようになっている。&lt;/p&gt;
+&lt;p&gt;これらを踏まえて先ほどの&lt;code&gt;main()&lt;/code&gt;を見てみる。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;font_bitmap_init()&lt;/code&gt; で歌詞を表示するための文字のビットマップを setup。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;badapple_init()&lt;/code&gt; で Bad Apple!! の動画の各フレームデータを setup。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Movie_new()&lt;/code&gt; で動画を 1 つ生成。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Movie_add_renderer()&lt;/code&gt; で&lt;code&gt;Renderer&lt;/code&gt;をいろいろ追加。第三引数は&lt;code&gt;delay&lt;/code&gt;であり、追加した renderer をいつ(何フレーム目)から有効にするのかを指定している.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Movie_build()&lt;/code&gt; で動画をビルド。ここで PPM ファイル(1 フレーム 1PPM ファイル)が第二引数に指定したディレクトリに出力される。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Movie_free()&lt;/code&gt; で動画を解放。(動画の生成では内部で多くのアロケーションが発生してるのでそれらを解放してあげる必要がある)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;プログラム全体像&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E5%85%A8%E4%BD%93%E5%83%8F&quot; aria-label=&quot;プログラム全体像 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;プログラム全体像&lt;/h3&gt;
+&lt;p&gt;続いて、全体像を説明する。 重要な部分のみを抜き出して次に示した。&lt;/p&gt;
+&lt;p&gt;このプログラムは CMake を用いて開発されているので実際には CMakeLists.txt などもあるが、省略している。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── Makefile            // 自動化&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;└── src&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    ├── main.c          // entry、ここに具体的な動画生成プログラムを記述&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    ├── badapple        // Bad Apple のフレームデータを管理・取得する関数を提供するモジュール&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    │   ├── assets&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    │   ├── include&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    │   ├── resources&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    │   └── src&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    ├── movie           // 動画生成のクラス・関数を提供するモジュール&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    │   ├── include&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    │   └── src&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    └── typography      // 文字(歌詞とか)を表示するための関数を提供するモジュール&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        ├── font-bitmap&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        │   ├── assets&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        │   └── resources&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        ├── include&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        └── src&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上の通り、1 枚の&lt;code&gt;main.c&lt;/code&gt;がエントリーポイントで、これは先ほど軽く説明した通りである。
+本プログラムはその他に 3 つのモジュール(と僕が勝手に読んでる)が存在する。それぞれのモジュールは次のような構造を持っている。&lt;/p&gt;
+&lt;p&gt;(クラス図のように書いているが、クラス図ではない)&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 63.92405063291139%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAIAAAAmMtkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAABlUlEQVR42nXS3Y6jIBgGYO//vnZqo6nFTDOtjiZaFUSEKqyKCmyU6f5kus+BB8orH29w0jQVQvzcCSE45/0TY+zxePSvjOM4TZMzz/OqVBTHYRgCAMqypJQ2TdO2LYQQIdS+sqXWdQtrY94v70f36LpuVVXDMIjdy3EspZTW2ob15ePi+/7pdLper8lT+lSW5eNff8LK6CA8v/148zwvCAIAQLADANxutziOsywr/wIhXNf1K2yMGcfRDiml1Fovy7JNpLXaSSk551JK+95GlFIOIaRpGkJI3/fDMHDOMcb2YHxnu7WrtdbmaQtHyefhcDifz0mSIITgzpbMGKOUtm1rf8EYq+s6iiL7qes65yO+ucejv/M8z/f9IAg8zwvDME3TqqpsW5RRCGFd13me13WNMaaUOrBGWZ4VRQEhZIz9vhtd19kWOOfTNJlvtrHt6dd1VUrZPvq+X3bzPC/LYpfqb74uiTEmTj4BAIQQjDFCqNlhjLuuM/+x7SyEmOf5XhZRFBW7PM/v97t9EkKklNMr4zj+Amwc1YCkSnB6AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;movieモジュール&quot;
+        title=&quot;&quot;
+        src=&quot;/static/e8b76c018e118edfb6b789f20651f041/f058b/mod-movie.png&quot;
+        srcset=&quot;/static/e8b76c018e118edfb6b789f20651f041/c26ae/mod-movie.png 158w,
+/static/e8b76c018e118edfb6b789f20651f041/6bdcf/mod-movie.png 315w,
+/static/e8b76c018e118edfb6b789f20651f041/f058b/mod-movie.png 630w,
+/static/e8b76c018e118edfb6b789f20651f041/40601/mod-movie.png 945w,
+/static/e8b76c018e118edfb6b789f20651f041/6937a/mod-movie.png 1094w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Global でくくられているのは、グローバル変数(#define されたマクロ)・グローバル関数のことであり、Global というクラスのメンバを表しているものではない。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 46.835443037974684%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAAsTAAALEwEAmpwYAAABQElEQVR42n3Ra0+DMBQGYP7/31IyGJFsH4B4xLNNhA16oe26UgJlRnDGS/T51jTvSc57vMcZY0xrrZQihMiZEKJtW6VUNzPGWGv7vrfWdl1nrTXGeHXTAMAyIkmSOI4BgBDCOSeEnM9nfblQShljAJBlGSISQpqmkVJ6L2Vx7/vROgrDMAiCNE3zPF/+OOedMa9VGa7DKIqCIACAw+Gw3+8RkVLqVfVxs9kkSZKmKQAgYlmWRVEg4m63E0LY3nLO27allCqlnHPDMIzj2Pe9Z4y5Xq/TjftumqbrzTAMzrnP5ziOH+HfnHNCCMYY51xKWVUVInLOlVJSSqWU1vrP8DRN8PwUP7z3RyldSqI3dV0LIf4LJ5D5vn83WwqLomi1Wm232yzLTqfTz52/Ln8oi+WEeZ4jYj5DxOPx+H5Crd8ADLDyJKww0iIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;badappleモジュール&quot;
+        title=&quot;&quot;
+        src=&quot;/static/4e4f0696467bb087715c91988724d563/f058b/mod-badapple.png&quot;
+        srcset=&quot;/static/4e4f0696467bb087715c91988724d563/c26ae/mod-badapple.png 158w,
+/static/4e4f0696467bb087715c91988724d563/6bdcf/mod-badapple.png 315w,
+/static/4e4f0696467bb087715c91988724d563/f058b/mod-badapple.png 630w,
+/static/4e4f0696467bb087715c91988724d563/4e6ec/mod-badapple.png 827w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;#x3C;&amp;#x3C;union&gt;&gt;&lt;/code&gt;は C の union、共用体のことである。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.56962025316456%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAAsTAAALEwEAmpwYAAABIUlEQVR42pXQbY+CMAwAYP7/79KcGmZ0wjnewhiMTdyNucE0wcjFEUku5xefT83aZm093/eXy+VisSCE9H3fdV3/MsXW2uv1aq2dU92LJ4SQUiKEOOdTkdZ6TmutKaVZlhFCjDH65XK5SCm907mJ02T1tQIAtG1rOgODw363hxACABBCOycIAoTQ8XiMnDAMGWPeWZzzAud5HsexEGIYhorS0iGEKKWMMfMUWmvjaK2VUp4xZhzHx+Mxfui5c9u206rzYZqmUUrdbrf5xVr7vpmfTrgooihKkiRz1us1hHCK0zStqkpK+X+0Z3PNGfw+bMF2s9kAAHzfDx2McVEUZVlijBlj738WP6Lm9VREnMqhlHLO67rO85wxdr/fh7+MMb/KV/J0AZNxtAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;typographyモジュール&quot;
+        title=&quot;&quot;
+        src=&quot;/static/a8bfcffa667b3fb3fb1a67ce3a78cf8e/f058b/mod-typography.png&quot;
+        srcset=&quot;/static/a8bfcffa667b3fb3fb1a67ce3a78cf8e/c26ae/mod-typography.png 158w,
+/static/a8bfcffa667b3fb3fb1a67ce3a78cf8e/6bdcf/mod-typography.png 315w,
+/static/a8bfcffa667b3fb3fb1a67ce3a78cf8e/f058b/mod-typography.png 630w,
+/static/a8bfcffa667b3fb3fb1a67ce3a78cf8e/af192/mod-typography.png 645w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;各モジュール実装の話&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%90%84%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB%E5%AE%9F%E8%A3%85%E3%81%AE%E8%A9%B1&quot; aria-label=&quot;各モジュール実装の話 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;各モジュール実装の話&lt;/h2&gt;
+&lt;p&gt;それぞれのモジュールの実装方法について説明する。&lt;/p&gt;
+&lt;h3 id=&quot;movie-モジュール&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#movie-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB&quot; aria-label=&quot;movie モジュール permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;movie モジュール&lt;/h3&gt;
+&lt;p&gt;ディレクトリ構成は次のようになっている。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;2&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;src/movie&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── CMakeLists.txt&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── include&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── color.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── frame.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── free.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── movie.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   └── renderer.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;└── src&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    ├── color.c&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    ├── frame.c&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    └── movie.c&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;movie モジュールでは先ほどの「プログラム全体の説明」で書いた&lt;code&gt;Movie&lt;/code&gt;, &lt;code&gt;Frame&lt;/code&gt;, &lt;code&gt;Renderer&lt;/code&gt;といったクラスとそのメソッドを実装している。&lt;/p&gt;
+&lt;p&gt;メソッド&lt;code&gt;Movie_build()&lt;/code&gt;について追加説明する。&lt;a href=&quot;https://github.com/ryota2357/fp15-project/blob/main/src/movie/src/movie.c&quot;&gt;src/movie/src/movie.c&lt;/a&gt; の一部を次に載せる。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;c&quot; data-index=&quot;3&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;build_for_time&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; Movie* &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;* &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;ensure_not_freed&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(movie);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;size_t&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; count = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;renderer_count&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    Frame frame = &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Frame_new&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;size_t&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; i = &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;; i &amp;lt; count; ++i) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; delay = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;renderer_delay&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;[i];&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (delay &amp;gt; time) &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;continue&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;movie&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;renderers&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;[i](&amp;amp;frame, time - delay);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Frame_write_file&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&amp;amp;frame, filename);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Frame_free&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&amp;amp;frame);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;show_progress_in_current_line&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\033&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;[2K&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;    %d / %d&lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, time, length);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk6&quot;&gt;\033&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;[1F&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;fflush&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(stdout);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Movie_build&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; Movie* &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;* &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;build_dir&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;ensure_not_freed&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(self);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; length = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; time = &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;; time &amp;lt; length; ++time) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;* name = &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;calloc&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;strlen&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(build_dir) + &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;sizeof&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;char&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;));  &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;// 15 is greater than &amp;quot;/0000.ppm&amp;quot; length&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;sprintf&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(name, &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;%s/%04d.ppm&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, build_dir, time);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;build_for_time&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(self, name, time);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;FREE&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(name);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;show_progress_in_current_line&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(time, length);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;非常にシンプルな実装を行っている。&lt;code&gt;Movie_build()&lt;/code&gt;が呼ばれると、time = 0 から全てのフレーム毎に&lt;code&gt;Frame&lt;/code&gt;のインスタンスを生成し、登録されている&lt;code&gt;Renderer&lt;/code&gt;を一つずつ処理させ、その後ファイルに出力、という流れである。&lt;/p&gt;
+&lt;p&gt;ここで、&lt;code&gt;show_progress_in_current_line()&lt;/code&gt;関数でプログレスを表示するようにしている。今回作成したアニメーションのフレーム数は 6500 以上あり、ビルド完了までに僕の PC で 80 秒ほどかかる。
+いつ終わるのか見えないのはストレスだったので実装した。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\033[2K&lt;/code&gt; はその行を削除、&lt;code&gt;\033[1F&lt;/code&gt; はカーソルを 1 行上に移動させる。という ASCII エスケープである。&lt;/p&gt;
+&lt;h3 id=&quot;badapple-モジュール&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#badapple-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB&quot; aria-label=&quot;badapple モジュール permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;badapple モジュール&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E5%85%A8%E4%BD%93%E5%83%8F&quot;&gt;プログラム全体像&lt;/a&gt;で示した通り、このモジュールは主に&lt;code&gt;badapple_init()&lt;/code&gt;と&lt;code&gt;badapple_get()&lt;/code&gt;という 2 つの関数を提供するモジュールである。&lt;/p&gt;
+&lt;p&gt;ディレクトリ構成は次のようになっている。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;4&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;src/badapple&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── CMakeLists.txt&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── assets&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── README.md&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── converter.ts&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   └── frames.txt&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── include&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── badapple.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── bitset128.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   └── free.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── resources&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   └── frames.txt&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;└── src&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    ├── badapple.c&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    └── bitset128.c&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Bad Apple!! のフレームデータは &lt;a href=&quot;https://github.com/Reyansh-Khobragade/bad-apple-nodejs&quot;&gt;Reyansh-Khobragade/bad-apple-nodejs&lt;/a&gt; を使わせてもらってい、&lt;a href=&quot;https://github.com/ryota2357/fp15-project/blob/main/src/badapple/assets/frames.txt&quot;&gt;src/badapple/assets/frame.txt&lt;/a&gt; に配置してある。フレームデータの 1 部を次に示す。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;5&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;256&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;00:00:8,500 --&amp;gt; 00:00:8,533&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠙⠿⣿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⢀⠀⠘⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠁⠀⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣧⣷⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⡿⠛⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⣄⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠈⠙⠻⢿⣿⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡄⠀⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡿⠿⢿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣶⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;これは 256 フレーム目のデータである。このようなテキストデータがずらっと入っている。&lt;/p&gt;
+&lt;p&gt;このデータは非常にグラフィカルであり、人間にとっては見やすくて良いのだが、プログラム的には嬉しくない。プログラムが欲しいのはどのピクセルが黒で、どのピクセルが白で、というビットマップデータである。
+そこで、このデータをプログラム的にわかりやすいデータへ加工する。このデータを構成している文字&lt;code&gt;⣿&lt;/code&gt;や&lt;code&gt;⣇&lt;/code&gt;はマルチバイト文字であるため、C で読むには少し面倒である。そこでデータの加工では TypeScript(Deno)を用いて実装した。&lt;a href=&quot;https://github.com/ryota2357/fp15-project/blob/main/src/badapple/assets/converter.ts&quot;&gt;src/badapple/assets/converter.ts&lt;/a&gt; である。&lt;/p&gt;
+&lt;p&gt;メインとなる実装は次である。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;typescript&quot; data-index=&quot;6&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// ① ⑤&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// ② ⑥&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// ③ ⑦&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// ④ ⑧ に対して、⑧ ⑦ ⑥ ...① のビット列(number) との相互変換&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// https://qiita.com/zakuroishikuro/items/15d1a69178895edf9a21#8%E7%82%B9%E7%82%B9%E5%AD%97&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;numToBrailleLetter&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;): &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;let&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; += (&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;amp; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0b00001000&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) &amp;lt;&amp;lt; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;; &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;//⑦ を左シフト&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; += (&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;amp; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0b01110000&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) &amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;; &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;//④ ⑤ ⑥ を右シフト&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; += &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;amp; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0b10000111&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;; &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;//① ② ③ ⑧ はそのまま&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;fromCodePoint&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; + &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0x2800&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;brailleLetterToNum&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;): &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;codePointAt&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; == &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;throw&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;`Invalid character: &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;let&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; += (&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;amp; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0b01000000&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) &amp;gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; += (&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;amp; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0b00111000&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) &amp;lt;&amp;lt; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; += &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;amp; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0b10000111&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;flags&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;コメントに記してある通り、&lt;a href=&quot;https://qiita.com/zakuroishikuro/items/15d1a69178895edf9a21#8%E7%82%B9%E7%82%B9%E5%AD%97&quot;&gt;Unicode の点字でお絵かき#8 点点字&lt;/a&gt;をほぼそのまま使わせてもらっている。
+このスクリプトによって、先ほどのデータは書き換えられ、&lt;a href=&quot;https://github.com/ryota2357/fp15-project/blob/main/src/badapple/assets/frames.txt&quot;&gt;src/badapple/resources/frame.txt&lt;/a&gt; に配置される。&lt;/p&gt;
+&lt;p&gt;先ほどの 256 フレーム目のデータは次のように変換される。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;7&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;c:0256&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;t:00:00:8,500 --&amp;gt; 00:00:8,533&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,127,119,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,015,000,000,000,049,119,255,119,247,255,255,255,255,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,007,000,000,000,000,000,000,000,000,016,115,255,255,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,127,019,001,000,000,000,000,000,000,000,000,000,000,000,241,255,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,063,001,000,000,000,000,000,000,000,000,000,000,000,000,000,016,255,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,007,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,048,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,014,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,247,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,238,204,000,000,000,000,000,000,000,000,000,000,000,000,000,000,240,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,207,008,000,000,000,000,000,000,000,000,000,000,000,000,000,240,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,014,000,000,008,000,000,000,000,000,000,000,000,000,240,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,247,255,255,255,255,255,255,255,255,255,255,239,000,000,001,000,000,000,000,000,000,000,128,000,048,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,019,001,000,000,000,241,255,255,255,255,255,255,255,255,004,000,000,000,000,000,000,000,000,000,128,207,239,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,143,000,000,000,000,000,112,255,255,255,255,255,127,051,055,000,000,000,000,000,000,000,000,000,140,240,255,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,140,000,000,000,000,000,016,049,115,247,255,047,000,000,000,000,000,000,000,000,000,000,000,241,254,255,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,239,206,012,000,000,000,000,000,000,017,000,000,000,000,000,000,000,000,000,000,000,000,048,255,255,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,015,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,255,127,119,247,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,007,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,236,238,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,113,255,255,255,255,255,255,255,255&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;C 言語側で読み取りやすいように、各行の先頭に&lt;code&gt;c:&lt;/code&gt;、&lt;code&gt;t:&lt;/code&gt;、&lt;code&gt;b:&lt;/code&gt;といった文字をつけ、さらに 0~255 の数字は左を 0 でパディングすることで、C 側では常に 一定の文字数を読んで&lt;code&gt;atoi()&lt;/code&gt;をすればいいだけにしている。&lt;/p&gt;
+&lt;p&gt;加工済みのデータを&lt;code&gt;badapple_init()&lt;/code&gt;にて読み取り配列に格納している。そして&lt;code&gt;badapple_get(time)&lt;/code&gt; で特定の time のフレームが取得できるようになっている。init する前に get を呼ぶとエラー終了するようになっている。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;badapple_init()&lt;/code&gt;と&lt;code&gt;badapple_get()&lt;/code&gt;で分けた理由は、デバッグのためである。
+get が呼ばれるのは普通 renderer 関数内で呼ばれる。そのため、もし init と get を分けなかった場合(get の時必要であれば init した場合)、init に失敗すると&lt;code&gt;Movie_build()&lt;/code&gt;のタイミングでエラー終了することになってしまう。&lt;/p&gt;
+&lt;p&gt;これは非常にわかりにくいし、気がつくのが遅れてしまう。このことから init と get を明確に分けている。&lt;/p&gt;
+&lt;h3 id=&quot;typography-モジュール&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#typography-%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB&quot; aria-label=&quot;typography モジュール permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;typography モジュール&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;#%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E5%85%A8%E4%BD%93%E5%83%8F&quot;&gt;プログラム全体像&lt;/a&gt;で示した通り、このモジュールは主に&lt;code&gt;font_bitmap_init()&lt;/code&gt;と&lt;code&gt;font_bitmap_get()&lt;/code&gt;という 2 つの関数を提供するモジュールである。&lt;/p&gt;
+&lt;p&gt;ディレクトリ構成は次のようになっている。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;8&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;src/typography&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── CMakeLists.txt&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── font-bitmap&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── assets&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   │   ├── NotoSansJP-Medium.otf&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   │   └── charset.txt&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── node_modules&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── package-lock.json&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── package.json&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── resources&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   │   └── chardata.txt&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── src&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   │   └── main.ts&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   └── tsconfig.json&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;├── include&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   ├── font_bitmap.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;│   └── free.h&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;└── src&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    └── font_bitmap.c&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;文字を描画するには、その文字のビットマップが必要になる。
+そのビットマップの生成は node-canvas を用いて行った。実装は TypeScript であり、NodeJS のプロジェクトは &lt;a href=&quot;https://github.com/ryota2357/fp15-project/tree/main/src/typography/font-bitmap&quot;&gt;src/typography/font-bitmap&lt;/a&gt; に配置している。&lt;/p&gt;
+&lt;p&gt;node-canvas では、1 文字だけ描画した Canvas オプジェクトを作成し、Canvas#toBuffer(&quot;raw&quot;)を呼ぶことで rgba のデータを取得することができる(詳しくは node-canvas の README 参照)。
+ビットマップを生成する文字は、&lt;a href=&quot;https://github.com/ryota2357/fp15-project/blob/main/src/typography/font-bitmap/assets/charset.txt&quot;&gt;src/typography/font-bitmap/assets/charset.txt&lt;/a&gt; にて指定している。&lt;/p&gt;
+&lt;p&gt;生成されたビットマップデータの一部を次に示す。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;9&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;c:3あ&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;b:000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000011110000000000000000000000000000000000000000000000000000000011110000000000000000000000000000000000000000000000000000000011110000000000000000000000000000000000000000000000000000000011100000000001111100000000000000000000000000000000111111100111111111111111111100000000000000000000000000000000111111111111111111111111111100000000000000000000000000000000111111111111111111111111111000000000000000000000000000000000111111111111111111000000000000000000000000000000000000000000000000000111100000000000000000000000000000000000000000000000000000000111100000000110000000000000000000000000000000000000000000000111100000000111100000000000000000000000000000000000000000000111000000001111000000000000000000000000000000000000000000000111111111111111100000000000000000000000000000000000000000000111111111111111111000000000000000000000000000000000000000001111111111111111111100000000000000000000000000000000000000111111110000011111111111000000000000000000000000000000000011111111000000011100011111000000000000000000000000000000000111111111000000111100001111100000000000000000000000000000001111100111000000111000000111100000000000000000000000000000011111000111000001111000000011110000000000000000000000000000011110000111000011110000000011110000000000000000000000000000111100000111000011110000000011110000000000000000000000000000111100000111100111100000000011110000000000000000000000000001111000000111101111100000000011110000000000000000000000000001111000000111111111000000000011110000000000000000000000000001110000000111111110000000000011110000000000000000000000000011110000000111111100000000000111110000000000000000000000000011110000000111111000000000001111100000000000000000000000000011111000011111110000000000011111100000000000000000000000000001111111111111110000000000111111000000000000000000000000000001111111111111110000000011111110000000000000000000000000000000111111111111111000011111111100000000000000000000000000000000011111100001100001111111111000000000000000000000000000000000000000000000000001111111100000000000000000000000000000000000000000000000000000111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;badapple モジュールでの加工済み frame.txt と同様に行頭に&lt;code&gt;c:&lt;/code&gt;や&lt;code&gt;b:&lt;/code&gt;をつけている。このデータは&lt;code&gt;あ&lt;/code&gt;のビットマップデータである。&lt;code&gt;c:3あ&lt;/code&gt;の&lt;code&gt;3&lt;/code&gt;とは&lt;code&gt;あ&lt;/code&gt;が 3 バイト文字であることを示している。
+この情報があることで、C 側でマルチバイト文字を適切に読み込めるようにしている。&lt;/p&gt;
+&lt;p&gt;なお、詳細は実装コード(&lt;a href=&quot;https://github.com/ryota2357/fp15-project/blob/main/src/typography/src/font_bitmap.c&quot;&gt;src/typography/src/font_bitmap.c&lt;/a&gt;)を見てもらいたいのだが、C 側で読み込んだマルチバイト文字は&lt;code&gt;Char32&lt;/code&gt;という共用体を用いることでいい感じに数値としても扱えるようにしている。
+数値として扱い、適当な素数で数値を圧縮することで、文字とその文字のビットマップの key-value テープルを配列を用いて実現している。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;font_bitmap_init()&lt;/code&gt;と&lt;code&gt;font_bitmap_get()&lt;/code&gt;で分けた理由は badapple モジュールと同じく、デバッグしやすいように、が理由である。&lt;/p&gt;
+&lt;h2 id=&quot;mainc-実装の話&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#mainc-%E5%AE%9F%E8%A3%85%E3%81%AE%E8%A9%B1&quot; aria-label=&quot;mainc 実装の話 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;main.c 実装の話&lt;/h2&gt;
+&lt;p&gt;ここまでに説明したモジュールを用いて、動画を作成するのが &lt;a href=&quot;https://github.com/ryota2357/fp15-project/blob/main/src/main.c&quot;&gt;src/main.c&lt;/a&gt; である。&lt;/p&gt;
+&lt;h3 id=&quot;badapple_renderer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#badapple_renderer&quot; aria-label=&quot;badapple_renderer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;badapple_renderer&lt;/h3&gt;
+&lt;p&gt;Bad Apple!! の映像を描画する Renderer である。&lt;/p&gt;
+&lt;p&gt;今回使っている&lt;a href=&quot;https://github.com/Reyansh-Khobragade/bad-apple-nodejs&quot;&gt;Reyansh-Khobragade/bad-apple-nodejs&lt;/a&gt;より作成したビットマップでは解像度が小さいので 4 倍に拡大して表示するようにしている。そのため、この renderer では各ピクセル間の間を補完して描画する必要がある。
+この補完アルゴリズムの実装はペアのやきとりくんにお願いしたので理解してない。&lt;/p&gt;
+&lt;h3 id=&quot;lyrics_renderer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#lyrics_renderer&quot; aria-label=&quot;lyrics_renderer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;lyrics_renderer&lt;/h3&gt;
+&lt;p&gt;lyrics_renderer00 ~ lyrics_renderer47 まである。歌詞を描画する renderer である。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Movie_add_renderer()&lt;/code&gt;するときの delay(第三引数)の調整は僕が人力で行った。。。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; &quot;
+    &gt;
+      &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 68.35443037974683%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAACxElEQVR42lVT/U/aUBStOFGZCaBi0BYo4jajBQmlUEBB+WpL5Uto+RBxui3O7CPZfplL9sv+bhLOcp8T8YeTe3rfe6fn3vseJ4oihIAAp9OJhYUFcBzHQFySJCwuLs7nphS9Xu/05CQ/qWr6xDBqE103JqZ5PtF0Y8KRYDAYZAdkWcbV1dVMoNFowO12v/gJx3FTr9eLcrkMy7LQ6/UwGo3QbDZRr9fBBEOhEDtQrzfw8PDA+JMzh8MxEyQxih6PZ1osFqfNZnPa7/enlm0zfn5+Pn3hUJIOoSjJeTczOBedDEuOJfg2fCiVSmi1Wuj3+8wpccMwwIXDYQQEAe71Tay6fXi1soallddYXnZibW0NLpcLrlUX/Bt++Dyb4Ld4hINhFAoFdDodDIdDJkjCVDpH7gghUUQgGHpE4DF3cHCASCSCQCAAQRAYeJ7H7u4uNE2bCV1eXuLi4gKmaYKLxWKQ5SQbSCwWBX0/IZFI4OjoCNFoFPF4nO2hSKCh2LbNQIOhoRwfH4NLp9NQVZWB+Auknnkmk5ntURQFxWKROSRnJEjl53I5cJlsBplsFtlslsV5zOeyudyMK6kUqtUqWu02K5ME6cowh3tCEOI2D9G/g/C2wHh4m0eED0L08wjvPOeIB7f82H/zFpVKBe12G91ul/WRnDLBdTGPULSGSLyBwKH+HwYoL0ZN7OxXWC4k1R7XJBOSfAZDr8Ky7Fm51MN8Pg8u8k7C/dcf+P3nLwajG1x/+IxWdwDKf//5C4WShpuP9+j0Rtjbl2ANxrj/8o0dHgyGzJmu62zqrIdHJzZU7RZnzTukK9dQtfeQz4ZIlcco1O+glK9wbH7CiXmLRMFGoXGHM8OGrlUwHo9hWV10Ox3WUxoWl06n2OuQ5QRLEE+lFKQUhV0TismkzNZUNc04XRsSoKdqGDWUyxWcnp5CVTP4Bzxevx+IZ4YwAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;make-lyrics_renderer&quot;
+        title=&quot;&quot;
+        src=&quot;/static/97dd215840d5d5b42859151c4864cfc0/f058b/make-lyrics_renderer.png&quot;
+        srcset=&quot;/static/97dd215840d5d5b42859151c4864cfc0/c26ae/make-lyrics_renderer.png 158w,
+/static/97dd215840d5d5b42859151c4864cfc0/6bdcf/make-lyrics_renderer.png 315w,
+/static/97dd215840d5d5b42859151c4864cfc0/f058b/make-lyrics_renderer.png 630w,
+/static/97dd215840d5d5b42859151c4864cfc0/40601/make-lyrics_renderer.png 945w,
+/static/97dd215840d5d5b42859151c4864cfc0/78612/make-lyrics_renderer.png 1260w,
+/static/97dd215840d5d5b42859151c4864cfc0/0f96c/make-lyrics_renderer.png 2248w&quot;
+        sizes=&quot;(max-width: 630px) 100vw, 630px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;こんな感じで気合いで、どの歌詞が何秒目に始まるかメモって、awk 使ってフレーム数に直して、vim マクロ使って C ソースに変換、動画をビルドして微調整。これは疲れた。&lt;/p&gt;
+&lt;h3 id=&quot;draw_char_at&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#draw_char_at&quot; aria-label=&quot;draw_char_at permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;draw_char_at&lt;/h3&gt;
+&lt;p&gt;引数に与えられた文字を、引数に与えられたフレームの、引数に与えられた位置に、引数に与えられた縮小割合で描画する関数である。&lt;/p&gt;
+&lt;p&gt;これは lyrics_renderer や credit_renderer から使われている。縮小アルゴリズム、というとこでやきとりくんにお願いして書いてもらった。理解してない。&lt;/p&gt;
+&lt;p&gt;badapple_renderer もそうだが、こうゆうところをペアの方にやってもらうことができて楽だった。&lt;/p&gt;
+&lt;h2 id=&quot;最後に&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%9C%80%E5%BE%8C%E3%81%AB&quot; aria-label=&quot;最後に permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;最後に&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://youtu.be/lrWVL6Da3GM&quot;&gt;YouTube に今回作成した動画に音声をくっつけたもの&lt;/a&gt;をアップロードしてある。&lt;/p&gt;
+&lt;p&gt;今回の開発は、大学の授業の課題というより僕個人の趣味開発みたいな感じになった。&lt;/p&gt;
+&lt;p&gt;C 言語での開発はしたことがなく、普段の開発では C よりも言語機能が強い言語を使ってるのもあって苦労する点もあり、一部は NodeJS や Deno に頼るところもあったがほぼ C だけで実装できたのは良かったと思う。勉強になったし楽しかった。&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line &gt; * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: &apos; &apos;;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting &gt; .grvsc-code &gt; .grvsc-line::before {
+    content: &apos; &apos;;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .default-dark .mtk4 { color: #569CD6; }
+  .default-dark .mtk1 { color: #D4D4D4; }
+  .default-dark .mtk11 { color: #DCDCAA; }
+  .default-dark .mtk12 { color: #9CDCFE; }
+  .default-dark .mtk7 { color: #B5CEA8; }
+  .default-dark .mtk3 { color: #6A9955; }
+  .default-dark .mtk15 { color: #C586C0; }
+  .default-dark .mtk8 { color: #CE9178; }
+  .default-dark .mtk6 { color: #D7BA7D; }
+  .default-dark .mtk10 { color: #4EC9B0; }
+  .default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[node-canvasで雑にOG画像を生成する]]></title><description><![CDATA[ブログの OG 画像を Qiita と Zenn みたいにタイトルが書かれてるやつにしたかったので作った。 生成は GithubAction で自動化した。 npm プロジェクトの作成 Node18 と Typescript 使ってやる。 適当に Node…]]></description><link>https://ryota2357.com/blog/2022/og-image-with-node-canvas/</link><guid isPermaLink="false">https://ryota2357.com/blog/2022/og-image-with-node-canvas/</guid><content:encoded>&lt;p&gt;ブログの OG 画像を Qiita と Zenn みたいにタイトルが書かれてるやつにしたかったので作った。&lt;br&gt;
 生成は GithubAction で自動化した。&lt;/p&gt;
 &lt;h2 id=&quot;npm-プロジェクトの作成&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#npm-%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E4%BD%9C%E6%88%90&quot; aria-label=&quot;npm プロジェクトの作成 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;npm プロジェクトの作成&lt;/h2&gt;
 &lt;p&gt;Node18 と Typescript 使ってやる。&lt;br&gt;
