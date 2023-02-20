@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ja"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.6.0"/><meta name="theme-color" content="#f6f5f5"/><meta name="description" content="プラグインを入れずにカスタマイズをする。 基本 まず、プロンプトのカスタマイズは.zshrcなどでPROMPT…" data-gatsby-head="true"/><meta property="og:title" content="zshプロンプトをカスタマイズする" data-gatsby-head="true"/><meta property="og:description" content="プラグインを入れずにカスタマイズをする。 基本 まず、プロンプトのカスタマイズは.zshrcなどでPROMPT…" data-gatsby-head="true"/><meta property="og:type" content="article" data-gatsby-head="true"/><meta property="og:image" content="https://raw.githubusercontent.com/ryota2357/ryota2357-github-pages-images/og-image/blog/2022/zsh-prompt-custom.png" data-gatsby-head="true"/><meta property="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta property="twitter:creator" content="@95s7k84695a" data-gatsby-head="true"/><meta property="twitter:title" content="zshプロンプトをカスタマイズする" data-gatsby-head="true"/><meta property="twitter:description" content="プラグインを入れずにカスタマイズをする。 基本 まず、プロンプトのカスタマイズは.zshrcなどでPROMPT…" data-gatsby-head="true"/><style data-href="/styles.8098aa15dabb48d1c97f.css" data-identity="gatsby-global-css">/*! destyle.css v4.0.0 | MIT License | https://github.com/nicolas-cusan/destyle.css */*,:after,:before{border-style:solid;border-width:0;box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;line-height:1.15}body{margin:0}main{display:block}address,blockquote,dl,figure,form,iframe,p,pre,table{margin:0}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}ol,ul{list-style:none;margin:0;padding:0}dt{font-weight:700}dd{margin-left:0}hr{border-top-width:1px;box-sizing:content-box;clear:both;color:inherit;height:0;margin:0;overflow:visible}pre{font-family:monospace,monospace;font-size:inherit}address{font-style:inherit}a{background-color:transparent;color:inherit;text-decoration:none}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:inherit}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}embed,iframe,img,object,svg{vertical-align:bottom}button,input,optgroup,select,textarea{-webkit-appearance:none;appearance:none;background:transparent;border-radius:0;color:inherit;font:inherit;margin:0;padding:0;text-align:inherit;text-transform:inherit;vertical-align:middle}[type=button],[type=reset],[type=submit],button{cursor:pointer}[type=button]:disabled,[type=reset]:disabled,[type=submit]:disabled,button:disabled{cursor:default}:-moz-focusring{outline:auto}select:disabled{opacity:inherit}fieldset,option{padding:0}fieldset{margin:0;min-width:0}legend{padding:0}progress{vertical-align:baseline}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}[type=number]{-moz-appearance:textfield}label[for]{cursor:pointer}details{display:block}summary{display:list-item}[contenteditable]:focus{outline:auto}table{border-collapse:collapse;border-color:inherit}caption{text-align:left}td,th{padding:0;vertical-align:top}th{font-weight:700;text-align:left}:root{background-color:#f6f5f5;color:#242424;font-family:YuGothic,Yu Gothic,Hiragino Kaku Gothic ProN,ヒラギノ角ゴ ProN W3,ＭＳ ゴシック,sans-serif;font-size:15px;line-height:1.5;word-break:break-word}:root a:hover{text-decoration:underline}@media screen and (max-width:425px){:root{font-size:14px}}@media screen and (max-width:375px){:root{font-size:13px}}@media screen and (max-width:320px){:root{font-size:12px}}#layout header{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;margin:15px 10px 10px}#layout header .logo{color:#000;font-size:2.1rem;font-weight:700;-webkit-user-select:none;user-select:none}#layout header .logo a:hover{text-decoration:none}#layout header nav{margin-top:auto}#layout header nav ul{display:flex;font-size:1.4rem;justify-content:flex-start}#layout header nav ul li{margin:0 .7rem}#layout main{margin:0 auto;max-width:1080px;padding:0 10px}#layout footer{font-size:.7rem;margin-top:1rem;text-align:center}.content-block{align-items:flex-start;display:flex;flex-direction:column;gap:1rem}.content-block h2{font-size:1.6rem;font-weight:700}.content-block .children{display:flex;flex-direction:column;font-size:1rem;gap:1rem;padding-left:1rem;width:100%}.blog-list ul{background:#fff;border:1px solid #787878;border-radius:.3rem;padding:0 .5rem}.blog-list ul li+li{border-top:1px solid #e3e3e3}.blog-list ul li{padding:.5rem 0}.blog-list ul li .item-date{color:#747474}.blog-list ul li .item-title{font-size:1.2rem;font-weight:700}.blog-list ul li .item-tags{display:flex;flex-direction:row;font-size:.8rem;gap:.5rem;justify-content:flex-end}.blog-list ul li .item-tags .item-tag{background:#282828;border-radius:.3em;color:#fff;padding:.3em 1em}.blog-list ul li .item-tags .item-tag:hover{text-decoration:underline}#not-found-page h1{align-content:center;color:#000;display:flex;flex-direction:column;flex-wrap:wrap;font-size:3rem;justify-content:center;margin:5rem 0}#not-found-page h1 span{text-align:center}#about-page h1{font-size:2.5rem}#about-page h2{font-size:1.5rem;font-weight:700;margin-top:2rem}#about-page a{color:#0969da}#tag-page h1{font-size:2.5rem}#tag-page ul{list-style:inside;margin-top:2rem}#blog-page h1{font-size:2.5rem}#blog-page p{margin:.5rem 0}#blog-page ul{background:#fff;border:1px solid #787878;border-radius:.3rem;padding:0 .5rem}#blog-page ul li+li{border-top:1px solid #e3e3e3}#blog-page ul li{padding:.5rem 0}#blog-page ul li .item-date{color:#747474}#blog-page ul li .item-title{font-size:1.2rem;font-weight:700}#blog-page ul li .item-tags{display:flex;flex-direction:row;font-size:.8rem;gap:.5rem;justify-content:flex-end}#blog-page ul li .item-tags .item-tag{background:#282828;border-radius:.3em;color:#fff;padding:.3em 1em}#blog-page ul li .item-tags .item-tag:hover{text-decoration:underline}#index-page .top-profile{align-items:center;display:flex;flex-direction:column;gap:.5rem}#index-page .top-profile .name{font-size:1.6rem;font-weight:700}#index-page .content-blocks{display:flex;flex-direction:column;gap:2rem;margin-top:2rem}#index-page .content-blocks .content-block ul{list-style:inside}#index-page .content-blocks .content-block ul li{padding:.1rem 0}#index-page .content-blocks .content-block .align-horizontal{align-items:flex-start;display:flex;flex-direction:row;gap:1rem}#index-page .content-blocks .content-block .align-horizontal h3{flex:none;font-size:1.3rem;font-weight:700;margin:0}#index-page .content-blocks .content-block .align-horizontal .item{display:flex;flex-wrap:wrap;margin:auto 0}#works-page h1{font-size:2.5rem}#works-page h2{font-size:1.6rem;font-weight:700;margin-top:2rem}#works-page .table-of-contents ul{list-style:inside;margin-left:1rem}#works-page .table-of-contents ul li ul{list-style:square;margin-left:2em}#works-page h3{font-size:1.5rem;font-weight:700;margin-top:.7rem}#works-page h3:before{content:"- "}#works-page .gray{color:#747474}#works-page .indent{padding-left:1rem}#works-page .item{display:flex;flex-direction:row;gap:1rem;justify-content:space-between}#blog-post article{background-color:#fff;box-shadow:0 0 10px #323232;padding:1.4em}#blog-post article .post-front{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2rem}#blog-post article .post-front h1{font-size:2rem;font-weight:700;margin-top:1rem}#blog-post article .post-front .date{color:#747474;display:flex;flex-direction:row;gap:1rem}#blog-post article .post-front .tags{align-items:center;display:inline-flex;flex-direction:row;gap:.3rem}#blog-post article .post-front .tags a:not(:last-child):after{content:","}#blog-post nav ul{display:grid;gap:.7rem;grid-auto-flow:column;justify-content:space-between;margin:1rem 0}#markdown h1{font-size:2rem;margin-top:2rem}#markdown h1,#markdown h2{font-weight:700;margin-bottom:1.5rem}#markdown h2{border-bottom:2.5px solid #e3e3e3;font-size:1.7rem;margin-top:3rem}#markdown h3{font-size:1.3rem}#markdown h3,#markdown h4{font-weight:700;margin-bottom:1.5rem;margin-top:2rem}#markdown h4{font-size:1.1rem}#markdown p{font-size:1rem;line-height:1.7;margin:1rem 0}#markdown a{color:#0969da;text-decoration:none}#markdown ul{list-style:inside;list-style-type:disc}#markdown ul ol,#markdown ul ul{margin-left:1.2rem}#markdown ol{list-style:inside;list-style-type:decimal}#markdown ol ol,#markdown ol ul{margin-left:1.2rem}#markdown li{line-height:1.5}#markdown blockquote{border-left:.25em solid #d0d7de;color:#57606a;margin:0;padding:0 1rem}#markdown details summary{cursor:pointer;font-weight:700}#markdown img{max-width:100%}#markdown table{border-collapse:collapse;border-spacing:0;display:block;line-height:1.15;max-width:100%;overflow:auto;white-space:nowrap;width:-webkit-max-content;width:max-content}#markdown table tr{background-color:#fff;border-top:1px solid #d5dbe2}#markdown table tr:nth-child(2n){background-color:#f6f8fa}#markdown table th{font-weight:700}#markdown table td,#markdown table th{border:1px solid #d0d7de;padding:.5rem}#markdown .footnotes{margin-top:3rem}#markdown .footnotes hr{background-color:#646464;border:none;height:1px}:root{--grvsc-border-radius:10px}#markdown code{font-family:monospace}#markdown li code,#markdown p code,#markdown table code{background-color:#e6e6e6;border-radius:6px;font-size:1rem;padding:.1rem .3rem}#markdown pre{background-color:#282828}#markdown pre code{font-size:.9rem;line-height:1.3}#tag-page-template h1{font-size:2.5rem}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><style type="text/css">
+<!DOCTYPE html><html lang="ja"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.6.0"/><meta name="theme-color" content="#f6f5f5"/><meta name="description" content="プラグインを入れずにカスタマイズをする。 基本 まず、プロンプトのカスタマイズは.zshrcなどでPROMPT…" data-gatsby-head="true"/><meta property="og:title" content="zshプロンプトをカスタマイズする" data-gatsby-head="true"/><meta property="og:description" content="プラグインを入れずにカスタマイズをする。 基本 まず、プロンプトのカスタマイズは.zshrcなどでPROMPT…" data-gatsby-head="true"/><meta property="og:type" content="article" data-gatsby-head="true"/><meta property="og:image" content="https://raw.githubusercontent.com/ryota2357/ryota2357-github-pages-images/og-image/blog/2022/zsh-prompt-custom.png" data-gatsby-head="true"/><meta property="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta property="twitter:creator" content="@95s7k84695a" data-gatsby-head="true"/><meta property="twitter:title" content="zshプロンプトをカスタマイズする" data-gatsby-head="true"/><meta property="twitter:description" content="プラグインを入れずにカスタマイズをする。 基本 まず、プロンプトのカスタマイズは.zshrcなどでPROMPT…" data-gatsby-head="true"/><style data-href="/styles.b489987dc6d16975100b.css" data-identity="gatsby-global-css">/*! destyle.css v4.0.0 | MIT License | https://github.com/nicolas-cusan/destyle.css */*,:after,:before{border-style:solid;border-width:0;box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;line-height:1.15}body{margin:0}main{display:block}address,blockquote,dl,figure,form,iframe,p,pre,table{margin:0}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}ol,ul{list-style:none;margin:0;padding:0}dt{font-weight:700}dd{margin-left:0}hr{border-top-width:1px;box-sizing:content-box;clear:both;color:inherit;height:0;margin:0;overflow:visible}pre{font-family:monospace,monospace;font-size:inherit}address{font-style:inherit}a{background-color:transparent;color:inherit;text-decoration:none}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:inherit}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}embed,iframe,img,object,svg{vertical-align:bottom}button,input,optgroup,select,textarea{-webkit-appearance:none;appearance:none;background:transparent;border-radius:0;color:inherit;font:inherit;margin:0;padding:0;text-align:inherit;text-transform:inherit;vertical-align:middle}[type=button],[type=reset],[type=submit],button{cursor:pointer}[type=button]:disabled,[type=reset]:disabled,[type=submit]:disabled,button:disabled{cursor:default}:-moz-focusring{outline:auto}select:disabled{opacity:inherit}fieldset,option{padding:0}fieldset{margin:0;min-width:0}legend{padding:0}progress{vertical-align:baseline}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}[type=number]{-moz-appearance:textfield}label[for]{cursor:pointer}details{display:block}summary{display:list-item}[contenteditable]:focus{outline:auto}table{border-collapse:collapse;border-color:inherit}caption{text-align:left}td,th{padding:0;vertical-align:top}th{font-weight:700;text-align:left}:root{background-color:#f6f5f5;color:#242424;font-family:YuGothic,Yu Gothic,Hiragino Kaku Gothic ProN,ヒラギノ角ゴ ProN W3,ＭＳ ゴシック,sans-serif;font-size:15px;line-height:1.5;word-break:break-word}:root a:hover{text-decoration:underline}@media screen and (max-width:425px){:root{font-size:14px}}@media screen and (max-width:375px){:root{font-size:13px}}@media screen and (max-width:320px){:root{font-size:12px}}#layout header{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;margin:15px 10px 10px}#layout header .logo{color:#000;font-size:2.1rem;font-weight:700;-webkit-user-select:none;user-select:none}#layout header .logo a:hover{text-decoration:none}#layout header nav{margin-top:auto}#layout header nav ul{display:flex;font-size:1.4rem;justify-content:flex-start}#layout header nav ul li{margin:0 .7rem}#layout main{margin:0 auto;max-width:1080px;padding:0 10px}#layout footer{font-size:.7rem;margin-top:1rem;text-align:center}.content-block{align-items:flex-start;display:flex;flex-direction:column;gap:1rem}.content-block h2{font-size:1.6rem;font-weight:700}.content-block .children{display:flex;flex-direction:column;font-size:1rem;gap:1rem;padding-left:1rem;width:100%}.blog-list ul{background:#fff;border:1px solid #787878;border-radius:.3rem;padding:0 .5rem}.blog-list ul li+li{border-top:1px solid #e3e3e3}.blog-list ul li{padding:.5rem 0}.blog-list ul li .item-date{color:#747474}.blog-list ul li .item-title{font-size:1.2rem;font-weight:700}.blog-list ul li .item-tags{display:flex;flex-direction:row;font-size:.8rem;gap:.5rem;justify-content:flex-end}.blog-list ul li .item-tags .item-tag{background:#282828;border-radius:.3em;color:#fff;padding:.3em 1em}.blog-list ul li .item-tags .item-tag:hover{text-decoration:underline}#not-found-page h1{align-content:center;color:#000;display:flex;flex-direction:column;flex-wrap:wrap;font-size:3rem;justify-content:center;margin:5rem 0}#not-found-page h1 span{text-align:center}#about-page h1{font-size:2.5rem}#about-page h2{font-size:1.5rem;font-weight:700;margin-top:2rem}#about-page a{color:#0969da}#tag-page h1{font-size:2.5rem}#tag-page ul{list-style:inside;margin-top:2rem}#blog-page h1{font-size:2.5rem}#blog-page p{margin:.5rem 0}#blog-page ul{background:#fff;border:1px solid #787878;border-radius:.3rem;padding:0 .5rem}#blog-page ul li+li{border-top:1px solid #e3e3e3}#blog-page ul li{padding:.5rem 0}#blog-page ul li .item-date{color:#747474}#blog-page ul li .item-title{font-size:1.2rem;font-weight:700}#blog-page ul li .item-tags{display:flex;flex-direction:row;font-size:.8rem;gap:.5rem;justify-content:flex-end}#blog-page ul li .item-tags .item-tag{background:#282828;border-radius:.3em;color:#fff;padding:.3em 1em}#blog-page ul li .item-tags .item-tag:hover{text-decoration:underline}#index-page .top-profile{align-items:center;display:flex;flex-direction:column;gap:.5rem}#index-page .top-profile .name{font-size:1.6rem;font-weight:700}#index-page .content-blocks{display:flex;flex-direction:column;gap:2rem;margin-top:2rem}#index-page .content-blocks .content-block ul{list-style:inside}#index-page .content-blocks .content-block ul li{padding:.1rem 0}#index-page .content-blocks .content-block .align-horizontal{align-items:flex-start;display:flex;flex-direction:row;gap:1rem}#index-page .content-blocks .content-block .align-horizontal h3{flex:none;font-size:1.3rem;font-weight:700;margin:0}#index-page .content-blocks .content-block .align-horizontal .item{display:flex;flex-wrap:wrap;margin:auto 0}#works-page h1{font-size:2.5rem}#works-page h2{font-size:1.6rem;font-weight:700;margin-top:2rem}#works-page .table-of-contents ul{list-style:inside;margin-left:1rem}#works-page .table-of-contents ul li ul{list-style:square;margin-left:2em}#works-page h3{font-size:1.5rem;font-weight:700;margin-top:.7rem}#works-page h3:before{content:"- "}#works-page .gray{color:#747474}#works-page .indent{padding-left:1rem}#works-page .item{display:flex;flex-direction:row;gap:1rem;justify-content:space-between}#blog-post article{background-color:#fff;box-shadow:0 0 10px #323232;padding:1.4em}#blog-post article .post-front{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2rem}#blog-post article .post-front h1{font-size:2rem;font-weight:700;margin-top:1rem}#blog-post article .post-front .date{color:#747474;display:flex;flex-direction:row;gap:1rem}#blog-post article .post-front .tags{align-items:center;display:inline-flex;flex-direction:row;gap:.3rem}#blog-post article .post-front .tags a:not(:last-child):after{content:","}#blog-post nav ul{display:grid;gap:.7rem;grid-auto-flow:column;justify-content:space-between;margin:1rem 0}#markdown h1{font-size:2rem;margin-top:2rem}#markdown h1,#markdown h2{font-weight:700;margin-bottom:1.5rem}#markdown h2{border-bottom:2.5px solid #e3e3e3;font-size:1.7rem;margin-top:3rem}#markdown h3{font-size:1.3rem}#markdown h3,#markdown h4{font-weight:700;margin-bottom:1.5rem;margin-top:2rem}#markdown h4{font-size:1.1rem}#markdown p{font-size:1rem;line-height:1.7;margin:1rem 0}#markdown a{color:#0969da;text-decoration:none}#markdown ul{list-style:inside;list-style-type:disc}#markdown ul ol,#markdown ul ul{margin-left:1.2rem}#markdown ol{list-style:inside;list-style-type:decimal}#markdown ol ol,#markdown ol ul{margin-left:1.2rem}#markdown li{line-height:1.5}#markdown blockquote{border-left:.25em solid #d0d7de;color:#57606a;margin:0;padding:0 1rem}#markdown details summary{cursor:pointer;font-weight:700}#markdown img{max-width:100%}#markdown table{border-collapse:collapse;border-spacing:0;display:block;line-height:1.15;max-width:100%;overflow:auto;white-space:nowrap;width:-webkit-max-content;width:max-content}#markdown table tr{background-color:#fff;border-top:1px solid #d5dbe2}#markdown table tr:nth-child(2n){background-color:#f6f8fa}#markdown table th{font-weight:700}#markdown table td,#markdown table th{border:1px solid #d0d7de;padding:.5rem}#markdown .footnotes{margin-top:3rem}#markdown .footnotes hr{background-color:#646464;border:none;height:1px}:root{--grvsc-border-radius:10px}#markdown code{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace}#markdown li code,#markdown p code,#markdown table code{background-color:#e6e6e6;border-radius:6px;font-size:1rem;padding:.1rem .3rem}#markdown pre{background-color:#282828}#markdown pre code{font-size:.9rem;line-height:1.3}#tag-page-template h1{font-size:2.5rem}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><style type="text/css">
     .anchor.before {
       position: absolute;
       top: 0;
@@ -822,7 +822,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <p>とすると</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -833,20 +833,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 18.354430379746837%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAANklEQVR42mNQ01P5r6ak+l9dBTtWU1b5r6Oh+V9PS/u/GoiPhNVV1KAYoZ6BgYHhP5XxIDcQANPgWJF8JGkzAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    style="padding-bottom: 18.421052631578945%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAANklEQVR42mNQ01P5r6ak+l9dBTtWU1b5r6Oh+V9PS/u/GoiPhNVV1KAYoZ6BgYHhP5XxIDcQANPgWJF8JGkzAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="$のみ"
         title=""
-        src="/static/c987250235266523d660d7cdefbaf81c/f058b/terminal_%24.png"
-        srcset="/static/c987250235266523d660d7cdefbaf81c/c26ae/terminal_%24.png 158w,
-/static/c987250235266523d660d7cdefbaf81c/6bdcf/terminal_%24.png 315w,
-/static/c987250235266523d660d7cdefbaf81c/f058b/terminal_%24.png 630w,
-/static/c987250235266523d660d7cdefbaf81c/40601/terminal_%24.png 945w,
-/static/c987250235266523d660d7cdefbaf81c/78612/terminal_%24.png 1260w,
+        src="/static/c987250235266523d660d7cdefbaf81c/3c051/terminal_%24.png"
+        srcset="/static/c987250235266523d660d7cdefbaf81c/a2d4f/terminal_%24.png 190w,
+/static/c987250235266523d660d7cdefbaf81c/3f520/terminal_%24.png 380w,
+/static/c987250235266523d660d7cdefbaf81c/3c051/terminal_%24.png 760w,
+/static/c987250235266523d660d7cdefbaf81c/b5cea/terminal_%24.png 1140w,
+/static/c987250235266523d660d7cdefbaf81c/891d5/terminal_%24.png 1520w,
 /static/c987250235266523d660d7cdefbaf81c/776d3/terminal_%24.png 1814w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -859,7 +859,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">RPROMPT=</span><span class="mtk8">&quot;///&quot;</span></span></span></code></pre>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -870,20 +870,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 18.354430379746837%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAOUlEQVR42mNQ01P5r6ak+l9dBTtWU1b5r6Oh+V9PS/u/GoiPhNVV1KAYql5V7T8DAwPDfyrjQW4gANXLWJM+UUl+AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    style="padding-bottom: 18.421052631578945%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAOUlEQVR42mNQ01P5r6ak+l9dBTtWU1b5r6Oh+V9PS/u/GoiPhNVV1KAYql5V7T8DAwPDfyrjQW4gANXLWJM+UUl+AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="$と///"
         title=""
-        src="/static/bcae8831f66b2526924def85abb24047/f058b/terminal_%24slash.png"
-        srcset="/static/bcae8831f66b2526924def85abb24047/c26ae/terminal_%24slash.png 158w,
-/static/bcae8831f66b2526924def85abb24047/6bdcf/terminal_%24slash.png 315w,
-/static/bcae8831f66b2526924def85abb24047/f058b/terminal_%24slash.png 630w,
-/static/bcae8831f66b2526924def85abb24047/40601/terminal_%24slash.png 945w,
-/static/bcae8831f66b2526924def85abb24047/78612/terminal_%24slash.png 1260w,
+        src="/static/bcae8831f66b2526924def85abb24047/3c051/terminal_%24slash.png"
+        srcset="/static/bcae8831f66b2526924def85abb24047/a2d4f/terminal_%24slash.png 190w,
+/static/bcae8831f66b2526924def85abb24047/3f520/terminal_%24slash.png 380w,
+/static/bcae8831f66b2526924def85abb24047/3c051/terminal_%24slash.png 760w,
+/static/bcae8831f66b2526924def85abb24047/b5cea/terminal_%24slash.png 1140w,
+/static/bcae8831f66b2526924def85abb24047/891d5/terminal_%24slash.png 1520w,
 /static/bcae8831f66b2526924def85abb24047/776d3/terminal_%24slash.png 1814w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -896,7 +896,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 (普段はこれに tmux を起動して、その他の情報を載せてたりする)</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -907,20 +907,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 15.18987341772152%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAATElEQVR42mMw01b4r6Kt8F9BVv6/ghwmlpeV+6+spPRfRUkJzMamBoLl/isrKv5nEJYQ+M/DxfKfgYGBYszIyPifgZmFeoYxMTH9BwBFPUPAY6IORwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    style="padding-bottom: 15.263157894736842%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAATElEQVR42mMw01b4r6Kt8F9BVv6/ghwmlpeV+6+spPRfRUkJzMamBoLl/isrKv5nEJYQ+M/DxfKfgYGBYszIyPifgZmFeoYxMTH9BwBFPUPAY6IORwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="スクリーンショット 2022-04-03 18.03.57.png"
         title=""
-        src="/static/aa4388082c8a42f0b46617965fac75a1/f058b/terminal_my.png"
-        srcset="/static/aa4388082c8a42f0b46617965fac75a1/c26ae/terminal_my.png 158w,
-/static/aa4388082c8a42f0b46617965fac75a1/6bdcf/terminal_my.png 315w,
-/static/aa4388082c8a42f0b46617965fac75a1/f058b/terminal_my.png 630w,
-/static/aa4388082c8a42f0b46617965fac75a1/40601/terminal_my.png 945w,
-/static/aa4388082c8a42f0b46617965fac75a1/78612/terminal_my.png 1260w,
+        src="/static/aa4388082c8a42f0b46617965fac75a1/3c051/terminal_my.png"
+        srcset="/static/aa4388082c8a42f0b46617965fac75a1/a2d4f/terminal_my.png 190w,
+/static/aa4388082c8a42f0b46617965fac75a1/3f520/terminal_my.png 380w,
+/static/aa4388082c8a42f0b46617965fac75a1/3c051/terminal_my.png 760w,
+/static/aa4388082c8a42f0b46617965fac75a1/b5cea/terminal_my.png 1140w,
+/static/aa4388082c8a42f0b46617965fac75a1/891d5/terminal_my.png 1520w,
 /static/aa4388082c8a42f0b46617965fac75a1/24def/terminal_my.png 1812w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -954,7 +954,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <p>とすると、</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -965,20 +965,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 15.18987341772152%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAR0lEQVR42mOwNdL8r6Gv/l9XS+e/sqLif3lZuf8KcvJwDOIrKyn9V1FSwpBDVgOS19HS/s/AwMAAIv6zsLD8h7EpxAz/qYkBdo1D16deGWcAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    style="padding-bottom: 15.263157894736842%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAR0lEQVR42mOwNdL8r6Gv/l9XS+e/sqLif3lZuf8KcvJwDOIrKyn9V1FSwpBDVgOS19HS/s/AwMAAIv6zsLD8h7EpxAz/qYkBdo1D16deGWcAAAAASUVORK5CYII='); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="スクリーンショット 2022-04-03 18.04.19.png"
         title=""
-        src="/static/827801fb310f01e0ff4812f5d3e5c2f3/f058b/terminal_info.png"
-        srcset="/static/827801fb310f01e0ff4812f5d3e5c2f3/c26ae/terminal_info.png 158w,
-/static/827801fb310f01e0ff4812f5d3e5c2f3/6bdcf/terminal_info.png 315w,
-/static/827801fb310f01e0ff4812f5d3e5c2f3/f058b/terminal_info.png 630w,
-/static/827801fb310f01e0ff4812f5d3e5c2f3/40601/terminal_info.png 945w,
-/static/827801fb310f01e0ff4812f5d3e5c2f3/78612/terminal_info.png 1260w,
+        src="/static/827801fb310f01e0ff4812f5d3e5c2f3/3c051/terminal_info.png"
+        srcset="/static/827801fb310f01e0ff4812f5d3e5c2f3/a2d4f/terminal_info.png 190w,
+/static/827801fb310f01e0ff4812f5d3e5c2f3/3f520/terminal_info.png 380w,
+/static/827801fb310f01e0ff4812f5d3e5c2f3/3c051/terminal_info.png 760w,
+/static/827801fb310f01e0ff4812f5d3e5c2f3/b5cea/terminal_info.png 1140w,
+/static/827801fb310f01e0ff4812f5d3e5c2f3/891d5/terminal_info.png 1520w,
 /static/827801fb310f01e0ff4812f5d3e5c2f3/24def/terminal_info.png 1812w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -1099,7 +1099,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <p>とすると</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -1110,20 +1110,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 18.354430379746837%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAASUlEQVR42mNQN9f7r6Ku/V/fwOC/tqbWf1Vllf9qKqpwDOJraWhilUPFEDkGBhaO/wxs7P/ZObn+MzMz/WdgYKAUM/ynMqaugQBI1Vj8Ad7yHQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    style="padding-bottom: 18.421052631578945%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAECAYAAACOXx+WAAAACXBIWXMAABYlAAAWJQFJUiTwAAAASUlEQVR42mNQN9f7r6Ku/V/fwOC/tqbWf1Vllf9qKqpwDOJraWhilUPFEDkGBhaO/wxs7P/ZObn+MzMz/WdgYKAUM/ynMqaugQBI1Vj8Ad7yHQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="color"
         title=""
-        src="/static/648baa509a5cdd21ccb5bb1477389577/f058b/terminal_color.png"
-        srcset="/static/648baa509a5cdd21ccb5bb1477389577/c26ae/terminal_color.png 158w,
-/static/648baa509a5cdd21ccb5bb1477389577/6bdcf/terminal_color.png 315w,
-/static/648baa509a5cdd21ccb5bb1477389577/f058b/terminal_color.png 630w,
-/static/648baa509a5cdd21ccb5bb1477389577/40601/terminal_color.png 945w,
-/static/648baa509a5cdd21ccb5bb1477389577/78612/terminal_color.png 1260w,
+        src="/static/648baa509a5cdd21ccb5bb1477389577/3c051/terminal_color.png"
+        srcset="/static/648baa509a5cdd21ccb5bb1477389577/a2d4f/terminal_color.png 190w,
+/static/648baa509a5cdd21ccb5bb1477389577/3f520/terminal_color.png 380w,
+/static/648baa509a5cdd21ccb5bb1477389577/3c051/terminal_color.png 760w,
+/static/648baa509a5cdd21ccb5bb1477389577/b5cea/terminal_color.png 1140w,
+/static/648baa509a5cdd21ccb5bb1477389577/891d5/terminal_color.png 1520w,
 /static/648baa509a5cdd21ccb5bb1477389577/776d3/terminal_color.png 1814w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -1149,7 +1149,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk11">print</span><span class="mtk1"> </span><span class="mtk8">&quot;</span><span class="mtk6">\n</span><span class="mtk8">&quot;</span></span></span></code></pre>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -1160,20 +1160,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 78.48101265822784%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAADcElEQVR42m3Q609bBRjH8aNmErKWS+lpaXuu7TmnF7kPFGE6XGYiLphVKgxaegNhDKEMjRDobjBKS0txMTHoshnY0OiMMZnT6QsTjf/X16ivlL548iRP8vvkl0eweRtQnKdZDSqIehPN6QaanAIzmVPU1zfQ6E1jP+VgVprC1uCkMTFFg8tFNpnAbrMhCMJ/x2wbwFHfQqJjjDqHiDU/T4tPIXstj71FJzx8QFNziOzFn2j2mpiFFZoDfpI7n+Jo9ZwE7QtJBNXiuVwVQZaxrSQRZA1hZQ9B8WDbiiFoXoStTQRdwn5rgudNDWFzmxdqgaHbE9S1BQjubvNiRMI6SFIX0TDvFzntlTj3ToZGp8zQpQqNLoXX40mavSpDqR3sjhrgyNwEompyaaFIi+IjuprCqalE10q0yD5iGylEVSG2sYv49/12CrehE90q0tTqPQmOz13GqxpMLhZwKxLx1RRuVSe+totLk0hsZ3DpEvFiGbehMLmfwBvWmLy7g8NXA5x/N4HusViMlVA8OkvpNJqkk0uXkBWV5Y9n0Qyd5bUqmmnwwfUM/pDB4o1dWmX1JLjwWQL/mSC5+yW0bj/LX8/8ux/voVk6+Ssp/JJC/moZQwmwvpwhGDDYWCkheWqAN1MTRGSTOzMFLElleylNSNUp5IqYXo1yahbLo1FJfULQF6B4JUFE1SnNF1Dc8kmwcCPNS2GTymaZcFhnr5IhHPFTrVYIRlSqD5KEOlT2D0uEOwOUH07T/rLJ3ldlVKtGw3vDcfqcBkdvF+lyajwczdAp+jmOVWhzqzyay9LmVTm+ukenFOBweYoeXecoVyBQq+EXd5P0dlscHpTp7tI4OkrT0+Pn0fEuXWGN725m6Q36+f5Whb6wxTeFGfrbTb4tlgjr+knwh6UkQ1aIZx+WOWsZ/LL+PgOWwa/Xq7yqGPwRm2XArfPn6D5nPRa/TaU5L5v8nizRKdYAH6+meS1o8iRfpN9S+XF7gv6QxrOdLXpDMk8/j9HXLvHzvTyvdOg8eZBl4EyAp1/uEDFq/PC92BiSJDMVn8YnuZieu4CiiizkxpAVN9c+SqHrPlbX5wkYGhv5POFImM07BRS1Bjg4OIjT6WTojXM4nSJvXriIKLoZfmsEUXQxMhLF5XITjcbwtHqIjY7i8/m4PD7+T+7/4F8tjhGTGMUaSAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    style="padding-bottom: 78.42105263157895%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAADcElEQVR42m3Q609bBRjH8aNmErKWS+lpaXuu7TmnF7kPFGE6XGYiLphVKgxaegNhDKEMjRDobjBKS0txMTHoshnY0OiMMZnT6QsTjf/X16ivlL548iRP8vvkl0eweRtQnKdZDSqIehPN6QaanAIzmVPU1zfQ6E1jP+VgVprC1uCkMTFFg8tFNpnAbrMhCMJ/x2wbwFHfQqJjjDqHiDU/T4tPIXstj71FJzx8QFNziOzFn2j2mpiFFZoDfpI7n+Jo9ZwE7QtJBNXiuVwVQZaxrSQRZA1hZQ9B8WDbiiFoXoStTQRdwn5rgudNDWFzmxdqgaHbE9S1BQjubvNiRMI6SFIX0TDvFzntlTj3ToZGp8zQpQqNLoXX40mavSpDqR3sjhrgyNwEompyaaFIi+IjuprCqalE10q0yD5iGylEVSG2sYv49/12CrehE90q0tTqPQmOz13GqxpMLhZwKxLx1RRuVSe+totLk0hsZ3DpEvFiGbehMLmfwBvWmLy7g8NXA5x/N4HusViMlVA8OkvpNJqkk0uXkBWV5Y9n0Qyd5bUqmmnwwfUM/pDB4o1dWmX1JLjwWQL/mSC5+yW0bj/LX8/8ux/voVk6+Ssp/JJC/moZQwmwvpwhGDDYWCkheWqAN1MTRGSTOzMFLElleylNSNUp5IqYXo1yahbLo1FJfULQF6B4JUFE1SnNF1Dc8kmwcCPNS2GTymaZcFhnr5IhHPFTrVYIRlSqD5KEOlT2D0uEOwOUH07T/rLJ3ldlVKtGw3vDcfqcBkdvF+lyajwczdAp+jmOVWhzqzyay9LmVTm+ukenFOBweYoeXecoVyBQq+EXd5P0dlscHpTp7tI4OkrT0+Pn0fEuXWGN725m6Q36+f5Whb6wxTeFGfrbTb4tlgjr+knwh6UkQ1aIZx+WOWsZ/LL+PgOWwa/Xq7yqGPwRm2XArfPn6D5nPRa/TaU5L5v8nizRKdYAH6+meS1o8iRfpN9S+XF7gv6QxrOdLXpDMk8/j9HXLvHzvTyvdOg8eZBl4EyAp1/uEDFq/PC92BiSJDMVn8YnuZieu4CiiizkxpAVN9c+SqHrPlbX5wkYGhv5POFImM07BRS1Bjg4OIjT6WTojXM4nSJvXriIKLoZfmsEUXQxMhLF5XITjcbwtHqIjY7i8/m4PD7+T+7/4F8tjhGTGMUaSAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="256color-list"
         title=""
-        src="/static/b85a410e914d68436d6a06c7aff7938c/f058b/256color.png"
-        srcset="/static/b85a410e914d68436d6a06c7aff7938c/c26ae/256color.png 158w,
-/static/b85a410e914d68436d6a06c7aff7938c/6bdcf/256color.png 315w,
-/static/b85a410e914d68436d6a06c7aff7938c/f058b/256color.png 630w,
-/static/b85a410e914d68436d6a06c7aff7938c/40601/256color.png 945w,
-/static/b85a410e914d68436d6a06c7aff7938c/78612/256color.png 1260w,
+        src="/static/b85a410e914d68436d6a06c7aff7938c/3c051/256color.png"
+        srcset="/static/b85a410e914d68436d6a06c7aff7938c/a2d4f/256color.png 190w,
+/static/b85a410e914d68436d6a06c7aff7938c/3f520/256color.png 380w,
+/static/b85a410e914d68436d6a06c7aff7938c/3c051/256color.png 760w,
+/static/b85a410e914d68436d6a06c7aff7938c/b5cea/256color.png 1140w,
+/static/b85a410e914d68436d6a06c7aff7938c/891d5/256color.png 1520w,
 /static/b85a410e914d68436d6a06c7aff7938c/6ee58/256color.png 1640w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -1184,7 +1184,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <p><code>%B</code>と<code>%b</code>で囲う</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -1195,20 +1195,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 16.455696202531648%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAZElEQVR42p3LuwqDUBRE0YlISoWbpMo5itfggxQ+Cv//z7aIhJAmoMUq9sBoXgZ8mYivlnmc6JrIuzf61ukapyoNt6/CjLqKFOY/+4eUP9D9yTXLuYWAJNJUJMlu60MuOnH6YwXch0RtaJJ/mQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    style="padding-bottom: 16.315789473684212%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAZElEQVR42p3LuwqDUBRE0YlISoWbpMo5itfggxQ+Cv//z7aIhJAmoMUq9sBoXgZ8mYivlnmc6JrIuzf61ukapyoNt6/CjLqKFOY/+4eUP9D9yTXLuYWAJNJUJMlu60MuOnH6YwXch0RtaJJ/mQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="太文字"
         title=""
-        src="/static/d7320959a08ae938827e81db096280f2/f058b/terminal_colorb.png"
-        srcset="/static/d7320959a08ae938827e81db096280f2/c26ae/terminal_colorb.png 158w,
-/static/d7320959a08ae938827e81db096280f2/6bdcf/terminal_colorb.png 315w,
-/static/d7320959a08ae938827e81db096280f2/f058b/terminal_colorb.png 630w,
-/static/d7320959a08ae938827e81db096280f2/40601/terminal_colorb.png 945w,
-/static/d7320959a08ae938827e81db096280f2/78612/terminal_colorb.png 1260w,
+        src="/static/d7320959a08ae938827e81db096280f2/3c051/terminal_colorb.png"
+        srcset="/static/d7320959a08ae938827e81db096280f2/a2d4f/terminal_colorb.png 190w,
+/static/d7320959a08ae938827e81db096280f2/3f520/terminal_colorb.png 380w,
+/static/d7320959a08ae938827e81db096280f2/3c051/terminal_colorb.png 760w,
+/static/d7320959a08ae938827e81db096280f2/b5cea/terminal_colorb.png 1140w,
+/static/d7320959a08ae938827e81db096280f2/891d5/terminal_colorb.png 1520w,
 /static/d7320959a08ae938827e81db096280f2/8bb81/terminal_colorb.png 1602w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -1219,7 +1219,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <p><code>%U</code>と<code>%u</code>で囲う</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -1230,20 +1230,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 16.455696202531648%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAY0lEQVR42p3LvQqDQBRE4YlCSoVNihT3Kq74k4AQ1/d/tiNBJKQJaPEVZ2CUlglPE7HtSe+ZsY+8RuM5OEPnNLXh9lWZ0TaRyvxn30nlHYUH16LkFgKSyHORZZtPH3LRidMfK8Z4RFLP4PvoAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+    style="padding-bottom: 16.315789473684212%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAY0lEQVR42p3LvQqDQBRE4YlCSoVNihT3Kq74k4AQ1/d/tiNBJKQJaPEVZ2CUlglPE7HtSe+ZsY+8RuM5OEPnNLXh9lWZ0TaRyvxn30nlHYUH16LkFgKSyHORZZtPH3LRidMfK8Z4RFLP4PvoAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="下線"
         title=""
-        src="/static/c6a00b02bfcbf8158a7dce40217b5850/f058b/terminal_coloru.png"
-        srcset="/static/c6a00b02bfcbf8158a7dce40217b5850/c26ae/terminal_coloru.png 158w,
-/static/c6a00b02bfcbf8158a7dce40217b5850/6bdcf/terminal_coloru.png 315w,
-/static/c6a00b02bfcbf8158a7dce40217b5850/f058b/terminal_coloru.png 630w,
-/static/c6a00b02bfcbf8158a7dce40217b5850/40601/terminal_coloru.png 945w,
-/static/c6a00b02bfcbf8158a7dce40217b5850/78612/terminal_coloru.png 1260w,
+        src="/static/c6a00b02bfcbf8158a7dce40217b5850/3c051/terminal_coloru.png"
+        srcset="/static/c6a00b02bfcbf8158a7dce40217b5850/a2d4f/terminal_coloru.png 190w,
+/static/c6a00b02bfcbf8158a7dce40217b5850/3f520/terminal_coloru.png 380w,
+/static/c6a00b02bfcbf8158a7dce40217b5850/3c051/terminal_coloru.png 760w,
+/static/c6a00b02bfcbf8158a7dce40217b5850/b5cea/terminal_coloru.png 1140w,
+/static/c6a00b02bfcbf8158a7dce40217b5850/891d5/terminal_coloru.png 1520w,
 /static/c6a00b02bfcbf8158a7dce40217b5850/8bb81/terminal_coloru.png 1602w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -1254,7 +1254,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <p><code>%S%F</code>と<code>%f%s</code>で囲う。(<code>%S</code>と<code>%s</code>をつける)</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -1265,20 +1265,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 16.455696202531648%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAaklEQVR42p3LsQrCQBRE0dkspNQi7Xsru2LWiBDJDyiksrG38/9/4gqCBBtBi1PcgdE0n/H5QhmOTOOJ2hcOe2OoTt05eWO4LZIZ21xI5h/7m3S9o9uDNvd06xWSiFE0jQhBr/5J0B+nL57C/kXFQQLuNgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    style="padding-bottom: 16.315789473684212%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAaklEQVR42p3LsQrCQBRE0dkspNQi7Xsru2LWiBDJDyiksrG38/9/4gqCBBtBi1PcgdE0n/H5QhmOTOOJ2hcOe2OoTt05eWO4LZIZ21xI5h/7m3S9o9uDNvd06xWSiFE0jQhBr/5J0B+nL57C/kXFQQLuNgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="背景"
         title=""
-        src="/static/09531ac4c244da05377e140e9611f414/f058b/terminal_colors.png"
-        srcset="/static/09531ac4c244da05377e140e9611f414/c26ae/terminal_colors.png 158w,
-/static/09531ac4c244da05377e140e9611f414/6bdcf/terminal_colors.png 315w,
-/static/09531ac4c244da05377e140e9611f414/f058b/terminal_colors.png 630w,
-/static/09531ac4c244da05377e140e9611f414/40601/terminal_colors.png 945w,
-/static/09531ac4c244da05377e140e9611f414/78612/terminal_colors.png 1260w,
+        src="/static/09531ac4c244da05377e140e9611f414/3c051/terminal_colors.png"
+        srcset="/static/09531ac4c244da05377e140e9611f414/a2d4f/terminal_colors.png 190w,
+/static/09531ac4c244da05377e140e9611f414/3f520/terminal_colors.png 380w,
+/static/09531ac4c244da05377e140e9611f414/3c051/terminal_colors.png 760w,
+/static/09531ac4c244da05377e140e9611f414/b5cea/terminal_colors.png 1140w,
+/static/09531ac4c244da05377e140e9611f414/891d5/terminal_colors.png 1520w,
 /static/09531ac4c244da05377e140e9611f414/8bb81/terminal_colors.png 1602w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -1291,7 +1291,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 <p>僕の設定を再掲する。</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 630px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
     >
       <a
     class="gatsby-resp-image-link"
@@ -1302,20 +1302,20 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 15.18987341772152%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAATElEQVR42mMw01b4r6Kt8F9BVv6/ghwmlpeV+6+spPRfRUkJzMamBoLl/isrKv5nEJYQ+M/DxfKfgYGBYszIyPifgZmFeoYxMTH9BwBFPUPAY6IORwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+    style="padding-bottom: 15.263157894736842%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAATElEQVR42mMw01b4r6Kt8F9BVv6/ghwmlpeV+6+spPRfRUkJzMamBoLl/isrKv5nEJYQ+M/DxfKfgYGBYszIyPifgZmFeoYxMTH9BwBFPUPAY6IORwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
   ></span>
   <img
         class="gatsby-resp-image-image"
         alt="僕の"
         title=""
-        src="/static/aa4388082c8a42f0b46617965fac75a1/f058b/terminal_my.png"
-        srcset="/static/aa4388082c8a42f0b46617965fac75a1/c26ae/terminal_my.png 158w,
-/static/aa4388082c8a42f0b46617965fac75a1/6bdcf/terminal_my.png 315w,
-/static/aa4388082c8a42f0b46617965fac75a1/f058b/terminal_my.png 630w,
-/static/aa4388082c8a42f0b46617965fac75a1/40601/terminal_my.png 945w,
-/static/aa4388082c8a42f0b46617965fac75a1/78612/terminal_my.png 1260w,
+        src="/static/aa4388082c8a42f0b46617965fac75a1/3c051/terminal_my.png"
+        srcset="/static/aa4388082c8a42f0b46617965fac75a1/a2d4f/terminal_my.png 190w,
+/static/aa4388082c8a42f0b46617965fac75a1/3f520/terminal_my.png 380w,
+/static/aa4388082c8a42f0b46617965fac75a1/3c051/terminal_my.png 760w,
+/static/aa4388082c8a42f0b46617965fac75a1/b5cea/terminal_my.png 1140w,
+/static/aa4388082c8a42f0b46617965fac75a1/891d5/terminal_my.png 1520w,
 /static/aa4388082c8a42f0b46617965fac75a1/24def/terminal_my.png 1812w"
-        sizes="(max-width: 630px) 100vw, 630px"
+        sizes="(max-width: 760px) 100vw, 760px"
         style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
         loading="lazy"
         decoding="async"
@@ -1458,6 +1458,6 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
           <script
             id="gatsby-chunk-mapping"
           >
-            window.___chunkMapping="{\"app\":[\"/app-8c56bb15f481aed24e16.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-6b216c95841301994b1d.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-0a15a1231fe07628de81.js\"],\"component---src-pages-blog-tag-tsx\":[\"/component---src-pages-blog-tag-tsx-f35a4a51995d2475c3c0.js\"],\"component---src-pages-blog-tsx\":[\"/component---src-pages-blog-tsx-0efcd838ecaef17d3c48.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-14824b06dcaefd93dff8.js\"],\"component---src-pages-works-tsx\":[\"/component---src-pages-works-tsx-0e2d5a661f429081f205.js\"],\"component---src-templates-blog-post-tsx\":[\"/component---src-templates-blog-post-tsx-eb7395efe2f9e76466d9.js\"],\"component---src-templates-tag-page-tsx\":[\"/component---src-templates-tag-page-tsx-470095da68d5dabe85a0.js\"],\"component---src-templates-year-page-tsx\":[\"/component---src-templates-year-page-tsx-f6678e1cb3eab6b44415.js\"]}";
+            window.___chunkMapping="{\"app\":[\"/app-22ae724ecd7e78ef057c.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-6b216c95841301994b1d.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-0a15a1231fe07628de81.js\"],\"component---src-pages-blog-tag-tsx\":[\"/component---src-pages-blog-tag-tsx-f35a4a51995d2475c3c0.js\"],\"component---src-pages-blog-tsx\":[\"/component---src-pages-blog-tsx-0efcd838ecaef17d3c48.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-14824b06dcaefd93dff8.js\"],\"component---src-pages-works-tsx\":[\"/component---src-pages-works-tsx-0e2d5a661f429081f205.js\"],\"component---src-templates-blog-post-tsx\":[\"/component---src-templates-blog-post-tsx-eb7395efe2f9e76466d9.js\"],\"component---src-templates-tag-page-tsx\":[\"/component---src-templates-tag-page-tsx-470095da68d5dabe85a0.js\"],\"component---src-templates-year-page-tsx\":[\"/component---src-templates-year-page-tsx-f6678e1cb3eab6b44415.js\"]}";
           </script>
-        <script>window.___webpackCompilationHash="6ee143cba6d4551d01ca";</script><script src="/webpack-runtime-ec38d9e02a2c9f664184.js" async></script><script src="/framework-980b140af5d572a2e76f.js" async></script><script src="/app-8c56bb15f481aed24e16.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
+        <script>window.___webpackCompilationHash="0e314235aba968b37034";</script><script src="/webpack-runtime-b3a44f40558d21efa084.js" async></script><script src="/framework-980b140af5d572a2e76f.js" async></script><script src="/app-22ae724ecd7e78ef057c.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
