@@ -279,7 +279,7 @@ local function mode()
         return 'insert'
     elseif m == 'c' then
         return 'command'
-    elseif m == 'v' or m == '' or m == 's' then
+    elseif m == 'v' or m == '^V' or m == 's' then
         return 'visual'
     elseif m == 'r' then
         return 'replace'
