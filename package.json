@@ -35,7 +35,7 @@
     "react-dom": "18.2.0",
     "sass": "1.58.0",
     "toml": "github:oovm/vscode-toml",
-    "tsconfig-paths-webpack-plugin": "4.0.0",
+    "tsconfig-paths-webpack-plugin": "4.0.1",
     "viml": "github:XadillaX/vscode-language-viml"
   },
   "devDependencies": {
