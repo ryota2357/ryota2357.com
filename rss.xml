@@ -1,4 +1,563 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 02 Apr 2023 11:10:38 GMT</lastBuildDate><item><title><![CDATA[Arduinoでシリアルモニタから数値(整数と小数)を受け取る]]></title><description><![CDATA[Serialから数値を読む用のユーティリティクラスSerialReaderを作った。SerialReader::readInt()でintをSerialReader::readFloat()でfloatを読み出せる。 readFloat…]]></description><link>https://ryota2357.com/blog/2023/arduino-serial-read-int-float/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/arduino-serial-read-int-float/</guid><content:encoded>&lt;p&gt;&lt;code&gt;Serial&lt;/code&gt;から数値を読む用のユーティリティクラス&lt;code&gt;SerialReader&lt;/code&gt;を作った。&lt;code&gt;SerialReader::readInt()&lt;/code&gt;で&lt;code&gt;int&lt;/code&gt;を&lt;code&gt;SerialReader::readFloat()&lt;/code&gt;で&lt;code&gt;float&lt;/code&gt;を読み出せる。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Apr 2023 16:02:29 GMT</lastBuildDate><item><title><![CDATA[自作カラーテーマ「necodark」と自作ジェネレータ「Sccg」(MMA部誌2023春)]]></title><description><![CDATA[こんにちは。2 年の ryota2357 です。 先日、「necodark」というカラーテーマをリリースしました。このカラーテーマは 「Sccg」というカラーテーマジェネレータ(私が開発し、先日 v0.2.…]]></description><link>https://ryota2357.com/blog/2023/necodark-sccg-mma2023a/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/necodark-sccg-mma2023a/</guid><content:encoded>&lt;p&gt;こんにちは。2 年の ryota2357 です。&lt;/p&gt;
+&lt;p&gt;先日、「necodark」というカラーテーマをリリースしました。このカラーテーマは 「Sccg」というカラーテーマジェネレータ(私が開発し、先日 v0.2.1 をリリースしました)を用いて作成しました。&lt;/p&gt;
+&lt;p&gt;本投稿では「necodark」と「Sccg」について書いていきます。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ryota2357/necodark&quot;&gt;necodark (GitHub)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ryota2357/Sccg&quot;&gt;Sccg (GitHub)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://sccg.ryota2357.com/index.html&quot;&gt;Sccg document&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;necodark&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#necodark&quot; aria-label=&quot;necodark permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;necodark&lt;/h2&gt;
+&lt;p&gt;次のスクリーンショットは Neovim にて necodark を利用した際の画像です。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d756d6875db85aec3934753b7f616148/75ac7/sccg-top.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 57.89473684210527%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACLklEQVR42l2SyY4kNRRF8yPI6vDscHiIIWOq7KqsUlcPYoEQG6A3sOADEAt2fP9BEVlJd7M4sizL59nvvkMeV+b7laVk1hiJ1qOkQVYaKa6obS0Tql/IbSa1LSV2LDkzp7yvbYjULnCQ5UwlI1UauWvv+S7PHMvCXVm5ywvHslL5jEsn9PqEmN+iXUAqj9Hfoo3n8OnnCy/vB44688ZFKhsRX7HvdU1IPbZfEHFCCoOQ9hsqaZHKcfgxGz4WRzCJWmi00FTV1yikNPgyobsBmRtMzCjtEeoq2RA34dH2ON3w4AKrqamV36spZRHKUW0XpMOnAV1GjkNB5IhWHinszu2Vu9CmCTW/kM4X8nzGxZ46FULa+tZjmxata3x3j27P2HZEx4E3dUbEZkf75oswdAvzw4Xz25XL05lpnhi7jlS6PTVvtpco8uNPTL/8w/OvfzJ+/zvKdwjtkLZGbt+/CU27kpZHcttRhwZpG6x5TU05zCZUhvnyA/Pnvxl/+4v0+Q/8u0/Y8ZHQnhGvIe1CHSd0uxLywGmc6aaVVE7kEDEuX/upPdY11E1D9/TC8uED/cOF0A7E0uPqLST32sMw0MxP5GFhmWeW08AwTITcYVzcK1+FEWMb+vtnhvWROCy4Ou1nG7e0D9oG2vMzbT7htN0riS3pbRTUa3ra43wiNAUXCs7VaGWp/jeP1x5uwst7+tNKjBkhbzP1ZcY2XNMim4HKZWKM1KlD6fo/0U34L1DgUrmifQwjAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;sccg-top&quot;
+        title=&quot;&quot;
+        src=&quot;/static/d756d6875db85aec3934753b7f616148/3c051/sccg-top.png&quot;
+        srcset=&quot;/static/d756d6875db85aec3934753b7f616148/a2d4f/sccg-top.png 190w,
+/static/d756d6875db85aec3934753b7f616148/3f520/sccg-top.png 380w,
+/static/d756d6875db85aec3934753b7f616148/3c051/sccg-top.png 760w,
+/static/d756d6875db85aec3934753b7f616148/b5cea/sccg-top.png 1140w,
+/static/d756d6875db85aec3934753b7f616148/891d5/sccg-top.png 1520w,
+/static/d756d6875db85aec3934753b7f616148/75ac7/sccg-top.png 3600w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;現在 (2023/04/04) Vim、Neovim にて利用できます。現在 VS Code 対応の作業中です。今後 CotEditor や IntelJ IDE、ターミナルミュレータ(iTerm2 や Alacritty)でも利用できるようにしていきます。
+4 月中には VS Code と CotEditor でも利用できるようになる予定です。&lt;/p&gt;
+&lt;p&gt;このテーマは Visual Studio Dark (以下 vsdark)や Visual Studio Code Dark(以下 codedark)の配色を参考にして作成しました。(vsdark や codedark にて使用されている色を使ったわけではありません)&lt;/p&gt;
+&lt;p&gt;青・緑を中心に構成し、boolean 値には青緑(Teal)、数値にはピンクを採用しました。全体的にはっきりとした色(彩度が高めの色、ビビット/ブライトあたりのトーン)を使っています。&lt;/p&gt;
+&lt;p&gt;カラーパレットは&lt;a href=&quot;https://github.com/ryota2357/necodark/blob/main/src/Necodark/Palette.cs&quot;&gt;https://github.com/ryota2357/necodark/blob/main/src/Necodark/Palette.cs&lt;/a&gt;にて確認できます。
+使用している主な色は次の通りです。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/d0c62b177167f37f89c5cb1c6ff21a86/a878e/pallet.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.26315789473684%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAADoElEQVR42lXO20+bBRjH8f4T7sBhk0XgYiaayXBGjVlC3NJCuJJl4kCYOGQ66AmCHOISYdgV0EGA9m2hHNTN3To2KJZo5sByHjAQCbwyDi1QaIsdh9Z+9X1xJF588jxX3/wU6x4fng3/gbV1L8MTUww+nmRo/Akjk9P8OjDC5bxC3s+6Rnp2Ppc+UnPhUh7Hjr/EkaPRHI04JouIPI5CikhRKfT8SsGBsQmco+MMjz+Rg9mf6OVYRo6ajBzNQVAKRUXHEBn1ovwrPJtbPF10MzU9y7JrnbV138GqLscv9A2O8GhwlKxcPZkfa7mqLuNyXhFp/wVjYmJ55dXXiDkRux/0bvrZ3PCx4fEi/dIdnZxiaHyCoccT8v9oYJisK1ouZn5KetZnfJCdT1r6FSKiTvDCoUgOH4nm0OEomWLB7WPB7T8grnhxjv1O/8i0bGBshp/7x8gpKCMjt5DMvCI+vFpMeo6GkydfJi42lvi4OOLj9ynOtno52+qTvdPqJcnmw2ANUmsJUS0RQtTYQphmApjnAwhzAUxz29jmNlmbbWVr1oRvVjigSBB8JAheEsybnBK8vCH4+LIpjKERqhrDVDWEMViheRFsbmhZAasLvncHCa3dhdV2WO2AtW9lijPNfk43uTlV+wcJJjdvWf1UmsNU1P1FqWGJyvptbrZA80IY03yAW+NuTOIu3y3vsLNyhx3RwvJYPYE5C7jaUSRa/CQKPhLNXk4LPt4U/FQ2wc1G+KoxjKEBjFawPAWrG6zLILigw7XHjvsOuFsJrbTxt6tNXqs4Y/Pw3Os2D2+3eLguBLghPKPC8owKc4AbtgBtswE6FgJ0/BmgTdzmB3GTHfE2iK2ExXYQ2wiLbShU/Q5UfZKfUPX3ourrJrXnOqn2UlLt5ST3lHPxQRkzDaUs1ZWwUFfKQn0Ji7fK2S0zEyyx/I8iZaCblMHn7KQ476HsLULpUKNyaDnXq+E9u4b52gLWjGrcRjUuYz6rBi27uiaCagt7GuGAImWwB+XDH0nqvI3yYScpzgeoej/nfGcBSXfzeLdLQ5pdj/iNDrHqGqNf5CIa8lmtLmSv0MRWQSNLeTXyDenlhXaSf+tC1XefZKedZOd9lI5ilD1alHYt5xw60rp1iF9rcRk1LBrVrNRIS/Xs6k3yqh2NmV2tQFAnBZ3dSNF9PaQ4O1H1FqNy6Eh2FHK+V8+Fbr0cXK3W4qrRslKj2Q8WmgjqrHJIsvdv8B84e2V/NCefCAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;pallet&quot;
+        title=&quot;&quot;
+        src=&quot;/static/d0c62b177167f37f89c5cb1c6ff21a86/3c051/pallet.png&quot;
+        srcset=&quot;/static/d0c62b177167f37f89c5cb1c6ff21a86/a2d4f/pallet.png 190w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/3f520/pallet.png 380w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/3c051/pallet.png 760w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/b5cea/pallet.png 1140w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/891d5/pallet.png 1520w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/a878e/pallet.png 2048w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;necodark-の目的と特徴&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#necodark-%E3%81%AE%E7%9B%AE%E7%9A%84%E3%81%A8%E7%89%B9%E5%BE%B4&quot; aria-label=&quot;necodark の目的と特徴 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;necodark の目的と特徴&lt;/h3&gt;
+&lt;p&gt;necodark を作成した目的は主に次の 2 点です。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;長時間のコーディングによる目の疲れがあってもしっかりコードを読める&lt;/li&gt;
+&lt;li&gt;馴染みのある配色である&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;1 つ目の目的のために、背景には少し暗めの黒(#1a1b1f)を使い文字色の彩度・コントラスト比を上げました。2 つ目の目的のためベースに vsdark や codedark を採用しました。&lt;/p&gt;
+&lt;p&gt;necodark は「制御 (if や for)」「リテラル (boolean, 数値)」に特徴的な配色を行っています。&lt;/p&gt;
+&lt;p&gt;「制御」に充てている色は インディゴ(#8a99ff) です。この色はキーワード色として使っている青(#379df1)に近い色を持ちます。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 616px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/643f13a2ab25fec0eded3cf5e3d72dc0/40040/statement-indigo.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 67.36842105263158%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB80lEQVR42o2T2Y7TQBBF/Qc8gOJ9t9tLt9c440kmTJhNCAkJ8cD/f8pBbYcIMdEMD1dVvfh23bplo5BH8rxjPD1TNj3dsOOuGmmrhqYdcZwAy/bZ2B627S/Qa9N0sZ0A0/KwNM77RhAJHMdHDQ+o8RtJLKimBz62j4RyS1I1SKF4UbekdUcsJEWpaPYn4kTQDjd085GikKhmwPD9eHkpCAVRrEgKRTbu8YuWUiiUkLheSJ1UBHGOF6YEUUauBoIwJRM1iaiXPIpzDD9IcNwIz4+xTJtIk+yeqOsdvTpwmJ4JkhrLXaW/K1kT6oMkLXG9CNdLafqvFPKeQp1ott9p+3vCcL3nuOGbMHSpmrkfdgRhtmxatnuBuUTvQvYeqTFuZ0R9ZLz5QV7O9MO49My2A1zLx92s0v6bMIzzJVH9C8P8E9k9Ies9Ud/zYZqwvpxWV9sR+5+Pr5Ebnq9745NkzeJyLmfk9o6skqSyo5mP2EGMftiynLUNpr206Rrp2eVwkakvRnlNPT1SVC3TsGdbdci4pMwqknwkyTpEdYueX13Iqwr/EKZZtYyO52ek+Q5Rt9TzZ2JRcSgHpmZL2T4srZkOv5DNhGm511zOlllaXU7P8+Su0VzjJ9tbfj2tQGOz2VyqeyVZE2nCtxx0L3n0F66b8hvysGuYBUX8BAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;statement-indigo&quot;
+        title=&quot;&quot;
+        src=&quot;/static/643f13a2ab25fec0eded3cf5e3d72dc0/40040/statement-indigo.png&quot;
+        srcset=&quot;/static/643f13a2ab25fec0eded3cf5e3d72dc0/a2d4f/statement-indigo.png 190w,
+/static/643f13a2ab25fec0eded3cf5e3d72dc0/3f520/statement-indigo.png 380w,
+/static/643f13a2ab25fec0eded3cf5e3d72dc0/40040/statement-indigo.png 616w&quot;
+        sizes=&quot;(max-width: 616px) 100vw, 616px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;vsdark では「制御」と「キーワード」には同じ色が当てられています。necodark ではこれらの色を分けました。
+一般にキーワードはコード内で重要なマーカーとなります。そして「制御」もコードのロジックを示すのに重要なマーカーとなります。
+重要なマーカーとしての意味であれば同じ色を当てても良さそうです。
+しかし necodark では上に挙げた目的の 1 つ目「長時間のコーディングによる目の疲れがあってもしっかりコードを読める」を達成するため色を分けました。&lt;/p&gt;
+&lt;p&gt;「制御」と「キーワード」はコード中に頻繁に登場します。そのため、もしこれらの色を同じにしてしまうと同じ色がコード内に比較的多く登場することになります。
+通常時はとても良いマーカーになるかもしれませんが、疲労時には同じ色が多いと感じて目が滑ってしまうかもしれません。これを解決するため necodark では「制御」にインディゴを当てました。&lt;/p&gt;
+&lt;p&gt;necodark で使用したインディゴと青は近い色です。しかしインディゴは青よりは目立たないでしょう。 先ほど「制御」は重要なマーカーと言ったのにキーワードのようには目立っていません。
+しかしこれで良いのです。 「制御」となる文字は&lt;code&gt;if&lt;/code&gt;や&lt;code&gt;for&lt;/code&gt;、&lt;code&gt;loop&lt;/code&gt;、&lt;code&gt;raise&lt;/code&gt;、&lt;code&gt;break&lt;/code&gt;などが挙げられます。これらの文字はコード内でインデントや &lt;code&gt;}&lt;/code&gt; などの付近で使用されています。
+そのため文字色で目出させずにも識別することは十分可能だと考えました。
+また、特に&lt;code&gt;if&lt;/code&gt;や&lt;code&gt;for&lt;/code&gt;ではリテラルと共に使用されることも多いです。necodark ではリテラルにも目立つ特徴的な配色がされています。
+このことからも「制御」にはキーワードよりは目立たないインディゴを割り当てるのが適当だと考えました。&lt;/p&gt;
+&lt;p&gt;「リテラル」に当てている色は、真偽値には青緑(#4dcbbb)、数値にはピンク(#fb749c)です。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 578px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/63dd1dab0b6107cf4c688fce3ff9eba9/508ef/literal-pink-teal.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 26.842105263157894%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABBklEQVR42o2Py07CQABF+wcuinTaKQj0NZ0+pi19GTCIEh8sXJv4/99xDJWFceXi5uRubu6xRNpht2f8YiTr9yRZyRhVfOVHPs0RrUtuhUR4Sxx3geMtEBdeM3f9qQu5RAgfS8Q1dn3Czwd0tyNOCopS8/bccziMfNyfKANNtlYkG0UT5MTrhDYsUBvFEBviVcyjGTFNh+Woy8N3pNmhqo5VkLDPa87DwG7bkkU5OsoI7yJUpFGrhChUPwzUNBpuErJQo/MKS6iWWfOCTLdEeU1W1DSqpokqjOmxhcRx/Ul14i9d54/63JFX5e0rMuvR4wOpKrCN4WbsmZ2eSPMK11viybt/5RvYUpDT/ODmeAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;literal-pink-teal&quot;
+        title=&quot;&quot;
+        src=&quot;/static/63dd1dab0b6107cf4c688fce3ff9eba9/508ef/literal-pink-teal.png&quot;
+        srcset=&quot;/static/63dd1dab0b6107cf4c688fce3ff9eba9/a2d4f/literal-pink-teal.png 190w,
+/static/63dd1dab0b6107cf4c688fce3ff9eba9/3f520/literal-pink-teal.png 380w,
+/static/63dd1dab0b6107cf4c688fce3ff9eba9/508ef/literal-pink-teal.png 578w&quot;
+        sizes=&quot;(max-width: 578px) 100vw, 578px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;コード内に登場する数値リテラルは基本的に何かの固定値であり、変更する時には注意を払う必要があります。そのため数値には他のところでは使用していない色であり、赤系に近いながらも警告の意味を持たないような色を当てました。&lt;/p&gt;
+&lt;p&gt;真偽値リテラルも分岐を決定する重要なものですが、分岐の決定には文学的な方法(メソッド名や変数名を用いて真偽を抽象化し意味を持たせて分岐する)が多いでしょう。そのため重要度はそこまで高くないかもしれません。しかしリテラルであることには変わりはなく、重要ではあるので通常の文字色を当てることはできません。そこで青・緑と白の中間的な色を使おうと考えました。水色は「パラメータ」などの色に当てられているので緑と白の中間の色を採用しました。&lt;/p&gt;
+&lt;h2 id=&quot;sccg&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#sccg&quot; aria-label=&quot;sccg permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Sccg&lt;/h2&gt;
+&lt;p&gt;ここまで necodark の「見た目」について説明しました。ここからは necodark の「実装」について書いていきます。&lt;/p&gt;
+&lt;p&gt;necodark は C# 製のカラーテーマジェネレータ、Sccg を用いて作成されています。Sccg は v0.2.1 であり、今後も開発は進められていく予定です。v0.2.1 ですが十分に実用に耐えれるものだと思ってます。&lt;/p&gt;
+&lt;h3 id=&quot;sccg-の目的と特徴&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#sccg-%E3%81%AE%E7%9B%AE%E7%9A%84%E3%81%A8%E7%89%B9%E5%BE%B4&quot; aria-label=&quot;sccg の目的と特徴 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Sccg の目的と特徴&lt;/h3&gt;
+&lt;p&gt;Sccg の README からそのまま引用しましょう。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;txt&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt; **S**criptable **C**olor **C**onfiguration **G**enerator.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;Sccg is a tool to generate color schemes for your terminal, editor, etc.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;## Goals and Features&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;- Fully scriptable&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  - Separate the each generation logic, `Source`, `Formatter`, `Converter` and `Writer`.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  - You can write your own `Source`, `Formatter`, `Converter` and `Writer` with C#.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;- Unified API and Cross-platform&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  - Each platform has its own color scheme format.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  - Sccg provides a unified API to generate color schemes for each platform.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  - You can set the color with `Set` and can link to other color with `Link`.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;- Foolproof&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  - There are may color groups, such as &amp;#39;Comment&amp;#39;, &amp;#39;@type.builtin&amp;#39;, &amp;#39;Ansi 0 Color&amp;#39;, etc.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  - All color groups are defined in the `Source`, so you get completion, type check and so on.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;  - Cycle reference will be detected by `Source`, then Sccg warn you or failed to build.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;まとめると Sccg は、C# でカスタマイズ可能であり、多くのプラットフォームに統一された方法でカラーテーマを作成することができ、typo や色の循環 link を抑制することができることで、安全に効率的にオリジナルのカラーテーマを作成することを可能にするカラーテーマジェネレータです。(このことを目標に開発してます)&lt;/p&gt;
+&lt;p&gt;続いて Sccg にて採用した概念である、&lt;code&gt;Source&lt;/code&gt;、&lt;code&gt;Formatter&lt;/code&gt;、&lt;code&gt;Converter&lt;/code&gt;、&lt;code&gt;Writer&lt;/code&gt;の説明と関係を説明します。README にもあるように、これらを用いてカラーテーマの生成ロジックをスクリプト可能なものに分割しました。次にこれらの関係を図示します(README からの引用)。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/d6e716bb5ce7b6000c4db4b048e2990a/sccg-structure.svg&quot; alt=&quot;sccg-structure&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Source&lt;/code&gt; から &lt;code&gt;SourceItem&lt;/code&gt; というものが生成され、それが&lt;code&gt;Formatter&lt;/code&gt;によって&lt;code&gt;Content&lt;/code&gt;に加工され&lt;code&gt;Writer&lt;/code&gt;によって何かしらの形をとって出力されます。
+途中&lt;code&gt;Converter&lt;/code&gt;が&lt;code&gt;SourceItem&lt;/code&gt;や&lt;code&gt;Content&lt;/code&gt;を加工することができます。&lt;/p&gt;
+&lt;p&gt;ここからは necodark の実装と合わせて、それぞれの概念がどのように使われ、働くことでカラーテーマが生成されるのかを見ていきましょう。個々の概念の説明も書いていきます。&lt;/p&gt;
+&lt;h3 id=&quot;programcs&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#programcs&quot; aria-label=&quot;programcs permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Program.cs&lt;/h3&gt;
+&lt;p&gt;necodark のメインスクリプト部分は次のようになっています。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;using&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Sccg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;using&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Sccg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Builtin&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Formatters&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;using&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Sccg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Builtin&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Writers&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Builder&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Metadata&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Metadata&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Default&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;with&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;ThemeName&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;necodark&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Author&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;ryota2357&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    },&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;};&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// source&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Ansi16&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;VimSyntaxHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;VimEditorHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;VimFiletypeHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;NeovimEditorHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;NeovimTreesitterHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;NeovimLspDiagnosticHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;NeovimPluginHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// formatter&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;VimFormatter&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;NeovimFormatter&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// converter&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;FilenameConverter&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;// writer&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Use&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;TextFileWriter&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk12&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;1 行目から読んでいきます。using 部分を説明するために、Sccg が 2 つの部分に分けられていることを先に説明します。
+Sccg はコアな部分(Sccg の核となる部分)とそれの付属部分(標準ライブラリ的な部分)の 2 つに別れています。コアな部分を単に Sccg といい、付属部分を Sccg.Builtin と呼びます。
+&lt;code&gt;using&lt;/code&gt;にてコア部分といくつかの付属部分をインポートしています。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;using&lt;/code&gt;の次では &lt;code&gt;Builder&lt;/code&gt;クラスのインスタンス builder を生成しています(&lt;code&gt;Builder&lt;/code&gt;クラスは Sccg に定義されています)。&lt;code&gt;Builder&lt;/code&gt;クラスは登録された&lt;code&gt;Source&lt;/code&gt;や&lt;code&gt;Formatter&lt;/code&gt;などを適切に利用し、カラーテーマを生成するロジックをもったクラスです。
+インスタンスの生成時にメタデータを記述しています。これにより、いつくかの&lt;code&gt;Source&lt;/code&gt;や&lt;code&gt;Formatter&lt;/code&gt;にメタデータを注入することができます。&lt;/p&gt;
+&lt;p&gt;続いて、builder に Source を登録しています。 &lt;code&gt;Use&amp;#x3C;T&gt;()&lt;/code&gt;メソッドを用いて&lt;code&gt;T&lt;/code&gt;クラスを builder に登録できます。
+上記スクリプトでは Vim・Neovim 用の様々な Source を登録しています。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Source&lt;/code&gt;の登録の次に &lt;code&gt;Formatter&lt;/code&gt; を登録しています。Vim と Neovim 用のテーマを作っているので &lt;code&gt;VimFormatter&lt;/code&gt;と &lt;code&gt;NeovimFormatter&lt;/code&gt;を登録しています。
+&lt;code&gt;Formatter&lt;/code&gt;の次は &lt;code&gt;Converter&lt;/code&gt; 、そして最後に &lt;code&gt;Writer&lt;/code&gt; を登録しています。必要なものが全て登録しおわったら builder の&lt;code&gt;Build()&lt;/code&gt; メソッドを呼び出すことでカラーテーマが生成されます。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Source&lt;/code&gt;、&lt;code&gt;Formatter&lt;/code&gt;、&lt;code&gt;Converter&lt;/code&gt;、&lt;code&gt;Writer&lt;/code&gt;は 0 個以上の任意の個数登録することができます。上のコードでは順番に登録してますが順番に登録する必要はありません。&lt;/p&gt;
+&lt;p&gt;ちなみに、Sccg は &lt;code&gt;Source&lt;/code&gt; や &lt;code&gt;Formatter&lt;/code&gt; などは 1 つも定義していません。Sccg.Builtin にて定義されています。
+&lt;code&gt;Source&lt;/code&gt;や&lt;code&gt;Formatter&lt;/code&gt;、&lt;code&gt;Writer&lt;/code&gt;はただのクラスなので継承によってカスタマイズ・拡張することも可能です。もちろん自分で 1 から作成することも可能であり、さほど難しくはありません。&lt;/p&gt;
+&lt;h3 id=&quot;source&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#source&quot; aria-label=&quot;source permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Source&lt;/h3&gt;
+&lt;p&gt;1 つの&lt;code&gt;Source&lt;/code&gt; は 0 個以上のカラーグループ(トークン)と、各カラーグループの設定(色やフォントスタイル)を持っています。
+私たちはカラーテーマを作成するために&lt;code&gt;Source&lt;/code&gt;を作る必要があります。1 から Source を作るのは大変なので基本的には Sccg.Builtin から提供される Source を用いると良いでしょう。&lt;/p&gt;
+&lt;p&gt;Sccg.Builtin が提供する Source はカラーグループは持っていますが、各カラーグループの設定は持っていません。
+私たちはそのカラーグループに色やフォントスタイルを設定することができます。私たちは色・フォントスタイルを 0 個以上設定したものを&lt;code&gt;Builder&lt;/code&gt;に登録します。
+登録された &lt;code&gt;Source&lt;/code&gt;は私たちの設定に基づき、0 個以上の&lt;code&gt;SourceItem&lt;/code&gt;と呼ばれるものを生成します。&lt;/p&gt;
+&lt;p&gt;実際にコードを掲載します。例えば Neovim の Editor ハイライトを設定したい場合は次のようにします。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;2&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;EditorHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; : &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;NeovimEditorHighlightSource&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;protected&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;override&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Custom&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;lCursor&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;fg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;aaff00&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;bold&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Title&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;bg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;000000&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Menu&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;none&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;ColorColumn&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;underline&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;bold&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Link&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Conceal&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;ColorColumn&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;この例は Sccg のテストで使っているコードです。&lt;code&gt;NeovimEditorHighlightSource&lt;/code&gt;を継承した&lt;code&gt;EditorHighlight&lt;/code&gt;クラスの&lt;code&gt;Custom()&lt;/code&gt;メソッド内で&lt;code&gt;Set()&lt;/code&gt;関数や&lt;code&gt;Link()&lt;/code&gt;関数を用いて設定を書くことができます(&lt;code&gt;NeovimEditorHighlightSource&lt;/code&gt; は Sccg.Builtin から提供される&lt;code&gt;Source&lt;/code&gt;です)。lCursor というグループに 前景色を#aaff00、スタイルを bold に設定したり、Title グループの背景色を #000000 に設定したり、Conceal グループを ColorColumn グループにリンクさせている、、などがわかると思います。&lt;/p&gt;
+&lt;p&gt;次に necodark にて実際に使用しているコードを載せました(同じく Neovim の Editor ハイライトを設定しているところです)。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;3&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;NeovimEditorHighlight&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; : &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;NeovimEditorHighlightSource&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;protected&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;override&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Custom&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;ColorColumn&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;bg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;HideText&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Foreground&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Conceal&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;HideText&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;CurSearch&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;fg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;NormalText&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;bg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;BooleanLiteralTeal&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Foreground&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Link&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;IncSearch&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;CurSearch&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Search&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;SelectRangeBlue&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Cursor&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;fg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;NormalText&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Background&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;bg&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;: &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;NormalText&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Foreground&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Link&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;lCursor&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Cursor&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Link&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;CursorIM&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Group&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Cursor&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt; ……&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;先ほどのように&lt;code&gt;Set()&lt;/code&gt;で直接色・フォントスタイルを設定するのではなく、&lt;code&gt;S.*&lt;/code&gt;というように、スタイル設定をまとめた変数を用意して&lt;code&gt;Set()&lt;/code&gt;の第二引数で指定しています。&lt;/p&gt;
+&lt;h3 id=&quot;formatter&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#formatter&quot; aria-label=&quot;formatter permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Formatter&lt;/h3&gt;
+&lt;p&gt;1 つの&lt;code&gt;Formatter&lt;/code&gt;は&lt;code&gt;Source&lt;/code&gt;により生成された 0 個以上の&lt;code&gt;SourceItem&lt;/code&gt;を受け取り、&lt;code&gt;Content&lt;/code&gt;1 つだけを生成するものです。&lt;code&gt;SourceItem&lt;/code&gt;を参照するだけで消費はしません(できません)。&lt;/p&gt;
+&lt;p&gt;実装は普通&lt;code&gt;Formatter&lt;/code&gt;が最も複雑になり、異なる&lt;code&gt;Formatter&lt;/code&gt;間で共通する操作も少ないです。
+基本的には 1 つの&lt;code&gt;Formatter&lt;/code&gt;がカラーテーマの 1 つのターゲットプラットフォームに対応する形を取ります。Vim に対してビルドしたければ&lt;code&gt;VimFormatter&lt;/code&gt;を、VS Code ならば&lt;code&gt;VSCodeFormatter&lt;/code&gt;(現在開発中)を&lt;code&gt;Builder&lt;/code&gt;に登録することで、適切な&lt;code&gt;Content&lt;/code&gt;が生成されます。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Formatter&lt;/code&gt;は受け取った&lt;code&gt;SourceItem&lt;/code&gt;のうち 0 個以上を処理して(参照して)&lt;code&gt;Content&lt;/code&gt;を生成します。
+ある&lt;code&gt;Formatter&lt;/code&gt;にて処理してほしい場合はその&lt;code&gt;Formatter&lt;/code&gt;が処理可能な&lt;code&gt;SourceItem&lt;/code&gt;を&lt;code&gt;Source&lt;/code&gt;にて生成するようにしなければなりません。
+具体的には適切な interface を実装する必要があります。
+Sccg.Builtin の&lt;code&gt;Source&lt;/code&gt;の中には複数の&lt;code&gt;Formatter&lt;/code&gt;で処理可能にした&lt;code&gt;SourceItem&lt;/code&gt;を生成する&lt;code&gt;Source&lt;/code&gt;があります。
+例えば&lt;code&gt;Ansi16ColorSource&lt;/code&gt;は&lt;code&gt;VimFormatter&lt;/code&gt;, &lt;code&gt;NeovimFormatter&lt;/code&gt;, &lt;code&gt;Iterm2Formatter&lt;/code&gt;, &lt;code&gt;AlactirryFormatter&lt;/code&gt;で処理可能な&lt;code&gt;SourceItem&lt;/code&gt;を生成する&lt;code&gt;Source&lt;/code&gt;です。
+処理してほしくない場合は&lt;code&gt;ItemTarget&lt;/code&gt;プロパティをオーバーロードすることで無効化することができます。
+他にも&lt;code&gt;VimSyntaxGroupSource&lt;/code&gt;は&lt;code&gt;VimFormatter&lt;/code&gt;と&lt;code&gt;NeovimFormatter&lt;/code&gt;で処理可能な&lt;code&gt;SourceItem&lt;/code&gt;を生成します。このようにすることで設定を複数プラットフォームで使い回すことを可能にしています。&lt;/p&gt;
+&lt;p&gt;実装コードを載せようと思ったのですが、どの&lt;code&gt;Formatter&lt;/code&gt;も長かったので省略します。&lt;/p&gt;
+&lt;h3 id=&quot;converter&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#converter&quot; aria-label=&quot;converter permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Converter&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Converter&lt;/code&gt;には 2 つの種類が存在します、&lt;code&gt;SourceItemConverter&lt;/code&gt;と&lt;code&gt;ContentConverter&lt;/code&gt;です。それぞれ&lt;code&gt;SourceItem&lt;/code&gt;、&lt;code&gt;Content&lt;/code&gt;を加工する、という役割を持ちます。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SourceItemConverter&lt;/code&gt;は n 個(n は 0 以上の整数)の&lt;code&gt;SourceItem&lt;/code&gt;を受け取り m 個(m は 0 以上の整数)の&lt;code&gt;SourceItem&lt;/code&gt;を返します。
+この時&lt;code&gt;Formatter&lt;/code&gt;とは異なり&lt;code&gt;SourceItem&lt;/code&gt;を消費します。そのため加工したくないものに関しては受け取ったものをそのまま返す必要があります。&lt;code&gt;ContentConverter&lt;/code&gt;も同様です。&lt;code&gt;Content&lt;/code&gt;を消費します。&lt;/p&gt;
+&lt;p&gt;現在 Sccg.Builtin からは&lt;code&gt;Converter&lt;/code&gt;は 1 つも提供していません。(VS Code 対応において&lt;code&gt;MultiTextContentSplitter&lt;/code&gt;という&lt;code&gt;ContentConverter&lt;/code&gt;が追加される予定です)&lt;/p&gt;
+&lt;p&gt;necodark では複数プラットフォームにビルドする際、ビルドディレクトリ整理のための&lt;code&gt;ContentConverter&lt;/code&gt;を作成し利用しています。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;4&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;FilenameConverter&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; : &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;IContentConverter&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; =&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;Filename&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Priority&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; =&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;IEnumerable&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;IContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Convert&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;IContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;contents&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;BuilderQuery&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;contents&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;SingleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;singleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;                &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;yield&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;GetExtension&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;singleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Filename&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;switch&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;                {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;                    &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;.lua&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; =&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;SingleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Join&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;nvim&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;singleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Filename&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;), &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;singleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;),&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;                    &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;.vim&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; =&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;SingleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Join&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;vim&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;singleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Filename&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;), &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;singleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;),&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;                    &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; =&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;SingleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Join&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;other&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;singleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Filename&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;), &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;singleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;                };&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;                &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;yield&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;Name&lt;/code&gt; と &lt;code&gt;Priority&lt;/code&gt; というプロパティはここでは無視してください。&lt;code&gt;Builder&lt;/code&gt; が適切に動作するために必要なものであって&lt;code&gt;Converter&lt;/code&gt;の説明には関係しません。
+また、&lt;code&gt;SingleTextContent&lt;/code&gt;というクラスが登場してますが、これは Sccg.Builtin にて定義されている&lt;code&gt;Content&lt;/code&gt;の 1 つです。
+&lt;code&gt;Filename&lt;/code&gt; と &lt;code&gt;Text&lt;/code&gt; という 2 つのメンバを持つクラスで、単一のテキストファイルを表すためのクラスです。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;FilenameConverter&lt;/code&gt;ではファイルパス(Filename)を見てディレクトリ構造を追加しています。
+lua ファイルの場合は nvim/下に配置するように、vim ファイルの場合は vim/以下に配置するようにファイル名を変更したものを返しています。&lt;/p&gt;
+&lt;h3 id=&quot;writer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#writer&quot; aria-label=&quot;writer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Writer&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Writer&lt;/code&gt;は 0 個以上の&lt;code&gt;Content&lt;/code&gt;をファイルや標準出力など、何らかの形に出力するものです。
+necodark では Sccg.Builtin が提供する&lt;code&gt;TextFileWriter&lt;/code&gt;を利用して&lt;code&gt;SingleTextContent&lt;/code&gt;という&lt;code&gt;Content&lt;/code&gt;をファイルに出力しています。
+&lt;code&gt;Formatter&lt;/code&gt;と同様、&lt;code&gt;Content&lt;/code&gt;は消費されません(することができません)。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Writer&lt;/code&gt;の実装は非常にシンプルなものになります。&lt;code&gt;TextFileWriter&lt;/code&gt;の実装は次のとおりです。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;5&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;TextFileWriter&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; : &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;Writer&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;SingleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;override&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; =&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;TextFile&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;protected&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;override&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Write&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;IEnumerable&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;SingleTextContent&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;contents&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;BuilderQuery&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;outputDirectory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;GetMetadata&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Context&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;OutputDirectory&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;build&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;foreach&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;contents&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Combine&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;outputDirectory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Filename&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;var&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; = &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;GetDirectoryName&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; (&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;not&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &amp;amp;&amp;amp; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Exists&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;) == &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            {&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;                &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CreateDirectory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;directory&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;WriteAllText&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;content&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;            &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Log&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Info&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;$&amp;quot;Wrote {&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;}&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;interface&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#interface&quot; aria-label=&quot;interface permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;interface&lt;/h3&gt;
+&lt;p&gt;個々の概念を実際のコードにする際に次に示す interface を Sccg にて定義してあります。(名前空間は&lt;code&gt;Sccg.Core&lt;/code&gt;です)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Source&lt;/code&gt;を表す&lt;code&gt;ISource&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SourceItem&lt;/code&gt;を表す&lt;code&gt;ISourceItem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Formatter&lt;/code&gt;を表す&lt;code&gt;IFormatter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Content&lt;/code&gt;を表す&lt;code&gt;IContent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Converter&lt;/code&gt;を表す&lt;code&gt;ISourceItemConverter&lt;/code&gt;と&lt;code&gt;IContentConverter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Writer&lt;/code&gt;を表す&lt;code&gt;IWriter&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;さらに、これら interface を実装し、基本的な実装を加えた抽象 class も定義してあります。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ISource&lt;/code&gt;を実装した&lt;code&gt;Source&amp;#x3C;TGroup, TItem&gt; where TItem : ISourceItem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IFormatter&lt;/code&gt;を実装した&lt;code&gt;Formatter&amp;#x3C;TSourceItem, TContent&gt; where TSourceItem : ISourceItem where TContent : IContent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;IWriter&lt;/code&gt;を実装した&lt;code&gt;Writer&amp;#x3C;TContent&gt; where TContent : IContent&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sccg.Builtin ではこれら抽象 class と interface を実装した class, interface を作成し、&lt;code&gt;Builder&lt;/code&gt;にて目的とするカラーテーマが作成できるようにしています。
+詳しくはソースコードを読んでください。一応ドキュメントコメントも書いてあります。&lt;/p&gt;
+&lt;h2 id=&quot;補足&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E8%A3%9C%E8%B6%B3&quot; aria-label=&quot;補足 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;補足&lt;/h2&gt;
+&lt;h3 id=&quot;なぜ-c-で作ったのか&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E3%81%AA%E3%81%9C-c-%E3%81%A7%E4%BD%9C%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%8B&quot; aria-label=&quot;なぜ c で作ったのか permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;なぜ C# で作ったのか&lt;/h3&gt;
+&lt;p&gt;型が厳格であり、かつ柔軟性がある程度あり、リフレクションが使える言語で僕が扱えるのが C#だけだったから。&lt;/p&gt;
+&lt;p&gt;TypeScript とか Dart とか Rust も考えたけど、どれも条件に当てはまらなかった。&lt;/p&gt;
+&lt;h3 id=&quot;converter-の説明で出てきたnameとpriorityプロパティは何をしているか&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#converter-%E3%81%AE%E8%AA%AC%E6%98%8E%E3%81%A7%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9Fname%E3%81%A8priority%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%AF%E4%BD%95%E3%82%92%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B&quot; aria-label=&quot;converter の説明で出てきたnameとpriorityプロパティは何をしているか permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Converter の説明で出てきた&lt;code&gt;Name&lt;/code&gt;と&lt;code&gt;Priority&lt;/code&gt;プロパティは何をしているか&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;Name&lt;/code&gt;, &lt;code&gt;Priority&lt;/code&gt;プロパティは&lt;code&gt;ISource&lt;/code&gt;, &lt;code&gt;IFormatter&lt;/code&gt;, &lt;code&gt;ISourceItemConverter&lt;/code&gt;, &lt;code&gt;IContentConverter&lt;/code&gt;, &lt;code&gt;IWriter&lt;/code&gt;全てに実装されているプロパティです。
+これらのプロパティは&lt;code&gt;Builder&lt;/code&gt;クラスにて使われます。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Name&lt;/code&gt;プロパティは&lt;code&gt;Builder::Use&amp;#x3C;T&gt;()&lt;/code&gt;で利用され、重複したものが登録されていないことを確認します。重複したものが登録された時には例外(&lt;code&gt;ArgumentException&lt;/code&gt;)が投げられます。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Priority&lt;/code&gt;プロパティは&lt;code&gt;Builder::Build()&lt;/code&gt;で利用され、例えば、登録された複数の&lt;code&gt;Source&lt;/code&gt;の&lt;code&gt;Source&lt;/code&gt;内での処理順番を決定します。小さい方が先に処理されます。&lt;/p&gt;
+&lt;p&gt;次にドキュメントコメント付きの&lt;code&gt;ISource&lt;/code&gt;の実装を載せておきます。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cs&quot; data-index=&quot;6&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;/// Represents a source that provides  source items.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;interface&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;ISource&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// Gets the source name.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;remarks&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;see&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;cref&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;Builder&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; cannot have more than one &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;see&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;cref&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;ISource&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; with the same &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;see&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;cref&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;Name&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; to avoid&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// creating duplicate &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;see&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;cref&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;ISourceItem&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;remarks&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    public &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Name&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; { &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;; }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// Gets the order in which the source is applied. The lower the number, the earlier the source is applied.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    public &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;Priority&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; { &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;; }&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// Collects source items from the source.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;returns&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;It is passed to &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;see&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;cref&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;IFormatter&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; to format.&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;returns&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    public &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;IEnumerable&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;ISourceItem&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;&amp;gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;CollectItems&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;();&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// Starts the source customization.&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;/// &lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;query&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;mtk3&quot;&gt;The means of accessing other sources, etc.&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;param&lt;/span&gt;&lt;span class=&quot;mtk17&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    public &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;Custom&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;BuilderQuery&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;コード例で出てきてたbuilderqueryとは&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B%E3%81%A7%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%A6%E3%81%9Fbuilderquery%E3%81%A8%E3%81%AF&quot; aria-label=&quot;コード例で出てきてたbuilderqueryとは permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;コード例で出てきてた&lt;code&gt;BuilderQuery&lt;/code&gt;とは&lt;/h3&gt;
+&lt;p&gt;上の&lt;code&gt;ISource&lt;/code&gt;のドキュメントコメントにも書いてありますが、他の&lt;code&gt;Source&lt;/code&gt;や&lt;code&gt;Formatter&lt;/code&gt;, &lt;code&gt;SourceItem&lt;/code&gt;などにアクセスするための手段です。
+necodark でもいくつかの場所で利用しています。
+例えば&lt;code&gt;Source&lt;/code&gt;は 1 つ 1 つが独立して存在しているので別の&lt;code&gt;Source&lt;/code&gt;に連動したことをしたい、だとか、&lt;code&gt;Formatter&lt;/code&gt;にて暗黙的に&lt;code&gt;ContentConverter&lt;/code&gt;を追加したい、など色々 1 つのクラスを飛び越えた連携をするのに使うものです。&lt;/p&gt;
+&lt;p&gt;次にドキュメントからメソッド一覧を載せました。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/7aa55db0038df45f5f69be9c40473160/161ec/builder-query-methods.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 95.26315789473684%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAACaElEQVR42o2UiW7bMBBE/f/fVqAoWhRJrfjSffKmaMvOK6g4jpUD7QKUCO1qOFzOcKXdhPNHYjw/vzye5wlcLhe+/3zk24/fPCQHwgThDJeX9C1e62OsrAvsKoMNc2pOzgXxDeR9IMkVSa7ZFop1pshqgRADgxA3sNf3agxH2l7dVn0BvIID5RA4NI6889SD5zg6Qhg5nSamafoIGEIgyzK898vkdZ42jiSXM7tdqWl7gbX26y1rbUjTDCklp9NpARjL0m5knRt2lSZrLUJZhJQ30HsScawi7X4YZob3idfCrHU8ppK6FQSnUErgrJlb8gVDzTpJyIsCY8xbD68MD+1IkhvWuSYpDJtCsykt4XgktisSWjDUxtA0DW3XEcHvkzFqMZI2hqKz5K2l7jVCu7lFfd9jnVsCxo9Pmw1pllHVNefzeQGYtn5mta8029LQSYfR6sbsw5aVUuR5QVGW9P3AOI5vKwLFEEhbN49WeLy3GGNvkvlwKJF6luWMIXwqm13t+JMKkkySNwopBqQUXM7THbu3/1bOuZlZtNlC2FeGWTeyqyy7OvbQ0AtDLy2nOwu+rH8V9mcCvWd4aCyP+55NIVmnA4+HgYeD4OGg2FcSpeTiv9V73b33cpTNpjTsas+2smwrh/Oe0bubbBaAfBL3DMves6/U7JK01jS9JkpNaY2/O8D/Aoxl+9rzJ5U8FYanQhOtGm0X1fFZu/4JmHcj21LPstnXEdSSFI6ksGzrQN6PTNPp/xlGm/3a9Pzeq/lQ4m3TDXIeg4ynrhb3wJeAr1tohCOtBEVnqFo12zN63lxt+n7LfwGSeMMbBf/COAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;builder-query-methods&quot;
+        title=&quot;&quot;
+        src=&quot;/static/7aa55db0038df45f5f69be9c40473160/3c051/builder-query-methods.png&quot;
+        srcset=&quot;/static/7aa55db0038df45f5f69be9c40473160/a2d4f/builder-query-methods.png 190w,
+/static/7aa55db0038df45f5f69be9c40473160/3f520/builder-query-methods.png 380w,
+/static/7aa55db0038df45f5f69be9c40473160/3c051/builder-query-methods.png 760w,
+/static/7aa55db0038df45f5f69be9c40473160/b5cea/builder-query-methods.png 1140w,
+/static/7aa55db0038df45f5f69be9c40473160/891d5/builder-query-methods.png 1520w,
+/static/7aa55db0038df45f5f69be9c40473160/161ec/builder-query-methods.png 1840w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;最後に&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%9C%80%E5%BE%8C%E3%81%AB&quot; aria-label=&quot;最後に permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;最後に&lt;/h2&gt;
+&lt;p&gt;個人的に非常に満足できるカラーテーマを作成することができました。また、カラーテーマジェネレータも良いものができていると感じています。
+今後もカラーテーマ、ジェネレータともに開発を進め、さらに強力なものにしていきます。&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line &gt; * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: &apos; &apos;;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting &gt; .grvsc-code &gt; .grvsc-line::before {
+    content: &apos; &apos;;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .default-dark .mtk1 { color: #D4D4D4; }
+  .default-dark .mtk3 { color: #6A9955; }
+  .default-dark .mtk15 { color: #C586C0; }
+  .default-dark .mtk10 { color: #4EC9B0; }
+  .default-dark .mtk4 { color: #569CD6; }
+  .default-dark .mtk12 { color: #9CDCFE; }
+  .default-dark .mtk8 { color: #CE9178; }
+  .default-dark .mtk11 { color: #DCDCAA; }
+  .default-dark .mtk7 { color: #B5CEA8; }
+  .default-dark .mtk17 { color: #808080; }
+  .default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[Arduinoでシリアルモニタから数値(整数と小数)を受け取る]]></title><description><![CDATA[Serialから数値を読む用のユーティリティクラスSerialReaderを作った。SerialReader::readInt()でintをSerialReader::readFloat()でfloatを読み出せる。 readFloat…]]></description><link>https://ryota2357.com/blog/2023/arduino-serial-read-int-float/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/arduino-serial-read-int-float/</guid><content:encoded>&lt;p&gt;&lt;code&gt;Serial&lt;/code&gt;から数値を読む用のユーティリティクラス&lt;code&gt;SerialReader&lt;/code&gt;を作った。&lt;code&gt;SerialReader::readInt()&lt;/code&gt;で&lt;code&gt;int&lt;/code&gt;を&lt;code&gt;SerialReader::readFloat()&lt;/code&gt;で&lt;code&gt;float&lt;/code&gt;を読み出せる。&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;readFloat()&lt;/code&gt;は急いで作ったのでちょっと雑な作りしてるけどちゃんと動く。&lt;/p&gt;
 &lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;cpp&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk10&quot;&gt;SerialReader&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;{&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;

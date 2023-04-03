@@ -1,0 +1,1381 @@
+<!DOCTYPE html><html lang="ja"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.8.0"/><meta name="theme-color" content="#f6f5f5"/><meta name="description" content="こんにちは。2 年の ryota2357 です。 先日、「necodark」というカラーテーマをリリースしました。このカラーテーマは 「Sccg」というカラーテーマジェネレータ(私が開発し、先日 v0.2.1 をリリースしました)を用いて作成しました。 本投稿では「necodark」と「Sccg…" data-gatsby-head="true"/><meta property="og:title" content="自作カラーテーマ「necodark」と自作ジェネレータ「Sccg」(MMA部誌2023春)" data-gatsby-head="true"/><meta property="og:description" content="こんにちは。2 年の ryota2357 です。 先日、「necodark」というカラーテーマをリリースしました。このカラーテーマは 「Sccg」というカラーテーマジェネレータ(私が開発し、先日 v0.2.1 をリリースしました)を用いて作成しました。 本投稿では「necodark」と「Sccg…" data-gatsby-head="true"/><meta property="og:type" content="article" data-gatsby-head="true"/><meta property="og:image" content="https://raw.githubusercontent.com/ryota2357/ryota2357-github-pages-images/og-image/blog/2023/necodark-sccg-mma2023a.png" data-gatsby-head="true"/><meta property="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta property="twitter:creator" content="@95s7k84695a" data-gatsby-head="true"/><meta property="twitter:title" content="自作カラーテーマ「necodark」と自作ジェネレータ「Sccg」(MMA部誌2023春)" data-gatsby-head="true"/><meta property="twitter:description" content="こんにちは。2 年の ryota2357 です。 先日、「necodark」というカラーテーマをリリースしました。このカラーテーマは 「Sccg」というカラーテーマジェネレータ(私が開発し、先日 v0.2.1 をリリースしました)を用いて作成しました。 本投稿では「necodark」と「Sccg…" data-gatsby-head="true"/><style data-href="/styles.b489987dc6d16975100b.css" data-identity="gatsby-global-css">/*! destyle.css v4.0.0 | MIT License | https://github.com/nicolas-cusan/destyle.css */*,:after,:before{border-style:solid;border-width:0;box-sizing:border-box}html{-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;line-height:1.15}body{margin:0}main{display:block}address,blockquote,dl,figure,form,iframe,p,pre,table{margin:0}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit;margin:0}ol,ul{list-style:none;margin:0;padding:0}dt{font-weight:700}dd{margin-left:0}hr{border-top-width:1px;box-sizing:content-box;clear:both;color:inherit;height:0;margin:0;overflow:visible}pre{font-family:monospace,monospace;font-size:inherit}address{font-style:inherit}a{background-color:transparent;color:inherit;text-decoration:none}abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:inherit}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}embed,iframe,img,object,svg{vertical-align:bottom}button,input,optgroup,select,textarea{-webkit-appearance:none;appearance:none;background:transparent;border-radius:0;color:inherit;font:inherit;margin:0;padding:0;text-align:inherit;text-transform:inherit;vertical-align:middle}[type=button],[type=reset],[type=submit],button{cursor:pointer}[type=button]:disabled,[type=reset]:disabled,[type=submit]:disabled,button:disabled{cursor:default}:-moz-focusring{outline:auto}select:disabled{opacity:inherit}fieldset,option{padding:0}fieldset{margin:0;min-width:0}legend{padding:0}progress{vertical-align:baseline}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}[type=number]{-moz-appearance:textfield}label[for]{cursor:pointer}details{display:block}summary{display:list-item}[contenteditable]:focus{outline:auto}table{border-collapse:collapse;border-color:inherit}caption{text-align:left}td,th{padding:0;vertical-align:top}th{font-weight:700;text-align:left}:root{background-color:#f6f5f5;color:#242424;font-family:YuGothic,Yu Gothic,Hiragino Kaku Gothic ProN,ヒラギノ角ゴ ProN W3,ＭＳ ゴシック,sans-serif;font-size:15px;line-height:1.5;word-break:break-word}:root a:hover{text-decoration:underline}@media screen and (max-width:425px){:root{font-size:14px}}@media screen and (max-width:375px){:root{font-size:13px}}@media screen and (max-width:320px){:root{font-size:12px}}#layout header{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between;margin:15px 10px 10px}#layout header .logo{color:#000;font-size:2.1rem;font-weight:700;-webkit-user-select:none;user-select:none}#layout header .logo a:hover{text-decoration:none}#layout header nav{margin-top:auto}#layout header nav ul{display:flex;font-size:1.4rem;justify-content:flex-start}#layout header nav ul li{margin:0 .7rem}#layout main{margin:0 auto;max-width:1080px;padding:0 10px}#layout footer{font-size:.7rem;margin-top:1rem;text-align:center}.content-block{align-items:flex-start;display:flex;flex-direction:column;gap:1rem}.content-block h2{font-size:1.6rem;font-weight:700}.content-block .children{display:flex;flex-direction:column;font-size:1rem;gap:1rem;padding-left:1rem;width:100%}.blog-list ul{background:#fff;border:1px solid #787878;border-radius:.3rem;padding:0 .5rem}.blog-list ul li+li{border-top:1px solid #e3e3e3}.blog-list ul li{padding:.5rem 0}.blog-list ul li .item-date{color:#747474}.blog-list ul li .item-title{font-size:1.2rem;font-weight:700}.blog-list ul li .item-tags{display:flex;flex-direction:row;font-size:.8rem;gap:.5rem;justify-content:flex-end}.blog-list ul li .item-tags .item-tag{background:#282828;border-radius:.3em;color:#fff;padding:.3em 1em}.blog-list ul li .item-tags .item-tag:hover{text-decoration:underline}#not-found-page h1{align-content:center;color:#000;display:flex;flex-direction:column;flex-wrap:wrap;font-size:3rem;justify-content:center;margin:5rem 0}#not-found-page h1 span{text-align:center}#about-page h1{font-size:2.5rem}#about-page h2{font-size:1.5rem;font-weight:700;margin-top:2rem}#about-page a{color:#0969da}#tag-page h1{font-size:2.5rem}#tag-page ul{list-style:inside;margin-top:2rem}#blog-page h1{font-size:2.5rem}#blog-page p{margin:.5rem 0}#blog-page ul{background:#fff;border:1px solid #787878;border-radius:.3rem;padding:0 .5rem}#blog-page ul li+li{border-top:1px solid #e3e3e3}#blog-page ul li{padding:.5rem 0}#blog-page ul li .item-date{color:#747474}#blog-page ul li .item-title{font-size:1.2rem;font-weight:700}#blog-page ul li .item-tags{display:flex;flex-direction:row;font-size:.8rem;gap:.5rem;justify-content:flex-end}#blog-page ul li .item-tags .item-tag{background:#282828;border-radius:.3em;color:#fff;padding:.3em 1em}#blog-page ul li .item-tags .item-tag:hover{text-decoration:underline}#index-page .top-profile{align-items:center;display:flex;flex-direction:column;gap:.5rem}#index-page .top-profile .name{font-size:1.6rem;font-weight:700}#index-page .content-blocks{display:flex;flex-direction:column;gap:2rem;margin-top:2rem}#index-page .content-blocks .content-block ul{list-style:inside}#index-page .content-blocks .content-block ul li{padding:.1rem 0}#index-page .content-blocks .content-block .align-horizontal{align-items:flex-start;display:flex;flex-direction:row;gap:1rem}#index-page .content-blocks .content-block .align-horizontal h3{flex:none;font-size:1.3rem;font-weight:700;margin:0}#index-page .content-blocks .content-block .align-horizontal .item{display:flex;flex-wrap:wrap;margin:auto 0}#works-page h1{font-size:2.5rem}#works-page h2{font-size:1.6rem;font-weight:700;margin-top:2rem}#works-page .table-of-contents ul{list-style:inside;margin-left:1rem}#works-page .table-of-contents ul li ul{list-style:square;margin-left:2em}#works-page h3{font-size:1.5rem;font-weight:700;margin-top:.7rem}#works-page h3:before{content:"- "}#works-page .gray{color:#747474}#works-page .indent{padding-left:1rem}#works-page .item{display:flex;flex-direction:row;gap:1rem;justify-content:space-between}#blog-post article{background-color:#fff;box-shadow:0 0 10px #323232;padding:1.4em}#blog-post article .post-front{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2rem}#blog-post article .post-front h1{font-size:2rem;font-weight:700;margin-top:1rem}#blog-post article .post-front .date{color:#747474;display:flex;flex-direction:row;gap:1rem}#blog-post article .post-front .tags{align-items:center;display:inline-flex;flex-direction:row;gap:.3rem}#blog-post article .post-front .tags a:not(:last-child):after{content:","}#blog-post nav ul{display:grid;gap:.7rem;grid-auto-flow:column;justify-content:space-between;margin:1rem 0}#markdown h1{font-size:2rem;margin-top:2rem}#markdown h1,#markdown h2{font-weight:700;margin-bottom:1.5rem}#markdown h2{border-bottom:2.5px solid #e3e3e3;font-size:1.7rem;margin-top:3rem}#markdown h3{font-size:1.3rem}#markdown h3,#markdown h4{font-weight:700;margin-bottom:1.5rem;margin-top:2rem}#markdown h4{font-size:1.1rem}#markdown p{font-size:1rem;line-height:1.7;margin:1rem 0}#markdown a{color:#0969da;text-decoration:none}#markdown ul{list-style:inside;list-style-type:disc}#markdown ul ol,#markdown ul ul{margin-left:1.2rem}#markdown ol{list-style:inside;list-style-type:decimal}#markdown ol ol,#markdown ol ul{margin-left:1.2rem}#markdown li{line-height:1.5}#markdown blockquote{border-left:.25em solid #d0d7de;color:#57606a;margin:0;padding:0 1rem}#markdown details summary{cursor:pointer;font-weight:700}#markdown img{max-width:100%}#markdown table{border-collapse:collapse;border-spacing:0;display:block;line-height:1.15;max-width:100%;overflow:auto;white-space:nowrap;width:-webkit-max-content;width:max-content}#markdown table tr{background-color:#fff;border-top:1px solid #d5dbe2}#markdown table tr:nth-child(2n){background-color:#f6f8fa}#markdown table th{font-weight:700}#markdown table td,#markdown table th{border:1px solid #d0d7de;padding:.5rem}#markdown .footnotes{margin-top:3rem}#markdown .footnotes hr{background-color:#646464;border:none;height:1px}:root{--grvsc-border-radius:10px}#markdown code{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace}#markdown li code,#markdown p code,#markdown table code{background-color:#e6e6e6;border-radius:6px;font-size:1rem;padding:.1rem .3rem}#markdown pre{background-color:#282828}#markdown pre code{font-size:.9rem;line-height:1.3}#tag-page-template h1{font-size:2.5rem}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PHXJBM615E"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PHXJBM615E', {"send_page_view":false});
+      }
+      </script><link rel="alternate" type="application/rss+xml" title="ryota2357 RSS Feed" href="/rss.xml"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><link rel="icon" href="/favicon-32x32.png?v=8163ad9ba4f10506413b571fd3081da8" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=8163ad9ba4f10506413b571fd3081da8"/><style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Solid";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Regular";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Light";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Thin";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  -webkit-transform: scale(var(--fa-counter-scale, 0.25));
+          transform: scale(var(--fa-counter-scale, 0.25));
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(var(--fa-li-width, 2em) * -1);
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  -webkit-animation-name: fa-beat;
+          animation-name: fa-beat;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+          animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  -webkit-animation-name: fa-bounce;
+          animation-name: fa-bounce;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  -webkit-animation-name: fa-fade;
+          animation-name: fa-fade;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  -webkit-animation-name: fa-beat-fade;
+          animation-name: fa-beat-fade;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  -webkit-animation-name: fa-flip;
+          animation-name: fa-flip;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+          animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  -webkit-animation-name: fa-shake;
+          animation-name: fa-shake;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, linear);
+          animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  -webkit-animation-name: fa-spin;
+          animation-name: fa-spin;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 2s);
+          animation-duration: var(--fa-animation-duration, 2s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, linear);
+          animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  -webkit-animation-name: fa-spin;
+          animation-name: fa-spin;
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, steps(8));
+          animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    -webkit-animation-delay: -1ms;
+            animation-delay: -1ms;
+    -webkit-animation-duration: 1ms;
+            animation-duration: 1ms;
+    -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+    -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+  }
+}
+@-webkit-keyframes fa-beat {
+  0%, 90% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  45% {
+    -webkit-transform: scale(var(--fa-beat-scale, 1.25));
+            transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  45% {
+    -webkit-transform: scale(var(--fa-beat-scale, 1.25));
+            transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@-webkit-keyframes fa-bounce {
+  0% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+}
+@-webkit-keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@-webkit-keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+            transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+            transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@-webkit-keyframes fa-flip {
+  50% {
+    -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@-webkit-keyframes fa-shake {
+  0% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  4% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+  8%, 24% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  12%, 28% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  16% {
+    -webkit-transform: rotate(-22deg);
+            transform: rotate(-22deg);
+  }
+  20% {
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  32% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  36% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  40%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes fa-shake {
+  0% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  4% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+  8%, 24% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  12%, 28% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  16% {
+    -webkit-transform: rotate(-22deg);
+            transform: rotate(-22deg);
+  }
+  20% {
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  32% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  36% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  40%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  -webkit-transform: scale(-1, -1);
+          transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  -webkit-transform: rotate(var(--fa-rotate-angle, none));
+          transform: rotate(var(--fa-rotate-angle, none));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.fad.fa-inverse,
+.fa-duotone.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}</style><title data-gatsby-head="true">自作カラーテーマ「necodark」と自作ジェネレータ「Sccg」(MMA部誌2023春)</title></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div id="layout"><header><div class="logo"><a href="/">ryota2357</a></div><nav><ul><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/works/">Works</a></li></ul></nav></header><main id="blog-post"><article itemscope="" itemType="http://schema.org/Article"><div class="post-front"><h1 itemProp="headline">自作カラーテーマ「necodark」と自作ジェネレータ「Sccg」(MMA部誌2023春)</h1><div class="date"><p>投稿日:<!-- --> <time itemProp="datePublished">2023/04/04 (00:56)</time></p></div><div class="tags"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tags" class="svg-inline--fa fa-tags " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color:#2E2E2E;margin-right:5px"><path fill="currentColor" d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg><a href="/blog/tag/CSharp/">CSharp</a><a href="/blog/tag/Event/">Event</a><a href="/blog/tag/Vim/">Vim</a><a href="/blog/tag/Neovim/">Neovim</a><a href="/blog/tag/VSCode/">VSCode</a></div></div><div id="markdown" itemProp="articleBody"><p>こんにちは。2 年の ryota2357 です。</p>
+<p>先日、「necodark」というカラーテーマをリリースしました。このカラーテーマは 「Sccg」というカラーテーマジェネレータ(私が開発し、先日 v0.2.1 をリリースしました)を用いて作成しました。</p>
+<p>本投稿では「necodark」と「Sccg」について書いていきます。</p>
+<ul>
+<li><a href="https://github.com/ryota2357/necodark">necodark (GitHub)</a></li>
+<li><a href="https://github.com/ryota2357/Sccg">Sccg (GitHub)</a></li>
+<li><a href="https://sccg.ryota2357.com/index.html">Sccg document</a></li>
+</ul>
+<h2 id="necodark" style="position:relative;"><a href="#necodark" aria-label="necodark permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>necodark</h2>
+<p>次のスクリーンショットは Neovim にて necodark を利用した際の画像です。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d756d6875db85aec3934753b7f616148/75ac7/sccg-top.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 57.89473684210527%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACLklEQVR42l2SyY4kNRRF8yPI6vDscHiIIWOq7KqsUlcPYoEQG6A3sOADEAt2fP9BEVlJd7M4sizL59nvvkMeV+b7laVk1hiJ1qOkQVYaKa6obS0Tql/IbSa1LSV2LDkzp7yvbYjULnCQ5UwlI1UauWvv+S7PHMvCXVm5ywvHslL5jEsn9PqEmN+iXUAqj9Hfoo3n8OnnCy/vB44688ZFKhsRX7HvdU1IPbZfEHFCCoOQ9hsqaZHKcfgxGz4WRzCJWmi00FTV1yikNPgyobsBmRtMzCjtEeoq2RA34dH2ON3w4AKrqamV36spZRHKUW0XpMOnAV1GjkNB5IhWHinszu2Vu9CmCTW/kM4X8nzGxZ46FULa+tZjmxata3x3j27P2HZEx4E3dUbEZkf75oswdAvzw4Xz25XL05lpnhi7jlS6PTVvtpco8uNPTL/8w/OvfzJ+/zvKdwjtkLZGbt+/CU27kpZHcttRhwZpG6x5TU05zCZUhvnyA/Pnvxl/+4v0+Q/8u0/Y8ZHQnhGvIe1CHSd0uxLywGmc6aaVVE7kEDEuX/upPdY11E1D9/TC8uED/cOF0A7E0uPqLST32sMw0MxP5GFhmWeW08AwTITcYVzcK1+FEWMb+vtnhvWROCy4Ou1nG7e0D9oG2vMzbT7htN0riS3pbRTUa3ra43wiNAUXCs7VaGWp/jeP1x5uwst7+tNKjBkhbzP1ZcY2XNMim4HKZWKM1KlD6fo/0U34L1DgUrmifQwjAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="sccg-top"
+        title=""
+        src="/static/d756d6875db85aec3934753b7f616148/3c051/sccg-top.png"
+        srcset="/static/d756d6875db85aec3934753b7f616148/a2d4f/sccg-top.png 190w,
+/static/d756d6875db85aec3934753b7f616148/3f520/sccg-top.png 380w,
+/static/d756d6875db85aec3934753b7f616148/3c051/sccg-top.png 760w,
+/static/d756d6875db85aec3934753b7f616148/b5cea/sccg-top.png 1140w,
+/static/d756d6875db85aec3934753b7f616148/891d5/sccg-top.png 1520w,
+/static/d756d6875db85aec3934753b7f616148/75ac7/sccg-top.png 3600w"
+        sizes="(max-width: 760px) 100vw, 760px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>現在 (2023/04/04) Vim、Neovim にて利用できます。現在 VS Code 対応の作業中です。今後 CotEditor や IntelJ IDE、ターミナルミュレータ(iTerm2 や Alacritty)でも利用できるようにしていきます。
+4 月中には VS Code と CotEditor でも利用できるようになる予定です。</p>
+<p>このテーマは Visual Studio Dark (以下 vsdark)や Visual Studio Code Dark(以下 codedark)の配色を参考にして作成しました。(vsdark や codedark にて使用されている色を使ったわけではありません)</p>
+<p>青・緑を中心に構成し、boolean 値には青緑(Teal)、数値にはピンクを採用しました。全体的にはっきりとした色(彩度が高めの色、ビビット/ブライトあたりのトーン)を使っています。</p>
+<p>カラーパレットは<a href="https://github.com/ryota2357/necodark/blob/main/src/Necodark/Palette.cs">https://github.com/ryota2357/necodark/blob/main/src/Necodark/Palette.cs</a>にて確認できます。
+使用している主な色は次の通りです。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d0c62b177167f37f89c5cb1c6ff21a86/a878e/pallet.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75.26315789473684%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAADoElEQVR42lXO20+bBRjH8f4T7sBhk0XgYiaayXBGjVlC3NJCuJJl4kCYOGQ66AmCHOISYdgV0EGA9m2hHNTN3To2KJZo5sByHjAQCbwyDi1QaIsdh9Z+9X1xJF588jxX3/wU6x4fng3/gbV1L8MTUww+nmRo/Akjk9P8OjDC5bxC3s+6Rnp2Ppc+UnPhUh7Hjr/EkaPRHI04JouIPI5CikhRKfT8SsGBsQmco+MMjz+Rg9mf6OVYRo6ajBzNQVAKRUXHEBn1ovwrPJtbPF10MzU9y7JrnbV138GqLscv9A2O8GhwlKxcPZkfa7mqLuNyXhFp/wVjYmJ55dXXiDkRux/0bvrZ3PCx4fEi/dIdnZxiaHyCoccT8v9oYJisK1ouZn5KetZnfJCdT1r6FSKiTvDCoUgOH4nm0OEomWLB7WPB7T8grnhxjv1O/8i0bGBshp/7x8gpKCMjt5DMvCI+vFpMeo6GkydfJi42lvi4OOLj9ynOtno52+qTvdPqJcnmw2ANUmsJUS0RQtTYQphmApjnAwhzAUxz29jmNlmbbWVr1oRvVjigSBB8JAheEsybnBK8vCH4+LIpjKERqhrDVDWEMViheRFsbmhZAasLvncHCa3dhdV2WO2AtW9lijPNfk43uTlV+wcJJjdvWf1UmsNU1P1FqWGJyvptbrZA80IY03yAW+NuTOIu3y3vsLNyhx3RwvJYPYE5C7jaUSRa/CQKPhLNXk4LPt4U/FQ2wc1G+KoxjKEBjFawPAWrG6zLILigw7XHjvsOuFsJrbTxt6tNXqs4Y/Pw3Os2D2+3eLguBLghPKPC8owKc4AbtgBtswE6FgJ0/BmgTdzmB3GTHfE2iK2ExXYQ2wiLbShU/Q5UfZKfUPX3ourrJrXnOqn2UlLt5ST3lHPxQRkzDaUs1ZWwUFfKQn0Ji7fK2S0zEyyx/I8iZaCblMHn7KQ476HsLULpUKNyaDnXq+E9u4b52gLWjGrcRjUuYz6rBi27uiaCagt7GuGAImWwB+XDH0nqvI3yYScpzgeoej/nfGcBSXfzeLdLQ5pdj/iNDrHqGqNf5CIa8lmtLmSv0MRWQSNLeTXyDenlhXaSf+tC1XefZKedZOd9lI5ilD1alHYt5xw60rp1iF9rcRk1LBrVrNRIS/Xs6k3yqh2NmV2tQFAnBZ3dSNF9PaQ4O1H1FqNy6Eh2FHK+V8+Fbr0cXK3W4qrRslKj2Q8WmgjqrHJIsvdv8B84e2V/NCefCAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="pallet"
+        title=""
+        src="/static/d0c62b177167f37f89c5cb1c6ff21a86/3c051/pallet.png"
+        srcset="/static/d0c62b177167f37f89c5cb1c6ff21a86/a2d4f/pallet.png 190w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/3f520/pallet.png 380w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/3c051/pallet.png 760w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/b5cea/pallet.png 1140w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/891d5/pallet.png 1520w,
+/static/d0c62b177167f37f89c5cb1c6ff21a86/a878e/pallet.png 2048w"
+        sizes="(max-width: 760px) 100vw, 760px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h3 id="necodark-の目的と特徴" style="position:relative;"><a href="#necodark-%E3%81%AE%E7%9B%AE%E7%9A%84%E3%81%A8%E7%89%B9%E5%BE%B4" aria-label="necodark の目的と特徴 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>necodark の目的と特徴</h3>
+<p>necodark を作成した目的は主に次の 2 点です。</p>
+<ul>
+<li>長時間のコーディングによる目の疲れがあってもしっかりコードを読める</li>
+<li>馴染みのある配色である</li>
+</ul>
+<p>1 つ目の目的のために、背景には少し暗めの黒(#1a1b1f)を使い文字色の彩度・コントラスト比を上げました。2 つ目の目的のためベースに vsdark や codedark を採用しました。</p>
+<p>necodark は「制御 (if や for)」「リテラル (boolean, 数値)」に特徴的な配色を行っています。</p>
+<p>「制御」に充てている色は インディゴ(#8a99ff) です。この色はキーワード色として使っている青(#379df1)に近い色を持ちます。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 616px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/643f13a2ab25fec0eded3cf5e3d72dc0/40040/statement-indigo.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 67.36842105263158%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB80lEQVR42o2T2Y7TQBBF/Qc8gOJ9t9tLt9c440kmTJhNCAkJ8cD/f8pBbYcIMdEMD1dVvfh23bplo5BH8rxjPD1TNj3dsOOuGmmrhqYdcZwAy/bZ2B627S/Qa9N0sZ0A0/KwNM77RhAJHMdHDQ+o8RtJLKimBz62j4RyS1I1SKF4UbekdUcsJEWpaPYn4kTQDjd085GikKhmwPD9eHkpCAVRrEgKRTbu8YuWUiiUkLheSJ1UBHGOF6YEUUauBoIwJRM1iaiXPIpzDD9IcNwIz4+xTJtIk+yeqOsdvTpwmJ4JkhrLXaW/K1kT6oMkLXG9CNdLafqvFPKeQp1ott9p+3vCcL3nuOGbMHSpmrkfdgRhtmxatnuBuUTvQvYeqTFuZ0R9ZLz5QV7O9MO49My2A1zLx92s0v6bMIzzJVH9C8P8E9k9Ies9Ud/zYZqwvpxWV9sR+5+Pr5Ebnq9745NkzeJyLmfk9o6skqSyo5mP2EGMftiynLUNpr206Rrp2eVwkakvRnlNPT1SVC3TsGdbdci4pMwqknwkyTpEdYueX13Iqwr/EKZZtYyO52ek+Q5Rt9TzZ2JRcSgHpmZL2T4srZkOv5DNhGm511zOlllaXU7P8+Su0VzjJ9tbfj2tQGOz2VyqeyVZE2nCtxx0L3n0F66b8hvysGuYBUX8BAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="statement-indigo"
+        title=""
+        src="/static/643f13a2ab25fec0eded3cf5e3d72dc0/40040/statement-indigo.png"
+        srcset="/static/643f13a2ab25fec0eded3cf5e3d72dc0/a2d4f/statement-indigo.png 190w,
+/static/643f13a2ab25fec0eded3cf5e3d72dc0/3f520/statement-indigo.png 380w,
+/static/643f13a2ab25fec0eded3cf5e3d72dc0/40040/statement-indigo.png 616w"
+        sizes="(max-width: 616px) 100vw, 616px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>vsdark では「制御」と「キーワード」には同じ色が当てられています。necodark ではこれらの色を分けました。
+一般にキーワードはコード内で重要なマーカーとなります。そして「制御」もコードのロジックを示すのに重要なマーカーとなります。
+重要なマーカーとしての意味であれば同じ色を当てても良さそうです。
+しかし necodark では上に挙げた目的の 1 つ目「長時間のコーディングによる目の疲れがあってもしっかりコードを読める」を達成するため色を分けました。</p>
+<p>「制御」と「キーワード」はコード中に頻繁に登場します。そのため、もしこれらの色を同じにしてしまうと同じ色がコード内に比較的多く登場することになります。
+通常時はとても良いマーカーになるかもしれませんが、疲労時には同じ色が多いと感じて目が滑ってしまうかもしれません。これを解決するため necodark では「制御」にインディゴを当てました。</p>
+<p>necodark で使用したインディゴと青は近い色です。しかしインディゴは青よりは目立たないでしょう。 先ほど「制御」は重要なマーカーと言ったのにキーワードのようには目立っていません。
+しかしこれで良いのです。 「制御」となる文字は<code>if</code>や<code>for</code>、<code>loop</code>、<code>raise</code>、<code>break</code>などが挙げられます。これらの文字はコード内でインデントや <code>}</code> などの付近で使用されています。
+そのため文字色で目出させずにも識別することは十分可能だと考えました。
+また、特に<code>if</code>や<code>for</code>ではリテラルと共に使用されることも多いです。necodark ではリテラルにも目立つ特徴的な配色がされています。
+このことからも「制御」にはキーワードよりは目立たないインディゴを割り当てるのが適当だと考えました。</p>
+<p>「リテラル」に当てている色は、真偽値には青緑(#4dcbbb)、数値にはピンク(#fb749c)です。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 578px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/63dd1dab0b6107cf4c688fce3ff9eba9/508ef/literal-pink-teal.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 26.842105263157894%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAABYlAAAWJQFJUiTwAAABBklEQVR42o2Py07CQABF+wcuinTaKQj0NZ0+pi19GTCIEh8sXJv4/99xDJWFceXi5uRubu6xRNpht2f8YiTr9yRZyRhVfOVHPs0RrUtuhUR4Sxx3geMtEBdeM3f9qQu5RAgfS8Q1dn3Czwd0tyNOCopS8/bccziMfNyfKANNtlYkG0UT5MTrhDYsUBvFEBviVcyjGTFNh+Woy8N3pNmhqo5VkLDPa87DwG7bkkU5OsoI7yJUpFGrhChUPwzUNBpuErJQo/MKS6iWWfOCTLdEeU1W1DSqpokqjOmxhcRx/Ul14i9d54/63JFX5e0rMuvR4wOpKrCN4WbsmZ2eSPMK11viybt/5RvYUpDT/ODmeAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="literal-pink-teal"
+        title=""
+        src="/static/63dd1dab0b6107cf4c688fce3ff9eba9/508ef/literal-pink-teal.png"
+        srcset="/static/63dd1dab0b6107cf4c688fce3ff9eba9/a2d4f/literal-pink-teal.png 190w,
+/static/63dd1dab0b6107cf4c688fce3ff9eba9/3f520/literal-pink-teal.png 380w,
+/static/63dd1dab0b6107cf4c688fce3ff9eba9/508ef/literal-pink-teal.png 578w"
+        sizes="(max-width: 578px) 100vw, 578px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<p>コード内に登場する数値リテラルは基本的に何かの固定値であり、変更する時には注意を払う必要があります。そのため数値には他のところでは使用していない色であり、赤系に近いながらも警告の意味を持たないような色を当てました。</p>
+<p>真偽値リテラルも分岐を決定する重要なものですが、分岐の決定には文学的な方法(メソッド名や変数名を用いて真偽を抽象化し意味を持たせて分岐する)が多いでしょう。そのため重要度はそこまで高くないかもしれません。しかしリテラルであることには変わりはなく、重要ではあるので通常の文字色を当てることはできません。そこで青・緑と白の中間的な色を使おうと考えました。水色は「パラメータ」などの色に当てられているので緑と白の中間の色を採用しました。</p>
+<h2 id="sccg" style="position:relative;"><a href="#sccg" aria-label="sccg permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sccg</h2>
+<p>ここまで necodark の「見た目」について説明しました。ここからは necodark の「実装」について書いていきます。</p>
+<p>necodark は C# 製のカラーテーマジェネレータ、Sccg を用いて作成されています。Sccg は v0.2.1 であり、今後も開発は進められていく予定です。v0.2.1 ですが十分に実用に耐えれるものだと思ってます。</p>
+<h3 id="sccg-の目的と特徴" style="position:relative;"><a href="#sccg-%E3%81%AE%E7%9B%AE%E7%9A%84%E3%81%A8%E7%89%B9%E5%BE%B4" aria-label="sccg の目的と特徴 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sccg の目的と特徴</h3>
+<p>Sccg の README からそのまま引用しましょう。</p>
+<pre class="grvsc-container default-dark" data-language="txt" data-index="0"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">&gt; **S**criptable **C**olor **C**onfiguration **G**enerator.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">Sccg is a tool to generate color schemes for your terminal, editor, etc.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">## Goals and Features</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">- Fully scriptable</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  - Separate the each generation logic, `Source`, `Formatter`, `Converter` and `Writer`.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  - You can write your own `Source`, `Formatter`, `Converter` and `Writer` with C#.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">- Unified API and Cross-platform</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  - Each platform has its own color scheme format.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  - Sccg provides a unified API to generate color schemes for each platform.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  - You can set the color with `Set` and can link to other color with `Link`.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">- Foolproof</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  - There are may color groups, such as &#39;Comment&#39;, &#39;@type.builtin&#39;, &#39;Ansi 0 Color&#39;, etc.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  - All color groups are defined in the `Source`, so you get completion, type check and so on.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  - Cycle reference will be detected by `Source`, then Sccg warn you or failed to build.</span></span></span></code></pre>
+<p>まとめると Sccg は、C# でカスタマイズ可能であり、多くのプラットフォームに統一された方法でカラーテーマを作成することができ、typo や色の循環 link を抑制することができることで、安全に効率的にオリジナルのカラーテーマを作成することを可能にするカラーテーマジェネレータです。(このことを目標に開発してます)</p>
+<p>続いて Sccg にて採用した概念である、<code>Source</code>、<code>Formatter</code>、<code>Converter</code>、<code>Writer</code>の説明と関係を説明します。README にもあるように、これらを用いてカラーテーマの生成ロジックをスクリプト可能なものに分割しました。次にこれらの関係を図示します(README からの引用)。</p>
+<p><img src="/d6e716bb5ce7b6000c4db4b048e2990a/sccg-structure.svg" alt="sccg-structure"></p>
+<p><code>Source</code> から <code>SourceItem</code> というものが生成され、それが<code>Formatter</code>によって<code>Content</code>に加工され<code>Writer</code>によって何かしらの形をとって出力されます。
+途中<code>Converter</code>が<code>SourceItem</code>や<code>Content</code>を加工することができます。</p>
+<p>ここからは necodark の実装と合わせて、それぞれの概念がどのように使われ、働くことでカラーテーマが生成されるのかを見ていきましょう。個々の概念の説明も書いていきます。</p>
+<h3 id="programcs" style="position:relative;"><a href="#programcs" aria-label="programcs permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Program.cs</h3>
+<p>necodark のメインスクリプト部分は次のようになっています。</p>
+<pre class="grvsc-container default-dark" data-language="cs" data-index="1"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">using</span><span class="mtk1"> </span><span class="mtk10">Sccg</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">using</span><span class="mtk1"> </span><span class="mtk10">Sccg</span><span class="mtk1">.</span><span class="mtk10">Builtin</span><span class="mtk1">.</span><span class="mtk10">Formatters</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">using</span><span class="mtk1"> </span><span class="mtk10">Sccg</span><span class="mtk1">.</span><span class="mtk10">Builtin</span><span class="mtk1">.</span><span class="mtk10">Writers</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">builder</span><span class="mtk1"> = </span><span class="mtk4">new</span><span class="mtk1"> </span><span class="mtk10">Builder</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">{</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk12">Metadata</span><span class="mtk1"> = </span><span class="mtk12">Metadata</span><span class="mtk1">.</span><span class="mtk12">Default</span><span class="mtk1"> </span><span class="mtk12">with</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk12">ThemeName</span><span class="mtk1"> = </span><span class="mtk8">&quot;necodark&quot;</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk12">Author</span><span class="mtk1"> = </span><span class="mtk8">&quot;ryota2357&quot;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    },</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">};</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">// source</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">Ansi16</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">VimSyntaxHighlight</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">VimEditorHighlight</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">VimFiletypeHighlight</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">NeovimEditorHighlight</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">NeovimTreesitterHighlight</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">NeovimLspDiagnosticHighlight</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">NeovimPluginHighlight</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">// formatter</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">VimFormatter</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">NeovimFormatter</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">// converter</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">FilenameConverter</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">// writer</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Use</span><span class="mtk1">&lt;</span><span class="mtk10">TextFileWriter</span><span class="mtk1">&gt;();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk12">builder</span><span class="mtk1">.</span><span class="mtk11">Build</span><span class="mtk1">();</span></span></span></code></pre>
+<p>1 行目から読んでいきます。using 部分を説明するために、Sccg が 2 つの部分に分けられていることを先に説明します。
+Sccg はコアな部分(Sccg の核となる部分)とそれの付属部分(標準ライブラリ的な部分)の 2 つに別れています。コアな部分を単に Sccg といい、付属部分を Sccg.Builtin と呼びます。
+<code>using</code>にてコア部分といくつかの付属部分をインポートしています。</p>
+<p><code>using</code>の次では <code>Builder</code>クラスのインスタンス builder を生成しています(<code>Builder</code>クラスは Sccg に定義されています)。<code>Builder</code>クラスは登録された<code>Source</code>や<code>Formatter</code>などを適切に利用し、カラーテーマを生成するロジックをもったクラスです。
+インスタンスの生成時にメタデータを記述しています。これにより、いつくかの<code>Source</code>や<code>Formatter</code>にメタデータを注入することができます。</p>
+<p>続いて、builder に Source を登録しています。 <code>Use&#x3C;T>()</code>メソッドを用いて<code>T</code>クラスを builder に登録できます。
+上記スクリプトでは Vim・Neovim 用の様々な Source を登録しています。</p>
+<p><code>Source</code>の登録の次に <code>Formatter</code> を登録しています。Vim と Neovim 用のテーマを作っているので <code>VimFormatter</code>と <code>NeovimFormatter</code>を登録しています。
+<code>Formatter</code>の次は <code>Converter</code> 、そして最後に <code>Writer</code> を登録しています。必要なものが全て登録しおわったら builder の<code>Build()</code> メソッドを呼び出すことでカラーテーマが生成されます。</p>
+<p><code>Source</code>、<code>Formatter</code>、<code>Converter</code>、<code>Writer</code>は 0 個以上の任意の個数登録することができます。上のコードでは順番に登録してますが順番に登録する必要はありません。</p>
+<p>ちなみに、Sccg は <code>Source</code> や <code>Formatter</code> などは 1 つも定義していません。Sccg.Builtin にて定義されています。
+<code>Source</code>や<code>Formatter</code>、<code>Writer</code>はただのクラスなので継承によってカスタマイズ・拡張することも可能です。もちろん自分で 1 から作成することも可能であり、さほど難しくはありません。</p>
+<h3 id="source" style="position:relative;"><a href="#source" aria-label="source permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Source</h3>
+<p>1 つの<code>Source</code> は 0 個以上のカラーグループ(トークン)と、各カラーグループの設定(色やフォントスタイル)を持っています。
+私たちはカラーテーマを作成するために<code>Source</code>を作る必要があります。1 から Source を作るのは大変なので基本的には Sccg.Builtin から提供される Source を用いると良いでしょう。</p>
+<p>Sccg.Builtin が提供する Source はカラーグループは持っていますが、各カラーグループの設定は持っていません。
+私たちはそのカラーグループに色やフォントスタイルを設定することができます。私たちは色・フォントスタイルを 0 個以上設定したものを<code>Builder</code>に登録します。
+登録された <code>Source</code>は私たちの設定に基づき、0 個以上の<code>SourceItem</code>と呼ばれるものを生成します。</p>
+<p>実際にコードを掲載します。例えば Neovim の Editor ハイライトを設定したい場合は次のようにします。</p>
+<pre class="grvsc-container default-dark" data-language="cs" data-index="2"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">class</span><span class="mtk1"> </span><span class="mtk10">EditorHighlight</span><span class="mtk1"> : </span><span class="mtk10">NeovimEditorHighlightSource</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">{</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">protected</span><span class="mtk1"> </span><span class="mtk4">override</span><span class="mtk1"> </span><span class="mtk4">void</span><span class="mtk1"> </span><span class="mtk11">Custom</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">lCursor</span><span class="mtk1">, </span><span class="mtk12">fg</span><span class="mtk1">: </span><span class="mtk8">&quot;aaff00&quot;</span><span class="mtk1">, </span><span class="mtk12">bold</span><span class="mtk1">: </span><span class="mtk4">true</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">Title</span><span class="mtk1">, </span><span class="mtk12">bg</span><span class="mtk1">: </span><span class="mtk8">&quot;000000&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">Menu</span><span class="mtk1">, </span><span class="mtk12">none</span><span class="mtk1">: </span><span class="mtk4">true</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">ColorColumn</span><span class="mtk1">, </span><span class="mtk12">underline</span><span class="mtk1">: </span><span class="mtk4">true</span><span class="mtk1">, </span><span class="mtk12">bold</span><span class="mtk1">: </span><span class="mtk4">true</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Link</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">Conceal</span><span class="mtk1">, </span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">ColorColumn</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
+<p>この例は Sccg のテストで使っているコードです。<code>NeovimEditorHighlightSource</code>を継承した<code>EditorHighlight</code>クラスの<code>Custom()</code>メソッド内で<code>Set()</code>関数や<code>Link()</code>関数を用いて設定を書くことができます(<code>NeovimEditorHighlightSource</code> は Sccg.Builtin から提供される<code>Source</code>です)。lCursor というグループに 前景色を#aaff00、スタイルを bold に設定したり、Title グループの背景色を #000000 に設定したり、Conceal グループを ColorColumn グループにリンクさせている、、などがわかると思います。</p>
+<p>次に necodark にて実際に使用しているコードを載せました(同じく Neovim の Editor ハイライトを設定しているところです)。</p>
+<pre class="grvsc-container default-dark" data-language="cs" data-index="3"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">public</span><span class="mtk1"> </span><span class="mtk4">class</span><span class="mtk1"> </span><span class="mtk10">NeovimEditorHighlight</span><span class="mtk1"> : </span><span class="mtk10">NeovimEditorHighlightSource</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">{</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">protected</span><span class="mtk1"> </span><span class="mtk4">override</span><span class="mtk1"> </span><span class="mtk4">void</span><span class="mtk1"> </span><span class="mtk11">Custom</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">ColorColumn</span><span class="mtk1">, </span><span class="mtk12">bg</span><span class="mtk1">: </span><span class="mtk12">S</span><span class="mtk1">.</span><span class="mtk12">HideText</span><span class="mtk1">.</span><span class="mtk12">Foreground</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">Conceal</span><span class="mtk1">, </span><span class="mtk12">S</span><span class="mtk1">.</span><span class="mtk12">HideText</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">CurSearch</span><span class="mtk1">, </span><span class="mtk12">fg</span><span class="mtk1">: </span><span class="mtk12">S</span><span class="mtk1">.</span><span class="mtk12">NormalText</span><span class="mtk1">.</span><span class="mtk12">Background</span><span class="mtk1">, </span><span class="mtk12">bg</span><span class="mtk1">: </span><span class="mtk12">S</span><span class="mtk1">.</span><span class="mtk12">BooleanLiteralTeal</span><span class="mtk1">.</span><span class="mtk12">Foreground</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Link</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">IncSearch</span><span class="mtk1">, </span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">CurSearch</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">Search</span><span class="mtk1">, </span><span class="mtk12">S</span><span class="mtk1">.</span><span class="mtk12">SelectRangeBlue</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Set</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">Cursor</span><span class="mtk1">, </span><span class="mtk12">fg</span><span class="mtk1">: </span><span class="mtk12">S</span><span class="mtk1">.</span><span class="mtk12">NormalText</span><span class="mtk1">.</span><span class="mtk12">Background</span><span class="mtk1">, </span><span class="mtk12">bg</span><span class="mtk1">: </span><span class="mtk12">S</span><span class="mtk1">.</span><span class="mtk12">NormalText</span><span class="mtk1">.</span><span class="mtk12">Foreground</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Link</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">lCursor</span><span class="mtk1">, </span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">Cursor</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">Link</span><span class="mtk1">(</span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">CursorIM</span><span class="mtk1">, </span><span class="mtk12">Group</span><span class="mtk1">.</span><span class="mtk12">Cursor</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1"> ……</span></span></span></code></pre>
+<p>先ほどのように<code>Set()</code>で直接色・フォントスタイルを設定するのではなく、<code>S.*</code>というように、スタイル設定をまとめた変数を用意して<code>Set()</code>の第二引数で指定しています。</p>
+<h3 id="formatter" style="position:relative;"><a href="#formatter" aria-label="formatter permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Formatter</h3>
+<p>1 つの<code>Formatter</code>は<code>Source</code>により生成された 0 個以上の<code>SourceItem</code>を受け取り、<code>Content</code>1 つだけを生成するものです。<code>SourceItem</code>を参照するだけで消費はしません(できません)。</p>
+<p>実装は普通<code>Formatter</code>が最も複雑になり、異なる<code>Formatter</code>間で共通する操作も少ないです。
+基本的には 1 つの<code>Formatter</code>がカラーテーマの 1 つのターゲットプラットフォームに対応する形を取ります。Vim に対してビルドしたければ<code>VimFormatter</code>を、VS Code ならば<code>VSCodeFormatter</code>(現在開発中)を<code>Builder</code>に登録することで、適切な<code>Content</code>が生成されます。</p>
+<p><code>Formatter</code>は受け取った<code>SourceItem</code>のうち 0 個以上を処理して(参照して)<code>Content</code>を生成します。
+ある<code>Formatter</code>にて処理してほしい場合はその<code>Formatter</code>が処理可能な<code>SourceItem</code>を<code>Source</code>にて生成するようにしなければなりません。
+具体的には適切な interface を実装する必要があります。
+Sccg.Builtin の<code>Source</code>の中には複数の<code>Formatter</code>で処理可能にした<code>SourceItem</code>を生成する<code>Source</code>があります。
+例えば<code>Ansi16ColorSource</code>は<code>VimFormatter</code>, <code>NeovimFormatter</code>, <code>Iterm2Formatter</code>, <code>AlactirryFormatter</code>で処理可能な<code>SourceItem</code>を生成する<code>Source</code>です。
+処理してほしくない場合は<code>ItemTarget</code>プロパティをオーバーロードすることで無効化することができます。
+他にも<code>VimSyntaxGroupSource</code>は<code>VimFormatter</code>と<code>NeovimFormatter</code>で処理可能な<code>SourceItem</code>を生成します。このようにすることで設定を複数プラットフォームで使い回すことを可能にしています。</p>
+<p>実装コードを載せようと思ったのですが、どの<code>Formatter</code>も長かったので省略します。</p>
+<h3 id="converter" style="position:relative;"><a href="#converter" aria-label="converter permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Converter</h3>
+<p><code>Converter</code>には 2 つの種類が存在します、<code>SourceItemConverter</code>と<code>ContentConverter</code>です。それぞれ<code>SourceItem</code>、<code>Content</code>を加工する、という役割を持ちます。</p>
+<p><code>SourceItemConverter</code>は n 個(n は 0 以上の整数)の<code>SourceItem</code>を受け取り m 個(m は 0 以上の整数)の<code>SourceItem</code>を返します。
+この時<code>Formatter</code>とは異なり<code>SourceItem</code>を消費します。そのため加工したくないものに関しては受け取ったものをそのまま返す必要があります。<code>ContentConverter</code>も同様です。<code>Content</code>を消費します。</p>
+<p>現在 Sccg.Builtin からは<code>Converter</code>は 1 つも提供していません。(VS Code 対応において<code>MultiTextContentSplitter</code>という<code>ContentConverter</code>が追加される予定です)</p>
+<p>necodark では複数プラットフォームにビルドする際、ビルドディレクトリ整理のための<code>ContentConverter</code>を作成し利用しています。</p>
+<pre class="grvsc-container default-dark" data-language="cs" data-index="4"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">public</span><span class="mtk1"> </span><span class="mtk4">class</span><span class="mtk1"> </span><span class="mtk10">FilenameConverter</span><span class="mtk1"> : </span><span class="mtk10">IContentConverter</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">{</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">public</span><span class="mtk1"> </span><span class="mtk4">string</span><span class="mtk1"> </span><span class="mtk12">Name</span><span class="mtk1"> =&gt; </span><span class="mtk8">&quot;Filename&quot;</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">public</span><span class="mtk1"> </span><span class="mtk4">int</span><span class="mtk1"> </span><span class="mtk12">Priority</span><span class="mtk1"> =&gt; </span><span class="mtk7">10</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">public</span><span class="mtk1"> </span><span class="mtk10">IEnumerable</span><span class="mtk1">&lt;</span><span class="mtk10">IContent</span><span class="mtk1">&gt; </span><span class="mtk11">Convert</span><span class="mtk1">(</span><span class="mtk10">List</span><span class="mtk1">&lt;</span><span class="mtk10">IContent</span><span class="mtk1">&gt; </span><span class="mtk12">contents</span><span class="mtk1">, </span><span class="mtk10">BuilderQuery</span><span class="mtk1"> </span><span class="mtk12">query</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">foreach</span><span class="mtk1"> (</span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">content</span><span class="mtk1"> </span><span class="mtk15">in</span><span class="mtk1"> </span><span class="mtk12">contents</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk15">if</span><span class="mtk1"> (</span><span class="mtk12">content</span><span class="mtk1"> </span><span class="mtk4">is</span><span class="mtk1"> </span><span class="mtk10">SingleTextContent</span><span class="mtk1"> </span><span class="mtk12">singleTextContent</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                </span><span class="mtk15">yield</span><span class="mtk1"> </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk12">Path</span><span class="mtk1">.</span><span class="mtk11">GetExtension</span><span class="mtk1">(</span><span class="mtk12">singleTextContent</span><span class="mtk1">.</span><span class="mtk12">Filename</span><span class="mtk1">) </span><span class="mtk12">switch</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                    </span><span class="mtk8">&quot;.lua&quot;</span><span class="mtk1"> =&gt; </span><span class="mtk4">new</span><span class="mtk1"> </span><span class="mtk10">SingleTextContent</span><span class="mtk1">(</span><span class="mtk12">Path</span><span class="mtk1">.</span><span class="mtk11">Join</span><span class="mtk1">(</span><span class="mtk8">&quot;nvim&quot;</span><span class="mtk1">, </span><span class="mtk12">singleTextContent</span><span class="mtk1">.</span><span class="mtk12">Filename</span><span class="mtk1">), </span><span class="mtk12">singleTextContent</span><span class="mtk1">.</span><span class="mtk12">Text</span><span class="mtk1">),</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                    </span><span class="mtk8">&quot;.vim&quot;</span><span class="mtk1"> =&gt; </span><span class="mtk4">new</span><span class="mtk1"> </span><span class="mtk10">SingleTextContent</span><span class="mtk1">(</span><span class="mtk12">Path</span><span class="mtk1">.</span><span class="mtk11">Join</span><span class="mtk1">(</span><span class="mtk8">&quot;vim&quot;</span><span class="mtk1">, </span><span class="mtk12">singleTextContent</span><span class="mtk1">.</span><span class="mtk12">Filename</span><span class="mtk1">), </span><span class="mtk12">singleTextContent</span><span class="mtk1">.</span><span class="mtk12">Text</span><span class="mtk1">),</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                    </span><span class="mtk12">_</span><span class="mtk1"> =&gt; </span><span class="mtk4">new</span><span class="mtk1"> </span><span class="mtk10">SingleTextContent</span><span class="mtk1">(</span><span class="mtk12">Path</span><span class="mtk1">.</span><span class="mtk11">Join</span><span class="mtk1">(</span><span class="mtk8">&quot;other&quot;</span><span class="mtk1">, </span><span class="mtk12">singleTextContent</span><span class="mtk1">.</span><span class="mtk12">Filename</span><span class="mtk1">), </span><span class="mtk12">singleTextContent</span><span class="mtk1">.</span><span class="mtk12">Text</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                };</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk15">else</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                </span><span class="mtk15">yield</span><span class="mtk1"> </span><span class="mtk15">return</span><span class="mtk1"> </span><span class="mtk12">content</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
+<p><code>Name</code> と <code>Priority</code> というプロパティはここでは無視してください。<code>Builder</code> が適切に動作するために必要なものであって<code>Converter</code>の説明には関係しません。
+また、<code>SingleTextContent</code>というクラスが登場してますが、これは Sccg.Builtin にて定義されている<code>Content</code>の 1 つです。
+<code>Filename</code> と <code>Text</code> という 2 つのメンバを持つクラスで、単一のテキストファイルを表すためのクラスです。</p>
+<p><code>FilenameConverter</code>ではファイルパス(Filename)を見てディレクトリ構造を追加しています。
+lua ファイルの場合は nvim/下に配置するように、vim ファイルの場合は vim/以下に配置するようにファイル名を変更したものを返しています。</p>
+<h3 id="writer" style="position:relative;"><a href="#writer" aria-label="writer permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Writer</h3>
+<p><code>Writer</code>は 0 個以上の<code>Content</code>をファイルや標準出力など、何らかの形に出力するものです。
+necodark では Sccg.Builtin が提供する<code>TextFileWriter</code>を利用して<code>SingleTextContent</code>という<code>Content</code>をファイルに出力しています。
+<code>Formatter</code>と同様、<code>Content</code>は消費されません(することができません)。</p>
+<p><code>Writer</code>の実装は非常にシンプルなものになります。<code>TextFileWriter</code>の実装は次のとおりです。</p>
+<pre class="grvsc-container default-dark" data-language="cs" data-index="5"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">public</span><span class="mtk1"> </span><span class="mtk4">class</span><span class="mtk1"> </span><span class="mtk10">TextFileWriter</span><span class="mtk1"> : </span><span class="mtk10">Writer</span><span class="mtk1">&lt;</span><span class="mtk10">SingleTextContent</span><span class="mtk1">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">{</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">public</span><span class="mtk1"> </span><span class="mtk4">override</span><span class="mtk1"> </span><span class="mtk4">string</span><span class="mtk1"> </span><span class="mtk12">Name</span><span class="mtk1"> =&gt; </span><span class="mtk8">&quot;TextFile&quot;</span><span class="mtk1">;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk4">protected</span><span class="mtk1"> </span><span class="mtk4">override</span><span class="mtk1"> </span><span class="mtk4">void</span><span class="mtk1"> </span><span class="mtk11">Write</span><span class="mtk1">(</span><span class="mtk10">IEnumerable</span><span class="mtk1">&lt;</span><span class="mtk10">SingleTextContent</span><span class="mtk1">&gt; </span><span class="mtk12">contents</span><span class="mtk1">, </span><span class="mtk10">BuilderQuery</span><span class="mtk1"> </span><span class="mtk12">query</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">outputDirectory</span><span class="mtk1"> = </span><span class="mtk12">query</span><span class="mtk1">.</span><span class="mtk11">GetMetadata</span><span class="mtk1">().</span><span class="mtk12">Context</span><span class="mtk1">.</span><span class="mtk11">Get</span><span class="mtk1">(</span><span class="mtk8">&quot;OutputDirectory&quot;</span><span class="mtk1">, </span><span class="mtk8">&quot;build&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">foreach</span><span class="mtk1"> (</span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">content</span><span class="mtk1"> </span><span class="mtk15">in</span><span class="mtk1"> </span><span class="mtk12">contents</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">path</span><span class="mtk1"> = </span><span class="mtk12">Path</span><span class="mtk1">.</span><span class="mtk11">Combine</span><span class="mtk1">(</span><span class="mtk12">outputDirectory</span><span class="mtk1">, </span><span class="mtk12">content</span><span class="mtk1">.</span><span class="mtk12">Filename</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk4">var</span><span class="mtk1"> </span><span class="mtk12">directory</span><span class="mtk1"> = </span><span class="mtk12">Path</span><span class="mtk1">.</span><span class="mtk11">GetDirectoryName</span><span class="mtk1">(</span><span class="mtk12">path</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk15">if</span><span class="mtk1"> (</span><span class="mtk12">directory</span><span class="mtk1"> </span><span class="mtk4">is</span><span class="mtk1"> </span><span class="mtk10">not</span><span class="mtk1"> </span><span class="mtk4">null</span><span class="mtk1"> &amp;&amp; </span><span class="mtk12">Directory</span><span class="mtk1">.</span><span class="mtk11">Exists</span><span class="mtk1">(</span><span class="mtk12">directory</span><span class="mtk1">) == </span><span class="mtk4">false</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                </span><span class="mtk12">Directory</span><span class="mtk1">.</span><span class="mtk11">CreateDirectory</span><span class="mtk1">(</span><span class="mtk12">directory</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk12">File</span><span class="mtk1">.</span><span class="mtk11">WriteAllText</span><span class="mtk1">(</span><span class="mtk12">path</span><span class="mtk1">, </span><span class="mtk12">content</span><span class="mtk1">.</span><span class="mtk12">Text</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk12">Log</span><span class="mtk1">.</span><span class="mtk11">Info</span><span class="mtk1">(</span><span class="mtk8">$&quot;Wrote {</span><span class="mtk12">path</span><span class="mtk8">}&quot;</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
+<h3 id="interface" style="position:relative;"><a href="#interface" aria-label="interface permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>interface</h3>
+<p>個々の概念を実際のコードにする際に次に示す interface を Sccg にて定義してあります。(名前空間は<code>Sccg.Core</code>です)</p>
+<ul>
+<li><code>Source</code>を表す<code>ISource</code></li>
+<li><code>SourceItem</code>を表す<code>ISourceItem</code></li>
+<li><code>Formatter</code>を表す<code>IFormatter</code></li>
+<li><code>Content</code>を表す<code>IContent</code></li>
+<li><code>Converter</code>を表す<code>ISourceItemConverter</code>と<code>IContentConverter</code></li>
+<li><code>Writer</code>を表す<code>IWriter</code></li>
+</ul>
+<p>さらに、これら interface を実装し、基本的な実装を加えた抽象 class も定義してあります。</p>
+<ul>
+<li><code>ISource</code>を実装した<code>Source&#x3C;TGroup, TItem> where TItem : ISourceItem</code></li>
+<li><code>IFormatter</code>を実装した<code>Formatter&#x3C;TSourceItem, TContent> where TSourceItem : ISourceItem where TContent : IContent</code></li>
+<li><code>IWriter</code>を実装した<code>Writer&#x3C;TContent> where TContent : IContent</code></li>
+</ul>
+<p>Sccg.Builtin ではこれら抽象 class と interface を実装した class, interface を作成し、<code>Builder</code>にて目的とするカラーテーマが作成できるようにしています。
+詳しくはソースコードを読んでください。一応ドキュメントコメントも書いてあります。</p>
+<h2 id="補足" style="position:relative;"><a href="#%E8%A3%9C%E8%B6%B3" aria-label="補足 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>補足</h2>
+<h3 id="なぜ-c-で作ったのか" style="position:relative;"><a href="#%E3%81%AA%E3%81%9C-c-%E3%81%A7%E4%BD%9C%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%8B" aria-label="なぜ c で作ったのか permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>なぜ C# で作ったのか</h3>
+<p>型が厳格であり、かつ柔軟性がある程度あり、リフレクションが使える言語で僕が扱えるのが C#だけだったから。</p>
+<p>TypeScript とか Dart とか Rust も考えたけど、どれも条件に当てはまらなかった。</p>
+<h3 id="converter-の説明で出てきたnameとpriorityプロパティは何をしているか" style="position:relative;"><a href="#converter-%E3%81%AE%E8%AA%AC%E6%98%8E%E3%81%A7%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%9Fname%E3%81%A8priority%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%AF%E4%BD%95%E3%82%92%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B" aria-label="converter の説明で出てきたnameとpriorityプロパティは何をしているか permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Converter の説明で出てきた<code>Name</code>と<code>Priority</code>プロパティは何をしているか</h3>
+<p><code>Name</code>, <code>Priority</code>プロパティは<code>ISource</code>, <code>IFormatter</code>, <code>ISourceItemConverter</code>, <code>IContentConverter</code>, <code>IWriter</code>全てに実装されているプロパティです。
+これらのプロパティは<code>Builder</code>クラスにて使われます。</p>
+<p><code>Name</code>プロパティは<code>Builder::Use&#x3C;T>()</code>で利用され、重複したものが登録されていないことを確認します。重複したものが登録された時には例外(<code>ArgumentException</code>)が投げられます。</p>
+<p><code>Priority</code>プロパティは<code>Builder::Build()</code>で利用され、例えば、登録された複数の<code>Source</code>の<code>Source</code>内での処理順番を決定します。小さい方が先に処理されます。</p>
+<p>次にドキュメントコメント付きの<code>ISource</code>の実装を載せておきます。</p>
+<pre class="grvsc-container default-dark" data-language="cs" data-index="6"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">/// Represents a source that provides  source items.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">/// </span><span class="mtk17">&lt;/</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">public</span><span class="mtk1"> </span><span class="mtk4">interface</span><span class="mtk1"> </span><span class="mtk10">ISource</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">{</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// Gets the source name.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;/</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">remarks</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">see</span><span class="mtk3"> </span><span class="mtk12">cref</span><span class="mtk3">=</span><span class="mtk8">&quot;Builder&quot;</span><span class="mtk17">/&gt;</span><span class="mtk3"> cannot have more than one </span><span class="mtk17">&lt;</span><span class="mtk4">see</span><span class="mtk3"> </span><span class="mtk12">cref</span><span class="mtk3">=</span><span class="mtk8">&quot;ISource&quot;</span><span class="mtk17">/&gt;</span><span class="mtk3"> with the same </span><span class="mtk17">&lt;</span><span class="mtk4">see</span><span class="mtk3"> </span><span class="mtk12">cref</span><span class="mtk3">=</span><span class="mtk8">&quot;Name&quot;</span><span class="mtk17">/&gt;</span><span class="mtk3"> to avoid</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// creating duplicate </span><span class="mtk17">&lt;</span><span class="mtk4">see</span><span class="mtk3"> </span><span class="mtk12">cref</span><span class="mtk3">=</span><span class="mtk8">&quot;ISourceItem&quot;</span><span class="mtk17">/&gt;</span><span class="mtk3">.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;/</span><span class="mtk4">remarks</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    public </span><span class="mtk4">string</span><span class="mtk1"> </span><span class="mtk12">Name</span><span class="mtk1"> { </span><span class="mtk4">get</span><span class="mtk1">; }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// Gets the order in which the source is applied. The lower the number, the earlier the source is applied.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;/</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    public </span><span class="mtk4">int</span><span class="mtk1"> </span><span class="mtk12">Priority</span><span class="mtk1"> { </span><span class="mtk4">get</span><span class="mtk1">; }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// Collects source items from the source.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;/</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">returns</span><span class="mtk17">&gt;</span><span class="mtk3">It is passed to </span><span class="mtk17">&lt;</span><span class="mtk4">see</span><span class="mtk3"> </span><span class="mtk12">cref</span><span class="mtk3">=</span><span class="mtk8">&quot;IFormatter&quot;</span><span class="mtk17">/&gt;</span><span class="mtk3"> to format.</span><span class="mtk17">&lt;/</span><span class="mtk4">returns</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    public </span><span class="mtk10">IEnumerable</span><span class="mtk1">&lt;</span><span class="mtk10">ISourceItem</span><span class="mtk1">&gt; </span><span class="mtk11">CollectItems</span><span class="mtk1">();</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// Starts the source customization.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;/</span><span class="mtk4">summary</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">/// </span><span class="mtk17">&lt;</span><span class="mtk4">param</span><span class="mtk3"> </span><span class="mtk12">name</span><span class="mtk3">=</span><span class="mtk8">&quot;query&quot;</span><span class="mtk17">&gt;</span><span class="mtk3">The means of accessing other sources, etc.</span><span class="mtk17">&lt;/</span><span class="mtk4">param</span><span class="mtk17">&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    public </span><span class="mtk4">void</span><span class="mtk1"> </span><span class="mtk11">Custom</span><span class="mtk1">(</span><span class="mtk10">BuilderQuery</span><span class="mtk1"> </span><span class="mtk12">query</span><span class="mtk1">);</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span></code></pre>
+<h3 id="コード例で出てきてたbuilderqueryとは" style="position:relative;"><a href="#%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B%E3%81%A7%E5%87%BA%E3%81%A6%E3%81%8D%E3%81%A6%E3%81%9Fbuilderquery%E3%81%A8%E3%81%AF" aria-label="コード例で出てきてたbuilderqueryとは permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>コード例で出てきてた<code>BuilderQuery</code>とは</h3>
+<p>上の<code>ISource</code>のドキュメントコメントにも書いてありますが、他の<code>Source</code>や<code>Formatter</code>, <code>SourceItem</code>などにアクセスするための手段です。
+necodark でもいくつかの場所で利用しています。
+例えば<code>Source</code>は 1 つ 1 つが独立して存在しているので別の<code>Source</code>に連動したことをしたい、だとか、<code>Formatter</code>にて暗黙的に<code>ContentConverter</code>を追加したい、など色々 1 つのクラスを飛び越えた連携をするのに使うものです。</p>
+<p>次にドキュメントからメソッド一覧を載せました。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7aa55db0038df45f5f69be9c40473160/161ec/builder-query-methods.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 95.26315789473684%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAABYlAAAWJQFJUiTwAAACaElEQVR42o2UiW7bMBBE/f/fVqAoWhRJrfjSffKmaMvOK6g4jpUD7QKUCO1qOFzOcKXdhPNHYjw/vzye5wlcLhe+/3zk24/fPCQHwgThDJeX9C1e62OsrAvsKoMNc2pOzgXxDeR9IMkVSa7ZFop1pshqgRADgxA3sNf3agxH2l7dVn0BvIID5RA4NI6889SD5zg6Qhg5nSamafoIGEIgyzK898vkdZ42jiSXM7tdqWl7gbX26y1rbUjTDCklp9NpARjL0m5knRt2lSZrLUJZhJQ30HsScawi7X4YZob3idfCrHU8ppK6FQSnUErgrJlb8gVDzTpJyIsCY8xbD68MD+1IkhvWuSYpDJtCsykt4XgktisSWjDUxtA0DW3XEcHvkzFqMZI2hqKz5K2l7jVCu7lFfd9jnVsCxo9Pmw1pllHVNefzeQGYtn5mta8029LQSYfR6sbsw5aVUuR5QVGW9P3AOI5vKwLFEEhbN49WeLy3GGNvkvlwKJF6luWMIXwqm13t+JMKkkySNwopBqQUXM7THbu3/1bOuZlZtNlC2FeGWTeyqyy7OvbQ0AtDLy2nOwu+rH8V9mcCvWd4aCyP+55NIVmnA4+HgYeD4OGg2FcSpeTiv9V73b33cpTNpjTsas+2smwrh/Oe0bubbBaAfBL3DMves6/U7JK01jS9JkpNaY2/O8D/Aoxl+9rzJ5U8FYanQhOtGm0X1fFZu/4JmHcj21LPstnXEdSSFI6ksGzrQN6PTNPp/xlGm/3a9Pzeq/lQ4m3TDXIeg4ynrhb3wJeAr1tohCOtBEVnqFo12zN63lxt+n7LfwGSeMMbBf/COAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="builder-query-methods"
+        title=""
+        src="/static/7aa55db0038df45f5f69be9c40473160/3c051/builder-query-methods.png"
+        srcset="/static/7aa55db0038df45f5f69be9c40473160/a2d4f/builder-query-methods.png 190w,
+/static/7aa55db0038df45f5f69be9c40473160/3f520/builder-query-methods.png 380w,
+/static/7aa55db0038df45f5f69be9c40473160/3c051/builder-query-methods.png 760w,
+/static/7aa55db0038df45f5f69be9c40473160/b5cea/builder-query-methods.png 1140w,
+/static/7aa55db0038df45f5f69be9c40473160/891d5/builder-query-methods.png 1520w,
+/static/7aa55db0038df45f5f69be9c40473160/161ec/builder-query-methods.png 1840w"
+        sizes="(max-width: 760px) 100vw, 760px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
+<h2 id="最後に" style="position:relative;"><a href="#%E6%9C%80%E5%BE%8C%E3%81%AB" aria-label="最後に permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>最後に</h2>
+<p>個人的に非常に満足できるカラーテーマを作成することができました。また、カラーテーマジェネレータも良いものができていると感じています。
+今後もカラーテーマ、ジェネレータともに開発を進め、さらに強力なものにしていきます。</p>
+<style class="grvsc-styles">
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line > * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: ' ';
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting > .grvsc-code > .grvsc-line::before {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .default-dark .mtk1 { color: #D4D4D4; }
+  .default-dark .mtk3 { color: #6A9955; }
+  .default-dark .mtk15 { color: #C586C0; }
+  .default-dark .mtk10 { color: #4EC9B0; }
+  .default-dark .mtk4 { color: #569CD6; }
+  .default-dark .mtk12 { color: #9CDCFE; }
+  .default-dark .mtk8 { color: #CE9178; }
+  .default-dark .mtk11 { color: #DCDCAA; }
+  .default-dark .mtk7 { color: #B5CEA8; }
+  .default-dark .mtk17 { color: #808080; }
+  .default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+</style></div></article><nav><ul><li><a rel="prev" href="/blog/2023/arduino-serial-read-int-float/">← <!-- -->Arduinoでシリアルモニタから数値(整数と小数)を受け取る</a></li><li></li></ul></nav></main><footer><p>Built with<!-- --> <a href="https://www.gatsbyjs.com" style="color:inherit;font-weight:bold">Gatsby</a></p><p>©2022 <!-- -->ryota2357<!-- --> All Rights Reserved.</p></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/2023/necodark-sccg-mma2023a/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-9f6925a2a516c48cad19.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-6b216c95841301994b1d.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-0a15a1231fe07628de81.js\"],\"component---src-pages-blog-tag-tsx\":[\"/component---src-pages-blog-tag-tsx-f35a4a51995d2475c3c0.js\"],\"component---src-pages-blog-tsx\":[\"/component---src-pages-blog-tsx-0efcd838ecaef17d3c48.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-14824b06dcaefd93dff8.js\"],\"component---src-pages-works-tsx\":[\"/component---src-pages-works-tsx-0e2d5a661f429081f205.js\"],\"component---src-templates-blog-post-tsx\":[\"/component---src-templates-blog-post-tsx-eb7395efe2f9e76466d9.js\"],\"component---src-templates-tag-page-tsx\":[\"/component---src-templates-tag-page-tsx-470095da68d5dabe85a0.js\"],\"component---src-templates-year-page-tsx\":[\"/component---src-templates-year-page-tsx-f6678e1cb3eab6b44415.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="f228b6decf751130dd2d";</script><script src="/webpack-runtime-1c951110426508ec69b0.js" async></script><script src="/framework-980b140af5d572a2e76f.js" async></script><script src="/app-9f6925a2a516c48cad19.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
