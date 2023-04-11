@@ -33,7 +33,7 @@
     "latex-workshop": "github:James-Yu/LaTeX-Workshop",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "1.60.0",
+    "sass": "1.62.0",
     "toml": "github:oovm/vscode-toml",
     "tsconfig-paths-webpack-plugin": "4.0.1",
     "viml": "github:XadillaX/vscode-language-viml"
