@@ -10,7 +10,7 @@
     "dart-code": "github:Dart-Code/Dart-Code",
     "dayjs": "1.11.7",
     "destyle.css": "4.0.0",
-    "gatsby": "5.8.0",
+    "gatsby": "5.8.1",
     "gatsby-plugin-catch-links": "5.8.0",
     "gatsby-plugin-feed": "5.8.0",
     "gatsby-plugin-google-gtag": "5.8.0",
@@ -18,7 +18,7 @@
     "gatsby-plugin-manifest": "5.8.0",
     "gatsby-plugin-robots-txt": "1.8.0",
     "gatsby-plugin-sass": "6.8.0",
-    "gatsby-plugin-sharp": "5.8.0",
+    "gatsby-plugin-sharp": "5.8.1",
     "gatsby-plugin-sitemap": "6.8.0",
     "gatsby-plugin-twitter": "5.8.0",
     "gatsby-remark-autolink-headers": "6.8.0",
@@ -33,7 +33,7 @@
     "latex-workshop": "github:James-Yu/LaTeX-Workshop",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "1.60.0",
+    "sass": "1.62.0",
     "toml": "github:oovm/vscode-toml",
     "tsconfig-paths-webpack-plugin": "4.0.1",
     "viml": "github:XadillaX/vscode-language-viml"
@@ -43,8 +43,8 @@
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "gh-pages": "5.0.0",
-    "prettier": "2.8.6",
-    "typescript": "5.0.2"
+    "prettier": "2.8.7",
+    "typescript": "5.0.4"
   },
   "license": "MIT",
   "repository": {
