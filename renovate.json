@@ -15,11 +15,8 @@
     {
       "groupName": "types",
       "packagePatterns": ["^@types/"],
-      "automerge": true,
-      "ignoreTests": true,
-      "major": {
-        "automerge": false
-      }
+      "automerge": false,
+      "ignoreTests": true
     },
     {
       "groupName": "gatsby",
