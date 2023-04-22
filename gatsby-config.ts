@@ -187,7 +187,7 @@ const config: GatsbyConfig = {
               return allMarkdownRemark.nodes.map((node: any) => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
-                  postdate: node.frontmatter.postdate,
+                  date: node.frontmatter.postdate,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
