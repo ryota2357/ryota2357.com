@@ -1,9 +1,29 @@
 ---
 title: "自作カラーテーマ「necodark」と自作ジェネレータ「Sccg」(MMA部誌2023春)"
 postdate: "2023-04-04T00:56"
-update: "2023-04-04T00:56"
+update: "2023-04-23T00:44"
 tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
 ---
+
+> これは MMA 部誌 2023 春 に投稿した内容です。
+>
+> MMA の部誌は[ここ](https://www.mma.club.uec.ac.jp/chofu-festa/index.html)で読めます。
+
+> 1. [necodark](#1-necodark)
+>    1. [necodark の目的と特徴](#11-necodark-の目的と特徴)
+> 1. [Sccg](#2-sccg)
+>    1. [Sccg の目的と特徴](#21-sccg-の目的と特徴)
+>    1. [Program.cs](#22-programcs)
+>    1. [Source](#23-source)
+>    1. [Formatter](#24-formatter)
+>    1. [Converter](#25-converter)
+>    1. [Writer](#26-writer)
+>    1. [interface](#27-interface)
+> 1. [補足](#3-補足)
+>    1. [なぜ C# で作ったのか](#31-なぜ-c-で作ったのか)
+>    1. [Converter の説明で出てきた`Name`と`Priority`プロパティは何をしているか](#32-converter-の説明で出てきたnameとpriorityプロパティは何をしているか)
+>    1. [コード例で出てきてた`BuilderQuery`とは](#33-コード例で出てきてたbuilderqueryとは)
+> 1. [最後に](#4-最後に)
 
 こんにちは。2 年の ryota2357 です。
 
@@ -15,7 +35,7 @@ tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
 - [Sccg (GitHub)](https://github.com/ryota2357/Sccg)
 - [Sccg document](https://sccg.ryota2357.com/index.html)
 
-## necodark
+## 1. necodark
 
 次のスクリーンショットは Neovim にて necodark を利用した際の画像です。
 
@@ -33,7 +53,7 @@ tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
 
 ![pallet](pallet.png)
 
-### necodark の目的と特徴
+### 1.1 necodark の目的と特徴
 
 necodark を作成した目的は主に次の 2 点です。
 
@@ -70,13 +90,13 @@ necodark で使用したインディゴと青は近い色です。しかしイ�
 
 真偽値リテラルも分岐を決定する重要なものですが、分岐の決定には文学的な方法(メソッド名や変数名を用いて真偽を抽象化し意味を持たせて分岐する)が多いでしょう。そのため重要度はそこまで高くないかもしれません。しかしリテラルであることには変わりはなく、重要ではあるので通常の文字色を当てることはできません。そこで青・緑と白の中間的な色を使おうと考えました。水色は「パラメータ」などの色に当てられているので緑と白の中間の色を採用しました。
 
-## Sccg
+## 2. Sccg
 
 ここまで necodark の「見た目」について説明しました。ここからは necodark の「実装」について書いていきます。
 
 necodark は C# 製のカラーテーマジェネレータ、Sccg を用いて作成されています。Sccg は v0.2.1 であり、今後も開発は進められていく予定です。v0.2.1 ですが十分に実用に耐えれるものだと思ってます。
 
-### Sccg の目的と特徴
+### 2.1 Sccg の目的と特徴
 
 Sccg の README からそのまま引用しましょう。
 
@@ -111,7 +131,7 @@ Sccg is a tool to generate color schemes for your terminal, editor, etc.
 
 ここからは necodark の実装と合わせて、それぞれの概念がどのように使われ、働くことでカラーテーマが生成されるのかを見ていきましょう。個々の概念の説明も書いていきます。
 
-### Program.cs
+### 2.2 Program.cs
 
 necodark のメインスクリプト部分は次のようになっています。
 
@@ -170,7 +190,7 @@ Sccg はコアな部分(Sccg の核となる部分)とそれの付属部分(標�
 ちなみに、Sccg は `Source` や `Formatter` などは 1 つも定義していません。Sccg.Builtin にて定義されています。
 `Source`や`Formatter`、`Writer`はただのクラスなので継承によってカスタマイズ・拡張することも可能です。もちろん自分で 1 から作成することも可能であり、さほど難しくはありません。
 
-### Source
+### 2.3 Source
 
 1 つの`Source` は 0 個以上のカラーグループ(トークン)と、各カラーグループの設定(色やフォントスタイル)を持っています。
 私たちはカラーテーマを作成するために`Source`を作る必要があります。1 から Source を作るのは大変なので基本的には Sccg.Builtin から提供される Source を用いると良いでしょう。
@@ -220,7 +240,7 @@ public class NeovimEditorHighlight : NeovimEditorHighlightSource
 
 先ほどのように`Set()`で直接色・フォントスタイルを設定するのではなく、`S.*`というように、スタイル設定をまとめた変数を用意して`Set()`の第二引数で指定しています。
 
-### Formatter
+### 2.4 Formatter
 
 1 つの`Formatter`は`Source`により生成された 0 個以上の`SourceItem`を受け取り、`Content`1 つだけを生成するものです。`SourceItem`を参照するだけで消費はしません(できません)。
 
@@ -237,7 +257,7 @@ Sccg.Builtin の`Source`の中には複数の`Formatter`で処理可能にした
 
 実装コードを載せようと思ったのですが、どの`Formatter`も長かったので省略します。
 
-### Converter
+### 2.5 Converter
 
 `Converter`には 2 つの種類が存在します、`SourceItemConverter`と`ContentConverter`です。それぞれ`SourceItem`、`Content`を加工する、という役割を持ちます。
 
@@ -284,7 +304,7 @@ public class FilenameConverter : IContentConverter
 `FilenameConverter`ではファイルパス(Filename)を見てディレクトリ構造を追加しています。
 lua ファイルの場合は nvim/下に配置するように、vim ファイルの場合は vim/以下に配置するようにファイル名を変更したものを返しています。
 
-### Writer
+### 2.6 Writer
 
 `Writer`は 0 個以上の`Content`をファイルや標準出力など、何らかの形に出力するものです。
 necodark では Sccg.Builtin が提供する`TextFileWriter`を利用して`SingleTextContent`という`Content`をファイルに出力しています。
@@ -315,7 +335,7 @@ public class TextFileWriter : Writer<SingleTextContent>
 }
 ```
 
-### interface
+### 2.7 interface
 
 個々の概念を実際のコードにする際に次に示す interface を Sccg にて定義してあります。(名前空間は`Sccg.Core`です)
 
@@ -335,15 +355,15 @@ public class TextFileWriter : Writer<SingleTextContent>
 Sccg.Builtin ではこれら抽象 class と interface を実装した class, interface を作成し、`Builder`にて目的とするカラーテーマが作成できるようにしています。
 詳しくはソースコードを読んでください。一応ドキュメントコメントも書いてあります。
 
-## 補足
+## 3. 補足
 
-### なぜ C# で作ったのか
+### 3.1 なぜ C# で作ったのか
 
 型が厳格であり、かつ柔軟性がある程度あり、リフレクションが使える言語で僕が扱えるのが C#だけだったから。
 
 TypeScript とか Dart とか Rust も考えたけど、どれも条件に当てはまらなかった。
 
-### Converter の説明で出てきた`Name`と`Priority`プロパティは何をしているか
+### 3.2 Converter の説明で出てきた`Name`と`Priority`プロパティは何をしているか
 
 `Name`, `Priority`プロパティは`ISource`, `IFormatter`, `ISourceItemConverter`, `IContentConverter`, `IWriter`全てに実装されているプロパティです。
 これらのプロパティは`Builder`クラスにて使われます。
@@ -388,7 +408,7 @@ public interface ISource
 }
 ```
 
-### コード例で出てきてた`BuilderQuery`とは
+### 3.3 コード例で出てきてた`BuilderQuery`とは
 
 上の`ISource`のドキュメントコメントにも書いてありますが、他の`Source`や`Formatter`, `SourceItem`などにアクセスするための手段です。
 necodark でもいくつかの場所で利用しています。
@@ -398,7 +418,7 @@ necodark でもいくつかの場所で利用しています。
 
 ![builder-query-methods](builder-query-methods.png)
 
-## 最後に
+## 4. 最後に
 
 個人的に非常に満足できるカラーテーマを作成することができました。また、カラーテーマジェネレータも良いものができていると感じています。
 今後もカラーテーマ、ジェネレータともに開発を進め、さらに強力なものにしていきます。
