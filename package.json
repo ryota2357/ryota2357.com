@@ -39,9 +39,9 @@
     "viml": "github:XadillaX/vscode-language-viml"
   },
   "devDependencies": {
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.35",
-    "@types/react-dom": "18.0.11",
+    "@types/node": "18.16.1",
+    "@types/react": "18.2.0",
+    "@types/react-dom": "18.2.1",
     "gh-pages": "5.0.0",
     "prettier": "2.8.7",
     "typescript": "5.0.4"
