@@ -32,7 +32,7 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
           <h3>タグ</h3>
           <div className="item">
             {(() => {
-              let cnt = new Map<string, number>();
+              const cnt = new Map<string, number>();
               data.allMarkdownRemark.nodes.map((post) =>
                 post.frontmatter.tags?.map(
                   (tag) => tag && cnt.set(tag, (cnt.get(tag) ?? 0) + 1)

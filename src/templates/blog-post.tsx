@@ -42,12 +42,14 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
           </div>
           <div className="tags">
             <FontAwesomeIcon
-              icon={faTags as any}
+              icon={faTags}
               style={{ color: "#2E2E2E", marginRight: "5px" }}
             />
-            {post.tags.map((tag) => {
-              return <Link to={`/blog/tag/${tag}`}>{tag}</Link>;
-            })}
+            {post.tags.map((tag) => (
+              <Link to={`/blog/tag/${tag}`} key={tag}>
+                {tag}
+              </Link>
+            ))}
           </div>
         </div>
         <div

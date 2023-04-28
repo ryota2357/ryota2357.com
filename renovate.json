@@ -5,6 +5,7 @@
   "timezone": "Asia/Tokyo",
   "schedule": "at any time",
   "prHourlyLimit": 0,
+  "automerge": false,
   "packageRules": [
     {
       "groupName": "pin",
@@ -13,16 +14,14 @@
       "ignoreTests": true
     },
     {
-      "groupName": "types",
-      "packagePatterns": ["^@types/"],
-      "automerge": false,
+      "groupName": "devDependencies",
+      "matchDepTypes": ["devDependencies"],
       "ignoreTests": true
     },
     {
-      "groupName": "gatsby",
-      "packagePatterns": ["^gatsby"],
-      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
-      "automerge": false
+      "groupName": "dependencies",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor", "patch", "digest"]
     }
   ]
 }

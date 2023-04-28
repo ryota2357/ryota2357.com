@@ -6,7 +6,7 @@ data:
       大学の授業(基礎プログラミング及び演習)にて制作
       C言語でPPMファイル)生成するプログラムを作り、そのプログラムによって作られたPPMファイルをを繋げて動画を作るという課題
       Bad Apple!! の影絵に歌詞をつけたGIFとMP4
-    url: 'https://github.com/ryota2357/fp15-project'
+    url: "https://github.com/ryota2357/fp15-project"
     image: ../images/movie-fp15-badapple.gif
-    created: '2023-02-09T19:54'
-    update: '2023-02-09T19:54'
+    created: "2023-02-09T19:54"
+    update: "2023-02-09T19:54"

@@ -12,12 +12,12 @@ const Works = ({ data }: PageProps<Queries.WorksPageQuery>) => {
     <Layout id="works-page">
       <h1>Works</h1>
       {data.allWorksDataYaml.nodes.map((one) => (
-        <ContentBlock title={one.name}>
+        <ContentBlock title={one.name} key={one.name}>
           <ul>
             {one.data.map((item, index) => (
-              <li key={index}>
+              <li key={`item-${index}`}>
                 <h3>
-                  <a href={item.url} target="_blank">
+                  <a href={item.url} target="_blank" rel="noreferrer">
                     {item.title}
                   </a>
                 </h3>
@@ -26,18 +26,18 @@ const Works = ({ data }: PageProps<Queries.WorksPageQuery>) => {
                     <p className="gray">
                       公開: <time>{formatTime(new Date(item.created))}</time>
                     </p>
-                    {item.created != item.update && (
+                    {item.created !== item.update && (
                       <p className="gray">
                         最終更新:{" "}
                         <time>{formatTime(new Date(item.update))}</time>
                       </p>
                     )}
-                    {item.description.split("\n").map((line) => (
-                      <p>{line}</p>
+                    {item.description.split("\n").map((line, index) => (
+                      <p key={`line-${index}`}>{line}</p>
                     ))}
                   </div>
                   <img
-                    src={item.image?.publicURL!}
+                    src={item.image!.publicURL!}
                     alt={`${item.title} icon`}
                     style={{
                       objectFit: "cover",

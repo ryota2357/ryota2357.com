@@ -8,7 +8,7 @@ const Tag = ({ data }: PageProps<Queries.TagPageQuery>) => {
       <h1>Tag</h1>
       <ul>
         {(() => {
-          let cnt = new Map<string, number>();
+          const cnt = new Map<string, number>();
           data.allMarkdownRemark.nodes.map((post) =>
             post.frontmatter.tags?.map(
               (tag) => tag && cnt.set(tag, (cnt.get(tag) ?? 0) + 1)
