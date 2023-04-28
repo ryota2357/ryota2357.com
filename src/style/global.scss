@@ -1,5 +1,9 @@
 @import "variables";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
     "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;

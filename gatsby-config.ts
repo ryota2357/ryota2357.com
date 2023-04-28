@@ -218,6 +218,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sass`,
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-twitter`,
     {
       resolve: `gatsby-plugin-manifest`,
