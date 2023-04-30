@@ -1,12 +1,11 @@
 import { graphql, PageProps, Link } from "gatsby";
 import { Layout, Seo } from "@/components";
-import "@/style/pages/tag.scss";
 
 const Tag = ({ data }: PageProps<Queries.TagPageQuery>) => {
   return (
     <Layout id="tag-page">
-      <h1>Tag</h1>
-      <ul>
+      <h1 className="text-[2.5rem]">Tag</h1>
+      <ul className="list-inside list-disc mt-8">
         {(() => {
           const cnt = new Map<string, number>();
           data.allMarkdownRemark.nodes.map((post) =>

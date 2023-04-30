@@ -1,39 +1,7 @@
-@import "../variables";
-
 .blog-list {
   ul {
-    background: #ffffff;
-    border: 1px solid #787878;
-    border-radius: 0.3rem;
-    padding: 0 0.5rem;
     li + li {
       border-top: 1px solid #e3e3e3;
-    }
-    li {
-      padding: 0.5rem 0;
-      .item-date {
-        color: $text-gray;
-      }
-      .item-title {
-        font-size: 1.2rem;
-        font-weight: bold;
-      }
-      .item-tags {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        gap: 0.5rem;
-        font-size: 0.8rem;
-        .item-tag {
-          color: #ffffff;
-          background: #282828;
-          padding: 0.3em 1em;
-          border-radius: 0.3em;
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
     }
   }
 }

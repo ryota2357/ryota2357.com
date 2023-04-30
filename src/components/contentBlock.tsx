@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import "@/style/components/contentBlock.scss";
 
 type ContentBlockProp = {
   title: string;
@@ -8,9 +7,11 @@ type ContentBlockProp = {
 
 const ContentBlock = ({ title, children }: ContentBlockProp) => {
   return (
-    <div className="content-block">
-      <h2>{title}</h2>
-      <div className="children">{children}</div>
+    <div className="flex flex-col items-start gap-4">
+      <h2 className="text-[1.6rem] font-bold">{title}</h2>
+      <div className="flex flex-col gap-4 text-[1rem] pl-4 w-full">
+        {children}
+      </div>
     </div>
   );
 };

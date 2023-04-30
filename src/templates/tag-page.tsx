@@ -1,13 +1,12 @@
 import { graphql, PageProps, Link } from "gatsby";
 import { Layout, Seo, BlogList } from "@/components";
-import "@/style/templates/tag-page.scss";
 
 const TagPage = ({
   data,
   pageContext,
 }: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => (
   <Layout id="tag-page-template">
-    <h1>{pageContext.tag}</h1>
+    <h1 className="text-[2.5rem]">{pageContext.tag}</h1>
     <p>{data.allMarkdownRemark.totalCount}件</p>
     <p>
       <Link to="/blog/tag">タグの一覧</Link>

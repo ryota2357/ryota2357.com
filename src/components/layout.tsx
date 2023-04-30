@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import "@/style/components/layout.scss";
 
 const Layout = ({ id, children }: { id: string; children: ReactNode }) => {
   const { site } = useStaticQuery<Queries.LayoutComponentQuery>(graphql`
@@ -18,12 +17,12 @@ const Layout = ({ id, children }: { id: string; children: ReactNode }) => {
 
   return (
     <div id="layout">
-      <header>
-        <div className="logo">
+      <header className="flex flex-row flex-wrap justify-between my-4 mx-3">
+        <div className="text-[2.1rem] font-bold select-none text-black [&_a:hover]:no-underline">
           <Link to="/">{site?.siteMetadata.title}</Link>
         </div>
-        <nav>
-          <ul>
+        <nav className="mt-auto">
+          <ul className="flex content-start text-[1.4rem] [&>li]:my-0 [&>li]:mx-[0.7rem]">
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -39,8 +38,10 @@ const Layout = ({ id, children }: { id: string; children: ReactNode }) => {
           </ul>
         </nav>
       </header>
-      <main id={id}>{children}</main>
-      <footer>
+      <main className="max-w-[1080px] my-0 mx-auto py-0 px-[10px]" id={id}>
+        {children}
+      </main>
+      <footer className="text-[0.7rem] text-center mt-4">
         <p>
           Built with{" "}
           <a

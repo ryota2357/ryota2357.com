@@ -1,11 +1,10 @@
 import { graphql, PageProps, Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { Layout, Seo, ContentBlock } from "@/components";
-import "@/style/pages/index.scss";
 
 const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
   <Layout id="index-page">
-    <div className="top-profile">
+    <div className="flex flex-col items-center gap-2">
       <StaticImage
         src="../images/profile-pic.png"
         alt="profile-pic"
@@ -17,20 +16,20 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
           borderRadius: "50%",
         }}
       />
-      <p className="name">ryota2357</p>
+      <p className="font-bold text-[1.6rem]">ryota2357</p>
     </div>
-    <div className="content-blocks">
+    <div className="flex flex-col gap-8 mt-8">
       <ContentBlock title="Affiliation">
-        <ul>
+        <ul className="list-inside list-disc [&>li]:py-0.5 [&>li]:px-0">
           {data.site?.siteMetadata.author.affiliation!.map((line, idx) => (
             <li key={idx}>{line}</li>
           ))}
         </ul>
       </ContentBlock>
       <ContentBlock title="Blog">
-        <div className="align-horizontal">
-          <h3>タグ</h3>
-          <div className="item">
+        <div className="flex flex-row items-start gap-4">
+          <h3 className="flex-none m-0 text-[1.3rem] font-bold">タグ</h3>
+          <div className="flex flex-wrap my-auto mx-0">
             {(() => {
               const cnt = new Map<string, number>();
               data.allMarkdownRemark.nodes.map((post) =>
@@ -42,10 +41,10 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
                 .sort()
                 .sort((a, b) => b[1] - a[1])
                 .filter((a) => a[1] > 1)
-                .map((tag, index) => {
+                .map((tag) => {
                   const [tagName, count] = tag;
                   return (
-                    <span style={{ padding: "0.3rem" }} key={index}>
+                    <span className="p-[0.3rem]" key={tagName}>
                       <Link to={`/blog/tag/${tagName}`}>
                         {`${tagName}(${count})`}
                       </Link>
@@ -53,17 +52,17 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
                   );
                 })
                 .concat(
-                  <span style={{ padding: "0.3rem" }} key={1000}>
+                  <span className="p-[0.3rem]" key={"一覧"}>
                     <Link to="/blog/tag/">一覧</Link>
                   </span>
                 );
             })()}
           </div>
         </div>
-        <div className="align-horizontal">
-          <h3>更新</h3>
-          <div className="item">
-            <ul>
+        <div className="flex flex-row items-start gap-4">
+          <h3 className="flex-none m-0 text-[1.3rem] font-bold">更新</h3>
+          <div className="flex flex-wrap my-auto mx-0">
+            <ul className="list-inside list-disc [&>li]:py-0.5 [&>li]:px-0">
               {data.allMarkdownRemark.nodes.slice(0, 7).map((post, index) => (
                 <li key={index}>
                   <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
@@ -74,7 +73,7 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
         </div>
       </ContentBlock>
       <ContentBlock title="Links">
-        <ul>
+        <ul className="list-inside list-disc [&>li]:py-0.5 [&>li]:px-0">
           <li>
             <a href={data.site?.siteMetadata.social.twitter.url}>
               Twitter ({data.site?.siteMetadata.social.twitter.name})

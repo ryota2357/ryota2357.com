@@ -27,8 +27,10 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
     <Layout id="blog-post">
       <article itemScope itemType="http://schema.org/Article">
         <div className="post-front">
-          <h1 itemProp="headline">{post.title}</h1>
-          <div className="date">
+          <h1 itemProp="headline" className="text-[2rem] font-bold mt-4">
+            {post.title}
+          </h1>
+          <div className="flex flex-row gap-4 text-gray-500">
             <p>
               投稿日:{" "}
               <time itemProp="datePublished">{timeFmt(post.postdate)}</time>
@@ -59,7 +61,7 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
         />
       </article>
       <nav>
-        <ul>
+        <ul className="grid grid-flow-col justify-between my-4 mx-0 gap-3">
           <li>
             {data.previous && (
               <Link to={data.previous.fields.slug} rel="prev">

@@ -1,13 +1,12 @@
 import { graphql, PageProps } from "gatsby";
 import { Layout, Seo, BlogList } from "@/components";
-import "@/style/templates/tag-page.scss";
 
 const YearPage = ({
   data,
   pageContext,
 }: PageProps<Queries.YearPageTemplateQuery, { begin: string }>) => (
   <Layout id="tag-page-template">
-    <h1>Blog in {pageContext.begin.slice(0, 4)}</h1>
+    <h1 className="text-[2.5rem]">Blog in {pageContext.begin.slice(0, 4)}</h1>
     <p>{data.allMarkdownRemark.totalCount}件</p>
     <BlogList
       data={data.allMarkdownRemark.nodes.map((post) => {
