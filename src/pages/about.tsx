@@ -2,7 +2,7 @@ import { graphql, PageProps } from "gatsby";
 import { Layout, Seo, ContentBlock } from "@/components";
 
 const About = ({ data }: PageProps<Queries.AboutPageQuery>) => (
-  <Layout id="about-page">
+  <Layout>
     <h1 className="text-[2.5rem]">About</h1>
     <div className="flex flex-col gap-8 mt-8">
       <ContentBlock title="このサイトについて">

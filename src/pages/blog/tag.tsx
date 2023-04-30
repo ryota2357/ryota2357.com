@@ -3,7 +3,7 @@ import { Layout, Seo } from "@/components";
 
 const Tag = ({ data }: PageProps<Queries.TagPageQuery>) => {
   return (
-    <Layout id="tag-page">
+    <Layout>
       <h1 className="text-[2.5rem]">Tag</h1>
       <ul className="list-inside list-disc mt-8">
         {(() => {

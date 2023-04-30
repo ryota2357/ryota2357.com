@@ -5,7 +5,7 @@ const YearPage = ({
   data,
   pageContext,
 }: PageProps<Queries.YearPageTemplateQuery, { begin: string }>) => (
-  <Layout id="tag-page-template">
+  <Layout>
     <h1 className="text-[2.5rem]">Blog in {pageContext.begin.slice(0, 4)}</h1>
     <p>{data.allMarkdownRemark.totalCount}件</p>
     <BlogList

@@ -2,7 +2,7 @@ import { graphql, PageProps, Link } from "gatsby";
 import { Layout, Seo, BlogList } from "@/components";
 
 const Blog = ({ data }: PageProps<Queries.BlogPageQuery>) => (
-  <Layout id="blog-page">
+  <Layout>
     <h1 className="text-[2.5rem]">Blog</h1>
     <p className="my-2 mx-0">
       <Link to="/blog/tag">タグの一覧</Link>

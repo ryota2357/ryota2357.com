@@ -3,7 +3,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Layout, Seo, ContentBlock } from "@/components";
 
 const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
-  <Layout id="index-page">
+  <Layout>
     <div className="flex flex-col items-center gap-2">
       <StaticImage
         src="../images/profile-pic.png"

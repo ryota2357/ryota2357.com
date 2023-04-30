@@ -24,7 +24,7 @@ const BlogPostTemplate = ({ data }: PageProps<Queries.BlogPostQuery>) => {
     time ? dayjs(new Date(time)).format("YYYY/MM/DD (HH:mm)") : "";
 
   return (
-    <Layout id="blog-post">
+    <Layout>
       <article itemScope itemType="http://schema.org/Article">
         <div className="post-front">
           <h1 itemProp="headline" className="text-[2rem] font-bold mt-4">

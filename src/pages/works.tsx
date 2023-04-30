@@ -8,7 +8,7 @@ function formatTime(time: Date): string {
 
 const Works = ({ data }: PageProps<Queries.WorksPageQuery>) => {
   return (
-    <Layout id="works-page">
+    <Layout>
       <h1 className="text-[2.5rem]">Works</h1>
       <div className="flex flex-col gap-8 mt-8">
         {data.allWorksDataYaml.nodes.map((one) => (

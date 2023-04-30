@@ -5,7 +5,7 @@ const TagPage = ({
   data,
   pageContext,
 }: PageProps<Queries.TagPageTemplateQuery, { tag: string }>) => (
-  <Layout id="tag-page-template">
+  <Layout>
     <h1 className="text-[2.5rem]">{pageContext.tag}</h1>
     <p>{data.allMarkdownRemark.totalCount}件</p>
     <p>
