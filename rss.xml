@@ -1,4 +1,296 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 30 Apr 2023 16:09:54 GMT</lastBuildDate><item><title><![CDATA[pyenvでPython2.xのinstallに失敗した時の対処法(Missing the zlib)]]></title><description><![CDATA[これ、 ERROR: The Python zlib extension was not compiled. Missing the zlib? エラーメッセージにあるドキュメントの方法に従って、 としても失敗した。 対処法 zlibは Homebrew…]]></description><link>https://ryota2357.com/blog/2023/pyenv-python2-build-failed-with-zlib/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/pyenv-python2-build-failed-with-zlib/</guid><pubDate>Sun, 23 Apr 2023 01:08:00 GMT</pubDate><content:encoded>&lt;p&gt;これ、&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 03 May 2023 10:06:32 GMT</lastBuildDate><item><title><![CDATA[FontForgeとPythonでGlyphの追加・削除する方法]]></title><description><![CDATA[FontForge にて、Glyph 追加・削除を行うには「Glyph Pen」を用いると直感的にできるかと思う。 「削除」に関してはもっといい方法があるかもしれない。僕は見つけられなかった。 Glyph Pen ドキュメント Glyph Pen は glyph.glyphPen…]]></description><link>https://ryota2357.com/blog/2023/fontforge-add-erase-glyph-with-python/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/fontforge-add-erase-glyph-with-python/</guid><pubDate>Wed, 03 May 2023 18:58:00 GMT</pubDate><content:encoded>&lt;p&gt;FontForge にて、Glyph 追加・削除を行うには「Glyph Pen」を用いると直感的にできるかと思う。&lt;/p&gt;
+&lt;p&gt;「削除」に関してはもっといい方法があるかもしれない。僕は見つけられなかった。&lt;/p&gt;
+&lt;h2 id=&quot;glyph-pen&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#glyph-pen&quot; aria-label=&quot;glyph pen permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Glyph Pen&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://fontforge.org/docs/scripting/python/fontforge.html#glyph-pen&quot;&gt;ドキュメント&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Glyph Pen は &lt;a href=&quot;https://fontforge.org/docs/scripting/python/fontforge.html#fontforge.glyph.glyphPen&quot;&gt;glyph.glyphPen()&lt;/a&gt; を使うと取得できる。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;glyph.glyphPen([replace=False])&lt;/strong&gt;&lt;br&gt;
+Creates a new glyphPen which will draw into the current glyph. By default the pen will replace any existing contours and references, but setting the optional keyword argument, replace to false will retain the old contents.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ドキュメントのシグネクチャには引数の&lt;code&gt;replace&lt;/code&gt;のデフォルト値が&lt;code&gt;False&lt;/code&gt;であるかのように書いてあるが、実際はドキュメントの説明にある通り、&lt;code&gt;True&lt;/code&gt;である。注意しなければならない。&lt;/p&gt;
+&lt;p&gt;Glyph Pen を取得するサンプルコードを次に示す。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;python&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;# key は 数値か文字列&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen = font[key].glyphPen(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ちなみに&lt;code&gt;font[key]&lt;/code&gt;については次の通りである。&lt;code&gt;font[0x30]&lt;/code&gt;などどしてあげれば良い。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;font.__getitem__(key)&lt;/strong&gt;&lt;br&gt;
+If key is an integer, then returns the glyph at that encoding. If a string then returns the glyph with that name. May not be assigned to.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;追加&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E8%BF%BD%E5%8A%A0&quot; aria-label=&quot;追加 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;追加&lt;/h2&gt;
+&lt;p&gt;数字の 0 (&lt;code&gt;0x30&lt;/code&gt;)のグリフの左下に四角形を追加してみる。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;python&quot; data-index=&quot;1&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk15&quot;&gt;import&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; fontforge&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;font = fontforge.open(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;example.ttf&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen = font[&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;0x&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;].glyphPen(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;# 時計回りに線を書かなければいけないことに注意&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen.moveTo((&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, -&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen.lineTo((&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1300&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen.lineTo((&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;940&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1300&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen.lineTo((&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;940&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, -&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen.closePath()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;# Glaph Pen を使い終わったことを FontForge に伝える&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk3&quot;&gt;# UI 使ってないので必要ないかもだけど一応やっておく&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen = &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;None&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;font.generate(&lt;/span&gt;&lt;span class=&quot;mtk8&quot;&gt;&amp;quot;modified-example.ttf&amp;quot;&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;それぞれドキュメントを引用しておく。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;glyphPen.moveTo((x, y))&lt;/strong&gt;&lt;br&gt;
+With one exception this call begins every contor and creates an on curve point at (x,y) as the start point of that contour. This should be the first call after a pen has been created and the call that follows a glyphPen.closePath(), glyphPen.endPath().&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;glyphPen.lineTo((x, y))&lt;/strong&gt;&lt;br&gt;
+Draws a line from the last point to (x,y) and adds that to the contour.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;glyphPen.closePath()&lt;/strong&gt;&lt;br&gt;
+Closes the contour (connects the last point to the first point to make a loop) and ends it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;線を追加するメソッドはこれら以外にもいくつかある。&lt;a href=&quot;https://fontforge.org/docs/scripting/python/fontforge.html#glyph-pen&quot;&gt;ドキュメント&lt;/a&gt;参照。&lt;/p&gt;
+&lt;h2 id=&quot;削除&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%89%8A%E9%99%A4&quot; aria-label=&quot;削除 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;削除&lt;/h2&gt;
+&lt;p&gt;削除は、「削除」としての関数を見つけることはできなかったが、&lt;code&gt;intersect()&lt;/code&gt;を用いて削除を行う方法は見つけられた。次の記事で行なっていた方法を用いるといいだろう。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://qiita.com/delphinus/items/f472eb04ff91daf44274#3-%E5%85%A8%E8%A7%92%E7%A9%BA%E7%99%BD%E3%82%92%E5%8F%AF%E8%A6%96%E5%8C%96%E3%81%99%E3%82%8B&quot;&gt;SF Mono を使って最高のプログラミング用フォントを作った話#全角空白を可視化する&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;ここでは例として、Hack フォントの数字の 0(&lt;code&gt;0x30&lt;/code&gt;)の中の楕円を削除を行う。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/0d06f8fb8f3ab8d7b80f501157e45948/aa440/zero-erase-pos.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 73.68421052631578%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAADcElEQVR42jWU3WtcRRiHT8Q2tiIoiaQJsTFRxIsUjLkwlw00/0DNTXuhf0NLvKgQkICoUCKKDTVQSwNCLKYxrYjEaCIK4mfMmpivJpu1MWvdZnfPOTNzZuZ8PHJmcS7mZeadeeY38877ekmSkLdKpcLExAQjIyOMj49TKpXcfBzHWGvJ16VpghaGyI8IayF1IRBhRBInzp+v9fJNKysrdHd343keHR0dPNTUREtLCwsLCw6qtXbWxDF1P0QrTSQidKSRgUSHDX8O9fJuYGCA5uZmvllaco7lQoH29na6urqc8rxlWYbwA9IkQYQGGRlkYDBxShRKrDFkZHjz8/NO2euXLtGQoZz58OpVNz85OenGURBhlEGLCFutgRakwkfW6k6ZrCuyNMPLQfnGpTtzsLvB269dJPz9J3Z++5mmh49w/tw5B/RrISmgKockG6v4f2ySbKxhikVsDFqqxhu+fPYsR48dZ29lmeKvP+IdfYRvb89iy/u0P3WSvr4XGkApsUmKPnxAvL+Hr2LM/QrmXhFhEqRUWBPjDZ05w+OtrdT2dlj85GOndurdy+BXeb73FD09PS4oUmu0jtEPqtjduyQZ6HIZXdpFpRlxZDDC4A2ePk1L2wnC/RJ3Ppp0wPffGHXAU319PN3VhRACozTGxtjqIWp9gyy//r0D7N4uJslIbYwKJd7QUENhtbjDD3MzDnj98jsgAqfwmZ4ejDFYadA2RoeBUxjngTooO6BNwFiLUBHe8PAwR44dZ3f5F/5ZK+A9+hhfzdzEbhRoa++gv7+/8RcDhU4yZHGbZG8XabPGe+4V0Tp10Tfa4o2OjjpVX392Cw5KXHnrTWp/FihPX+NJz+P8K686oKhHJEISfX4LttaobGwjt9cxpSKRzTBKkeRRXlxcdMCLFy40/qEMnHnvygRPeB43r19z48AXmLvrLkvi2iFU/4VqBVk9JE1SRKBI0rSReoODgzQ1NTEzN4fQmsXvvudEawsvPvcsYnMVgjrZXzuo9VWSShnfF+g8Y5Ql0alTZ5VxBzvg5tYWvb29TunJzk5nX+pso3B7Bu7/jZ6fJf3yU8yND1BfzKKCEBGGKKmQQlEPQrIsdUXE+7/ahGHI9PQ0Y2Nj3Jia4rB8AFlKHPrEOiKNFJlWRIHGF5Ig9IkCRVCXxK4SpS5T/gN/ONi0h6insAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;zero-erase-pos&quot;
+        title=&quot;&quot;
+        src=&quot;/static/0d06f8fb8f3ab8d7b80f501157e45948/3c051/zero-erase-pos.png&quot;
+        srcset=&quot;/static/0d06f8fb8f3ab8d7b80f501157e45948/a2d4f/zero-erase-pos.png 190w,
+/static/0d06f8fb8f3ab8d7b80f501157e45948/3f520/zero-erase-pos.png 380w,
+/static/0d06f8fb8f3ab8d7b80f501157e45948/3c051/zero-erase-pos.png 760w,
+/static/0d06f8fb8f3ab8d7b80f501157e45948/b5cea/zero-erase-pos.png 1140w,
+/static/0d06f8fb8f3ab8d7b80f501157e45948/aa440/zero-erase-pos.png 1500w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;utility-関数&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#utility-%E9%96%A2%E6%95%B0&quot; aria-label=&quot;utility 関数 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Utility 関数&lt;/h3&gt;
+&lt;p&gt;Glyph Pen を使って長方形描く関数を作っておく。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;python&quot; data-index=&quot;2&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk4&quot;&gt;def&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mtk11&quot;&gt;draw_square&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;glyphPen&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;clockwise&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;):&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    dx = width // &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    dy = height // &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    glyphPen.moveTo((center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] - dx, center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] - dy))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt; clockwise:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        glyphPen.lineTo((center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] - dx, center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] + dy))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        glyphPen.lineTo((center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] + dx, center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] + dy))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        glyphPen.lineTo((center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] + dx, center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] - dy))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;mtk15&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        glyphPen.lineTo((center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] + dx, center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] - dy))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        glyphPen.lineTo((center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] + dx, center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] + dy))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;        glyphPen.lineTo((center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] - dx, center[&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;] + dy))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;    glyphPen.closePath()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;center&lt;/code&gt;は(x, y)のタプル、&lt;code&gt;width&lt;/code&gt;, &lt;code&gt;height&lt;/code&gt;は数値を受け取る。&lt;code&gt;clockwise&lt;/code&gt;は線を描く方向で、ドーナツ型のような形を描く時の内側の線を作るときに&lt;code&gt;False&lt;/code&gt;を設定するものである。&lt;/p&gt;
+&lt;h3 id=&quot;残す部分を長方形でおおう&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%AE%8B%E3%81%99%E9%83%A8%E5%88%86%E3%82%92%E9%95%B7%E6%96%B9%E5%BD%A2%E3%81%A7%E3%81%8A%E3%81%8A%E3%81%86&quot; aria-label=&quot;残す部分を長方形でおおう permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;残す部分を長方形でおおう&lt;/h3&gt;
+&lt;p&gt;フォントの&lt;code&gt;open()&lt;/code&gt;とかは省略する。&lt;/p&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;python&quot; data-index=&quot;3&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen = font[&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;0x&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;].glyphPen(&lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;draw_square(glyphPen, (&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;510&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;610&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;), &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;900&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;1350&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;draw_square(glyphPen, (&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;510&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;610&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;), &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;200&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;650&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;mtk12&quot;&gt;clockwise&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;glyphPen = &lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;None&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;次のようになる。追加したところを緑でなぞってみた。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a40c8631592a3ee5ff811e33afa3fcee/2b608/zero-cover.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 71.57894736842105%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAACyUlEQVR42o2SyU7cWBiFixnEIEYxLkAICZAQG8SGp2CFlJCK0htWTCvegRUvwDt10klEDa6ZTgOpsn3t6+FeV33d15VOKlEv2tave2XJn875z8kopahUKpTL5Z/GfCuVSjw9P0EHpJa4bRcvEbiRSzNo0oxtXC0QHYEdt0h0QsayLFZXV1lYWGBxcZGlpaX0XF5eZnx8nHe/vcM8VlDkS/sLdf9Pqq0aj16Dil+n1qzzkrzwUf6BVppMoVBgdnY2/XlycpKhoSFGR0eZnp4mk8nw6vWrFFiPGmilUH6M8tskfkIi2uhAk/iKelTHuM0Ui0Xm5+dTmAHv7++zubmZAgcGBjh9c5oCa2ENIQQ6jBGOjaNcbNkikgGBH2J5FlrrLtDYNcoM7O7ujouLC+bm5ujv7+f0tAsseWVsT9CJEqqiyofH9zy4n5BugIoVeSdPkiQ/FI6MjLCzs8Ph4SFHR0esra2llv8FFoSFG/loqXn0G9j2V2pOBTeUxIEi1/wFODY2xsbGBru7uynYhNPX1/cdaAkLP/RJAk1D1LH9FqWWhZQ+OlIU7Dy6F2iC2NraYm9vj+3tbVZWVn5SaIAylCiVUBc1HANsFgllQBwrHnotmx0ODg5ycHDAzc0NJycnaW16FZbcEoGUBIGi4dV5efqLsigReCEq/A/LRuH6+jq3t7dks1mmpqa6KX8DVrwKjknZMzus8f7ldz77n/FFQGwsuz2WTZFnZmbSMbucmJhIVQ8PD5N9m+3WJqrhSg8VhbhCEHZCfF+gghApJOWg3K1NLpdL7Zp99Y6pjDmPj4+7CsMKnSRBORHSU/hNj9CJkSIiiTTVsEqsYjLPz89cX19zfn7O5eVl2kEzV1dXnJ2dcX9/3w3FK1JVVaqixkOzQN7JpSnnbYuGavBRfEj7mOF/PJ12B93WRJ0I88bE3+7xj7sOaf+zw78B+xVLQKmPruIAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;zero-cover&quot;
+        title=&quot;&quot;
+        src=&quot;/static/a40c8631592a3ee5ff811e33afa3fcee/3c051/zero-cover.png&quot;
+        srcset=&quot;/static/a40c8631592a3ee5ff811e33afa3fcee/a2d4f/zero-cover.png 190w,
+/static/a40c8631592a3ee5ff811e33afa3fcee/3f520/zero-cover.png 380w,
+/static/a40c8631592a3ee5ff811e33afa3fcee/3c051/zero-cover.png 760w,
+/static/a40c8631592a3ee5ff811e33afa3fcee/b5cea/zero-cover.png 1140w,
+/static/a40c8631592a3ee5ff811e33afa3fcee/891d5/zero-cover.png 1520w,
+/static/a40c8631592a3ee5ff811e33afa3fcee/2b608/zero-cover.png 1540w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;消す&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%B6%88%E3%81%99&quot; aria-label=&quot;消す permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;vertical-align:baseline; fill: #57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;消す&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;font.intersect()&lt;/code&gt;を使うと、重なり合った部分のみを残してそれ以外を削除することができる。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;font.intersect()&lt;/strong&gt;&lt;br&gt;
+Leaves only areas in the intersection of contours in all selected glyphs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;python&quot; data-index=&quot;4&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;font.selection.select(&lt;/span&gt;&lt;span class=&quot;mtk4&quot;&gt;0x&lt;/span&gt;&lt;span class=&quot;mtk7&quot;&gt;30&lt;/span&gt;&lt;span class=&quot;mtk1&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;font.intersect()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;&lt;span class=&quot;mtk1&quot;&gt;font.selection.none()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;これで、目的の部分を消すことができた。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/cbaf4df299b5a683392f3700b2e5bad8/b88bf/zero-erased.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 62.10526315789474%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAAB2UlEQVR42nWTv8rqQBDFvwdQQSxEfAErsRNstbHwGSxEEDsRxE609hEEC7Wxs7DzUSzsLG9idmf/JZ7LrmY13+UOTMJumN/OOZP9AYAkSfA7ns+ny/R7HMf4XxhjXNr4SWFKKWw2G0ynU5zP5wz4G0iRhIwEOAmwhwASwMRfwLSw1+uhVqthMpmgVCphtVr57lw+E2gpwSMCC23yN5xnO7SP4/GIQqGA+/3uNk+nE/L5PG63m1vb7ow2kMwCCEYZJMkTgnEoUhBMeAUOOBgM0O12vUQiQqVSwW638x4RSZBQkFx4byUp1zFxygI7nQ5Go5GXaAvq9bqXbYFCKZCQkCQ9UBnjvOQhZSW3Wi3nXSrPRrPZxHw+90AlrTSClsoPTCvtrGARg9b6A2y32xiPx5kOG40Glsvlq9AYBxJcgpS0vrwOUgaKSzwePNthv993U047FEKgWq1iu92+gdpJlUyB2JeHQoMeBPHbw/1+j2KxiCAI3OblckEul8P1evWHaG3AGUGyj1+vKUsQ/zVlu7CyrczFYoFyuYzZbPb5D+MEcRJD2Z854ogeDFEYuQnzt3/ew/SmMMawXq8xHA5xOBz+uSm2wL5ZQPgThoiCEGHAoWPjbplNC/wLsbdfUUVThssAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;zero-erased&quot;
+        title=&quot;&quot;
+        src=&quot;/static/cbaf4df299b5a683392f3700b2e5bad8/3c051/zero-erased.png&quot;
+        srcset=&quot;/static/cbaf4df299b5a683392f3700b2e5bad8/a2d4f/zero-erased.png 190w,
+/static/cbaf4df299b5a683392f3700b2e5bad8/3f520/zero-erased.png 380w,
+/static/cbaf4df299b5a683392f3700b2e5bad8/3c051/zero-erased.png 760w,
+/static/cbaf4df299b5a683392f3700b2e5bad8/b5cea/zero-erased.png 1140w,
+/static/cbaf4df299b5a683392f3700b2e5bad8/891d5/zero-erased.png 1520w,
+/static/cbaf4df299b5a683392f3700b2e5bad8/b88bf/zero-erased.png 1702w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;今回の方法は残すところを選んでそれ以外を削除する、という方法をとったが、&lt;code&gt;font.copy()&lt;/code&gt;, &lt;code&gt;font.paste()&lt;/code&gt;, &lt;code&gt;font.pasteInto()&lt;/code&gt;なども使えば、より柔軟に削除を行うこともできるだろう。&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line &gt; * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: &apos; &apos;;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting &gt; .grvsc-code &gt; .grvsc-line::before {
+    content: &apos; &apos;;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .default-dark .mtk3 { color: #6A9955; }
+  .default-dark .mtk1 { color: #D4D4D4; }
+  .default-dark .mtk12 { color: #9CDCFE; }
+  .default-dark .mtk4 { color: #569CD6; }
+  .default-dark .mtk15 { color: #C586C0; }
+  .default-dark .mtk8 { color: #CE9178; }
+  .default-dark .mtk7 { color: #B5CEA8; }
+  .default-dark .mtk11 { color: #DCDCAA; }
+  .default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[pyenvでPython2.xのinstallに失敗した時の対処法(Missing the zlib)]]></title><description><![CDATA[これ、 ERROR: The Python zlib extension was not compiled. Missing the zlib? エラーメッセージにあるドキュメントの方法に従って、 としても失敗した。 対処法 zlibは Homebrew…]]></description><link>https://ryota2357.com/blog/2023/pyenv-python2-build-failed-with-zlib/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/pyenv-python2-build-failed-with-zlib/</guid><pubDate>Sun, 23 Apr 2023 01:08:00 GMT</pubDate><content:encoded>&lt;p&gt;これ、&lt;/p&gt;
 &lt;p&gt;ERROR: The Python zlib extension was not compiled. Missing the zlib?&lt;/p&gt;
 &lt;pre class=&quot;grvsc-container default-dark&quot; data-language=&quot;&quot; data-index=&quot;0&quot;&gt;&lt;code class=&quot;grvsc-code&quot;&gt;&lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;❯ pyenv install 2.7.18&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&quot;grvsc-line&quot;&gt;&lt;span class=&quot;grvsc-source&quot;&gt;python-build: use openssl@1.1 from homebrew&lt;/span&gt;&lt;/span&gt;
