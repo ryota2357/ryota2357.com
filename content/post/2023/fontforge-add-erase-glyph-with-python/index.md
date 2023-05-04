@@ -1,7 +1,7 @@
 ---
 title: "FontForgeとPythonでGlyphの追加・削除する方法"
 postdate: "2023-05-03T18:58"
-update: "2023-05-03T18:58"
+update: "2023-05-04T22:56"
 tags: ["FontForge", "Python"]
 ---
 
@@ -43,10 +43,10 @@ font = fontforge.open("example.ttf")
 glyphPen = font[0x30].glyphPen(replace=False)
 
 # 時計回りに線を書かなければいけないことに注意
-glyphPen.moveTo((80, -40))
-glyphPen.lineTo((80, 1300))
-glyphPen.lineTo((940, 1300))
-glyphPen.lineTo((940, -40))
+glyphPen.moveTo((100,100))
+glyphPen.lineTo((100,200))
+glyphPen.lineTo((200,200))
+glyphPen.lineTo((200,100))
 glyphPen.closePath()
 
 # Glaph Pen を使い終わったことを FontForge に伝える
@@ -133,4 +133,35 @@ font.selection.none()
 
 ![zero-erased](zero-erased.png)
 
-今回の方法は残すところを選んでそれ以外を削除する、という方法をとったが、`font.copy()`, `font.paste()`, `font.pasteInto()`なども使えば、より柔軟に削除を行うこともできるだろう。
+### 応用(?)
+
+`font.copy()`, `font.paste()`, `font.pasteInto()`, `font.correctDirection()` も使えば、より柔軟に削除を行うこともできる。
+
+次のスクリプトは小文字の「m」の真ん中の縦棒を短くする処理を行う関数である。
+
+```python
+def modify_m(font):
+    # Hold original 「m」
+    font.selection.select(0x6D)
+    font.copy()
+
+    # Extract where to remove
+    glyph = font[0x6D]
+    pen = glyph.glyphPen(replace=False)
+    util.draw_square(pen, (512, 100), 300, 250)
+    font.intersect()
+
+    # Create a cover that has a hole
+    util.draw_square(pen, (512, 512), 2000, 2000)
+    pen = None
+    font.correctDirection()
+
+    # Add the cover to original 「m」then remove.
+    font.pasteInto()
+    font.intersect()
+    font.selection.none()
+```
+
+これを適用すると、次のようになる。
+
+![m-modify](m-modify.png)
