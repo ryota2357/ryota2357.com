@@ -816,7 +816,7 @@ svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
 .fad.fa-inverse,
 .fa-duotone.fa-inverse {
   color: var(--fa-inverse, #fff);
-}</style><title data-gatsby-head="true">FontForgeとPythonでGlyphの追加・削除する方法</title></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div id="layout"><header class="flex flex-row flex-wrap justify-between my-4 mx-3"><div class="text-[2.1rem] font-bold select-none text-black [&amp;_a:hover]:no-underline"><a href="/">ryota2357</a></div><nav class="mt-auto"><ul class="flex content-start text-[1.4rem] [&amp;&gt;li]:my-0 [&amp;&gt;li]:mx-[0.7rem]"><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/works/">Works</a></li></ul></nav></header><main class="max-w-[1080px] my-0 mx-auto py-0 px-[10px]"><article itemscope="" itemType="http://schema.org/Article"><div class="post-front"><h1 itemProp="headline" class="text-[2rem] font-bold mt-4">FontForgeとPythonでGlyphの追加・削除する方法</h1><div class="flex flex-row gap-4 text-gray-500"><p>投稿日:<!-- --> <time itemProp="datePublished">2023/05/03 (18:58)</time></p></div><div class="tags"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tags" class="svg-inline--fa fa-tags " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color:#2E2E2E;margin-right:5px"><path fill="currentColor" d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg><a href="/blog/tag/FontForge/">FontForge</a><a href="/blog/tag/Python/">Python</a></div></div><div id="markdown" itemProp="articleBody"><p>FontForge にて、Glyph 追加・削除を行うには「Glyph Pen」を用いると直感的にできるかと思う。</p>
+}</style><title data-gatsby-head="true">FontForgeとPythonでGlyphの追加・削除する方法</title></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div id="layout"><header class="flex flex-row flex-wrap justify-between my-4 mx-3"><div class="text-[2.1rem] font-bold select-none text-black [&amp;_a:hover]:no-underline"><a href="/">ryota2357</a></div><nav class="mt-auto"><ul class="flex content-start text-[1.4rem] [&amp;&gt;li]:my-0 [&amp;&gt;li]:mx-[0.7rem]"><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/works/">Works</a></li></ul></nav></header><main class="max-w-[1080px] my-0 mx-auto py-0 px-[10px]"><article itemscope="" itemType="http://schema.org/Article"><div class="post-front"><h1 itemProp="headline" class="text-[2rem] font-bold mt-4">FontForgeとPythonでGlyphの追加・削除する方法</h1><div class="flex flex-row gap-4 text-gray-500"><p>投稿日:<!-- --> <time itemProp="datePublished">2023/05/03 (18:58)</time></p><p>更新日:<!-- --> <time itemProp="dateModified">2023/05/04 (22:56)</time></p></div><div class="tags"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tags" class="svg-inline--fa fa-tags " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color:#2E2E2E;margin-right:5px"><path fill="currentColor" d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg><a href="/blog/tag/FontForge/">FontForge</a><a href="/blog/tag/Python/">Python</a></div></div><div id="markdown" itemProp="articleBody"><p>FontForge にて、Glyph 追加・削除を行うには「Glyph Pen」を用いると直感的にできるかと思う。</p>
 <p>「削除」に関してはもっといい方法があるかもしれない。僕は見つけられなかった。</p>
 <h2 id="glyph-pen" style="position:relative;"><a href="#glyph-pen" aria-label="glyph pen permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Glyph Pen</h2>
 <p><a href="https://fontforge.org/docs/scripting/python/fontforge.html#glyph-pen">ドキュメント</a></p>
@@ -842,10 +842,10 @@ If key is an integer, then returns the glyph at that encoding. If a string then 
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen = font[</span><span class="mtk4">0x</span><span class="mtk7">30</span><span class="mtk1">].glyphPen(</span><span class="mtk12">replace</span><span class="mtk1">=</span><span class="mtk4">False</span><span class="mtk1">)</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk3"># 時計回りに線を書かなければいけないことに注意</span></span></span>
-<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.moveTo((</span><span class="mtk7">80</span><span class="mtk1">, -</span><span class="mtk7">40</span><span class="mtk1">))</span></span></span>
-<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.lineTo((</span><span class="mtk7">80</span><span class="mtk1">, </span><span class="mtk7">1300</span><span class="mtk1">))</span></span></span>
-<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.lineTo((</span><span class="mtk7">940</span><span class="mtk1">, </span><span class="mtk7">1300</span><span class="mtk1">))</span></span></span>
-<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.lineTo((</span><span class="mtk7">940</span><span class="mtk1">, -</span><span class="mtk7">40</span><span class="mtk1">))</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.moveTo((</span><span class="mtk7">100</span><span class="mtk1">,</span><span class="mtk7">100</span><span class="mtk1">))</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.lineTo((</span><span class="mtk7">100</span><span class="mtk1">,</span><span class="mtk7">200</span><span class="mtk1">))</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.lineTo((</span><span class="mtk7">200</span><span class="mtk1">,</span><span class="mtk7">200</span><span class="mtk1">))</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.lineTo((</span><span class="mtk7">200</span><span class="mtk1">,</span><span class="mtk7">100</span><span class="mtk1">))</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">glyphPen.closePath()</span></span></span>
 <span class="grvsc-line"><span class="grvsc-source"></span></span>
 <span class="grvsc-line"><span class="grvsc-source"><span class="mtk3"># Glaph Pen を使い終わったことを FontForge に伝える</span></span></span>
@@ -1002,7 +1002,63 @@ Leaves only areas in the intersection of contours in all selected glyphs.</p>
       />
   </a>
     </span></p>
-<p>今回の方法は残すところを選んでそれ以外を削除する、という方法をとったが、<code>font.copy()</code>, <code>font.paste()</code>, <code>font.pasteInto()</code>なども使えば、より柔軟に削除を行うこともできるだろう。</p>
+<h3 id="応用" style="position:relative;"><a href="#%E5%BF%9C%E7%94%A8" aria-label="応用 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>応用(?)</h3>
+<p><code>font.copy()</code>, <code>font.paste()</code>, <code>font.pasteInto()</code>, <code>font.correctDirection()</code> も使えば、より柔軟に削除を行うこともできる。</p>
+<p>次のスクリプトは小文字の「m」の真ん中の縦棒を短くする処理を行う関数である。</p>
+<pre class="grvsc-container default-dark" data-language="python" data-index="5"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">def</span><span class="mtk1"> </span><span class="mtk11">modify_m</span><span class="mtk1">(</span><span class="mtk12">font</span><span class="mtk1">):</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3"># Hold original 「m」</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    font.selection.select(</span><span class="mtk4">0x</span><span class="mtk7">6D</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    font.copy()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3"># Extract where to remove</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    glyph = font[</span><span class="mtk4">0x</span><span class="mtk7">6D</span><span class="mtk1">]</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    pen = glyph.glyphPen(</span><span class="mtk12">replace</span><span class="mtk1">=</span><span class="mtk4">False</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    util.draw_square(pen, (</span><span class="mtk7">512</span><span class="mtk1">, </span><span class="mtk7">100</span><span class="mtk1">), </span><span class="mtk7">300</span><span class="mtk1">, </span><span class="mtk7">250</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    font.intersect()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3"># Create a cover that has a hole</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    util.draw_square(pen, (</span><span class="mtk7">512</span><span class="mtk1">, </span><span class="mtk7">512</span><span class="mtk1">), </span><span class="mtk7">2000</span><span class="mtk1">, </span><span class="mtk7">2000</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    pen = </span><span class="mtk4">None</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    font.correctDirection()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3"># Add the cover to original 「m」then remove.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    font.pasteInto()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    font.intersect()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    font.selection.none()</span></span></span></code></pre>
+<p>これを適用すると、次のようになる。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/48da804063707b9a8219529dca434b91/0ef7e/m-modify.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 52.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB9ElEQVR42oVTS8tpURj2EwyUW+Qy+tz2PgPHCUlGDExdMiAZyNQUM/kD+A4jPwHFTBm6pL5IyuQkHSSFQgjPaa3t7O/cz1O79bytdz/red/1LgH+gfv9TtfH40G/v+3/yAW73Q7H4xHtdhv7/R632w2tVgvr9fq3n0gewXg85veHwyGWyyWfKzAYDPB4PJBKpbBarQiHwxCLxTCbzdhutzSRHELg9XpprkqlAsMwSCaTkMvlUKvVmEwmnEOhUIhSqYTVagWBQIBcLofT6QSRSIRms0mTruczXV9eXhAKhXA+nyGRSOB2u6kro9GIbDbLCSqVSvT7fRoQ3mg0KCfOK5UKJ/gsmWUYFItFyu12O9LpNOU+nw+JRIITVCgU6Ha7NNBoNKjVapSbGAalQh64HHFtN4EvE7CWTyjk83Tf6XQilUpR7vf7EYvF/iNoMqH0dHN96wLrr2DNH3lBh8PxZ0FSZq/Xo4FWq0W9XqecNL1cLv9U8geW5Ut2uVzIZDKUBwKBd0GZTIZOp8P3sFqtUq7T6fD59ZUTvFz4QwqFAuWj0Qiz2YzyYDCIaDTKCer1egwGA67pLMvfrM1me7+UK+fRYrHQifgVkUgE8XicE1wsFrg8HZABJSNDQMbocDjwL4VgOp1is9nws/l96InT+XxOBb8BfSivCKj++goAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="m-modify"
+        title=""
+        src="/static/48da804063707b9a8219529dca434b91/3c051/m-modify.png"
+        srcset="/static/48da804063707b9a8219529dca434b91/a2d4f/m-modify.png 190w,
+/static/48da804063707b9a8219529dca434b91/3f520/m-modify.png 380w,
+/static/48da804063707b9a8219529dca434b91/3c051/m-modify.png 760w,
+/static/48da804063707b9a8219529dca434b91/b5cea/m-modify.png 1140w,
+/static/48da804063707b9a8219529dca434b91/891d5/m-modify.png 1520w,
+/static/48da804063707b9a8219529dca434b91/0ef7e/m-modify.png 1594w"
+        sizes="(max-width: 760px) 100vw, 760px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+        decoding="async"
+      />
+  </a>
+    </span></p>
 <style class="grvsc-styles">
   .grvsc-container {
     overflow: auto;
