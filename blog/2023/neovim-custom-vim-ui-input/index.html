@@ -1,0 +1,1101 @@
+<!DOCTYPE html><html lang="ja"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.9.0"/><meta name="theme-color" content="#f6f5f5"/><meta name="description" content="この記事は Vim 駅伝 2023-05-10 の記事です。 vim.ui.input を自作した。僕の作ったやつの紹介。 作ったのは 3 ヶ月ほど前、現在も使ってて特に問題は起きてない。 作ったもの LSP の rename アクションを実行した時の動作 rename vim.ui.input() 関数vim.ui…" data-gatsby-head="true"/><meta property="og:title" content="vim.ui.inputを自作floating windowにした" data-gatsby-head="true"/><meta property="og:description" content="この記事は Vim 駅伝 2023-05-10 の記事です。 vim.ui.input を自作した。僕の作ったやつの紹介。 作ったのは 3 ヶ月ほど前、現在も使ってて特に問題は起きてない。 作ったもの LSP の rename アクションを実行した時の動作 rename vim.ui.input() 関数vim.ui…" data-gatsby-head="true"/><meta property="og:type" content="article" data-gatsby-head="true"/><meta property="og:image" content="https://raw.githubusercontent.com/ryota2357/ryota2357-github-pages-images/og-image/blog/2023/neovim-custom-vim-ui-input.png" data-gatsby-head="true"/><meta property="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta property="twitter:creator" content="@95s7k84695a" data-gatsby-head="true"/><meta property="twitter:title" content="vim.ui.inputを自作floating windowにした" data-gatsby-head="true"/><meta property="twitter:description" content="この記事は Vim 駅伝 2023-05-10 の記事です。 vim.ui.input を自作した。僕の作ったやつの紹介。 作ったのは 3 ヶ月ほど前、現在も使ってて特に問題は起きてない。 作ったもの LSP の rename アクションを実行した時の動作 rename vim.ui.input() 関数vim.ui…" data-gatsby-head="true"/><style data-href="/styles.276775d6558c48259ddd.css" data-identity="gatsby-global-css">/*
+! tailwindcss v3.3.2 | MIT License | https://tailwindcss.com
+*/*,:after,:before{border:0 solid #e5e7eb;box-sizing:border-box}:after,:before{--tw-content:""}html{-webkit-text-size-adjust:100%;font-feature-settings:normal;font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-variation-settings:normal;line-height:1.5;tab-size:4}body{line-height:inherit;margin:0}hr{border-top-width:1px;color:inherit;height:0}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{border-collapse:collapse;border-color:inherit;text-indent:0}button,input,optgroup,select,textarea{color:inherit;font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;margin:0;padding:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{color:#9ca3af;opacity:1}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{height:auto;max-width:100%}[hidden]{display:none}*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::-webkit-backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: }.relative{position:relative}.m-0{margin:0}.mx-0{margin-left:0;margin-right:0}.mx-3{margin-left:.75rem;margin-right:.75rem}.mx-auto{margin-left:auto;margin-right:auto}.my-0{margin-bottom:0;margin-top:0}.my-2{margin-bottom:.5rem;margin-top:.5rem}.my-20{margin-bottom:5rem;margin-top:5rem}.my-4{margin-bottom:1rem;margin-top:1rem}.my-auto{margin-bottom:auto;margin-top:auto}.mt-4{margin-top:1rem}.mt-8{margin-top:2rem}.mt-auto{margin-top:auto}.flex{display:flex}.grid{display:grid}.w-full{width:100%}.max-w-\[1080px\]{max-width:1080px}.flex-none{flex:none}.select-none{-webkit-user-select:none;user-select:none}.list-inside{list-style-position:inside}.list-disc{list-style-type:disc}.grid-flow-col{grid-auto-flow:column}.flex-row{flex-direction:row}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.content-center{align-content:center}.content-start{align-content:flex-start}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-8{gap:2rem}.rounded{border-radius:.25rem}.rounded-md{border-radius:.375rem}.border{border-width:1px}.border-solid{border-style:solid}.border-gray-600{--tw-border-opacity:1;border-color:rgb(75 85 99/var(--tw-border-opacity))}.bg-gray-900{--tw-bg-opacity:1;background-color:rgb(17 24 39/var(--tw-bg-opacity))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity))}.p-\[0\.3rem\]{padding:.3rem}.px-0{padding-left:0;padding-right:0}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-\[10px\]{padding-left:10px;padding-right:10px}.py-0{padding-bottom:0;padding-top:0}.py-1{padding-bottom:.25rem;padding-top:.25rem}.py-2{padding-bottom:.5rem;padding-top:.5rem}.pl-4{padding-left:1rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-\[0\.7rem\]{font-size:.7rem}.text-\[0\.8rem\]{font-size:.8rem}.text-\[1\.2rem\]{font-size:1.2rem}.text-\[1\.3rem\]{font-size:1.3rem}.text-\[1\.4rem\]{font-size:1.4rem}.text-\[1\.6rem\]{font-size:1.6rem}.text-\[1rem\]{font-size:1rem}.text-\[2\.1rem\]{font-size:2.1rem}.text-\[2\.5rem\]{font-size:2.5rem}.text-\[2rem\]{font-size:2rem}.text-\[3rem\]{font-size:3rem}.font-bold{font-weight:700}.text-black{--tw-text-opacity:1;color:rgb(0 0 0/var(--tw-text-opacity))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128/var(--tw-text-opacity))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity))}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}:root{background-color:#f6f5f5;color:#242424;font-family:YuGothic,Yu Gothic,Hiragino Kaku Gothic ProN,ヒラギノ角ゴ ProN W3,ＭＳ ゴシック,sans-serif;font-size:15px;line-height:1.5;word-break:break-word}:root a:hover{text-decoration:underline}@media screen and (max-width:425px){:root{font-size:14px}}@media screen and (max-width:375px){:root{font-size:13px}}@media screen and (max-width:320px){:root{font-size:12px}}.before\:content-\[\'-\\20\'\]:before{--tw-content:"-\20";content:var(--tw-content)}.\[\&\>li\+li\]\:mt-4>li+li{margin-top:1rem}.\[\&\>li\]\:mx-\[0\.7rem\]>li{margin-left:.7rem;margin-right:.7rem}.\[\&\>li\]\:my-0>li{margin-bottom:0;margin-top:0}.\[\&\>li\]\:px-0>li{padding-left:0;padding-right:0}.\[\&\>li\]\:py-0\.5>li{padding-bottom:.125rem;padding-top:.125rem}.\[\&_a\:hover\]\:no-underline a:hover{text-decoration-line:none}.\[\&_a\]\:text-\[\#0969da\] a{--tw-text-opacity:1;color:rgb(9 105 218/var(--tw-text-opacity))}.blog-list ul li+li{border-top:1px solid #e3e3e3}article{background-color:#fff;box-shadow:0 0 10px #323232;padding:1.4em}article .post-front{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2rem}article .post-front .tags{align-items:center;display:inline-flex;flex-direction:row;gap:.3rem}article .post-front .tags a:not(:last-child):after{content:","}#markdown h1{font-size:2rem;margin-top:2rem}#markdown h1,#markdown h2{font-weight:700;margin-bottom:1.5rem}#markdown h2{border-bottom:2.5px solid #e3e3e3;font-size:1.7rem;margin-top:3rem}#markdown h3{font-size:1.3rem}#markdown h3,#markdown h4{font-weight:700;margin-bottom:1.5rem;margin-top:2rem}#markdown h4{font-size:1.1rem}#markdown p{font-size:1rem;line-height:1.7;margin:1rem 0}#markdown a{color:#0969da;text-decoration:none}#markdown code{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace}#markdown ul{list-style:inside;list-style-type:disc}#markdown ul ol,#markdown ul ul{margin-left:1.2rem}#markdown ol{list-style:inside;list-style-type:decimal}#markdown ol ol,#markdown ol ul{margin-left:1.2rem}#markdown li{line-height:1.5}#markdown blockquote{border-left:.25em solid #d0d7de;color:#57606a;margin:0;padding:0 1rem}#markdown details summary{cursor:pointer;font-weight:700}#markdown img{max-width:100%}#markdown table{border-collapse:collapse;border-spacing:0;display:block;line-height:1.15;max-width:100%;overflow:auto;white-space:nowrap;width:-moz-max-content;width:-webkit-max-content;width:max-content}#markdown table tr{background-color:#fff;border-top:1px solid #d5dbe2}#markdown table tr:nth-child(2n){background-color:#f6f8fa}#markdown table th{font-weight:700}#markdown table td,#markdown table th{border:1px solid #d0d7de;padding:.5rem}#markdown .footnotes{margin-top:3rem}#markdown .footnotes hr{background-color:#646464;border:none;height:1px}:root{--grvsc-border-radius:10px}#markdown li code,#markdown p code,#markdown table code{background-color:#e6e6e6;border-radius:6px;font-size:1rem;padding:.1rem .3rem}#markdown pre{background-color:#282828}#markdown pre code{font-size:.9rem;line-height:1.3}</style><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PHXJBM615E"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-PHXJBM615E', {"send_page_view":false});
+      }
+      </script><link rel="alternate" type="application/rss+xml" title="ryota2357 RSS Feed" href="/rss.xml"/><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/><link rel="icon" href="/favicon-32x32.png?v=8163ad9ba4f10506413b571fd3081da8" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=8163ad9ba4f10506413b571fd3081da8"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=8163ad9ba4f10506413b571fd3081da8"/><style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Solid";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Regular";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Light";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Thin";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  -webkit-transform: scale(var(--fa-counter-scale, 0.25));
+          transform: scale(var(--fa-counter-scale, 0.25));
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(var(--fa-li-width, 2em) * -1);
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  -webkit-animation-name: fa-beat;
+          animation-name: fa-beat;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+          animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  -webkit-animation-name: fa-bounce;
+          animation-name: fa-bounce;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  -webkit-animation-name: fa-fade;
+          animation-name: fa-fade;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  -webkit-animation-name: fa-beat-fade;
+          animation-name: fa-beat-fade;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  -webkit-animation-name: fa-flip;
+          animation-name: fa-flip;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+          animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  -webkit-animation-name: fa-shake;
+          animation-name: fa-shake;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, linear);
+          animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  -webkit-animation-name: fa-spin;
+          animation-name: fa-spin;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 2s);
+          animation-duration: var(--fa-animation-duration, 2s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, linear);
+          animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  -webkit-animation-name: fa-spin;
+          animation-name: fa-spin;
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, steps(8));
+          animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    -webkit-animation-delay: -1ms;
+            animation-delay: -1ms;
+    -webkit-animation-duration: 1ms;
+            animation-duration: 1ms;
+    -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+    -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+  }
+}
+@-webkit-keyframes fa-beat {
+  0%, 90% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  45% {
+    -webkit-transform: scale(var(--fa-beat-scale, 1.25));
+            transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  45% {
+    -webkit-transform: scale(var(--fa-beat-scale, 1.25));
+            transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@-webkit-keyframes fa-bounce {
+  0% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+}
+@-webkit-keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@-webkit-keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+            transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+            transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@-webkit-keyframes fa-flip {
+  50% {
+    -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@-webkit-keyframes fa-shake {
+  0% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  4% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+  8%, 24% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  12%, 28% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  16% {
+    -webkit-transform: rotate(-22deg);
+            transform: rotate(-22deg);
+  }
+  20% {
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  32% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  36% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  40%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes fa-shake {
+  0% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  4% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+  8%, 24% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  12%, 28% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  16% {
+    -webkit-transform: rotate(-22deg);
+            transform: rotate(-22deg);
+  }
+  20% {
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  32% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  36% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  40%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  -webkit-transform: scale(-1, -1);
+          transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  -webkit-transform: rotate(var(--fa-rotate-angle, none));
+          transform: rotate(var(--fa-rotate-angle, none));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.fad.fa-inverse,
+.fa-duotone.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}</style><title data-gatsby-head="true">vim.ui.inputを自作floating windowにした</title></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div id="layout"><header class="flex flex-row flex-wrap justify-between my-4 mx-3"><div class="text-[2.1rem] font-bold select-none text-black [&amp;_a:hover]:no-underline"><a href="/">ryota2357</a></div><nav class="mt-auto"><ul class="flex content-start text-[1.4rem] [&amp;&gt;li]:my-0 [&amp;&gt;li]:mx-[0.7rem]"><li><a href="/">Home</a></li><li><a href="/about/">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/works/">Works</a></li></ul></nav></header><main class="max-w-[1080px] my-0 mx-auto py-0 px-[10px]"><article itemscope="" itemType="http://schema.org/Article"><div class="post-front"><h1 itemProp="headline" class="text-[2rem] font-bold mt-4">vim.ui.inputを自作floating windowにした</h1><div class="flex flex-row gap-4 text-gray-500"><p>投稿日:<!-- --> <time itemProp="datePublished">2023/05/10 (00:22)</time></p></div><div class="tags"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="tags" class="svg-inline--fa fa-tags " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="color:#2E2E2E;margin-right:5px"><path fill="currentColor" d="M345 39.1L472.8 168.4c52.4 53 52.4 138.2 0 191.2L360.8 472.9c-9.3 9.4-24.5 9.5-33.9 .2s-9.5-24.5-.2-33.9L438.6 325.9c33.9-34.3 33.9-89.4 0-123.7L310.9 72.9c-9.3-9.4-9.2-24.6 .2-33.9s24.6-9.2 33.9 .2zM0 229.5V80C0 53.5 21.5 32 48 32H197.5c17 0 33.3 6.7 45.3 18.7l168 168c25 25 25 65.5 0 90.5L277.3 442.7c-25 25-65.5 25-90.5 0l-168-168C6.7 262.7 0 246.5 0 229.5zM144 144a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg><a href="/blog/tag/Neovim/">Neovim</a></div></div><div id="markdown" itemProp="articleBody"><blockquote>
+<p>この記事は <a href="https://vim-jp.org/ekiden/">Vim 駅伝</a> 2023-05-10 の記事です。</p>
+</blockquote>
+<p>vim.ui.input を自作した。僕の作ったやつの紹介。</p>
+<p>作ったのは 3 ヶ月ほど前、現在も使ってて特に問題は起きてない。</p>
+<h2 id="作ったもの" style="position:relative;"><a href="#%E4%BD%9C%E3%81%A3%E3%81%9F%E3%82%82%E3%81%AE" aria-label="作ったもの permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>作ったもの</h2>
+<p>LSP の rename アクションを実行した時の動作</p>
+<p><img src="/101fbbbcc7e1703e3a18e7dce00d3731/rename.gif" alt="rename"></p>
+<h2 id="vimuiinput" style="position:relative;"><a href="#vimuiinput" aria-label="vimuiinput permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>vim.ui.input()</h2>
+<p>関数<code>vim.ui.input()</code>のシグネチャは次の通りである。(<code>:h vim.ui.input()</code>)</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="0"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk11">input</span><span class="mtk1">({opts}, {on_confirm})</span></span></span></code></pre>
+<p>引数について help から引用する。</p>
+<pre class="grvsc-container default-dark" data-language="txt" data-index="1"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">Parameters:</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  • {opts}        (table) Additional options. See |input()|</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                  • prompt (string|nil) Text of the prompt</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                  • default (string|nil) Default reply to the input</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                  • completion (string|nil) Specifies type of completion</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                    supported for input. Supported types are the same that</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                    can be supplied to a user-defined command using the</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                    &quot;-complete=&quot; argument. See |:command-completion|</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                  • highlight (function) Function that will be used for</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                    highlighting user inputs.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">  • {on_confirm}  (function) ((input|nil) -&gt; ()) Called once the user</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                  confirms or abort the input. `input` is what the user</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                  typed (it might be an empty string if nothing was</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                  entered), or `nil` if the user aborted the dialog.</span></span></span></code></pre>
+<p><code>opt</code>に基づいて floating window を作成し、適当なタイミング(<code>&#x3C;CR></code>などで)で<code>on_confirm</code>を実行すれば良いことがわかる。</p>
+<p>僕の作成した vim.ui.input は<code>opt.prompt</code>と<code>opt.default</code>のみ対応していて、<code>opt.completion</code>などには対応していない、よくわからないし面倒だったから。</p>
+<h2 id="実装" style="position:relative;"><a href="#%E5%AE%9F%E8%A3%85" aria-label="実装 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>実装</h2>
+<p>以降<code>lua/rc/ui/input.lua</code>に書いていく。行頭には次のものが先に定義しておく。</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="2"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">local</span><span class="mtk1"> M = {}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">local</span><span class="mtk1"> api = vim.</span><span class="mtk12">api</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">local</span><span class="mtk1"> cache_bufnr = </span><span class="mtk4">nil</span></span></span></code></pre>
+<h3 id="highlight-グループと-sign-の定義" style="position:relative;"><a href="#highlight-%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E3%81%A8-sign-%E3%81%AE%E5%AE%9A%E7%BE%A9" aria-label="highlight グループと sign の定義 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Highlight グループと sign の定義</h3>
+<p>floating window のための色とプロンプトのための文字を定義しておく。</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="3"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&#39;rc.util&#39;</span><span class="mtk1">).</span><span class="mtk12">highlight</span><span class="mtk1">.</span><span class="mtk11">set</span><span class="mtk1"> {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    InputFloatBorder = { fg = </span><span class="mtk8">&#39;#006db3&#39;</span><span class="mtk1"> },</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    InputFloatTitle = { fg = </span><span class="mtk8">&#39;#6ab7ff&#39;</span><span class="mtk1"> },</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    InputPrompt = { fg = </span><span class="mtk8">&#39;#5c6370&#39;</span><span class="mtk1"> }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">}</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">vim.</span><span class="mtk12">fn</span><span class="mtk1">.</span><span class="mtk11">sign_define</span><span class="mtk1">(</span><span class="mtk8">&#39;InputPrompt&#39;</span><span class="mtk1">, {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    text = </span><span class="mtk8">&#39;❯&#39;</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    texthl = </span><span class="mtk8">&#39;InputPrompt&#39;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">})</span></span></span></code></pre>
+<p>なお、<code>require('rc.util').highlight.set()</code>は次のようになっている。</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="4"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">---@param hls table</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">---@return nil</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">function</span><span class="mtk1"> M.</span><span class="mtk12">highlight</span><span class="mtk1">.</span><span class="mtk11">set</span><span class="mtk1">(hls)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">for</span><span class="mtk1"> group, value </span><span class="mtk15">in</span><span class="mtk1"> </span><span class="mtk11">pairs</span><span class="mtk1">(hls) </span><span class="mtk15">do</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        vim.</span><span class="mtk12">api</span><span class="mtk1">.</span><span class="mtk11">nvim_set_hl</span><span class="mtk1">(</span><span class="mtk7">0</span><span class="mtk1">, group, value)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">end</span></span></span></code></pre>
+<h3 id="get_buffer" style="position:relative;"><a href="#get_buffer" aria-label="get_buffer permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>get_buffer()</h3>
+<p>floating window のバッファ番号を取得する関数である。neovim にてバッファは<code>vim.api.nvim_create_buf()</code>を使うと簡単に作れる。</p>
+<pre class="grvsc-container default-dark" data-language="txt" data-index="5"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">nvim_create_buf({listed}, {scratch})                       *nvim_create_buf()*</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    Creates a new, empty, unnamed buffer.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    Parameters:</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      • {listed}   Sets &#39;buflisted&#39;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">      • {scratch}  Creates a &quot;throwaway&quot; |scratch-buffer| for temporary work</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                   (always &#39;nomodified&#39;). Also sets &#39;nomodeline&#39; on the</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                   buffer.</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">(h: nvim_create_buf より引用)</span></span></span></code></pre>
+<p>また、バッファが存在しているかのチェックは<code>bufexists()</code>を用いると行える。これらを用いて<code>get_buffer()</code>を作成した。</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="6"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">---@return number</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">local</span><span class="mtk1"> </span><span class="mtk15">function</span><span class="mtk1"> </span><span class="mtk11">get_buffer</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">if</span><span class="mtk1"> cache_bufnr ~= </span><span class="mtk4">nil</span><span class="mtk1"> and vim.</span><span class="mtk12">fn</span><span class="mtk1">.</span><span class="mtk11">bufexists</span><span class="mtk1">(cache_bufnr) </span><span class="mtk15">then</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">return</span><span class="mtk1"> cache_bufnr</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">local</span><span class="mtk1"> buf = api.</span><span class="mtk11">nvim_create_buf</span><span class="mtk1">(</span><span class="mtk4">false</span><span class="mtk1">, </span><span class="mtk4">true</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    api.</span><span class="mtk11">nvim_buf_set_name</span><span class="mtk1">(buf, </span><span class="mtk8">&#39;vim-ui-input&#39;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    api.</span><span class="mtk11">nvim_buf_set_option</span><span class="mtk1">(buf, </span><span class="mtk8">&#39;filetype&#39;</span><span class="mtk1">, </span><span class="mtk8">&#39;vim-ui-input&#39;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    cache_bufnr = buf</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> buf</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">end</span></span></span></code></pre>
+<h3 id="open_window" style="position:relative;"><a href="#open_window" aria-label="open_window permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>open_window()</h3>
+<p>floating window は <code>vim.api.nvim_open_win(buffer, ...)</code>で作成することができる。引数にはバッファ番号といくつかのオプションを渡すことができる。<br>
+neovim0.9 より<code>vim.api.nvim_open_win()</code>の第 3 引数の辞書に<code>title</code>, <code>title_pos</code>が追加された。これによって floating window にタイトルを簡単につけられるようになった。</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="7"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">---@param buffer number</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">---@param title? string|table&lt;table&lt;string&gt;&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">---@return number</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk4">local</span><span class="mtk1"> </span><span class="mtk15">function</span><span class="mtk1"> </span><span class="mtk11">open_window</span><span class="mtk1">(</span><span class="mtk12">buffer</span><span class="mtk1">, </span><span class="mtk12">title</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">if</span><span class="mtk1"> title ~= </span><span class="mtk4">nil</span><span class="mtk1"> and </span><span class="mtk11">type</span><span class="mtk1">(title) == </span><span class="mtk8">&#39;string&#39;</span><span class="mtk1"> </span><span class="mtk15">then</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        title = { { title, </span><span class="mtk8">&#39;InputFloatTitle&#39;</span><span class="mtk1"> } }</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">local</span><span class="mtk1"> win = api.</span><span class="mtk11">nvim_open_win</span><span class="mtk1">(buffer, </span><span class="mtk4">true</span><span class="mtk1">, {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        relative = </span><span class="mtk8">&quot;cursor&quot;</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        row = </span><span class="mtk7">1</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        col = </span><span class="mtk7">1</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        width = </span><span class="mtk7">40</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        height = </span><span class="mtk7">1</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        focusable = </span><span class="mtk4">true</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        border = </span><span class="mtk8">&quot;rounded&quot;</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        title = title,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        title_pos = </span><span class="mtk8">&#39;left&#39;</span><span class="mtk1">,</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        noautocmd = </span><span class="mtk4">true</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    })</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    api.</span><span class="mtk11">nvim_win_set_option</span><span class="mtk1">(win, </span><span class="mtk8">&#39;number&#39;</span><span class="mtk1">,  </span><span class="mtk4">false</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    api.</span><span class="mtk11">nvim_win_set_option</span><span class="mtk1">(win, </span><span class="mtk8">&#39;relativenumber&#39;</span><span class="mtk1">, </span><span class="mtk4">false</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    api.</span><span class="mtk11">nvim_win_set_option</span><span class="mtk1">(win, </span><span class="mtk8">&#39;wrap&#39;</span><span class="mtk1">,  </span><span class="mtk4">false</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    api.</span><span class="mtk11">nvim_win_set_option</span><span class="mtk1">(win, </span><span class="mtk8">&#39;cursorline&#39;</span><span class="mtk1">,  </span><span class="mtk4">false</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    api.</span><span class="mtk11">nvim_win_set_option</span><span class="mtk1">(win, </span><span class="mtk8">&#39;winhighlight&#39;</span><span class="mtk1">,  </span><span class="mtk8">&#39;FloatBorder:InputFloatBorder,NormalFloat:Normal&#39;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    vim.</span><span class="mtk12">fn</span><span class="mtk1">.</span><span class="mtk11">sign_place</span><span class="mtk1">(</span><span class="mtk7">1</span><span class="mtk1">, </span><span class="mtk8">&#39;&#39;</span><span class="mtk1">, </span><span class="mtk8">&#39;InputPrompt&#39;</span><span class="mtk1">, buffer, { lnum = vim.</span><span class="mtk12">fn</span><span class="mtk1">.</span><span class="mtk11">line</span><span class="mtk1">(</span><span class="mtk8">&#39;.&#39;</span><span class="mtk1">) })</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">return</span><span class="mtk1"> win</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">end</span></span></span></code></pre>
+<h3 id="input" style="position:relative;"><a href="#input" aria-label="input permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>input()</h3>
+<p><code>get_buffer()</code>と<code>open_window()</code>を組み合わせて、<code>vim.ui.input()</code>と同じシグネチャを持つ関数を作る。コメントにて説明を入れた。</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="8"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">---@param opts table&lt;string, any&gt;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk3">---@param on_confirm fun(input?:any):nil</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">function</span><span class="mtk1"> </span><span class="mtk11">M.input</span><span class="mtk1">(</span><span class="mtk12">opts</span><span class="mtk1">, </span><span class="mtk12">on_confirm</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">-- 引数の修正</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    opts = vim.</span><span class="mtk12">F</span><span class="mtk1">.</span><span class="mtk11">if_nil</span><span class="mtk1">(opts, {})</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    on_confirm = vim.</span><span class="mtk12">F</span><span class="mtk1">.</span><span class="mtk11">if_nil</span><span class="mtk1">(on_confirm, </span><span class="mtk15">function</span><span class="mtk1">(</span><span class="mtk12">i</span><span class="mtk1">) </span><span class="mtk11">print</span><span class="mtk1">(i) </span><span class="mtk15">end</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">-- 今回は`opt`のうち、defaultとpromptだけ対応する</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">local</span><span class="mtk1"> default = opts.</span><span class="mtk12">default</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">local</span><span class="mtk1"> prompt = opts.</span><span class="mtk12">prompt</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">-- バッファ取得 + defaultのセット</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">local</span><span class="mtk1"> buffer = </span><span class="mtk11">get_buffer</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">if</span><span class="mtk1"> default ~= </span><span class="mtk4">nil</span><span class="mtk1"> </span><span class="mtk15">then</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        api.</span><span class="mtk11">nvim_buf_set_lines</span><span class="mtk1">(buffer, </span><span class="mtk7">0</span><span class="mtk1">, </span><span class="mtk7">1</span><span class="mtk1">, </span><span class="mtk4">true</span><span class="mtk1">, { default })</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">-- promptの修正、例えば &quot;New Name: &quot;というtitleが来るがこれをtitleにすると</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">-- &quot;: &quot;という余計な部分が気になる。これを削除する</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">if</span><span class="mtk1"> prompt ~= </span><span class="mtk4">nil</span><span class="mtk1"> and </span><span class="mtk11">type</span><span class="mtk1">(prompt) == </span><span class="mtk8">&#39;string&#39;</span><span class="mtk1"> </span><span class="mtk15">then</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">if</span><span class="mtk1"> prompt[</span><span class="mtk7">1</span><span class="mtk1">] ~= </span><span class="mtk8">&quot; &quot;</span><span class="mtk1"> </span><span class="mtk15">then</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            prompt = </span><span class="mtk8">&quot; &quot;</span><span class="mtk1"> .. prompt</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">if</span><span class="mtk1"> </span><span class="mtk11">string.sub</span><span class="mtk1">(prompt, #prompt - </span><span class="mtk7">1</span><span class="mtk1">) == </span><span class="mtk8">&quot;: &quot;</span><span class="mtk1"> </span><span class="mtk15">then</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            prompt = </span><span class="mtk11">string.sub</span><span class="mtk1">(prompt, </span><span class="mtk7">1</span><span class="mtk1">, #prompt - </span><span class="mtk7">2</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">if</span><span class="mtk1"> prompt[#prompt] ~= </span><span class="mtk8">&quot; &quot;</span><span class="mtk1"> </span><span class="mtk15">then</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            prompt = prompt .. </span><span class="mtk8">&quot; &quot;</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">--- ウィンドウを作成しインサートモードへ</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">local</span><span class="mtk1"> window = </span><span class="mtk11">open_window</span><span class="mtk1">(buffer, prompt)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    vim.</span><span class="mtk11">cmd</span><span class="mtk1">(</span><span class="mtk8">&quot;startinsert!&quot;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk3">--- &lt;ESC&gt;でキャンセル、&lt;CR&gt;で確定(on_confirm呼ぶ)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    vim.</span><span class="mtk12">keymap</span><span class="mtk1">.</span><span class="mtk11">set</span><span class="mtk1">(</span><span class="mtk8">&#39;i&#39;</span><span class="mtk1">, </span><span class="mtk8">&#39;&lt;ESC&gt;&#39;</span><span class="mtk1">, </span><span class="mtk15">function</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        vim.</span><span class="mtk11">cmd</span><span class="mtk1">(</span><span class="mtk8">&quot;stopinsert&quot;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        api.</span><span class="mtk11">nvim_win_close</span><span class="mtk1">(window, </span><span class="mtk4">false</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">end</span><span class="mtk1">, { buffer = buffer })</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    vim.</span><span class="mtk12">keymap</span><span class="mtk1">.</span><span class="mtk11">set</span><span class="mtk1">(</span><span class="mtk8">&#39;i&#39;</span><span class="mtk1">, </span><span class="mtk8">&#39;&lt;CR&gt;&#39;</span><span class="mtk1">, </span><span class="mtk15">function</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        vim.</span><span class="mtk11">cmd</span><span class="mtk1">(</span><span class="mtk8">&quot;stopinsert&quot;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">local</span><span class="mtk1"> input = vim.</span><span class="mtk12">fn</span><span class="mtk1">.</span><span class="mtk11">getline</span><span class="mtk1">(</span><span class="mtk8">&#39;.&#39;</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        api.</span><span class="mtk11">nvim_win_close</span><span class="mtk1">(window, </span><span class="mtk4">false</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk11">on_confirm</span><span class="mtk1">(input)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">end</span><span class="mtk1">, { buffer = buffer })</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk15">end</span></span></span></code></pre>
+<h3 id="設定" style="position:relative;"><a href="#%E8%A8%AD%E5%AE%9A" aria-label="設定 permalink" class="anchor before"><svg aria-hidden="true" version="1.1" viewBox="0 0 16 16" height="16" width="16" style="vertical-align:baseline; fill: #57606a;"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>設定</h3>
+<p><code>require('rc.ui.input').input()</code>と呼ぶのは面倒なので metatable を定義する。</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="9"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk11">setmetatable</span><span class="mtk1">(M, {</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    __call = </span><span class="mtk15">function</span><span class="mtk1">(</span><span class="mtk12">_</span><span class="mtk1">, </span><span class="mtk12">opts</span><span class="mtk1">, </span><span class="mtk12">on_confirm</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">if</span><span class="mtk1"> vim.</span><span class="mtk11">in_fast_event</span><span class="mtk1">() </span><span class="mtk15">then</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            vim.</span><span class="mtk11">schedule</span><span class="mtk1">(</span><span class="mtk15">function</span><span class="mtk1">()</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">                M.</span><span class="mtk11">input</span><span class="mtk1">(opts, on_confirm)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            </span><span class="mtk15">end</span><span class="mtk1">)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">else</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">            M.</span><span class="mtk11">input</span><span class="mtk1">(opts, on_confirm)</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">        </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">    </span><span class="mtk15">end</span></span></span>
+<span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">})</span></span></span></code></pre>
+<p>以上で<code>rc/ui/input.lua</code>は完成である。init.lua などで次のようにして vim.ui.input を自作のものに置き換えればいい。</p>
+<pre class="grvsc-container default-dark" data-language="lua" data-index="10"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-source"><span class="mtk1">vim.</span><span class="mtk12">ui</span><span class="mtk1">.</span><span class="mtk12">input</span><span class="mtk1"> = </span><span class="mtk11">require</span><span class="mtk1">(</span><span class="mtk8">&#39;rc.ui.input&#39;</span><span class="mtk1">)</span></span></span></code></pre>
+<style class="grvsc-styles">
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line > * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: ' ';
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting > .grvsc-code > .grvsc-line::before {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+  .default-dark {
+    background-color: #1E1E1E;
+    color: #D4D4D4;
+  }
+  .default-dark .mtk11 { color: #DCDCAA; }
+  .default-dark .mtk1 { color: #D4D4D4; }
+  .default-dark .mtk15 { color: #C586C0; }
+  .default-dark .mtk12 { color: #9CDCFE; }
+  .default-dark .mtk4 { color: #569CD6; }
+  .default-dark .mtk8 { color: #CE9178; }
+  .default-dark .mtk3 { color: #6A9955; }
+  .default-dark .mtk7 { color: #B5CEA8; }
+  .default-dark .grvsc-line-highlighted::before {
+    background-color: var(--grvsc-line-highlighted-background-color, rgba(255, 255, 255, 0.1));
+    box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0 var(--grvsc-line-highlighted-border-color, rgba(255, 255, 255, 0.5));
+  }
+</style></div></article><nav><ul class="grid grid-flow-col justify-between my-4 mx-0 gap-3"><li><a rel="prev" href="/blog/2023/fontforge-add-erase-glyph-with-python/">← <!-- -->FontForgeとPythonでGlyphの追加・削除する方法</a></li><li></li></ul></nav></main><footer class="text-[0.7rem] text-center mt-4"><p>Built with<!-- --> <a href="https://www.gatsbyjs.com" style="color:inherit;font-weight:bold">Gatsby</a></p><p>©2022 <!-- -->ryota2357<!-- --> All Rights Reserved.</p></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/2023/neovim-custom-vim-ui-input/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-771e3fe1a3d791197327.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-d4ee17508dc25eddb301.js\"],\"component---src-pages-about-tsx\":[\"/component---src-pages-about-tsx-bae08ee6f8c194377f02.js\"],\"component---src-pages-blog-tag-tsx\":[\"/component---src-pages-blog-tag-tsx-c9d9cab37ce4be5bfc89.js\"],\"component---src-pages-blog-tsx\":[\"/component---src-pages-blog-tsx-d39596de5d07f6f9731b.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-fc74eb5c31f40d4467d1.js\"],\"component---src-pages-works-tsx\":[\"/component---src-pages-works-tsx-4121cafea1d7aba812ab.js\"],\"component---src-templates-blog-post-tsx\":[\"/component---src-templates-blog-post-tsx-30e4b077a87798897366.js\"],\"component---src-templates-tag-page-tsx\":[\"/component---src-templates-tag-page-tsx-367afb6d85f4066589be.js\"],\"component---src-templates-year-page-tsx\":[\"/component---src-templates-year-page-tsx-71e6bbb235942c1ab220.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="7f2f8b4e7a6f0ca80931";</script><script src="/webpack-runtime-ba3721f2f3565942455b.js" async></script><script src="/framework-980b140af5d572a2e76f.js" async></script><script src="/app-771e3fe1a3d791197327.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
