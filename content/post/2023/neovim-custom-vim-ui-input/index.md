@@ -2,7 +2,7 @@
 title: "vim.ui.inputを自作floating windowにした"
 postdate: "2023-05-10T00:22"
 update: "2023-05-10T00:22"
-tags: ["Neovim"]
+tags: ["Neovim", "Event"]
 ---
 
 > この記事は [Vim 駅伝](https://vim-jp.org/ekiden/) 2023-05-10 の記事です。
