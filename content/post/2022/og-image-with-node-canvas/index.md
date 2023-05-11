@@ -1,7 +1,7 @@
 ---
 title: "node-canvasで雑にOG画像を生成する"
 postdate: "2022-12-30T00:32"
-update: "2022-12-30T01:31"
+update: "2023-05-11T08:59"
 tags: ["Node"]
 ---
 
@@ -430,7 +430,7 @@ const writeText = ({
 
 ## Github Action で自動生成
 
-実際に`generateImage()`を利用して画像を生成しているプログラムは[ryota2357-github-pages-images/src/main.ts](https://github.com/ryota2357/ryota2357-github-pages-images/blob/main/src/main.ts)に置いてある。  
+実際に`generateImage()`を利用して画像を生成しているプログラムは[ryota2357.com-images/src/main.ts](https://github.com/ryota2357/ryota2357.com-images/blob/main/src/main.ts)に置いてある。  
 このプログラムを適当なタイミングで走らせたい。  
 僕はブログのデプロイを Github Action で行っているので、そのデプロイ時の Github Action からこのプログラムを動作させるようにした。
 
