@@ -37,7 +37,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          external_repository: ryota2357/ryota2357-github-pages
+          external_repository: ryota2357/ryota2357.com
           publish_branch: gh-pages
           cname: ryota2357.com
 
@@ -49,5 +49,5 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $TOKEN"\
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/ryota2357/ryota2357-github-pages-images/dispatches \
+            https://api.github.com/repos/ryota2357/ryota2357.com-images/dispatches \
             -d '{"event_type":"gen-og-image"}'

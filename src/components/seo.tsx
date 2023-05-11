@@ -34,9 +34,9 @@ const Seo = ({
   const metaDescription = description ?? site?.siteMetadata.description;
   const metaImage = (() => {
     const repo =
-      "https://raw.githubusercontent.com/ryota2357/ryota2357-github-pages-images/og-image/";
+      "https://raw.githubusercontent.com/ryota2357/ryota2357.com-images/og-image/";
     if (image === "default") {
-      return "https://raw.githubusercontent.com/ryota2357/ryota2357-github-pages/main/src/images/profile-pic.jpg";
+      return "https://raw.githubusercontent.com/ryota2357/ryota2357.com/main/src/images/profile-pic.jpg";
     }
     // "path" をインポートできない(エラー出る)ので
     return repo + image.join("/") + ".png";

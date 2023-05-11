@@ -13,7 +13,7 @@ const config: GatsbyConfig = {
     },
     description: "namespace ryota2357;",
     siteUrl: "https://ryota2357.com",
-    repository: "https://github.com/ryota2357/ryota2357-github-pages",
+    repository: "https://github.com/ryota2357/ryota2357.com",
     social: {
       atcoder: {
         url: "https://atcoder.jp/users/ryota2357",

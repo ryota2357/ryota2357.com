@@ -1,4 +1,4 @@
-# ryota2357-github-pages
+# ryota2357.com
 
 [ryota2357.com](https://ryota2357.com)
 
@@ -9,13 +9,13 @@ brew install node
 brew install git gh
 npm install -g gatsby-cli
 
-gh repo clone ryota2357/ryota2357-github-pages
+gh repo clone ryota2357/ryota2357.com
 ```
 
 ## `npm run new-post [slug]`
 
 新しい投稿 md を生成するコマンド。
-[util/src/new-post.dart](https://github.com/ryota2357/ryota2357-github-pages/blob/main/util/src/new-post.dart)
+[util/src/new-post.dart](https://github.com/ryota2357/ryota2357.com/blob/main/util/src/new-post.dart)
 
 ```txt
 arg[0] (required) : slug

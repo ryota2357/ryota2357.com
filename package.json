@@ -58,7 +58,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ryota2357/ryota2357-github-pages"
+    "url": "https://github.com/ryota2357/ryota2357.com"
   },
   "scripts": {
     "build": "gatsby build",

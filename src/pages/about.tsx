@@ -17,7 +17,7 @@ const About = ({ data }: PageProps<Queries.AboutPageQuery>) => (
           <p>
             このサイトの GitHub リポジトリは
             <a href={data.site?.siteMetadata.repository}>
-              {` `}ryota2357/ryota2357-github-pages{` `}
+              {` `}ryota2357/ryota2357.com{` `}
             </a>
             に置いてあります。
           </p>
