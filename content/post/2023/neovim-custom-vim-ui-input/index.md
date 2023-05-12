@@ -1,7 +1,7 @@
 ---
-title: "vim.ui.inputを自作floating windowにした"
+title: "vim.ui.inputを自作floating windowにした (Vim駅伝)"
 postdate: "2023-05-10T00:22"
-update: "2023-05-10T00:22"
+update: "2023-05-12T17:58"
 tags: ["Neovim", "Event"]
 ---
 
