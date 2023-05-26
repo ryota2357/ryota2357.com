@@ -1,7 +1,7 @@
 ---
 title: "シンプルなDFA型の正規表現エンジンをRustで作成する #2"
 postdate: "2023-05-26T10:08"
-update: "2023-05-26T10:08"
+update: "2023-05-26T11:11"
 tags: ["Rust"]
 ---
 
@@ -14,7 +14,7 @@ tags: ["Rust"]
 ## Automaton
 
 オートマトンと正規表現の関連付けイメージは「[オートマトンは正規表現の夢を見るか(見るし、夢というかそのものですらある)](https://zenn.dev/canalun/articles/regexp_and_automaton)」がわかりやすかった。
-この記事では実際に正規表現から NFA, DFA を構築することはないのだが、変換の流れがなんとなく想像できるようになる。
+実際に正規表現から NFA, DFA を構築することはないのだが、変換の流れがなんとなく想像できるようになる。
 
 Rust での実装に入る。
 
@@ -41,7 +41,7 @@ pub use crate::automaton::nfa::*;
 NFA において、状態を表す数値などが必要である。`u32`などでも良いのだが、今後 DFA でも同様に状態を表す数値が必要となるため、`u32`を用いてしまうと、「型」でその数値が NFA のものか DFA のものか区別ができない。
 そこでタプル構造体を用いると良いだろう。  
 <small>
-(C#などでは Cysharp/UnitGenerator などを用いて、型を着けつつ柔軟な操作を可能にできるのだが、Rust にはオーバーロードや暗黙の型変換の機能がないので、タプル構造体を用いる。)
+(C#などでは Cysharp/UnitGenerator などを用いて、型を付けつつ柔軟な操作を可能にできるのだが、Rust にはオーバーロードや暗黙の型変換の機能がないので、タプル構造体を用いる。)
 </small>
 
 ```rust
@@ -529,7 +529,7 @@ impl DeterministicFiniteAutomaton {
 
 `NondeterministicFiniteAutomaton`から`DeterministicFiniteAutomaton`を構築するメソッド`from_nfa()`を実装する。
 
-次のように、開始状態`start`, 遷移テーブル`transition`、受理状態`accepts`、それぞれ別々に求める。
+次のように、開始状態`start`、 遷移テーブル`transition`、受理状態`accepts`、これらをそれぞれ別々に求める。
 
 ```rust
 impl DeterministicFiniteAutomaton {
@@ -597,7 +597,7 @@ NFA, DFA の状態を`u32`ではなく、`NFAState`と`DFAState`という別の�
 深さ優先探索(DFS)を用いて、適当に NFA の状態を辿って、遷移テーブルを構築している。ここで DFS は スタック(`Vec`)を用いて書いている。  
 DFS のスタックを表す変数は`waiting`、すでに訪れた状態(頂点)集合を表す変数は`visited`である。
 
-`stack`という変数があり少しややこしいのだが、この変数`stack`は DFS のスタックではなく、開始状態`start`を求めた時のように、空文字遷移できる状態を取得するための変数である。
+`stack`という変数があり少しややこしいのだが、この変数`stack`は DFS のスタックではなく、開始状態`start`を求めた時のように、空文字で遷移できる状態を取得するための変数である。
 
 ```rust
 pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
@@ -681,8 +681,9 @@ pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
 
 ### テスト
 
-NFA から DFA の変換が正しく実装できているか確認する。
+NFA から DFA の変換が正しく実装できているか確認する。  
 自分で`NondeterministicFiniteAutomaton`を構築し、それを`DeterministicFiniteAutomaton::from_nfa()`に与えて期待する DFA が構築されているか`assert_eq!()`する。
+
 長いので折りたたんだ。
 
 <details>
