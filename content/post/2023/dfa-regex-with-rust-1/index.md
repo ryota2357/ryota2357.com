@@ -1,7 +1,7 @@
 ---
 title: "シンプルなDFA型の正規表現エンジンをRustで作成する #1"
 postdate: "2023-05-11T17:59"
-update: "2023-05-11T17:59"
+update: "2023-05-26T10:08"
 tags: ["Rust"]
 ---
 
@@ -124,7 +124,7 @@ mod tests {
 
 ## Parser
 
-Parser は Token を元に構文解析を行うものである。次に文法規則を示す。
+Parser は Token を元に構文解析を行い、構文木を生成するものである。次に文法規則を示す。
 
 ```bnf
 <expression>     ::= <sub_expression> Token::EndOfFile
@@ -346,11 +346,13 @@ impl Parser<'_> {
 #### sequence
 
 ```rust
-// <sequence> ::= <sub_sequence> | ''
-fn sequence(&mut self) -> Result<Node> {
-    match &self.look {
-        Token::LeftParen | Token::Character(_) => self.sub_sequence(),
-        _ => Ok(Node::Empty),
+impl Parser<'_> {
+    // <sequence> ::= <sub_sequence> | ''
+    fn sequence(&mut self) -> Result<Node> {
+        match &self.look {
+            Token::LeftParen | Token::Character(_) => self.sub_sequence(),
+            _ => Ok(Node::Empty),
+        }
     }
 }
 ```
@@ -360,18 +362,20 @@ fn sequence(&mut self) -> Result<Node> {
 #### sub_expression
 
 ```rust
-// <sub_expression> ::= <sequence> '|' <sub_expression> | <sequence>
-fn sub_expression(&mut self) -> Result<Node> {
-    let sequence = self.sequence();
-    match &self.look {
-        Token::UnionOperator => {
-            self.match_next(Token::UnionOperator)?;
-            Ok(Node::Union(
-                Box::new(sequence?),
-                Box::new(self.sub_expression()?),
-            ))
+impl Parser<'_> {
+    // <sub_expression> ::= <sequence> '|' <sub_expression> | <sequence>
+    fn sub_expression(&mut self) -> Result<Node> {
+        let sequence = self.sequence();
+        match &self.look {
+            Token::UnionOperator => {
+                self.match_next(Token::UnionOperator)?;
+                Ok(Node::Union(
+                    Box::new(sequence?),
+                    Box::new(self.sub_expression()?),
+                ))
+            }
+            _ => sequence,
         }
-        _ => sequence,
     }
 }
 ```
@@ -381,11 +385,13 @@ fn sub_expression(&mut self) -> Result<Node> {
 #### expression
 
 ```rust
-// <expression> ::= <sub_expression> EOF
-fn expression(&mut self) -> Result<Node> {
-    let expression = self.sub_expression();
-    self.match_next(Token::EndOfFile)?;
-    expression
+impl Parser<'_> {
+    // <expression> ::= <sub_expression> EOF
+    fn expression(&mut self) -> Result<Node> {
+        let expression = self.sub_expression();
+        self.match_next(Token::EndOfFile)?;
+        expression
+    }
 }
 ```
 
@@ -438,7 +444,7 @@ mod tests {
 }
 ```
 
-テストがとおり、無事期待通りパースされていることがわかる。
+テストがとおり、無事期待通りパースされて、構文木が構築されていることがわかる。
 
 上記テストでは`parser.expression()`をテストしているが、実際外部から使うのはそのラッパーの`parser.parse()`メソッドである。
 
@@ -448,6 +454,4 @@ pub fn parse(&mut self) -> Result<Node> {
 }
 ```
 
-続いて、#2 NFA と DFA を構築して Regex を作る。
-
-<!-- 続いて、[#2 NFA と DFA を構築して Regex を作る](../dfa-regex-with-rust-2)。 -->
+続いて、[#2 NFA と DFA を構築して Regex を作る](../dfa-regex-with-rust-2)。
