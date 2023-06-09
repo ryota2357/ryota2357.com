@@ -215,7 +215,63 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+            allMarkdownRemark {
+              nodes {
+                fields {
+                  slug
+                }
+                frontmatter {
+                  update
+                }
+              }
+            }
+          }
+        `,
+        output: "/",
+        excludes: ["/404(.*)/", "/dev-404(.*)/"],
+        resolvePages: ({ allSitePage, allMarkdownRemark }: any) => {
+          const blogPosts = allMarkdownRemark.nodes.reduce(
+            (acc: any, node: any) => {
+              const slug = node.fields.slug;
+              const update = node.frontmatter.update;
+              acc[slug] = { update };
+              return acc;
+            },
+            {}
+          );
+          return allSitePage.nodes.map((node: any) => {
+            return { ...node, ...blogPosts[node.path] };
+          });
+        },
+        serialize: ({ path, update }: any) => {
+          const site = {
+            url: path,
+            changefreq: "daily",
+            priority: update ? 0.7 : 0.5,
+          };
+          if (!update) {
+            return site;
+          }
+          const lastmod = { lastmod: update };
+          return { ...site, ...lastmod };
+        },
+      },
+    },
     `gatsby-plugin-robots-txt`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-postcss`,
