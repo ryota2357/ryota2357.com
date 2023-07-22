@@ -43,7 +43,7 @@ require('dein-snip').setup {
 
 [help](https://github.com/ryota2357/dein-snip.lua/blob/main/doc/dein-snip.txt) にも書いてある通り、dein.vim のインストール場所変更やプラグインを入れる場所もちゃんと変えられる。
 
-デフォルトでは dein.vim は`~/.cache/dein/repos/github.com/Shougo/dein.vim`に、プラグインたちは`~/.cache/dein`をルートに入る。ここに入れてる人が一番多いのではないかと思う。
+デフォルトでは dein.vim は `~/.cache/dein/repos/github.com/Shougo/dein.vim` に、プラグインたちは `~/.cache/dein` をルートに入る。ここに入れてる人が一番多いのではないかと思う。
 
 ## 内部でやってること
 
@@ -71,10 +71,10 @@ end
 
 ### dein の変数設定
 
-`g:dein#ほげほげ`も lua で設定できる。lua で書いた設定から`let g:dein#ほげほげ`して dein に反映していく。  
+`g:dein#ほげほげ` も lua で設定できる。lua で書いた設定から `let g:dein#ほげほげ` して dein に反映していく。  
 対応表は [README の Correspondence Table](https://github.com/ryota2357/dein-snip.lua#correspondence-table) に書いておいた。ほぼ全ての変数を lua で設定できるようにした。
 
-実装は、こんな感じの関数`g`を作って
+実装は、こんな感じの関数 `g` を作って
 
 ```lua
 local g = function(variable, value)

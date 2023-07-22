@@ -8,7 +8,7 @@ tags: ["Gatsby"]
 [公式 docs](https://www.gatsbyjs.com/plugins/gatsby-remark-vscode/)に書いてあったのですが、少しわかりにくかったので。  
 非常に簡単に追加できました。
 
-例として`.txt`と`.dart`を追加してみます。
+例として `.txt` と `.dart` を追加してみます。
 
 ## 対応してる言語
 
@@ -78,7 +78,7 @@ gatsby-remark-vscode は 55 の言語のハイライトに対応してます。(
 ## .txt に対応させる
 
 これは対応というかエイリアスを設定します。  
-`gatsby-config.js`にて`ignore`にすれば期待通りになる。
+`gatsby-config.js` にて `ignore` にすれば期待通りになる。
 
 ```jsx
 {
@@ -97,17 +97,17 @@ gatsby-remark-vscode は 55 の言語のハイライトに対応してます。(
 
 リソースのところにリポジトリとあるのでリクックしてブラウザで開きます。(上画像赤丸)
 
-リポジトリのリンクは`https://github.com/Dart-Code/Dart-Code`なので npm で次のようにインストールします。
+リポジトリのリンクは `https://github.com/Dart-Code/Dart-Code` なので npm で次のようにインストールします。
 
 ```bash
 $ npm i Dart-Code/Dart-Code
 ```
 
-`package.json`の`name`プロパティを確認して、
+`package.json` の `name` プロパティを確認して、
 
 ![dart-code](screenshot_dart_pkg.png)
 
-`gatsby-config.js`に以下のように`extensions`プロパティに書きます。
+`gatsby-config.js` に以下のように `extensions` プロパティに書きます。
 
 ```jsx
 {
@@ -120,7 +120,7 @@ $ npm i Dart-Code/Dart-Code
 
 これで対応終了です。
 
-`.txt`も vscode プラグインで何かあるなら、エイリアスを貼るのではなく`.dart`の時と同じような手順で対応するのも良いと思う。
+`.txt` も vscode プラグインで何かあるなら、エイリアスを貼るのではなく `.dart` の時と同じような手順で対応するのも良いと思う。
 
 ## 参考
 

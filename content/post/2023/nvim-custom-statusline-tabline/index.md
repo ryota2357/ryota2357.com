@@ -70,11 +70,11 @@ local M = {}
 local fn = vim.fn
 ```
 
-ファイルは`lua/rc/statusline.lua`に書いていく。
+ファイルは `lua/rc/statusline.lua` に書いていく。
 
 ### Highlight グループ定義
 
-色をつけるためにいくつかのハイライトグループを定義しておく。僕はハイライトを定義するためのヘルパー関数として次のようなものを用意して、`require(rc.util)`で使えるようにしている。
+色をつけるためにいくつかのハイライトグループを定義しておく。僕はハイライトを定義するためのヘルパー関数として次のようなものを用意して、`require(rc.util)` で使えるようにしている。
 
 ```lua
 ---@param hls table
@@ -113,9 +113,9 @@ highlight.set {
 
 ### mode()
 
-現在のモードは`vim.fn.mode()`を使うと取得できるが、これによって取得できる文字(引数なしだと最初の 1 文字だけ返される)は少しわかりにくいので、ラッパーを書く。
+現在のモードは `vim.fn.mode()` を使うと取得できるが、これによって取得できる文字(引数なしだと最初の 1 文字だけ返される)は少しわかりにくいので、ラッパーを書く。
 
-なお、`^V`は`<C-v><C-v>`で入力できる文字である。
+なお、`^V` は `<C-v><C-v>` で入力できる文字である。
 
 ```lua
 ---@return string
@@ -159,7 +159,7 @@ end
 
 僕の statusline には「ファイル名」「保存したかどうか」「現在の行:列」が表示される。それぞれ「filePath」「modified」「position」として実装する。
 
-ここで `%#StatusLine#` などの `%#...#`という文字列がある。`h: statusline` の一部(vimdoc-ja)を引用する。
+ここで `%#StatusLine#` などの `%#...#` という文字列がある。`h: statusline` の一部(vimdoc-ja)を引用する。
 
 > \# -
 > ハイライトグループを設定する。
@@ -194,7 +194,7 @@ local component = {
 }
 ```
 
-僕は`laststatus = 3`なので、文字の切り詰めはやってない。
+僕は `laststatus = 3` なので、文字の切り詰めはやってない。
 
 ### M.statusline()
 
@@ -233,7 +233,7 @@ end
 
 ### statusline の設定
 
-`require('rc.ui.statusline').statusline()`と呼び出すのは面倒なので、`require('rc.ui.statusline')()`で呼び出せるようにしておく。
+`require('rc.ui.statusline').statusline()` と呼び出すのは面倒なので、`require('rc.ui.statusline')()` で呼び出せるようにしておく。
 
 ```lua
 setmetatable(M, {
@@ -243,14 +243,14 @@ setmetatable(M, {
 })
 ```
 
-init.lua にて`nvim_set_option()`で statusline を設定する。
+init.lua にて `nvim_set_option()` で statusline を設定する。
 
 ```lua
 Tabline = require('rc.ui.tabline')
 vim.api.nvim_set_option('tabline', '%!v:lua.Tabline()')
 ```
 
-次に`rc/ui/statusline.lua`の実装全体を折りたたんでおく。
+次に `rc/ui/statusline.lua` の実装全体を折りたたんでおく。
 
 <details>
 <summary>実装全体</summary>
@@ -370,7 +370,7 @@ return M
 
 tabline は statusline よりもずっと簡単に実装されている。
 
-`rc/ui/tabline.lua`に実装していく。
+`rc/ui/tabline.lua` に実装していく。
 
 ### Highlight グループ定義
 
@@ -386,15 +386,15 @@ highlight.set {
 
 ### M.tabline()
 
-ハイライトは statusline の時と同様`%#TabLine#%`のように設定できる。
+ハイライトは statusline の時と同様 `%#TabLine#%` のように設定できる。
 
-`h: tabline`より引用する。
+`h: tabline` より引用する。
 
 > このオプションの値は 'statusline' と同じように評価される。(略) 1 番目のラベルには "%1T"、2 番目のラベルには "%2T" など。 閉じラベルにはアイテム "%X" を使う。
 
-`:h setting-tabline`に書いてあるのだが、`%1T`のように追加することでマウスクリックができるようになる。最後に`#%T`でリセットする必要がある。
+`:h setting-tabline` に書いてあるのだが、`%1T` のように追加することでマウスクリックができるようになる。最後に `#%T` でリセットする必要がある。
 
-ちなみに`:h setting-tabline`には VimScript だが、簡単な tabline のサンプルがある。そのサンプルを参考に作っている。
+ちなみに `:h setting-tabline` には VimScript だが、簡単な tabline のサンプルがある。そのサンプルを参考に作っている。
 
 ```lua
 ---@return string
@@ -422,7 +422,7 @@ end
 
 ### tabline の設定
 
-statusline の時と同様、`require('rc.ui.tabline')()`で呼び出せるようにする。
+statusline の時と同様、`require('rc.ui.tabline')()` で呼び出せるようにする。
 
 ```lua
 setmetatable(M, {
@@ -432,14 +432,14 @@ setmetatable(M, {
 })
 ```
 
-init.lua にて`nvim_set_option()`で tabline を設定する。
+init.lua にて `nvim_set_option()` で tabline を設定する。
 
 ```lua
 Tabline = require('rc.ui.tabline')
 vim.api.nvim_set_option('tabline', '%!v:lua.Tabline()')
 ```
 
-次に`rc/ui/tabline.lua`の実装全体を折りたたんでおく。
+次に `rc/ui/tabline.lua` の実装全体を折りたたんでおく。
 
 <details>
 <summary>実装全体</summary>

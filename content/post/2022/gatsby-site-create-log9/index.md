@@ -8,8 +8,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby`のバージョンは 4.9
+> スターターを `gatsby new` したのは 2022 年の 3 月上旬。
+> `gatsby` のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -25,7 +25,7 @@ gatsby-remark-autolink-headers を追加する。
 $ npm i gatsby-remark-autolink-headers
 ```
 
-[公式 docs](https://www.gatsbyjs.com/plugins/gatsby-remark-autolink-headers/)に注意があるのでそれに気をつけて`gatsby-config.js`の plugin に追加する。
+[公式 docs](https://www.gatsbyjs.com/plugins/gatsby-remark-autolink-headers/)に注意があるのでそれに気をつけて `gatsby-config.js` の plugin に追加する。
 
 ```jsx
 ...
@@ -51,7 +51,7 @@ Game -> GameDev
 ## css
 
 気になってはいたたんだけど、そこまで問題じゃなかったから放置してたやつ。  
-`style/style.scss`にするか`style/markdown.scss`にするか悩んだけど、`style/style.scss`に追加した。
+`style/style.scss` にするか `style/markdown.scss` にするか悩んだけど、`style/style.scss` に追加した。
 
 ```scss
 .markdown {
@@ -61,8 +61,8 @@ Game -> GameDev
 }
 ```
 
-もう 1 つ`style/markdown.scss`  
-h2 タグの`margin-top`を 3rem にした。
+もう 1 つ `style/markdown.scss`  
+h2 タグの `margin-top` を 3rem にした。
 
 ```scss
 .markdown {
@@ -76,8 +76,8 @@ h2 タグの`margin-top`を 3rem にした。
 ## Safari 対応
 
 safari で確認してたら about ページのプロフィール画像が円形になってなかった。  
-調べたら`z-index`なるものを追加すると治るらしい。  
-一応`position: relative`も添えた。
+調べたら `z-index` なるものを追加すると治るらしい。  
+一応 `position: relative` も添えた。
 
 ```jsx
 const About = ({ data, location }) => {

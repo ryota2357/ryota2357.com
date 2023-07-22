@@ -8,8 +8,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby`のバージョンは 4.9
+> スターターを `gatsby new` したのは 2022 年の 3 月上旬。
+> `gatsby` のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -33,8 +33,8 @@ $ npm i sass gatsby-plugin-sass
 }
 ```
 
-`style.css` → `style.scss`にして階層構造に変更  
-`src/normalize.css`,`src/style.scss`を`src/style`下に移動
+`style.css` → `style.scss` にして階層構造に変更  
+`src/normalize.css`,`src/style.scss` を `src/style` 下に移動
 
 <details>
   <summary>style/style.scss</summary>
@@ -78,7 +78,7 @@ html {
 
 </details>
 
-`gastby-browser.js`の import パスを修正  
+`gastby-browser.js` の import パスを修正  
 ついでに typeface-\*は使ってないから削除、npm uninstall しておく。
 
 ```js {diff}
@@ -95,7 +95,7 @@ html {
 
 ## blog 個別記事の css を作る
 
-`templates/blog-post.js`の本文部分に className=”markdown”を設置  
+`templates/blog-post.js` の本文部分に className=”markdown”を設置  
 ついでに h1 タグになんか style つけてたので全部取り除いた。
 
 ```jsx
@@ -118,14 +118,14 @@ const BlogPostTemplate = ({ data, location }) => {
 ...
 ```
 
-`style/markdown.scss`を作って、`gatsby-browser.js`にこの scss を読み込むように追記
+`style/markdown.scss` を作って、`gatsby-browser.js` にこの scss を読み込むように追記
 
 ```jsx
 ...
 import "./src/style/markdown.scss"
 ```
 
-`style/markdown.scss`の内容はこんな感じ、[github マークダウンの css](https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown-light.css)を参考にしてる。
+`style/markdown.scss` の内容はこんな感じ、[github マークダウンの css](https://github.com/sindresorhus/github-markdown-css/blob/main/github-markdown-light.css)を参考にしてる。
 
 <details>
   <summary>style/markdown.scss</summary>
@@ -188,7 +188,7 @@ $ npm i gatsby-remark-vscode
 ```
 
 で導入。  
-gatsby-remark-prismjs を`gatsby-config.js`とか`package.json`とかから削除
+gatsby-remark-prismjs を `gatsby-config.js` とか `package.json` とかから削除
 
 gatsby-remark-vscode のオプションはこんな感じ。
 
@@ -209,7 +209,7 @@ gatsby-remark-vscode は dart に対応してないので対応させてる。
 詳しくは[gatsby-remark-vscode にハイライト可能な言語を追加する](../gatsby-hilight-vscode-add/)を参照
 
 続いてスタイルを調整する。  
-`style/code-highlight.scss`を作って以下のようにする。もちろん、`gatsby-brower.js`に import しておく。
+`style/code-highlight.scss` を作って以下のようにする。もちろん、`gatsby-brower.js` に import しておく。
 
 ```scss
 // gatsby-remark-vscode

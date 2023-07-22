@@ -18,7 +18,7 @@ Glyph Pen は [glyph.glyphPen()](https://fontforge.org/docs/scripting/python/fon
 > **glyph.glyphPen([replace=False])**  
 > Creates a new glyphPen which will draw into the current glyph. By default the pen will replace any existing contours and references, but setting the optional keyword argument, replace to false will retain the old contents.
 
-ドキュメントのシグネクチャには引数の`replace`のデフォルト値が`False`であるかのように書いてあるが、実際はドキュメントの説明にある通り、`True`である。注意しなければならない。
+ドキュメントのシグネクチャには引数の `replace` のデフォルト値が `False` であるかのように書いてあるが、実際はドキュメントの説明にある通り、`True` である。注意しなければならない。
 
 Glyph Pen を取得するサンプルコードを次に示す。
 
@@ -27,7 +27,7 @@ Glyph Pen を取得するサンプルコードを次に示す。
 glyphPen = font[key].glyphPen(replace=False)
 ```
 
-ちなみに`font[key]`については次の通りである。`font[0x30]`などどしてあげれば良い。
+ちなみに `font[key]` については次の通りである。`font[0x30]` などどしてあげれば良い。
 
 > **font.\_\_getitem\_\_(key)**  
 > If key is an integer, then returns the glyph at that encoding. If a string then returns the glyph with that name. May not be assigned to.
@@ -71,7 +71,7 @@ font.generate("modified-example.ttf")
 
 ## 削除
 
-削除は、「削除」としての関数を見つけることはできなかったが、`intersect()`を用いて削除を行う方法は見つけられた。次の記事で行なっていた方法を用いるといいだろう。
+削除は、「削除」としての関数を見つけることはできなかったが、`intersect()` を用いて削除を行う方法は見つけられた。次の記事で行なっていた方法を用いるといいだろう。
 
 [SF Mono を使って最高のプログラミング用フォントを作った話#全角空白を可視化する](https://qiita.com/delphinus/items/f472eb04ff91daf44274#3-%E5%85%A8%E8%A7%92%E7%A9%BA%E7%99%BD%E3%82%92%E5%8F%AF%E8%A6%96%E5%8C%96%E3%81%99%E3%82%8B)
 
@@ -99,11 +99,11 @@ def draw_square(glyphPen, center, width, height, clockwise=True):
     glyphPen.closePath()
 ```
 
-`center`は(x, y)のタプル、`width`, `height`は数値を受け取る。`clockwise`は線を描く方向で、ドーナツ型のような形を描く時の内側の線を作るときに`False`を設定するものである。
+`center` は(x, y)のタプル、`width`, `height` は数値を受け取る。`clockwise` は線を描く方向で、ドーナツ型のような形を描く時の内側の線を作るときに `False` を設定するものである。
 
 ### 残す部分を長方形でおおう
 
-フォントの`open()`とかは省略する。
+フォントの `open()` とかは省略する。
 
 ```python
 glyphPen = font[0x30].glyphPen(replace=False)
@@ -118,7 +118,7 @@ glyphPen = None
 
 ### 消す
 
-`font.intersect()`を使うと、重なり合った部分のみを残してそれ以外を削除することができる。
+`font.intersect()` を使うと、重なり合った部分のみを残してそれ以外を削除できる。
 
 > **font.intersect()**  
 > Leaves only areas in the intersection of contours in all selected glyphs.

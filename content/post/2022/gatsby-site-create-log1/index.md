@@ -8,8 +8,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby`のバージョンは 4.9
+> スターターを `gatsby new` したのは 2022 年の 3 月上旬。
+> `gatsby` のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -34,10 +34,10 @@ $ gatsby new [YOUR_BLOG_NAME] https://github.com/gatsbyjs/gatsby-starter-blog
 
 ## プロフィール画像の変更
 
-`src/images/profile-pic.png`を自分の画像に変更する。
+`src/images/profile-pic.png` を自分の画像に変更する。
 
-ファイル名はなんでも良いが、僕は`profile-pic.jpg`にした。(png のプロフィール画像持ってなかったから jpg)  
-ファイル名を変えた場合は`src/components/bio.js`の 33 行目を変更する必要がある。
+ファイル名はなんでも良いが、僕は `profile-pic.jpg` にした。(png のプロフィール画像持ってなかったから jpg)  
+ファイル名を変えた場合は `src/components/bio.js` の 33 行目を変更する必要がある。
 
 ```jsx
 <StaticImage
@@ -54,8 +54,8 @@ $ gatsby new [YOUR_BLOG_NAME] https://github.com/gatsbyjs/gatsby-starter-blog
 
 ## siteMetadata の編集
 
-`gatsby-config.js`の social の欄に github と unityroom を追加しておいた。  
-siteUrl は後ほど設定する。有効な(存在する?)URL じゃないと`gatsby develop`とかした時に怒られるので今はデフォルトのままに。
+`gatsby-config.js` の social の欄に github と unityroom を追加しておいた。  
+siteUrl は後ほど設定する。有効な(存在する?)URL じゃないと `gatsby develop` とかした時に怒られるので今はデフォルトのままに。
 
 ```jsx
 // gatsby-config.js
@@ -81,7 +81,7 @@ module.exports = {
 }
 ```
 
-追加したのを反映するため`src/components/bio.js`を編集していく。
+追加したのを反映するため `src/components/bio.js` を編集していく。
 
 GraphQL クエリに github、unityroom を追加。  
 あと、リンクを設置。
@@ -133,7 +133,7 @@ const Bio = () => {
 export default Bio
 ```
 
-`gatsby-node.js`では siteMetadata オブジェクトを明示的に定義してある。  
+`gatsby-node.js` では siteMetadata オブジェクトを明示的に定義してある。  
 siteMetadata オブジェクトにプロパティを追加したので、これらも明示的に定義しておく。なお、必須ではない模様
 
 ```jsx
@@ -150,7 +150,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 ## 日付を YYYY/MM/DD に
 
-`index.js`の fromtmatter 内 date(formatString: )を編集
+`index.js` の fromtmatter 内 date(formatString: )を編集
 
 ```jsx
 ...

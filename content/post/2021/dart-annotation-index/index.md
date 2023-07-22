@@ -113,7 +113,7 @@ a method that has this annotation can return anything other than a newly allocat
 </details>
 
 ファクトリメソッドにつける。  
-新しく割り当てられたオブジェクトか`null`を返すことを示す。
+新しく割り当てられたオブジェクトか `null` を返すことを示す。
 
 ### @immutable
 
@@ -156,7 +156,7 @@ The first parameter of the function must be the description of the group.
 </details>
 
 一連のテストを実行するテスト フレームワーク関数に注釈を付けるために使用します。
-IDE などのツールでは、このような関数の呼び出しをファイル構造ビューに表示することができ、ユーザーが大きなテストファイルの中をナビゲートするのに役立ちます。
+IDE などのツールでは、このような関数の呼び出しをファイル構造ビューに表示でき、ユーザーが大きなテストファイルの中をナビゲートするのに役立ちます。
 この関数の最初のパラメータには、グループの説明を指定します。
 
 ### @literal
@@ -169,7 +169,7 @@ the annotation is associated with anything other than a const constructor, or
 an invocation of a constructor that has this annotation is not invoked using the `const` keyword unless one or more of the arguments to the constructor is not a compile-time constant.
 </details>
 
-コンストラクタの引数のうち 1 つ以上がコンパイル時の定数でない場合を除き、コンストラクタの呼び出しにはキーワード`const`を使用しなければならないことを示す。
+コンストラクタの引数のうち 1 つ以上がコンパイル時の定数でない場合を除き、コンストラクタの呼び出しにはキーワード `const` を使用しなければならないことを示す。
 
 ### @mustCallSuper
 
@@ -222,7 +222,7 @@ the annotation is associated with a named parameter in a method `m1` that overri
 an invocation of a method or function does not include an argument corresponding to a named parameter that has this annotation.
 </details>
 
-多分、`required`修飾子と同じ。  
+多分、`required` 修飾子と同じ。  
 パラメータが必須であることを示し、呼び元でそのパラメータが指定されてないなら警告する。
 
 ### @sealed

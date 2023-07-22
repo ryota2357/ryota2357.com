@@ -18,7 +18,7 @@ tags: ["Rust"]
 
 Rust での実装に入る。
 
-まず、`src/automaton.rs`を次のようにする。
+まず、`src/automaton.rs` を次のようにする。
 
 ```rust
 mod dfa;
@@ -28,17 +28,17 @@ pub use crate::automaton::dfa::*;
 pub use crate::automaton::nfa::*;
 ```
 
-このコードからもわかるように、`src/automaton/nfa.rs`に NFA を、`src/automaton/dfa.rs`に DFA を実装する。
+このコードからもわかるように、`src/automaton/nfa.rs` に NFA を、`src/automaton/dfa.rs` に DFA を実装する。
 
 ここからは [#0](../dfa-regex-with-rust-0) の参考記事にあげた[正規表現エンジンを作ろう 1 ~ 6](https://codezine.jp/article/detail/3039)とクラス構造が大きく変わる。
 
 ## NFA (非決定性有限オートマトン)
 
-実装は `src/automaton/nfa.rs`に行う。
+実装は `src/automaton/nfa.rs` に行う。
 
 ### NFAState
 
-NFA において、状態を表す数値などが必要である。`u32`などでも良いのだが、今後 DFA でも同様に状態を表す数値が必要となるため、`u32`を用いてしまうと、「型」でその数値が NFA のものか DFA のものか区別ができない。
+NFA において、状態を表す数値などが必要である。`u32` などでも良いのだが、今後 DFA でも同様に状態を表す数値が必要となるため、`u32` を用いてしまうと、「型」でその数値が NFA のものか DFA のものか区別ができない。
 そこでタプル構造体を用いると良いだろう。  
 <small>
 (C#などでは Cysharp/UnitGenerator などを用いて、型を付けつつ柔軟な操作を可能にできるのだが、Rust にはオーバーロードや暗黙の型変換の機能がないので、タプル構造体を用いる。)
@@ -49,7 +49,7 @@ NFA において、状態を表す数値などが必要である。`u32`など�
 pub struct NFAState(pub u32);
 ```
 
-この状態を生成する構造体として、`Context`を導入する。
+この状態を生成する構造体として、`Context` を導入する。
 
 ```rust
 struct Context {
@@ -102,10 +102,10 @@ impl NondeterministicFiniteAutomaton {
 }
 ```
 
-`start`は開始状態、`accepts`は受理状態、`transition`が遷移テーブルである。
+`start` は開始状態、`accepts` は受理状態、`transition` が遷移テーブルである。
 
-遷移テーブル`transition`の構造は`transition[from_state][char] = [next_state]`のような感じで、「状態`from_state`において、文字`char`により、状態(集合)`[next_state]`に遷移する」というものである。  
-つまり、次に示す`new_state()`メソッドによって、次の状態を取得できる。
+遷移テーブル `transition` の構造は `transition[from_state][char] = [next_state]` のような感じで、「状態 `from_state` において、文字 `char` により、状態(集合)`[next_state]` に遷移する」というものである。  
+つまり、次に示す `new_state()` メソッドによって、次の状態を取得できる。
 
 ```rust
 impl NondeterministicFiniteAutomaton {
@@ -119,7 +119,7 @@ impl NondeterministicFiniteAutomaton {
 }
 ```
 
-遷移テーブル`transition`の構造は少し複雑なので、`transition`を操作するメソッドを作っておく。
+遷移テーブル `transition` の構造は少し複雑なので、`transition` を操作するメソッドを作っておく。
 
 ```rust
 impl NondeterministicFiniteAutomaton {
@@ -161,7 +161,7 @@ impl NondeterministicFiniteAutomaton {
 
 ### 構文木から NFA を構築
 
-構文木は `Node`構造体で表されている。
+構文木は `Node` 構造体で表されている。
 
 ```rust
 #[derive(Debug, PartialEq, Eq, Hash)]
@@ -174,8 +174,8 @@ pub enum Node {
 }
 ```
 
-`NondeterministicFiniteAutomaton`構造体に、`from_node()`メソッドを実装してして、構文木から構築できるようにする。  
-また、`Node`に`assemble()`メソッドを実装して、再帰的に`NondeterministicFiniteAutomaton`構造体を構築する。
+`NondeterministicFiniteAutomaton` 構造体に、`from_node()` メソッドを実装してして、構文木から構築できるようにする。  
+また、`Node` に `assemble()` メソッドを実装して、再帰的に `NondeterministicFiniteAutomaton` 構造体を構築する。
 
 ```rust
 impl NondeterministicFiniteAutomaton {
@@ -197,7 +197,7 @@ impl Node {
 }
 ```
 
-`assemble()`メソッドの match 式のそれぞれのアームを埋めて(実装して)いく。
+`assemble()` メソッドの match 式のそれぞれのアームを埋めて(実装して)いく。
 
 #### Node::Character
 
@@ -222,7 +222,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 
 #### Node::Empty
 
-空文字にマッチする正規表現である。`Node::Character`の時と同じような感じで実装する。
+空文字にマッチする正規表現である。`Node::Character` の時と同じような感じで実装する。
 
 ![nfa-empty](nfa-empty.svg)
 
@@ -241,7 +241,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 
 #### Node::Star(node)
 
-`A*`などの繰り返しにマッチする正規表現である。空文字遷移を用いることで表現することができる。
+`A*` などの繰り返しにマッチする正規表現である。空文字遷移を用いることで表現できる。
 
 ![nfa-star](nfa-star.svg)
 
@@ -266,7 +266,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 
 #### Node::Union(node1, node2)
 
-`A|B`のようなものにマッチする正規表現である。`Node::Star`と同様、空文字遷移を用いることで表現することができる。  
+`A|B` のようなものにマッチする正規表現である。`Node::Star` と同様、空文字遷移を用いることで表現できる。  
 新たな状態を生成し、それを開始地点を生成する。遷移テーブルは元の 2 つのものを、そのままマージすれば良い。
 
 ![nfa-union](nfa-union.svg)
@@ -291,7 +291,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 
 #### Node::Concat(node1, node2)
 
-`AB`のように 2 つの文字列を並べたものにマッチする正規表現である。  
+`AB` のように 2 つの文字列を並べたものにマッチする正規表現である。  
 遷移テーブルをマージした後、1 文字目の受理状態から 2 文字めの開始状態へ空文字遷移を追加すれば良い。
 
 ![nfa-concat](nfa-concat.svg)
@@ -317,7 +317,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 
 ### テスト
 
-Node::assemble()が正しく実装できているか確認する。自分で構文木(`Node`)を構築し、それを`NondeterministicFiniteAutomaton::from_node()`に与えて期待する NFA が生成されているか`assert_eq!()`する。
+Node::assemble()が正しく実装できているか確認する。自分で構文木(`Node`)を構築し、それを `NondeterministicFiniteAutomaton::from_node()` に与えて期待する NFA が生成されているか `assert_eq!()` する。
 
 長いので折りたたんだ。
 
@@ -433,21 +433,21 @@ mod tests {
 
 ## DFA (決定性有限オートマトン)
 
-実装は `src/automaton/dfa.rs`に行う。
+実装は `src/automaton/dfa.rs` に行う。
 
 ### DFAState
 
-`NFAState`と同様に、DFA の状態を表すタプル構造体`DFAState`と、それを生成する構造体`Context`を作成する。
+`NFAState` と同様に、DFA の状態を表すタプル構造体 `DFAState` と、それを生成する構造体 `Context` を作成する。
 
 ```rust
 #[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, PartialOrd, Ord)]
 pub struct DFAState(u32);
 ```
 
-NFA の時の`Context`は`pub`にせずファイルローカルな構造体であった。なので NFA の時と同じ名前を使うことができる。(DFA の`Context`もファイルローカルである)
+NFA の時の `Context` は `pub` にせずファイルローカルな構造体であった。なので NFA の時と同じ名前を使うことができる。(DFA の `Context` もファイルローカルである)
 
-NFA の`Context`とは実装しているメソッドが異なる。  
-`get_state()`メソッドは引数に`NFAState`の配列をとり、その配列に対して一意の状態`DFAState`を返す (必要であれば新しい状態を作る)。
+NFA の `Context` とは実装しているメソッドが異なる。  
+`get_state()` メソッドは引数に `NFAState` の配列をとり、その配列に対して一意の状態 `DFAState` を返す (必要であれば新しい状態を作る)。
 
 ```rust
 struct Context {
@@ -479,7 +479,7 @@ impl Context {
 }
 ```
 
-次のように、`[NFAState]`から`DFAState`を取得(生成)する。
+次のように、`[NFAState]` から `DFAState` を取得(生成)する。
 
 ```rust
 #[test]
@@ -508,14 +508,14 @@ pub struct DeterministicFiniteAutomaton {
 }
 ```
 
-フィールドは NFA の時と同様、 `start`は開始状態、`accepts`は受理状態、`transition`が遷移テーブルである。
+フィールドは NFA の時と同様、 `start` は開始状態、`accepts` は受理状態、`transition` が遷移テーブルである。
 
-遷移テーブル`transition`の構造が NFA の時とは異なっていることがわかると思う。
+遷移テーブル `transition` の構造が NFA の時とは異なっていることがわかると思う。
 
-遷移テーブルの構造は `transition[(from_state, char)] = next_state]` のような感じで、「状態`from_state`において、文字`char`により、状態`next_state`に遷移する」というものである。  
-NFA の時と表しているテーブル構造自体に変化は`next_state`か、`[next_state]`かの違いだが、`from_state`と`char`をタプルとすることでスッキリしたものになっている。
+遷移テーブルの構造は `transition[(from_state, char)] = next_state]` のような感じで、「状態 `from_state` において、文字 `char` により、状態 `next_state` に遷移する」というものである。  
+NFA の時と表しているテーブル構造自体に変化は `next_state` か、`[next_state]` かの違いだが、`from_state` と `char` をタプルとすることでスッキリしたものになっている。
 
-`NondeterministicFiniteAutomaton`の時と同じように、次の状態を取得するメソッド`next_state()`を実装する。
+`NondeterministicFiniteAutomaton` の時と同じように、次の状態を取得するメソッド `next_state()` を実装する。
 
 ```rust
 impl DeterministicFiniteAutomaton {
@@ -527,9 +527,9 @@ impl DeterministicFiniteAutomaton {
 
 ### NFA から DFA を構築
 
-`NondeterministicFiniteAutomaton`から`DeterministicFiniteAutomaton`を構築するメソッド`from_nfa()`を実装する。
+`NondeterministicFiniteAutomaton` から `DeterministicFiniteAutomaton` を構築するメソッド `from_nfa()` を実装する。
 
-次のように、開始状態`start`、 遷移テーブル`transition`、受理状態`accepts`、これらをそれぞれ別々に求める。
+次のように、開始状態 `start`、 遷移テーブル `transition`、受理状態 `accepts`、これらをそれぞれ別々に求める。
 
 ```rust
 impl DeterministicFiniteAutomaton {
@@ -563,10 +563,10 @@ impl DeterministicFiniteAutomaton {
 
 #### 開始状態 (`start`, `start_states`)
 
-`start_states`は`transition`を求めるときに必要なので求めておく。
+`start_states` は `transition` を求めるときに必要なので求めておく。
 
-NFA の開始状態`nfa.start`から空文字で遷移可能な状態を全て列挙し`ret`に格納する (`ret`は**NFA**の状態集合である)。  
-`context.get_state(&ret)`で`ret`に対応した**DFA**の状態を取得する。
+NFA の開始状態 `nfa.start` から空文字で遷移可能な状態を全て列挙し `ret` に格納する (`ret` は**NFA**の状態集合である)。  
+`context.get_state(&ret)` で `ret` に対応した**DFA**の状態を取得する。
 
 ```rust
 pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
@@ -592,12 +592,12 @@ pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
 #### 遷移テーブル (`transition`)
 
 ここが一番実装が複雑になる。  
-NFA, DFA の状態を`u32`ではなく、`NFAState`と`DFAState`という別の型をつけた利点をここで一番感じられるであろう。
+NFA, DFA の状態を `u32` ではなく、`NFAState` と `DFAState` という別の型をつけた利点をここで一番感じられるであろう。
 
-深さ優先探索(DFS)を用いて、適当に NFA の状態を辿って、遷移テーブルを構築している。ここで DFS は スタック(`Vec`)を用いて書いている。  
-DFS のスタックを表す変数は`waiting`、すでに訪れた状態(頂点)集合を表す変数は`visited`である。
+深さ優先探索(DFS)を用いて、適当に NFA の状態を辿って、遷移テーブルを構築している。ここで DFS はスタック(`Vec`)を用いて書いている。  
+DFS のスタックを表す変数は `waiting`、すでに訪れた状態(頂点)集合を表す変数は `visited` である。
 
-`stack`という変数があり少しややこしいのだが、この変数`stack`は DFS のスタックではなく、開始状態`start`を求めた時のように、空文字で遷移できる状態を取得するための変数である。
+`stack` という変数があり少しややこしいのだが、この変数 `stack` は DFS のスタックではなく、開始状態 `start` を求めた時のように、空文字で遷移できる状態を取得するための変数である。
 
 ```rust
 pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
@@ -660,8 +660,8 @@ pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
 
 受理状態の集合を求める。
 
-`concat.state_map`にアクセスすることで、`context`が生成した DFA の状態一覧と、その各状態に対応した NFA の状態集合の組み合わせを取得できる。  
-これを利用して`accepts`を求める。
+`concat.state_map` にアクセスすることで、`context` が生成した DFA の状態一覧と、その各状態に対応した NFA の状態集合の組み合わせを取得できる。  
+これを利用して `accepts` を求める。
 
 ```rust
 pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
@@ -682,7 +682,7 @@ pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
 ### テスト
 
 NFA から DFA の変換が正しく実装できているか確認する。  
-自分で`NondeterministicFiniteAutomaton`を構築し、それを`DeterministicFiniteAutomaton::from_nfa()`に与えて期待する DFA が構築されているか`assert_eq!()`する。
+自分で `NondeterministicFiniteAutomaton` を構築し、それを `DeterministicFiniteAutomaton::from_nfa()` に与えて期待する DFA が構築されているか `assert_eq!()` する。
 
 長いので折りたたんだ。
 
@@ -836,9 +836,9 @@ mod tests {
 
 ## Regex
 
-構造体`Regex`を作成する。`Regex`は DFA に変換された正規表現を表すものである。
+構造体 `Regex` を作成する。`Regex` は DFA に変換された正規表現を表すものである。
 
-実装は `src/lib.rs`に行う。
+実装は `src/lib.rs` に行う。
 
 ```rust
 pub struct Regex {
@@ -846,7 +846,7 @@ pub struct Regex {
 }
 ```
 
-コンストラクタ`Regex::new()`と文字列が正規表現にマッチしているか判定する`Regex::matches()`を実装する。
+コンストラクタ `Regex::new()` と文字列が正規表現にマッチしているか判定する `Regex::matches()` を実装する。
 
 ```rust
 impl Regex {
@@ -872,9 +872,9 @@ impl Regex {
 }
 ```
 
-`Regex::new()`では与えられた正規表現(`pattern`)を Lexer に与え、Lexer を Parser に与えてパースし、Parser から得られた構文木を NFA、そして DFA に変換している。
+`Regex::new()` では与えられた正規表現(`pattern`)を Lexer に与え、Lexer を Parser に与えてパースし、Parser から得られた構文木を NFA、そして DFA に変換している。
 
-`Regex::matches()`では DFA の状態を引数`text`を用いて遷移させているだけである。
+`Regex::matches()` では DFA の状態を引数 `text` を用いて遷移させているだけである。
 
 ### テスト
 
@@ -948,9 +948,9 @@ mod tests {
 
 ## 最後に
 
-`Regex`まで実装することができた。僕が書いたコードは [ryota2357/dfa-regex](https://github.com/ryota2357/dfa-regex)にあげてある。
+`Regex` まで実装できた。僕が書いたコードは [ryota2357/dfa-regex](https://github.com/ryota2357/dfa-regex)にあげてある。
 
-この記事には書いていないが、[`+`演算子による「1 回以上の繰り返し」にも対応](https://github.com/ryota2357/dfa-regex/commit/899ef987e01add64023df58a0404d4c486713d2f)させてみた。
-`A+`を`AA*`に変換するという雑な対応だけど、期待通りの動作はする。
+この記事には書いていないが、[`+` 演算子による「1 回以上の繰り返し」にも対応](https://github.com/ryota2357/dfa-regex/commit/899ef987e01add64023df58a0404d4c486713d2f)させてみた。
+`A+` を `AA*` に変換するという雑な対応だけど、期待通りの動作はする。
 
-今回の`Regex`の実装を通してオートマトンと少し仲良くなれたと思う。もしこの記事を読んで間違いなどを見つけた際は報告していだだけると僕はとても喜ぶ。
+今回の `Regex` の実装を通してオートマトンと少し仲良くなれたと思う。もしこの記事を読んで間違いなどを見つけた際は報告していだだけると僕はとても喜ぶ。

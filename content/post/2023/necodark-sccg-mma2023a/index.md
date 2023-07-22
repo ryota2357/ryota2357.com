@@ -21,13 +21,13 @@ tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
 >    1. [interface](#27-interface)
 > 1. [補足](#3-補足)
 >    1. [なぜ C# で作ったのか](#31-なぜ-c-で作ったのか)
->    1. [Converter の説明で出てきた`Name`と`Priority`プロパティは何をしているか](#32-converter-の説明で出てきたnameとpriorityプロパティは何をしているか)
->    1. [コード例で出てきてた`BuilderQuery`とは](#33-コード例で出てきてたbuilderqueryとは)
+>    1. [Converter の説明で出てきた `Name` と `Priority` プロパティは何をしているか](#32-converter-の説明で出てきたnameとpriorityプロパティは何をしているか)
+>    1. [コード例で出てきてた `BuilderQuery` とは](#33-コード例で出てきてたbuilderqueryとは)
 > 1. [最後に](#4-最後に)
 
 こんにちは。2 年の ryota2357 です。
 
-先日、「necodark」というカラーテーマをリリースしました。このカラーテーマは 「Sccg」というカラーテーマジェネレータ(私が開発し、先日 v0.2.1 をリリースしました)を用いて作成しました。
+先日、「necodark」というカラーテーマをリリースしました。このカラーテーマは「Sccg」というカラーテーマジェネレータ(私が開発し、先日 v0.2.1 をリリースしました)を用いて作成しました。
 
 本投稿では「necodark」と「Sccg」について書いていきます。
 
@@ -64,7 +64,7 @@ necodark を作成した目的は主に次の 2 点です。
 
 necodark は「制御 (if や for)」「リテラル (boolean, 数値)」に特徴的な配色を行っています。
 
-「制御」に充てている色は インディゴ(#8a99ff) です。この色はキーワード色として使っている青(#379df1)に近い色を持ちます。
+「制御」に充てている色はインディゴ(#8a99ff) です。この色はキーワード色として使っている青(#379df1)に近い色を持ちます。
 
 ![statement-indigo](statement-indigo.png)
 
@@ -77,9 +77,9 @@ vsdark では「制御」と「キーワード」には同じ色が当てられ�
 通常時はとても良いマーカーになるかもしれませんが、疲労時には同じ色が多いと感じて目が滑ってしまうかもしれません。これを解決するため necodark では「制御」にインディゴを当てました。
 
 necodark で使用したインディゴと青は近い色です。しかしインディゴは青よりは目立たないでしょう。 先ほど「制御」は重要なマーカーと言ったのにキーワードのようには目立っていません。
-しかしこれで良いのです。 「制御」となる文字は`if`や`for`、`loop`、`raise`、`break`などが挙げられます。これらの文字はコード内でインデントや `}` などの付近で使用されています。
+しかしこれで良いのです。「制御」となる文字は `if` や `for`、`loop`、`raise`、`break` などが挙げられます。これらの文字はコード内でインデントや `}` などの付近で使用されています。
 そのため文字色で目出させずにも識別することは十分可能だと考えました。
-また、特に`if`や`for`ではリテラルと共に使用されることも多いです。necodark ではリテラルにも目立つ特徴的な配色がされています。
+また、特に `if` や `for` ではリテラルと共に使用されることも多いです。necodark ではリテラルにも目立つ特徴的な配色がされています。
 このことからも「制御」にはキーワードよりは目立たないインディゴを割り当てるのが適当だと考えました。
 
 「リテラル」に当てている色は、真偽値には青緑(#4dcbbb)、数値にはピンク(#fb749c)です。
@@ -120,14 +120,14 @@ Sccg is a tool to generate color schemes for your terminal, editor, etc.
   - Cycle reference will be detected by `Source`, then Sccg warn you or failed to build.
 ```
 
-まとめると Sccg は、C# でカスタマイズ可能であり、多くのプラットフォームに統一された方法でカラーテーマを作成することができ、typo や色の循環 link を抑制することができることで、安全に効率的にオリジナルのカラーテーマを作成することを可能にするカラーテーマジェネレータです。(このことを目標に開発してます)
+まとめると Sccg は、C# でカスタマイズ可能であり、多くのプラットフォームに統一された方法でカラーテーマを作成でき、typo や色の循環 link を抑制できることで、安全に効率的にオリジナルのカラーテーマを作成することを可能にするカラーテーマジェネレータです。(このことを目標に開発してます)
 
-続いて Sccg にて採用した概念である、`Source`、`Formatter`、`Converter`、`Writer`の説明と関係を説明します。README にもあるように、これらを用いてカラーテーマの生成ロジックをスクリプト可能なものに分割しました。次にこれらの関係を図示します(README からの引用)。
+続いて Sccg にて採用した概念である、`Source`、`Formatter`、`Converter`、`Writer` の説明と関係を説明します。README にもあるように、これらを用いてカラーテーマの生成ロジックをスクリプト可能なものに分割しました。次にこれらの関係を図示します(README からの引用)。
 
 ![sccg-structure](sccg-structure.svg)
 
-`Source` から `SourceItem` というものが生成され、それが`Formatter`によって`Content`に加工され`Writer`によって何かしらの形をとって出力されます。
-途中`Converter`が`SourceItem`や`Content`を加工することができます。
+`Source` から `SourceItem` というものが生成され、それが `Formatter` によって `Content` に加工され `Writer` によって何かしらの形をとって出力されます。
+途中 `Converter` が `SourceItem` や `Content` を加工できます。
 
 ここからは necodark の実装と合わせて、それぞれの概念がどのように使われ、働くことでカラーテーマが生成されるのかを見ていきましょう。個々の概念の説明も書いていきます。
 
@@ -174,30 +174,30 @@ builder.Build();
 
 1 行目から読んでいきます。using 部分を説明するために、Sccg が 2 つの部分に分けられていることを先に説明します。
 Sccg はコアな部分(Sccg の核となる部分)とそれの付属部分(標準ライブラリ的な部分)の 2 つに別れています。コアな部分を単に Sccg といい、付属部分を Sccg.Builtin と呼びます。
-`using`にてコア部分といくつかの付属部分をインポートしています。
+`using` にてコア部分といくつかの付属部分をインポートしています。
 
-`using`の次では `Builder`クラスのインスタンス builder を生成しています(`Builder`クラスは Sccg に定義されています)。`Builder`クラスは登録された`Source`や`Formatter`などを適切に利用し、カラーテーマを生成するロジックをもったクラスです。
-インスタンスの生成時にメタデータを記述しています。これにより、いつくかの`Source`や`Formatter`にメタデータを注入することができます。
+`using` の次では `Builder` クラスのインスタンス builder を生成しています(`Builder` クラスは Sccg に定義されています)。`Builder` クラスは登録された `Source` や `Formatter` などを適切に利用し、カラーテーマを生成するロジックをもったクラスです。
+インスタンスの生成時にメタデータを記述しています。これにより、いつくかの `Source` や `Formatter` にメタデータを注入できます。
 
-続いて、builder に Source を登録しています。 `Use<T>()`メソッドを用いて`T`クラスを builder に登録できます。
+続いて、builder に Source を登録しています。 `Use<T>()` メソッドを用いて `T` クラスを builder に登録できます。
 上記スクリプトでは Vim・Neovim 用の様々な Source を登録しています。
 
-`Source`の登録の次に `Formatter` を登録しています。Vim と Neovim 用のテーマを作っているので `VimFormatter`と `NeovimFormatter`を登録しています。
-`Formatter`の次は `Converter` 、そして最後に `Writer` を登録しています。必要なものが全て登録しおわったら builder の`Build()` メソッドを呼び出すことでカラーテーマが生成されます。
+`Source` の登録の次に `Formatter` を登録しています。Vim と Neovim 用のテーマを作っているので `VimFormatter` と `NeovimFormatter` を登録しています。
+`Formatter` の次は `Converter` 、そして最後に `Writer` を登録しています。必要なものが全て登録しおわったら builder の `Build()` メソッドを呼び出すことでカラーテーマが生成されます。
 
-`Source`、`Formatter`、`Converter`、`Writer`は 0 個以上の任意の個数登録することができます。上のコードでは順番に登録してますが順番に登録する必要はありません。
+`Source`、`Formatter`、`Converter`、`Writer` は 0 個以上の任意の個数登録できます。上のコードでは順番に登録してますが順番に登録する必要はありません。
 
 ちなみに、Sccg は `Source` や `Formatter` などは 1 つも定義していません。Sccg.Builtin にて定義されています。
-`Source`や`Formatter`、`Writer`はただのクラスなので継承によってカスタマイズ・拡張することも可能です。もちろん自分で 1 から作成することも可能であり、さほど難しくはありません。
+`Source` や `Formatter`、`Writer` はただのクラスなので継承によってカスタマイズ・拡張することも可能です。もちろん自分で 1 から作成することも可能であり、さほど難しくはありません。
 
 ### 2.3 Source
 
-1 つの`Source` は 0 個以上のカラーグループ(トークン)と、各カラーグループの設定(色やフォントスタイル)を持っています。
-私たちはカラーテーマを作成するために`Source`を作る必要があります。1 から Source を作るのは大変なので基本的には Sccg.Builtin から提供される Source を用いると良いでしょう。
+1 つの `Source` は 0 個以上のカラーグループ(トークン)と、各カラーグループの設定(色やフォントスタイル)を持っています。
+私たちはカラーテーマを作成するために `Source` を作る必要があります。1 から Source を作るのは大変なので基本的には Sccg.Builtin から提供される Source を用いると良いでしょう。
 
 Sccg.Builtin が提供する Source はカラーグループは持っていますが、各カラーグループの設定は持っていません。
-私たちはそのカラーグループに色やフォントスタイルを設定することができます。私たちは色・フォントスタイルを 0 個以上設定したものを`Builder`に登録します。
-登録された `Source`は私たちの設定に基づき、0 個以上の`SourceItem`と呼ばれるものを生成します。
+私たちはそのカラーグループに色やフォントスタイルを設定できます。私たちは色・フォントスタイルを 0 個以上設定したものを `Builder` に登録します。
+登録された `Source` は私たちの設定に基づき、0 個以上の `SourceItem` と呼ばれるものを生成します。
 
 実際にコードを掲載します。例えば Neovim の Editor ハイライトを設定したい場合は次のようにします。
 
@@ -215,7 +215,7 @@ class EditorHighlight : NeovimEditorHighlightSource
 }
 ```
 
-この例は Sccg のテストで使っているコードです。`NeovimEditorHighlightSource`を継承した`EditorHighlight`クラスの`Custom()`メソッド内で`Set()`関数や`Link()`関数を用いて設定を書くことができます(`NeovimEditorHighlightSource` は Sccg.Builtin から提供される`Source`です)。lCursor というグループに 前景色を#aaff00、スタイルを bold に設定したり、Title グループの背景色を #000000 に設定したり、Conceal グループを ColorColumn グループにリンクさせている、、などがわかると思います。
+この例は Sccg のテストで使っているコードです。`NeovimEditorHighlightSource` を継承した `EditorHighlight` クラスの `Custom()` メソッド内で `Set()` 関数や `Link()` 関数を用いて設定を書くことができます(`NeovimEditorHighlightSource` は Sccg.Builtin から提供される `Source` です)。lCursor というグループに前景色を#aaff00、スタイルを bold に設定したり、Title グループの背景色を #000000 に設定したり、Conceal グループを ColorColumn グループにリンクさせている、、などがわかると思います。
 
 次に necodark にて実際に使用しているコードを載せました(同じく Neovim の Editor ハイライトを設定しているところです)。
 
@@ -238,35 +238,35 @@ public class NeovimEditorHighlight : NeovimEditorHighlightSource
  ……
 ```
 
-先ほどのように`Set()`で直接色・フォントスタイルを設定するのではなく、`S.*`というように、スタイル設定をまとめた変数を用意して`Set()`の第二引数で指定しています。
+先ほどのように `Set()` で直接色・フォントスタイルを設定するのではなく、`S.*` というように、スタイル設定をまとめた変数を用意して `Set()` の第二引数で指定しています。
 
 ### 2.4 Formatter
 
-1 つの`Formatter`は`Source`により生成された 0 個以上の`SourceItem`を受け取り、`Content`1 つだけを生成するものです。`SourceItem`を参照するだけで消費はしません(できません)。
+1 つの `Formatter` は `Source` により生成された 0 個以上の `SourceItem` を受け取り、`Content`1 つだけを生成するものです。`SourceItem` を参照するだけで消費はしません(できません)。
 
-実装は普通`Formatter`が最も複雑になり、異なる`Formatter`間で共通する操作も少ないです。
-基本的には 1 つの`Formatter`がカラーテーマの 1 つのターゲットプラットフォームに対応する形を取ります。Vim に対してビルドしたければ`VimFormatter`を、VS Code ならば`VSCodeFormatter`(現在開発中)を`Builder`に登録することで、適切な`Content`が生成されます。
+実装は普通 `Formatter` が最も複雑になり、異なる `Formatter` 間で共通する操作も少ないです。
+基本的には 1 つの `Formatter` がカラーテーマの 1 つのターゲットプラットフォームに対応する形を取ります。Vim に対してビルドしたければ `VimFormatter` を、VS Code ならば `VSCodeFormatter`(現在開発中)を `Builder` に登録することで、適切な `Content` が生成されます。
 
-`Formatter`は受け取った`SourceItem`のうち 0 個以上を処理して(参照して)`Content`を生成します。
-ある`Formatter`にて処理してほしい場合はその`Formatter`が処理可能な`SourceItem`を`Source`にて生成するようにしなければなりません。
+`Formatter` は受け取った `SourceItem` のうち 0 個以上を処理して(参照して)`Content` を生成します。
+ある `Formatter` にて処理してほしい場合はその `Formatter` が処理可能な `SourceItem` を `Source` にて生成するようにしなければなりません。
 具体的には適切な interface を実装する必要があります。
-Sccg.Builtin の`Source`の中には複数の`Formatter`で処理可能にした`SourceItem`を生成する`Source`があります。
-例えば`Ansi16ColorSource`は`VimFormatter`, `NeovimFormatter`, `Iterm2Formatter`, `AlactirryFormatter`で処理可能な`SourceItem`を生成する`Source`です。
-処理してほしくない場合は`ItemTarget`プロパティをオーバーロードすることで無効化することができます。
-他にも`VimSyntaxGroupSource`は`VimFormatter`と`NeovimFormatter`で処理可能な`SourceItem`を生成します。このようにすることで設定を複数プラットフォームで使い回すことを可能にしています。
+Sccg.Builtin の `Source` の中には複数の `Formatter` で処理可能にした `SourceItem` を生成する `Source` があります。
+例えば `Ansi16ColorSource` は `VimFormatter`, `NeovimFormatter`, `Iterm2Formatter`, `AlactirryFormatter` で処理可能な `SourceItem` を生成する `Source` です。
+処理してほしくない場合は `ItemTarget` プロパティをオーバーロードすることで無効化できます。
+他にも `VimSyntaxGroupSource` は `VimFormatter` と `NeovimFormatter` で処理可能な `SourceItem` を生成します。このようにすることで設定を複数プラットフォームで使い回すことを可能にしています。
 
-実装コードを載せようと思ったのですが、どの`Formatter`も長かったので省略します。
+実装コードを載せようと思ったのですが、どの `Formatter` も長かったので省略します。
 
 ### 2.5 Converter
 
-`Converter`には 2 つの種類が存在します、`SourceItemConverter`と`ContentConverter`です。それぞれ`SourceItem`、`Content`を加工する、という役割を持ちます。
+`Converter` には 2 つの種類が存在します、`SourceItemConverter` と `ContentConverter` です。それぞれ `SourceItem`、`Content` を加工する、という役割を持ちます。
 
-`SourceItemConverter`は n 個(n は 0 以上の整数)の`SourceItem`を受け取り m 個(m は 0 以上の整数)の`SourceItem`を返します。
-この時`Formatter`とは異なり`SourceItem`を消費します。そのため加工したくないものに関しては受け取ったものをそのまま返す必要があります。`ContentConverter`も同様です。`Content`を消費します。
+`SourceItemConverter` は n 個(n は 0 以上の整数)の `SourceItem` を受け取り m 個(m は 0 以上の整数)の `SourceItem` を返します。
+この時 `Formatter` とは異なり `SourceItem` を消費します。そのため加工したくないものに関しては受け取ったものをそのまま返す必要があります。`ContentConverter` も同様です。`Content` を消費します。
 
-現在 Sccg.Builtin からは`Converter`は 1 つも提供していません。(VS Code 対応において`MultiTextContentSplitter`という`ContentConverter`が追加される予定です)
+現在 Sccg.Builtin からは `Converter` は 1 つも提供していません。(VS Code 対応において `MultiTextContentSplitter` という `ContentConverter` が追加される予定です)
 
-necodark では複数プラットフォームにビルドする際、ビルドディレクトリ整理のための`ContentConverter`を作成し利用しています。
+necodark では複数プラットフォームにビルドする際、ビルドディレクトリ整理のための `ContentConverter` を作成し利用しています。
 
 ```cs
 public class FilenameConverter : IContentConverter
@@ -297,20 +297,20 @@ public class FilenameConverter : IContentConverter
 }
 ```
 
-`Name` と `Priority` というプロパティはここでは無視してください。`Builder` が適切に動作するために必要なものであって`Converter`の説明には関係しません。
-また、`SingleTextContent`というクラスが登場してますが、これは Sccg.Builtin にて定義されている`Content`の 1 つです。
+`Name` と `Priority` というプロパティはここでは無視してください。`Builder` が適切に動作するために必要なものであって `Converter` の説明には関係しません。
+また、`SingleTextContent` というクラスが登場してますが、これは Sccg.Builtin にて定義されている `Content` の 1 つです。
 `Filename` と `Text` という 2 つのメンバを持つクラスで、単一のテキストファイルを表すためのクラスです。
 
-`FilenameConverter`ではファイルパス(Filename)を見てディレクトリ構造を追加しています。
+`FilenameConverter` ではファイルパス(Filename)を見てディレクトリ構造を追加しています。
 lua ファイルの場合は nvim/下に配置するように、vim ファイルの場合は vim/以下に配置するようにファイル名を変更したものを返しています。
 
 ### 2.6 Writer
 
-`Writer`は 0 個以上の`Content`をファイルや標準出力など、何らかの形に出力するものです。
-necodark では Sccg.Builtin が提供する`TextFileWriter`を利用して`SingleTextContent`という`Content`をファイルに出力しています。
-`Formatter`と同様、`Content`は消費されません(することができません)。
+`Writer` は 0 個以上の `Content` をファイルや標準出力など、何らかの形に出力するものです。
+necodark では Sccg.Builtin が提供する `TextFileWriter` を利用して `SingleTextContent` という `Content` をファイルに出力しています。
+`Formatter` と同様、`Content` は消費されません(できません)。
 
-`Writer`の実装は非常にシンプルなものになります。`TextFileWriter`の実装は次のとおりです。
+`Writer` の実装は非常にシンプルなものになります。`TextFileWriter` の実装は次のとおりです。
 
 ```cs
 public class TextFileWriter : Writer<SingleTextContent>
@@ -337,22 +337,22 @@ public class TextFileWriter : Writer<SingleTextContent>
 
 ### 2.7 interface
 
-個々の概念を実際のコードにする際に次に示す interface を Sccg にて定義してあります。(名前空間は`Sccg.Core`です)
+個々の概念を実際のコードにする際に次に示す interface を Sccg にて定義してあります。(名前空間は `Sccg.Core` です)
 
-- `Source`を表す`ISource`
-- `SourceItem`を表す`ISourceItem`
-- `Formatter`を表す`IFormatter`
-- `Content`を表す`IContent`
-- `Converter`を表す`ISourceItemConverter`と`IContentConverter`
-- `Writer`を表す`IWriter`
+- `Source` を表す `ISource`
+- `SourceItem` を表す `ISourceItem`
+- `Formatter` を表す `IFormatter`
+- `Content` を表す `IContent`
+- `Converter` を表す `ISourceItemConverter` と `IContentConverter`
+- `Writer` を表す `IWriter`
 
 さらに、これら interface を実装し、基本的な実装を加えた抽象 class も定義してあります。
 
-- `ISource`を実装した`Source<TGroup, TItem> where TItem : ISourceItem`
-- `IFormatter`を実装した`Formatter<TSourceItem, TContent> where TSourceItem : ISourceItem where TContent : IContent`
-- `IWriter`を実装した`Writer<TContent> where TContent : IContent`
+- `ISource` を実装した `Source<TGroup, TItem> where TItem : ISourceItem`
+- `IFormatter` を実装した `Formatter<TSourceItem, TContent> where TSourceItem : ISourceItem where TContent : IContent`
+- `IWriter` を実装した `Writer<TContent> where TContent : IContent`
 
-Sccg.Builtin ではこれら抽象 class と interface を実装した class, interface を作成し、`Builder`にて目的とするカラーテーマが作成できるようにしています。
+Sccg.Builtin ではこれら抽象 class と interface を実装した class, interface を作成し、`Builder` にて目的とするカラーテーマが作成できるようにしています。
 詳しくはソースコードを読んでください。一応ドキュメントコメントも書いてあります。
 
 ## 3. 補足
@@ -363,16 +363,16 @@ Sccg.Builtin ではこれら抽象 class と interface を実装した class, in
 
 TypeScript とか Dart とか Rust も考えたけど、どれも条件に当てはまらなかった。
 
-### 3.2 Converter の説明で出てきた`Name`と`Priority`プロパティは何をしているか
+### 3.2 Converter の説明で出てきた `Name` と `Priority` プロパティは何をしているか
 
-`Name`, `Priority`プロパティは`ISource`, `IFormatter`, `ISourceItemConverter`, `IContentConverter`, `IWriter`全てに実装されているプロパティです。
-これらのプロパティは`Builder`クラスにて使われます。
+`Name`, `Priority` プロパティは `ISource`, `IFormatter`, `ISourceItemConverter`, `IContentConverter`, `IWriter` 全てに実装されているプロパティです。
+これらのプロパティは `Builder` クラスにて使われます。
 
-`Name`プロパティは`Builder::Use<T>()`で利用され、重複したものが登録されていないことを確認します。重複したものが登録された時には例外(`ArgumentException`)が投げられます。
+`Name` プロパティは `Builder::Use<T>()` で利用され、重複したものが登録されていないことを確認します。重複したものが登録された時には例外(`ArgumentException`)が投げられます。
 
-`Priority`プロパティは`Builder::Build()`で利用され、例えば、登録された複数の`Source`の`Source`内での処理順番を決定します。小さい方が先に処理されます。
+`Priority` プロパティは `Builder::Build()` で利用され、例えば、登録された複数の `Source` の `Source` 内での処理順番を決定します。小さい方が先に処理されます。
 
-次にドキュメントコメント付きの`ISource`の実装を載せておきます。
+次にドキュメントコメント付きの `ISource` の実装を載せておきます。
 
 ```cs
 /// <summary>
@@ -408,11 +408,11 @@ public interface ISource
 }
 ```
 
-### 3.3 コード例で出てきてた`BuilderQuery`とは
+### 3.3 コード例で出てきてた `BuilderQuery` とは
 
-上の`ISource`のドキュメントコメントにも書いてありますが、他の`Source`や`Formatter`, `SourceItem`などにアクセスするための手段です。
+上の `ISource` のドキュメントコメントにも書いてありますが、他の `Source` や `Formatter`, `SourceItem` などにアクセスするための手段です。
 necodark でもいくつかの場所で利用しています。
-例えば`Source`は 1 つ 1 つが独立して存在しているので別の`Source`に連動したことをしたい、だとか、`Formatter`にて暗黙的に`ContentConverter`を追加したい、など色々 1 つのクラスを飛び越えた連携をするのに使うものです。
+例えば `Source` は 1 つ 1 つが独立して存在しているので別の `Source` に連動したことをしたい、だとか、`Formatter` にて暗黙的に `ContentConverter` を追加したい、など色々 1 つのクラスを飛び越えた連携をするのに使うものです。
 
 次にドキュメントからメソッド一覧を載せました。
 
@@ -420,5 +420,5 @@ necodark でもいくつかの場所で利用しています。
 
 ## 4. 最後に
 
-個人的に非常に満足できるカラーテーマを作成することができました。また、カラーテーマジェネレータも良いものができていると感じています。
+個人的に非常に満足できるカラーテーマを作成できました。また、カラーテーマジェネレータも良いものができていると感じています。
 今後もカラーテーマ、ジェネレータともに開発を進め、さらに強力なものにしていきます。

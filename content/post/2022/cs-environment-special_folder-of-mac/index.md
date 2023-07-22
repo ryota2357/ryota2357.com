@@ -27,13 +27,13 @@ tags: ["CSharp"]
 ## 結果
 
 以下のようなスクリプトを実行した結果。  
-オプションに`DoNotVerify`を設定してるので、すでに存在するかどうかは考慮してない。
+オプションに `DoNotVerify` を設定してるので、すでに存在するかどうかは考慮してない。
 
 ```cs
 Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Cookies, Environment.SpecialFolderOption.DoNotVerify));
 ```
 
-出力に`$HOME`って書いてるけど、実際はそれも展開されて出力されてる。 「ー」は空行が出力されたもの。
+出力に `$HOME` って書いてるけど、実際はそれも展開されて出力されてる。「ー」は空行が出力されたもの。
 
 | SpecialFolder          | 出力                    |
 | :--------------------- | :---------------------- |

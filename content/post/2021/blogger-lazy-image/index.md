@@ -9,7 +9,7 @@ PageSpeed Insights で言われるやつです。
 「画像を遅延読み込みしろ」と
 
 html を書き換えるのは面倒なので、javascript を書いて自動で遅延読み込みされるようにしました。
-`lazysizes`というものを使います。
+`lazysizes` というものを使います。
 
 GiiHub のリポジトリはこれ、[https://github.com/aFarkas/lazysizes](https://github.com/aFarkas/lazysizes)
 
@@ -25,7 +25,7 @@ blogger の「テーマ > HTML を編集」にて以下を挿入します(async 
 />
 ```
 
-続いて`</body>`ダグの直前に以下の javascript をスクリプトタグとかを使って埋め込めば OK です。
+続いて `</body>` ダグの直前に以下の javascript をスクリプトタグとかを使って埋め込めば OK です。
 
 ```js
 // lazysizes

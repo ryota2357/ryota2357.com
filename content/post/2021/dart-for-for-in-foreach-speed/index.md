@@ -8,7 +8,7 @@ tags: ["Dart"]
 benchmark_harness を使用してそれぞれの速度を測った。  
 そこそこの長さの List を作って、その和を for で求めるだけのもの。
 
-`dart run`と、`dart compile exe`の 2 つで複数回測定
+`dart run` と、`dart compile exe` の 2 つで複数回測定
 
 ## 環境
 
@@ -25,7 +25,7 @@ MacBook Pro (13-inch, 2018, Four Thunderbolt 3 Ports)
 
 ### dart run
 
-`dart run`では for と for-in はほぼ同速度。for が速かったり、for-in の方が速かったり実行のたびに変わる。
+`dart run` では for と for-in はほぼ同速度。for が速かったり、for-in の方が速かったり実行のたびに変わる。
 
 |    for    |  for-in   |  foreach  |
 | :-------: | :-------: | :-------: |
@@ -34,7 +34,7 @@ MacBook Pro (13-inch, 2018, Four Thunderbolt 3 Ports)
 
 ### dart compile
 
-`dart compile exe`でコンパイルしたものを実行してみると、for-in が遅くなる。
+`dart compile exe` でコンパイルしたものを実行してみると、for-in が遅くなる。
 
 |    for    |  for-in   |  foreach  |
 | :-------: | :-------: | :-------: |

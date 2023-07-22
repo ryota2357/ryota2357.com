@@ -55,7 +55,7 @@ CPPFLAGS="-I$(brew --prefix zlib)/include" pyenv install 2.7.18
 
 ## 対処法
 
-`zlib`は Homebrew で入れてること前提。
+`zlib` は Homebrew で入れてること前提。
 
 ```sh
 export CPPFLAGS="-I$(brew --prefix zlib)/include"
@@ -63,7 +63,7 @@ export LDFLAGS="-L$(brew --prefix zlib)/lib"
 export PKG_CONFIG_PATH="$(brew --prefix zlib)/lib/pkgconfig"
 ```
 
-`CPPFLAGS`だけじゃなくて`LDFLAGS`、`PKG_CONFIG_PATH`も指定する必要があるみたい。
+`CPPFLAGS` だけじゃなくて `LDFLAGS`、`PKG_CONFIG_PATH` も指定する必要があるみたい。
 
 ## 参考
 

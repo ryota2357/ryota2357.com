@@ -21,7 +21,7 @@ $ npm i canvas
 
 ## 画像生成処理を書く
 
-`generateImage()`を作る。
+`generateImage()` を作る。
 
 先に実装全体を載せる。  
 タイトルの通り色々雑に作ってるので、汚いところは目を瞑ってほしい。
@@ -213,9 +213,9 @@ export const generateImage = async (params: Params) => {
 };
 ```
 
-`setupCanvas()`で Canvas 型の`canvas`を生成、`writeText()`で Canvas の Context に色々テキスト描画、Canvas を png 画像用の Image オブジェクトにして return してる。
+`setupCanvas()` で Canvas 型の `canvas` を生成、`writeText()` で Canvas の Context に色々テキスト描画、Canvas を png 画像用の Image オブジェクトにして return してる。
 
-また、引数(`Params`型)で生成する画像をどのようにするのかを制御できるようにしてある。
+また、引数(`Params` 型)で生成する画像をどのようにするのかを制御できるようにしてある。
 
 ```typescript
 type Px = number;
@@ -281,9 +281,9 @@ const image = await generateImage({
 
 </details>
 
-以下、`generateImage()`ないで使用している`setupCanvas()`と、`writeText()`を説明する。
+以下、`generateImage()` ないで使用している `setupCanvas()` と、`writeText()` を説明する。
 
-### `setupCanvas()`の作成
+### `setupCanvas()` の作成
 
 この関数がやることはフォント、背景画像、スタイルが設定された Canvas オブジェクトを返すことである。  
 実装は以下である。
@@ -308,16 +308,16 @@ const setupCanvas = async ({
 };
 ```
 
-`createCanvas()`をする前に`registerFont()`をしなきゃいけない、みたいなことを何処かで読んだ。順番を逆にするとどうなるかは試してない。
+`createCanvas()` をする前に `registerFont()` をしなきゃいけない、みたいなことを何処かで読んだ。順番を逆にするとどうなるかは試してない。
 
-OG 画像ということで、文字列は画像の中央に配置したい。そこで`context.textAlign`に center を指定している。また、この後の複数行の文字列を配置する時に計算をしやすくするために`context.textBaseline`を middle にしておくと良いであろう。
+OG 画像ということで、文字列は画像の中央に配置したい。そこで `context.textAlign` に center を指定している。また、この後の複数行の文字列を配置する時に計算をしやすくするために `context.textBaseline` を middle にしておくと良いであろう。
 
-### `writeText()`の作成
+### `writeText()` の作成
 
 canvas に文字を描く関数である。  
 この関数を実装するためにいくつかの関数を実装する。
 
-1 つ目は`textSize()`。これは与えれた文字列のサイズ(幅と高さ)を返す関数である。Canvas の Context を用いて計算することができる。
+1 つ目は `textSize()`。これは与えれた文字列のサイズ(幅と高さ)を返す関数である。Canvas の Context を用いて計算できる。
 
 ```typescript
 const textSize = (context: CanvasRenderingContext2D, text: string) => {
@@ -329,9 +329,9 @@ const textSize = (context: CanvasRenderingContext2D, text: string) => {
 };
 ```
 
-2 つ目は`splitLine()`である。これは与えられた文字列をいい感じに改行する(string[]にする)関数である。具体的には指定した文字幅(`maxWidth`)以内に 1 行が収まるように文字列を区切る。
+2 つ目は `splitLine()` である。これは与えられた文字列をいい感じに改行する(string[]にする)関数である。具体的には指定した文字幅(`maxWidth`)以内に 1 行が収まるように文字列を区切る。
 
-上に書いた`textSize()`を利用している。
+上に書いた `textSize()` を利用している。
 
 ```typescript
 const splitLine = ({
@@ -379,10 +379,10 @@ const splitLine = ({
 複雑な処理はしていないので読めばわかると思うが大まかに説明をする。
 
 1. 与えられた文字列(text)を単語に分解する(`splitWord`)。この時、英字と一部記号の連続を 1 単語として数え(`isEnChar`、記号は今後増やすかもしれない)、日本語は 1 文字 1 単語とした。
-2. 分解された単語をそれぞれ`textSize()`に渡して横幅を取得する。
+2. 分解された単語をそれぞれ `textSize()` に渡して横幅を取得する。
 3. maxWidth を超えないように「1 行」を作っていく。
 
-これらを用いて`writeText()`を実装している。
+これらを用いて `writeText()` を実装している。
 
 ```typescript
 const writeText = ({
@@ -424,13 +424,13 @@ const writeText = ({
 };
 ```
 
-ごちゃごちゃしているけど、その理由は`style.padding`で配置する文字列のパディングを設定できるようにしてたり、`style.lineHeight`で文字の高さ(em)を設定できるようにしてるので、それらを考慮した文字列を配置する座標を計算しているからである。
+ごちゃごちゃしているけど、その理由は `style.padding` で配置する文字列のパディングを設定できるようにしてたり、`style.lineHeight` で文字の高さ(em)を設定できるようにしてるので、それらを考慮した文字列を配置する座標を計算しているからである。
 
-文字列は Canvas の context に対して、`context.fillText(文字、x座標, y座標)`で配置できる。
+文字列は Canvas の context に対して、`context.fillText(文字、x座標, y座標)` で配置できる。
 
 ## Github Action で自動生成
 
-実際に`generateImage()`を利用して画像を生成しているプログラムは[ryota2357.com-images/src/main.ts](https://github.com/ryota2357/ryota2357.com-images/blob/main/src/main.ts)に置いてある。  
+実際に `generateImage()` を利用して画像を生成しているプログラムは[ryota2357.com-images/src/main.ts](https://github.com/ryota2357/ryota2357.com-images/blob/main/src/main.ts)に置いてある。  
 このプログラムを適当なタイミングで走らせたい。  
 僕はブログのデプロイを Github Action で行っているので、そのデプロイ時の Github Action からこのプログラムを動作させるようにした。
 
@@ -476,7 +476,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-ここで重要なのは 4 行目の`repository_dispatch`である。これを使うとこの Github Action を別の Github Action から呼び出すことが可能になる。
+ここで重要なのは 4 行目の `repository_dispatch` である。これを使うとこの Github Action を別の Github Action から呼び出すことが可能になる。
 
 次に、これを呼び出す側を作る。こんな感じで呼び出せば良い。[GitHub Docs: create-a-repository-dispatch-event](https://docs.github.com/ja/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-dispatch-event)
 
@@ -493,7 +493,7 @@ jobs:
       -d '{"event_type":"gen-og-image"}'
 ```
 
-ここで`REPOSITORY_DISPATCH_KEY`というシークレットキーを使っている。repository dispatch を実行するにはパーソナルアクセストークンが必要となる。  
+ここで `REPOSITORY_DISPATCH_KEY` というシークレットキーを使っている。repository dispatch を実行するにはパーソナルアクセストークンが必要となる。  
 Fine-grained personal access tokens を使うなら permission を次のように設定すると実行できた。
 
 ![permission](permission.png)

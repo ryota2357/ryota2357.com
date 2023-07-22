@@ -9,7 +9,7 @@ tags: ["CSharp"]
 
 ## 問題
 
-こんな感じの`Test`クラスがある時、
+こんな感じの `Test` クラスがある時、
 
 ```cs
 class Test {

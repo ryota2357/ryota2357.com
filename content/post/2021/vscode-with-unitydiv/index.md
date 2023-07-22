@@ -70,7 +70,7 @@ Unity 開発に必要な基本的で人気のある拡張機能をインスト�
 <div class="bcard-wrapper"><span class="bcard-header"><div class="bcard-site"><a href="https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug" rel="nofollow" target="_blank">https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug" rel="nofollow" target="_blank">Debugger for Unity - Visual Studio Marketplace</a></div><div class="bcard-description">Extension for Visual Studio Code - Unity debugger extension</div><a href="https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://unity.gallerycdn.vsassets.io/extensions/unity/unity-debug/3.0.2/1605217535175/Microsoft.VisualStudio.Services.Icons.Default)"></div></a></span></div>
 
 MonoBehaaiour 関係の関数のスニペットが使えるようにします。
-これで、例えば`start`で`void Start(){...}`や、`update`で`void Update(){...}`が挿入されるようになります。
+これで、例えば `start` で `void Start(){...}` や、`update` で `void Update(){...}` が挿入されるようになります。
 
 <div class="bcard-wrapper"><span class="bcard-header"><div class="bcard-site"><a href="https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets" rel="nofollow" target="_blank">https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets" rel="nofollow" target="_blank">MonoBehaviour Snippets - Visual Studio Marketplace</a></div><div class="bcard-description">Extension for Visual Studio Code - MonoBehaviour Snippets for Visual Studio Code</div><a href="https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://zrachod.gallerycdn.vsassets.io/extensions/zrachod/mono-snippets/0.0.2/1500683522677/Microsoft.VisualStudio.Services.Icons.Default)"></div></a></span></div>
 
@@ -78,13 +78,13 @@ C#を書くなら必須。
 
 <div class="bcard-wrapper"><span class="bcard-header"><div class="bcard-site"><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" rel="nofollow" target="_blank">https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" rel="nofollow" target="_blank">C# - Visual Studio Marketplace</a></div><div class="bcard-description">Extension for Visual Studio Code - C# for Visual Studio Code (powered by OmniSharp).</div><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://ms-dotnettools.gallerycdn.vsassets.io/extensions/ms-dotnettools/csharp/1.23.9/1612367364423/Microsoft.VisualStudio.Services.Icons.Default)"></div></a></span></div>
 
-`///`で xml コメントを挿入できるようになる。
+`///` で xml コメントを挿入できるようになる。
 
 <div class="bcard-wrapper"><span class="bcard-header"><div class="bcard-site"><a href="https://marketplace.visualstudio.com/items?itemName=k--kato.docomment" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://marketplace.visualstudio.com/items?itemName=k--kato.docomment" rel="nofollow" target="_blank">https://marketplace.visualstudio.com/items?itemName=k--kato.docomment</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://marketplace.visualstudio.com/items?itemName=k--kato.docomment" rel="nofollow" target="_blank">C# XML Documentation Comments - Visual Studio Marketplace</a></div><div class="bcard-description">Extension for Visual Studio Code - Generate C# XML documentation comments for ///</div><a href="https://marketplace.visualstudio.com/items?itemName=k--kato.docomment" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://k--kato.gallerycdn.vsassets.io/extensions/k--kato/docomment/0.1.20/1608301041416/Microsoft.VisualStudio.Services.Icons.Default)"></div></a></span></div>
 
 ### C#補完を有効にする
 
-基本設定の`setting.json`に以下を追記します。
+基本設定の `setting.json` に以下を追記します。
 
 ```json
 "omnisharp.useGlobalMono": "always",
@@ -133,7 +133,7 @@ meta ファイルや、fbx などの編集しない不必要なファイルを�
 "terminal.integrated.fontFamily": "monospace"
 ```
 
-ターミナルは`monospace`しかサポートしてないよと言われたので、`terminal.integrated.fontFamily`を設定。
+ターミナルは `monospace` しかサポートしてないよと言われたので、`terminal.integrated.fontFamily` を設定。
 
 ## その他
 
@@ -145,7 +145,7 @@ VisualStudio で Vim 拡張がうまく動かなくなったから VSCode に乗
 
 <div class="bcard-wrapper"><span class="bcard-header"><div class="bcard-site"><a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim" rel="nofollow" target="_blank">https://marketplace.visualstudio.com/items?itemName=vscodevim.vim</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim" rel="nofollow" target="_blank">Vim - Visual Studio Marketplace</a></div><div class="bcard-description">Extension for Visual Studio Code - Vim emulation for Visual Studio Code</div><a href="https://marketplace.visualstudio.com/items?itemName=vscodevim.vim" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://vscodevim.gallerycdn.vsassets.io/extensions/vscodevim/vim/1.18.9/1612551212003/Microsoft.VisualStudio.Services.Icons.Default)"></div></a></span></div>
 
-`setting.json`に以下を追加します。
+`setting.json` に以下を追加します。
 こうすることで普通の vim と同じように vimrc ファイルを使える様になります。
 
 ```json
@@ -153,11 +153,11 @@ VisualStudio で Vim 拡張がうまく動かなくなったから VSCode に乗
 "vim.vimrc.path": "~/.vsvimrc"  // ←各自設定
 ```
 
-vimrc.path ですが普段使っている vim の`.vimrc`でも良いのですがエディタ用の独自のキーバインドがあったりするので僕は分けてます。
+vimrc.path ですが普段使っている vim の `.vimrc` でも良いのですがエディタ用の独自のキーバインドがあったりするので僕は分けてます。
 
 ### setting.json 公開
 
-他のプラグインの設定も混じってますが...
+他のプラグインの設定も混じってますが..。
 
 ```json
 {

@@ -8,8 +8,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby`のバージョンは 4.9
+> スターターを `gatsby new` したのは 2022 年の 3 月上旬。
+> `gatsby` のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -20,7 +20,7 @@ tags: ["Gatsby"]
 
 僕の前のブログと同じ感じにする
 
-`templates/blog-posts.js`に style 追加
+`templates/blog-posts.js` に style 追加
 
 ```jsx
 ...
@@ -202,7 +202,7 @@ html {
 
 ## blog 個別ページを作成
 
-`pages/blog.js`を作り以下にする。
+`pages/blog.js` を作り以下にする。
 
 ```jsx
 import * as React from "react";
@@ -224,7 +224,7 @@ const Blog = ({ location }) => {
 export default Blog;
 ```
 
-`pages/index.js`の BlogCards コンポーネントの count を 5 にして、blog ページへのリンクを設置して、
+`pages/index.js` の BlogCards コンポーネントの count を 5 にして、blog ページへのリンクを設置して、
 
 <details>
   <summary>pages/index.js</summary>
@@ -272,7 +272,7 @@ export default Index;
 
 </details>
 
-少しだけ`components/layout.js`を編集
+少しだけ `components/layout.js` を編集
 
 <details>
   <summary>compenets/layout.js</summary>
@@ -540,7 +540,7 @@ $ npm i gatsby-plugin-fontawesome-css
 ```
 
 ↑ の最後の 1 つは gasby のプラグイン。入れる理由は[この公式の説明](https://www.gatsbyjs.com/plugins/gatsby-plugin-fontawesome-css/?=fontawe)  
-`gatsby-config.js`に追加記述するのを忘れずに
+`gatsby-config.js` に追加記述するのを忘れずに
 
 ```jsx
 ...
@@ -551,7 +551,7 @@ $ npm i gatsby-plugin-fontawesome-css
 }
 ```
 
-準備はできたので、`pages/abou.js`を内容は適当で作る
+準備はできたので、`pages/abou.js` を内容は適当で作る
 
 siteMetadata に repository を追加した。
 

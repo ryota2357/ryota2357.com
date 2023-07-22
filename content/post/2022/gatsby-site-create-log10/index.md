@@ -8,8 +8,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby`のバージョンは 4.9
+> スターターを `gatsby new` したのは 2022 年の 3 月上旬。
+> `gatsby` のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -27,11 +27,11 @@ $ npm i gh-pages --save-dev
 
 で導入。
 
-`--save-dev`オプションによって`package.json`の`dependencie`ではなく、`devDependencie`に記述される。
+`--save-dev` オプションによって `package.json` の `dependencie` ではなく、`devDependencie` に記述される。
 
 ### npm run deploy
 
-`package.json`の`scripts`プロパティに以下を追加する。
+`package.json` の `scripts` プロパティに以下を追加する。
 
 ```json
 ...
@@ -46,7 +46,7 @@ $ npm i gh-pages --save-dev
 ### リポジトリを作る
 
 private だと GithubPages は有料なので、public でなリポジトリで作る。  
-リポジトリ名は`ryota2357-github-pages`にしました。
+リポジトリ名は `ryota2357-github-pages` にしました。
 
 開発で git にコミットしてたけど、かなりコミットログが汚いので削除して、init から。
 
@@ -67,7 +67,7 @@ $ git push -u origin main
 $ npm run deploy
 ```
 
-`https://ryota2357.github.io/ryota2357-github-pages`にデプロイできた。
+`https://ryota2357.github.io/ryota2357-github-pages` にデプロイできた。
 
 ## 独自ドメインの設定
 
@@ -84,9 +84,9 @@ A レコードを設定、[ここ](https://docs.github.com/ja/pages/configuring-
 
 ## Github Action の設定
 
-毎回、`npm run deploy`するのは面倒なので自動化する。
+毎回、`npm run deploy` するのは面倒なので自動化する。
 
-`.github/workflows/gh-pages.yml`を作る。  
+`.github/workflows/gh-pages.yml` を作る。  
 [サンプル](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-gatsby)をいじった。  
 秘密鍵の作り方は[ここ](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-create-ssh-deploy-key)に書いてあった。
 
@@ -191,8 +191,8 @@ module.exports = {
 
 サーチコンソールとアナリティクスの連携もしておいた。
 
-`https://ryota2357.com/sitemap.xml`にサイトマップが出力されるかと思いきや、`https://ryota2357.com/sitemap/sitemap-index.xml`に出力されるみたい。  
-`/sitemap.xml`にサイトマップがなくてびっくりした。
+`https://ryota2357.com/sitemap.xml` にサイトマップが出力されるかと思いきや、`https://ryota2357.com/sitemap/sitemap-index.xml` に出力されるみたい。  
+`/sitemap.xml` にサイトマップがなくてびっくりした。
 
 ### 参考
 

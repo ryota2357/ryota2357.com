@@ -19,7 +19,7 @@ LSP の rename アクションを実行した時の動作
 
 ## vim.ui.input()
 
-関数`vim.ui.input()`のシグネチャは次の通りである。(`:h vim.ui.input()`)
+関数 `vim.ui.input()` のシグネチャは次の通りである。(`:h vim.ui.input()`)
 
 ```lua
 input({opts}, {on_confirm})
@@ -44,13 +44,13 @@ Parameters:
                   entered), or `nil` if the user aborted the dialog.
 ```
 
-`opt`に基づいて floating window を作成し、適当なタイミング(`<CR>`などで)で`on_confirm`を実行すれば良いことがわかる。
+`opt` に基づいて floating window を作成し、適当なタイミング(`<CR>` などで)で `on_confirm` を実行すれば良いことがわかる。
 
-僕の作成した vim.ui.input は`opt.prompt`と`opt.default`のみ対応していて、`opt.completion`などには対応していない、よくわからないし面倒だったから。
+僕の作成した vim.ui.input は `opt.prompt` と `opt.default` のみ対応していて、`opt.completion` などには対応していない、よくわからないし面倒だったから。
 
 ## 実装
 
-以降`lua/rc/ui/input.lua`に書いていく。行頭には次のものが先に定義しておく。
+以降 `lua/rc/ui/input.lua` に書いていく。行頭には次のものが先に定義しておく。
 
 ```lua
 local M = {}
@@ -76,7 +76,7 @@ vim.fn.sign_define('InputPrompt', {
 })
 ```
 
-なお、`require('rc.util').highlight.set()`は次のようになっている。
+なお、`require('rc.util').highlight.set()` は次のようになっている。
 
 ```lua
 ---@param hls table
@@ -90,7 +90,7 @@ end
 
 ### get_buffer()
 
-floating window のバッファ番号を取得する関数である。neovim にてバッファは`vim.api.nvim_create_buf()`を使うと簡単に作れる。
+floating window のバッファ番号を取得する関数である。neovim にてバッファは `vim.api.nvim_create_buf()` を使うと簡単に作れる。
 
 ```txt
 nvim_create_buf({listed}, {scratch})                       *nvim_create_buf()*
@@ -104,7 +104,7 @@ nvim_create_buf({listed}, {scratch})                       *nvim_create_buf()*
 (h: nvim_create_buf より引用)
 ```
 
-また、バッファが存在しているかのチェックは`bufexists()`を用いると行える。これらを用いて`get_buffer()`を作成した。
+また、バッファが存在しているかのチェックは `bufexists()` を用いると行える。これらを用いて `get_buffer()` を作成した。
 
 ```lua
 ---@return number
@@ -122,8 +122,8 @@ end
 
 ### open_window()
 
-floating window は `vim.api.nvim_open_win(buffer, ...)`で作成することができる。引数にはバッファ番号といくつかのオプションを渡すことができる。  
-neovim0.9 より`vim.api.nvim_open_win()`の第 3 引数の辞書に`title`, `title_pos`が追加された。これによって floating window にタイトルを簡単につけられるようになった。
+floating window は `vim.api.nvim_open_win(buffer, ...)` で作成できる。引数にはバッファ番号といくつかのオプションを渡すことができる。  
+neovim0.9 より `vim.api.nvim_open_win()` の第 3 引数の辞書に `title`, `title_pos` が追加された。これによって floating window にタイトルを簡単につけられるようになった。
 
 ```lua
 ---@param buffer number
@@ -157,7 +157,7 @@ end
 
 ### input()
 
-`get_buffer()`と`open_window()`を組み合わせて、`vim.ui.input()`と同じシグネチャを持つ関数を作る。コメントにて説明を入れた。
+`get_buffer()` と `open_window()` を組み合わせて、`vim.ui.input()` と同じシグネチャを持つ関数を作る。コメントにて説明を入れた。
 
 ```lua
 ---@param opts table<string, any>
@@ -211,7 +211,7 @@ end
 
 ### 設定
 
-`require('rc.ui.input').input()`と呼ぶのは面倒なので metatable を定義する。
+`require('rc.ui.input').input()` と呼ぶのは面倒なので metatable を定義する。
 
 ```lua
 setmetatable(M, {
@@ -227,7 +227,7 @@ setmetatable(M, {
 })
 ```
 
-以上で`rc/ui/input.lua`は完成である。init.lua などで次のようにして vim.ui.input を自作のものに置き換えればいい。
+以上で `rc/ui/input.lua` は完成である。init.lua などで次のようにして vim.ui.input を自作のものに置き換えればいい。
 
 ```lua
 vim.ui.input = require('rc.ui.input')

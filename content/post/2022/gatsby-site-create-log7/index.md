@@ -8,8 +8,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby`のバージョンは 4.9
+> スターターを `gatsby new` したのは 2022 年の 3 月上旬。
+> `gatsby` のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -75,7 +75,7 @@ plugins: [
 本題から逸れるけど、上記の問題が解決してレスポンシブ確認してたら GIF 画像がはみ出る問題があった。  
 GIF は gatsby の方がいい感じの処理はしてくれず、ただ img で配置するだけになってるみたい。
 
-`src/style/markdown.scss`に
+`src/style/markdown.scss` に
 
 ```scss
 .markdown {

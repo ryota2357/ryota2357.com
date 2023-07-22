@@ -155,7 +155,7 @@ endfunction
 
 ### UI (nvim-dap-ui)
 
-`on_source = 'nvim-dap'`を指定しておくと nvim-dap をソースした時(`DapBegin`コマンドを入力した時)に自動的に nvim-dap-ui をソースしてくれるようになる。
+`on_source = 'nvim-dap'` を指定しておくと nvim-dap をソースした時(`DapBegin` コマンドを入力した時)に自動的に nvim-dap-ui をソースしてくれるようになる。
 
 ```toml
 [[plugins]]
@@ -166,7 +166,7 @@ hook_source = '''
 '''
 ```
 
-`hook_source`でデフォルト設定を少し変更する。  
+`hook_source` でデフォルト設定を少し変更する。  
 説明はコメントで。
 
 ```vim

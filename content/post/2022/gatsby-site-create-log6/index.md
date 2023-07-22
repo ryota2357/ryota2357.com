@@ -8,22 +8,22 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby`のバージョンは 4.9
+> スターターを `gatsby new` したのは 2022 年の 3 月上旬。
+> `gatsby` のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
-記事の Markdown の`frontmatter`には`date`というプロパティがあるけど、これは投稿日、更新日のどちらかしか表せず不便である。  
-そこで、`date`プロパティを廃止して`postdate`と`update`という 2 つのプロパティを設置する。
+記事の Markdown の `frontmatter` には `date` というプロパティがあるけど、これは投稿日、更新日のどちらかしか表せず不便である。  
+そこで、`date` プロパティを廃止して `postdate` と `update` という 2 つのプロパティを設置する。
 
-## `date`の廃止と新しいプロパティの設置
+## `date` の廃止と新しいプロパティの設置
 
-まず、既存の全ての markdown ファイルの`date`を`postdate`に置換。  
-`update`をつけたいものにはつける。
+まず、既存の全ての markdown ファイルの `date` を `postdate` に置換。  
+`update` をつけたいものにはつける。
 
 ### gatsby-node.js
 
-graphql の sort で date を使っているので訂正する。訂正場所は`///!!!`と書いてある行
+graphql の sort で date を使っているので訂正する。訂正場所は `///!!!` と書いてある行
 
 ```jsx
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -47,7 +47,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   )
 ```
 
-また、ここでは`siteMetadata {}` オブジェクトを明示的に定義しているので、`postdate`、`update`を定義する。訂正場所は`///!!!`と書いてある行
+また、ここでは `siteMetadata {}` オブジェクトを明示的に定義しているので、`postdate`、`update` を定義する。訂正場所は `///!!!` と書いてある行
 
 ```jsx
 exports.createSchemaCustomization = ({ actions }) => {
@@ -77,7 +77,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 ### gatsby-config.js
 
-RSS feed のプラグインで`date`が 4 ヶ所いたので訂正する。
+RSS feed のプラグインで `date` が 4 ヶ所いたので訂正する。
 
 ```jsx
     {
@@ -125,7 +125,7 @@ RSS feed のプラグインで`date`が 4 ヶ所いたので訂正する。
 
 ## blog 個別記事に投稿日と更新日を追加
 
-日付が`YYYY/MM/DD`の表示だったのを`YYYY/MM/DD (HH:mm)`にして時間もついでに表示するようにも。
+日付が `YYYY/MM/DD` の表示だったのを `YYYY/MM/DD (HH:mm)` にして時間もついでに表示するようにも。
 
 あとダグを追加した。タグのリンクはまだ個別ページができてないからひとまずルート。
 

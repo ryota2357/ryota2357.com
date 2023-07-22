@@ -21,7 +21,7 @@ SyntaxHighlight をオーバーライドするには現在のテーマの設定�
 
 ### スタート
 
-`setting.json`を開いて以下を追記します。  
+`setting.json` を開いて以下を追記します。  
 この中にオーバーライドする要素を追加、設定していきます。
 
 ```json
@@ -32,7 +32,7 @@ SyntaxHighlight をオーバーライドするには現在のテーマの設定�
 ### お試し
 
 わかりやすいところを変えてみます。  
-`setting.json`に以下を追記します。
+`setting.json` に以下を追記します。
 
 ```json
 "workbench.colorCustomizations": {
@@ -47,7 +47,7 @@ SyntaxHighlight をオーバーライドするには現在のテーマの設定�
 ### 色々やる
 
 [Theme Color](https://code.visualstudio.com/api/references/theme-color)から設定したいものを探して、プロパティを書いていけば OK です。  
-色の設定は`#RGB`、`#RGBA`、`#RRGGBB`、`#RRGGBBAA`から指定できます。  
+色の設定は `#RGB`、`#RGBA`、`#RRGGBB`、`#RRGGBBAA` から指定できます。  
 (プロパティによっては透明度が指定できないものもあります。)  
 また、大文字小文字どちらでも OK です。
 
@@ -158,7 +158,7 @@ My-theme/
 ### 拡張機能の読み込み
 
 作成したテーマプラグインのレンプレートを VSCode に読み込ませます。
-VSCode の拡張機能は`.vscode/extensions`に格納されているのでシンボリックリンクを貼ります。
+VSCode の拡張機能は `.vscode/extensions` に格納されているのでシンボリックリンクを貼ります。
 
 ```sh
 ln -s YOUR_PATH/My-theme ~/.vscode/extensions
@@ -171,8 +171,8 @@ VSCode を再起動すれば拡張機能のところに表示されるはずで�
 ### テーマの作成
 
 作ってきます。  
-コピペしてきたテンプレートをいじります。`color`プロパティには`workbench.colorCustomizations`で指定していたものを追記(重複した場合は置き換え)します。  
-また、`tokenColors`には SyntaxHighlight が記述されています。これについて簡単に説明すると、
+コピペしてきたテンプレートをいじります。`color` プロパティには `workbench.colorCustomizations` で指定していたものを追記(重複した場合は置き換え)します。  
+また、`tokenColors` には SyntaxHighlight が記述されています。これについて簡単に説明すると、
 
 ```json
 ...省略
@@ -191,7 +191,7 @@ VSCode を再起動すれば拡張機能のところに表示されるはずで�
 ```
 
 こんな感じになってます。
-`settings`の`foreground`を`#FF0000`とかの目立つ色にして、どこが変わったか見て、編集していくのが良いのかなと思いました。
+`settings` の `foreground` を `#FF0000` とかの目立つ色にして、どこが変わったか見て、編集していくのが良いのかなと思いました。
 また、このテーマファイルの変更の反映は以下の様に「ウィンドウの再読み込み」が必要です。
 
 ![reloadVSCode](./screenshot_reloadSVCode.jpeg)
@@ -201,7 +201,7 @@ VSCode を再起動すれば拡張機能のところに表示されるはずで�
 もっと簡単な方法があると思いますが自分はこれでやってます。  
 VisualStudio みたいにテーマを UI で作成して自動でテーマコード作成してくれるツールないのかなぁ
 
-参考までに僕の`my-theme.json`を置いておきます。
+参考までに僕の `my-theme.json` を置いておきます。
 
 <details>
   <summary>my-theme.json</summary>

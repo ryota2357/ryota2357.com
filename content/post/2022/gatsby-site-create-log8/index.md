@@ -8,8 +8,8 @@ tags: ["Gatsby"]
 > このサイトを作るまでの記録。(時系列順)  
 > 実際に作業を行なったメモに追記、編集して投稿してるので投稿日と作業日は一致しない。
 >
-> スターターを`gatsby new`したのは 2022 年の 3 月上旬。
-> `gatsby`のバージョンは 4.9
+> スターターを `gatsby new` したのは 2022 年の 3 月上旬。
+> `gatsby` のバージョンは 4.9
 >
 > [一覧はここ](../gatsby-site-create-log0/)
 
@@ -135,9 +135,9 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 ## URL リンクの修正
 
-`gatsby-node.js`を整理してわかったのだけど、`exports.onCreateNode`で各ブログ記事の url を生成しているみたい。
+`gatsby-node.js` を整理してわかったのだけど、`exports.onCreateNode` で各ブログ記事の url を生成しているみたい。
 
-現在、ブログ記事の url は`/blog/YYYY/hoge-fuga`って感じに先頭に`blog`とつけている。  
+現在、ブログ記事の url は `/blog/YYYY/hoge-fuga` って感じに先頭に `blog` とつけている。  
 そのためいろいろなところで
 
 ```jsx
@@ -151,7 +151,7 @@ url の生成方法がわかったのでいい感じに修正する。
 
 ### URL 生成部分の修正
 
-`gatsby-node.js`にて
+`gatsby-node.js` にて
 
 ```jsx
 ...
@@ -180,8 +180,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
 ### リンクの修正
 
-今、ブログ記事にアクセスすると`/blog/blog/YYYY/hoge-fuga`のように blog が 2 回続いた形になっている。  
-まず、`gatsby-node.js`で生成される URL を正しいものにする
+今、ブログ記事にアクセスすると `/blog/blog/YYYY/hoge-fuga` のように blog が 2 回続いた形になっている。  
+まず、`gatsby-node.js` で生成される URL を正しいものにする
 
 ```jsx
 ...
@@ -194,7 +194,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 }
 ```
 
-続いて、`components/blogCard.js`と`templates/blog-post.js`を修正する。  
+続いて、`components/blogCard.js` と `templates/blog-post.js` を修正する。  
 Link の to パラメータを直す。
 
 ```jsx
@@ -240,9 +240,9 @@ Link の to パラメータを直す。
 
 本題
 
-まず、`templates/tagPage.js`を作る。
+まず、`templates/tagPage.js` を作る。
 
-`pageContext`プロパティについては[ここの公式リファレンス](https://www.gatsbyjs.com/docs/reference/config-files/actions/#createPage)に書いてあった。
+`pageContext` プロパティについては[ここの公式リファレンス](https://www.gatsbyjs.com/docs/reference/config-files/actions/#createPage)に書いてあった。
 
 ```jsx
 import * as React from "react";
@@ -290,7 +290,7 @@ export const pageQuery = graphql`
 `;
 ```
 
-次に、`gatsby-node.js`で tag ページを生成する。  
+次に、`gatsby-node.js` で tag ページを生成する。  
 set 使って全てのブログ記事の frontmatter から tag を収集してる。
 
 ```jsx
@@ -453,21 +453,21 @@ export const pageQuery = graphql`
 
 ![デザインありtagPage](screenshot_tagpage_design.png)
 
-ちなみに、ここで`C#`タグが問題となった。
+ちなみに、ここで `C#` タグが問題となった。
 
-`http://localhost:8000/blog/tag/C#`とアクセスすると 404 になる。  
+`http://localhost:8000/blog/tag/C#` とアクセスすると 404 になる。  
 Pages にはちゃんとあるのに。。。
 
 ![404Cs](screenshot_404.png)
 
 まあ、それはそうなんだけど。
 
-エスケープとか面倒なので frontmatter の tags の`C#`を無くして`CSharp`にした。  
-ついでにタグの名前が他は全て UpperCamel なので`gatsby`を`Gatsby`にしておいた。
+エスケープとか面倒なので frontmatter の tags の `C#` を無くして `CSharp` にした。  
+ついでにタグの名前が他は全て UpperCamel なので `gatsby` を `Gatsby` にしておいた。
 
 ## タグの一覧ページの作成
 
-`src/pages/blog/tag.js`を作成。  
+`src/pages/blog/tag.js` を作成。  
 かなりハードコーディングだけどまあいいや。
 
 <details>

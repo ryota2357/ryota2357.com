@@ -97,7 +97,7 @@ precmd() {
 
 ### \_\_signal_code_string()
 
-`$pipestatus`の情報が保存された配列`$save_pipestatus`に基づいて、いい感じの文字列を生成してる。
+`$pipestatus` の情報が保存された配列 `$save_pipestatus` に基づいて、いい感じの文字列を生成してる。
 
 実装については後述。
 
@@ -105,19 +105,19 @@ precmd() {
 
 左のプロンプトを作成する関数。
 
-現在ディレクトリ`dir`、git のブランチ情報`branch` の情報の文字列を作成してる。
+現在ディレクトリ `dir`、git のブランチ情報 `branch` の情報の文字列を作成してる。
 
 ### \_\_right-prompt()
 
 右のプロンプトを作成する関数。
 
-現在時刻`time`、pipestatus`cmd_status`の情報の文字列を作成してる。
+現在時刻 `time`、pipestatus`cmd_status` の情報の文字列を作成してる。
 
 ### precmd()
 
 プロンプトを生成する。
 
-**`$pipestatus`の内容はスクリプト内のコマンドでも書き変わってしまうので`__save_pipestatus`に保存しておく。**
+**`$pipestatus` の内容はスクリプト内のコマンドでも書き変わってしまうので `__save_pipestatus` に保存しておく。**
 僕は最初これに気が付かないで「あれー」ってやってた。。。
 
 ちなみに、この保存方法だけど、
@@ -126,7 +126,7 @@ precmd() {
 __save_pipestatus=$pipestatus
 ```
 
-にしちゃうと`__save_pipestatus`が配列として保存できないので、
+にしちゃうと `__save_pipestatus` が配列として保存できないので、
 
 ```zsh
 __save_pipestatus=("${pipestatus[@]}")
@@ -136,7 +136,7 @@ __save_pipestatus=("${pipestatus[@]}")
 
 ## $pipestatus の情報の加工
 
-`__signal_code_string()`が行ってるのもの。
+`__signal_code_string()` が行ってるのもの。
 
 まず、終了ステータスについてだが、これらは[Wikipedia/終了ステータス#bash](https://ja.wikipedia.org/wiki/%E7%B5%82%E4%BA%86%E3%82%B9%E3%83%86%E3%83%BC%E3%82%BF%E3%82%B9#bash)から引用すると
 
@@ -150,9 +150,9 @@ __save_pipestatus=("${pipestatus[@]}")
 | 128+n          | シグナル n で終了                                |
 | 255            | 範囲外の終了ステータス                           |
 
-どこまで同じかわからないけど、少なくとも`128+n = シグナル n で終了`は zsh でも同じだった。
+どこまで同じかわからないけど、少なくとも `128+n = シグナル n で終了` は zsh でも同じだった。
 
-シグナルについては`man signal`でそれぞれの数値がどのような意味を持つのか確認することができる。
+シグナルについては `man signal` でそれぞれの数値がどのような意味を持つのか確認できる。
 
 一部を抜粋するとこんな感じである。
 
@@ -169,7 +169,7 @@ __save_pipestatus=("${pipestatus[@]}")
 ...
 ```
 
-僕の実装ではシグナル n は対応する`Name`に、それ以外の終了コードはは数値として文字列にして結合している。
+僕の実装ではシグナル n は対応する `Name` に、それ以外の終了コードはは数値として文字列にして結合している。
 
 最後に、作った文字列を返すところ、
 
@@ -185,4 +185,4 @@ __save_pipestatus=("${pipestatus[@]}")
 
 zsh は文字列も配列と同じように長さの取得やインデックスアクセスができた。
 
-`${#ret}`で文字列`ret`の長さを取得して処理を分岐、`${ret[2,-1]}`で `ret`から 1 文字目を取り除いた文字列を`echo`してる。
+`${#ret}` で文字列 `ret` の長さを取得して処理を分岐、`${ret[2,-1]}` で `ret` から 1 文字目を取り除いた文字列を `echo` してる。
