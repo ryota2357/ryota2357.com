@@ -76,7 +76,7 @@
     "lint": "eslint --fix './src/**/*.{ts,tsx}'",
     "lint:check": "eslint './src/**/*.{ts,tsx}'",
     "textlint": "textlint --fix './content/**/*.md'",
-    "textlint:check": "textlint --dry-run --fix --format diff './content/**/*.md'",
+    "textlint:check": "textlint --dry-run './content/**/*.md'",
     "new-post": "sh ./util/new-post.sh"
   }
 }

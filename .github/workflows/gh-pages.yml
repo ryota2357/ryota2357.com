@@ -31,6 +31,7 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint:check
       - run: npm run format:check
+      - run: npm run textlint:check
       - run: npm run build
 
       - name: Deploy
