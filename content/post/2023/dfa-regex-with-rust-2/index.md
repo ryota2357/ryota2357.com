@@ -9,7 +9,7 @@ tags: ["Rust"]
 
 [シンプルな DFA 型の正規表現エンジンを Rust で作成する #0](../dfa-regex-with-rust-0)
 
-このページでは Parser から得られた構文木から NFA を、その NFA から DFA を構築し、Regex を作成する。
+このページでは Parser より得られた構文木から NFA を、その NFA から DFA を構築し、Regex を作成する。
 
 ## Automaton
 
@@ -591,7 +591,7 @@ pub fn from_nfa(nfa: NondeterministicFiniteAutomaton) -> Self {
 
 #### 遷移テーブル (`transition`)
 
-ここが一番実装が複雑になる。  
+ここの実装が一番複雑になる。  
 NFA, DFA の状態を `u32` ではなく、`NFAState` と `DFAState` という別の型をつけた利点をここで一番感じられるであろう。
 
 深さ優先探索(DFS)を用いて、適当に NFA の状態を辿って、遷移テーブルを構築している。ここで DFS はスタック(`Vec`)を用いて書いている。  

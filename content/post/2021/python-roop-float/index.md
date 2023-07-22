@@ -5,11 +5,15 @@ update: "2021-07-13T15:43"
 tags: ["Python"]
 ---
 
-range の第 3 引数で小数を指定したいと思ったので、いい感じになるように頑張った記録を残しておきます。
+range の第 3 引数で小数を指定したいと思ったので、いい感じになるよう頑張った記録を残しておきます。
 
 ## どんなのができたか
 
-区間[1, 5)を 1.021 刻みでループするコードは以下になります。
+<!-- textlint-disable ja-spacing/ja-no-space-around-parentheses, ja-technical-writing/no-unmatched-pair -->
+
+区間 [1, 5) を 1.021 刻みでループするコードは以下になります。
+
+<!-- textlint-enable ja-spacing/ja-no-space-around-parentheses, ja-technical-writing/no-unmatched-pair -->
 
 ```python
 for i in Range(1, 5, "1.021"):
@@ -101,7 +105,7 @@ Range(1, 100, "0.1")
 
 と言った感じで 10 の累乗の分数にしてそれぞれ分子の値を `_rp`、分母の値を `_ep` に保存します。
 
-該当部分にコメントを追加して再掲
+該当部分にコメントを追加して再掲 ↓
 
 ```python
 # 小数点の位置を取得
@@ -230,7 +234,7 @@ print ("elapsed_time:{0}".format(elapsed_time2) + "[sec]")
 
 標準入力には何十通りかやったところ大体速度差が 4 倍程度でした。
 
-結果一例
+結果一例 ↓
 
 ```txt
 標準入力

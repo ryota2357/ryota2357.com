@@ -317,7 +317,7 @@ OG 画像ということで、文字列は画像の中央に配置したい。�
 canvas に文字を描く関数である。  
 この関数を実装するためにいくつかの関数を実装する。
 
-1 つ目は `textSize()`。これは与えれた文字列のサイズ(幅と高さ)を返す関数である。Canvas の Context を用いて計算できる。
+1 つ目は `textSize()`。これは与えられた文字列のサイズ(幅と高さ)を返す関数である。Canvas の Context を用いて計算できる。
 
 ```typescript
 const textSize = (context: CanvasRenderingContext2D, text: string) => {
@@ -329,7 +329,7 @@ const textSize = (context: CanvasRenderingContext2D, text: string) => {
 };
 ```
 
-2 つ目は `splitLine()` である。これは与えられた文字列をいい感じに改行する(string[]にする)関数である。具体的には指定した文字幅(`maxWidth`)以内に 1 行が収まるように文字列を区切る。
+2 つ目は `splitLine()` である。これは与えられた文字列をいい感じに改行する（string[]にする）関数である。具体的には指定した文字幅(`maxWidth`)以内に 1 行が収まるように文字列を区切る。
 
 上に書いた `textSize()` を利用している。
 
@@ -504,6 +504,6 @@ Fine-grained personal access tokens を使うなら permission を次のよう�
 
 ![image1](image1.png)
 
-複数行のものはこんな感じ
+複数行のものはこんな感じ。
 
 ![image2](image2.png)

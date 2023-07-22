@@ -61,7 +61,7 @@ latexmk を使ってるなら `.latexmkrc` の `$latex` の部分はこんな感
 $latex = 'platex -synctex=1';
 ```
 
-`platex` じゃなくて `uplatex` を使ってる人(僕もそう)も、同じ。
+`platex` じゃなくて `uplatex` を使ってる人(僕)も同じ。
 
 ```perl
 $latex = 'uplatex -synctex=1';
@@ -128,8 +128,8 @@ this.server.setListener(async (request: Request) => {
 ### Vim Script 部分
 
 ここが一番苦労したところ、`autoload` の部分。  
-前提として denops は vim を開いた後、非同期に denops サーバーが立ち上がって、その後に各種プラグイン(typescript 部分)を読み込む。ここにある程度時間がかかる。そのため、vim によってプラグインが読み込まれていたとしても、denops サーバーが立ち上がっていないことや、typescript 部分のプラグインが読み込まれてないことがある。  
-つまり、`autoload/synctex.vim` に
+前提として denops は vim を開いた後、非同期に denops サーバーが立ち上がり、その後に各種プラグイン(typescript 部分)を読み込む。ここにある程度時間がかかる。そのため、vim によってプラグインが読み込まれていたとしても、denops サーバーが立ち上がっていないことや、typescript 部分のプラグインの読み込みが完了していないことがある。  
+つまり、`autoload/synctex.vim` に、
 
 ```vim
 function! synctex#start() abort
@@ -175,4 +175,8 @@ endfunction
 
 ## 最後に
 
+<!-- textlint-disable ja-technical-writing/no-doubled-joshi -->
+
 denops 初挑戦以前に、Deno 開発初めてだし、そもそも typescript 書いたことなかったので、色々調べながら(聞きながら)で少し時間かかったけど楽しかった。
+
+<!-- textlint-enable ja-technical-writing/no-doubled-joshi -->

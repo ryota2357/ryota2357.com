@@ -6,7 +6,7 @@ tags: ["Blogger"]
 ---
 
 PageSpeed Insights で言われるやつです。  
-「画像を遅延読み込みしろ」と
+「画像を遅延読み込みしろ」と。
 
 html を書き換えるのは面倒なので、javascript を書いて自動で遅延読み込みされるようにしました。
 `lazysizes` というものを使います。

@@ -75,7 +75,7 @@ GoogleDomains で買った。
 
 A レコードを設定、[ここ](https://docs.github.com/ja/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain)に書いてある値を入れる。
 
-ついでに[ここ](https://docs.github.com/ja/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain-and-the-www-subdomain-variant)に書いてある www の設定もやった。
+ついでに、[ここ](https://docs.github.com/ja/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain-and-the-www-subdomain-variant)に書いてある www の設定もやった。
 
 ### 参考
 
@@ -146,14 +146,14 @@ jobs:
 
 ## Google アナリティクス設定
 
-gtag を使う
+gtag を使う。
 
 ```sh
 $ npm uninstall gatsby-plugin-google-analytics
 $ npm install gatsby-plugin-google-gtag
 ```
 
-google アナリティクスでトラッキング ID を取得してきて gatsby-config.js に設定
+google アナリティクスでトラッキング ID を取得してきて gatsby-config.js に設定。
 
 ```js
 module.exports = {

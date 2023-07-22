@@ -19,7 +19,7 @@ tags: ["Rust"]
 [https://zenn.dev/canalun/articles/regexp_and_automaton](https://zenn.dev/canalun/articles/regexp_and_automaton)
 
 NFA、DFA について基本的な知識はここで知った。  
-オートマトンで正規表現を行おうとした時、どうすればいいかのざっくりとしたイメージがわかるようになる。
+オートマトンで正規表現を表現しようとした時、どうすればいいかのざっくりとしたイメージがわかるようになる。
 
 ### 正規表現エンジンを作ろう 1 ~ 6
 

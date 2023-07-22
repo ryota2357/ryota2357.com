@@ -5,7 +5,7 @@ update: "2022-07-14T08:25"
 tags: ["Vim", "Neovim"]
 ---
 
-lexima.vim と pum.vim での\<CR\>の挙動制御について
+lexima.vim と pum.vim での\<CR\>の挙動制御について。
 
 lexima.vim は内部でマッピング(`inoremap`)を生成する。そのため pum.vim で補完の確定を\<CR\>で行っている場合、このマッピングが衝突してしまい意図しない挙動が起きてしまう。
 
@@ -17,7 +17,7 @@ https://github.com/cohama/lexima.vim/pull/134
 
 ## lexima.vim 対応の pum#map#confirm()マッピング
 
-僕のマッピングは次の通り。これをベースに自分にあったマッピングにするといいと思う。  
+僕のマッピングは次の通り。これをベースとして自分にあったマッピングを設定するといいと思う。  
 ただし、`lexima#expand('<CR>')` では意図するものにはならないことに注意である。`lexima#string#to_mappable('<CR>')` を通す必要がある。
 
 ```vim

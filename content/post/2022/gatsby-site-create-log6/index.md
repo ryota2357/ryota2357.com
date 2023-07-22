@@ -23,7 +23,7 @@ tags: ["Gatsby"]
 
 ### gatsby-node.js
 
-graphql の sort で date を使っているので訂正する。訂正場所は `///!!!` と書いてある行
+graphql の sort で date を使っているので訂正する。訂正場所は `///!!!` と書いてある行。
 
 ```jsx
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -47,7 +47,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   )
 ```
 
-また、ここでは `siteMetadata {}` オブジェクトを明示的に定義しているので、`postdate`、`update` を定義する。訂正場所は `///!!!` と書いてある行
+また、ここでは `siteMetadata {}` オブジェクトを明示的に定義しているので、`postdate`、`update` を定義する。訂正場所は `///!!!` と書いてある行。
 
 ```jsx
 exports.createSchemaCustomization = ({ actions }) => {

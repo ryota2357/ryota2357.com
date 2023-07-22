@@ -5,7 +5,7 @@ update: "2022-09-23T12:45"
 tags: ["CSharp"]
 ---
 
-`Activator.CreateInstance(typeof(T))` で `T` のコンストラクタがオプション引数を使ってる場合、オプション引数を考慮したインスタンス生成をする方法
+`Activator.CreateInstance(typeof(T))` で `T` のコンストラクタがオプション引数を使ってる場合、オプション引数を考慮したインスタンス生成をする方法。
 
 ## 問題
 

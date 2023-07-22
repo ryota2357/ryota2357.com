@@ -51,7 +51,7 @@ require('dein-snip').setup {
 
 ### dein のセットアップ
 
-コード引用
+コード引用する。
 
 ```lua
 -- プラグインをインストールする場所を作っとく。
@@ -74,7 +74,7 @@ end
 `g:dein#ほげほげ` も lua で設定できる。lua で書いた設定から `let g:dein#ほげほげ` して dein に反映していく。  
 対応表は [README の Correspondence Table](https://github.com/ryota2357/dein-snip.lua#correspondence-table) に書いておいた。ほぼ全ての変数を lua で設定できるようにした。
 
-実装は、こんな感じの関数 `g` を作って
+実装は、こんな感じの関数 `g` を作って、
 
 ```lua
 local g = function(variable, value)

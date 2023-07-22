@@ -5,7 +5,11 @@ update: "2021-02-11T11:00"
 tags: ["CSharp"]
 ---
 
+<!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->
+
 C#にて、比較に関係する
+
+<!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
 
 - IComparable / IComparable\<T\>
 - IComparer / IComparer\<T\>
@@ -16,12 +20,16 @@ C#にて、比較に関係する
 
 ## まとめ
 
+<!-- textlint-disable ja-technical-writing/ja-no-mixed-period  -->
+
 ものすごく大雑把に
 
 IComparable / IComparable\<T\> は「自身と他」の比較  
 IComparer / IComparer\<T\> は「他と他」の比較  
 Comparison\<T\> は比較のデリゲート  
 Comparer\<T\> は比較の抽象クラス
+
+<!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
 
 1 つずつみていきます。
 
@@ -223,7 +231,7 @@ IComparer と IComparer\<T\>の 2 つを継承するならば、このクラス�
 ### 使用例
 
 これら 2 つの継承が必要な状況としては C++でいう比較関数の様なものを作成するのに良いかもしれないです。  
-非ジェネリックな ArrayList と、ジェネリックな List の両方に対応できる様になります。  
+非ジェネリックな ArrayList と、ジェネリックな List の両方へ対応できる様になります。  
 (普通 ArrayList って使わないから...)
 
 <details>

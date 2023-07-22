@@ -8,7 +8,7 @@ tags: ["Dart"]
 benchmark_harness を使用してそれぞれの速度を測った。  
 そこそこの長さの List を作って、その和を for で求めるだけのもの。
 
-`dart run` と、`dart compile exe` の 2 つで複数回測定
+`dart run` と、`dart compile exe` の 2 つで複数回測定。
 
 ## 環境
 
@@ -21,7 +21,7 @@ MacBook Pro (13-inch, 2018, Four Thunderbolt 3 Ports)
 
 ## 結果
 
-測定結果は 2 つ載せておく
+測定結果は 2 つ載せておく。
 
 ### dart run
 

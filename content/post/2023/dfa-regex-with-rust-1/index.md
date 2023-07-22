@@ -13,7 +13,7 @@ tags: ["Rust"]
 
 ## Lexer
 
-Lexer では字句解析を行う。具体的には与えられた正規表現を Token という単位で分割する。Token に分割することによって次に作る Parser での実装が楽になる。
+Lexer では字句解析をする。具体的には与えられた正規表現を Token という単位で分割する。Token に分割することによって次に作る Parser での実装が楽になる。
 
 今回使用する Token の種類は次のとおりである。
 
@@ -124,7 +124,7 @@ mod tests {
 
 ## Parser
 
-Parser は Token を元に構文解析を行い、構文木を生成するものである。次に文法規則を示す。
+Parser は Token を元に構文解析をして、構文木を生成するものである。次に文法規則を示す。
 
 ```bnf
 <expression>     ::= <sub_expression> Token::EndOfFile
@@ -180,7 +180,7 @@ pub fn parse(&mut self) -> Result<Node> {
 type Result<T> = std::result::Result<T, String>;
 ```
 
-続いて上に示した文法規則に基づいて Token を構文木に変換する処理を書いていくため、構文木の各頂点を表す enum である `Node` を作成する。
+続いて上で示した文法規則に基づいて Token を構文木に変換する処理を書いていくため、構文木の各頂点を表す enum である `Node` を作成する。
 
 ```rust
 #[derive(Debug, PartialEq, Eq, Hash)]
@@ -214,7 +214,7 @@ assert_eq!(
 
 #### 文法規則実装の準備
 
-文法規則をコードに実装する前に、2 つユーティリティ的な関数を実装しておく。
+文法規則をプログラムとして実装する前に、2 つユーティリティ的な関数を実装しておく。
 
 1 つ目は文法エラーの文字列を生成する関数である。`Err(error_msg(&[来るべきToken], 実際のToken)` のようにして使う。
 
@@ -268,7 +268,7 @@ impl Parser<'_> {
 
 ここからは文法規則を実装していく。
 
-pub ではない関数として `factor(&mut self)` として実装する。
+pub ではない関数 `factor(&mut self)` として実装する。
 
 ```rust
 impl Parser<'_> {
@@ -295,7 +295,7 @@ impl Parser<'_> {
 }
 ```
 
-`self.look` に従って処理を分岐する。文法規則に従い、現在見ている Token(`self.look`)が左括弧(`Token::LeftParen`)であれは左側(`'(' <subexpr> ')'`)のルールを適用し、、文字(`Token::Character`)であれば右側(`Character`)を適用する。
+`self.look` に従って処理を分岐する。文法規則に従い、現在見ている Token(`self.look`)が左括弧(`Token::LeftParen`)であれは左側(`'(' <subexpr> ')'`)のルールを適用し、文字(`Token::Character`)であれば右側(`Character`)を適用する。
 
 (まだ `self.sub_expression()` は実装してないので、LS 等がエラーを出すと思うがスルーする。)
 
@@ -341,7 +341,7 @@ impl Parser<'_> {
 }
 ```
 
-まず、`<star>` と同様に `<sub_sequence>` は `<star>` から始まるので `self.star()` を呼び取得する。次の分岐は `<sub_sequence>` があるかないかで分岐を行う必要がある。`<sub_sequence>` は必ず `<star>` から始まる。そして `<star>` は必ず `<factor>` から始まる。そして `<factor>` は `'('` か `Charactor` から始まる。つまり、`<sub_sequence>の` 分岐条件は `<star>` の次に `'('` か `Charactor` があるかどうかである。
+まず、`<star>` と同様に `<sub_sequence>` は `<star>` から始まるので `self.star()` を呼び取得する。次の分岐は `<sub_sequence>` があるかないかで分岐する必要がある。`<sub_sequence>` は必ず `<star>` から始まる。そして `<star>` は必ず `<factor>` から始まる。さらに `<factor>` は `'('` か `Charactor` から始まる。つまり、`<sub_sequence>の` 分岐条件は `<star>` の次に `'('` か `Charactor` があるかどうかである。
 
 #### sequence
 

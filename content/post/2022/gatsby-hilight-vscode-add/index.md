@@ -6,7 +6,7 @@ tags: ["Gatsby"]
 ---
 
 [公式 docs](https://www.gatsbyjs.com/plugins/gatsby-remark-vscode/)に書いてあったのですが、少しわかりにくかったので。  
-非常に簡単に追加できました。
+とても簡単に追加できました。
 
 例として `.txt` と `.dart` を追加してみます。
 

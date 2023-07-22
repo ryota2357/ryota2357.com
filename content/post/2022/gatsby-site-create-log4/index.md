@@ -14,13 +14,13 @@ tags: ["Gatsby"]
 > [一覧はここ](../gatsby-site-create-log0/)
 
 調整は終わったから、機能追加とかも含めたデザイン変更をする  
-今までの blogger+markdown で書いていた記事を以降して、記事数増やしてから始める
+今までの blogger+markdown で書いていた記事を以降して、記事数増やしてから始める。
 
 ## ブログ個別記事の外枠
 
-僕の前のブログと同じ感じにする
+僕の前のブログと同じ感じにする。
 
-`templates/blog-posts.js` に style 追加
+`templates/blog-posts.js` に style 追加。
 
 ```jsx
 ...
@@ -272,7 +272,7 @@ export default Index;
 
 </details>
 
-少しだけ `components/layout.js` を編集
+少しだけ `components/layout.js` を編集。
 
 <details>
   <summary>compenets/layout.js</summary>
@@ -459,7 +459,7 @@ index.js には 3 つ並べる。
 
 ![indexないのgame](screenshot_game_index.png)
 
-個別ページも作成
+個別ページも作成。
 
 <details>
   <summary>pages/game.js</summary>
@@ -490,7 +490,7 @@ export default Game;
 
 ## About ページを作成
 
-と思ったんだけど、game.js と blog.js のタイトルが h2 で作ってることに気がついたので修正
+と思ったんだけど、game.js と blog.js のタイトルが h2 で作ってることに気がついたので修正。
 
 <details>
   <summary>pages/blog.js</summary>
@@ -528,7 +528,7 @@ const Blog = ({ location }) => {
 
 </details>
 
-About ページを作るにあたって fontawesome が使いたいので導入する
+About ページを作るにあたって fontawesome が使いたいので導入する。
 
 ```bash
 $ npm i @fortawesome/fontawesome-svg-core
@@ -540,7 +540,7 @@ $ npm i gatsby-plugin-fontawesome-css
 ```
 
 ↑ の最後の 1 つは gasby のプラグイン。入れる理由は[この公式の説明](https://www.gatsbyjs.com/plugins/gatsby-plugin-fontawesome-css/?=fontawe)  
-`gatsby-config.js` に追加記述するのを忘れずに
+`gatsby-config.js` に追加記述するのを忘れずに。
 
 ```jsx
 ...
@@ -551,7 +551,7 @@ $ npm i gatsby-plugin-fontawesome-css
 }
 ```
 
-準備はできたので、`pages/abou.js` を内容は適当で作る
+準備はできたので、`pages/abou.js` を内容は適当で作る。
 
 siteMetadata に repository を追加した。
 

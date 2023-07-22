@@ -16,7 +16,7 @@ brew cask で flutter sdk 入れてたのでどこにあるのかわからなか
 $ flutter doctor -v
 ```
 
-とすれば OK
+とすれば OK。
 
 ```txt
 [✓]  Flutter (Channel stable, 2.0.6, on macOS 11.2.3 darwin-x64, locale ja-JP)
@@ -26,10 +26,8 @@ $ flutter doctor -v
     • Dart version 2.12.3
 ```
 
-2 行目の
+2 行目のこれ ↓
 
 ```txt
 ~~~ at /usr/local/Caskroom/flutter/2.0.6/flutter
 ```
-
-これ

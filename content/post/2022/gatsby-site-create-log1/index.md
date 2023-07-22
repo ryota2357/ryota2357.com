@@ -134,7 +134,7 @@ export default Bio
 ```
 
 `gatsby-node.js` では siteMetadata オブジェクトを明示的に定義してある。  
-siteMetadata オブジェクトにプロパティを追加したので、これらも明示的に定義しておく。なお、必須ではない模様
+siteMetadata オブジェクトにプロパティを追加したので、これらも明示的に定義しておく。なお、必須ではない模様。
 
 ```jsx
 // gatsby-node.js
@@ -150,7 +150,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 ## 日付を YYYY/MM/DD に
 
-`index.js` の fromtmatter 内 date(formatString: )を編集
+`index.js` の fromtmatter 内 date(formatString: )を編集。
 
 ```jsx
 ...
@@ -180,7 +180,7 @@ export const pageQuery = graphql`
 
 ## Seo コンポーネント
 
-components/seo.js のところ、lang が en になってるので ja に
+components/seo.js のところ、lang が en になってるので ja にする。
 
 ```jsx
 ...

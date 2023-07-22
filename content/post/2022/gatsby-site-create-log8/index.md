@@ -137,8 +137,8 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 `gatsby-node.js` を整理してわかったのだけど、`exports.onCreateNode` で各ブログ記事の url を生成しているみたい。
 
-現在、ブログ記事の url は `/blog/YYYY/hoge-fuga` って感じに先頭に `blog` とつけている。  
-そのためいろいろなところで
+現在、ブログ記事の url は `/blog/YYYY/hoge-fuga` って感じで先頭に `blog` とつけている。  
+そのためいろいろなところで、
 
 ```jsx
 <Link to={`/blog${node.fields.slug}`>...
@@ -151,7 +151,7 @@ url の生成方法がわかったのでいい感じに修正する。
 
 ### URL 生成部分の修正
 
-`gatsby-node.js` にて
+`gatsby-node.js` にて次のようにする。
 
 ```jsx
 ...
@@ -166,8 +166,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 }
 ```
 
-のようにする。  
-これで
+これで、
 
 ```txt
 前
@@ -181,7 +180,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 ### リンクの修正
 
 今、ブログ記事にアクセスすると `/blog/blog/YYYY/hoge-fuga` のように blog が 2 回続いた形になっている。  
-まず、`gatsby-node.js` で生成される URL を正しいものにする
+まず、`gatsby-node.js` で生成される URL を正しいものにする。
 
 ```jsx
 ...
@@ -238,7 +237,7 @@ Link の to パラメータを直す。
 
 ## tag 個別ページの作成
 
-本題
+本題。
 
 まず、`templates/tagPage.js` を作る。
 
@@ -330,7 +329,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 BlogCards コンポーネントをパクってきた感じ。
 
-Tag 一覧ページに表示したいブログ記事のリストのための処理と、BlogCards が行ってる処理が微妙に処理が違うし、共通化部分を切り出すのも面倒だったのでコピペしていじった。
+Tag 一覧ページに表示したいブログ記事のリストのための処理と、BlogCards の行ってる処理が微妙に違うし、共通化部分を切り出すのも面倒だったのでコピペしていじった。
 
 <details>
 
@@ -456,7 +455,7 @@ export const pageQuery = graphql`
 ちなみに、ここで `C#` タグが問題となった。
 
 `http://localhost:8000/blog/tag/C#` とアクセスすると 404 になる。  
-Pages にはちゃんとあるのに。。。
+Pages にはちゃんとあるのに...
 
 ![404Cs](screenshot_404.png)
 

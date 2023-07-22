@@ -5,9 +5,27 @@
   },
   "rules": {
     "preset-ja-technical-writing": {
+      "sentence-length": {
+        "max": 150
+      },
       "no-mix-dearu-desumasu": false,
       "no-exclamation-question-mark": false,
-      "ja-no-weak-phrase": false
+      "no-doubled-joshi": {
+        "allow": [
+          "か"
+        ]
+      },
+      "ja-no-weak-phrase": false,
+      "ja-no-mixed-period": {
+        "periodMark": "。",
+        "allowPeriodMarks": [
+          "、",
+          "...",
+          "↓"
+        ],
+        "allowEmojiAtEnd": false,
+        "forceAppendPeriod": false
+      }
     },
     "preset-ja-spacing": {
       "ja-space-between-half-and-full-width": {

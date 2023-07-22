@@ -18,7 +18,7 @@ google で調べる前にまず公式の README なりリファレンスは読�
 
 ## 解決方法
 
-google で「pyenv global 切り替わらない」とか検索すると、path を通せやら init しろやら出てくる。  
+google で「pyenv global 切り替わらない」とか検索すると、path を通せとか、 init しろとか出てくる。  
 記事によって内容が若干違ってどれが正しいの？ってなるけど、README に正しい方法が書いてある。  
 ちゃんと README に従おう。
 
@@ -26,13 +26,13 @@ google で「pyenv global 切り替わらない」とか検索すると、path �
 
 [README.md の Installation](https://github.com/pyenv/pyenv/blob/master/README.md#installation)に書いてあることを抜粋してるだけだが...
 
-まず、pyenv のインストール
+まず、pyenv のインストール。
 
 ```sh
 brew install pyenv
 ```
 
-zsh の人は
+zsh の人は。
 
 ```zsh
 # ~/.zprofile
@@ -46,7 +46,7 @@ eval "$(pyenv init -)"
 
 をそれぞれ追記する。
 
-最後に python のインストール、global と Neovim プラグインのインストール
+最後に python のインストール、global と Neovim プラグインのインストール。
 
 ```sh
 # install できるバージョンの確認
@@ -70,13 +70,13 @@ python と似たような感じ。
 
 [README.md の Installation](https://github.com/rbenv/rbenv/blob/master/README.md#installation)
 
-まず brew
+まず brew。
 
 ```sh
 brew install rbenv ruby-build
 ```
 
-続いて init を実行
+続いて init を実行。
 
 ```sh
 rbenv init
@@ -84,7 +84,7 @@ rbenv init
 
 指示が出るから、それに従う。
 
-最後に ruby のインストール、global と Neovim プラグインのインストール
+最後に ruby のインストール、global と Neovim プラグインのインストール。
 
 ```sh
 # install できるバージョンの確認

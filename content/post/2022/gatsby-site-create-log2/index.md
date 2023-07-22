@@ -19,7 +19,7 @@ tags: ["Gatsby"]
 
 ## ブログ記事を `/blog` 下の URL に変更
 
-`gatsby-node.js` を編集
+`gatsby-node.js` を編集。
 
 ```jsx
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -43,7 +43,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 ```
 
 これでブログ記事は/blog 下になったんだけど、index.js からのリンクが変わってないから index のページからリンクで飛べない。  
-`pages/index.js` を編集してリンクも /blog/... に変える
+`pages/index.js` を編集してリンクも /blog/... に変える。
 
 ```jsx
 ...
@@ -64,7 +64,7 @@ const BlogIndex = ({ data, location }) => {
 ...
 ```
 
-個別ページにおいても前後の記事に移動できないので `templates/blog-post.js` を編集
+個別ページにおいても前後の記事に移動できないので `templates/blog-post.js` を編集。
 
 ```jsx
 ...
@@ -91,15 +91,15 @@ const BlogIndex = ({ data, location }) => {
 
 ## `content/post/YYYY` にブログ記事データを置きたい
 
-`content/blog` を `content/post` に変更  
-初期で入ってるサンプルデータは 2015 だったので `content/post/2015` に入れとく  
-ついでに `content/post/2021` も作っておく
+`content/blog` を `content/post` に変更。  
+初期で入ってるサンプルデータは 2015 だったので `content/post/2015` に入れとく。  
+ついでに `content/post/2021` も作っておく。
 
 ![ディレクトリ構成](screenshot_dir.png)
 
 こうすると URL も /blog/YYYY 下になる。
 
-ブログのファイルのパスが変わったので `gatsby-config.js` も変更しておく
+ブログのファイルのパスが変わったので `gatsby-config.js` も変更しておく。
 
 ```jsx
 plugins: [

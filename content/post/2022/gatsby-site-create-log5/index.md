@@ -34,7 +34,7 @@ $ npm i sass gatsby-plugin-sass
 ```
 
 `style.css` → `style.scss` にして階層構造に変更  
-`src/normalize.css`,`src/style.scss` を `src/style` 下に移動
+`src/normalize.css`,`src/style.scss` を `src/style` 下に移動。
 
 <details>
   <summary>style/style.scss</summary>
@@ -118,7 +118,7 @@ const BlogPostTemplate = ({ data, location }) => {
 ...
 ```
 
-`style/markdown.scss` を作って、`gatsby-browser.js` にこの scss を読み込むように追記
+`style/markdown.scss` を作って、`gatsby-browser.js` にこの scss を読み込むように追記。
 
 ```jsx
 ...
@@ -188,7 +188,7 @@ $ npm i gatsby-remark-vscode
 ```
 
 で導入。  
-gatsby-remark-prismjs を `gatsby-config.js` とか `package.json` とかから削除
+gatsby-remark-prismjs を `gatsby-config.js` とか `package.json` とかから削除。
 
 gatsby-remark-vscode のオプションはこんな感じ。
 
@@ -206,7 +206,7 @@ gatsby-remark-vscode のオプションはこんな感じ。
 ```
 
 gatsby-remark-vscode は dart に対応してないので対応させてる。  
-詳しくは[gatsby-remark-vscode にハイライト可能な言語を追加する](../gatsby-hilight-vscode-add/)を参照
+詳しくは[gatsby-remark-vscode にハイライト可能な言語を追加する](../gatsby-hilight-vscode-add/)を参照。
 
 続いてスタイルを調整する。  
 `style/code-highlight.scss` を作って以下のようにする。もちろん、`gatsby-brower.js` に import しておく。

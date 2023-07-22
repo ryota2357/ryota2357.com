@@ -5,7 +5,7 @@ update: "2022-06-04T00:18"
 tags: ["Zsh"]
 ---
 
-zsh の起動が遅かったので調べたら zplug のロードに時間がかかってることがわかった。  
+zsh の起動が遅かったので調べたら zplug のロードに時間がかかってるとわかった。  
 色々調べた結果 sheldon に乗り換えて、なかなかいい感じ。
 
 ## sheldon の特徴と感想
@@ -35,7 +35,7 @@ $ sheldon lock --update
 
 ## dotfiles で管理する
 
-僕は zshrc とかのの管理は dotfiles で行っていて、ファイルの構成は次のようになっている。
+僕は zshrc とかの管理は dotfiles で行っていて、ファイル構成は次のようになっている。
 
 ```txt
 dotfiles/zsh/

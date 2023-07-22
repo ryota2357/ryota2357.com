@@ -9,18 +9,22 @@ VisualStudio の調子が悪いので VSCode でも Unity 開発できる様に�
 
 ## はじめに
 
+<!-- textlint-disable ja-technical-writing/max-comma -->
+
 > Visual Studio Code can be a great companion to Unity for editing and debugging C# files. All of the C# features are supported and more.In the screen below, you can see code colorization, bracket matching, IntelliSense, CodeLens and that's just the start.
 >
 > ![example](./UnityDevelopmentWithVSC_UnityExample.gif)
 >
 > Read on to find out how to configure Unity and your project to get the best possible experience.
 
+<!-- textlint-enable -->
+
 コードシンタックス、インテリセンス、参照の表示などは始まりに過ぎないと。
 
 ### 環境
 
-VScode: バージョン: 1.53.2
-MacOS: BigSur バージョン 11.2.1
+- VScode: バージョン: 1.53.2
+- MacOS: BigSur バージョン 11.2.1
 
 ## やること
 
@@ -33,13 +37,13 @@ MacOS: BigSur バージョン 11.2.1
 
 ### Unity エディタの External Tools の設定
 
-Unity エディタの Preference より
+Unity エディタの Preference より、
 
 ![ExternalTools](./screenshot_UnityExternalTools.png)
 
 を設定します。
 
-これで Unity エディタで C#ファイルをクリックすると VSCode が開くようになりました。
+これで Unity エディタにて C#ファイルをクリックすると VSCode が開くようになりました。
 
 ### .NetCoreSDK、Mono をインストール
 
@@ -137,7 +141,7 @@ meta ファイルや、fbx などの編集しない不必要なファイルを�
 
 ## その他
 
-僕個人の設定について
+僕個人の設定について。
 
 ### Vim 拡張
 
@@ -153,7 +157,7 @@ VisualStudio で Vim 拡張がうまく動かなくなったから VSCode に乗
 "vim.vimrc.path": "~/.vsvimrc"  // ←各自設定
 ```
 
-vimrc.path ですが普段使っている vim の `.vimrc` でも良いのですがエディタ用の独自のキーバインドがあったりするので僕は分けてます。
+vimrc.path は普段使っている vim の `.vimrc` でも良いのですがエディタ用の独自のキーバインドがあったりするので僕は分けてます。
 
 ### setting.json 公開
 

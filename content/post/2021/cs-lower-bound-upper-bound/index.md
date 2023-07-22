@@ -12,7 +12,7 @@ C++には STL として `lower_bound` と `upper_bound` があるに C#にはな
 
 `lower_bound`、`upper_bound` 実装内容については他にも解説している記事があるのでここでは書かない。
 
-以下の要件を満たすものを作成する
+以下の要件を満たすものを作成する。
 
 - 拡張メソッドである。
 - 無効な引数に対して例外が発生する。
@@ -21,10 +21,14 @@ C++には STL として `lower_bound` と `upper_bound` があるに C#にはな
 
 具体化する。
 
+<!-- textlint-disable ja-spacing/ja-no-space-around-parentheses, ja-technical-writing/no-unmatched-pair -->
+
 - 引数には this List\<T\> を用いる。
 - 引数チェックを行う。
 - key 以外にも区間 [first, last) を指定できるよう引数を作る。
 - IComparable\<T\> 制約を満たさなくても引数に IComparer\<T\> か Comparison\<T\> を渡せば探索できるようにする。
+
+<!-- textlint-enable ja-spacing/ja-no-space-around-parentheses, ja-technical-writing/no-unmatched-pair -->
 
 ## 実装
 

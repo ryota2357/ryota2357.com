@@ -16,6 +16,8 @@ dart SKD のエラー・例外の一覧がなかったので。
 
 </details>
 
+<!-- textlint-disable ja-technical-writing/sentence-length -->
+
 ## 例外
 
 ### CertificateException

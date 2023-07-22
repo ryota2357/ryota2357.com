@@ -19,7 +19,7 @@ tags: ["Gatsby"]
 
 ## 問題
 
-例えば次のように Markdown ファイルがあるとする
+例えば次のように Markdown ファイルがあるとする。
 
 ```txt
 content/
@@ -32,7 +32,7 @@ content/
         └ index.md
 ```
 
-fuga/index.md にて
+fuga/index.md にて、
 
 ```md
 huga への相対パスによる[リンク](../huga/index.md)
@@ -72,10 +72,14 @@ plugins: [
 
 ## GIF はみ出る
 
+<!-- textlint-disable  ja-technical-writing/no-doubled-joshi -->
+
 本題から逸れるけど、上記の問題が解決してレスポンシブ確認してたら GIF 画像がはみ出る問題があった。  
 GIF は gatsby の方がいい感じの処理はしてくれず、ただ img で配置するだけになってるみたい。
 
-`src/style/markdown.scss` に
+<!-- textlint-enable  ja-technical-writing/no-doubled-joshi -->
+
+`src/style/markdown.scss` に次を追加した。
 
 ```scss
 .markdown {
@@ -86,5 +90,3 @@ GIF は gatsby の方がいい感じの処理はしてくれず、ただ img で
   ...
 }
 ```
-
-と追加した。

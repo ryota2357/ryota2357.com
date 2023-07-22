@@ -46,7 +46,7 @@ tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
 
 このテーマは Visual Studio Dark (以下 vsdark)や Visual Studio Code Dark(以下 codedark)の配色を参考にして作成しました。(vsdark や codedark にて使用されている色を使ったわけではありません)
 
-青・緑を中心に構成し、boolean 値には青緑(Teal)、数値にはピンクを採用しました。全体的にはっきりとした色(彩度が高めの色、ビビット/ブライトあたりのトーン)を使っています。
+青・緑を中心に構成し、boolean 値には青緑(Teal)を、数値にはピンクを採用しました。全体的にはっきりとした色(彩度が高めの色、ビビット/ブライトあたりのトーン)を使っています。
 
 カラーパレットは[https://github.com/ryota2357/necodark/blob/main/src/Necodark/Palette.cs](https://github.com/ryota2357/necodark/blob/main/src/Necodark/Palette.cs)にて確認できます。
 使用している主な色は次の通りです。
@@ -62,7 +62,7 @@ necodark を作成した目的は主に次の 2 点です。
 
 1 つ目の目的のために、背景には少し暗めの黒(#1a1b1f)を使い文字色の彩度・コントラスト比を上げました。2 つ目の目的のためベースに vsdark や codedark を採用しました。
 
-necodark は「制御 (if や for)」「リテラル (boolean, 数値)」に特徴的な配色を行っています。
+necodark は「制御 (if や for)」「リテラル (boolean, 数値)」に特徴的な配色をしました。
 
 「制御」に充てている色はインディゴ(#8a99ff) です。この色はキーワード色として使っている青(#379df1)に近い色を持ちます。
 
@@ -73,16 +73,16 @@ vsdark では「制御」と「キーワード」には同じ色が当てられ�
 重要なマーカーとしての意味であれば同じ色を当てても良さそうです。
 しかし necodark では上に挙げた目的の 1 つ目「長時間のコーディングによる目の疲れがあってもしっかりコードを読める」を達成するため色を分けました。
 
-「制御」と「キーワード」はコード中に頻繁に登場します。そのため、もしこれらの色を同じにしてしまうと同じ色がコード内に比較的多く登場することになります。
+「制御」と「キーワード」はコード中で頻繁に登場します。そのため、もしこれらの色を同じにしてしまうと同じ色がコード内に比較的多く登場することとなります。
 通常時はとても良いマーカーになるかもしれませんが、疲労時には同じ色が多いと感じて目が滑ってしまうかもしれません。これを解決するため necodark では「制御」にインディゴを当てました。
 
-necodark で使用したインディゴと青は近い色です。しかしインディゴは青よりは目立たないでしょう。 先ほど「制御」は重要なマーカーと言ったのにキーワードのようには目立っていません。
+necodark で使用したインディゴと青は近い色のため、このインディゴは青よりは目立たないでしょう。 先ほど「制御」は重要なマーカーと言ったのにキーワードのようには目立っていません。
 しかしこれで良いのです。「制御」となる文字は `if` や `for`、`loop`、`raise`、`break` などが挙げられます。これらの文字はコード内でインデントや `}` などの付近で使用されています。
 そのため文字色で目出させずにも識別することは十分可能だと考えました。
 また、特に `if` や `for` ではリテラルと共に使用されることも多いです。necodark ではリテラルにも目立つ特徴的な配色がされています。
 このことからも「制御」にはキーワードよりは目立たないインディゴを割り当てるのが適当だと考えました。
 
-「リテラル」に当てている色は、真偽値には青緑(#4dcbbb)、数値にはピンク(#fb749c)です。
+「リテラル」に当てている色は、真偽値には青緑(#4dcbbb)を、数値にはピンク(#fb749c)です。
 
 ![literal-pink-teal](literal-pink-teal.png)
 
@@ -94,7 +94,7 @@ necodark で使用したインディゴと青は近い色です。しかしイ�
 
 ここまで necodark の「見た目」について説明しました。ここからは necodark の「実装」について書いていきます。
 
-necodark は C# 製のカラーテーマジェネレータ、Sccg を用いて作成されています。Sccg は v0.2.1 であり、今後も開発は進められていく予定です。v0.2.1 ですが十分に実用に耐えれるものだと思ってます。
+necodark は C# 製のカラーテーマジェネレータ、Sccg を用いて作成されています。Sccg は v0.2.1 であり、今後も開発は進められていく予定です。v0.2.1 ですが十分に実用に耐えられるものだと思ってます。
 
 ### 2.1 Sccg の目的と特徴
 
@@ -120,7 +120,7 @@ Sccg is a tool to generate color schemes for your terminal, editor, etc.
   - Cycle reference will be detected by `Source`, then Sccg warn you or failed to build.
 ```
 
-まとめると Sccg は、C# でカスタマイズ可能であり、多くのプラットフォームに統一された方法でカラーテーマを作成でき、typo や色の循環 link を抑制できることで、安全に効率的にオリジナルのカラーテーマを作成することを可能にするカラーテーマジェネレータです。(このことを目標に開発してます)
+まとめると Sccg は C# でカスタマイズ可能であり、多くのプラットフォームに統一された方法でカラーテーマを作成でき、typo や色の循環 link を抑制できることで、安全かつ効率的にオリジナルのカラーテーマを作成することを可能にするカラーテーマジェネレータです。(このことを目標に開発してます)
 
 続いて Sccg にて採用した概念である、`Source`、`Formatter`、`Converter`、`Writer` の説明と関係を説明します。README にもあるように、これらを用いてカラーテーマの生成ロジックをスクリプト可能なものに分割しました。次にこれらの関係を図示します(README からの引用)。
 
@@ -188,14 +188,14 @@ Sccg はコアな部分(Sccg の核となる部分)とそれの付属部分(標�
 `Source`、`Formatter`、`Converter`、`Writer` は 0 個以上の任意の個数登録できます。上のコードでは順番に登録してますが順番に登録する必要はありません。
 
 ちなみに、Sccg は `Source` や `Formatter` などは 1 つも定義していません。Sccg.Builtin にて定義されています。
-`Source` や `Formatter`、`Writer` はただのクラスなので継承によってカスタマイズ・拡張することも可能です。もちろん自分で 1 から作成することも可能であり、さほど難しくはありません。
+`Source` や `Formatter`、`Writer` はただのクラスなので継承によってカスタマイズ・拡張することできます。もちろん自分で 1 から作成もでき、さほど難しくはありません。
 
 ### 2.3 Source
 
 1 つの `Source` は 0 個以上のカラーグループ(トークン)と、各カラーグループの設定(色やフォントスタイル)を持っています。
 私たちはカラーテーマを作成するために `Source` を作る必要があります。1 から Source を作るのは大変なので基本的には Sccg.Builtin から提供される Source を用いると良いでしょう。
 
-Sccg.Builtin が提供する Source はカラーグループは持っていますが、各カラーグループの設定は持っていません。
+Sccg.Builtin が提供する Source はカラーグループを持っていますが、各カラーグループの設定は持っていません。
 私たちはそのカラーグループに色やフォントスタイルを設定できます。私たちは色・フォントスタイルを 0 個以上設定したものを `Builder` に登録します。
 登録された `Source` は私たちの設定に基づき、0 個以上の `SourceItem` と呼ばれるものを生成します。
 
@@ -215,7 +215,11 @@ class EditorHighlight : NeovimEditorHighlightSource
 }
 ```
 
-この例は Sccg のテストで使っているコードです。`NeovimEditorHighlightSource` を継承した `EditorHighlight` クラスの `Custom()` メソッド内で `Set()` 関数や `Link()` 関数を用いて設定を書くことができます(`NeovimEditorHighlightSource` は Sccg.Builtin から提供される `Source` です)。lCursor というグループに前景色を#aaff00、スタイルを bold に設定したり、Title グループの背景色を #000000 に設定したり、Conceal グループを ColorColumn グループにリンクさせている、、などがわかると思います。
+<!-- textlint-disable ja-technical-writing/sentence-length -->
+
+この例は Sccg のテストで使っているコードです。`NeovimEditorHighlightSource` を継承した `EditorHighlight` クラスの `Custom()` メソッド内で `Set()` 関数や `Link()` 関数を用いて設定を書くことができます(`NeovimEditorHighlightSource` は Sccg.Builtin から提供される `Source` です)。lCursor というグループに前景色を#aaff00、スタイルを bold に設定したり、Title グループの背景色を #000000 に設定したり、Conceal グループを ColorColumn グループにリンクさせている、などがわかると思います。
+
+<!-- textlint-enable ja-technical-writing/sentence-length -->
 
 次に necodark にて実際に使用しているコードを載せました(同じく Neovim の Editor ハイライトを設定しているところです)。
 
@@ -261,7 +265,7 @@ Sccg.Builtin の `Source` の中には複数の `Formatter` で処理可能に�
 
 `Converter` には 2 つの種類が存在します、`SourceItemConverter` と `ContentConverter` です。それぞれ `SourceItem`、`Content` を加工する、という役割を持ちます。
 
-`SourceItemConverter` は n 個(n は 0 以上の整数)の `SourceItem` を受け取り m 個(m は 0 以上の整数)の `SourceItem` を返します。
+`SourceItemConverter` は n 個（n は 0 以上の整数）の `SourceItem` を受け取り m 個(m は 0 以上の整数)の `SourceItem` を返します。
 この時 `Formatter` とは異なり `SourceItem` を消費します。そのため加工したくないものに関しては受け取ったものをそのまま返す必要があります。`ContentConverter` も同様です。`Content` を消費します。
 
 現在 Sccg.Builtin からは `Converter` は 1 つも提供していません。(VS Code 対応において `MultiTextContentSplitter` という `ContentConverter` が追加される予定です)
@@ -337,7 +341,7 @@ public class TextFileWriter : Writer<SingleTextContent>
 
 ### 2.7 interface
 
-個々の概念を実際のコードにする際に次に示す interface を Sccg にて定義してあります。(名前空間は `Sccg.Core` です)
+個々の概念を実際のコードにする際、次に示す interface を Sccg にて定義してあります。(名前空間は `Sccg.Core` です)
 
 - `Source` を表す `ISource`
 - `SourceItem` を表す `ISourceItem`
@@ -359,13 +363,13 @@ Sccg.Builtin ではこれら抽象 class と interface を実装した class, in
 
 ### 3.1 なぜ C# で作ったのか
 
-型が厳格であり、かつ柔軟性がある程度あり、リフレクションが使える言語で僕が扱えるのが C#だけだったから。
+型が厳格であり、かつ柔軟性がある程度あり、リフレクションが使える言語で僕が扱えるの言語が C#だけだったから。
 
 TypeScript とか Dart とか Rust も考えたけど、どれも条件に当てはまらなかった。
 
 ### 3.2 Converter の説明で出てきた `Name` と `Priority` プロパティは何をしているか
 
-`Name`, `Priority` プロパティは `ISource`, `IFormatter`, `ISourceItemConverter`, `IContentConverter`, `IWriter` 全てに実装されているプロパティです。
+`Name`、`Priority` プロパティは `ISource`、 `IFormatter`、 `ISourceItemConverter`、 `IContentConverter`、 `IWriter` 全てに実装されているプロパティです。
 これらのプロパティは `Builder` クラスにて使われます。
 
 `Name` プロパティは `Builder::Use<T>()` で利用され、重複したものが登録されていないことを確認します。重複したものが登録された時には例外(`ArgumentException`)が投げられます。
@@ -420,5 +424,5 @@ necodark でもいくつかの場所で利用しています。
 
 ## 4. 最後に
 
-個人的に非常に満足できるカラーテーマを作成できました。また、カラーテーマジェネレータも良いものができていると感じています。
+個人的にとても満足できるカラーテーマを作成できました。また、カラーテーマジェネレータも良いものができていると感じています。
 今後もカラーテーマ、ジェネレータともに開発を進め、さらに強力なものにしていきます。

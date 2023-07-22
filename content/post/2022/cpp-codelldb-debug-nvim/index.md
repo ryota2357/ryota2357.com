@@ -22,7 +22,7 @@ Neovim に C++のデバッグ環境を作った。
 - [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
 - [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)
 
-nvim-dap は Neovim とデバッガをいい感じに繋いでくれる、nvim-dap-ui は nvim-dap にいい感じの UI を作ってくれるやつ、Mason.nvim は LSP, DAP とかのインストーラ。
+nvim-dap は Neovim とデバッガをいい感じに繋いでくれるやつ。nvim-dap-ui は nvim-dap にいい感じの UI を作ってくれるやつ。Mason.nvim は LSP, DAP とかのインストーラ。
 
 ## 設定
 

@@ -7,7 +7,7 @@ tags: ["Dart"]
 
 Dart 公式の meta.dart と dart:core ライブラリに定義されているアノテーションの一覧が欲しかったので作った。
 
-日本語はかなりざっくり書いてるので、原文ドキュメントも読むことも推奨。
+日本語はかなりざっくり書いてるので、原文ドキュメントを読むことも推奨。
 
 [sdk/pkg/analysis_server/test/mock_packages/meta/lib/meta.dart](https://github.com/dart-lang/sdk/blob/5208456b5af83120d0cb21c6a2a4d2f07e9c89e6/pkg/analysis_server/test/mock_packages/meta/lib/meta.dart)
 
@@ -65,8 +65,12 @@ int fn(bool b) {
 }
 ```
 
+<!-- textlint-disable ja-technical-writing/sentence-length -->
+
 Without the annotation on toss, it would look as though fn doesn't always return a value. The annotation shows that fn does always exit. In addition, the annotation reveals that any statements following a call to toss (like the print call) are dead code.
 Tools, such as the analyzer, can also expect this contract to be enforced; that is, tools may emit warnings if a function with this annotation doesn't always throw.
+
+<!-- textlint-enable ja-technical-writing/sentence-length -->
 
 </details>
 
@@ -131,7 +135,7 @@ a class that has this annotation or extends, implements or mixes in a class that
 
 ### @isTest
 
-deepl 翻訳そのまま
+deepl 翻訳そのまま。
 
 <details>
   <summary>ドキュメント</summary>
@@ -146,7 +150,7 @@ IDE などのツールでは、このような関数の呼び出しをファイ�
 
 ### @isTestGroup
 
-deepl 翻訳そのまま
+deepl 翻訳そのまま。
 
 <details>
   <summary>ドキュメント</summary>

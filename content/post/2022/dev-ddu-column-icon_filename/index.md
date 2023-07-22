@@ -61,8 +61,12 @@ filename ではアイコンとファイル名の間のサイズを変更でき�
 
 defx-icons とは異なるアイコンを使用しているものがある。
 
+<!-- textlint-disable ja-technical-writing/no-doubled-joshi -->
+
 僕の使用しているフォント Cica では一部アイコンフォントが表示されない、または別のものが表示されることがある。そのようなアイコンは異なるアイコンを当てている。  
 そのほかにも僕の好みが反映されていたり、複数のフォントアイコンの選択肢がある場合は Devicons 由来のものを選んだりした。
+
+<!-- textlint-enable ja-technical-writing/no-doubled-joshi -->
 
 対応しているファイルタイプは[ここの下の方](https://github.com/ryota2357/ddu-column-icon_filename/blob/main/denops/%40ddu-columns/icon_filename.ts)に定義してある。主要なものは対応するようにしたつもり。対応していないものに気がついた時は随時追加していく。
 

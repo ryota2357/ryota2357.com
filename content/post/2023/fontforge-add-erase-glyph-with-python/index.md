@@ -5,7 +5,7 @@ update: "2023-05-04T22:56"
 tags: ["FontForge", "Python"]
 ---
 
-FontForge にて、Glyph 追加・削除を行うには「Glyph Pen」を用いると直感的にできるかと思う。
+FontForge にて、Glyph 追加・削除する「Glyph Pen」を用いると直感的にできるかと思う。
 
 「削除」に関してはもっといい方法があるかもしれない。僕は見つけられなかった。
 
@@ -71,11 +71,11 @@ font.generate("modified-example.ttf")
 
 ## 削除
 
-削除は、「削除」としての関数を見つけることはできなかったが、`intersect()` を用いて削除を行う方法は見つけられた。次の記事で行なっていた方法を用いるといいだろう。
+削除は、「削除」としての関数を見つけることはできなかったが、`intersect()` を用いて削除する方法は見つけられた。次の記事で行なっていた方法を用いるといいだろう。
 
 [SF Mono を使って最高のプログラミング用フォントを作った話#全角空白を可視化する](https://qiita.com/delphinus/items/f472eb04ff91daf44274#3-%E5%85%A8%E8%A7%92%E7%A9%BA%E7%99%BD%E3%82%92%E5%8F%AF%E8%A6%96%E5%8C%96%E3%81%99%E3%82%8B)
 
-ここでは例として、Hack フォントの数字の 0(`0x30`)の中の楕円を削除を行う。
+ここでは例として、Hack フォントの数字の 0(`0x30`)の中の楕円を削除する。
 
 ![zero-erase-pos](zero-erase-pos.png)
 
@@ -135,7 +135,7 @@ font.selection.none()
 
 ### 応用(?)
 
-`font.copy()`, `font.paste()`, `font.pasteInto()`, `font.correctDirection()` も使えば、より柔軟に削除を行うこともできる。
+`font.copy()`, `font.paste()`, `font.pasteInto()`, `font.correctDirection()` も使えば、より柔軟に削除するもできる。
 
 次のスクリプトは小文字の「m」の真ん中の縦棒を短くする処理を行う関数である。
 
