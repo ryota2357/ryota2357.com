@@ -66,7 +66,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   if (result.errors) {
     reporter.panicOnBuild(
       "There was an error loading your blog posts",
-      result.errors
+      result.errors,
     );
     return;
   }

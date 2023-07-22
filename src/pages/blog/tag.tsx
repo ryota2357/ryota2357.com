@@ -8,10 +8,11 @@ const Tag = ({ data }: PageProps<Queries.TagPageQuery>) => {
       <ul className="list-inside list-disc mt-8">
         {(() => {
           const cnt = new Map<string, number>();
-          data.allMarkdownRemark.nodes.map((post) =>
-            post.frontmatter.tags?.map(
-              (tag) => tag && cnt.set(tag, (cnt.get(tag) ?? 0) + 1)
-            )
+          data.allMarkdownRemark.nodes.map(
+            (post) =>
+              post.frontmatter.tags?.map(
+                (tag) => tag && cnt.set(tag, (cnt.get(tag) ?? 0) + 1),
+              ),
           );
           return [...cnt.entries()]
             .sort()

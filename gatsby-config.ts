@@ -252,7 +252,7 @@ const config: GatsbyConfig = {
               acc[slug] = { update };
               return acc;
             },
-            {}
+            {},
           );
           return allSitePage.nodes.map((node: any) => {
             return { ...node, ...blogPosts[node.path] };

@@ -11,28 +11,19 @@
       "no-mix-dearu-desumasu": false,
       "no-exclamation-question-mark": false,
       "no-doubled-joshi": {
-        "allow": [
-          "か"
-        ]
+        "allow": ["か"]
       },
       "ja-no-weak-phrase": false,
       "ja-no-mixed-period": {
         "periodMark": "。",
-        "allowPeriodMarks": [
-          "、",
-          "...",
-          "↓"
-        ],
+        "allowPeriodMarks": ["、", "...", "↓"],
         "allowEmojiAtEnd": false,
         "forceAppendPeriod": false
       }
     },
     "preset-ja-spacing": {
       "ja-space-between-half-and-full-width": {
-        "space": [
-          "alphabets",
-          "numbers"
-        ]
+        "space": ["alphabets", "numbers"]
       },
       "ja-no-space-between-full-width": true,
       "ja-nakaguro-or-halfwidth-space-between-katakana": true,

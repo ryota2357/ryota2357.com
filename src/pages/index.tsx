@@ -32,10 +32,11 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
           <div className="flex flex-wrap my-auto mx-0">
             {(() => {
               const cnt = new Map<string, number>();
-              data.allMarkdownRemark.nodes.map((post) =>
-                post.frontmatter.tags?.map(
-                  (tag) => tag && cnt.set(tag, (cnt.get(tag) ?? 0) + 1)
-                )
+              data.allMarkdownRemark.nodes.map(
+                (post) =>
+                  post.frontmatter.tags?.map(
+                    (tag) => tag && cnt.set(tag, (cnt.get(tag) ?? 0) + 1),
+                  ),
               );
               return [...cnt.entries()]
                 .sort()
@@ -54,7 +55,7 @@ const Index = ({ data }: PageProps<Queries.IndexPageQuery>) => (
                 .concat(
                   <span className="p-[0.3rem]" key={"一覧"}>
                     <Link to="/blog/tag/">一覧</Link>
-                  </span>
+                  </span>,
                 );
             })()}
           </div>
