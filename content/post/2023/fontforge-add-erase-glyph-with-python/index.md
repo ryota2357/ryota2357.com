@@ -1,11 +1,11 @@
 ---
-title: "FontForgeとPythonでGlyphの追加・削除する方法"
+title: "FontForgeとPythonでGlyph (Contour) の編集(追加・削除)方法"
 postdate: "2023-05-03T18:58"
-update: "2023-05-04T22:56"
+update: "2023-07-22T15:56"
 tags: ["FontForge", "Python"]
 ---
 
-FontForge にて、Glyph 追加・削除する「Glyph Pen」を用いると直感的にできるかと思う。
+FontForge にて、「Glyph Pen」を用いると直感的に Contour を編集できるかと思う。
 
 「削除」に関してはもっといい方法があるかもしれない。僕は見つけられなかった。
 
