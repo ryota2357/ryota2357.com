@@ -3,9 +3,9 @@
   "private": true,
   "author": "ryota2357",
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "6.4.0",
-    "@fortawesome/free-regular-svg-icons": "6.4.0",
-    "@fortawesome/free-solid-svg-icons": "6.4.0",
+    "@fortawesome/free-brands-svg-icons": "6.4.2",
+    "@fortawesome/free-regular-svg-icons": "6.4.2",
+    "@fortawesome/free-solid-svg-icons": "6.4.2",
     "@fortawesome/react-fontawesome": "0.2.0",
     "dart-code": "github:Dart-Code/Dart-Code",
     "dayjs": "1.11.9",
@@ -33,7 +33,7 @@
     "latex-workshop": "github:James-Yu/LaTeX-Workshop",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "1.64.1",
+    "sass": "1.64.2",
     "toml": "github:oovm/vscode-toml",
     "tsconfig-paths-webpack-plugin": "4.1.0",
     "viml": "github:XadillaX/vscode-language-viml"
