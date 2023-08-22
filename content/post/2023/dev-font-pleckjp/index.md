@@ -1,13 +1,13 @@
 ---
 title: "プログラミング用合成フォント PleckJP を作った"
 postdate: "2023-08-22T23:44"
-update: "2023-08-22T23:44"
+update: "2023-08-23T00:23"
 tags: ["FontForge"]
 ---
 
 ## PleckJP
 
-「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
+「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。  
 本稿では PleckJP を作成した理由やその特徴を書く。
 
 合成スクリプト(FontForge with Python)の解説は後日別の記事として公開する。
@@ -22,9 +22,21 @@ tags: ["FontForge"]
 
 ![PleckJP](./PleckJP.png)
 
+### HackGen
+
+[https://github.com/yuru7/HackGen](https://github.com/yuru7/HackGen)
+
 ![HackGen](./HackGen.png)
 
+### Cica
+
+[https://github.com/miiton/Cica](https://github.com/miiton/Cica)
+
 ![Cica](./Cica.png)
+
+### PlemolJP
+
+[https://github.com/yuru7/PlemolJP](https://github.com/yuru7/PlemolJP)
 
 ![PlemolJP](./PlemolJP.png)
 
@@ -34,7 +46,7 @@ tags: ["FontForge"]
 Cica は優れたフォントであり大きな不満点があった訳ではないのだが、次の点が気になっていた。
 
 - Cica は Nerd Font の周りに独自の対応がされていて、そこを自分で制御したいなという気持ちがあった。
-- 日本語は画数が多いためか密度が高く見えてしまい、英語と並べた時に日本語がやや目立つように感じる。そのためコード内のコメントなどで日本語が使用されるとその部分が（目立つ必要がないのに）目立っいるように感じでいた。
+- 日本語は画数が多いためか密度が高く見えてしまい、英語と並べた時に日本語がやや目立つように感じる。そのためコード内のコメントなどで日本語が使用されるとその部分が（目立つ必要がないのに）目立っいるように感じる。
 
 ある日、何となく iTerm2 の「Use a different font for non-ASCII text」の機能を利用して Cica を ASCII に、PlemolJP を non-ASCII に設定してみた。
 この時、僕は上記 2 つの問題が解決されたように感じられた。
@@ -82,6 +94,6 @@ PleckJP でも同様の調整を入れた。しかし Cica よりも m の真ん
 
 プログラミングフォントにおいて全角スペースの可視化は必須であると僕は思っている。
 
-この形の僕の好みであり、作りやすい（コード上で作成しやすい）のでこの形となった。
+グリフの形は僕の好み、かつ、作りやすい（コード上で作成しやすい）のでこの形となった。
 
 ![full-whitespace](./full-whitespace.png)
