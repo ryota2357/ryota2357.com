@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Aug 2023 14:49:47 GMT</lastBuildDate><item><title><![CDATA[プログラミング用合成フォント PleckJP を作った]]></title><description><![CDATA[PleckJP 「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
-本稿では PleckJP を作成した理由やその特徴を書く。 合成スクリプト(FontForge with Python…]]></description><link>https://ryota2357.com/blog/2023/dev-font-pleckjp/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/dev-font-pleckjp/</guid><pubDate>Tue, 22 Aug 2023 23:44:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;pleckjp&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#pleckjp&quot; aria-label=&quot;pleckjp permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;PleckJP&lt;/h2&gt;
-&lt;p&gt;「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Aug 2023 16:19:04 GMT</lastBuildDate><item><title><![CDATA[プログラミング用合成フォント PleckJP を作った]]></title><description><![CDATA[PleckJP 「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。 本稿では PleckJP を作成した理由やその特徴を書く。 合成スクリプト(FontForge with Python…]]></description><link>https://ryota2357.com/blog/2023/dev-font-pleckjp/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/dev-font-pleckjp/</guid><pubDate>Tue, 22 Aug 2023 23:44:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;pleckjp&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#pleckjp&quot; aria-label=&quot;pleckjp permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;PleckJP&lt;/h2&gt;
+&lt;p&gt;「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。&lt;br&gt;
 本稿では PleckJP を作成した理由やその特徴を書く。&lt;/p&gt;
 &lt;p&gt;合成スクリプト(FontForge with Python)の解説は後日別の記事として公開する。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/ryota2357/PleckJP&quot;&gt;&lt;strong&gt;https://github.com/ryota2357/PleckJP&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
@@ -72,6 +71,8 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;hackgen&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#hackgen&quot; aria-label=&quot;hackgen permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;HackGen&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/yuru7/HackGen&quot;&gt;https://github.com/yuru7/HackGen&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
@@ -105,6 +106,8 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;cica&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#cica&quot; aria-label=&quot;cica permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Cica&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/miiton/Cica&quot;&gt;https://github.com/miiton/Cica&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
@@ -138,6 +141,8 @@
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;plemoljp&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#plemoljp&quot; aria-label=&quot;plemoljp permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;PlemolJP&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/yuru7/PlemolJP&quot;&gt;https://github.com/yuru7/PlemolJP&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
@@ -176,7 +181,7 @@
 Cica は優れたフォントであり大きな不満点があった訳ではないのだが、次の点が気になっていた。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Cica は Nerd Font の周りに独自の対応がされていて、そこを自分で制御したいなという気持ちがあった。&lt;/li&gt;
-&lt;li&gt;日本語は画数が多いためか密度が高く見えてしまい、英語と並べた時に日本語がやや目立つように感じる。そのためコード内のコメントなどで日本語が使用されるとその部分が（目立つ必要がないのに）目立っいるように感じでいた。&lt;/li&gt;
+&lt;li&gt;日本語は画数が多いためか密度が高く見えてしまい、英語と並べた時に日本語がやや目立つように感じる。そのためコード内のコメントなどで日本語が使用されるとその部分が（目立つ必要がないのに）目立っいるように感じる。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;ある日、何となく iTerm2 の「Use a different font for non-ASCII text」の機能を利用して Cica を ASCII に、PlemolJP を non-ASCII に設定してみた。
 この時、僕は上記 2 つの問題が解決されたように感じられた。&lt;/p&gt;
@@ -192,26 +197,26 @@ Alacritty では設定でフォントを混ぜることができない。そこ�
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/069e1963cb05841ecfe339dcfc55ccd5/b0f48/NerdFonts.png&quot;
+    href=&quot;/static/99fc220fb711092b1f48de38b38e702b/b0f48/NerdFonts.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 72.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAABzUlEQVR42n3T2W5iQQwE0Pv/H4d4iBBr2An7FsIeOjqWPMo8zCCZdne7y1W2b3U4HMpisSi73a58fn4W++12W47HY1mv12G3262MRqOyWq3KbDYL/3Q6hYn7+voK41f+Op1O6Xa7ATSZTMr7+3v5+PiIs+FwWK7Xa+zZcrkMk3y/3wcRGPYSVhgAFOyg1WrFHhOAwDH0SEIPX69X+dcvAHu9XmQlnT8ej0smAny/3wPw8Xj8FywAaSfJIw+s7Pl8BrP0sccw6+aOr+bn8zmYw6oEYeFCTebzeTwW4M7e481mE/XC3B2QbJw49zAqMtUtO60pughcGabTaTD3CIPL5RLMJOFb/5KMQbvdjkykW7OLkmjW9/d3sAEAHMjv8qhrWuUgZ48MzBg2VkkYcKA5txlLKh9rCisB2RhZrQKyScyeEnc5PjnIzH324I/kwWAQchuNRnl7e4vRqdVqpd/vh1S1zK6KS3ZKks2JwfZngHUauIYA4QMmDzN7gB4CAkIiX73tg6EM9Xo9AIFj6nNzjrkzDJ0lk6wn6eKSNfCKlJQog7Fxxs/PESCGQOw9ziaYiKxfNEUWkgEJEoCNy2azGefZZY2QjBrgYn+Dw/oBlqZw+JgBSEYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 72.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAABzklEQVR42n3T2W5iQQwE0Pv/H4d4iBBr2An7FsIeOjqWPMo8zCCZdnfb5Sq7b3U4HMpisSi73a58fn4W++12W47HY1mv12G3262MRqOyWq3KbDYL/3Q6hYn7+voK41f+Op1O6Xa7ATSZTMr7+3v5+PiIs+FwWK7Xa+zZcrkMU3y/3wcRGPYKVv4ACua3Wq3YYwIQOIaSFJT4er3Kv34VSb1eL6qSzh+PxyE1ge/3ewA+Ho//ggWgPpAkSYKVPZ/PYJY+9hhm39zx9fx8PgdzfawEYeFCT+bzeSQLcGcvebPZRL8wdwckByfOPYyKTH3LSRuKKQLXhul0GswlYXC5XIKZInzrX5IxaLfbUYl0a05REcP6/v4ONgCAA/ndHn1Nqxzk2yMDM4aNVREGHGi+24wllY81hZUAyZJUtQrIITF7Stzl88mHzNznDP5IHgwGIbfRaJS3t7d4OrVarfT7/ZCqlzlVcclOS3I48bD1ywM2aeAGAoQPmDzM7AFKBASERL5+2wdDQPV6PQBVwNTnpjLmzjB0lkyyn6SLS9bAK1JSogqejTN+fo4AMQRiLzmHQGH2L4YClWRAggRg47LZbMZ5TtkgFKMGuNjf4Bj/AHhkcOkUSI4RAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;NerdFonts&quot;
         title=&quot;&quot;
-        src=&quot;/static/069e1963cb05841ecfe339dcfc55ccd5/3c051/NerdFonts.png&quot;
-        srcset=&quot;/static/069e1963cb05841ecfe339dcfc55ccd5/a2d4f/NerdFonts.png 190w,
-/static/069e1963cb05841ecfe339dcfc55ccd5/3f520/NerdFonts.png 380w,
-/static/069e1963cb05841ecfe339dcfc55ccd5/3c051/NerdFonts.png 760w,
-/static/069e1963cb05841ecfe339dcfc55ccd5/b5cea/NerdFonts.png 1140w,
-/static/069e1963cb05841ecfe339dcfc55ccd5/891d5/NerdFonts.png 1520w,
-/static/069e1963cb05841ecfe339dcfc55ccd5/b0f48/NerdFonts.png 2690w&quot;
+        src=&quot;/static/99fc220fb711092b1f48de38b38e702b/3c051/NerdFonts.png&quot;
+        srcset=&quot;/static/99fc220fb711092b1f48de38b38e702b/a2d4f/NerdFonts.png 190w,
+/static/99fc220fb711092b1f48de38b38e702b/3f520/NerdFonts.png 380w,
+/static/99fc220fb711092b1f48de38b38e702b/3c051/NerdFonts.png 760w,
+/static/99fc220fb711092b1f48de38b38e702b/b5cea/NerdFonts.png 1140w,
+/static/99fc220fb711092b1f48de38b38e702b/891d5/NerdFonts.png 1520w,
+/static/99fc220fb711092b1f48de38b38e702b/b0f48/NerdFonts.png 2690w&quot;
         sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -296,7 +301,7 @@ PleckJP でも同様の調整を入れた。しかし Cica よりも m の真ん
     &lt;/span&gt;&lt;/p&gt;
 &lt;h3 id=&quot;全角スペース&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%85%A8%E8%A7%92%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9&quot; aria-label=&quot;全角スペース permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;全角スペース&lt;/h3&gt;
 &lt;p&gt;プログラミングフォントにおいて全角スペースの可視化は必須であると僕は思っている。&lt;/p&gt;
-&lt;p&gt;この形の僕の好みであり、作りやすい（コード上で作成しやすい）のでこの形となった。&lt;/p&gt;
+&lt;p&gt;グリフの形は僕の好み、かつ、作りやすい（コード上で作成しやすい）のでこの形となった。&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
       style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
