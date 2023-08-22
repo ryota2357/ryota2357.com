@@ -1,4 +1,425 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 20 Aug 2023 21:41:48 GMT</lastBuildDate><item><title><![CDATA[シンプルなDFA型の正規表現エンジンをRustで作成する #2]]></title><description><![CDATA[書いてたら思いの他長くなったので分割した。 シンプルな DFA 型の正規表現エンジンを Rust で作成する #0 このページでは Parser より得られた構文木から NFA を、その NFA から DFA を構築し、Regex を作成する。 Automaton…]]></description><link>https://ryota2357.com/blog/2023/dfa-regex-with-rust-2/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/dfa-regex-with-rust-2/</guid><pubDate>Fri, 26 May 2023 10:08:00 GMT</pubDate><content:encoded>&lt;p&gt;書いてたら思いの他長くなったので分割した。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 22 Aug 2023 14:49:47 GMT</lastBuildDate><item><title><![CDATA[プログラミング用合成フォント PleckJP を作った]]></title><description><![CDATA[PleckJP 「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
+本稿では PleckJP を作成した理由やその特徴を書く。 合成スクリプト(FontForge with Python…]]></description><link>https://ryota2357.com/blog/2023/dev-font-pleckjp/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/dev-font-pleckjp/</guid><pubDate>Tue, 22 Aug 2023 23:44:00 GMT</pubDate><content:encoded>&lt;h2 id=&quot;pleckjp&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#pleckjp&quot; aria-label=&quot;pleckjp permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;PleckJP&lt;/h2&gt;
+&lt;p&gt;「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
+本稿では PleckJP を作成した理由やその特徴を書く。&lt;/p&gt;
+&lt;p&gt;合成スクリプト(FontForge with Python)の解説は後日別の記事として公開する。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ryota2357/PleckJP&quot;&gt;&lt;strong&gt;https://github.com/ryota2357/PleckJP&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/4a2989b05a1edbc82c43ae1a08762afd/63908/PleckJP-README.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 52.10526315789474%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAABvElEQVR42n2SW3acMBBEWYaDJPQWQkjADB4nJ9n/usolxp6Tn+Sjebaq63b3IN0Ms27QucLGAhdmOJ8hlcWPcXqFtAk68b8PmJzne8CoLd5GjTdlICYLxRhGvph2YL3vuJ3vqO0GyyJKe4xCP4OCIjTI7Q/C/TfcscMfB9T9hrAxf04YjYUxHsPES2gbcm1YSoF2CUKap9D3XUysTmexwZcDue2ILJzXinr0+wFjZwhhMCiijS4QZ4GLC7SfoYmnlIOcniF6DoUlD9nlBsfwCx3OJAmZ52dIPss0Y5A6ILCqT+wh3eXchRPdLDA9kYLdqZB0qjxi2XGcJ+K6wxb23sWLYJQMpSnI6i5vmEu9IvCADU8h8Tcy8ySfJxMu1Fw3hLwi5gLrE4cV4Ug6CN1xV3iKxEBnxL1Qiawm/8K9BPvkpUNhv8+PE2U/kCrRE52mxqkn9rAPhR/L/RcTK9EL5MvZ95S/BOVTsO472tF7uWJZG7Rxl5g0kchMEoy+Joa71ZHEPwUNw6NuO8rtDpsb4rwgL4W7yTZRYzA2stENJuVrjxSRx/8JshW2PbC+/8TxeHB3TzQWsJzDFAo+AfMzGes9/z+cAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;README-image&quot;
+        title=&quot;&quot;
+        src=&quot;/static/4a2989b05a1edbc82c43ae1a08762afd/3c051/PleckJP-README.png&quot;
+        srcset=&quot;/static/4a2989b05a1edbc82c43ae1a08762afd/a2d4f/PleckJP-README.png 190w,
+/static/4a2989b05a1edbc82c43ae1a08762afd/3f520/PleckJP-README.png 380w,
+/static/4a2989b05a1edbc82c43ae1a08762afd/3c051/PleckJP-README.png 760w,
+/static/4a2989b05a1edbc82c43ae1a08762afd/b5cea/PleckJP-README.png 1140w,
+/static/4a2989b05a1edbc82c43ae1a08762afd/891d5/PleckJP-README.png 1520w,
+/static/4a2989b05a1edbc82c43ae1a08762afd/63908/PleckJP-README.png 2410w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;比較&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%AF%94%E8%BC%83&quot; aria-label=&quot;比較 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;比較&lt;/h2&gt;
+&lt;p&gt;いくつか有名な日本語プログラミングフォントと PleckJP の比較スクリーンショットを並べる。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/1d958a56f97fb622265d29a36a9ebe81/a4f52/PleckJP.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 33.15789473684211%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAsklEQVR42o2R2wrEIAxE/f8v7GNBCrX3ir3QW5YTsMjuwxoYRmIyk6gZx1Ge55H7vn8Q83BumGEYBLRtK9M0CQZw13Wab5pGc6kBuK7r5Xjm3tA4z7OEELTZOaeMQV3XKkZN3/eyrqvWeu/VDGOYO/qBsdaqSGwg4opwRJzgG2mesynLUoqikKqqdJJ932XbNhU/jkOFKcx+w2VZdDUmZAUYYMC6vA+rnOeZJ5j+6D/kxAd8LyKUXH/qYwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;PleckJP&quot;
+        title=&quot;&quot;
+        src=&quot;/static/1d958a56f97fb622265d29a36a9ebe81/3c051/PleckJP.png&quot;
+        srcset=&quot;/static/1d958a56f97fb622265d29a36a9ebe81/a2d4f/PleckJP.png 190w,
+/static/1d958a56f97fb622265d29a36a9ebe81/3f520/PleckJP.png 380w,
+/static/1d958a56f97fb622265d29a36a9ebe81/3c051/PleckJP.png 760w,
+/static/1d958a56f97fb622265d29a36a9ebe81/b5cea/PleckJP.png 1140w,
+/static/1d958a56f97fb622265d29a36a9ebe81/891d5/PleckJP.png 1520w,
+/static/1d958a56f97fb622265d29a36a9ebe81/a4f52/PleckJP.png 2024w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/054dae1d67f487c688913a346f024e01/5b2ff/HackGen.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 34.73684210526316%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAuklEQVR42pVQ2QqEMAzs//+ez4JHPajWCxXvWSbQsi77oIEhJE0nM1FlWaLrOtR1LViWBYzzPHFdl8fTUEVRoG1bGGNQVRWappGa5OyxZp7n2S9yOI7DwwkQQsIRxXEMrbUgTVNkWSaLmOmk73uZs9aC7pjzPJfeMAxQHORHquDjtm03m9+2nYp/J/EKyRqGIYIgQJIkQryuq1gk3t5RkXkcR2+b9gjWURRhmia/4BHhvu83Bb9W3ir8AFnXH9+PyA/7AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;HackGen&quot;
+        title=&quot;&quot;
+        src=&quot;/static/054dae1d67f487c688913a346f024e01/3c051/HackGen.png&quot;
+        srcset=&quot;/static/054dae1d67f487c688913a346f024e01/a2d4f/HackGen.png 190w,
+/static/054dae1d67f487c688913a346f024e01/3f520/HackGen.png 380w,
+/static/054dae1d67f487c688913a346f024e01/3c051/HackGen.png 760w,
+/static/054dae1d67f487c688913a346f024e01/b5cea/HackGen.png 1140w,
+/static/054dae1d67f487c688913a346f024e01/891d5/HackGen.png 1520w,
+/static/054dae1d67f487c688913a346f024e01/5b2ff/HackGen.png 2190w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/96db796fff26ff4493ae16903c8f1fba/6fa81/Cica.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 37.89473684210527%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA00lEQVR42qVRB4rEMAz0/3+WD6SQAimQ3itJyCwjMITjFgw7IGQVa0a2ep4HbzDWuXftnfvPNNQ4jmiaBlVVYZomMKa1bSu+LEvM8wxTqDiOURQFuq6D53lwXRdhGCIIAjiOgzRNEUWReA6u61oEJEmCPM+RZRk4YxgG9H0PxQY2anXLski8bZvkjuOQM3M87/sufl1XMd3PPE3Ztg3f94WNxV8hK1uWJatyNa5O1SQgMx/8PE/8/byvAymfu/MyFfJ9GJOIg+/7ltp1XWYDTZlN8QH5c2z4Sqq8cwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Cica&quot;
+        title=&quot;&quot;
+        src=&quot;/static/96db796fff26ff4493ae16903c8f1fba/3c051/Cica.png&quot;
+        srcset=&quot;/static/96db796fff26ff4493ae16903c8f1fba/a2d4f/Cica.png 190w,
+/static/96db796fff26ff4493ae16903c8f1fba/3f520/Cica.png 380w,
+/static/96db796fff26ff4493ae16903c8f1fba/3c051/Cica.png 760w,
+/static/96db796fff26ff4493ae16903c8f1fba/b5cea/Cica.png 1140w,
+/static/96db796fff26ff4493ae16903c8f1fba/891d5/Cica.png 1520w,
+/static/96db796fff26ff4493ae16903c8f1fba/6fa81/Cica.png 1856w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/c088214f175a35dfdcfd7346919e13e1/5b2ff/PlemolJP.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 36.84210526315789%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAABYlAAAWJQFJUiTwAAAAt0lEQVR42o2RRwrDQBAE9/8/1FUI5ZxQblMDa4QPZgeaydnVda1hGDSOo5DXddXzPLrvW9d1GQfYQsgVRaGu69Q0jaqqMtnrZVkaJ2ZZFitKE4/zPA3HcZiO3/lEppymSWmaKssy5Xn+5W3bmtz3vW1CQ2wM4BviI9+RgAEHgXR703vVf7LX3TzPiuNYURQpSRK7o18DhN7ue0MOzn1YlWLAr0EjnrTvu7ZtCyvINP6Tv3h/GYTQB97/IQhvsn5/AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;PlemolJP&quot;
+        title=&quot;&quot;
+        src=&quot;/static/c088214f175a35dfdcfd7346919e13e1/3c051/PlemolJP.png&quot;
+        srcset=&quot;/static/c088214f175a35dfdcfd7346919e13e1/a2d4f/PlemolJP.png 190w,
+/static/c088214f175a35dfdcfd7346919e13e1/3f520/PlemolJP.png 380w,
+/static/c088214f175a35dfdcfd7346919e13e1/3c051/PlemolJP.png 760w,
+/static/c088214f175a35dfdcfd7346919e13e1/b5cea/PlemolJP.png 1140w,
+/static/c088214f175a35dfdcfd7346919e13e1/891d5/PlemolJP.png 1520w,
+/static/c088214f175a35dfdcfd7346919e13e1/5b2ff/PlemolJP.png 2190w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;目的と経緯&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%9B%AE%E7%9A%84%E3%81%A8%E7%B5%8C%E7%B7%AF&quot; aria-label=&quot;目的と経緯 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;目的と経緯&lt;/h2&gt;
+&lt;p&gt;元々僕は Cica フォントを長らく利用していた。
+Cica は優れたフォントであり大きな不満点があった訳ではないのだが、次の点が気になっていた。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cica は Nerd Font の周りに独自の対応がされていて、そこを自分で制御したいなという気持ちがあった。&lt;/li&gt;
+&lt;li&gt;日本語は画数が多いためか密度が高く見えてしまい、英語と並べた時に日本語がやや目立つように感じる。そのためコード内のコメントなどで日本語が使用されるとその部分が（目立つ必要がないのに）目立っいるように感じでいた。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ある日、何となく iTerm2 の「Use a different font for non-ASCII text」の機能を利用して Cica を ASCII に、PlemolJP を non-ASCII に設定してみた。
+この時、僕は上記 2 つの問題が解決されたように感じられた。&lt;/p&gt;
+&lt;p&gt;iTerm2 上で Cica と PlemolJP を混ぜて利用するのを何ヶ月か続けたのだが、ある日 iTerm2 をやめ、Alactirry に移行したいなと思うようになった。
+Alacritty では設定でフォントを混ぜることができない。そこで僕は合成フォントを作ることを決めた。&lt;/p&gt;
+&lt;p&gt;合成フォントを作りに合ったってベースとなるフォントは、Cica がベースとして利用している Hack、PlemolJP がベースとしている IBM Plex Sans JP とした。（もちろん他のフォントも検討したが、最終的にこの 2 つを混ぜることにした）&lt;/p&gt;
+&lt;h2 id=&quot;nerd-fonts-の合成&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#nerd-fonts-%E3%81%AE%E5%90%88%E6%88%90&quot; aria-label=&quot;nerd fonts の合成 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Nerd Fonts の合成&lt;/h2&gt;
+&lt;p&gt;アイコンフォントはターミナルで生活するには僕にとって必須である。なので、PleckJP にも NerdFonts を合成した。&lt;/p&gt;
+&lt;p&gt;NerdFonts の合成には公式 FontPatcher を利用する方法が多いのかもしれないが、僕は FontPatcher 以上の細かな調節を自分で行いたかったため独自の合成スクリプトで合成している。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/069e1963cb05841ecfe339dcfc55ccd5/b0f48/NerdFonts.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 72.63157894736842%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAABzUlEQVR42n3T2W5iQQwE0Pv/H4d4iBBr2An7FsIeOjqWPMo8zCCZdne7y1W2b3U4HMpisSi73a58fn4W++12W47HY1mv12G3262MRqOyWq3KbDYL/3Q6hYn7+voK41f+Op1O6Xa7ATSZTMr7+3v5+PiIs+FwWK7Xa+zZcrkMk3y/3wcRGPYSVhgAFOyg1WrFHhOAwDH0SEIPX69X+dcvAHu9XmQlnT8ej0smAny/3wPw8Xj8FywAaSfJIw+s7Pl8BrP0sccw6+aOr+bn8zmYw6oEYeFCTebzeTwW4M7e481mE/XC3B2QbJw49zAqMtUtO60pughcGabTaTD3CIPL5RLMJOFb/5KMQbvdjkykW7OLkmjW9/d3sAEAHMjv8qhrWuUgZ48MzBg2VkkYcKA5txlLKh9rCisB2RhZrQKyScyeEnc5PjnIzH324I/kwWAQchuNRnl7e4vRqdVqpd/vh1S1zK6KS3ZKks2JwfZngHUauIYA4QMmDzN7gB4CAkIiX73tg6EM9Xo9AIFj6nNzjrkzDJ0lk6wn6eKSNfCKlJQog7Fxxs/PESCGQOw9ziaYiKxfNEUWkgEJEoCNy2azGefZZY2QjBrgYn+Dw/oBlqZw+JgBSEYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;NerdFonts&quot;
+        title=&quot;&quot;
+        src=&quot;/static/069e1963cb05841ecfe339dcfc55ccd5/3c051/NerdFonts.png&quot;
+        srcset=&quot;/static/069e1963cb05841ecfe339dcfc55ccd5/a2d4f/NerdFonts.png 190w,
+/static/069e1963cb05841ecfe339dcfc55ccd5/3f520/NerdFonts.png 380w,
+/static/069e1963cb05841ecfe339dcfc55ccd5/3c051/NerdFonts.png 760w,
+/static/069e1963cb05841ecfe339dcfc55ccd5/b5cea/NerdFonts.png 1140w,
+/static/069e1963cb05841ecfe339dcfc55ccd5/891d5/NerdFonts.png 1520w,
+/static/069e1963cb05841ecfe339dcfc55ccd5/b0f48/NerdFonts.png 2690w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;グリフの編集&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E3%82%B0%E3%83%AA%E3%83%95%E3%81%AE%E7%B7%A8%E9%9B%86&quot; aria-label=&quot;グリフの編集 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;グリフの編集&lt;/h2&gt;
+&lt;p&gt;PleckJP は 2 つのフォントをただ合成しただけではない。幾つかの変更を加えている。それらについて説明する。&lt;/p&gt;
+&lt;h3 id=&quot;日本語のサイズ&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%97%A5%E6%9C%AC%E8%AA%9E%E3%81%AE%E3%82%B5%E3%82%A4%E3%82%BA&quot; aria-label=&quot;日本語のサイズ permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;日本語のサイズ&lt;/h3&gt;
+&lt;p&gt;日本語のサイズは少しだけ小さくなっている。これは「目的」のところに書いたが、日本語と英語を並べた時日本語が目立ちやすいという問題を解消するためである。&lt;/p&gt;
+&lt;p&gt;英語・日本語グリフのサイズのバランスが少し悪く見えるかもしれないが、PleckJP はプログラミングフォントであり、ソースコード上の文字はほとんどが英数字である。
+フォントとして良いバランスを取るよりも、ソースコード全体のバランス（日本語が目立たない）を僕は取ったつもりである。&lt;/p&gt;
+&lt;h3 id=&quot;0-数字のゼロ&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#0-%E6%95%B0%E5%AD%97%E3%81%AE%E3%82%BC%E3%83%AD&quot; aria-label=&quot;0 数字のゼロ permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;0 (数字のゼロ)&lt;/h3&gt;
+&lt;p&gt;これは僕が長らく Cica を使っていたことに影響されているのだと思うのだが、0 の中心に打たれるドットは Hack フォントの楕円ではなく、真円でないと違和感があったので変更した。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/5735b0bbbba0b023d401764bcd77661c/218a4/zero.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 81.57894736842105%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAABYlAAAWJQFJUiTwAAACwklEQVR42o1Uu07lMBC9CBpaoAO+ADo6hMQXIFGBkADxB1BRwGdQ0dAgoF4KRMNLogBR8BK0q9WuuOTlOHYezk3uPTuecAOsVuw6spwZe47PzJykkec5iqL4cnbP/M9otFqtfx5qt9ufALt2d3Y6nb8AfnB+BWjf7fxzvwtaA5ZlG5EbI3E0xIuALxUyYeq9jwyVUtjf38fGxgYODg6gtX7j1HkHlKGkgwkSkSIJCVgZKC9CkWbo0NM953kepqam0N/fj4mJCV6np6fh+37F0N5cmgLal8hCDUkgJs0h3BCtJEH0KphhnldsV1dX0dvbi+vra7avrq7Q09ODtbW1d0BFqWaxQfQSEO2qPnlMTAPFbE2W1amOjo5iZWWF7TiOeV1cXMTIyAin3ijLEkJRippmIKpaFFR4YiV8qmOSIRIR+5+fn9FoNLC9vV1dSnKyY2trC319fbi/v68AZWwBKdBRiJoh/B8eTJRCpwlMQsz9CvDk5IQBj4+P8fT0hPn5eTw+PuLo6Ij9FxcXlDIVO40i5MYg+O4RaBUsfwZUT0npGoRUXzsOvx1y4Pn5ORYWFvh9bm4Ol5eX9UWNoiwIMEFGgSKIIEkyYSioSQqpTit/WAFyAAWenZ2xbGzd9vb2cHp6yn5eGTBMEasUoYyp4y2WUElijf2YmmMg31K+vb3lwN3dXbYdx+F1Z2eH/Tc3N1WXI1cjI91pV9fitQWXQiONE6QkHztc18XAwADW19fZzt66byUzNDSEZrNJTSHAmMSrqOXaEwzAkqD0DfnCV0miLmphz87OYnh4mMoSsi2EYHtmZubzp6edgHSVwXOoy54D5SfQ9PmlkULng0Tu7u6Y5djYGDY3NzE+Po7BwUE8PDxUgPZgi1iaJIf3SyCQAhE1xXa26QWwsjKkALt2fwBWb0tLS5icnMTy8nINZn8SvwE8qmAVEob91wAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;zero&quot;
+        title=&quot;&quot;
+        src=&quot;/static/5735b0bbbba0b023d401764bcd77661c/3c051/zero.png&quot;
+        srcset=&quot;/static/5735b0bbbba0b023d401764bcd77661c/a2d4f/zero.png 190w,
+/static/5735b0bbbba0b023d401764bcd77661c/3f520/zero.png 380w,
+/static/5735b0bbbba0b023d401764bcd77661c/3c051/zero.png 760w,
+/static/5735b0bbbba0b023d401764bcd77661c/218a4/zero.png 1052w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;m-小文字のエム&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#m-%E5%B0%8F%E6%96%87%E5%AD%97%E3%81%AE%E3%82%A8%E3%83%A0&quot; aria-label=&quot;m 小文字のエム permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;m (小文字のエム)&lt;/h3&gt;
+&lt;p&gt;Cica が取り入れている変更と同じである。&lt;/p&gt;
+&lt;p&gt;Cica では「独自の調整として m の真ん中の棒を短く（rn と m を区別しやすく＆ちょっと可愛らしく）」という変更がされている。
+PleckJP でも同様の調整を入れた。しかし Cica よりも m の真ん中の棒は長くした。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/6342f784bdd55303d8cf1aecda03d74a/acf8f/m.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 83.15789473684211%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAABYlAAAWJQFJUiTwAAACJ0lEQVR42t2Tza4hQRTHbSQEYcETWFoKiaUnELFB4h3sLD2CFRIPYGUpPuYu3NXchCDewM6V6Wnd+vtD/6dOXX0HcydjPdU56XOqun7n3+dUBWzbhuM4/zT67pkRuFwuT31IUM/z/g+gezfhPTg+4xboui58ITRHsb/2tULv7wpvQbdJaJ78AO+ibcG1XTimDdMw4FguXGa2acLULZ7gdrMsy9A0jfvUfVEUuUqu0DB0KGcJwlGE/C5BVzSI7zLEI9t0UnD6IXHg97c3VCoVtFotJJNJ5PN5TCYTFItFRCIRNJvND6DJVFB29XiCIpxhyBoszcD5KEH9qUCXFXhM5Hw2RyAQQL1ex2g0QiqVQigUQrfbRbvd5mur1eoDSLI1kW1kjyqcYKoGLGZUApWpBCvby7cXBINBvC5euZJSqYR0Os39w+GAcDiM4XB4BVoMKKt8UTursHSTm2M5PKYxm80QjUaxXC55XK1Wkc1muS8IAmKxGAaDwW+F5rXIBnvbFiVhjWKlMK7zPnCz2fCYfj2Xy3FfkiQO7PV6N0D2puHHVFfqnMG6zoHz+R2w0WigUCg8AWQAisnugFeF6/Wax+VyGZlM5msgqfGBlq5DV1V4DwrnTGE8Hsdut+Mx1XKxWHwCE4kE+v3+nwofb4cPHI/H/Ghst9u7m+EDaa3T6bCDfVWks+KTIt9og8WSqAo7TiymX6XO7vf7z2Rk/GSwvbVaDdPpFL8AQ/bDm60Q+rMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;m&quot;
+        title=&quot;&quot;
+        src=&quot;/static/6342f784bdd55303d8cf1aecda03d74a/3c051/m.png&quot;
+        srcset=&quot;/static/6342f784bdd55303d8cf1aecda03d74a/a2d4f/m.png 190w,
+/static/6342f784bdd55303d8cf1aecda03d74a/3f520/m.png 380w,
+/static/6342f784bdd55303d8cf1aecda03d74a/3c051/m.png 760w,
+/static/6342f784bdd55303d8cf1aecda03d74a/b5cea/m.png 1140w,
+/static/6342f784bdd55303d8cf1aecda03d74a/acf8f/m.png 1340w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;全角スペース&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%85%A8%E8%A7%92%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9&quot; aria-label=&quot;全角スペース permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;全角スペース&lt;/h3&gt;
+&lt;p&gt;プログラミングフォントにおいて全角スペースの可視化は必須であると僕は思っている。&lt;/p&gt;
+&lt;p&gt;この形の僕の好みであり、作りやすい（コード上で作成しやすい）のでこの形となった。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/414d57178d25a6b1fc88e1ed76be8574/f238d/full-whitespace.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 40.526315789473685%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABB0lEQVR42o2SOQ6EMAxF5/5nYLkDEg3iAmwFHQV0iIqKJZCQ4LETEkbMFGPJEvqJX75tXsdxgFLK5XmeJtXpNLojpYR/4kUFNsS2wbquwBiDja1OJxhB6SGKLMvA8zwIggCGYdCaPbuBl7PbrTSXMC3QxrIsMI6jTiHEwyEWCM51PkMihKNr225RFND3vXNkzVRVBV3XGSAdcAI+XqIgV/u+O2AURdA0jf4mmNXjOIayLD+AWMT5/gMocJbMFSZJAm3bmnmjAX51laYp1HV9z1BhgZTHF5DmSLq85koL++zELoJ06kQD9W9zLWTHg2maYJ5nWObJLAd1+9tYQJ7n4Ps+hGH4teU3ABdrtqAB3dMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;full-whitespace&quot;
+        title=&quot;&quot;
+        src=&quot;/static/414d57178d25a6b1fc88e1ed76be8574/3c051/full-whitespace.png&quot;
+        srcset=&quot;/static/414d57178d25a6b1fc88e1ed76be8574/a2d4f/full-whitespace.png 190w,
+/static/414d57178d25a6b1fc88e1ed76be8574/3f520/full-whitespace.png 380w,
+/static/414d57178d25a6b1fc88e1ed76be8574/3c051/full-whitespace.png 760w,
+/static/414d57178d25a6b1fc88e1ed76be8574/b5cea/full-whitespace.png 1140w,
+/static/414d57178d25a6b1fc88e1ed76be8574/891d5/full-whitespace.png 1520w,
+/static/414d57178d25a6b1fc88e1ed76be8574/f238d/full-whitespace.png 2078w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line &gt; * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: &apos; &apos;;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting &gt; .grvsc-code &gt; .grvsc-line::before {
+    content: &apos; &apos;;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[シンプルなDFA型の正規表現エンジンをRustで作成する #2]]></title><description><![CDATA[書いてたら思いの他長くなったので分割した。 シンプルな DFA 型の正規表現エンジンを Rust で作成する #0 このページでは Parser より得られた構文木から NFA を、その NFA から DFA を構築し、Regex を作成する。 Automaton…]]></description><link>https://ryota2357.com/blog/2023/dfa-regex-with-rust-2/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/dfa-regex-with-rust-2/</guid><pubDate>Fri, 26 May 2023 10:08:00 GMT</pubDate><content:encoded>&lt;p&gt;書いてたら思いの他長くなったので分割した。&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;../dfa-regex-with-rust-0&quot;&gt;シンプルな DFA 型の正規表現エンジンを Rust で作成する #0&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;このページでは Parser より得られた構文木から NFA を、その NFA から DFA を構築し、Regex を作成する。&lt;/p&gt;
 &lt;h2 id=&quot;automaton&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#automaton&quot; aria-label=&quot;automaton permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Automaton&lt;/h2&gt;
