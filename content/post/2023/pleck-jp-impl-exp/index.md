@@ -172,6 +172,7 @@ font を開き、ゴニョゴニョ編集して、ファイルへ保存してい
 
 使用した util.py の関数の説明をする。
 
+<!-- prettier-ignore -->
 ### util.font_set_em ([fontforge\_/util.py#L21-L28](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/util.py#L21-L28))
 
 ```python
@@ -194,6 +195,7 @@ ascent と descent に値をセットした後、em に値をセットすると 
 > Unlinks all references in all selected glyphs and replaces them with splines.
 > [https://fontforge.org/docs/scripting/python/fontforge.html#fontforge.font.unlinkReferences](https://fontforge.org/docs/scripting/python/fontforge.html#fontforge.font.unlinkReferences)
 
+<!-- prettier-ignore -->
 #### util.font_resize_all_width ([fontforge\_/util.py#L31-L38](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/util.py#L31-L38))
 
 拡大と移動の行列を使ってスケーリングを行う。
@@ -214,6 +216,7 @@ def font_resize_all_width(font, new_width: int) -> None:
 width が 0 のグリフは `new_width` にせず、0 のままにしておいた方がいいのかもしれないが、今のところ問題は起きてないので、全部 `new_width` にする実装となっている。
 ちゃんと確認した方がいいかもしれない。(面倒...)
 
+<!-- prettier-ignore -->
 #### util.fix_all_glyph_points ([fontforge\_/util.py#L41-L46](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/util.py#L41-L46))
 
 グリフを編集する過程でグリフの座標が良くない座標になることがある。（例えばグリフの拡大縮小で各点の座標が整数ではなく小数となる）
@@ -366,6 +369,7 @@ def main() -> None:
 
 `merge_jp(font)` は少し説明する。
 
+<!-- prettier-ignore -->
 #### merge_jp(font) ([fontforge\_/merge.py#L55-L66](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/merge.py#L55-L66))
 
 名前の通り引数の `font` に日本語グリフ (`FONT_JP_TTF`) を合成する関数である。
