@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 25 Aug 2023 16:55:41 GMT</lastBuildDate><item><title><![CDATA[基本情報・応用情報に合格した話]]></title><description><![CDATA[基本情報技術者試験（2022 年秋）に合格した。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 25 Aug 2023 17:16:33 GMT</lastBuildDate><item><title><![CDATA[基本情報・応用情報に合格した話]]></title><description><![CDATA[基本情報技術者試験（2022 年秋）に合格した。
 応用情報技術者試験（2023 年春）に合格した。 ちょっと時間が空いてしまったのだけど、FE・AP に合格したの少し書いておこうと思う。 FE (基本情報) 午前 91.25 点、午後 9…]]></description><link>https://ryota2357.com/blog/2023/passed-fe-ap/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/passed-fe-ap/</guid><pubDate>Sat, 26 Aug 2023 01:06:00 GMT</pubDate><content:encoded>&lt;!-- textlint-disable ja-technical-writing/max-kanji-continuous-len --&gt;
 &lt;p&gt;基本情報技術者試験（2022 年秋）に合格した。
 応用情報技術者試験（2023 年春）に合格した。&lt;/p&gt;
@@ -11,25 +11,25 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/2731271b77cccccb5372fe552401f98a/1bba3/fe_result.png&quot;
+    href=&quot;/static/b09687a1a58e84c4ef1a8058bee34fb1/1bba3/fe_result.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 76.84210526315789%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACt0lEQVR42n1Uy24TMRTNXyD+sR/BJ7BEsIcKqahrsqGidFMoQYmokgl5tMm8X37OeDyTw7ULpZUAS1f2eM4cn3vuHY/yKkGU7hHne2T1DqphaFqFlNbjLy9QXb1F8O4YBeGSPEKchcjZnnACupHgusJkdwo2O8Xi5DVGJU8RJrc+uKxgek2hYAeDxtbYqxm0FahFTmR77MKNx3UPcNIUWPFLNIPEiHEGVjPUFF3XwY3h0Pv5bPkSR2+eIsjOYPTgMX/DfVy/wtHxEyzSD46whlISkmI4DB5w+DVviiucfH2GQt9AK0045ePwEHcAdtUM7+fPwdoYoySNMZ8vsN1uobX2oGEYaC1RlRUaaei5R5YnmE6nCIIAnHP01kJKjiSJIZgiufC4UV5kWAZLRFFEKhVM14MLhbY1XoW1PSm3RJhiMplgs9mgpIMqSr2sGDgThOdkg4HtO4y4YMiyjCrW4GAkuiKAqRcwkpTIBSp544FScTo0BmPM5QrLyAZ+DSZuUeQlbR28p97DIs/Rmo4IOWw2Rc9mMGJKlf2GggeksoM7OAojVFXln03+HU19iVIsyFftbfIpu1TW6zVyInUvhFQ+tG582p2xXqEnJFtcV1iqsuEhGrECVxGapn1M6AqSpqk3Wwjhw5LpvoQ0+sF6wt1u5xW6trH5NVT1GSVf0nfijvB3ypIUuY1/DUcoiNAdXJYlqTY+ZVW6lJeUkfxDWLPKN/adov8QSobVaoUojmHaFiadEeEFSjn39vR9/0ChkPfd/y9CTrg4TqhVSv9xp0qYJoE2zgJLe4PHjYoyR7gPqQDtIxLfBpSGm2mFOIlw8enC96FrnbKqyU9OB0myQ1LbaSKkPlytf2A8HlOlmnsC98fElFpMfRdlt9AdRxjtcX5+7snce2NaWtdkQYQ0oQsm3dLNU+AnVsx01d8NLJYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 76.84210526315789%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC00lEQVR42nVUW27UMBTNLhBr6Q66FhYB7IA/BP9Q8exXhQRClJd4lHY6HUCTBNrCtHk7sR07cR5zuPa0oAqIZNlxjs+959zreBlLEOcR0iJCVi2gGo6mVUhp/fTTTZS79xA82kBeJrDYtIiR8RPCSeimhtAlJotN8Nkm/Id34FV1gcl0Bzt771FrDjNotINCPxo0fYUTNYPuJWRT4t2HN3j2/Al0K2F6RdgVrjYFvouPaMYanpACSZwijhL0fQ/7jMvBzdvhLVy5exl+tg3TjEgSUhP/jXt1eBtXNi7BT1/A46KC1prS1wQYHWB5Nh+xPTzevw6mf0CpFaaxuHE8I6R5CUTiK576N8DbGF6SxpjP5zg6OnLElmwcB/JRIzqJMd39DCklCpZhOp0iCAIIISjLjvAK376FePv6PZTUNhV4eZEhDEJEUYRakS/dACEV2ta4LEzbUSY9sjzFZDJxgRkrUVYcrOTglURVlTDGoB866yFHlmUkp8HS1OiKAKbyYeoAkgZXPx2wVoKCxuCcW0/Q8x/QJJXLn2BFSVtL56nzsMhztKYjQpKSHWDgMxh5gEruoxCBk2cDR6cRyrJ07yb/gqb6CCZ956/11VrlWSmHh4fIidR+kLVyQ+vGye5M7zJ0hGQLFxx9R4TiFI38DqEiKlR7kfD4+BhpmjqzbQHsWLXG0vk4jL0jXCwWLsOOCPv8K1S5AyZCOidXhOeSa8rovBX+9VhCSYQ2MGOMsjZOsmJWckiK6j+EZcUc6LxZ/0coZAXfD5xs07Yw6YwI34LVc2fPMAwrwlpJJ8GO/xOuqsypVaxke7hTjG5PAm2sBT3tjS6w5wdzbG1tUQHaCySuDZzRKysOZlNcvXoNYRg6rwtWEbmgdU121O4W2cDe/Qf3sLa2RhVWv4nsjYnjmO53jJP0mErT4eXLbayvr7t928Rt21BPVohi+lMlKU4JJ3SBX+NfbErS9LB3AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;fe_result&quot;
         title=&quot;&quot;
-        src=&quot;/static/2731271b77cccccb5372fe552401f98a/3c051/fe_result.png&quot;
-        srcset=&quot;/static/2731271b77cccccb5372fe552401f98a/a2d4f/fe_result.png 190w,
-/static/2731271b77cccccb5372fe552401f98a/3f520/fe_result.png 380w,
-/static/2731271b77cccccb5372fe552401f98a/3c051/fe_result.png 760w,
-/static/2731271b77cccccb5372fe552401f98a/b5cea/fe_result.png 1140w,
-/static/2731271b77cccccb5372fe552401f98a/1bba3/fe_result.png 1433w&quot;
+        src=&quot;/static/b09687a1a58e84c4ef1a8058bee34fb1/3c051/fe_result.png&quot;
+        srcset=&quot;/static/b09687a1a58e84c4ef1a8058bee34fb1/a2d4f/fe_result.png 190w,
+/static/b09687a1a58e84c4ef1a8058bee34fb1/3f520/fe_result.png 380w,
+/static/b09687a1a58e84c4ef1a8058bee34fb1/3c051/fe_result.png 760w,
+/static/b09687a1a58e84c4ef1a8058bee34fb1/b5cea/fe_result.png 1140w,
+/static/b09687a1a58e84c4ef1a8058bee34fb1/1bba3/fe_result.png 1433w&quot;
         sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
