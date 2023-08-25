@@ -8,6 +8,8 @@ tags: ["FontForge", "Python"]
 「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
 本稿ではその合成スクリプト(Python)について解説する。
 
+[**https://github.com/ryota2357/PleckJP**](https://github.com/ryota2357/PleckJP)
+
 なお、解説するスクリプトは [PleckJP v1.1.0](https://github.com/ryota2357/PleckJP/tree/v1.1.0) 現在のものである。
 
 ## 参考
@@ -170,7 +172,7 @@ font を開き、ゴニョゴニョ編集して、ファイルへ保存してい
 
 使用した util.py の関数の説明をする。
 
-### util.font_set_em ([fontforge\_/util.py#L21-L28](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge*/util.py#L21-L28))
+### util.font_set_em ([fontforge\_/util.py#L21-L28](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/util.py#L21-L28))
 
 ```python
 def font_set_em(font, ascent: int, descent: int, em: int) -> None:
@@ -188,11 +190,11 @@ ascent と descent に値をセットした後、em に値をセットすると 
 
 `unlinkReferences()` は必要ないかもしれないけど、一応やってる。
 
-> **font.unlinkReferences()**
+> **font.unlinkReferences()**  
 > Unlinks all references in all selected glyphs and replaces them with splines.
 > [https://fontforge.org/docs/scripting/python/fontforge.html#fontforge.font.unlinkReferences](https://fontforge.org/docs/scripting/python/fontforge.html#fontforge.font.unlinkReferences)
 
-#### util.font_resize_all_width ([fontforge\_/util.py#L31-L38](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge*/util.py#L31-L38))
+#### util.font_resize_all_width ([fontforge\_/util.py#L31-L38](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/util.py#L31-L38))
 
 拡大と移動の行列を使ってスケーリングを行う。
 
@@ -212,7 +214,7 @@ def font_resize_all_width(font, new_width: int) -> None:
 width が 0 のグリフは `new_width` にせず、0 のままにしておいた方がいいのかもしれないが、今のところ問題は起きてないので、全部 `new_width` にする実装となっている。
 ちゃんと確認した方がいいかもしれない。(面倒...)
 
-#### util.fix_all_glyph_points ([fontforge\_/util.py#L41-L46](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge*/util.py#L41-L46))
+#### util.fix_all_glyph_points ([fontforge\_/util.py#L41-L46](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/util.py#L41-L46))
 
 グリフを編集する過程でグリフの座標が良くない座標になることがある。（例えばグリフの拡大縮小で各点の座標が整数ではなく小数となる）
 この関数はグリフの各点の座標を修正する。
@@ -237,7 +239,7 @@ FontForge の Python API ドキュメントを読んだことがあるならば�
 
 > **glyph.addExtrema([flags, emsize])**  
 > Extrema should be marked by on-curve points. If a curve lacks a point at an extrema this command will add one.
-> (all: Add all missing extrema)
+> (all: Add all missing extrema)  
 > [https://fontforge.org/docs/scripting/python/fontforge.html#fontforge.glyph.addExtrema](https://fontforge.org/docs/scripting/python/fontforge.html#fontforge.glyph.addExtrema)
 
 ### IBM Plex Sans JP の調整 ([fontforge\_/modify_ibm_plex_sans_jp.py](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/modify_ibm_plex_sans_jp.py))
@@ -364,7 +366,7 @@ def main() -> None:
 
 `merge_jp(font)` は少し説明する。
 
-#### merge_jp(font) ([fontforge\_/merge.py#L55-L66](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge*/merge.py#L55-L66))
+#### merge_jp(font) ([fontforge\_/merge.py#L55-L66](https://github.com/ryota2357/PleckJP/blob/v1.1.0/src/fontforge_/merge.py#L55-L66))
 
 名前の通り引数の `font` に日本語グリフ (`FONT_JP_TTF`) を合成する関数である。
 
@@ -473,4 +475,4 @@ FontForge でいじれなかったフォントデータを編集する。
 合成フォントの作り方について情報が少なくて、結構試行錯誤しながらやっとできたという感じである。
 けど、そんなに難しいことはやってない。知識・情報不足でつまずいた。
 
-もっといろんな人が合成フォント作って情報増えればなーと思ってる。
+もっといろんな人が合成フォント作って情報増えると良いなと思っている。

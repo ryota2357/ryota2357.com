@@ -10,7 +10,7 @@ tags: ["FontForge"]
 「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。  
 本稿では PleckJP を作成した理由やその特徴を書く。
 
-合成スクリプト(FontForge with Python)の解説は後日別の記事として公開する。
+合成スクリプト(FontForge with Python)の解説は[プログラミング用合成フォント PleckJP の合成スクリプトの実装解説](../pleck-jp-impl-exp)に書いた。
 
 [**https://github.com/ryota2357/PleckJP**](https://github.com/ryota2357/PleckJP)
 
@@ -97,3 +97,9 @@ PleckJP でも同様の調整を入れた。しかし Cica よりも m の真ん
 グリフの形は僕の好み、かつ、作りやすい（コード上で作成しやすい）のでこの形となった。
 
 ![full-whitespace](./full-whitespace.png)
+
+## 感想
+
+初めての合成フォント作成であったが、個人的にはなかなか良いものが作れたなと感じている。
+
+今後も PleckJP をメンテナンス・改善していき、より良いフォントにしていく。
