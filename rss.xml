@@ -1,4 +1,205 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 24 Aug 2023 16:23:55 GMT</lastBuildDate><item><title><![CDATA[プログラミング用合成フォント PleckJP の合成スクリプトの実装解説]]></title><description><![CDATA[「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[ryota2357 RSS Feed]]></title><description><![CDATA[namespace ryota2357;]]></description><link>https://ryota2357.com</link><generator>GatsbyJS</generator><lastBuildDate>Fri, 25 Aug 2023 16:21:54 GMT</lastBuildDate><item><title><![CDATA[基本情報・応用情報に合格した話]]></title><description><![CDATA[基本情報技術者試験（2022 年秋）に合格した。
+応用情報技術者試験（2023 年春）に合格した。 ちょっと時間が空いてしまったのだけど、FE・AP に合格したの少し書いておこうと思う。 FE (基本情報) 午前 91.25 点、午後 9…]]></description><link>https://ryota2357.com/blog/2023/passed-fe-ap/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/passed-fe-ap/</guid><pubDate>Sat, 26 Aug 2023 01:06:00 GMT</pubDate><content:encoded>&lt;!-- textlint-disable ja-technical-writing/max-kanji-continuous-len --&gt;
+&lt;p&gt;基本情報技術者試験（2022 年秋）に合格した。
+応用情報技術者試験（2023 年春）に合格した。&lt;/p&gt;
+&lt;p&gt;ちょっと時間が空いてしまったのだけど、FE・AP に合格したの少し書いておこうと思う。&lt;/p&gt;
+&lt;h2 id=&quot;fe-基本情報&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#fe-%E5%9F%BA%E6%9C%AC%E6%83%85%E5%A0%B1&quot; aria-label=&quot;fe 基本情報 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;FE (基本情報)&lt;/h2&gt;
+&lt;p&gt;午前 91.25 点、午後 91 点だった。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 760px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/2731271b77cccccb5372fe552401f98a/1bba3/fe_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 76.84210526315789%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAAsTAAALEwEAmpwYAAACt0lEQVR42n1Uy24TMRTNXyD+sR/BJ7BEsIcKqahrsqGidFMoQYmokgl5tMm8X37OeDyTw7ULpZUAS1f2eM4cn3vuHY/yKkGU7hHne2T1DqphaFqFlNbjLy9QXb1F8O4YBeGSPEKchcjZnnACupHgusJkdwo2O8Xi5DVGJU8RJrc+uKxgek2hYAeDxtbYqxm0FahFTmR77MKNx3UPcNIUWPFLNIPEiHEGVjPUFF3XwY3h0Pv5bPkSR2+eIsjOYPTgMX/DfVy/wtHxEyzSD46whlISkmI4DB5w+DVviiucfH2GQt9AK0045ePwEHcAdtUM7+fPwdoYoySNMZ8vsN1uobX2oGEYaC1RlRUaaei5R5YnmE6nCIIAnHP01kJKjiSJIZgiufC4UV5kWAZLRFFEKhVM14MLhbY1XoW1PSm3RJhiMplgs9mgpIMqSr2sGDgThOdkg4HtO4y4YMiyjCrW4GAkuiKAqRcwkpTIBSp544FScTo0BmPM5QrLyAZ+DSZuUeQlbR28p97DIs/Rmo4IOWw2Rc9mMGJKlf2GggeksoM7OAojVFXln03+HU19iVIsyFftbfIpu1TW6zVyInUvhFQ+tG582p2xXqEnJFtcV1iqsuEhGrECVxGapn1M6AqSpqk3Wwjhw5LpvoQ0+sF6wt1u5xW6trH5NVT1GSVf0nfijvB3ypIUuY1/DUcoiNAdXJYlqTY+ZVW6lJeUkfxDWLPKN/adov8QSobVaoUojmHaFiadEeEFSjn39vR9/0ChkPfd/y9CTrg4TqhVSv9xp0qYJoE2zgJLe4PHjYoyR7gPqQDtIxLfBpSGm2mFOIlw8enC96FrnbKqyU9OB0myQ1LbaSKkPlytf2A8HlOlmnsC98fElFpMfRdlt9AdRxjtcX5+7snce2NaWtdkQYQ0oQsm3dLNU+AnVsx01d8NLJYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;fe_result&quot;
+        title=&quot;&quot;
+        src=&quot;/static/2731271b77cccccb5372fe552401f98a/3c051/fe_result.png&quot;
+        srcset=&quot;/static/2731271b77cccccb5372fe552401f98a/a2d4f/fe_result.png 190w,
+/static/2731271b77cccccb5372fe552401f98a/3f520/fe_result.png 380w,
+/static/2731271b77cccccb5372fe552401f98a/3c051/fe_result.png 760w,
+/static/2731271b77cccccb5372fe552401f98a/b5cea/fe_result.png 1140w,
+/static/2731271b77cccccb5372fe552401f98a/1bba3/fe_result.png 1433w&quot;
+        sizes=&quot;(max-width: 760px) 100vw, 760px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;勉強&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%8B%89%E5%BC%B7&quot; aria-label=&quot;勉強 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;勉強&lt;/h3&gt;
+&lt;p&gt;参考書は「イメージ&amp;#x26;クレバー方式でよくわかる栢木先生の基本情報技術者教室」を使った。&lt;/p&gt;
+&lt;p&gt;勉強開始は試験日から 1 ヶ月半前くらいからだった。&lt;/p&gt;
+&lt;p&gt;最初は本(参考書)を 1 日 1 章のペースで読んでいった。勉強時間は 1 日あたり 2〜3 時間だった。
+適宜前日や数日前の範囲を読むのもやって 15 日くらいで本を読み切った。&lt;/p&gt;
+&lt;p&gt;本を読んでる時は過去問道場などで過去問演習は行わなかった。
+本に問題がついているのでそれを 4 割くらいやってた。読んで、調べて、理解することに集中した。&lt;/p&gt;
+&lt;p&gt;本を読みきったらなんか少し満足してしまって一週間くらい勉強してなかった。&lt;/p&gt;
+&lt;p&gt;その後は過去問道場で午前問題を解いた。
+試験 6, 7 回分を解いた。そのうち半分くらいは 2 周してるので、
+結構な量の問題を解いていたと思う。&lt;/p&gt;
+&lt;p&gt;午後は 3 回分くらいやった。試験日 5 日前くらいから始めた。&lt;/p&gt;
+&lt;h3 id=&quot;試験の感想&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E8%A9%A6%E9%A8%93%E3%81%AE%E6%84%9F%E6%83%B3&quot; aria-label=&quot;試験の感想 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;試験の感想&lt;/h3&gt;
+&lt;p&gt;過去問からの出題が多くて、結構サクサク解けた。&lt;/p&gt;
+&lt;p&gt;確か、午前は 60 分で、午後は 90 分くらいで問題 1 週時終わった（わからなくて飛ばしたところあり）。
+あまりにも早く 1 週終わってしまってびっくりした記憶がある。&lt;/p&gt;
+&lt;p&gt;午前午後両方で試験時間 30 分くらい残して退出した。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;なんか令和5年(2023年)から試験が科目A・Bになって試験時間も短くなったみたいだけど、僕の時(令和4年)は午前午後それぞれ150分だった。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;ap-応用情報&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#ap-%E5%BF%9C%E7%94%A8%E6%83%85%E5%A0%B1&quot; aria-label=&quot;ap 応用情報 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;AP (応用情報)&lt;/h2&gt;
+&lt;p&gt;午前 75 点、午後 81 点だった。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 728px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e75d1fc36200eb6cc3033bdbeabc9354/cecac/ap_result.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 107.36842105263158%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAVCAYAAABG1c6oAAAACXBIWXMAABYlAAAWJQFJUiTwAAABqklEQVR42qWUyVLCQBRF+WFKfkTXssOfYMVKPgBFRAiEMAlKBjKQgU7g+l4jKSmZErrqJiHdnLpvSiFJNohJ2+32Jm02O0bBCwWa2gL20sJoPJUbedYeXGB3xtLFkoDr9VoC8yhJkh2Q6aPJBM3WO4QQiKIIYRhKeBCEpEC+27/nM8fE5yWQ6Svfh24Y+JzNofRUqAMNpmXJe/ujA00b0vMASr8vwWeB7NAwTHR7fQTkYJ8Pup5M/sWQ2d3rW0u6CsmBt1rJ8LKstMp84T9bBGOnDP9e6FQkO1PbHDhcEKSnDjClHP49cKoAF3PYaDRwVyqhWCyiXH7EbDaTm3woF1DTNDxVKlLValWGzw6zAFkS6AYC7QkVI/CpfYLbR0/ECb5MRxZDp6KwK3Z3rDWuAnLIY5qU+nOdcvki2yZLmP8nhYBhs4ng/gFRrQZBv0XG3B0AeSZcXccnuZvTtMQUbnJCV38cbNdFh/qwPxz+jl32leaQH9iyaVrwPA9510FRDNNER1FoWtSzvRfH8UmlfZgCuwpUanCxFjdWmaz69D1c2jYcx5EbecWsH8KPYdtkz6pCAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;ap_result&quot;
+        title=&quot;&quot;
+        src=&quot;/static/e75d1fc36200eb6cc3033bdbeabc9354/cecac/ap_result.png&quot;
+        srcset=&quot;/static/e75d1fc36200eb6cc3033bdbeabc9354/a2d4f/ap_result.png 190w,
+/static/e75d1fc36200eb6cc3033bdbeabc9354/3f520/ap_result.png 380w,
+/static/e75d1fc36200eb6cc3033bdbeabc9354/cecac/ap_result.png 728w&quot;
+        sizes=&quot;(max-width: 728px) 100vw, 728px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;勉強-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%8B%89%E5%BC%B7-1&quot; aria-label=&quot;勉強 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;勉強&lt;/h3&gt;
+&lt;p&gt;参考書は「応用情報技術者合格教本」を使った。&lt;/p&gt;
+&lt;p&gt;勉強期間は試験日から 2 週間前くらいからだった。&lt;/p&gt;
+&lt;p&gt;4 月入ってから勉強を始めた。3 月までは別のことで時間が取られていて勉強する時間が取れていなかった。&lt;/p&gt;
+&lt;p&gt;本(参考書)を結構急いで読んだ。
+FE の頃の記憶があったので多少は早く読めたけど、量が多くて大変だった。
+勉強時間は FE の時と同様、1 日あたり 2〜3 時間だった。&lt;/p&gt;
+&lt;p&gt;けど流石に勉強開始が遅くて、過去問演習は午前 3 回分（1 周のみ）で、午後に関しては 1 回分。
+その 1 回分も解いたのは 3 問で他は「見た」だけだった。&lt;/p&gt;
+&lt;h3 id=&quot;試験の感想-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E8%A9%A6%E9%A8%93%E3%81%AE%E6%84%9F%E6%83%B3-1&quot; aria-label=&quot;試験の感想 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;試験の感想&lt;/h3&gt;
+&lt;p&gt;午前は終わった時「ギリギリだなー」って思ったけど落ちた感じはなかった。「あれ？意外と FE の知識＋αでどうにかなったな」という感想だった。&lt;/p&gt;
+&lt;p&gt;午後は 8 割越えとそこそこ良い点数なのだが、これは問題に救われた感じがあった。&lt;/p&gt;
+&lt;p&gt;午後の選択は「問 3 プログラミング」「問 4 システムアーキテクチャ」「問 7 組み込みシステム開発」「問 8 情報システム開発」を選んだ。&lt;/p&gt;
+&lt;p&gt;プログラミングは「競プロ力」で時間は少しかかったけど、すんなり解けた。
+情報システム開発は「Git 知ってますか？」な問題ですぐ終わった。&lt;/p&gt;
+&lt;p&gt;他もそんなに難しい、という訳ではなく、わからないなーというところももちろんあったが、最後まで解くことができた。&lt;/p&gt;
+&lt;h2 id=&quot;最後に&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E6%9C%80%E5%BE%8C%E3%81%AB&quot; aria-label=&quot;最後に permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; height=&quot;16&quot; width=&quot;16&quot; style=&quot;display:inline-block; fill:#57606a;&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;最後に&lt;/h2&gt;
+&lt;p&gt;FE・AP ともに 1 回で合格できてよかった。&lt;/p&gt;
+&lt;p&gt;IT 周りの基本知識を浅くしれた感じがして、勉強は楽しかった。&lt;/p&gt;
+&lt;p&gt;もうだいぶ勉強した内容を忘れてきている気がするけど、大学の授業で FE・AP の勉強でやったことが出てきたりして、その時に付近を復習したりしてる。
+1 度ある程度やったことを再度勉強する(思い出す)のは初めて勉強するよりだいぶ楽なことなので、FE・AP を通じて基礎・基本知識を学べたのはよかったなと感じている。&lt;/p&gt;
+&lt;style class=&quot;grvsc-styles&quot;&gt;
+  .grvsc-container {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 1rem;
+    padding-top: var(--grvsc-padding-top, var(--grvsc-padding-v, 1rem));
+    padding-bottom: 1rem;
+    padding-bottom: var(--grvsc-padding-bottom, var(--grvsc-padding-v, 1rem));
+    border-radius: 8px;
+    border-radius: var(--grvsc-border-radius, 8px);
+    font-feature-settings: normal;
+    line-height: 1.4;
+  }
+  
+  .grvsc-code {
+    display: table;
+  }
+  
+  .grvsc-line {
+    display: table-row;
+    box-sizing: border-box;
+    width: 100%;
+    position: relative;
+  }
+  
+  .grvsc-line &gt; * {
+    position: relative;
+  }
+  
+  .grvsc-gutter-pad {
+    display: table-cell;
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  .grvsc-gutter {
+    display: table-cell;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter::before {
+    content: attr(data-content);
+  }
+  
+  .grvsc-source {
+    display: table-cell;
+    padding-left: 1.5rem;
+    padding-left: var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem));
+    padding-right: 1.5rem;
+    padding-right: var(--grvsc-padding-right, var(--grvsc-padding-h, 1.5rem));
+  }
+  
+  .grvsc-source:empty::after {
+    content: &apos; &apos;;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  .grvsc-gutter + .grvsc-source {
+    padding-left: 0.75rem;
+    padding-left: calc(var(--grvsc-padding-left, var(--grvsc-padding-h, 1.5rem)) / 2);
+  }
+  
+  /* Line transformer styles */
+  
+  .grvsc-has-line-highlighting &gt; .grvsc-code &gt; .grvsc-line::before {
+    content: &apos; &apos;;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .grvsc-line-diff-add::before {
+    background-color: var(--grvsc-line-diff-add-background-color, rgba(0, 255, 60, 0.2));
+  }
+  
+  .grvsc-line-diff-del::before {
+    background-color: var(--grvsc-line-diff-del-background-color, rgba(255, 0, 20, 0.2));
+  }
+  
+  .grvsc-line-number {
+    padding: 0 2px;
+    text-align: right;
+    opacity: 0.7;
+  }
+  
+&lt;/style&gt;</content:encoded></item><item><title><![CDATA[プログラミング用合成フォント PleckJP の合成スクリプトの実装解説]]></title><description><![CDATA[「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
 本稿ではその合成スクリプト(Python)について解説する。 なお、解説するスクリプトは PleckJP v1.1.0 現在のものである。 参考 PleckJP…]]></description><link>https://ryota2357.com/blog/2023/pleck-jp-impl-exp/</link><guid isPermaLink="false">https://ryota2357.com/blog/2023/pleck-jp-impl-exp/</guid><pubDate>Fri, 25 Aug 2023 01:05:00 GMT</pubDate><content:encoded>&lt;p&gt;「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。
 本稿ではその合成スクリプト(Python)について解説する。&lt;/p&gt;
 &lt;p&gt;なお、解説するスクリプトは &lt;a href=&quot;https://github.com/ryota2357/PleckJP/tree/v1.1.0&quot;&gt;PleckJP v1.1.0&lt;/a&gt; 現在のものである。&lt;/p&gt;
