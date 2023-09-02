@@ -1,0 +1,54 @@
+---
+import "destyle.css";
+
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+
+type Props = {
+  title: string;
+  slug: string;
+};
+
+const { title, slug } = Astro.props;
+---
+
+<html lang="jp">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header slug={slug} />
+    <main class="max-w-[1080px] my-0 mx-auto py-0 px-[10px]">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style lang="scss">
+  :root {
+    font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
+      "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
+    background-color: #f6f5f5;
+    color: #242424;
+    font-size: 15px;
+    line-height: 1.5;
+    word-break: break-word;
+    a:hover {
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 425px) {
+      font-size: 14px;
+    }
+    @media screen and (max-width: 375px) {
+      font-size: 13px;
+    }
+    @media screen and (max-width: 320px) {
+      font-size: 12px;
+    }
+  }
+</style>

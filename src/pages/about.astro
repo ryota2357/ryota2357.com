@@ -1,0 +1,34 @@
+---
+import Base from "@/layouts/Base.astro";
+import ContentBlock from "@/components/ContentBlock.astro";
+---
+
+<Base title="About" slug="/about">
+  <h1 class="text-[2.5rem]">About</h1>
+  <div class="flex flex-col gap-8 mt-8">
+    <ContentBlock title="このサイトについて">
+      <div class="[&_a]:text-[#0969da]">
+        <p>
+          React ベースの静的サイトジェネレータ
+          <a href="https://www.gatsbyjs.com"> Gatsby.js</a>
+           を用いて作成、
+          <a href="https://pages.github.com/"> Github Pages</a>
+           にてホスティングしています。
+        </p>
+        <p>
+          このサイトの GitHub リポジトリは
+          <a href="https://github.com/ryota2357/ryota2357.com">
+            {` `}ryota2357/ryota2357.com{` `}
+          </a>
+           に置いてあります。
+        </p>
+      </div>
+    </ContentBlock>
+    <ContentBlock title="問い合わせ/修正依頼">
+      <div>
+        <p>私の Twitter の DM にてご連絡ください。</p>
+        <p>また、修正依頼については Github にて PR でも可能です。</p>
+      </div>
+    </ContentBlock>
+  </div>
+</Base>
