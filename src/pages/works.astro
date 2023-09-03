@@ -1,10 +1,104 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "@/layouts/Base.astro";
+import ContentBlock from "@/components/ContentBlock.astro";
+import dayjs from "dayjs";
+import path from "path";
+
+type ImageDataFile = {
+  default: {
+    src: string;
+  };
+};
+
+const allWorksCollection = await getCollection("works");
+const allWorksCollectionImage = await Astro.glob<ImageDataFile>(
+  "/src/content/works/**/*.{png,jpg,gif}"
+);
+
+const allWorksData = await Promise.all(
+  allWorksCollection.map(async (collection) => {
+    const collectionNmae = collection.id.replace("/index", "");
+    const collectionData = collection.data.data.map((one) => {
+      const image_path = path.join(
+        "/content/works/",
+        collectionNmae,
+        one.image
+      );
+      const image = allWorksCollectionImage.find((x) =>
+        x.default.src.includes(image_path)
+      );
+      return {
+        ...one,
+        image,
+      };
+    });
+    return {
+      name: collectionNmae,
+      data: collectionData,
+    };
+  })
+);
+
+// const allWorksImags
+
+function formatTime(time: Date): string {
+  return dayjs(time).format("YYYY/MM/DD (HH:mm)");
+}
 ---
 
 <Base title="Works" slug="/works">
   <h1 class="text-[2.5rem]">Works</h1>
   <div>
-    <b>TODO: display works</b>
+    {
+      allWorksData.map((one) => (
+        <ContentBlock title={one.name}>
+          <ul class="[&>li+li]:mt-4">
+            {one.data.map((item) => (
+              <li>
+                {/* \20 = white space */}
+                <h3 class="text-2xl font-bold">
+                  <a href={item.url} target="_blank" rel="noreferrer">
+                    {item.title}
+                  </a>
+                </h3>
+                <div class="flex flex-row justify-between gap-4">
+                  <div class="pl-4">
+                    <p class="text-gray-500">
+                      公開: <time>{formatTime(item.created)}</time>
+                    </p>
+                    {item.created !== item.update && (
+                      <p class="text-gray-500">
+                        最終更新: <time>{formatTime(item.update)}</time>
+                      </p>
+                    )}
+                    {item.description.split("\n").map((line) => (
+                      <p>{line}</p>
+                    ))}
+                  </div>
+                  <img
+                    src={item.image?.default.src}
+                    alt={`${item.title} icon`}
+                    style={{
+                      objectFit: "cover",
+                      width: "8rem",
+                      height: "8rem",
+                    }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </ContentBlock>
+      ))
+    }
   </div>
 </Base>
+
+<style lang="scss">
+  h3 {
+    &::before {
+      content: "- ";
+    }
+  }
+</style>
