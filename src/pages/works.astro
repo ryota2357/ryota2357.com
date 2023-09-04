@@ -13,7 +13,7 @@ type ImageDataFile = {
 
 const allWorksCollection = await getCollection("works");
 const allWorksCollectionImage = await Astro.glob<ImageDataFile>(
-  "/src/content/works/**/*.{png,jpg,gif}"
+  "/src/content/works/**/*.{png,jpg,gif}",
 );
 
 const allWorksData = await Promise.all(
@@ -23,10 +23,10 @@ const allWorksData = await Promise.all(
       const image_path = path.join(
         "/content/works/",
         collectionNmae,
-        one.image
+        one.image,
       );
       const image = allWorksCollectionImage.find((x) =>
-        x.default.src.includes(image_path)
+        x.default.src.includes(image_path),
       );
       return {
         ...one,
@@ -37,10 +37,8 @@ const allWorksData = await Promise.all(
       name: collectionNmae,
       data: collectionData,
     };
-  })
+  }),
 );
-
-// const allWorksImags
 
 function formatTime(time: Date): string {
   return dayjs(time).format("YYYY/MM/DD (HH:mm)");

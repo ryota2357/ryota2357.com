@@ -11,7 +11,7 @@ export const getStaticPaths = (async () => {
     .filter((tag, index, self) => self.indexOf(tag) == index);
   return allTag.map((tag) => {
     const posts = allBlogCollection.filter((post) =>
-      post.data.tags.includes(tag)
+      post.data.tags.includes(tag),
     );
     return {
       params: { name: tag },
