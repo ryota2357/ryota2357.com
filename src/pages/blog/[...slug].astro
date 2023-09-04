@@ -1,0 +1,22 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { getCollection } from "astro:content";
+import Base from "@/layouts/Base.astro";
+
+export const getStaticPaths = (async () => {
+  const allBlogCollection = await getCollection("blog");
+
+  return allBlogCollection.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const props = Astro.props;
+---
+
+<Base title="Post" slug="post">
+  <p>{JSON.stringify(props)}</p>
+</Base>

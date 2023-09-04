@@ -1,0 +1,47 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import BlogList from "@/components/BlogList.astro";
+
+type Year = `${number}${number}${number}${number}`;
+type allYearPostsRecord = Record<Year, CollectionEntry<"blog">[]>;
+
+export const getStaticPaths = (async () => {
+  const allBlogCollection = await getCollection("blog");
+  const allYearPosts = (() => {
+    const ret: allYearPostsRecord = {};
+    const regex = /^(\d{4})\/(.+)$/;
+    allBlogCollection.map((post) => {
+      const match = post.slug.match(regex);
+      if (match) {
+        const [, year] = match as [string, Year];
+        if (ret[year]) {
+          ret[year].push(post);
+        } else {
+          ret[year] = [post];
+        }
+      } else {
+        throw new TypeError(`Invalid format: ${post.slug}`);
+      }
+    });
+    return ret;
+  })();
+
+  return Object.entries(allYearPosts).map(([year, posts]) => ({
+    params: { year },
+    props: { year, posts },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { year, posts } = Astro.props;
+posts.sort((a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf());
+---
+
+<Base title="Post" slug="post">
+  <h1 class="text-[2.5rem]">Blog in {year}</h1>
+  <p>{posts.length}件</p>
+  <BlogList posts={posts} />
+</Base>
