@@ -23,6 +23,8 @@
     "astro": "3.0.3",
     "dayjs": "1.11.9",
     "destyle.css": "4.0.0",
+    "sass": "1.66.1",
+    "sharp": "0.32.5",
     "tailwindcss": "3.3.3"
   },
   "devDependencies": {
@@ -32,7 +34,6 @@
     "eslint-plugin-astro": "0.29.0",
     "prettier": "3.0.3",
     "prettier-plugin-astro": "0.12.0",
-    "sass": "1.66.1",
     "textlint": "13.3.3",
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-preset-ja-spacing": "2.3.0",
