@@ -14,8 +14,11 @@ const allTagCount = (() => {
 })();
 ---
 
-<Base title="Blog" slug="/blog">
-  <h1 class="text-[2.5rem]">Tag</h1>
+<Base title="Blog.Tag" slug="/blog/tag/">
+  <h1>
+    <span class="text-[1.6rem]"><a href="/blog/">Blog</a>.</span>
+    <span class="text-[2.5rem]">Tag</span>
+  </h1>
   <ul class="mt-8 list-inside list-disc">
     {
       allTagCount

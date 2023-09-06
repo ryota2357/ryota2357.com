@@ -1,4 +1,6 @@
 ---
+import HeaderLink from "./HeaderLink.astro";
+
 type Props = {
   slug: string;
 };
@@ -15,16 +17,16 @@ const { slug } = Astro.props;
   <nav class="mt-auto">
     <ul class="flex content-start text-[1.4rem] [&>li]:mx-[0.7rem] [&>li]:my-0">
       <li>
-        <a href="/">Home</a>
+        <HeaderLink slug={slug} href="/">Home</HeaderLink>
       </li>
       <li>
-        <a href="/about">About</a>
+        <HeaderLink slug={slug} href="/about/">About</HeaderLink>
       </li>
       <li>
-        <a href="/blog">Blog</a>
+        <HeaderLink slug={slug} href="/blog/">Blog</HeaderLink>
       </li>
       <li>
-        <a href="/works">Works</a>
+        <HeaderLink slug={slug} href="/works/">Works</HeaderLink>
       </li>
     </ul>
   </nav>
