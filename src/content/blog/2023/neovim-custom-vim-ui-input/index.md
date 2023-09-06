@@ -15,7 +15,7 @@ vim.ui.input を自作した。僕の作ったやつの紹介。
 
 LSP の rename アクションを実行した時の動作。
 
-![rename](rename.gif)
+![rename](./rename.gif)
 
 ## vim.ui.input()
 

@@ -323,7 +323,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 こんな感じになった。
 
-![デザインなしtagPage](screenshot_tagpage_nondesign.png)
+![デザインなしtagPage](./screenshot_tagpage_nondesign.png)
 
 ### 整える
 
@@ -450,14 +450,14 @@ export const pageQuery = graphql`
 
 </details>
 
-![デザインありtagPage](screenshot_tagpage_design.png)
+![デザインありtagPage](./screenshot_tagpage_design.png)
 
 ちなみに、ここで `C#` タグが問題となった。
 
 `http://localhost:8000/blog/tag/C#` とアクセスすると 404 になる。  
 Pages にはちゃんとあるのに...
 
-![404Cs](screenshot_404.png)
+![404Cs](./screenshot_404.png)
 
 まあ、それはそうなんだけど。
 
@@ -547,7 +547,7 @@ export default Tag;
 
 </details>
 
-![/blog/tag](screenshot_tag_list.png)
+![/blog/tag](./screenshot_tag_list.png)
 
 ## 細かな修正
 

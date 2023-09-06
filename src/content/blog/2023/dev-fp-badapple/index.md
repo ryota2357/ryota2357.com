@@ -120,15 +120,15 @@ int main(int argc, char* args[]) {
 
 (クラス図のように書いているが、クラス図ではない)
 
-![movieモジュール](mod-movie.png)
+![movieモジュール](./mod-movie.png)
 
 Global でくくられているのは、グローバル変数(#define されたマクロ)・グローバル関数のことであり、Global というクラスのメンバを表しているものではない。
 
-![badappleモジュール](mod-badapple.png)
+![badappleモジュール](./mod-badapple.png)
 
 `<<union>>` は C の union、共用体のことである。
 
-![typographyモジュール](mod-typography.png)
+![typographyモジュール](./mod-typography.png)
 
 ## 各モジュール実装の話
 
@@ -384,7 +384,7 @@ lyrics_renderer00 ~ lyrics_renderer47 まである。歌詞を描画する rende
 
 `Movie_add_renderer()` するときの delay(第三引数)の調整は僕が人力で行った...
 
-![make-lyrics_renderer](make-lyrics_renderer.png)
+![make-lyrics_renderer](./make-lyrics_renderer.png)
 
 こんな感じに気合いで、どの歌詞が何秒目に始まるかメモって、awk 使ってフレーム数に直して、vim マクロ使って C ソースに変換、動画をビルドして微調整。これは疲れた。
 

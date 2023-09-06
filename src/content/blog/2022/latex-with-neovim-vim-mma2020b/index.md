@@ -62,7 +62,7 @@ Vim のどこがいいか、それは人によって異なりますが、僕は 
 
 vimtex がどのようなプラグインなのかは次の図 lervag/vimtex の README #Features を見れば大体わかるでしょう。
 
-![vimtex Features](vimtex.png)
+![vimtex Features](./vimtex.png)
 
 必要な機能をしっかりと備えた素晴らしいプラグインであることがわかると思います。
 
@@ -95,7 +95,7 @@ vimtex がどのようなプラグインなのかは次の図 lervag/vimtex の 
 
 次に「vim-skk/skkeleton」の REAME から画像を引用してきました。
 
-![vim-skk/skkeleton](SKK.png)
+![vim-skk/skkeleton](./SKK.png)
 
 僕はこれを使わず、macOS 標準の IME で入力してます。けど、ここで紹介するのに使ったことないのは良くないな、と思って先日少し使ってみました。
 結論から言うと、僕には合いませんでした。
@@ -285,7 +285,7 @@ Vim (not Neovim) の人は「prabirshrestha/vim-lsp」と「mattn/vim-lsp-settin
 
 僕は Skim を使っています、macOS 専用です。SynctTeX や自動リロード、ダークモードに対応している、シンプルで使いやすい PDF ビューワーです。
 
-![skim のダークモード](skim-dark.png)
+![skim のダークモード](./skim-dark.png)
 
 2 つ目は tex ファイルのコンパイルについてです。
 
@@ -384,7 +384,7 @@ call lexima#add*rule({
 
 最後に、nvim-treesitter-context ですが、これは次の画像を見たほうが良いでしょう。現在のネスト位置がよくわかるようになるプラグインです。
 
-![te-comtext](ts-context.png)
+![te-comtext](./ts-context.png)
 
 これは 1 つのセクションが長い時に役立ちます。今どこのセクションについて書いているのか素早く確認できます。
 このプラグインは唯一、僕が節 1.2 で挙げた中で Vim(not Neovim) 代替プラグインがないものです。(僕が知らないだけかもですが)

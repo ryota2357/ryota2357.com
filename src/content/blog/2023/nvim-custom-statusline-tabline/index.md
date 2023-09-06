@@ -25,33 +25,33 @@ set showtabline=1
 
 保存されてる時はチェックマークになる。
 
-![statusline-normal](statusline-normal.png)
+![statusline-normal](./statusline-normal.png)
 
 保存してない時はプラスマークになる。
 
-![statusline-normal-modified](statusline-normal-modified.png)
+![statusline-normal-modified](./statusline-normal-modified.png)
 
 現在バッファ以外が保存されてない時も、その事が分かるようにカッコで表示される。
 
-![statusline-normal-modified2](statusline-normal-modified2.png)
+![statusline-normal-modified2](./statusline-normal-modified2.png)
 
 また、現在のモードによって色が変わるようになっている。上の 3 つの画像はノーマルモードの時の色である。
 
 Insert:
 
-![statusline-insert](statusline-insert.png)
+![statusline-insert](./statusline-insert.png)
 
 Visual:
 
-![statusline-visual](statusline-visual.png)
+![statusline-visual](./statusline-visual.png)
 
 Replace:
 
-![statusline-replace](statusline-replace.png)
+![statusline-replace](./statusline-replace.png)
 
 Command:
 
-![statusline-command](statusline-command.png)
+![statusline-command](./statusline-command.png)
 
 ### tabline
 
@@ -59,7 +59,7 @@ Command:
 
 アクティブなタブは、現在フォーカスが当たっているウィンドウの名前(ファイル名)が表示される。アクティブでないタブで、複数のウィンドウがある場合はその数をカッコで表示している。
 
-![tabline](tabline.png)
+![tabline](./tabline.png)
 
 ## statusline の実装
 

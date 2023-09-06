@@ -8,11 +8,11 @@ tags: ["Neovim", "C++", "競プロ"]
 Neovim に C++のデバッグ環境を作った。  
 こんな感じのできた。
 
-![デバッグの様子](debugging.png)
+![デバッグの様子](./debugging.png)
 
 フローティングなウィンドウも出せた。
 
-![ホバー](cursor-hover.png)
+![ホバー](./cursor-hover.png)
 
 ## 使ったもの
 
@@ -44,7 +44,7 @@ hook_add = '''
 
 Mason.nvim で入れる。
 
-![Mason](Mason.png)
+![Mason](./Mason.png)
 
 [nvim-dap の Wiki](https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation) には「VSCode 拡張ダウンロードして解凍」って書いてあるけど Mason 使えばその必要はない。  
 快適だね。

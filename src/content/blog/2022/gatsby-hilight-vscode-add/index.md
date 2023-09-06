@@ -93,7 +93,7 @@ gatsby-remark-vscode は 55 の言語のハイライトに対応してます。(
 
 まず、VSCode にて Dart 言語のプラグインを表示させます。
 
-![vscode-dart-extension](screenshot_dart_vsc.png)
+![vscode-dart-extension](./screenshot_dart_vsc.png)
 
 リソースのところにリポジトリとあるのでリクックしてブラウザで開きます。(上画像赤丸)
 
@@ -105,7 +105,7 @@ $ npm i Dart-Code/Dart-Code
 
 `package.json` の `name` プロパティを確認して、
 
-![dart-code](screenshot_dart_pkg.png)
+![dart-code](./screenshot_dart_pkg.png)
 
 `gatsby-config.js` に以下のように `extensions` プロパティに書きます。
 

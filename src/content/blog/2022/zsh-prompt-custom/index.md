@@ -20,7 +20,7 @@ PROMPT="$"
 
 とすると、
 
-![$のみ](terminal_$.png)
+![$のみ](./terminal_$.png)
 
 のようになり、またさらに以下のようにすると、
 
@@ -30,7 +30,7 @@ PROMPT="$"
 RPROMPT="///"
 ```
 
-![$と///](terminal_$slash.png)
+![$と///](./terminal_$slash.png)
 
 となる(左に `///` が追加された)。
 
@@ -39,7 +39,7 @@ RPROMPT="///"
 僕はできる限りシンプルにしたかったので、以下のような見た目になっている。  
 (普段はこれに tmux を起動して、その他の情報を載せてたりする)
 
-![スクリーンショット 2022-04-03 18.03.57.png](terminal_my.png)
+![スクリーンショット 2022-04-03 18.03.57.png](./terminal_my.png)
 
 これの設定ファイルは下に折りたたんだ。この説明は最後で行う。
 
@@ -79,7 +79,7 @@ RPROMPT="%T"
 
 とすると、
 
-![スクリーンショット 2022-04-03 18.04.19.png](terminal_info.png)
+![スクリーンショット 2022-04-03 18.04.19.png](./terminal_info.png)
 
 のようになる。
 
@@ -127,7 +127,7 @@ PROMPT="%F{45}%~%f > "
 
 とすると、
 
-![color](terminal_color.png)
+![color](./terminal_color.png)
 
 色番号の一覧は次の ruby スクリプトを実行することで見ることができる。(このスクリプトは数年前にどっかで拾った)
 
@@ -150,25 +150,25 @@ end
 print "\n"
 ```
 
-![256color-list](256color.png)
+![256color-list](./256color.png)
 
 ### 太文字
 
 `%B` と `%b` で囲う。
 
-![太文字](terminal_colorb.png)
+![太文字](./terminal_colorb.png)
 
 ### 下線
 
 `%U` と `%u` で囲う。
 
-![下線](terminal_coloru.png)
+![下線](./terminal_coloru.png)
 
 ### 背景色
 
 `%S%F` と `%f%s` で囲う。(`%S` と `%s` をつける)
 
-![背景](terminal_colors.png)
+![背景](./terminal_colors.png)
 
 ## わかりやすく設定する
 
@@ -177,7 +177,7 @@ print "\n"
 
 僕の設定を再掲する。
 
-![僕の](terminal_my.png)
+![僕の](./terminal_my.png)
 
 `local` をつけると変数のスコープを制限できるので zsh が汚れず良い。  
 `left-prompt()` と `right-prompt()` の関数を用いることで `PROMPT`, `RPROMPT` の意味がわかりやすくなる。  

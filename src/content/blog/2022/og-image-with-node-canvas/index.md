@@ -496,14 +496,14 @@ jobs:
 ここで `REPOSITORY_DISPATCH_KEY` というシークレットキーを使っている。repository dispatch を実行するにはパーソナルアクセストークンが必要となる。  
 Fine-grained personal access tokens を使うなら permission を次のように設定すると実行できた。
 
-![permission](permission.png)
+![permission](./permission.png)
 
 ## 完成品
 
 生成した画像のリンクを適当に配置すると次のように OG 画像が設定できていることが確認できる。
 
-![image1](image1.png)
+![image1](./image1.png)
 
 複数行のものはこんな感じ。
 
-![image2](image2.png)
+![image2](./image2.png)

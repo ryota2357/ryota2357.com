@@ -235,4 +235,4 @@ gatsby-remark-vscode は dart に対応してないので対応させてる。
 
 ### こんな感じになる
 
-![コード見本](screenshot_code.png)
+![コード見本](./screenshot_code.png)

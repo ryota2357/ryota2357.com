@@ -203,7 +203,7 @@ impl Node {
 
 任意の 1 文字にマッチする正規表現である。以下のような NFA とすれば良い。
 
-![nfa-character](nfa-character.svg)
+![nfa-character](./nfa-character.svg)
 
 これを実装すると次のようになる。
 
@@ -224,7 +224,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 
 空文字にマッチする正規表現である。`Node::Character` の時と同じような感じで実装する。
 
-![nfa-empty](nfa-empty.svg)
+![nfa-empty](./nfa-empty.svg)
 
 ```rust
 fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
@@ -243,7 +243,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 
 `A*` などの繰り返しにマッチする正規表現である。空文字遷移を用いることで表現できる。
 
-![nfa-star](nfa-star.svg)
+![nfa-star](./nfa-star.svg)
 
 ```rust
 fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
@@ -269,7 +269,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 `A|B` のようなものにマッチする正規表現である。`Node::Star` と同様、空文字遷移を用いることで表現できる。  
 新たな状態を生成し、それを開始地点を生成する。遷移テーブルは元の 2 つのものを、そのままマージすれば良い。
 
-![nfa-union](nfa-union.svg)
+![nfa-union](./nfa-union.svg)
 
 ```rust
 fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
@@ -294,7 +294,7 @@ fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {
 `AB` のように 2 つの文字列を並べたものにマッチする正規表現である。  
 遷移テーブルをマージした後、1 文字目の受理状態から 2 文字めの開始状態へ空文字遷移を追加すれば良い。
 
-![nfa-concat](nfa-concat.svg)
+![nfa-concat](./nfa-concat.svg)
 
 ```rust
 fn assemble(&self, context: &mut Context) -> NondeterministicFiniteAutomaton {

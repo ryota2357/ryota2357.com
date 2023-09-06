@@ -39,7 +39,7 @@ tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
 
 次のスクリーンショットは Neovim にて necodark を利用した際の画像です。
 
-![sccg-top](sccg-top.png)
+![sccg-top](./sccg-top.png)
 
 現在 (2023/04/04) Vim、Neovim にて利用できます。現在 VS Code 対応の作業中です。今後 CotEditor や IntelJ IDE、ターミナルミュレータ(iTerm2 や Alacritty)でも利用できるようにしていきます。
 4 月中には VS Code と CotEditor でも利用できるようになる予定です。
@@ -51,7 +51,7 @@ tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
 カラーパレットは[https://github.com/ryota2357/necodark/blob/main/src/Necodark/Palette.cs](https://github.com/ryota2357/necodark/blob/main/src/Necodark/Palette.cs)にて確認できます。
 使用している主な色は次の通りです。
 
-![pallet](pallet.png)
+![pallet](./pallet.png)
 
 ### 1.1 necodark の目的と特徴
 
@@ -66,7 +66,7 @@ necodark は「制御 (if や for)」「リテラル (boolean, 数値)」に特�
 
 「制御」に充てている色はインディゴ(#8a99ff) です。この色はキーワード色として使っている青(#379df1)に近い色を持ちます。
 
-![statement-indigo](statement-indigo.png)
+![statement-indigo](./statement-indigo.png)
 
 vsdark では「制御」と「キーワード」には同じ色が当てられています。necodark ではこれらの色を分けました。
 一般にキーワードはコード内で重要なマーカーとなります。そして「制御」もコードのロジックを示すのに重要なマーカーとなります。
@@ -84,7 +84,7 @@ necodark で使用したインディゴと青は近い色のため、このイ�
 
 「リテラル」に当てている色は、真偽値には青緑(#4dcbbb)を、数値にはピンク(#fb749c)です。
 
-![literal-pink-teal](literal-pink-teal.png)
+![literal-pink-teal](./literal-pink-teal.png)
 
 コード内に登場する数値リテラルは基本的に何かの固定値であり、変更する時には注意を払う必要があります。そのため数値には他のところでは使用していない色であり、赤系に近いながらも警告の意味を持たないような色を当てました。
 
@@ -124,7 +124,7 @@ Sccg is a tool to generate color schemes for your terminal, editor, etc.
 
 続いて Sccg にて採用した概念である、`Source`、`Formatter`、`Converter`、`Writer` の説明と関係を説明します。README にもあるように、これらを用いてカラーテーマの生成ロジックをスクリプト可能なものに分割しました。次にこれらの関係を図示します(README からの引用)。
 
-![sccg-structure](sccg-structure.svg)
+![sccg-structure](./sccg-structure.svg)
 
 `Source` から `SourceItem` というものが生成され、それが `Formatter` によって `Content` に加工され `Writer` によって何かしらの形をとって出力されます。
 途中 `Converter` が `SourceItem` や `Content` を加工できます。
@@ -420,7 +420,7 @@ necodark でもいくつかの場所で利用しています。
 
 次にドキュメントからメソッド一覧を載せました。
 
-![builder-query-methods](builder-query-methods.png)
+![builder-query-methods](./builder-query-methods.png)
 
 ## 4. 最後に
 

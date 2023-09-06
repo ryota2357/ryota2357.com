@@ -77,7 +77,7 @@ font.generate("modified-example.ttf")
 
 ここでは例として、Hack フォントの数字の 0(`0x30`)の中の楕円を削除する。
 
-![zero-erase-pos](zero-erase-pos.png)
+![zero-erase-pos](./zero-erase-pos.png)
 
 ### Utility 関数
 
@@ -114,7 +114,7 @@ glyphPen = None
 
 次のようになる。追加したところを緑でなぞってみた。
 
-![zero-cover](zero-cover.png)
+![zero-cover](./zero-cover.png)
 
 ### 消す
 
@@ -131,7 +131,7 @@ font.selection.none()
 
 これで、目的の部分を消すことができた。
 
-![zero-erased](zero-erased.png)
+![zero-erased](./zero-erased.png)
 
 ### 応用(?)
 
@@ -164,4 +164,4 @@ def modify_m(font):
 
 これを適用すると、次のようになる。
 
-![m-modify](m-modify.png)
+![m-modify](./m-modify.png)

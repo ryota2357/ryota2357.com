@@ -49,7 +49,7 @@ const BlogPostTemplate = ({ data, location }) => {
 ...
 ```
 
-![postの外観](screenshot_postframe.png)
+![postの外観](./screenshot_postframe.png)
 
 ## index.js のブログ一覧をデザイン
 
@@ -198,7 +198,7 @@ html {
 ...
 ```
 
-![blog](screenshot_blog.png)
+![blog](./screenshot_blog.png)
 
 ## blog 個別ページを作成
 
@@ -300,7 +300,7 @@ export default Index;
 
 </details>
 
-![indexないのblogリスト](screenshot_blog_index.png)
+![indexないのblogリスト](./screenshot_blog_index.png)
 
 ## BlogCards と同様に GameCards を作成
 
@@ -457,7 +457,7 @@ index.js には 3 つ並べる。
 ...
 ```
 
-![indexないのgame](screenshot_game_index.png)
+![indexないのgame](./screenshot_game_index.png)
 
 個別ページも作成。
 
@@ -486,7 +486,7 @@ export default Game;
 
 </details>
 
-![game](screenshot_game.png)
+![game](./screenshot_game.png)
 
 ## About ページを作成
 
@@ -690,7 +690,7 @@ export default About;
 
 </details>
 
-![about](screenshot_about.png)
+![about](./screenshot_about.png)
 
 ## 色の変更
 
@@ -703,9 +703,9 @@ aタグの色      blue    -> #0969da
 日付等の薄文字  #999999 -> #747474
 ```
 
-![aタグ見本](screenshot_letter_a.png)
+![aタグ見本](./screenshot_letter_a.png)
 
-![日付薄文字見本](screenshot_letter_date.png)
+![日付薄文字見本](./screenshot_letter_date.png)
 
 ## Header に各ページへのナビゲーションを追加
 
@@ -825,4 +825,4 @@ export default Layout;
 
 </details>
 
-![nav](screnshot_nav.png)
+![nav](./screnshot_nav.png)

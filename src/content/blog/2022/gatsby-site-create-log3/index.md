@@ -352,4 +352,4 @@ export const pageQuery = graphql`
 
 ## 現在
 
-![現在の状況](now.gif)
+![現在の状況](./now.gif)

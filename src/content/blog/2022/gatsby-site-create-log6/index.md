@@ -294,4 +294,4 @@ export const pageQuery = graphql`
 
 </details>
 
-![tags見本](screenshot_tags.png)
+![tags見本](./screenshot_tags.png)

@@ -95,7 +95,7 @@ const BlogIndex = ({ data, location }) => {
 初期で入ってるサンプルデータは 2015 だったので `content/post/2015` に入れとく。  
 ついでに `content/post/2021` も作っておく。
 
-![ディレクトリ構成](screenshot_dir.png)
+![ディレクトリ構成](./screenshot_dir.png)
 
 こうすると URL も /blog/YYYY 下になる。
 
