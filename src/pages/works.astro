@@ -16,29 +16,23 @@ const allWorksCollectionImage = await Astro.glob<ImageDataFile>(
   "/src/content/works/**/*.{png,jpg,gif}",
 );
 
-const allWorksData = await Promise.all(
-  allWorksCollection.map(async (collection) => {
-    const collectionNmae = collection.id.replace("/index", "");
-    const collectionData = collection.data.data.map((one) => {
-      const image_path = path.join(
-        "/content/works/",
-        collectionNmae,
-        one.image,
-      );
-      const image = allWorksCollectionImage.find((x) =>
-        x.default.src.includes(image_path),
-      );
-      return {
-        ...one,
-        image,
-      };
-    });
+const allWorksData = allWorksCollection.map((collection) => {
+  const collectionNmae = collection.id.replace("/index", "");
+  const collectionData = collection.data.data.map((one) => {
+    const image_path = path.join("/content/works/", collectionNmae, one.image);
+    const image = allWorksCollectionImage.find((x) =>
+      x.default.src.includes(image_path),
+    );
     return {
-      name: collectionNmae,
-      data: collectionData,
+      ...one,
+      image,
     };
-  }),
-);
+  });
+  return {
+    name: collectionNmae,
+    data: collectionData,
+  };
+});
 
 function formatTime(time: Date): string {
   return dayjs(time).format("YYYY/MM/DD (HH:mm)");
