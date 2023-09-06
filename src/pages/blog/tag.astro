@@ -16,7 +16,7 @@ const allTagCount = (() => {
 
 <Base title="Blog" slug="/blog">
   <h1 class="text-[2.5rem]">Tag</h1>
-  <ul class="list-inside list-disc mt-8">
+  <ul class="mt-8 list-inside list-disc">
     {
       allTagCount
         .sort((a, b) => a.name.localeCompare(b.name))

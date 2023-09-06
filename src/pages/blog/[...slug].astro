@@ -33,7 +33,7 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
 <Base title="Post" slug="post">
   <article itemscope itemtype="http://schema.org/Article">
     <div class="post-front">
-      <h1 itemprop="headline" class="text-[2rem] font-bold mt-4">
+      <h1 itemprop="headline" class="mt-4 text-[2rem] font-bold">
         {post.data.title}
       </h1>
       <div class="flex flex-row gap-4 text-gray-500">
@@ -63,7 +63,7 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
   {
     (
       <nav>
-        <ul class="grid grid-flow-col justify-between my-4 mx-0 gap-3">
+        <ul class="mx-0 my-4 grid grid-flow-col justify-between gap-3">
           <li>
             {prevPost && (
               <a href={path.join("/blog", prevPost.slug)} rel="prev">

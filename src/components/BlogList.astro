@@ -11,10 +11,10 @@ const { posts } = Astro.props;
 ---
 
 <div>
-  <ul class="py-0 px-2 bg-white border border-solid rounded-md border-gray-600">
+  <ul class="rounded-md border border-solid border-gray-600 bg-white px-2 py-0">
     {
       posts.map((post) => (
-        <li class="py-2 px-0">
+        <li class="px-0 py-2">
           <div class="text-gray-500">
             {dayjs(post.data.postdate).format("YYYY/MM/DD")}
           </div>
@@ -25,7 +25,7 @@ const { posts } = Astro.props;
             {post.data.tags.map((tag) => (
               <a
                 href={`/blog/tag/${tag}`}
-                class="py-1 px-3 rounded text-white bg-gray-900"
+                class="rounded bg-gray-900 px-3 py-1 text-white"
               >
                 {tag}
               </a>

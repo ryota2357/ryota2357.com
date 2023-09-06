@@ -31,19 +31,19 @@ const allTagCount = (() => {
         borderRadius: "50%",
       }}
     />
-    <p class="font-bold text-[1.6rem]">ryota2357</p>
+    <p class="text-[1.6rem] font-bold">ryota2357</p>
   </div>
-  <div class="flex flex-col gap-8 mt-8">
+  <div class="mt-8 flex flex-col gap-8">
     <ContentBlock title="Affiliation">
-      <ul class="list-inside list-disc [&>li]:py-0.5 [&>li]:px-0">
+      <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
         <li>電気通信大学 情報理工学域I類 1年</li>
         <li>電気通信大学MMA(サークル)</li>
       </ul>
     </ContentBlock>
     <ContentBlock title="Blog">
       <div class="flex flex-row items-start gap-4">
-        <h3 class="flex-none m-0 text-[1.3rem] font-bold">タグ</h3>
-        <div class="flex flex-wrap my-auto mx-0">
+        <h3 class="m-0 flex-none text-[1.3rem] font-bold">タグ</h3>
+        <div class="mx-0 my-auto flex flex-wrap">
           {
             allTagCount
               .sort((a, b) => a.name.localeCompare(b.name))
@@ -63,9 +63,9 @@ const allTagCount = (() => {
         </div>
       </div>
       <div class="flex flex-row items-start gap-4">
-        <h3 class="flex-none m-0 text-[1.3rem] font-bold">更新</h3>
-        <div class="flex flex-wrap my-auto mx-0">
-          <ul class="list-inside list-disc [&>li]:py-0.5 [&>li]:px-0">
+        <h3 class="m-0 flex-none text-[1.3rem] font-bold">更新</h3>
+        <div class="mx-0 my-auto flex flex-wrap">
+          <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
             {
               allBlogCollection
                 .sort(
@@ -85,7 +85,7 @@ const allTagCount = (() => {
       </div>
     </ContentBlock>
     <ContentBlock title="Links">
-      <ul class="list-inside list-disc [&>li]:py-0.5 [&>li]:px-0">
+      <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
         <li>
           <a href="https://twitter.com/95s7k84695a"> Twitter (@95s7k84695a)</a>
         </li>
