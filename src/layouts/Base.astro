@@ -29,26 +29,26 @@ const { title, slug } = Astro.props;
   </body>
 </html>
 
-<style lang="scss">
+<style lang="scss" is:global>
   :root {
     font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
       "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
     background-color: #f6f5f5;
     color: #242424;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.5;
     word-break: break-word;
     a:hover {
       text-decoration: underline;
     }
     @media screen and (max-width: 425px) {
-      font-size: 14px;
+      font-size: 15px;
     }
     @media screen and (max-width: 375px) {
-      font-size: 13px;
+      font-size: 14px;
     }
     @media screen and (max-width: 320px) {
-      font-size: 12px;
+      font-size: 13px;
     }
   }
 </style>
