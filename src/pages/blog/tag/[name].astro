@@ -25,7 +25,7 @@ const { tagName, posts } = Astro.props;
 posts.sort((a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf());
 ---
 
-<Base title={`Tag: ${tagName}`} slug="/blog/tag/[name]/">
+<Base title={`Blog.Tag.${tagName}`} type="website" noindex={true}>
   <h1>
     <span class="text-[1.6rem]"><a href="/blog/">Blog</a>.</span>
     <span class="text-[1.6rem]"><a href="/blog/tag">Tag</a>.</span>

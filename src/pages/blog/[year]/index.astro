@@ -34,7 +34,7 @@ const { year, posts } = Astro.props;
 posts.sort((a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf());
 ---
 
-<Base title="Post" slug="/blog/[year]/">
+<Base title={`Blog in ${year}`} type="website" noindex={true}>
   <h1 class="text-[2.5rem]">Blog in {year}</h1>
   <p>{posts.length}件</p>
   <BlogList posts={posts} />

@@ -1,15 +1,18 @@
 ---
 import "destyle.css";
 
-import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import HeadSEO from "@/components/HeadSEO.astro";
+import Header from "@/components/Header.astro";
 
 type Props = {
   title: string;
-  slug: string;
+  type: "website" | "article";
+  description?: string; // TODO: remove `?`
+  noindex?: boolean;
 };
 
-const { title, slug } = Astro.props;
+const { title, type, description, noindex } = Astro.props;
 ---
 
 <html lang="ja">
@@ -18,37 +21,42 @@ const { title, slug } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <HeadSEO
+      title={title}
+      type={type}
+      description={description ?? ""}
+      noindex={noindex ?? false}
+    />
     <title>{title}</title>
+    <style lang="scss" is:global>
+      :root {
+        font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
+          "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
+        background-color: #f6f5f5;
+        color: #242424;
+        font-size: 16px;
+        line-height: 1.5;
+        word-break: break-word;
+        a:hover {
+          text-decoration: underline;
+        }
+        @media screen and (max-width: 425px) {
+          font-size: 15px;
+        }
+        @media screen and (max-width: 375px) {
+          font-size: 14px;
+        }
+        @media screen and (max-width: 320px) {
+          font-size: 13px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <Header slug={slug} />
+    <Header />
     <main class="mx-auto my-0 max-w-[1080px] px-[10px] py-0">
       <slot />
     </main>
     <Footer />
   </body>
 </html>
-
-<style lang="scss" is:global>
-  :root {
-    font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
-      "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
-    background-color: #f6f5f5;
-    color: #242424;
-    font-size: 16px;
-    line-height: 1.5;
-    word-break: break-word;
-    a:hover {
-      text-decoration: underline;
-    }
-    @media screen and (max-width: 425px) {
-      font-size: 15px;
-    }
-    @media screen and (max-width: 375px) {
-      font-size: 14px;
-    }
-    @media screen and (max-width: 320px) {
-      font-size: 13px;
-    }
-  }
-</style>

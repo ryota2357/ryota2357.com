@@ -7,7 +7,7 @@ const sortedAllBlogTagList = [...allBlogTagList]
   .sort((a, b) => b.count - a.count);
 ---
 
-<Base title="Blog.Tag" slug="/blog/tag/">
+<Base title="Blog.Tag" type="website" noindex={true}>
   <h1>
     <span class="text-[1.6rem]"><a href="/blog/">Blog</a>.</span>
     <span class="text-[2.5rem]">Tag</span>

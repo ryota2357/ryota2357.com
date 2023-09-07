@@ -1,0 +1,23 @@
+---
+type Props = {
+  title: string;
+  type?: "website" | "article";
+  description: string; // TODO: remove `?`
+  noindex: boolean;
+};
+
+const { title, type, description, noindex = false } = Astro.props;
+---
+
+<meta name="description" content={description} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+{/* <meta property="og:image" content={metaImage} /> */}
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:creator" content="@95s7k84695a" />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+
+{noindex && <meta property="robots" content="noindex" />}

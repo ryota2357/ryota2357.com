@@ -1,11 +1,7 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 
-type Props = {
-  slug: string;
-};
-
-const { slug } = Astro.props;
+type Props = Record<PropertyKey, never>;
 ---
 
 <header class="mx-3 mb-4 mt-2 flex flex-row flex-wrap justify-between">
@@ -17,16 +13,16 @@ const { slug } = Astro.props;
   <nav class="mt-auto">
     <ul class="flex content-start text-[1.4rem] [&>li]:mx-[0.7rem] [&>li]:my-0">
       <li>
-        <HeaderLink slug={slug} href="/">Home</HeaderLink>
+        <HeaderLink href="/">Home</HeaderLink>
       </li>
       <li>
-        <HeaderLink slug={slug} href="/about/">About</HeaderLink>
+        <HeaderLink href="/about/">About</HeaderLink>
       </li>
       <li>
-        <HeaderLink slug={slug} href="/blog/">Blog</HeaderLink>
+        <HeaderLink href="/blog/">Blog</HeaderLink>
       </li>
       <li>
-        <HeaderLink slug={slug} href="/works/">Works</HeaderLink>
+        <HeaderLink href="/works/">Works</HeaderLink>
       </li>
     </ul>
   </nav>

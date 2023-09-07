@@ -1,6 +1,7 @@
 ---
-type Props = { slug: string; href: string };
-const { slug, href } = Astro.props;
+type Props = { href: string };
+const { href } = Astro.props;
+const slug = Astro.url.pathname;
 ---
 
 <span>
