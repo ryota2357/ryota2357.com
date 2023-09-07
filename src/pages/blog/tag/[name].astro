@@ -1,11 +1,10 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import { getCollection } from "astro:content";
 import BlogList from "@/components/BlogList.astro";
 import Base from "@/layouts/Base.astro";
+import { allBlogCollection } from "@/content";
 
-export const getStaticPaths = (async () => {
-  const allBlogCollection = await getCollection("blog");
+export const getStaticPaths = (() => {
   const allTag = allBlogCollection
     .flatMap((post) => post.data.tags)
     .filter((tag, index, self) => self.indexOf(tag) == index);

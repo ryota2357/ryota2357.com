@@ -1,17 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import Base from "@/layouts/Base.astro";
+import { allBlogTagList } from "@/content";
 
-const allBlogCollection = await getCollection("blog");
-const allTagCount = (() => {
-  const tagMap = allBlogCollection
-    .flatMap((post) => post.data.tags)
-    .reduce(
-      (map, tag) => map.set(tag, (map.get(tag) ?? 0) + 1),
-      new Map<string, number>(),
-    );
-  return [...tagMap].map(([name, count]) => ({ name, count }));
-})();
+const sortedAllBlogTagList = [...allBlogTagList]
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .sort((a, b) => b.count - a.count);
 ---
 
 <Base title="Blog.Tag" slug="/blog/tag/">
@@ -21,14 +14,11 @@ const allTagCount = (() => {
   </h1>
   <ul class="mt-8 list-inside list-disc">
     {
-      allTagCount
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .sort((a, b) => b.count - a.count)
-        .map(({ name, count }) => (
-          <li>
-            <a href={`/blog/tag/${name}`}>{`${name}(${count})`}</a>
-          </li>
-        ))
+      sortedAllBlogTagList.map(({ name, count }) => (
+        <li>
+          <a href={`/blog/tag/${name}`}>{`${name}(${count})`}</a>
+        </li>
+      ))
     }
   </ul>
 </Base>

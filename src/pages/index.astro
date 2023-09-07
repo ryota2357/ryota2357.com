@@ -1,21 +1,15 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import path from "path";
 import Base from "@/layouts/Base.astro";
 import ProfileImage from "@/images/profile-pic.png";
 import ContentBlock from "@/components/ContentBlock.astro";
+import { allBlogCollection, allBlogTagList } from "@/content";
 
-const allBlogCollection = await getCollection("blog");
-const allTagCount = (() => {
-  const tagMap = allBlogCollection
-    .flatMap((post) => post.data.tags)
-    .reduce(
-      (map, tag) => map.set(tag, (map.get(tag) ?? 0) + 1),
-      new Map<string, number>(),
-    );
-  return [...tagMap].map(([name, count]) => ({ name, count }));
-})();
+const top12BlogTagList = [...allBlogTagList]
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 12);
 ---
 
 <Base title="Home" slug="/">
@@ -45,10 +39,7 @@ const allTagCount = (() => {
         <h3 class="m-0 flex-none text-[1.3rem] font-bold">タグ</h3>
         <div class="mx-0 my-auto flex flex-wrap">
           {
-            allTagCount
-              .sort((a, b) => a.name.localeCompare(b.name))
-              .sort((a, b) => b.count - a.count)
-              .slice(0, 12)
+            top12BlogTagList
               .map(({ name, count }) => (
                 <span class="p-[0.3rem]">
                   <a href={`/blog/tag/${name}`}>{`${name}(${count})`}</a>
@@ -67,7 +58,7 @@ const allTagCount = (() => {
         <div class="mx-0 my-auto flex flex-wrap">
           <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
             {
-              allBlogCollection
+              [...allBlogCollection]
                 .sort(
                   (a, b) => b.data.update.valueOf() - a.data.update.valueOf(),
                 )

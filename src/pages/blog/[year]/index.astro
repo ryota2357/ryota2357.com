@@ -1,28 +1,22 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import Base from "@/layouts/Base.astro";
 import BlogList from "@/components/BlogList.astro";
+import { allBlogCollection, util } from "@/content";
 
 type Year = `${number}${number}${number}${number}`;
 type allYearPostsRecord = Record<Year, CollectionEntry<"blog">[]>;
 
-export const getStaticPaths = (async () => {
-  const allBlogCollection = await getCollection("blog");
+export const getStaticPaths = (() => {
   const allYearPosts = (() => {
     const ret: allYearPostsRecord = {};
-    const regex = /^(\d{4})\/(.+)$/;
     allBlogCollection.map((post) => {
-      const match = post.slug.match(regex);
-      if (match) {
-        const [, year] = match as [string, Year];
-        if (ret[year]) {
-          ret[year].push(post);
-        } else {
-          ret[year] = [post];
-        }
+      const year = util.getYearFromSlug(post.slug);
+      if (ret[year]) {
+        ret[year].push(post);
       } else {
-        throw new TypeError(`Invalid format: ${post.slug}`);
+        ret[year] = [post];
       }
     });
     return ret;
