@@ -13,14 +13,21 @@ export const getStaticPaths = (async () => {
 
   return allBlogCollection
     .sort((a, b) => a.data.postdate.valueOf() - b.data.postdate.valueOf())
-    .map((post, index, self) => ({
-      params: { slug: post.slug },
-      props: {
-        post,
-        prevPost: index !== 0 ? self[index - 1] : undefined,
-        nextPost: index !== self.length - 1 ? self[index + 1] : undefined,
-      },
-    }));
+    .map((post, index, self) => {
+      const match = post.slug.match(/^(\d{4})\/(.+)$/);
+      if (!match) {
+        throw new Error(`Invalid slug: ${post.slug}`);
+      }
+      const [, year, slug] = match;
+      return {
+        params: { year, slug },
+        props: {
+          post,
+          prevPost: index !== 0 ? self[index - 1] : undefined,
+          nextPost: index !== self.length - 1 ? self[index + 1] : undefined,
+        },
+      };
+    });
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
