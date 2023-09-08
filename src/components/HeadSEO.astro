@@ -1,13 +1,16 @@
 ---
 type Props = {
   title: string;
-  type?: "website" | "article";
-  description: string; // TODO: remove `?`
+  type: "website" | "article";
+  description: string;
   noindex: boolean;
+  canonicalURL: string;
 };
 
-const { title, type, description, noindex = false } = Astro.props;
+const { title, type, description, noindex, canonicalURL } = Astro.props;
 ---
+
+<link rel="canonical" href={canonicalURL} />
 
 <meta name="description" content={description} />
 <meta property="og:title" content={title} />

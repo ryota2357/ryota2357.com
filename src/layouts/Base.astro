@@ -13,6 +13,16 @@ type Props = {
 };
 
 const { title, type, description, noindex } = Astro.props;
+
+// Ensures the canonicalURL always has a trailing slash.
+const trailingSlashedURL = new URL(
+  Astro.url.pathname.replace(/([^/])$/, "$1/"),
+  Astro.site,
+);
+const canonicalURL =
+  trailingSlashedURL.pathname === "/"
+    ? trailingSlashedURL.origin
+    : decodeURI(trailingSlashedURL.href); // Do not encode ja.
 ---
 
 <html lang="ja">
@@ -26,6 +36,7 @@ const { title, type, description, noindex } = Astro.props;
       type={type}
       description={description ?? ""}
       noindex={noindex ?? false}
+      canonicalURL={canonicalURL}
     />
     <title>{title}</title>
     <style lang="scss" is:global>
