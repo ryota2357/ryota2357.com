@@ -168,7 +168,7 @@ def main() -> None:
 
 font を開き、ゴニョゴニョ編集して、ファイルへ保存している。
 
-`modify_0(font)` と `modify_m(font)` については、[FontForgeとPythonでGlyph (Contour) の編集(追加・削除)方法](../fontforge-add-erase-glyph-with-python)で説明している。
+`modify_0(font)` と `modify_m(font)` については、[FontForgeとPythonでGlyph (Contour) の編集(追加・削除)方法](../fontforge-add-erase-glyph-with-python/)で説明している。
 
 使用した util.py の関数の説明をする。
 

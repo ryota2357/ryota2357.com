@@ -16,7 +16,7 @@ const sortedAllBlogTagList = [...allBlogTagList]
     {
       sortedAllBlogTagList.map(({ name, count }) => (
         <li>
-          <a href={`/blog/tag/${name}`}>{`${name}(${count})`}</a>
+          <a href={`/blog/tag/${name}/`}>{`${name}(${count})`}</a>
         </li>
       ))
     }

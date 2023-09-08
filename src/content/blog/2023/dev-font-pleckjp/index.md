@@ -10,7 +10,7 @@ tags: ["FontForge"]
 「IBM Plex Sans JP」と「Hack」を合成したプログラミング用合成フォント「PleckJP」を作成した。  
 本稿では PleckJP を作成した理由やその特徴を書く。
 
-合成スクリプト(FontForge with Python)の解説は[プログラミング用合成フォント PleckJP の合成スクリプトの実装解説](../pleck-jp-impl-exp)に書いた。
+合成スクリプト(FontForge with Python)の解説は[プログラミング用合成フォント PleckJP の合成スクリプトの実装解説](../pleck-jp-impl-exp/)に書いた。
 
 [**https://github.com/ryota2357/PleckJP**](https://github.com/ryota2357/PleckJP)
 

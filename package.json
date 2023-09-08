@@ -11,7 +11,7 @@
     "typecheck": "astro check && tsc --noEmit",
     "lint": "eslint --fix './src/**/*.{astro,ts,tsx}'",
     "lint:check": "eslint './src/**/*.{astro,ts,tsx}'",
-    "textlint": "textlint --fix './content/**/*.md'",
+    "textlint": "textlint --fix './src/content/**/*.md'",
     "textlint:check": "textlint --dry-run './content/**/*.md'",
     "astro": "astro",
     "preinstall": "npx -y only-allow pnpm"
@@ -25,9 +25,17 @@
     "destyle.css": "4.0.0",
     "sass": "1.66.1",
     "sharp": "0.32.5",
-    "tailwindcss": "3.3.3"
+    "tailwindcss": "3.3.3",
+    "typescript": "5.2.2",
+    "unified": "11.0.3",
+    "unist-util-is": "6.0.0",
+    "unist-util-visit": "5.0.0",
+    "unknownutil": "3.6.0",
+    "vfile": "6.0.1"
   },
   "devDependencies": {
+    "@astrojs/check": "0.2.0",
+    "@types/unist": "3.0.0",
     "@typescript-eslint/eslint-plugin": "6.5.0",
     "@typescript-eslint/parser": "6.5.0",
     "eslint": "8.48.0",
@@ -39,7 +47,7 @@
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-preset-ja-spacing": "2.3.0",
     "textlint-rule-preset-ja-technical-writing": "8.0.0",
-    "typescript": "5.2.2"
+    "unist-util-inspect": "8.0.0"
   },
   "volta": {
     "node": "20.5.1"

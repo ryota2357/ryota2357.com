@@ -42,7 +42,7 @@ const top12BlogTagList = [...allBlogTagList]
             top12BlogTagList
               .map(({ name, count }) => (
                 <span class="p-[0.3rem]">
-                  <a href={`/blog/tag/${name}`}>{`${name}(${count})`}</a>
+                  <a href={`/blog/tag/${name}/`}>{`${name}(${count})`}</a>
                 </span>
               ))
               .concat(
@@ -65,7 +65,7 @@ const top12BlogTagList = [...allBlogTagList]
                 .slice(0, 7)
                 .map((post) => (
                   <li>
-                    <a href={path.join("/blog", post.slug)}>
+                    <a href={path.join("/blog", post.slug, "/")}>
                       {post.data.title}
                     </a>
                   </li>

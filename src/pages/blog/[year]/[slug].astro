@@ -54,7 +54,7 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
         }
       </div>
       <div class="tags">
-        {post.data.tags.map((tag) => <a href={`/blog/tag/${tag}`}>{tag}</a>)}
+        {post.data.tags.map((tag) => <a href={`/blog/tag/${tag}/`}>{tag}</a>)}
       </div>
     </div>
     <div id="markdown" itemprop="articleBody">
@@ -67,14 +67,14 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
         <ul class="mx-0 my-4 grid grid-flow-col justify-between gap-3">
           <li>
             {prevPost && (
-              <a href={path.join("/blog", prevPost.slug)} rel="prev">
+              <a href={path.join("/blog", prevPost.slug, "/")} rel="prev">
                 ← {prevPost.data.title}
               </a>
             )}
           </li>
           <li>
             {nextPost && (
-              <a href={path.join("/blog", nextPost.slug)} rel="next">
+              <a href={path.join("/blog", nextPost.slug, "/")} rel="next">
                 {nextPost.data.title} →
               </a>
             )}

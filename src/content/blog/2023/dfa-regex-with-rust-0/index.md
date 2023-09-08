@@ -7,8 +7,8 @@ tags: ["Rust"]
 
 書いてたら思いの他長くなったので分割した。
 
-- [#1 Lexer と Parser の実装](../dfa-regex-with-rust-1)
-- [#2 NFA と DFA を構築して Regex を作る](../dfa-regex-with-rust-2)
+- [#1 Lexer と Parser の実装](../dfa-regex-with-rust-1/)
+- [#2 NFA と DFA を構築して Regex を作る](../dfa-regex-with-rust-2/)
 
 作成したものは **[ryota2357/dfa-regex](https://github.com/ryota2357/dfa-regex)** に置いてある。
 

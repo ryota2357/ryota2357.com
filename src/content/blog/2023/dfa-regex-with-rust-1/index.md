@@ -7,7 +7,7 @@ tags: ["Rust"]
 
 書いてたら思いの他長くなったので分割した。
 
-[シンプルな DFA 型の正規表現エンジンを Rust で作成する #0](../dfa-regex-with-rust-0)
+[シンプルな DFA 型の正規表現エンジンを Rust で作成する #0](../dfa-regex-with-rust-0/)
 
 このページでは Lexer と Parser を実装する。
 
@@ -454,4 +454,4 @@ pub fn parse(&mut self) -> Result<Node> {
 }
 ```
 
-続いて、[#2 NFA と DFA を構築して Regex を作る](../dfa-regex-with-rust-2)。
+続いて、[#2 NFA と DFA を構築して Regex を作る](../dfa-regex-with-rust-2/)。

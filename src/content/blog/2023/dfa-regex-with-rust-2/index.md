@@ -7,7 +7,7 @@ tags: ["Rust"]
 
 書いてたら思いの他長くなったので分割した。
 
-[シンプルな DFA 型の正規表現エンジンを Rust で作成する #0](../dfa-regex-with-rust-0)
+[シンプルな DFA 型の正規表現エンジンを Rust で作成する #0](../dfa-regex-with-rust-0/)
 
 このページでは Parser より得られた構文木から NFA を、その NFA から DFA を構築し、Regex を作成する。
 
@@ -30,7 +30,7 @@ pub use crate::automaton::nfa::*;
 
 このコードからもわかるように、`src/automaton/nfa.rs` に NFA を、`src/automaton/dfa.rs` に DFA を実装する。
 
-ここからは [#0](../dfa-regex-with-rust-0) の参考記事にあげた[正規表現エンジンを作ろう 1 ~ 6](https://codezine.jp/article/detail/3039)とクラス構造が大きく変わる。
+ここからは [#0](../dfa-regex-with-rust-0/) の参考記事にあげた[正規表現エンジンを作ろう 1 ~ 6](https://codezine.jp/article/detail/3039)とクラス構造が大きく変わる。
 
 ## NFA (非決定性有限オートマトン)
 

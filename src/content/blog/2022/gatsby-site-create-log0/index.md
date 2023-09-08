@@ -17,7 +17,7 @@ tags: ["Gatsby"]
 
 [2.サイトのディレクトリ変更](../gatsby-site-create-log2/)
 
-[3.整理](../gatsby-site-create-log3)
+[3.整理](../gatsby-site-create-log3/)
 
 [4.ページの追加とデザイン](../gatsby-site-create-log4/)
 

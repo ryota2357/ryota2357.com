@@ -93,7 +93,7 @@ precmd() {
 
 </details>
 
-初歩的なプロンプト作成の方法は[zsh プロンプトをカスタマイズする](../zsh-prompt-custom)に書いたので省略する。
+初歩的なプロンプト作成の方法は[zsh プロンプトをカスタマイズする](../zsh-prompt-custom/)に書いたので省略する。
 
 ### \_\_signal_code_string()
 
