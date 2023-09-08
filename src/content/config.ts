@@ -12,18 +12,20 @@ const blogCollection = defineCollection({
 
 const worksCollection = defineCollection({
   type: "data",
-  schema: z.object({
-    data: z.array(
-      z.object({
-        title: z.string(),
-        description: z.string(),
-        url: z.string().url(),
-        image: z.string().startsWith("./"),
-        created: z.coerce.date(),
-        update: z.coerce.date(),
-      }),
-    ),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      data: z.array(
+        z.object({
+          title: z.string(),
+          description: z.string(),
+          url: z.string().url(),
+          image: image(),
+          created: z.coerce.date(),
+          update: z.coerce.date(),
+        }),
+      ),
+    }),
 });
 
 export const collections = {

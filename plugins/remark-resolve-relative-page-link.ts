@@ -1,6 +1,6 @@
 import type { Node } from "unist";
 import { VFile } from "vfile";
-import { CONTINUE, visit, type Visitor } from "unist-util-visit";
+import { CONTINUE, visit } from "unist-util-visit";
 import { convert, type Check } from "unist-util-is";
 import { ensure, is } from "unknownutil";
 import path from "path";
@@ -27,12 +27,23 @@ export default function resolveRelativePageLink(option: Option) {
       }
       const lastIndex = currentFileDir.lastIndexOf(option.rootDirName);
       if (lastIndex === -1) {
-        throw new Error(
-          `option.rootDirName: ${option.rootDirName} is not found`,
+        const yellow = "\u001b[33m";
+        const reset = "\u001b[0m";
+        console.warn(
+          [
+            `${yellow}[WARN: remark-resolve-relative-page-link]${reset}`,
+            `option.rootDirName: '${option.rootDirName}' is not found.`,
+            `(${path.join("/", ...currentFileDir, "/")})`,
+          ].join(" "),
         );
+        return undefined;
       }
       return path.join(...currentFileDir.slice(lastIndex));
     })();
+
+    if (!rootPath) {
+      return;
+    }
 
     visit(tree, isRelativePageLink, (node) => {
       if (!("url" in node)) return CONTINUE;

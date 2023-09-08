@@ -1,15 +1,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 
 export const allBlogCollection = await getCollection("blog");
-export const allWorksCollection = (await getCollection("works")).map(
-  (entry) => {
-    const name = entry.id.replace(
-      /\/index$/,
-      "",
-    ) as (typeof entry)["id"] extends `${infer Prefix}/index` ? Prefix : never;
-    return { ...entry, name };
-  },
-);
+export const allWorksCollection = await getCollection("works");
 
 export const allBlogTagList = (() => {
   const tagMap = allBlogCollection
