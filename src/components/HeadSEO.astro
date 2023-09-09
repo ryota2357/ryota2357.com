@@ -2,9 +2,9 @@
 type Props = {
   title: string;
   type: "website" | "article";
-  description: string;
+  description?: string;
   noindex: boolean;
-  canonicalURL: string;
+  canonicalURL: URL;
 };
 
 const { title, type, description, noindex, canonicalURL } = Astro.props;
@@ -12,9 +12,12 @@ const { title, type, description, noindex, canonicalURL } = Astro.props;
 
 <link rel="canonical" href={canonicalURL} />
 
-<meta name="description" content={description} />
+{
+  description && (
+    <meta name="description" property="og:description" content={description} />
+  )
+}
 <meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
 <meta property="og:type" content={type} />
 {/* <meta property="og:image" content={metaImage} /> */}
 

@@ -8,21 +8,17 @@ import Header from "@/components/Header.astro";
 type Props = {
   title: string;
   type: "website" | "article";
-  description?: string; // TODO: remove `?`
+  description?: string;
   noindex?: boolean;
 };
 
 const { title, type, description, noindex } = Astro.props;
 
 // Ensures the canonicalURL always has a trailing slash.
-const trailingSlashedURL = new URL(
+const canonicalURL = new URL(
   Astro.url.pathname.replace(/([^/])$/, "$1/"),
   Astro.site,
 );
-const canonicalURL =
-  trailingSlashedURL.pathname === "/"
-    ? trailingSlashedURL.origin
-    : decodeURI(trailingSlashedURL.href); // Do not encode ja.
 ---
 
 <html lang="ja">
@@ -31,10 +27,11 @@ const canonicalURL =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <HeadSEO
       title={title}
       type={type}
-      description={description ?? ""}
+      description={description}
       noindex={noindex ?? false}
       canonicalURL={canonicalURL}
     />
