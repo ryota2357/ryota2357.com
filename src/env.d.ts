@@ -1,5 +1,5 @@
+/// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
-import "../.astro/types.d.ts";
 
 // https://github.com/ota-meshi/eslint-plugin-astro/issues/168
 import "astro/astro-jsx";

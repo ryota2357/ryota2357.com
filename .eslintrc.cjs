@@ -2,12 +2,13 @@ module.exports = {
   root: true,
   extends: [
     "eslint:recommended",
-    'plugin:@typescript-eslint/recommended-type-checked',
+    "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:astro/recommended",
   ],
   parserOptions: {
-    project: true,
-    tsconfigRootDir: __dirname,
+    sourceType: "module",
+    project: "./tsconfig.json",
+    ecmaVersion: "latest",
   },
   overrides: [
     {
@@ -17,6 +18,18 @@ module.exports = {
         parser: "@typescript-eslint/parser",
         extraFileExtensions: [".astro"],
       },
+      rules: {
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { varsIgnorePattern: "^Props$" },
+        ],
+      },
+    },
+    {
+      files: ["./src/env.d.ts"],
+      rules: {
+        "@typescript-eslint/triple-slash-reference": "off",
+      },
     },
   ],
-}
+};
