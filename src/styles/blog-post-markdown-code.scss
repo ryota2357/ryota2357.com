@@ -1,8 +1,3 @@
-// gatsby-remark-vscode
-:root {
-  --grvsc-border-radius: 10px;
-}
-
 #markdown {
   p, li, table {
     code {
@@ -14,9 +9,11 @@
   }
   pre {
     background-color: #282828;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 1.2;
     code {
-      font-size: 0.9rem;
-      line-height: 1.3;
+      font-size: 0.85rem;
     }
   }
 }
