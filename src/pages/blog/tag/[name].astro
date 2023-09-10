@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import BlogList from "@/components/BlogList.astro";
+import Base from "@/layouts/Base.astro";
+import { allBlogCollection } from "@/content";
+
+export const getStaticPaths = (() => {
+  const allTag = allBlogCollection
+    .flatMap((post) => post.data.tags)
+    .filter((tag, index, self) => self.indexOf(tag) == index);
+  return allTag.map((tag) => {
+    const posts = allBlogCollection.filter((post) =>
+      post.data.tags.includes(tag),
+    );
+    return {
+      params: { name: tag },
+      props: { tagName: tag, posts },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { tagName, posts } = Astro.props;
+posts.sort((a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf());
+---
+
+<Base title={`Blog.Tag.${tagName}`} type="website" noindex={true}>
+  <h1>
+    <span class="text-[1.6rem]"><a href="/blog/">Blog</a>.</span>
+    <span class="text-[1.6rem]"><a href="/blog/tag/">Tag</a>.</span>
+    <span class="text-[2.5rem]">{tagName}</span>
+  </h1>
+  <p>{posts.length}件</p>
+  <p>
+    <a href="/blog/tag/">タグの一覧</a>
+  </p>
+  <BlogList posts={posts} />
+</Base>

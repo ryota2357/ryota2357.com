@@ -1,0 +1,111 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import Base from "@/layouts/Base.astro";
+import { allBlogCollection, util } from "@/content";
+import dayjs from "dayjs";
+import path from "path";
+
+import "@/styles/blog-post-markdown.scss";
+import "@/styles/blog-post-markdown-code.scss";
+
+export const getStaticPaths = (() => {
+  return [...allBlogCollection]
+    .sort((a, b) => a.data.postdate.valueOf() - b.data.postdate.valueOf())
+    .map((post, index, self) => ({
+      params: {
+        year: util.getYearFromSlug(post.slug),
+        slug: util.stripYearFromSlug(post.slug),
+      },
+      props: {
+        post,
+        prevPost: index !== 0 ? self[index - 1] : undefined,
+        nextPost: index !== self.length - 1 ? self[index + 1] : undefined,
+      },
+    }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { post, prevPost, nextPost } = Astro.props;
+const { Content } = await post.render();
+const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
+---
+
+<Base title="Post" type="article">
+  <article itemscope itemtype="http://schema.org/Article">
+    <div class="post-front">
+      <h1 itemprop="headline" class="mt-4 text-[2rem] font-bold">
+        {post.data.title}
+      </h1>
+      <div class="flex flex-row gap-4 text-gray-500">
+        <p>
+          投稿日:{" "}
+          <time itemprop="datePublished">{formatTime(post.data.postdate)}</time>
+        </p>
+        {
+          post.data.update.valueOf() !== post.data.postdate.valueOf() && (
+            <p>
+              更新日:{" "}
+              <time itemprop="dateModified">
+                {formatTime(post.data.update)}
+              </time>
+            </p>
+          )
+        }
+      </div>
+      <div class="tags">
+        {post.data.tags.map((tag) => <a href={`/blog/tag/${tag}/`}>{tag}</a>)}
+      </div>
+    </div>
+    <div id="markdown" itemprop="articleBody">
+      <Content />
+    </div>
+  </article>
+  {
+    (
+      <nav>
+        <ul class="mx-0 my-4 grid grid-flow-col justify-between gap-3">
+          <li>
+            {prevPost && (
+              <a href={path.join("/blog", prevPost.slug, "/")} rel="prev">
+                ← {prevPost.data.title}
+              </a>
+            )}
+          </li>
+          <li>
+            {nextPost && (
+              <a href={path.join("/blog", nextPost.slug, "/")} rel="next">
+                {nextPost.data.title} →
+              </a>
+            )}
+          </li>
+        </ul>
+      </nav>
+    )
+  }
+</Base>
+
+<style lang="scss">
+  article {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px #323232;
+    padding: 1.4em;
+    .post-front {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+      .tags {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3rem;
+        a {
+          &:not(:last-child)::after {
+            content: ",";
+          }
+        }
+      }
+    }
+  }
+</style>

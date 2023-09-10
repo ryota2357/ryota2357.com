@@ -1,0 +1,19 @@
+#markdown {
+  p, li, table {
+    code {
+      font-size: 1rem;
+      background-color: #e6e6e6;
+      border-radius: 6px;
+      padding: 0.1rem 0.3rem;
+    }
+  }
+  pre {
+    background-color: #282828;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 1.2;
+    code {
+      font-size: 0.85rem;
+    }
+  }
+}

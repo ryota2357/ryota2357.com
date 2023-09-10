@@ -1,0 +1,29 @@
+---
+type Props = { href: string };
+const { href } = Astro.props;
+const slug = Astro.url.pathname;
+---
+
+<span>
+  {
+    slug === href ? (
+      <span class="underline">
+        <slot />
+      </span>
+    ) : (
+      <a href={href}>
+        <slot />
+      </a>
+    )
+  }
+</span>
+
+<style lang="scss">
+  a {
+    text-decoration: underline #24242400;
+    transition: text-decoration-color 0.2s ease-in-out;
+    &:hover {
+      text-decoration-color: #242424ff;
+    }
+  }
+</style>

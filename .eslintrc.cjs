@@ -1,28 +1,35 @@
 module.exports = {
-    "root": true,
-    "env": {
-        browser: true,
-        es2023: true
+  root: true,
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:astro/recommended",
+  ],
+  parserOptions: {
+    sourceType: "module",
+    project: "./tsconfig.json",
+    ecmaVersion: "latest",
+  },
+  overrides: [
+    {
+      files: ["*.astro"],
+      parser: "astro-eslint-parser",
+      parserOptions: {
+        parser: "@typescript-eslint/parser",
+        extraFileExtensions: [".astro"],
+      },
+      rules: {
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { varsIgnorePattern: "^Props$" },
+        ],
+      },
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:react/jsx-runtime",
-        "plugin:@typescript-eslint/recommended",
-        'plugin:@typescript-eslint/recommended-type-checked',
-        // "react-app"  ref: https://github.com/facebook/create-react-app/issues/13286
-    ],
-    "overrides": [
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        project: true,
-        tsconfigRootDir: __dirname,
-        ecmaVersion: "latest",
-        sourceType: "module"
+    {
+      files: ["./src/env.d.ts"],
+      rules: {
+        "@typescript-eslint/triple-slash-reference": "off",
+      },
     },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ]
-}
+  ],
+};

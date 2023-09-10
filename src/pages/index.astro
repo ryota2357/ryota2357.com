@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import path from "path";
+import Base from "@/layouts/Base.astro";
+import ProfileImage from "@/images/profile-pic.png";
+import ContentBlock from "@/components/ContentBlock.astro";
+import { allBlogCollection, allBlogTagList } from "@/content";
+
+const top12BlogTagList = [...allBlogTagList]
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .sort((a, b) => b.count - a.count)
+  .slice(0, 12);
+---
+
+<Base title="Home" type="website">
+  <div class="flex flex-col items-center gap-2">
+    <Image
+      src={ProfileImage}
+      alt="profile-pic"
+      width={200}
+      height={200}
+      style={{
+        position: "relative",
+        zIndex: "1",
+        borderRadius: "50%",
+      }}
+    />
+    <p class="text-[1.6rem] font-bold">ryota2357</p>
+  </div>
+  <div class="mt-8 flex flex-col gap-8">
+    <ContentBlock title="Affiliation">
+      <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
+        <li>電気通信大学 情報理工学域I類 1年</li>
+        <li>電気通信大学MMA(サークル)</li>
+      </ul>
+    </ContentBlock>
+    <ContentBlock title="Blog">
+      <div class="flex flex-row items-start gap-4">
+        <h3 class="m-0 flex-none text-[1.3rem] font-bold">タグ</h3>
+        <div class="mx-0 my-auto flex flex-wrap">
+          {
+            top12BlogTagList
+              .map(({ name, count }) => (
+                <span class="p-[0.3rem]">
+                  <a href={`/blog/tag/${name}/`}>{`${name}(${count})`}</a>
+                </span>
+              ))
+              .concat(
+                <span class="p-[0.3rem]">
+                  <a href="/blog/tag/">一覧</a>
+                </span>,
+              )
+          }
+        </div>
+      </div>
+      <div class="flex flex-row items-start gap-4">
+        <h3 class="m-0 flex-none text-[1.3rem] font-bold">更新</h3>
+        <div class="mx-0 my-auto flex flex-wrap">
+          <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
+            {
+              [...allBlogCollection]
+                .sort(
+                  (a, b) => b.data.update.valueOf() - a.data.update.valueOf(),
+                )
+                .slice(0, 7)
+                .map((post) => (
+                  <li>
+                    <a href={path.join("/blog", post.slug, "/")}>
+                      {post.data.title}
+                    </a>
+                  </li>
+                ))
+            }
+          </ul>
+        </div>
+      </div>
+    </ContentBlock>
+    <ContentBlock title="Links">
+      <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
+        <li>
+          <a href="https://twitter.com/95s7k84695a"> Twitter (@95s7k84695a)</a>
+        </li>
+        <li>
+          <a href="https://bsky.app/profile/ryota2357.com">
+            Bluesky (@ryota2357.com)
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/ryota2357"> Github (ryota2357)</a>
+        </li>
+        <li>
+          <a href="https://atcoder.jp/users/ryota2357"> AtCoder (ryota2357)</a>
+        </li>
+        <li>
+          <a href="https://unityroom.com/users/ryota2357">
+            UnityRoom (ryota2357)
+          </a>
+        </li>
+      </ul>
+    </ContentBlock>
+  </div>
+</Base>

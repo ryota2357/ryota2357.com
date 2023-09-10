@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import type { CollectionEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import BlogList from "@/components/BlogList.astro";
+import { allBlogCollection, util } from "@/content";
+
+type Year = `${number}${number}${number}${number}`;
+type allYearPostsRecord = Record<Year, CollectionEntry<"blog">[]>;
+
+export const getStaticPaths = (() => {
+  const allYearPosts = (() => {
+    const ret: allYearPostsRecord = {};
+    allBlogCollection.map((post) => {
+      const year = util.getYearFromSlug(post.slug);
+      if (ret[year]) {
+        ret[year].push(post);
+      } else {
+        ret[year] = [post];
+      }
+    });
+    return ret;
+  })();
+
+  return Object.entries(allYearPosts).map(([year, posts]) => ({
+    params: { year },
+    props: { year, posts },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { year, posts } = Astro.props;
+posts.sort((a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf());
+---
+
+<Base title={`Blog in ${year}`} type="website" noindex={true}>
+  <h1 class="text-[2.5rem]">Blog in {year}</h1>
+  <p>{posts.length}件</p>
+  <BlogList posts={posts} />
+</Base>

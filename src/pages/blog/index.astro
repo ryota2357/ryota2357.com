@@ -1,0 +1,19 @@
+---
+import Base from "@/layouts/Base.astro";
+import BlogList from "@/components/BlogList.astro";
+import { allBlogCollection } from "@/content";
+
+const sortedAllBlogCollection = [...allBlogCollection].sort(
+  (a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf(),
+);
+---
+
+<Base title="Blog" type="website">
+  <h1 class="text-[2.5rem]">Blog</h1>
+  <p class="mx-0 my-2">
+    <a href="/blog/tag/">タグの一覧</a>
+  </p>
+  <div>
+    <BlogList posts={sortedAllBlogCollection} />
+  </div>
+</Base>

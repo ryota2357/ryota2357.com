@@ -1,0 +1,46 @@
+---
+import type { CollectionEntry } from "astro:content";
+import dayjs from "dayjs";
+import path from "path";
+
+type Props = {
+  posts: CollectionEntry<"blog">[];
+};
+
+const { posts } = Astro.props;
+---
+
+<div>
+  <ul class="rounded-md border border-solid border-gray-600 bg-white px-2 py-0">
+    {
+      posts.map((post) => (
+        <li class="px-0 py-2">
+          <div class="text-gray-500">
+            {dayjs(post.data.postdate).format("YYYY/MM/DD")}
+          </div>
+          <div class="text-[1.2rem] font-bold">
+            <a href={path.join("/blog", post.slug, "/")}>{post.data.title}</a>
+          </div>
+          <div class="flex flex-row justify-end gap-2 text-[0.8rem]">
+            {post.data.tags.map((tag) => (
+              <a
+                href={`/blog/tag/${tag}/`}
+                class="rounded bg-gray-900 px-3 py-1 text-white"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style lang="scss">
+  ul {
+    li + li {
+      border-top: 1px solid #e3e3e3;
+    }
+  }
+</style>

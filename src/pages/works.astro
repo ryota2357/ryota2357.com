@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import Base from "@/layouts/Base.astro";
+import ContentBlock from "@/components/ContentBlock.astro";
+import { allWorksCollection } from "@/content";
+import dayjs from "dayjs";
+
+const allWorksData = allWorksCollection.map((data) => ({ ...data.data }));
+
+function formatTime(time: Date): string {
+  return dayjs(time).format("YYYY/MM/DD (HH:mm)");
+}
+---
+
+<Base title="Works" type="website">
+  <h1 class="text-[2.5rem]">Works</h1>
+  <div>
+    {
+      allWorksData.map((section) => (
+        <ContentBlock title={section.name}>
+          <ul class="[&>li+li]:mt-4">
+            {section.data.map((item) => (
+              <li>
+                <h3 class="text-2xl font-bold">
+                  <a href={item.url} target="_blank" rel="noreferrer">
+                    {item.title}
+                  </a>
+                </h3>
+                <div class="flex flex-row justify-between gap-4">
+                  <div class="pl-4">
+                    <p class="text-gray-500">
+                      公開: <time>{formatTime(item.created)}</time>
+                    </p>
+                    {item.created !== item.update && (
+                      <p class="text-gray-500">
+                        最終更新: <time>{formatTime(item.update)}</time>
+                      </p>
+                    )}
+                    {item.description.split("\n").map((line) => (
+                      <p>{line}</p>
+                    ))}
+                  </div>
+                  <Image
+                    src={item.image}
+                    alt={`${item.title} icon`}
+                    style={{
+                      objectFit: "cover",
+                      width: "8rem",
+                      height: "8rem",
+                    }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </ContentBlock>
+      ))
+    }
+  </div>
+</Base>
+
+<style lang="scss">
+  h3 {
+    &::before {
+      content: "- ";
+    }
+  }
+</style>

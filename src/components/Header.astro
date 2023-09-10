@@ -1,0 +1,29 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+
+type Props = Record<PropertyKey, never>;
+---
+
+<header class="mx-3 mb-4 mt-2 flex flex-row flex-wrap justify-between">
+  <div
+    class="select-none text-[2.1rem] font-bold text-black [&_a:hover]:no-underline"
+  >
+    <a href="/">ryota2357</a>
+  </div>
+  <nav class="mt-auto">
+    <ul class="flex content-start text-[1.4rem] [&>li]:mx-[0.7rem] [&>li]:my-0">
+      <li>
+        <HeaderLink href="/">Home</HeaderLink>
+      </li>
+      <li>
+        <HeaderLink href="/about/">About</HeaderLink>
+      </li>
+      <li>
+        <HeaderLink href="/blog/">Blog</HeaderLink>
+      </li>
+      <li>
+        <HeaderLink href="/works/">Works</HeaderLink>
+      </li>
+    </ul>
+  </nav>
+</header>

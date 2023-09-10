@@ -1,0 +1,71 @@
+---
+import "destyle.css";
+
+import Footer from "@/components/Footer.astro";
+import HeadSEO from "@/components/HeadSEO.astro";
+import Header from "@/components/Header.astro";
+
+type Props = {
+  title: string;
+  type: "website" | "article";
+  description?: string;
+  noindex?: boolean;
+};
+
+const { title, type, description, noindex } = Astro.props;
+
+// Ensures the canonicalURL always has a trailing slash.
+const canonicalURL = new URL(
+  Astro.url.pathname.replace(/([^/])$/, "$1/"),
+  Astro.site,
+);
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" href="/favicon-64.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <HeadSEO
+      title={title}
+      type={type}
+      description={description}
+      noindex={noindex ?? false}
+      canonicalURL={canonicalURL}
+    />
+    <title>{title}</title>
+    <style lang="scss" is:global>
+      :root {
+        font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
+          "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
+        background-color: #f6f5f5;
+        color: #242424;
+        font-size: 16px;
+        line-height: 1.5;
+        word-break: break-word;
+        a:hover {
+          text-decoration: underline;
+        }
+        @media screen and (max-width: 425px) {
+          font-size: 15px;
+        }
+        @media screen and (max-width: 375px) {
+          font-size: 14px;
+        }
+        @media screen and (max-width: 320px) {
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main class="mx-auto my-0 max-w-[1080px] px-[10px] py-0">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
