@@ -6,8 +6,18 @@ type Props = {
   noindex: boolean;
   canonicalURL: URL;
 };
+import path from "path";
 
 const { title, type, description, noindex, canonicalURL } = Astro.props;
+
+const ogImageSrc = (() => {
+  let pathname = path.join(canonicalURL.pathname, "/").slice(0, -1); // remove trailing slash.
+  if (pathname === "") {
+    pathname = "index";
+  }
+  return new URL(path.join("/og/", `${pathname}.png`), Astro.site);
+})();
+const ogImageAlt = `OG Image for ${canonicalURL.toString()}`;
 ---
 
 <link rel="canonical" href={canonicalURL} />
@@ -19,11 +29,14 @@ const { title, type, description, noindex, canonicalURL } = Astro.props;
 }
 <meta property="og:title" content={title} />
 <meta property="og:type" content={type} />
-{/* <meta property="og:image" content={metaImage} /> */}
+<meta property="og:image" content={ogImageSrc} />
+<meta property="og:image:alt" content={ogImageAlt} />
 
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:creator" content="@95s7k84695a" />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@95s7k84695a" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:image" content={ogImageSrc} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
+{description && <meta name="twitter:description" content={description} />}
 
 {noindex && <meta property="robots" content="noindex" />}
