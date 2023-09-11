@@ -31,7 +31,7 @@ const { Content } = await post.render();
 const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
 ---
 
-<Base title="Post" type="article">
+<Base title={post.data.title} type="article">
   <article itemscope itemtype="http://schema.org/Article">
     <div class="post-front">
       <h1 itemprop="headline" class="mt-4 text-[2rem] font-bold">
