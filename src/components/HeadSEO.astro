@@ -40,3 +40,17 @@ const ogImageAlt = `OG Image for ${canonicalURL.toString()}`;
 {description && <meta name="twitter:description" content={description} />}
 
 {noindex && <meta property="robots" content="noindex" />}
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-PHXJBM615E"
+  type="text/partytown"></script>
+<script type="text/partytown">
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-PHXJBM615E");
+</script>
