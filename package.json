@@ -12,8 +12,9 @@
     "lint": "eslint --fix './{src,plugins}/**/*.{astro,ts}'",
     "lint:check": "eslint './{src,plugins}/**/*.{astro,ts}'",
     "textlint": "textlint --fix './src/content/**/*.md'",
-    "textlint:check": "textlint --dry-run './content/**/*.md'",
+    "textlint:check": "textlint './src/content/**/*.md'",
     "astro": "astro",
+    "new-post": "sh ./util/new-post.sh",
     "preinstall": "npx -y only-allow pnpm"
   },
   "dependencies": {

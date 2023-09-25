@@ -15,7 +15,7 @@ void main(List<String> args) async {
 
   final date = DateTime.now();
   final slug = args[0];
-  final filePath = '../../content/post/${date.year}/${slug}/index.md';
+  final filePath = '../../src/content/blog/${date.year}/${slug}/index.md';
   if (await File(filePath).exists()) {
     print('ERROR: You have alread usedysame slug : $slug');
     return;
