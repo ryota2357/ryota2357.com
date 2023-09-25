@@ -1,6 +1,4 @@
-export function get() {
-  return {
-    body: `
+const xmlString = `
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
@@ -10,6 +8,12 @@ export function get() {
     <loc>https://ryota2357.com/sitemap-1.xml</loc>
   </sitemap>
 </sitemapindex>
-`.trim(),
-  };
+`.trim();
+
+export function GET() {
+  return new Response(xmlString, {
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
 }

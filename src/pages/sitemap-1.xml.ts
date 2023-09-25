@@ -23,7 +23,7 @@ type SitemapItem = {
   priority?: number;
 };
 
-export function get(context: APIContext) {
+export function GET(context: APIContext) {
   const site = context.site?.origin; // Astro.site is not defined here.
 
   const blogPost: SitemapItem[] = allBlogCollection.map((post) => ({
@@ -45,25 +45,29 @@ export function get(context: APIContext) {
       priority: 0.3,
     }));
 
-  return {
-    body: `${xmlHead}\n${blogPost
-      .concat(...blogTag)
-      .concat(...blogYear)
-      .map((item) =>
-        [
-          `<url>`,
-          `<loc>${item.url.toString()}</loc>`,
-          item.lastmod
-            ? `<lastmod>${item.lastmod.toISOString()}</lastmod>`
-            : undefined,
-          item.changefreq
-            ? `<changefreq>${item.changefreq}</changefreq>`
-            : undefined,
-          item.priority ? `<priority>${item.priority}</priority>` : undefined,
-          `</url>`,
-        ].filter((x) => x !== undefined),
-      )
-      .map((taggedItems) => taggedItems.join(""))
-      .join("\n")}\n${xmlTail}`,
-  };
+  const xmlString = `${xmlHead}\n${blogPost
+    .concat(...blogTag)
+    .concat(...blogYear)
+    .map((item) =>
+      [
+        `<url>`,
+        `<loc>${item.url.toString()}</loc>`,
+        item.lastmod
+          ? `<lastmod>${item.lastmod.toISOString()}</lastmod>`
+          : undefined,
+        item.changefreq
+          ? `<changefreq>${item.changefreq}</changefreq>`
+          : undefined,
+        item.priority ? `<priority>${item.priority}</priority>` : undefined,
+        `</url>`,
+      ].filter((x) => x !== undefined),
+    )
+    .map((taggedItems) => taggedItems.join(""))
+    .join("\n")}\n${xmlTail}`;
+
+  return new Response(xmlString, {
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
 }
