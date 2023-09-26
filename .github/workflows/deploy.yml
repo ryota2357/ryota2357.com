@@ -29,6 +29,11 @@ jobs:
           node-version-file: package.json
           cache: pnpm
 
+      - name: Setup deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version:  v1.x
+
       - name: Type check
         run: pnpm run typecheck
 

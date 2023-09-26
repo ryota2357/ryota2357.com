@@ -15,6 +15,7 @@
     "textlint:check": "textlint './src/content/**/*.md'",
     "astro": "astro",
     "new-post": "sh ./util/new-post.sh",
+    "postbuild": "sh ./util/generate_simple_html_files.sh",
     "preinstall": "npx -y only-allow pnpm"
   },
   "dependencies": {
