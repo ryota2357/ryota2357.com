@@ -1,9 +1,12 @@
 ---
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import { Image } from "astro:assets";
 import Base from "@/layouts/Base.astro";
 import { allBlogCollection, util } from "@/content";
 import dayjs from "dayjs";
 import path from "path";
+
+import TagIconSvg from "@/images/tag-icon.svg";
 
 import "@/styles/blog-post-markdown.scss";
 import "@/styles/blog-post-markdown-code.scss";
@@ -54,6 +57,7 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
         }
       </div>
       <div class="tags">
+        <Image src={TagIconSvg} alt="tag icon svg" width={16} height={16} />
         {post.data.tags.map((tag) => <a href={`/blog/tag/${tag}/`}>{tag}</a>)}
       </div>
     </div>
