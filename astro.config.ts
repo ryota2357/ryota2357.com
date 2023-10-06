@@ -23,4 +23,10 @@ export default defineConfig({
       [remarkResolveRelativePageLink, { rootDirName: "blog" }],
     ],
   },
+  redirects: {
+    "/blog/2021/fatal-error-wchar.h-file-not-found/":
+      "/blog/2021/fatal-error-wchar-h-file-not-found/",
+    "/blog/2021/fatal-error-wcharh-file-not-found/":
+      "/blog/2021/fatal-error-wchar-h-file-not-found/",
+  },
 });
