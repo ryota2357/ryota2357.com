@@ -1,9 +1,8 @@
 ---
 title: "Gatsby.jsからAstro.jsに移行した"
-postdate: "2023-10-01T23:00"
-update: "2023-10-01T23:00"
-tags: ["Astro", "remark"]
-draft: true
+postdate: "2023-10-12T22:43"
+update: "2023-10-12T22:43"
+tags: ["Astro", "Remark"]
 ---
 
 僕のホームページ兼ブログ([ryota2357.com](https://ryota2357.com/))を Gatsby.js から Astro.js に移行した。
@@ -33,7 +32,7 @@ Astro は非常に多くの機能が標準で搭載されており、インテ�
 
 先ほど「blog コンテンツの管理が少し機能不十分」と書いたがこれは v2 の ContentCollection、v3 での画像の取り扱いの強化で僕が欲しかった機能は全て揃ったので移行した。
 
-v2 の ContentCollection に関してはここでは省略する、これがないと Astro.glob で頑張る感じとなり結構しんどい。
+v2 の ContentCollection に関してはここでは省略する、これがないと Astro.glob のみで頑張ることとなり結構しんどい。
 
 v3 での画像の取り扱いの強化については、Astro は v2 までは markdown ファイル内での画像の相対パスでの指定が標準では出来なかった。(もしかしたら v2 の後半では出来たのかもだけど)
 
@@ -132,12 +131,7 @@ Astro の ContentCollection は `src/content` に対してのみ使うことが�
 Astro のデフォルト設定では URL の末尾スラッシュ(trailing slash)の有無は無視することとなっている。
 そのためローカルでの開発(`npm run dev` や `npm run preview` ) では、例えば localhost:4321/blog と localhost:4321/blog/ では同一のページを表示する。
 
-**TODO: 文章修正**
-
-この末尾スラッシュの取り扱いは、使用するホスティングサービスごとに対応が異なり、少しめんどくさい。
-Gatsby の時は gh-pages プラグインをしようしていたため Github Pages の挙動と同様の末尾スラッシュの取り扱いを `npm run develop` などのローカル開発でも行ってくれていた。しかし Astro では gh-pages プラグインに相当するものがないため、何からの方法でローカルとデプロイ先での挙動の統一や整理する必要がある。
-
-なお、末尾スラッシュについては config の trailingSlash オプションで変更可能である。
+ちなみに、末尾スラッシュについては config の trailingSlash オプションで変更可能である。
 
 > #### trailingSlash
 >
@@ -150,23 +144,24 @@ Gatsby の時は gh-pages プラグインをしようしていたため Github P
 >
 > [https://docs.astro.build/en/reference/configuration-reference/#trailingslash](https://docs.astro.build/en/reference/configuration-reference/#trailingslash)
 
+ここで問題となるのは、この末尾スラッシュの取り扱いはホスティングサービスごとに異なるということである。
+具体的に[どのような問題となるかは後述する](#markdown内の相対パス)が、末尾スラッシュの有無を雑に扱うと、場合によっては 404NotFound を引き起こす可能性がある。
+
+Astro では上に示したオプションで末尾スラッシュをどう扱うか変更できるが、各ホスティングサービスのようにリダイレクトを設定する方法は無いようである(見つけられなかっただけかもだけど...)。
+
+つまりこのままではローカル開発とデプロイ先での末尾スラッシュの扱いが異なってしまうため、何かしら対応が必要である。
+
 各ホスティングサービスがどのように末尾スラッシュを取り扱っているかは [slorber/trailing-slash-guide](https://github.com/slorber/trailing-slash-guide/) でまとめてくれている方がいた。
-
-Github Pages は次のように末尾スラッシュを扱うようである。
-
-**TODO: gh-pagesの表を貼る**
+これを参考に頑張ってもいいのだが、頑張りたく無いので Post スクリプトを仕様する方法を取った。
 
 ### 対応する
 
-ホスティングサービスごとに末尾スラッシュの挙動を確認して対応するのは面倒である。 [slorber/trailing-slash-guide/docs/Solutions.md](https://github.com/slorber/trailing-slash-guide/blob/main/docs/Solutions.md) に解決策がいくつか提示されていた。
+[slorber/trailing-slash-guide/docs/Solutions.md](https://github.com/slorber/trailing-slash-guide/blob/main/docs/Solutions.md) に書かれている、「Post-process your static site generator output before deployment」の対応をとった。
+この方法は `/foo/index.html` があったら、そのコピーを `/foo.html` に作成する、というものである。
 
-Astro で末尾スラッシュリダイレクトの方法がわからないし、Github Pages では末尾スラッシュの取り扱い方法変更の設定がないので、「Post-process your static site generator output before deployment」の対応をとった。`/foo/index.html` があったら、そのコピーを `/foo.html` に作成する、という方法である。
+package.json の scripts に `postbuild` という項目を追加する。
 
-package.json の script では任意のスクリプトの実行の前後に hook してコマンドを実行する仕組みが用意されている。なので `npm run build` に post hook で実行すれば良い。
-
-package.json の scripts に `postbuild` という項目を追加する。`postbuild` は `build` が終わったら自動的に実行される。
-
-**TODO: pnpm では postbuild 動かないことを追記**
+npm では `postbuild` は `build` が終わったら自動的に実行される。ただし pnpm では自動実行されないようなので注意が必要である。
 
 ```json
 {
@@ -267,7 +262,7 @@ const canonicalURL = new URL(
 
 ### Markdown内の相対パス
 
-この末尾スラッシュの問題は ContentCollection ブログ Markdown 内での相対パスにも影響がある。
+この末尾スラッシュの問題は ContentCollection ブログ Markdown 内での相対パスに最も影響があった。
 
 例として次のようにブログコンテンツが配置されてあったとしよう。
 
