@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@astrojs/partytown": "2.0.2",
-    "@astrojs/rss": "3.0.0",
+    "@astrojs/rss": "4.0.0",
     "@astrojs/tailwind": "5.0.2",
     "astro": "3.6.0",
     "canvas": "2.11.2",
