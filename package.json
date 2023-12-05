@@ -53,6 +53,6 @@
     "unist-util-inspect": "8.0.0"
   },
   "volta": {
-    "node": "18.18.2"
+    "node": "18.19.0"
   }
 }
