@@ -1,11 +1,11 @@
 ---
 title: "Prattパーサを使って電卓を作ってみる"
 postdate: "2023-12-18T00:00"
-update: "2023-12-18T00:00"
+update: "2023-12-18T06:43"
 tags: ["Rust"]
 ---
 
-> これは [UEC Advent Calendar 2023](https://adventar.org/calendars/8704) の18日目の記事です。  
+> これは [UEC Advent Calendar 2023](https://adventar.org/calendars/8704) の18日目の記事です。
 > いい感じのネタがなかったので、普通に技術記事書きます。
 
 「[Simple but Powerful Pratt Parsing](https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html)」にて Pratt パーサーの実装は意外と簡単だとわかった。
@@ -66,16 +66,16 @@ power:
 expr:    A   *   B   *   C   +   D   ^   E   ^   F
 power:     3   4   3   4   1   2   6   5   6   5
 ↓
-expr:    A   *   B   *   C   +   D   ^   (E  ^   F)
-power:     3   4   3   4   1   2   6   5
+expr:   (A   *   B)  *   C   +   D   ^   E   ^   F
+power:             3   4   1   2   6   5   6   5
 ↓
-expr:    A   *   B   *   C   +   (D  ^   (E  ^   F))
-power:     3   4   3   4   1   2   6   5
+expr:  ((A   *   B)  *   C)  +   D   ^   E   ^   F
+power:                     1   2   6   5   6   5
 ↓
-expr:   (A   *  B)   *   C   +   (D  ^   (E  ^   F))
-power:             3   4   1   2
+expr:  ((A   *   B)  *   C)  +   D   ^  (E   ^   F)
+power:                     1   2   6   5
 ↓
-expr:  ((A   *  B)   *  C)   +   (D  ^   (E  ^   F))
+expr:  ((A   *   B)  *   C)  +  (D   ^  (E   ^   F))
 power:                     1   2
 ```
 
@@ -183,7 +183,7 @@ Pratt パーサを用いることで、`Unary`, `Binary`, `Call` を適切に処
 
 Rust は 1.74.1 (12/17 現在の stable) を使用する。
 
-パーサを書く前に、いつくか必要なものを実装する。  
+パーサを書く前に、いつくか必要なものを実装する。
 <small>
 注意: 実装を簡単にするため、実用には、パフォーマンス、利便性ともに適さない書き方をする。
 </small>
@@ -486,7 +486,7 @@ impl Token {
 
 `Token` が前置/後置/中置演算子なのかを判定し、その演算子（`char`）と Binding Power を返す関数である。
 疑似コードでは `if op in POSTFIX_OP:` などとしていた部分に相当する。
-なお、Binding Power は `(x, y)` だと書いたが、前置・後置演算子は片方が `()` となるため、省略して片方だけ返すように実装している。(もちろん、`((), u8) ` などを返り値の型としても構わない)  
+なお、Binding Power は `(x, y)` だと書いたが、前置・後置演算子は片方が `()` となるため、省略して片方だけ返すように実装している。(もちろん、`((), u8) ` などを返り値の型としても構わない)
 <small>
 Binding Power の決め方は、演算子の優先度 (Priority) の値が x であったとしたら、2x + 1, 2x + 2 とすると良いと思われる。
 演算子同士の整合性を取る時、 Binding Power は 2 つ値を持っているため、考えることが多くなってしまうので Priority から計算できるようにしておくとわかりやすい。
@@ -545,7 +545,7 @@ fn expr_bp(tokens: &mut Peekable<Iter<'_, Token>>, min_bp: u8) -> Expr {
 }
 ```
 
-ここまで実装すれば、基本となる文法は処理できるようになっている。  
+ここまで実装すれば、基本となる文法は処理できるようになっている。
 <small>
 変数定義や、カッコ、関数呼び出しが含まれるのはパースに失敗する。
 </small>
