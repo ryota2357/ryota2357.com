@@ -1,7 +1,7 @@
 ---
 title: "Prattパーサを使って電卓を作ってみる"
 postdate: "2023-12-18T00:00"
-update: "2023-12-18T06:43"
+update: "2023-12-22T08:14"
 tags: ["Rust"]
 ---
 
@@ -419,7 +419,7 @@ pub fn parse(tokens: &[Token]) -> Stmt {
 先ほど [Pratt パーサとは](#prattパーサとは)で少し書いた通り、`Expr` は LL(1) である。
 これをわかりやすくするため、Rust の `Peekable` を用ることとする。
 
-`parser::parse()` では `&[Token]` を `Peekable` にして `expr()` に渡す。
+`parser::parse()` では `&[Token]` を `Peekable` にして `expr_bp()` に渡す。
 今回作成する電卓の仕様より、入力は 1 行であるのだから、`Expr` のあとは EOI (End Of Input) であるはずである。
 つまり、`expr_bp(&mut tokens, 0)` の後は `tokens` が空（要素数 0）になってなければならない。
 `if tokens.next().is_some() { .. }` の部分でそれを検証している。
@@ -432,7 +432,7 @@ pub fn parse(tokens: &[Token]) -> Stmt {
 
 ```rust
 fn expr_bp(tokens: &mut Peekable<Iter<'_, Token>>, min_bp: u8) -> Expr {
-    let Some(current) = tokens.peek() else {
+    let Some(current) = tokens.next() else {
         panic!("Unexpected EOI");
     };
     // 前置演算子の処理
