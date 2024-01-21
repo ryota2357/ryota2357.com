@@ -4,9 +4,9 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+    },
   },
   "exclude": ["./node_modules"],
-  "include": ["./src/**/*", "./plugins/*"]
+  "include": ["./src/**/*", "./plugins/*"],
 }
