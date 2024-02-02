@@ -9,14 +9,14 @@ dependencies:
     specifier: 2.0.4
     version: 2.0.4
   '@astrojs/rss':
-    specifier: 4.0.2
-    version: 4.0.2
+    specifier: 4.0.4
+    version: 4.0.4
   '@astrojs/tailwind':
     specifier: 5.1.0
-    version: 5.1.0(astro@4.1.3)(tailwindcss@3.4.1)
+    version: 5.1.0(astro@4.3.1)(tailwindcss@3.4.1)
   astro:
-    specifier: 4.1.3
-    version: 4.1.3(@types/node@20.11.5)(sass@1.70.0)(typescript@5.3.3)
+    specifier: 4.3.1
+    version: 4.3.1(@types/node@20.11.5)(sass@1.70.0)(typescript@5.3.3)
   canvas:
     specifier: 2.11.2
     version: 2.11.2
@@ -24,8 +24,8 @@ dependencies:
     specifier: 1.11.10
     version: 1.11.10
   destyle.css:
-    specifier: 4.0.0
-    version: 4.0.0
+    specifier: 4.0.1
+    version: 4.0.1
   sass:
     specifier: 1.70.0
     version: 1.70.0
@@ -185,8 +185,8 @@ packages:
       - typescript
     dev: true
 
-  /@astrojs/markdown-remark@4.0.1:
-    resolution: {integrity: sha512-RU4ESnqvyLpj8WZs0n5elS6idaDdtIIm7mIpMaRNPCebpxMjfcfdwcmBwz83ktAj5d2eO5bC3z92TcGdli+lRw==}
+  /@astrojs/markdown-remark@4.2.1:
+    resolution: {integrity: sha512-2RQBIwrq+2qPYtp99bH+eL5hfbK0BoxXla85lHsRpIX/IsGqFrPX6pXI2cbWPihBwGbKCdxS6uZNX2QerZWwpQ==}
     dependencies:
       '@astrojs/prism': 3.0.0
       github-slugger: 2.0.0
@@ -198,7 +198,7 @@ packages:
       remark-parse: 11.0.0
       remark-rehype: 11.1.0
       remark-smartypants: 2.1.0
-      shikiji: 0.6.13
+      shikiji: 0.9.19
       unified: 11.0.4
       unist-util-visit: 5.0.0
       vfile: 6.0.1
@@ -220,20 +220,20 @@ packages:
       prismjs: 1.29.0
     dev: false
 
-  /@astrojs/rss@4.0.2:
-    resolution: {integrity: sha512-Hb9GKAyvsn5EUjZtB6SniesBScMQe7SQinEHLY5EFa74QEvgcWaXTmA0Mb0P3vqDSN3d/NTYbGivprrSAawfnA==}
+  /@astrojs/rss@4.0.4:
+    resolution: {integrity: sha512-VmHmRoC62j9iR0ez2Qumpn4LTQ9/4txOmGwGBmCSI+PzSFJI5M/qdao656oT9Logjh7CDwcPrCGQEEEi3HF75A==}
     dependencies:
       fast-xml-parser: 4.3.3
       kleur: 4.1.5
     dev: false
 
-  /@astrojs/tailwind@5.1.0(astro@4.1.3)(tailwindcss@3.4.1):
+  /@astrojs/tailwind@5.1.0(astro@4.3.1)(tailwindcss@3.4.1):
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
     peerDependencies:
       astro: ^3.0.0 || ^4.0.0
       tailwindcss: ^3.0.24
     dependencies:
-      astro: 4.1.3(@types/node@20.11.5)(sass@1.70.0)(typescript@5.3.3)
+      astro: 4.3.1(@types/node@20.11.5)(sass@1.70.0)(typescript@5.3.3)
       autoprefixer: 10.4.17(postcss@8.4.33)
       postcss: 8.4.33
       postcss-load-config: 4.0.2(postcss@8.4.33)
@@ -1825,14 +1825,14 @@ packages:
       - supports-color
     dev: true
 
-  /astro@4.1.3(@types/node@20.11.5)(sass@1.70.0)(typescript@5.3.3):
-    resolution: {integrity: sha512-9i8l0mEnpAOAi9F3DMkHGaZ4q56TGtt71XaAxhPXAlhZrVR/6ruobCyYdYwL1Fo0ATpuGXdaod1I7FFxFMcQbw==}
+  /astro@4.3.1(@types/node@20.11.5)(sass@1.70.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-LAY2zQHOuOXEhpguyw5X0AIz6Xq+TAkBNEqrgIxwj72R87mmRQqQWmjChMPPkK95nFHkYR/71M2BrKunpbsfyw==}
     engines: {node: '>=18.14.1', npm: '>=6.14.0'}
     hasBin: true
     dependencies:
       '@astrojs/compiler': 2.5.0
       '@astrojs/internal-helpers': 0.2.1
-      '@astrojs/markdown-remark': 4.0.1
+      '@astrojs/markdown-remark': 4.2.1
       '@astrojs/telemetry': 3.0.4
       '@babel/core': 7.23.7
       '@babel/generator': 7.23.6
@@ -1850,6 +1850,7 @@ packages:
       clsx: 2.1.0
       common-ancestor-path: 1.0.1
       cookie: 0.6.0
+      cssesc: 3.0.0
       debug: 4.3.4
       deterministic-object-hash: 2.0.2
       devalue: 4.3.2
@@ -1882,7 +1883,7 @@ packages:
       resolve: 1.22.8
       semver: 7.5.4
       server-destroy: 1.0.1
-      shikiji: 0.6.13
+      shikiji: 0.9.19
       string-width: 7.0.0
       strip-ansi: 7.1.0
       tsconfck: 3.0.1(typescript@5.3.3)
@@ -2437,8 +2438,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /destyle.css@4.0.0:
-    resolution: {integrity: sha512-yE2SpDRZdqfEZRkYSIxSWSuh4Higsm01VinAWC3hny9DDV+NjBARpCEqf6TLDTWka1I7pu4bDJ68aF1WjLPKUw==}
+  /destyle.css@4.0.1:
+    resolution: {integrity: sha512-G9iyW0JfRkgdxhbWQeuLdO1KZ40nzKssHtArbSFvaU/w44G0cZ5v3u4bHY829INSu480J/fxae+lTm225mN3Vw==}
     dev: false
 
   /detect-libc@2.0.2:
@@ -5662,10 +5663,14 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  /shikiji@0.6.13:
-    resolution: {integrity: sha512-4T7X39csvhT0p7GDnq9vysWddf2b6BeioiN3Ymhnt3xcy9tXmDcnsEFVxX18Z4YcQgEE/w48dLJ4pPPUcG9KkA==}
+  /shikiji-core@0.9.19:
+    resolution: {integrity: sha512-AFJu/vcNT21t0e6YrfadZ+9q86gvPum6iywRyt1OtIPjPFe25RQnYJyxHQPMLKCCWA992TPxmEmbNcOZCAJclw==}
+    dev: false
+
+  /shikiji@0.9.19:
+    resolution: {integrity: sha512-Kw2NHWktdcdypCj1GkKpXH4o6Vxz8B8TykPlPuLHOGSV8VkhoCLcFOH4k19K4LXAQYRQmxg+0X/eM+m2sLhAkg==}
     dependencies:
-      hast-util-to-html: 9.0.0
+      shikiji-core: 0.9.19
     dev: false
 
   /signal-exit@3.0.7:
