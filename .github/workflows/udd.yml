@@ -21,7 +21,7 @@ jobs:
           $(find ./util/ -name "*.ts")
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Update deno dependencies"
           title: "Update Deno dependencies"
