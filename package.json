@@ -19,9 +19,9 @@
   },
   "dependencies": {
     "@astrojs/partytown": "2.0.4",
-    "@astrojs/rss": "4.0.4",
+    "@astrojs/rss": "4.0.5",
     "@astrojs/tailwind": "5.1.0",
-    "astro": "4.3.1",
+    "astro": "4.3.7",
     "canvas": "2.11.2",
     "dayjs": "1.11.10",
     "destyle.css": "4.0.1",
@@ -32,7 +32,7 @@
     "unified": "11.0.4",
     "unist-util-is": "6.0.0",
     "unist-util-visit": "5.0.0",
-    "unknownutil": "3.14.1",
+    "unknownutil": "3.16.1",
     "vfile": "6.0.1"
   },
   "devDependencies": {
