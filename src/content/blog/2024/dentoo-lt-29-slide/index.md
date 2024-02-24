@@ -1,11 +1,12 @@
 ---
 title: "Dentoo.LT#29 発表スライド"
 postdate: "2024-01-11T23:32"
-update: "2024-01-11T23:32"
+update: "2024-02-24T23:28"
 tags: ["Slide"]
 ---
 
-> 2023 年 11 月 26 日の Dentoo.LT#29 の発表で用いたスライド
+> 2023 年 11 月 26 日の Dentoo.LT#29 の発表で用いたスライド  
+> Connpass: [https://dentoolt.connpass.com/event/298810/](https://dentoolt.connpass.com/event/298810/)
 
 <style>
  .__markdown-inlined-css-slide-img img {
