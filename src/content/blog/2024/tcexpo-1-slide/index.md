@@ -17,6 +17,6 @@ tags: ["Slide"]
 
 <div class="__markdown-inlined-css-slide-img">
 
-![./maindmap.png](./maindmap.png)
+![./mindmap.png](./mindmap.png)
 
 </div>
