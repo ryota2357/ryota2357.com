@@ -1,6 +1,6 @@
 import { allBlogCollection, allBlogTagList, util } from "@/content";
 import type { APIContext } from "astro";
-import path from "path";
+import path from "node:path";
 
 const xmlHead = [
   `<?xml version="1.0" encoding="UTF-8"?>`,

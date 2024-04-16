@@ -10,7 +10,7 @@ import {
   OgImageGenerator,
 } from "@/../plugins/og-image-generator";
 import { loadImage } from "canvas";
-import path from "path";
+import path from "node:path";
 
 import IBMPlexSansJP from "@/assets/IBMPlexSansJP-SemiBold.otf";
 import PostPNG from "@/assets/post.png";
@@ -106,12 +106,11 @@ export async function GET({
           bottom: 140,
         },
       });
-    } else {
-      const bgImage = await loadImage(resolveObjPath(PagePNG.src));
-      return generatorOtherPage.generatePNG(text, bgImage, {
-        ...style,
-      });
     }
+    const bgImage = await loadImage(resolveObjPath(PagePNG.src));
+    return generatorOtherPage.generatePNG(text, bgImage, {
+      ...style,
+    });
   })();
 
   return new Response(png);

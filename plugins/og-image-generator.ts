@@ -112,7 +112,7 @@ function splitLine(
 ): string[] {
   const splitWord = (text: string) => {
     const isEnChar = (char: string) => {
-      if (char.length != 1) {
+      if (char.length !== 1) {
         throw Error(`char length must be 1. length is ${char}`);
       }
       return /[A-z]|_|\$|<|>/.test(char);
@@ -121,7 +121,7 @@ function splitLine(
     const ret = [""];
     for (const now of text) {
       const prev = ret[ret.length - 1].slice(-1);
-      if (prev == "" || (isEnChar(prev) && isEnChar(now))) {
+      if (prev === "" || (isEnChar(prev) && isEnChar(now))) {
         ret[ret.length - 1] += now;
         continue;
       }

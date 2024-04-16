@@ -7,7 +7,7 @@ import { allBlogCollection } from "@/content";
 export const getStaticPaths = (() => {
   const allTag = allBlogCollection
     .flatMap((post) => post.data.tags)
-    .filter((tag, index, self) => self.indexOf(tag) == index);
+    .filter((tag, index, self) => self.indexOf(tag) === index);
   return allTag.map((tag) => {
     const posts = allBlogCollection.filter((post) =>
       post.data.tags.includes(tag),
