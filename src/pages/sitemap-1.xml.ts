@@ -7,7 +7,7 @@ const xmlHead = [
   `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
 ].join("");
 
-const xmlTail = `</urlset>`;
+const xmlTail = "</urlset>";
 
 type SitemapItem = {
   url: URL;
@@ -50,7 +50,7 @@ export function GET(context: APIContext) {
     .concat(...blogYear)
     .map((item) =>
       [
-        `<url>`,
+        "<url>",
         `<loc>${item.url.toString()}</loc>`,
         item.lastmod
           ? `<lastmod>${item.lastmod.toISOString()}</lastmod>`
@@ -59,7 +59,7 @@ export function GET(context: APIContext) {
           ? `<changefreq>${item.changefreq}</changefreq>`
           : undefined,
         item.priority ? `<priority>${item.priority}</priority>` : undefined,
-        `</url>`,
+        "</url>",
       ].filter((x) => x !== undefined),
     )
     .map((taggedItems) => taggedItems.join(""))
