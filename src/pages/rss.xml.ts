@@ -1,7 +1,7 @@
-import type { APIContext } from "astro";
-import rss from "@astrojs/rss";
-import { allBlogCollection } from "@/content";
 import path from "node:path";
+import { allBlogCollection } from "@/content";
+import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
 
 export function GET(context: APIContext) {
   if (!context.site) {

@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import Base from "@/layouts/Base.astro";
 import ContentBlock from "@/components/ContentBlock.astro";
 import { allWorksCollection } from "@/content";
+import Base from "@/layouts/Base.astro";
 import dayjs from "dayjs";
 
 const allWorksData = allWorksCollection.map((data) => ({ ...data.data }));

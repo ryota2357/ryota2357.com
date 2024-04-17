@@ -1,7 +1,7 @@
 ---
-import Base from "@/layouts/Base.astro";
 import BlogList from "@/components/BlogList.astro";
 import { allBlogCollection } from "@/content";
+import Base from "@/layouts/Base.astro";
 
 const sortedAllBlogCollection = [...allBlogCollection].sort(
   (a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf(),

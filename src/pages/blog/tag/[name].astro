@@ -1,8 +1,8 @@
 ---
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import BlogList from "@/components/BlogList.astro";
-import Base from "@/layouts/Base.astro";
 import { allBlogCollection } from "@/content";
+import Base from "@/layouts/Base.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = (() => {
   const allTag = allBlogCollection

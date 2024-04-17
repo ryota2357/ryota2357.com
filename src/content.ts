@@ -1,4 +1,4 @@
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 
 export const allBlogCollection = await getCollection("blog", ({ data }) =>
   import.meta.env.PROD ? data.draft !== true : true,

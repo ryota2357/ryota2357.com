@@ -1,7 +1,7 @@
 import {
-  type Image,
   type Canvas,
   type CanvasRenderingContext2D,
+  type Image,
   createCanvas,
   registerFont,
 } from "canvas";

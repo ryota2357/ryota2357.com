@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
-import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
+import tailwind from "@astrojs/tailwind";
 
 // import remarkPrint from "./plugins/remark-print"
 import remarkResolveRelativePageLink from "./plugins/remark-resolve-relative-page-link";

@@ -1,6 +1,6 @@
 import type { Node } from "unist";
-import type { VFileCompatible } from "vfile";
 import { inspect } from "unist-util-inspect";
+import type { VFileCompatible } from "vfile";
 
 type Option = {
   node?: boolean;

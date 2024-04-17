@@ -1,15 +1,15 @@
 ---
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import { Image } from "astro:assets";
-import Base from "@/layouts/Base.astro";
-import { allBlogCollection, util } from "@/content";
-import dayjs from "dayjs";
 import path from "node:path";
+import { Image } from "astro:assets";
+import { util, allBlogCollection } from "@/content";
+import Base from "@/layouts/Base.astro";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import dayjs from "dayjs";
 
 import TagIconSvg from "@/images/tag-icon.svg";
 
-import "@/styles/blog-post-markdown.scss";
 import "@/styles/blog-post-markdown-code.scss";
+import "@/styles/blog-post-markdown.scss";
 
 export const getStaticPaths = (() => {
   return [...allBlogCollection]

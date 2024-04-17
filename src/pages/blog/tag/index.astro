@@ -1,6 +1,6 @@
 ---
-import Base from "@/layouts/Base.astro";
 import { allBlogTagList } from "@/content";
+import Base from "@/layouts/Base.astro";
 
 const sortedAllBlogTagList = [...allBlogTagList]
   .sort((a, b) => a.name.localeCompare(b.name))

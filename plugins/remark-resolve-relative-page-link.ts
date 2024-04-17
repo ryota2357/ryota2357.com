@@ -1,9 +1,9 @@
-import type { Node } from "unist";
-import type { VFile } from "vfile";
-import { CONTINUE, visit } from "unist-util-visit";
-import { convert, type Check } from "unist-util-is";
-import { ensure, is } from "unknownutil";
 import path from "node:path";
+import type { Node } from "unist";
+import { type Check, convert } from "unist-util-is";
+import { CONTINUE, visit } from "unist-util-visit";
+import { ensure, is } from "unknownutil";
+import type { VFile } from "vfile";
 
 type Option = {
   rootDirName: string;
