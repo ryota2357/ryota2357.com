@@ -38,8 +38,8 @@ jobs:
       - name: Type check
         run: pnpm run typecheck
 
-      - name: Lint check
-        run: pnpm run lint:check
+      - name: Biome check
+        run: pnpm run check
 
       - name: Format check
         run: pnpm run format:check
