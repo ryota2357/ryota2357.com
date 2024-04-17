@@ -1,22 +1,25 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.7.0/schema.json",
+  "files": {
+    "ignore": [
+      "**/package.json",
+      "**/pnpm-lock.yaml",
+      "**/node_modules/",
+      "**/.pnpm-store/",
+      "dist/",
+      ".astro/"
+    ]
+  },
+  "organizeImports": {
+    "enabled": true
+  },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
-    "lineWidth": 80,
-    "attributePosition": "auto",
-    "ignore": [
-      "**/package.json",
-      "**/pnpm-lock.yaml",
-      "**/node_modules/",
-      "**/.pnpm-store/"
-    ]
-  },
-  "organizeImports": {
-    "enabled": true
+    "lineWidth": 80
   },
   "linter": {
     "enabled": true,
@@ -26,21 +29,17 @@
   },
   "javascript": {
     "formatter": {
+      "quoteStyle": "double",
       "jsxQuoteStyle": "double",
       "quoteProperties": "asNeeded",
       "trailingComma": "all",
       "semicolons": "always",
-      "arrowParentheses": "always",
-      "bracketSpacing": true,
-      "bracketSameLine": false,
-      "quoteStyle": "double",
-      "attributePosition": "auto"
+      "arrowParentheses": "always"
     }
   },
   "json": {
     "formatter": {
       "trailingCommas": "none"
     }
-  },
-  "overrides": [{ "include": ["*.astro"] }]
+  }
 }
