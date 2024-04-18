@@ -46,7 +46,10 @@ const canonicalURL = new URL(
         color: #242424;
         font-size: 16px;
         line-height: 1.5;
-        word-break: break-word;
+        // ref: https://ics.media/entry/240411/
+        overflow-wrap: anywhere;
+        word-break: normal;
+        line-break: strict;
         a:hover {
           text-decoration: underline;
         }
