@@ -15,7 +15,7 @@ tags: ["Firefox"]
 
 ![about:support](./about-support.png)
 
-最後に `{プロファイルフォルダー}/chrome/userChrome.css` に次の内容を記載する。
+最後に、 `{プロファイルフォルダー}/chrome/userChrome.css` に次の内容を記載する。
 
 ```css
 #titlebar {
