@@ -45,7 +45,7 @@ jobs:
         run: pnpm run format:check
 
       - name: Textlint check
-        run: pnpm run textlint:check
+        run: pnpm run textlint
 
       - name: Build
         run: pnpm run build && pnpm run postbuild

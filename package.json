@@ -10,8 +10,8 @@
     "format:check": "prettier --check '**/*.{astro,ts,js,cjs,json,yaml,md}'",
     "check": "biome check './'",
     "check:apply": "biome check --apply './'",
-    "textlint": "textlint --fix './src/content/**/*.md'",
-    "textlint:check": "textlint './src/content/**/*.md'",
+    "textlint": "textlint './src/content/**/*.md'",
+    "textlint:fix": "textlint --fix './src/content/**/*.md'",
     "new-post": "sh ./util/new-post.sh",
     "postbuild": "sh ./util/generate_simple_html_files.sh",
     "preinstall": "npx -y only-allow pnpm"
