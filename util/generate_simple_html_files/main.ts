@@ -2,8 +2,8 @@ import {
   copy,
   exists,
   expandGlob,
-} from "https://deno.land/std@0.224.0/fs/mod.ts";
-import { dirname, join } from "https://deno.land/std@0.224.0/path/mod.ts";
+} from "jsr:@std/fs@0.224.0";
+import { dirname, join } from "jsr:@std/path@0.224.0";
 
 // /myPath/index.html => /myPath.html
 async function generateSimpleHtmlFiles(outDir: URL) {
