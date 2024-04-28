@@ -5,12 +5,12 @@ import {
   type TextStyle,
 } from "@/../plugins/og-image-generator";
 import { util, allBlogCollection, allBlogTagList } from "@/content";
+import { loadImage } from "@napi-rs/canvas";
 import type {
   APIContext,
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from "astro";
-import { loadImage } from "@napi-rs/canvas";
 
 import IBMPlexSansJP from "@/assets/IBMPlexSansJP-SemiBold.otf";
 import PagePNG from "@/assets/page.png";

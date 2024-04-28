@@ -1,9 +1,9 @@
 import {
   type Canvas,
-  type SKRSContext2D,
-  type Image,
-  createCanvas,
   GlobalFonts,
+  type Image,
+  type SKRSContext2D,
+  createCanvas,
 } from "@napi-rs/canvas";
 
 export type ImageSize = {
