@@ -10,7 +10,7 @@ import type {
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from "astro";
-import { loadImage } from "canvas";
+import { loadImage } from "@napi-rs/canvas";
 
 import IBMPlexSansJP from "@/assets/IBMPlexSansJP-SemiBold.otf";
 import PagePNG from "@/assets/page.png";

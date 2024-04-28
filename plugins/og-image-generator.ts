@@ -1,10 +1,10 @@
 import {
   type Canvas,
-  type CanvasRenderingContext2D,
+  type SKRSContext2D,
   type Image,
   createCanvas,
-  registerFont,
-} from "canvas";
+  GlobalFonts,
+} from "@napi-rs/canvas";
 
 export type ImageSize = {
   width: number;
@@ -35,7 +35,7 @@ export class OgImageGenerator {
   constructor(size: ImageSize, fontProps: FontProps) {
     this.width = size.width;
     this.height = size.height;
-    registerFont(fontProps.path, { family: fontProps.family });
+    GlobalFonts.registerFromPath(fontProps.path, fontProps.family);
 
     this.canvas = createCanvas(this.width, this.height);
     const context = this.canvas.getContext("2d");
@@ -67,7 +67,7 @@ function writeText({
   height,
   style,
 }: {
-  context: CanvasRenderingContext2D;
+  context: SKRSContext2D;
   text: string;
   width: number;
   height: number;
@@ -95,7 +95,7 @@ function writeText({
 }
 
 function textSize(
-  context: CanvasRenderingContext2D,
+  context: SKRSContext2D,
   text: string,
 ): { width: number; height: number } {
   const measure = context.measureText(text);
@@ -106,7 +106,7 @@ function textSize(
 }
 
 function splitLine(
-  context: CanvasRenderingContext2D,
+  context: SKRSContext2D,
   text: string,
   maxWidth: number,
 ): string[] {
