@@ -1,5 +1,13 @@
-# ryota2357.com
+# [ryota2357.com](https://ryota2357.com)
 
-## NOTE
+```md
+## このサイトについて
 
-node-canvas (v2.11.2) が node20 で動かない(ローカルビルドが必要)ので node18 使ってる。動くようになったら更新する。
+このサイトは Astro.js を用いて作成し、 Github Pages にてホスティングしています。  
+GitHub リポジトリは https://github.com/ryota2357/ryota2357.com です。
+
+## 問い合わせ/修正依頼
+
+私の Twitter の DM にてご連絡ください。  
+また、修正依頼については Github にて PR でも可能です。
+```
