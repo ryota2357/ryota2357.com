@@ -17,10 +17,10 @@
     "preinstall": "npx -y only-allow pnpm"
   },
   "dependencies": {
-    "@astrojs/partytown": "2.0.4",
+    "@astrojs/partytown": "2.1.0",
     "@astrojs/rss": "4.0.5",
     "@astrojs/tailwind": "5.1.0",
-    "astro": "4.3.7",
+    "astro": "4.7.0",
     "canvas": "2.11.2",
     "dayjs": "1.11.10",
     "destyle.css": "4.0.1",
