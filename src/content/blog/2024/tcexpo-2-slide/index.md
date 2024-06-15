@@ -8,7 +8,7 @@ tags: ["Slide"]
 > 2024 年 6 月 15 日の Tech Circle Expo #2 の発表で用いたスライド  
 > Connpass: https://tech-circle-expo.connpass.com/event/317970/
 
-RedGreenTreesについては、[rowan](https://crates.io/crates/rowan) の実装を元にした説明を行っています。
+RedGreenTrees については、[rowan](https://crates.io/crates/rowan) の実装を元にした説明をしています。
 また、正確な説明は最後のスライドに載せた参考文献を参照してください。
 
 参考文献はここにも載せておきます。
