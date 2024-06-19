@@ -6,7 +6,7 @@ tags: ["C"]
 draft: true
 ---
 
-大学の授業 「コンピュータサイエンス実験 J4」にて、次の課題が出された。
+大学の授業「コンピュータサイエンス実験 J4」にて、次の課題が出された。
 
 > printf関数を用いたとき、実際にwriteシステム・コールがよばれて出力されるのはどの時点であるかを調べてみよ。標準出力が端末であるときと、たとえば「a.out > zzz」のようにリダイレクトにより標準出力がファイルになっているときとで違うのだろうか?
 
@@ -94,13 +94,14 @@ sysdeps/ieee754/ldbl-opt/math_ldbl_opt.h
   extern __typeof (name) aliasname __attribute__ ((alias (#name))) \
     __attribute_copy__ (name);
 ```
+
 </details>
 
-次に調べるのは `va_start()`, `__vfprintf_internal()`, `va_end()` の3つである。
+次に調べるのは `va_start()`, `__vfprintf_internal()`, `va_end()` の 3 つである。
 
 ## va_start(), va_end()
 
-この2つついてはおそらく次のように定義されている。
+この 2 つついてはおそらく次のように定義されている。
 
 ```c
 #define va_start(ap, param) __builtin_va_start(ap, param)
@@ -109,12 +110,12 @@ sysdeps/ieee754/ldbl-opt/math_ldbl_opt.h
 ```
 
 `__builtin*` 系なので、コンパイラが色々やるやつである。`va_start()`, `va_end()` を通じて可変長引数が扱えるようになっていると考えられる。
-なお、この定義はglibcのものではない。
-clangdの定義ジャンプを用いて、 ~/.local/..省略../clangd_17.0.3/lib/clang/17/include/stdarg.h よりとってきた。stdarg.hはコンパイラ側にあるヘッダーなのかもしれない。
+なお、この定義は glibc のものではない。
+clangd の定義ジャンプを用いて、 ~/.local/..省略../clangd_17.0.3/lib/clang/17/include/stdarg.h よりとってきた。stdarg.h はコンパイラ側にあるヘッダーなのかもしれない。
 
-stdarg.hで検索すると、`va_list`, `va_start()`, `va_arg()`,  `va_end()` が定義されていると出てくるので、ここまでの考察はあっていそうである。
+stdarg.h で検索すると、`va_list`, `va_start()`, `va_arg()`, `va_end()` が定義されていると出てくるので、ここまでの考察はあっていそうである。
 
-## __vfprintf_internal() の実装
+## \_\_vfprintf_internal() の実装
 
 まずは定義場所から。
 
@@ -147,7 +148,6 @@ vfprintf(FILE * restrict stream, const char * restrict format, va_list ap);
 
 </details>
 
-
 `__vfprintf_internal()` の実装は少なくとも libio/libioP.h を include している c ファイルに実装があるはずなので探す。
 
 ```
@@ -160,7 +160,7 @@ sysdeps/ieee754/ldbl-128ibm-compat/ieee128-vfprintf_chk.c
 ```
 
 stdio-common/vfprintf-internal.c が名前から怪しい。開いてみると実装があった。
-処理の流れがわかるように、引数チェックやIOロック部分を削除すると次のようになる。
+処理の流れがわかるように、引数チェックや IO ロック部分を削除すると次のようになる。
 
 <details>
 <summary>元のstdio-common/vfprintf-internal.c</summary>
@@ -220,6 +220,7 @@ vfprintf (FILE *s, const CHAR_T *format, va_list ap, unsigned int mode_flags)
   return done;
 }
 ```
+
 </details>
 
 ```c
@@ -238,7 +239,7 @@ int __vfprintf_internal (FILE *s, const char *format, va_list ap, unsigned int m
 `Xprintf_buffer()` は ↑ と同じファイル(stdio-common/vfprintf-internal.c)にあり、この関数がバッファへの書き込みを行っているようである。
 マクロが入り乱れ、処理も複雑そうであるため、
 
-構造体 `__printf_buffer_to_file` と 関数 `__printf_buffer_to_file_*`ついて調べていく。
+構造体 `__printf_buffer_to_file` と関数 `__printf_buffer_to_file_*` ついて調べていく。
 
 <details>
 <summary>stdio-common/vfprintf.cも気になったので覗いてみた</summary>
@@ -256,10 +257,10 @@ ldbl_hidden_def (__vfprintf, vfprintf)
 ```
 
 `vfprintf(fp, format, ap)` の実装は `__vfprintf_internal(fp, format, ap, 0)` であることがわかった。
+
 </details>
 
-
-## 構造体 __printf_buffer_to_file
+## 構造体 \_\_printf_buffer_to_file
 
 構造体 `__printf_buffer_to_file` はすぐ見つかる。
 
@@ -286,12 +287,12 @@ struct __printf_buffer_to_file
 };
 ```
 
-`__printf_buffer`構造体の定義はinclude/printf_buffer.hにあり、次の通りである。
+`__printf_buffer` 構造体の定義は include/printf_buffer.h にあり、次の通りである。
 
 ```c
 struct __printf_buffer
 {
-  /* These pointer members follow FILE streams. 
+  /* These pointer members follow FILE streams.
      write_ptr and write_end must be initialized to cover the target buffer. See __printf_buffer_init.
      Data can be written directly to *write_ptr while write_ptr != write_end, and write_ptr can be advanced accordingly.
      Note that is not possible to use the apparently-unused part of the buffer as scratch space because sprintf (and snprintf, but that is a bit iffy) must only write the minimum number of characters produced by the format string and its arguments.
@@ -299,7 +300,7 @@ struct __printf_buffer
      write_base must be initialized to be equal to write_ptr.
      The framework uses this pointer to compute the total number of written bytes, together with the written field. See __printf_buffer_done.
 
-     write_base and write_end are only read by the generic functions after initialization, only the flush implementation called from __printf_buffer_flush might change these pointers. 
+     write_base and write_end are only read by the generic functions after initialization, only the flush implementation called from __printf_buffer_flush might change these pointers.
      See the comment on Xprintf (buffer_do_flush) in Xprintf_buffer_flush.c for details regarding the flush operation. */
   char *write_base;
   char *write_ptr;
@@ -317,7 +318,7 @@ struct __printf_buffer
 
 構造体 `__printf_buffer_to_file`, `__printf_buffer` のフィールドに関して疑問を持つところはない。コメントに記されている通り、出力に必要なデータを持っていることがわかった。
 
-## 関数 __printf_buffer_to_file\_*()
+## 関数 \_\_printf_buffer_to_file\_\*()
 
 ```
 $ rg "__printf_buffer_to_file_init"
@@ -349,9 +350,9 @@ __printf_buffer_to_file_done (struct __printf_buffer_to_file *buf)
 }
 ```
 
-### __printf_buffer_init()
+### \_\_printf_buffer_init()
 
-バッファの初期化に関しては`__printf_buffer_init()`が行っているようである。
+バッファの初期化に関しては `__printf_buffer_init()` が行っているようである。
 `__printf_buffer_to_file_switch()` は同じファイル内にあり、次の通りである。
 
 ```c
@@ -377,7 +378,7 @@ __printf_buffer_to_file_switch (struct __printf_buffer_to_file *buf)
 ```
 
 コメントに書いてある通りの処理が実装されている。
-構造体`__printf_buffer_to_file` にあった `stage` フィールドは write_ptr == write_end の時に使われるもだったとわかった。
+構造体 `__printf_buffer_to_file` にあった `stage` フィールドは write_ptr == write_end の時に使われるもだったとわかった。
 
 `__printf_buffer_init()` は include/printf_buffer.h にある。
 
@@ -405,9 +406,9 @@ __printf_buffer_init (struct __printf_buffer *buf, char *base, size_t len,
 
 フィールドをただ初期化しているだけだった。
 
-### __printf_buffer_done()
+### \_\_printf_buffer_done()
 
 メモ
-- `__printf_buffer_flush_to_file()` (stdio-common/printf_buffer_to_file.cにある) は色々やってる。
-- `__printf_buffer_has_failed()`, `__printf_buffer_done()`は実装が見つけられない。
 
+- `__printf_buffer_flush_to_file()` (stdio-common/printf_buffer_to_file.c にある) は色々やってる。
+- `__printf_buffer_has_failed()`, `__printf_buffer_done()` は実装が見つけられない。
