@@ -41,12 +41,16 @@ extern int printf (const char *__restrict __format, ...);
 
 libio/stdio.c があったので、そこに `printf` の実装があるかと期待するが、ない。
 
+<!-- textlint-disable ja-technical-writing/sentence-length -->
+
 余談だが、macOS で clangd の定義ジャンプすると /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h に `printf` の定義は見つかる。
 そこからは僕は何も `printf` の実装に関する情報を掴めなかったので、glibc をみることとなった。
 
+<!-- textlint-enable ja-technical-writing/sentence-length -->
+
 ## printf()の実装場所の探索
 
-`find . -name "*printf*"` を打ってみると `printf.c` という、そのまんまなファイルがあることがわかった。
+`find . -name "*printf*"` を打ってみると `printf.c` という、そのまんまなファイルがあるとわかった。
 
 stdio-common/printf.c の必要な部分だけ抜き取ったのが次である。
 
@@ -86,7 +90,7 @@ sysdeps/ieee754/ldbl-opt/math_ldbl_opt.h
 27:# define ldbl_strong_alias(name, aliasname) strong_alias (name, aliasname)
 ```
 
-`strong_alias` というのがあることがわかる。これを目印に探すと、include/libc-symbols.h に行き着いた。
+ここから、`strong_alias` を目印に探すと include/libc-symbols.h に行き着いた。
 
 ```c
 # define strong_alias(name, aliasname) _strong_alias(name, aliasname)
@@ -407,8 +411,6 @@ __printf_buffer_init (struct __printf_buffer *buf, char *base, size_t len,
 フィールドをただ初期化しているだけだった。
 
 ### \_\_printf_buffer_done()
-
-メモ
 
 - `__printf_buffer_flush_to_file()` (stdio-common/printf_buffer_to_file.c にある) は色々やってる。
 - `__printf_buffer_has_failed()`, `__printf_buffer_done()` は実装が見つけられない。
