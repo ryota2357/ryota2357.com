@@ -163,8 +163,8 @@ sysdeps/ieee754/ldbl-128ibm-compat/ieee128-vfprintf.c
 sysdeps/ieee754/ldbl-128ibm-compat/ieee128-vfprintf_chk.c
 ```
 
-stdio-common/vfprintf-internal.c が名前から怪しい。開いてみると実装があった。
-処理の流れがわかるように、引数チェックや IO ロック部分を削除すると次のようになる。
+stdio-common/vfprintf-internal.c が名前から怪しい。開いてみると `__vfprintf_internal()` の実装があった。
+処理の流れがわかるように、引数チェック IO ロック部分を削除し、マクロを展開すると次のようになる。
 
 <details>
 <summary>元のstdio-common/vfprintf-internal.c</summary>
@@ -240,10 +240,38 @@ int __vfprintf_internal (FILE *s, const char *format, va_list ap, unsigned int m
 }
 ```
 
-`Xprintf_buffer()` は ↑ と同じファイル(stdio-common/vfprintf-internal.c)にあり、この関数がバッファへの書き込みを行っているようである。
-マクロが入り乱れ、処理も複雑そうであるため、
+やっていることは、バッファの初期化、書き込み、書き込み完了の 3 つでそれぞれ関数に分けられていることがわかる。
 
-構造体 `__printf_buffer_to_file` と関数 `__printf_buffer_to_file_*` ついて調べていく。
+次に調べるのは、`__printf_buffer_to_file_init()` と `__printf_buffer_to_file_done()` にする。
+`Xprintf_buffer()` stdio-common/vfprintf-internal.c にあるのだが、はマクロや `goto` が入り乱れ、全く読める気がしないので読まない。
+なんとなく見た感じ `format` と `ap` を解釈してバッファ(`&wrap.base`)への書き込みを `Xprintf_buffer_write()` などを通じて行っていそうである。
+
+`Xprintf_buffer_write()` は `stdio-common/Xprintf_buffer_write.c` にあり次の通り。
+`memcpy` で読み取りバッファの内容を書き出しのバッファへコピーしている。
+
+```c
+void
+Xprintf_buffer_write (struct Xprintf_buffer *buf,
+                        const CHAR_T *s, size_t count)
+{
+  if (__glibc_unlikely (Xprintf_buffer_has_failed (buf)))
+    return;
+
+  while (count > 0)
+    {
+      if (buf->write_ptr == buf->write_end && !Xprintf_buffer_flush (buf))
+        return;
+      assert (buf->write_ptr != buf->write_end);
+      size_t to_copy = buf->write_end - buf->write_ptr;
+      if (to_copy > count)
+        to_copy = count;
+      MEMCPY (buf->write_ptr, s, to_copy);
+      buf->write_ptr += to_copy;
+      s += to_copy;
+      count -= to_copy;
+    }
+}
+```
 
 <details>
 <summary>stdio-common/vfprintf.cも気になったので覗いてみた</summary>
@@ -320,9 +348,13 @@ struct __printf_buffer
 };
 ```
 
-構造体 `__printf_buffer_to_file`, `__printf_buffer` のフィールドに関して疑問を持つところはない。コメントに記されている通り、出力に必要なデータを持っていることがわかった。
+コメントに書かれている通りだが、簡単に整理する。
 
-## 関数 \_\_printf_buffer_to_file\_\*()
+- `write_ptr != write_end` の間書き込みが行われ、`write_ptr` を書き込みながら進める。
+- 初期化時には `write_base == write_ptr` となるようにし、`write_ptr` から `write_end` がターゲットのバッファ全体をカバーするようにする。
+- `write_base` と `write_ptr` を見て、書き込まれたバイト数を計算する。
+
+## \_\_printf_buffer_to_file_init() の実装
 
 ```
 $ rg "__printf_buffer_to_file_init"
@@ -332,7 +364,8 @@ stdio-common/printf_buffer_to_file.c
 ...
 ```
 
-stdio-common/printf_buffer_to_file.c に `__printf_buffer_init()`, `__printf_buffer_done()` の両方の実装がある。
+stdio-common/printf_buffer_to_file.c に実装がある。
+`__printf_buffer_to_file_switch()` が同じファイル内にあり、`__printf_buffer_init()` は include/printf_buffer.h にある。
 
 ```c
 void
@@ -343,48 +376,9 @@ __printf_buffer_to_file_init (struct __printf_buffer_to_file *buf, FILE *fp)
   buf->fp = fp;
   __printf_buffer_to_file_switch (buf);
 }
-
-int
-__printf_buffer_to_file_done (struct __printf_buffer_to_file *buf)
-{
-  if (__printf_buffer_has_failed (&buf->base))
-    return -1;
-  __printf_buffer_flush_to_file (buf);
-  return __printf_buffer_done (&buf->base);
-}
 ```
 
-### \_\_printf_buffer_init()
-
-バッファの初期化に関しては `__printf_buffer_init()` が行っているようである。
-`__printf_buffer_to_file_switch()` は同じファイル内にあり、次の通りである。
-
-```c
-/* Switch to the file buffer if possible.  If the file has write_ptr == write_end, use the stage buffer instead.  */
-void
-__printf_buffer_to_file_switch (struct __printf_buffer_to_file *buf)
-{
-  if (buf->fp->_IO_write_ptr < buf->fp->_IO_write_end)
-    {
-      /* buf->fp has a buffer associated with it, so write directly to it from now on. */
-      buf->base.write_ptr = buf->fp->_IO_write_ptr;
-      buf->base.write_end = buf->fp->_IO_write_end;
-    }
-  else
-    {
-      /* Use the staging area if no buffer is available in buf->fp. */
-      buf->base.write_ptr = buf->stage;
-      buf->base.write_end = array_end (buf->stage);
-    }
-
-  buf->base.write_base = buf->base.write_ptr;
-}
-```
-
-コメントに書いてある通りの処理が実装されている。
-構造体 `__printf_buffer_to_file` にあった `stage` フィールドは write_ptr == write_end の時に使われるもだったとわかった。
-
-`__printf_buffer_init()` は include/printf_buffer.h にある。
+順に `__printf_buffer_init()` から見ていく。
 
 ```c
 /* Initialization of a buffer, using the memory region from [BASE, END) as the initial buffer contents.  */
@@ -408,9 +402,135 @@ __printf_buffer_init (struct __printf_buffer *buf, char *base, size_t len,
 }
 ```
 
-フィールドをただ初期化しているだけだった。
+単純に渡された引数で初期化しているだけのようである。
 
-### \_\_printf_buffer_done()
+続いて `__printf_buffer_to_file_switch()` をみると、
+構造体 `__printf_buffer_to_file` にあった `stage` フィールドは `write_ptr == write_end` の時に使われるもだったとわかる。
+どのような時に `write_ptr == write_end` となるのかは分からない。
 
-- `__printf_buffer_flush_to_file()` (stdio-common/printf_buffer_to_file.c にある) は色々やってる。
-- `__printf_buffer_has_failed()`, `__printf_buffer_done()` は実装が見つけられない。
+```c
+/* Switch to the file buffer if possible.  If the file has write_ptr == write_end, use the stage buffer instead.  */
+void
+__printf_buffer_to_file_switch (struct __printf_buffer_to_file *buf)
+{
+  if (buf->fp->_IO_write_ptr < buf->fp->_IO_write_end)
+    {
+      /* buf->fp has a buffer associated with it, so write directly to it from now on. */
+      buf->base.write_ptr = buf->fp->_IO_write_ptr;
+      buf->base.write_end = buf->fp->_IO_write_end;
+    }
+  else
+    {
+      /* Use the staging area if no buffer is available in buf->fp. */
+      buf->base.write_ptr = buf->stage;
+      buf->base.write_end = array_end (buf->stage);
+    }
+
+  buf->base.write_base = buf->base.write_ptr;
+}
+```
+
+### `__printf_buffer_to_file_init()` が構築するもの
+
+1 回関数の呼び出しを整理する。
+
+```c
+struct __printf_buffer_to_file wrap;
+__printf_buffer_to_file_init(&wrap, s);
+
+void __printf_buffer_to_file_init (struct __printf_buffer_to_file *buf, FILE *fp) {
+  __printf_buffer_init (&buf->base, buf->stage, array_length (buf->stage), __printf_buffer_mode_to_file);
+  buf->fp = fp;
+  __printf_buffer_to_file_switch (buf);
+}
+```
+
+実際に構築される `struct __printf_buffer_to_file` フィールドを追ってみると次の値を持つとわかった。
+
+```c
+char stage[PRINTF_BUFFER_SIZE_TO_FILE_STAGE];
+
+struct __printf_buffer base = {
+    write_base: stage,
+    write_ptr: stage + array_length(stage),
+    write_end: stage,
+    written: 0,
+    mode: __printf_buffer_mode_to_file,
+};
+
+struct __printf_buffer_to_file wrap = {
+    .base: base,
+    .fp: stdout,
+    .stage: stage,
+};
+```
+
+`__vfprintf_internal()` 内の `wrap` がどのようなものだったのか、ここでようやく分かった。
+この `&wrap.base` が `Xprintf_buffer()` に渡されて、`stage` への書き込みが行われると分かった。
+
+<!-- これは予測なのだが、`stage` がいっぱいになったら flush が呼ばれて実際の -->
+
+## \_\_printf_buffer_to_file_done() の実装
+
+`__printf_buffer_init()` と同じファイル(stdio-common/printf_buffer_to_file.c)に実装がある。
+
+```c
+int
+__printf_buffer_to_file_done (struct __printf_buffer_to_file *buf)
+{
+  if (__printf_buffer_has_failed (&buf->base))
+    return -1;
+  __printf_buffer_flush_to_file (buf);
+  return __printf_buffer_done (&buf->base);
+}
+```
+
+## \_\_printf_buffer_has_failed(), \_\_printf_buffer_done() の実装
+
+```
+$ rg 'Xprintf \(buffer_has_failed\)'
+include/printf_buffer.h
+284:#define Xprintf_buffer_has_failed Xprintf (buffer_has_failed)
+
+$ rg 'Xprintf \(buffer_done\)'
+include/printf_buffer.h
+282:#define Xprintf_buffer_done Xprintf (buffer_done)
+```
+
+共に include/printf_buffer.h に記載がある。
+`__printf_buffer_has_failed()` はそのヘッダファイルに実装があった。
+
+```c
+/* Returns true if the sticky error indicator of the buffer has been set to failed. */
+static inline bool __attribute_warn_unused_result__
+__printf_buffer_has_failed (struct __printf_buffer *buf)
+{
+  return buf->mode == __printf_buffer_mode_failed;
+}
+```
+
+`__printf_buffer_done()` は見つからなかったので、`Xprintf_buffer_done` で `rg` すると stdio-common/Xprintf_buffer_done.c がヒットする。
+
+```c
+int
+Xprintf_buffer_done (struct Xprintf_buffer *buf)
+{
+  if (Xprintf_buffer_has_failed (buf))
+    return -1;
+
+  /* Use uintptr_t here because for sprintf, the buffer range may cover more than half of the address space.  */
+  uintptr_t written_current = buf->write_ptr - buf->write_base;
+  int written_total;
+  if (INT_ADD_WRAPV (buf->written, written_current, &written_total))
+    {
+      __set_errno (EOVERFLOW);
+      return -1;
+    }
+  else
+    return written_total;
+}
+```
+
+## \_\_printf_buffer_flush_to_file() の実装
+
+stdio-common/printf_buffer_to_file.c にある。色々やってる。
