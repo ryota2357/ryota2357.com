@@ -43,12 +43,12 @@ const generatorOtherPage = new OgImageGenerator(imageSize, {
 
 export function getStaticPaths() {
   const blogPostData = allBlogCollection.map((post) => ({
-    slug: path.join("/blog/", post.slug),
+    slug: path.join("blog/", post.slug),
     text: post.data.title,
   }));
 
   const blogTagData = allBlogTagList.map((tag) => ({
-    slug: path.join("/blog/tag/", tag.name),
+    slug: path.join("blog/tag/", tag.name),
     text: `Blog.Tag.${tag.name}`,
   }));
 
@@ -62,10 +62,10 @@ export function getStaticPaths() {
 
   return [
     { slug: "index", text: "ryota2357.com" },
-    { slug: "/about", text: "About" },
-    { slug: "/blog", text: "Blog" },
-    { slug: "/blog/tag", text: "Blog.Tag" },
-    { slug: "/works", text: "Works" },
+    { slug: "about", text: "About" },
+    { slug: "blog", text: "Blog" },
+    { slug: "blog/tag", text: "Blog.Tag" },
+    { slug: "works", text: "Works" },
   ]
     .concat(...blogPostData)
     .concat(...blogTagData)
@@ -96,7 +96,7 @@ export async function GET({
   };
 
   const png = await (async () => {
-    if (/\/blog\/\d{4}\//.test(slug)) {
+    if (/blog\/\d{4}\//.test(slug)) {
       const bgImage = await loadImage(resolveObjPath(PostPNG.src));
       return generatorBlogPost.generatePNG(text, bgImage, {
         ...style,
