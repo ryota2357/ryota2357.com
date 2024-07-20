@@ -1,9 +1,8 @@
 ---
 title: "glibcのprintf()の実装を読んでみる"
-postdate: "2024-06-18T21:01"
-update: "2024-06-18T21:01"
+postdate: "2024-06-21T00:34"
+update: "2024-06-21T00:34"
 tags: ["C"]
-draft: true
 ---
 
 大学の授業「コンピュータサイエンス実験 J4」にて、次の課題が出された。
@@ -13,76 +12,81 @@ draft: true
 [Compiler Explor](https://godbolt.org/) で `printf` をコンパイルしても `call printf` としかならないので、ライブラリ本体をみる必要があるとわかった。
 ソースコードは [https://ftp.gnu.org/gnu/glibc/](https://ftp.gnu.org/gnu/glibc/)より、[glibc-2.39.tar.gz](https://ftp.gnu.org/gnu/glibc/glibc-2.39.tar.gz)を取得し、展開する。
 
+なお、この課題への回答はこの記事では行わない。この課題を行う上で printf の実装を読んだので、その記録である。
+
 ## まとめ
 
-<div class="summary_overflow_list">
+```
+printf ── alias ──> __printf
 
-1. `__printf(const char *format, ...)` (stdio-common/printf.c)
-   - `va_start()` と `va_end()` により可変長引数を処理し、`arg` とする。
-   - `__vfprintf_internal(stdout, format, arg, 0)` を呼び出す。
-1. `__vfprintf_internal(FILE *fp, const char *format, va_list ap, unsigned int mode_flags)` (stdio-common/vfprintf-internal.c)
-   - 書き込むポインタやバッファなど情報を格納する ` struct __printf_buffer_to_file wrap;` を用意する。
-   - `__printf_buffer_to_file_init(&wrap, s);` で `wrap` を初期化。
-   - `Xprintf_buffer(&wrap.base, format, ap, mode_flags);` でバッファに書き込む。
-   - `__printf_buffer_to_file_done(&wrap);` で書き込み完了。
-1. `__printf_buffer_to_file_init(struct __printf_buffer_to_file *buf, FILE *fp)` (stdio-common/printf_buffer_to_file.c)
-   - `__printf_buffer_init(&buf->base, buf->stage, array_length (buf->stage), __printf_buffer_mode_to_file);` で base バッファを初期化。
-   - `__printf_buffer_to_file_switch(buf);` で出力先のバッファを切り替える。
-
-</div>
-<style>
-.summary_overflow_list {
-    overflow-x: auto;
-    white-space: nowrap;
-    border: 1px solid #ccc;
-    padding: 5px;
-}
-.summary_overflow_list li {
-    line-height: 1.8 !important;
-}
-</style>
-
-## 探索記録
-
-自分の探索ログを残す。
-一応、読めるように整えはしたが読みにくいと思う。
-
-### printf()の定義場所の探索
-
-まずは定義場所を探す。include/stdio.h にあるかと思いきやそこに `printf` 関数の定義は書かれてない。include/stdio.h が 3 つ `#include` している。
-
-```c
-/* Workaround PR90731 with GCC 9 when using ldbl redirects in C++.  */
-# include <bits/floatn.h>
-# if defined __cplusplus && __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI == 1
-#  if __GNUC_PREREQ (9, 0) && !__GNUC_PREREQ (9, 3)
-#    pragma GCC system_header
-#  endif
-# endif
-
-# include <libio/stdio.h>
-# ifndef _ISOMAC
-
-#  define _LIBC_STDIO_H 1
-#  include <libio/libio.h>
+1 __printf                                            (stdio-common/printf.c)
+2     └── __vfprintf_internal                         (stdio-common/vfprintf-internal.c)
+3         ├── __printf_buffer_to_file_init            (stdio-common/printf_buffer_to_file.c)
+          │   ├── __printf_buffer_init                (include/printf_buffer.h)
+          │   └── __printf_buffer_to_file_switch      (stdio-common/printf_buffer_to_file.c)
+4         ├── Xprintf_buffer                          (stdio-common/vfprintf-internal.c)
+5         └── __printf_buffer_to_file_done            (stdio-common/printf_buffer_to_file.c)
+              ├── __printf_buffer_has_failed          (include/printf_buffer.h)
+6             ├── __printf_buffer_flush_to_file       (stdio-common/printf_buffer_to_file.c)
+              │   ├── __printf_buffer_mark_failed     (include/printf_buffer.h)
+              │   ├── __overflow                      (libio/genops.c)
+              │   │   └─ _IO_file_overflow            (libio/fileops.c)
+              │   │       └─ 省略
+              │   └── _IO_sputn                       (libio/fileops.c)
+7             │       └─ _IO_new_file_xsputn          (libio/fileops.c)
+8             │           └─ new_do_write             (libio/fileops.c)
+              │               └─ _IO_new_file_write   (libio/fileops.c)
+              │                   └─ __write          (write システムコールの weak name)
+              └── __printf_buffer_done                (stdio-common/Xprintf_buffer_done.c)
 ```
 
-それぞれ探すと、libio/stdio.h に定義があった。
+**1: `__printf(const char *format, ...)`**
 
-```c
-extern int printf (const char *__restrict __format, ...);
-```
+- `va_start()` と `va_end()` により可変長引数を処理し、`arg` とする。
+- `__vfprintf_internal(stdout, format, arg, 0)` を呼び出す。
 
-libio/stdio.c があったので、そこに `printf` の実装があるかと期待するが、ない。
+**2: `__vfprintf_internal(FILE *fp, const char *format, va_list ap, unsigned int mode_flags)`**
 
-<!-- textlint-disable ja-technical-writing/sentence-length -->
+- 書き込むポインタやバッファなど情報を格納する ` struct __printf_buffer_to_file wrap;` を用意する。
+- `__printf_buffer_to_file_init(&wrap, s);` で `wrap` を初期化。
+- `Xprintf_buffer(&wrap.base, format, ap, mode_flags);` でバッファに書き込む。
+- `__printf_buffer_to_file_done(&wrap);` で書き込み完了。
 
-余談だが、macOS で clangd の定義ジャンプすると /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/stdio.h に `printf` の定義は見つかる。
-そこからは僕は何も `printf` の実装に関する情報を掴めなかったので、glibc をみることとなった。
+**3: `__printf_buffer_to_file_init(struct __printf_buffer_to_file *buf, FILE *fp)`**
 
-<!-- textlint-enable ja-technical-writing/sentence-length -->
+- `__printf_buffer_init(&buf->base, buf->stage, array_length (buf->stage), __printf_buffer_mode_to_file);` で base バッファを初期化。
+- `__printf_buffer_to_file_switch(buf);` で出力先のバッファを切り替える。
 
-### printf()の実装場所の探索
+**4: `Xprintf_buffer(struct Xprintf_buffer *buf, const CHAR_T *format, va_list ap, unsigned int mode_flags)`**
+
+- `printf()` の第一引数のフォーマット指定子(`format`)や、第二引数以降の値 (`ap`) を処理してそう。
+- マクロや goto が入り乱れていて、読めなかった。
+
+**5: `__printf_buffer_to_file_done(struct __printf_buffer_to_file *buf)`**
+
+- `__printf_buffer_has_failed (&buf->base)` でバッファが問題ないかチェック。
+- `__printf_buffer_flush_to_file(buf)` が stdio へ書き込みを行う実装の入り口。
+- `__printf_buffer_done (&buf->base)` は書き込みが成功しているかを確認し、成功していれば書き込んだバイト数を返す。
+
+**6: `__printf_buffer_flush_to_file (struct __printf_buffer_to_file *buf)`**
+
+- `_IO_sputn (buf->fp, buf->stage, count)` で書き込みを行っている。
+
+**7: `_IO_new_file_xsputn (FILE *f, const void *data, size_t n)`**
+
+- `_IO_sputn(__f, __s, __n)` によりジャンプテーブルを利用して、呼び出される。
+- ラインバッファリングの分岐をしたり、バッファサイズをレイアウトに合わせたりして、出力している。
+
+**8: `new_do_write (FILE *fp, const char *data, size_t to_do)`**
+
+- 書き込み処理と、ポインタの更新をしている。ポインタの更新の部分は今回読んでない。
+- `_IO_SYSWRITE (fp, data, to_do)` はジャンプテーブルにより `_IO_new_file_write(fp, data, to_do)` があり、これが write システムコールを読んでいる。
+
+## 探索
+
+探索ログをまとめたものである。 整えはしたが少し読みづらいかもしてない。
+
+### printf()の実装場所
 
 `find . -name "*printf*"` を打ってみると `printf.c` という、そのまんまなファイルがあるとわかった。
 stdio-common/printf.c の必要な部分だけ抜き取ったのが次である。
@@ -167,7 +171,7 @@ libio/libioP.h の該当箇所は次の通りであった。
 ```c
 /* Internal versions of v*printf that take an additional flags parameter.  */
 extern int __vfprintf_internal (FILE *fp, const char *format, va_list ap,
-				unsigned int mode_flags)
+                                unsigned int mode_flags)
     attribute_hidden;
 ```
 
@@ -199,7 +203,7 @@ stdio-common/vfprintf-internal.c が名前から怪しい。開いてみると `
 <summary>元の__vfprintf_internal()</summary>
 
 ```c
-# define vfprintf	__vfprintf_internal
+# define vfprintf        __vfprintf_internal
 
 ...
 
@@ -287,10 +291,10 @@ ldbl_hidden_def (__vfprintf, vfprintf)
 ```
 
 `vfprintf(fp, format, ap)` の実装は `__vfprintf_internal(fp, format, ap, 0)` であることがわかった。
+
 </details>
 
-
-次に調べるのは、`__printf_buffer_to_file_init()` と `__printf_buffer_to_file_done()` にする。
+次に調べるのは、`struct __printf_buffer_to_file`、`__printf_buffer_to_file_init()`、 `__printf_buffer_to_file_done()` にする。
 `Xprintf_buffer()` stdio-common/vfprintf-internal.c にあるのだが、はマクロや `goto` が入り乱れ、全く読める気がしないので読まない。
 なんとなく見た感じ `format` と `ap` を解釈してバッファ(`&wrap.base`)への書き込みを `Xprintf_buffer_write()` などを通じて行っていそうである。
 
@@ -438,8 +442,7 @@ __printf_buffer_init (struct __printf_buffer *buf, char *base, size_t len,
 
 単純に渡された引数で初期化しているだけのようである。
 
-続いて `__printf_buffer_to_file_switch()` をみると、
-構造体 `__printf_buffer_to_file` にあった `stage` フィールドは `write_ptr == write_end` の時に使われるもだったとわかる。
+続いて `__printf_buffer_to_file_switch()` をみると、構造体 `__printf_buffer_to_file` にあった `stage` フィールドは `write_ptr == write_end` の時に使われるもだったとわかる。
 
 ```c
 /* Switch to the file buffer if possible.  If the file has write_ptr == write_end, use the stage buffer instead.  */
@@ -463,166 +466,7 @@ __printf_buffer_to_file_switch (struct __printf_buffer_to_file *buf)
 }
 ```
 
-どのような時に `write_ptr == write_end` となるのかは分からない。
-`stdout` の実装を追ったのだが、マクロが多くて読めなかったので、docker で ubuntu を立ち上げて、次を実行してみた。
-
-<details>
-<summary>stdout の実装を追ったログ</summary>
-
-```
-$ rg stdout -g "*.h"
-libio/stdio.h
-150:extern FILE *stdout;                /* Standard output stream.  */
-154:#define stdout stdout
-```
-
-libio/stdio.h に宣言されている。extern と define があるので、一応周辺を見てみる。
-
-```c
-/* Standard streams.  */
-extern FILE *stdin;		/* Standard input stream.  */
-extern FILE *stdout;		/* Standard output stream.  */
-extern FILE *stderr;		/* Standard error output stream.  */
-/* C89/C99 say they're macros.  Make them happy.  */
-#define stdin stdin
-#define stdout stdout
-#define stderr stderr
-```
-
-C89/C99 への対応のために、マクロで宣言されていることがわかった。extern の実態はどこにあるのか探す。
-
-```
-rg "FILE.*stdout"
-...
-libio/stdio.c
-34:FILE *stdout = (FILE *) &_IO_2_1_stdout_;
-...
-```
-
-`_IO_2_1_stdout_` を探す。
-
-```
-$ rg _IO_2_1_stdout_ -g '*.c'
-...
-libio/stdfiles.c
-28:/* This file provides definitions of _IO_2_1_stdin_, _IO_2_1_stdout_,
-53:DEF_STDFILE(_IO_2_1_stdout_, 1, &_IO_2_1_stdin_, _IO_NO_READS);
-54:DEF_STDFILE(_IO_2_1_stderr_, 2, &_IO_2_1_stdout_, _IO_NO_READS+_IO_UNBUFFERED);
-```
-
-libio/stdfiles.c を開いてみる。
-
-```c
-#include "libioP.h"
-
-#ifdef _IO_MTSAFE_IO
-# define DEF_STDFILE(NAME, FD, CHAIN, FLAGS) \
-  static _IO_lock_t _IO_stdfile_##FD##_lock = _IO_lock_initializer; \
-  static struct _IO_wide_data _IO_wide_data_##FD \
-    = { ._wide_vtable = &_IO_wfile_jumps }; \
-  struct _IO_FILE_plus NAME \
-    = {FILEBUF_LITERAL(CHAIN, FLAGS, FD, &_IO_wide_data_##FD), \
-       &_IO_file_jumps};
-#else
-# define DEF_STDFILE(NAME, FD, CHAIN, FLAGS) \
-  static struct _IO_wide_data _IO_wide_data_##FD \
-    = { ._wide_vtable = &_IO_wfile_jumps }; \
-  struct _IO_FILE_plus NAME \
-    = {FILEBUF_LITERAL(CHAIN, FLAGS, FD, &_IO_wide_data_##FD), \
-       &_IO_file_jumps};
-#endif
-
-DEF_STDFILE(_IO_2_1_stdin_, 0, 0, _IO_NO_WRITES);
-DEF_STDFILE(_IO_2_1_stdout_, 1, &_IO_2_1_stdin_, _IO_NO_READS);
-DEF_STDFILE(_IO_2_1_stderr_, 2, &_IO_2_1_stdout_, _IO_NO_READS+_IO_UNBUFFERED);
-
-struct _IO_FILE_plus *_IO_list_all = &_IO_2_1_stderr_;
-libc_hidden_data_def (_IO_list_all)
-```
-
-`DEF_STDFILE` マクロ内に、`FILEBUF_LITERAL` マクロがあるので、それを探す。
-
-```
-$ rg FILEBUF_LITERAL
-...
-libio/libioP.h
-905:#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
-910:#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
-918:#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
-923:#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
-...
-```
-
-libio/libioP.h にあるので、開いてみる。
-
-```c
-#ifdef _IO_MTSAFE_IO
-/* check following! */
-# ifdef _IO_USE_OLD_IO_FILE
-#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
-       { _IO_MAGIC+_IO_LINKED+_IO_IS_FILEBUF+FLAGS, \
-	 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (FILE *) CHAIN, FD, \
-	 0, _IO_pos_BAD, 0, 0, { 0 }, &_IO_stdfile_##FD##_lock }
-# else
-#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
-       { _IO_MAGIC+_IO_LINKED+_IO_IS_FILEBUF+FLAGS, \
-	 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (FILE *) CHAIN, FD, \
-	 0, _IO_pos_BAD, 0, 0, { 0 }, &_IO_stdfile_##FD##_lock, _IO_pos_BAD,\
-	 NULL, WDP, 0 }
-# endif
-#else
-# ifdef _IO_USE_OLD_IO_FILE
-#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
-       { _IO_MAGIC+_IO_LINKED+_IO_IS_FILEBUF+FLAGS, \
-	 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (FILE *) CHAIN, FD, \
-	 0, _IO_pos_BAD }
-# else
-#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
-       { _IO_MAGIC+_IO_LINKED+_IO_IS_FILEBUF+FLAGS, \
-	 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (FILE *) CHAIN, FD, \
-	 0, _IO_pos_BAD, 0, 0, { 0 }, 0, _IO_pos_BAD, \
-	 NULL, WDP, 0 }
-# endif
-#endif
-```
-
-もう無理...
-
-</details>
-
-```
-$ docker run -it --rm --platform linux/amd64 ubuntu
-
-root@***/# dpkg -l | grep libc6
-ii  libc6:amd64             2.39-0ubuntu8.1        amd64        GNU C Library: Shared libraries
-root@***/# apt-get update -y && apt-get install -y gcc vim
-...
-root@***/# cd /tmp
-root@***/tmp# vim main.c
-root@***/tmp# cat main.c
-#include<stdio.h>
-int main() {
-    printf("(dummy printf call)\n");
-    printf("stdout->_IO_write_ptr: %p\n", stdout->_IO_write_ptr);
-    printf("stdout->_IO_write_end: %p\n", stdout->_IO_write_end);
-    return 0;
-}
-root@***/tmp# gcc main.c
-root@***/tmp# ./a.out
-(dummy printf call)
-stdout->_IO_write_ptr: 0x5555555592a0
-stdout->_IO_write_end: 0x5555555592a0
-root@***:/tmp# ./a.out > zzz
-root@***:/tmp# cat zzz
-(dummy printf call)
-stdout->_IO_write_ptr: 0x5555555592b4
-stdout->_IO_write_end: 0x55555555a2a0
-```
-
-どのような実装で `_IO_write_ptr` と `_IO_write_end` をセットしているのかはわからないが、動作させた限りでは次のような挙動を示した。
-
-- ターミナルへの出力の時: `_IO_write_ptr == _IO_write_end`
-- ファイルへのリダイレクトの時: `_IO_write_ptr < _IO_write_end`
+どのような時に `write_ptr == write_end` となるのかは分からないが、この関数は出力のバッファリング方法を切り替えるものだとわかった。
 
 ここまでで、`__printf_buffer_to_file_init()` が構築する `struct __printf_buffer_to_file` のフィールドを追ってみると次の値を持つとわかった。
 
@@ -644,12 +488,11 @@ struct __printf_buffer_to_file wrap = {
 };
 
 // __printf_buffer_to_file_switch() で write_ptr と write_end が切り替わる
+// 初期値は stdout の実装を見れば良さそうだけど、実行時に _IO_write_(ptr|end) は切り替わりそうなので、ここでは追わない。
 if (stdout->_IO_write_ptr < stdout->_IO_write_end) {
-    // ファイルへのリダイレクトの時？
     wrap.base.write_ptr = stdout->_IO_write_ptr;
     wrap.base.write_end = stdout->_IO_write_end;
 } else {
-    // ターミナル出力の時？
     wrap.base.write_ptr = stage;
     wrap.base.write_end = array_end(stage);
 }
@@ -790,27 +633,516 @@ __printf_buffer_flush_to_file (struct __printf_buffer_to_file *buf)
 }
 ```
 
-## 次の作業へのメモ
+`_IO_sputn()` で書き出したり、不正なものに対しては `__printf_buffer_mark_failed()` を読んでいるのがわかった。
 
-- `_IO_sputn` が何をしているのか
-- `__overflow` が何をしているのか
-- `__printf_buffer_mark_failed` が何をしているのか
+`__overflow()` でコメントにある通り、特殊なバッファが 1 文字なケースなので、ここには書かない。
+一応、`__overflow()` の実装の追跡をしたが `_IO_sputn()` と同じような流れだったので、知りたいときは `_IO_sputn()` のように追跡すれば良いだろう。
 
-`__printf_buffer_to_file_switch` を実験で確かめたけど、おそらく間違ってる。
-なぜなら、`Xprintf_buffer_write()` 内の `Xprintf_buffer_flush()` により、`__printf_buffer_flush_to_file()` が呼ばれている。
-↑に書いた通り、`__printf_buffer_flush_to_file()` では `write_ptr`, `write_end` が切り替わる処理が行われている。
+続いて、`__printf_buffer_mark_failed()`, `_IO_sputn()` の実装を探していく。
 
-以下にCopilot chat の解説を残す。
+### \_\_printf_buffer_mark_failed() の実装
 
----
+```
+$ rg __printf_buffer_mark_failed
+...
+include/printf_buffer.h
+105:__printf_buffer_mark_failed (struct __printf_buffer *buf)
+...
+```
 
-この関数`__printf_buffer_to_file_switch`は、printf関連のバッファリング機能の一部で、出力をファイルのバッファに切り替えるか、利用可能なバッファがない場合はステージングエリア（一時バッファ）を使用するように切り替える役割を持っています。以下は、この関数の動作のステップバイステップの説明です。
+ヘッダファイルに直接実装されていそうである。include/printf_buffer.h を開く。
 
-1. ファイルバッファが利用可能かチェックする: `buf->fp->_IO_write_ptr < buf->fp->_IO_write_end`を評価して、ファイルポインタの現在の書き込みポインタが書き込み終了位置よりも前にあるかどうかをチェックします。これは、ファイルバッファにまだ空きがあるかどうかを確認することに相当します。
-1. ファイルバッファが利用可能な場合: ファイルバッファに空きがある場合、`buf->base.write_ptr`（現在の書き込みポインタ）と`buf->base.write_end`（書き込み終了位置）を、ファイルポインタのそれぞれの値に設定します。これにより、これからの書き込みが直接ファイルバッファに行われるようになります。
-1. ファイルバッファが利用不可能な場合: ファイルバッファに空きがない場合、ステージングエリアを使用します。`buf->base.write_ptr`をステージングエリアの開始位置に、`buf->base.write_end`をステージングエリアの終端に設定します。これにより、これからの書き込みがステージングエリアに行われるようになります。
-1. 書き込み基準位置の更新: 最後に、buf->base.write_base（書き込み基準位置）を現在の書き込みポインタ`buf->base.write_ptr`に設定します。これは、新しい書き込みの開始点を更新するためです。
+```c
+/* Marks the buffer as failed, so that __printf_buffer_has_failed returns true and future flush operations are no-ops. */
+static inline void
+__printf_buffer_mark_failed (struct __printf_buffer *buf)
+{
+  buf->mode = __printf_buffer_mode_failed;
+}
+```
 
-この関数は、出力のバッファリング戦略を動的に切り替えることで、効率的なファイル書き込みを実現するためのものです。ファイルバッファが利用可能な場合はそれを優先し、そうでない場合は一時バッファ（ステージングエリア）を使用します。
+### \_IO_sputn() の実装
 
----
+```
+$ rg _IO_sputn
+...
+libio/libioP.h
+380:#define _IO_sputn(__fp, __s, __n) _IO_XSPUTN (__fp, __s, __n)
+...
+```
+
+libio/libioP.h に別名が存在すると分かったので、開いて追っていく。
+
+```c
+// 380行目
+#define _IO_sputn(__fp, __s, __n) _IO_XSPUTN (__fp, __s, __n)
+
+
+// 177行目
+#define _IO_XSPUTN(FP, DATA, N) JUMP2 (__xsputn, FP, DATA, N)
+
+
+// 126行目
+#define JUMP2(FUNC, THIS, X1, X2) (_IO_JUMPS_FUNC(THIS)->FUNC) (THIS, X1, X2)
+
+
+// 117行目
+#if _IO_JUMPS_OFFSET
+# define _IO_JUMPS_FUNC(THIS) \
+  (IO_validate_vtable                                                   \
+   (*(struct _IO_jump_t **) ((void *) &_IO_JUMPS_FILE_plus (THIS)        \
+                             + (THIS)->_vtable_offset)))
+...
+#else
+# define _IO_JUMPS_FUNC(THIS) (IO_validate_vtable (_IO_JUMPS_FILE_plus (THIS)))
+
+
+// 1022行目
+/* Perform vtable pointer validation.  If validation fails, terminate the process.  */
+static inline const struct _IO_jump_t *
+IO_validate_vtable (const struct _IO_jump_t *vtable)
+{
+  uintptr_t ptr = (uintptr_t) vtable;
+  uintptr_t offset = ptr - (uintptr_t) &__io_vtables;
+  if (__glibc_unlikely (offset >= IO_VTABLES_LEN))
+    /* The vtable pointer is not in the expected section.  Use the slow path, which will terminate the process if necessary. */
+    _IO_vtable_check ();
+  return vtable;
+}
+
+
+// 100行目
+#define _IO_JUMPS_FILE_plus(THIS) \
+  _IO_CAST_FIELD_ACCESS ((THIS), struct _IO_FILE_plus, vtable)
+
+
+// 95行目
+/* Essentially ((TYPE *) THIS)->MEMBER, but avoiding the aliasing violation in case THIS has a different pointer type.  */
+#define _IO_CAST_FIELD_ACCESS(THIS, TYPE, MEMBER) \
+  (*(_IO_MEMBER_TYPE (TYPE, MEMBER) *)(((char *) (THIS)) \
+                                       + offsetof(TYPE, MEMBER)))
+
+
+// 91行目
+/* Type of MEMBER in struct type TYPE.  */
+#define _IO_MEMBER_TYPE(TYPE, MEMBER) __typeof__ (((TYPE){}).MEMBER)
+```
+
+よくわからないので、マクロ展開してみる。(`_IO_JUMPS_OFFSET` は定義されていないとした。)
+
+```c
+_IO_sputn(__fp, __s, __n);
+// ↓
+IO_validate_vtable(
+    *(__typeof__((struct _IO_FILE_plus {}).vtable)*)(
+        ((char *)(__fp)) + offsetof(struct _IO_FILE_plus, vtable)
+    )
+)->__xsputn(__fp, __s, __n);
+```
+
+このマクロは `__fp` が指すオブジェクトの `vtable` を検証し、その `vtable` に定義された `__xsputn()` 関数を呼び出しているのだとわかった。
+
+`_IO_sputn(buf->fp, ...)` と呼ばれていた。`buf-fp` は `stdout` であったので、`stdout` の実装を見れば良さそうである。
+
+<details>
+<summary> <code>__overflow()</code> も途中まで追跡したので折りたたんで置いておく。流れは <code>_IO_sputn()</code> と同じである。</summary>
+
+```
+$ rg __overflow -g '*.c'
+...
+libio/genops.c
+198:__overflow (FILE *f, int ch)
+205:libc_hidden_def (__overflow)
+...
+```
+
+libio/genops.c を開く。
+
+```c
+int
+__overflow (FILE *f, int ch)
+{
+  /* This is a single-byte stream.  */
+  if (f->_mode == 0)
+    _IO_fwide (f, -1);
+  return _IO_OVERFLOW (f, ch);
+}
+libc_hidden_def (__overflow)
+
+```
+
+`f->mode` は `enum __printf_buffer_mode` である。`0` がどれかわからないので、実装を探すと次が見つかる。
+
+```c
+enum __printf_buffer_mode
+  {
+    __printf_buffer_mode_failed,
+    __printf_buffer_mode_sprintf,
+    __printf_buffer_mode_snprintf,
+    __printf_buffer_mode_sprintf_chk,
+    __printf_buffer_mode_to_file,
+    __printf_buffer_mode_asprintf,
+    __printf_buffer_mode_dprintf,
+    __printf_buffer_mode_strfmon,
+    __printf_buffer_mode_fp,         /* For __printf_fp_l_buffer.  */
+    __printf_buffer_mode_fp_to_wide, /* For __wprintf_fp_l_buffer.  */
+    __printf_buffer_mode_fphex_to_wide, /* For __wprintf_fphex_l_buffer.  */
+    __printf_buffer_mode_obstack,    /* For __printf_buffer_flush_obstack.  */
+  };
+```
+
+`0` は `__printf_buffer_mode_failed` だとわかった。この値はつい先ほど見た `__printf_buffer_mark_failed()` で設定されていたものだ。
+それ以外の場合は、`__printf_buffer_to_file_init()` で設定した `__printf_buffer_mode_to_file` である。よって `_IO_fwide()` は呼ばれないと見ても問題ないであろう。
+
+```
+$ rg "define\ *_IO_OVERFLOW"
+libio/libioP.h
+147:#define _IO_OVERFLOW(FP, CH) JUMP1 (__overflow, FP, CH)
+```
+
+`_IO_OVERFLOW` は libioP.h にあり、 `JUMP1` のマクロとなっている。
+このマクロを追うと `_IO_sputn` 同じような流れとなり、`vtable` 越しに `->__overflow` が呼ばれているとわかる。
+
+</details>
+
+### stdout の実装
+
+```
+$ rg stdout -g "*.h"
+libio/stdio.h
+150:extern FILE *stdout;                /* Standard output stream.  */
+154:#define stdout stdout
+```
+
+libio/stdio.h に宣言されている。extern と define があるので、一応周辺を見てみる。
+
+```c
+/* Standard streams.  */
+extern FILE *stdin;                /* Standard input stream.  */
+extern FILE *stdout;                /* Standard output stream.  */
+extern FILE *stderr;                /* Standard error output stream.  */
+/* C89/C99 say they're macros.  Make them happy.  */
+#define stdin stdin
+#define stdout stdout
+#define stderr stderr
+```
+
+C89/C99 への対応のための `#define` だとわかった。extern の実態を探す。
+
+```
+rg "FILE.*stdout"
+...
+libio/stdio.c
+34:FILE *stdout = (FILE *) &_IO_2_1_stdout_;
+...
+```
+
+`_IO_2_1_stdout_` を探す。
+
+```
+$ rg _IO_2_1_stdout_ -g '*.c'
+...
+libio/stdfiles.c
+28:/* This file provides definitions of _IO_2_1_stdin_, _IO_2_1_stdout_,
+53:DEF_STDFILE(_IO_2_1_stdout_, 1, &_IO_2_1_stdin_, _IO_NO_READS);
+54:DEF_STDFILE(_IO_2_1_stderr_, 2, &_IO_2_1_stdout_, _IO_NO_READS+_IO_UNBUFFERED);
+```
+
+libio/stdfiles.c を開いてみる。
+
+```c
+#include "libioP.h"
+
+#ifdef _IO_MTSAFE_IO
+# define DEF_STDFILE(NAME, FD, CHAIN, FLAGS) \
+  static _IO_lock_t _IO_stdfile_##FD##_lock = _IO_lock_initializer; \
+  static struct _IO_wide_data _IO_wide_data_##FD \
+    = { ._wide_vtable = &_IO_wfile_jumps }; \
+  struct _IO_FILE_plus NAME \
+    = {FILEBUF_LITERAL(CHAIN, FLAGS, FD, &_IO_wide_data_##FD), \
+       &_IO_file_jumps};
+#else
+# define DEF_STDFILE(NAME, FD, CHAIN, FLAGS) \
+  static struct _IO_wide_data _IO_wide_data_##FD \
+    = { ._wide_vtable = &_IO_wfile_jumps }; \
+  struct _IO_FILE_plus NAME \
+    = {FILEBUF_LITERAL(CHAIN, FLAGS, FD, &_IO_wide_data_##FD), \
+       &_IO_file_jumps};
+#endif
+
+DEF_STDFILE(_IO_2_1_stdin_, 0, 0, _IO_NO_WRITES);
+DEF_STDFILE(_IO_2_1_stdout_, 1, &_IO_2_1_stdin_, _IO_NO_READS);
+DEF_STDFILE(_IO_2_1_stderr_, 2, &_IO_2_1_stdout_, _IO_NO_READS+_IO_UNBUFFERED);
+
+struct _IO_FILE_plus *_IO_list_all = &_IO_2_1_stderr_;
+libc_hidden_data_def (_IO_list_all)
+```
+
+`_IO_MTSAFE_IO` はおそらくマルチスレッド対応であろう。今回は簡単のためシングルスレッドであるとして進めていく (つまり `_IO_MTSAFE_IO` が定義されていないとする)。
+
+`DEF_STDFILE` マクロ内に、`FILEBUF_LITERAL` マクロがあるので、それを探す。
+
+```
+$ rg FILEBUF_LITERAL
+...
+libio/libioP.h
+905:#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
+910:#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
+918:#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
+923:#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
+...
+```
+
+libio/libioP.h にあるので、開いてみる。
+
+```c
+#  define FILEBUF_LITERAL(CHAIN, FLAGS, FD, WDP) \
+       { _IO_MAGIC+_IO_LINKED+_IO_IS_FILEBUF+FLAGS, \
+         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (FILE *) CHAIN, FD, \
+         0, _IO_pos_BAD, 0, 0, { 0 }, 0, _IO_pos_BAD, \
+         NULL, WDP, 0 }
+```
+
+`stdout` の実装をまとめると次だとわかった。
+
+```c
+FILE *stdout = (FILE *) &_IO_2_1_stdout_;
+
+DEF_STDFILE(_IO_2_1_stdin_, 0, 0, _IO_NO_WRITES);
+static struct _IO_wide_data _IO_wide_data_1 = { ._wide_vtable = &_IO_wfile_jumps };
+struct _IO_FILE_plus _IO_2_1_stdout_ = {
+    .file = {
+        _IO_MAGIC + _IO_LINKED + _IO_IS_FILEBUF + _IO_NO_READS,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, (FILE *)&_IO_2_1_stdin_, 1,
+        0, _IO_pos_BAD, 0, 0, {0}, 0, _IO_pos_BAD,
+        NULL, &_IO_wide_data_1, 0
+    },
+    .vtable = &_IO_file_jumps
+};
+```
+
+さて、`_IO_sputn()`, `__overflow()` で重要となるのは `.vtable` の `&_IO_file_jumps` である。この定義は libio/libioP.h にある。
+
+```c
+enum
+{
+  IO_STR_JUMPS                    = 0,
+  IO_WSTR_JUMPS                   = 1,
+  IO_FILE_JUMPS                   = 2,
+  ...
+};
+#define IO_VTABLES_LEN (IO_VTABLES_NUM * sizeof (struct _IO_jump_t))
+
+extern const struct _IO_jump_t __io_vtables[] attribute_hidden;
+#define _IO_str_jumps                    (__io_vtables[IO_STR_JUMPS])
+#define _IO_wstr_jumps                   (__io_vtables[IO_WSTR_JUMPS])
+#define _IO_file_jumps                   (__io_vtables[IO_FILE_JUMPS])
+```
+
+続いて、`__io_vtables[IO_FILE_JUMPS]` は `rg -g "*.c" "__io_vtables"` をすると、libio/vtables.c にあるとわかる。
+
+```c
+const struct _IO_jump_t __io_vtables[] attribute_relro =
+{
+  ...
+  /* _IO_file_jumps  */
+  [IO_FILE_JUMPS] = {
+    JUMP_INIT_DUMMY,
+    JUMP_INIT (finish, _IO_file_finish),
+    JUMP_INIT (overflow, _IO_file_overflow),
+    JUMP_INIT (underflow, _IO_file_underflow),
+    JUMP_INIT (uflow, _IO_default_uflow),
+    JUMP_INIT (pbackfail, _IO_default_pbackfail),
+    JUMP_INIT (xsputn, _IO_file_xsputn),
+    JUMP_INIT (xsgetn, _IO_file_xsgetn),
+    JUMP_INIT (seekoff, _IO_new_file_seekoff),
+    JUMP_INIT (seekpos, _IO_default_seekpos),
+    JUMP_INIT (setbuf, _IO_new_file_setbuf),
+    JUMP_INIT (sync, _IO_new_file_sync),
+    JUMP_INIT (doallocate, _IO_file_doallocate),
+    JUMP_INIT (read, _IO_file_read),
+    JUMP_INIT (write, _IO_new_file_write),
+    JUMP_INIT (seek, _IO_file_seek),
+    JUMP_INIT (close, _IO_file_close),
+    JUMP_INIT (stat, _IO_file_stat),
+    JUMP_INIT (showmanyc, _IO_default_showmanyc),
+    JUMP_INIT (imbue, _IO_default_imbue)
+  },
+  ...
+```
+
+`JUMP_INIT` は libio/libioP.h にあって、`#define JUMP_INIT(NAME, VALUE) VALUE` なので、可読性のためだけにあるマクロであろう。
+探していたのは `->__xsputn` と `->__overflow` は `_IO_file_xsputn`, `_IO_file_overflow` だと予測できる。
+
+### \_IO_file_xsputn （\_IO_sputn() の実装）
+
+```
+$ rg -g "*.h" _IO_file_xsputn
+libio/libioP.h
+598:extern size_t _IO_file_xsputn (FILE *, const void *, size_t);
+599:libc_hidden_proto (_IO_file_xsputn)
+
+$ rg -g "*.c" _IO_new_file_xsputn
+libio/fileops.c
+1197:_IO_new_file_xsputn (FILE *f, const void *data, size_t n)
+1269:libc_hidden_ver (_IO_new_file_xsputn, _IO_file_xsputn)
+1431:versioned_symbol (libc, _IO_new_file_xsputn, _IO_file_xsputn, GLIBC_2_1);
+...
+```
+
+より、libio/fileops.c に `_IO_new_file_xsputn()` として実装されているとわかった。
+
+```c
+size_t
+_IO_new_file_xsputn (FILE *f, const void *data, size_t n)
+{
+  const char *s = (const char *) data;
+  size_t to_do = n;
+  int must_flush = 0;
+  size_t count = 0;
+
+  if (n <= 0)
+    return 0;
+  /* This is an optimized implementation.
+     If the amount to be written straddles a block boundary (or the filebuf is unbuffered), use sys_write directly. */
+
+  /* First figure out how much space is available in the buffer. */
+  if ((f->_flags & _IO_LINE_BUF) && (f->_flags & _IO_CURRENTLY_PUTTING))
+    {
+      count = f->_IO_buf_end - f->_IO_write_ptr;
+      if (count >= n)
+        {
+          const char *p;
+          for (p = s + n; p > s; )
+            {
+              if (*--p == '\n')
+                {
+                  count = p - s + 1;
+                  must_flush = 1;
+                  break;
+                }
+            }
+        }
+    }
+  else if (f->_IO_write_end > f->_IO_write_ptr)
+    count = f->_IO_write_end - f->_IO_write_ptr; /* Space available. */
+
+  /* Then fill the buffer. */
+  if (count > 0)
+    {
+      if (count > to_do)
+        count = to_do;
+      f->_IO_write_ptr = __mempcpy (f->_IO_write_ptr, s, count);
+      s += count;
+      to_do -= count;
+    }
+  if (to_do + must_flush > 0)
+    {
+      size_t block_size, do_write;
+      /* Next flush the (full) buffer. */
+      if (_IO_OVERFLOW (f, EOF) == EOF)
+        /* If nothing else has to be written we must not signal the caller that everything has been written.  */
+        return to_do == 0 ? EOF : n - to_do;
+
+      /* Try to maintain alignment: write a whole number of blocks.  */
+      block_size = f->_IO_buf_end - f->_IO_buf_base;
+      do_write = to_do - (block_size >= 128 ? to_do % block_size : 0);
+
+      if (do_write)
+        {
+          count = new_do_write (f, s, do_write);
+          to_do -= count;
+          if (count < do_write)
+            return n - to_do;
+        }
+
+      /* Now write out the remainder.
+         Normally, this will fit in the buffer, but it's somewhat messier for line-buffered files, so we let _IO_default_xsputn handle the general case. */
+      if (to_do)
+        to_do -= _IO_default_xsputn (f, s+do_write, to_do);
+    }
+  return n - to_do;
+}
+```
+
+少し長いが、コメントが丁寧なのでわかりやすい。
+まず、 `f` のバッファ内の利用可能なサイズを計算する。この時ラインバッファリングかどうかも見ている。そして、そのサイズ分の書き込んでいる(`__mempcpy`)。
+バッファ内のデータが全て書き込めたなら EOF を返し、そうでないなら `new_do_write()` を呼び出している。
+
+`new_do_write()` は同ファイル (libio/fileops.c) にある。
+
+```c
+static size_t
+new_do_write (FILE *fp, const char *data, size_t to_do)
+{
+  size_t count;
+  if (fp->_flags & _IO_IS_APPENDING)
+    /* On a system without a proper O_APPEND implementation, you would need to sys_seek(0, SEEK_END) here, but is not needed nor desirable for Unix- or Posix-like systems.
+       Instead, just indicate that offset (before and after) is unpredictable. */
+    fp->_offset = _IO_pos_BAD;
+  else if (fp->_IO_read_end != fp->_IO_write_base)
+    {
+      off64_t new_pos
+        = _IO_SYSSEEK (fp, fp->_IO_write_base - fp->_IO_read_end, 1);
+      if (new_pos == _IO_pos_BAD)
+        return 0;
+      fp->_offset = new_pos;
+    }
+  count = _IO_SYSWRITE (fp, data, to_do);
+  if (fp->_cur_column && count)
+    fp->_cur_column = _IO_adjust_column (fp->_cur_column - 1, data, count) + 1;
+  _IO_setg (fp, fp->_IO_buf_base, fp->_IO_buf_base, fp->_IO_buf_base);
+  fp->_IO_write_base = fp->_IO_write_ptr = fp->_IO_buf_base;
+  fp->_IO_write_end = (fp->_mode <= 0
+                       && (fp->_flags & (_IO_LINE_BUF | _IO_UNBUFFERED))
+                       ? fp->_IO_buf_base : fp->_IO_buf_end);
+  return count;
+}
+```
+
+実装は短いが複雑である。書き込みを行っていそうなのは名前からして `_IO_SYSWRITE` であろう。
+seek とかポインタの更新は今回読まない。
+
+`_IO_SYSWRITE` は `_IO_sputn` と同じようなマクロで、`stdout` に対しては `_IO_new_file_write()` (libio/fileops.c) を呼び出しているものとなる。
+
+```c
+ssize_t
+_IO_new_file_write (FILE *f, const void *data, ssize_t n)
+{
+  ssize_t to_do = n;
+  while (to_do > 0)
+    {
+      ssize_t count = (__builtin_expect (f->_flags2
+                                         & _IO_FLAGS2_NOTCANCEL, 0)
+                           ? __write_nocancel (f->_fileno, data, to_do)
+                           : __write (f->_fileno, data, to_do));
+      if (count < 0)
+        {
+          f->_flags |= _IO_ERR_SEEN;
+          break;
+        }
+      to_do -= count;
+      data = (void *) ((char *) data + count);
+    }
+  n -= to_do;
+  if (f->_offset >= 0)
+    f->_offset += n;
+  return n;
+}
+```
+
+`__write_nocancel()` は rg すると `__write` に `#define` されていたり、 weak_alias となっていたりするので、`__wirte` と思っていいだろう。
+
+`__write` は sysdeps/unix/syscalls.list に次のようにある。
+
+```
+...
+# File name     Caller  Syscall name    Args    Strong name     Weak names
+...
+write           -       write           Ci:ibU  __libc_write    __write write
+writev          -       writev          Ci:ipi  __writev        writev
+```
+
+`__write` は write システムコールだとわかった。
+
+ここまで、`printf()` から write システムコールが呼ばれるまでの流れを探索できたので終了とする。
