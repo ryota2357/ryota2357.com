@@ -1,7 +1,7 @@
 ---
 title: "glibcのprintf()の実装を読んでみる"
 postdate: "2024-06-21T00:34"
-update: "2024-06-21T00:34"
+update: "2024-06-21T17:47"
 tags: ["C"]
 ---
 
@@ -84,7 +84,7 @@ printf ── alias ──> __printf
 
 ## 探索
 
-探索ログをまとめたものである。 整えはしたが少し読みづらいかもしてない。
+探索ログをまとめたものである。 整えはしたが少し読みづらいかもしれない。
 
 ### printf()の実装場所
 
@@ -177,6 +177,7 @@ extern int __vfprintf_internal (FILE *fp, const char *format, va_list ap,
 
 <details>
 <summary>vfprintf(3)</summary>
+
 「man 3 printf」より`vfprintf()`のシグネチャを確認すると、確かに`mode_flags`という `__vfprintf_internal` には `mode_flags` という引数が追加されていることが確認できた。
 
 ```c
@@ -325,8 +326,7 @@ Xprintf_buffer_write (struct Xprintf_buffer *buf,
 }
 ```
 
-この `Xprintf_buffer_write()` で使われている `Xprintf_buffer_flush()` は `__printf_buffer_to_file_init()` の実装を見た後じゃないとわからないのだが、
-次の流れの通り呼び出される。
+この `Xprintf_buffer_write()` で使われている `Xprintf_buffer_flush()` は `__printf_buffer_to_file_init()` の実装を見た後にわかるのだが、次の流れで呼び出される。
 
 1. `Xprintf_buffer_flush()` (stdio-common/Xprintf_buffer_flush.c)
 1. `__printf_buffer_do_flush()` (stdio-common/printf_buffer_flush.c)
@@ -742,7 +742,7 @@ IO_validate_vtable(
 
 このマクロは `__fp` が指すオブジェクトの `vtable` を検証し、その `vtable` に定義された `__xsputn()` 関数を呼び出しているのだとわかった。
 
-`_IO_sputn(buf->fp, ...)` と呼ばれていた。`buf-fp` は `stdout` であったので、`stdout` の実装を見れば良さそうである。
+`_IO_sputn(buf->fp, ...)` と呼ばれていた。`buf->fp` は `stdout` であったので、`stdout` の実装を見れば良さそうである。
 
 <details>
 <summary> <code>__overflow()</code> も途中まで追跡したので折りたたんで置いておく。流れは <code>_IO_sputn()</code> と同じである。</summary>
