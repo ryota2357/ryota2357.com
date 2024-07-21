@@ -178,7 +178,7 @@ extern int __vfprintf_internal (FILE *fp, const char *format, va_list ap,
 <details>
 <summary>vfprintf(3)</summary>
 
-「man 3 printf」より`vfprintf()`のシグネチャを確認すると、確かに`mode_flags`という `__vfprintf_internal` には `mode_flags` という引数が追加されていることが確認できた。
+「man 3 printf」より `vfprintf()` のシグネチャを確認すると、確かに `mode_flags` という `__vfprintf_internal` には `mode_flags` という引数が追加されていることが確認できた。
 
 ```c
 int vfprintf(FILE * restrict stream, const char * restrict format, va_list ap);
