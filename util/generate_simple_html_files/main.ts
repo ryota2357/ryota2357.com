@@ -1,4 +1,4 @@
-import { copy, exists, expandGlob } from "jsr:@std/fs@1.0.0";
+import { copy, exists, expandGlob } from "jsr:@std/fs@1.0.1";
 import { dirname, join } from "jsr:@std/path@1.0.2";
 
 // /myPath/index.html => /myPath.html
