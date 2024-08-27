@@ -20,9 +20,9 @@
     "@astrojs/partytown": "2.1.1",
     "@astrojs/rss": "4.0.7",
     "@astrojs/tailwind": "5.1.0",
-    "astro": "4.14.2",
-    "@napi-rs/canvas": "0.1.53",
-    "dayjs": "1.11.12",
+    "astro": "4.14.5",
+    "@napi-rs/canvas": "0.1.54",
+    "dayjs": "1.11.13",
     "destyle.css": "4.0.1",
     "sass": "1.77.8",
     "sharp": "0.33.5",
@@ -32,7 +32,7 @@
     "unist-util-is": "6.0.0",
     "unist-util-visit": "5.0.0",
     "unknownutil": "3.18.1",
-    "vfile": "6.0.2"
+    "vfile": "6.0.3"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.3",
