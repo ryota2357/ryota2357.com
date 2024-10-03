@@ -1,16 +1,33 @@
 ---
+import { Image } from "astro:assets";
+import CCBYImage from "@/images/cc-by.png";
+
 type Props = Record<PropertyKey, never>;
 ---
 
-<footer class="mt-4 text-center text-[0.7rem]">
+<footer class="mt-8 text-center text-[0.8rem]">
+  <div class="mx-auto max-w-[960px] px-2">
+    <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.ja">
+      <Image
+        src={CCBYImage}
+        alt="CC-BY License"
+        style={{
+          height: "2rem",
+          width: "auto",
+        }}
+      />
+    </a>
+    <p class="text-left">
+      注があるものを除いて、このサイトの内容物は <a
+        href="https://creativecommons.org/licenses/by/4.0/deed.ja"
+        >クリエイティブ・コモンズ 表示 4.0 ライセンス</a
+      > の下で提供されています。
+    </p>
+  </div>
   <p>
     Built with{" "}
-    <a
-      href="https://astro.build/"
-      style={{ color: "inherit", fontWeight: "bold" }}
-    >
+    <a href="https://astro.build/" style={{ color: "inherit" }}>
       {Astro.generator}
     </a>
   </p>
-  <p>©2022 ryota2357 All Rights Reserved.</p>
 </footer>
