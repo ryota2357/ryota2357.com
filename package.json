@@ -47,8 +47,5 @@
     "textlint-rule-preset-ja-spacing": "2.4.3",
     "textlint-rule-preset-ja-technical-writing": "10.0.1",
     "unist-util-inspect": "8.1.0"
-  },
-  "volta": {
-    "node": "20.17.0"
   }
 }
