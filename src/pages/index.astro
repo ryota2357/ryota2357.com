@@ -3,7 +3,7 @@ import path from "node:path";
 import { Image } from "astro:assets";
 import ContentBlock from "@/components/ContentBlock.astro";
 import { allBlogCollection, allBlogTagList } from "@/content";
-import ProfileImage from "@/images/profile-pic.png";
+import AvatarImage from "@/images/avatar.png";
 import Base from "@/layouts/Base.astro";
 
 const top12BlogTagList = [...allBlogTagList]
@@ -15,10 +15,11 @@ const top12BlogTagList = [...allBlogTagList]
 <Base title="Home" type="website">
   <div class="flex flex-col items-center gap-2">
     <Image
-      src={ProfileImage}
-      alt="profile-pic"
+      src={AvatarImage}
+      alt="Avatar"
       width={200}
       height={200}
+      loading="eager"
       style={{
         position: "relative",
         zIndex: "1",
