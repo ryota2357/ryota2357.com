@@ -5,9 +5,9 @@ import Base from "@/layouts/Base.astro";
 
 <Base title="About" type="website">
   <h1 class="text-[2.5rem]">About</h1>
-  <div class="mt-8 flex flex-col gap-8">
+  <div class="mt-8 flex flex-col gap-8 [&_a]:text-[#0969da]">
     <ContentBlock title="このサイトについて">
-      <div class="[&_a]:text-[#0969da]">
+      <div>
         <p>
           このサイトは <a href="https://astro.build/">Astro.js</a>
           を用いて作成し、
@@ -21,12 +21,25 @@ import Base from "@/layouts/Base.astro";
           </a>
           です。
         </p>
+        <p class="pt-2">
+          このウェブサイトは、私 ryota2357
+          が個人として運営しているものであり、掲載されている内容はすべて個人的な意見や情報に基づいています。当サイトに記載されている内容や見解は、私の所属する組織や団体とは一切関係がなく、それらを代表するものではありません。
+        </p>
       </div>
     </ContentBlock>
-    <ContentBlock title="問い合わせ/修正依頼">
+    <ContentBlock title="問い合わせ・報告">
       <div>
-        <p>私の Twitter の DM にてご連絡ください。</p>
-        <p>また、修正依頼については Github にて PR でも可能です。</p>
+        <p>
+          私の <a href="https://twitter.com/95s7k84695a">Twitter</a> または <a
+            href="https://bsky.app/profile/ryota2357.com">Bluesky</a
+          > の DM にご連絡ください。
+        </p>
+        <p>
+          また、誤りなどを見つけた場合には報告していただけると大変助かります。<a
+            href="https://github.com/ryota2357/ryota2357.com">GitHub</a
+          >
+          にて Pull Request を送っていただくことも可能です。
+        </p>
       </div>
     </ContentBlock>
   </div>
