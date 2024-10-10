@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+set -eu
+cd "$(dirname "$0")" || exit 1
+
+TEMPLATE='---
+title: "{title}"
+postdate: "{date}"
+update: "{date}"
+tags: [{tags}]
+---
+'
+readonly TEMPLATE
+
+get_file_path() {
+  local year
+  year=$(date +'%Y')
+
+  local file_path slug read_prompt
+  read_prompt="Input post slug: "
+  while true; do
+    read -rp "$read_prompt" slug
+    if [[ -z "$slug" ]]; then
+      read_prompt="Input post slug (required): "
+      continue
+    fi
+
+    file_path="../src/content/blog/${year}/${slug}/index.md"
+    if [[ -f "$file_path" ]]; then
+      read_prompt="Already exists. Input another slug: "
+      continue
+    fi
+
+    echo "$file_path"
+    return
+  done
+}
+
+get_title() {
+  local title
+  read -rp "Input post title: " title
+  if [[ -z "$title" ]]; then
+    echo "Untitled"
+  else
+    echo "$title"
+  fi
+}
+
+get_tags() {
+  local input
+  read -rp "Input post tag (split by ','): " input
+
+  # convert to one space separated string
+  local fixed
+  fixed=$(echo "$input" | tr -d ' ' | tr ',' '\n' | xargs)
+
+  if [[ -z "$fixed" ]]; then
+    echo ""
+  else
+    # A B C -> "A", "B", "C"
+    echo "$fixed" | xargs -I{} echo '"{}"' | sed 's/ /", "/g'
+  fi
+}
+
+make_post_file() {
+  local file_path="$1"
+  local title="$2"
+  local tags="$3"
+  local date="$4"
+
+  mkdir -p "$(dirname "$file_path")"
+  # Use Bash parameter expansion for this simple replacement instead of sed,
+  # because macOS (BSD) sed and GNU sed have different in some cases.
+  local contentt
+  content="${TEMPLATE//\{title\}/$title}"
+  content="${content//\{date\}/$date}"
+  content="${content//\{tags\}/$tags}"
+  echo "$content" > "$file_path"
+}
+
+main() {
+  local file_path title tags date_now
+  file_path=$(get_file_path)
+  title=$(get_title)
+  tags=$(get_tags)
+  date_now=$(date +"%Y-%m-%dT%H:%M")
+
+  make_post_file "$file_path" "$title" "$tags" "$date_now"
+
+  local real_dir_path
+  real_dir_path="$(cd "$(dirname "$file_path")" && pwd)/"
+
+  echo "Created new post"
+  echo " cd $real_dir_path"
+}
+
+main

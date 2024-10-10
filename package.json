@@ -12,8 +12,8 @@
     "check:apply": "biome check --apply './'",
     "textlint": "textlint './src/content/**/*.md'",
     "textlint:fix": "textlint --fix './src/content/**/*.md'",
-    "new-post": "sh ./util/new-post.sh",
-    "postbuild": "sh ./util/generate_simple_html_files.sh",
+    "new-post": "./scripts/new-post",
+    "postbuild": "./scripts/generate_simple_html_files",
     "preinstall": "npx -y only-allow pnpm"
   },
   "dependencies": {
