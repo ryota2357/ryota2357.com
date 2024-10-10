@@ -21,6 +21,7 @@
             nodejs_20
             pnpm
             astro-language-server
+            tailwindcss-language-server
           ];
         };
         formatter = pkgs.nixfmt-rfc-style;
