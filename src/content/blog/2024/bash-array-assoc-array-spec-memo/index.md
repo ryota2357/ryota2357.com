@@ -3,7 +3,6 @@ title: "Bash における配列/連想配列の動作の覚書"
 postdate: "2024-10-10T22:33"
 update: "2024-10-10T22:33"
 tags: ["Bash"]
-draft: true
 ---
 
 [Bash Reference Manual の Array](https://www.gnu.org/software/bash/manual/bash.html#Arrays) セクションを読めば十分であるが、動作サンプルも添えておいておく。
@@ -25,14 +24,36 @@ There is NO WARRANTY, to the extent permitted by law.
 
 ## 基本操作メモ
 
-## 配列
+配列・連想配列に共通して、行えることで、少し忘れがちなのでメモしておく。
 
-以下の特徴がある。
+### 要素数を取得する。
+
+Lua などのように `#` をつける。
+
+```bash
+echo "count: ${#variable[@]}"
+```
+
+### Keyを列挙する。
+
+配列の場合は、インデックス (数字) になる。
+
+```bash
+echo "keys: ${!variable[@]}"
+
+for key in "${!variable[@]}"; do
+  echo "$key"
+done
+```
+
+## 配列
 
 - 0-indexed
 - 負のインデックスで後ろ側からアクセスできる
 - インデックスは連続していなくて良い
 - 添え字には数値として評価可能なものが使える
+
+それぞれについてサンプルと簡単な説明を書いていく。
 
 ### 0-indexed
 
@@ -172,10 +193,10 @@ hex number 1f
 
 ## 連想配列
 
-配列のように特質して書くような特徴は少なく、
-
 - Bash version 4 以上で使用可能
-- 入れた順番の保持はされるのか？どのような順になるのか？
+- 順序は保持されない
+
+それぞれについてサンプルと簡単な説明を書いていく。
 
 ### Bash version 4 以上で使用可能
 
@@ -195,3 +216,47 @@ declare: usage: declare [-afFirtx] [-p] [name[=value] ...]
 macOS ユーザは Homebrew や Nix 等で bash を新たに入れることを勧める。
 
 このようにシステムの bash バージョンが古い可能性もあるため、シェルスクリプトの Shebang には `#!/bin/bash` ではなく、 `#!/usr/bin/env bash` の方を使用した方がいいのかもしれない。
+
+### 順序は保持されない。
+
+Bash の連想配列がどのような実装であるのかの記述を見つけることができなかったので、次のスクリプトで動作を確かめた。
+
+```bash
+declare -A map
+
+keys=(  'orange' 'carrot'    'banana' 'tomato')
+values=('fruit'  'vegetable' 'fruit'  'vegetable')
+
+echo 'Inserted key-value pairs:'
+for i in "${!keys[@]}"; do
+  key=${keys[$i]}
+  value=${values[$i]}
+  map["$key"]="$value"
+  echo "$key -> $value"
+done
+
+echo
+
+echo 'Iterated key-value pairs:'
+for key in "${!map[@]}"; do
+  echo "$key -> ${map[$key]}"
+done
+```
+
+これを実行すると次の出力が得られた。
+
+```
+Inserted key-value pairs:
+orange -> fruit
+carrot -> vegetable
+banana -> fruit
+tomato -> vegetable
+
+Iterated key-value pairs:
+orange -> fruit
+tomato -> vegetable
+carrot -> vegetable
+banana -> fruit
+```
+
+推測であるが、HashMap のようになっていると思われる。
