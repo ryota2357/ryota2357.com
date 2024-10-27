@@ -1,7 +1,7 @@
 ---
 title: "Bash における配列/連想配列の動作の覚書"
 postdate: "2024-10-18T22:46"
-update: "2024-10-18T23:40"
+update: "2024-10-27T14:25"
 tags: ["Bash"]
 ---
 
@@ -9,7 +9,7 @@ tags: ["Bash"]
 
 実行環境は次のとおりである。
 
-```
+```console
 $ uname -ms
 Darwin arm64
 
@@ -67,7 +67,7 @@ unset variable["$key"]
 
 zsh や fish では配列は 1-indexed であった。bash では異なることが次のスクリプトからも確認できる。
 
-```
+```console
 $ declare -a array
 
 $ array=('a' 'b' 'c')
@@ -83,7 +83,7 @@ a - b - c
 
 また、範囲外のアクセスについては (正のインデックスなら) 何も展開しない。
 
-```
+```console
 $ declare -a array=('a' 'b' 'c')
 
 $ echo "${array[4]}"
@@ -94,7 +94,7 @@ $ echo "${array[4]}"
 
 Python や Ruby などと同じく、負のインデックスを使って配列の末尾からアクセスできる。
 
-```
+```console
 $ declare -a array=('a' 'b' 'c')
 
 $ echo "${array[-1]}"
@@ -111,7 +111,7 @@ bash: array: bad array subscript
 
 このエラーの出力場所を調べるため次のようにしたが、次のようになり、わからなかった。(分かる方教えて欲しいです。)
 
-```
+```console
 $ echo "${array[-4]}" &> /dev/null
 bash: array: bad array subscript
 ```
@@ -121,7 +121,7 @@ bash: array: bad array subscript
 bash の配列は直接インデックスを指定して追加/書き換えが可能である。
 指定したインデックスが配列に存在しなければ新たに作成され、割り当て(代入)が行われる。
 
-```
+```console
 $ echo "${array[@]}"
 a b c
 
@@ -138,7 +138,7 @@ a b 3 append
 
 そのため、次のようにして歯抜けな配列を作成でき、`@` やループでその配列を参照できる。
 
-```
+```console
 $ declare -a array=()
 
 $ array[2]="tow"
@@ -161,7 +161,7 @@ index=5 value=five
 
 もちろん `unset` を使って要素を削除して歯抜けの配列を作ることもできる。
 
-```
+```console
 $ array=('one' 'two' 'three')
 
 $ unset array[1]
@@ -174,20 +174,20 @@ one three
 
 数値だけでなく、数字な文字列を指定してもアクセスできる。
 
-```
+```console
 $ echo "${array[@]}"
 a b c
 
 $ echo "${array["1"]}"
 b
 
-echo "${array["-1"]}"
+$ echo "${array["-1"]}"
 3
 ```
 
 次のように、余分な 0 がついている文字や、10 進数でない文字も正しく数値に解釈されるようである。
 
-```
+```console
 $ array=(0 1)
 
 $ echo "${array["001"]}"
@@ -210,7 +210,7 @@ hex number 1f
 
 macOS (Sequoia 15.0.1) の `/bin/bash` は次のとおりバージョンが古すぎて `declare -A` が出来ない。
 
-```
+```console
 $ /bin/bash --version
 GNU bash, version 3.2.57(1)-release (arm64-apple-darwin24)
 Copyright (C) 2007 Free Software Foundation, Inc.
