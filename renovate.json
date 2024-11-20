@@ -6,6 +6,10 @@
   "schedule": "at any time",
   "prHourlyLimit": 0,
   "automerge": false,
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 5am on the first day of the month"]
+  },
   "packageRules": [
     {
       "groupName": "pin",
