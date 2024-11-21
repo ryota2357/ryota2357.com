@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "rangeStrategy": "pin",
   "timezone": "Asia/Tokyo",
   "schedule": "at any time",
