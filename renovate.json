@@ -10,6 +10,9 @@
     "enabled": true,
     "schedule": ["before 5am on the first day of the month"]
   },
+  "nix": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "groupName": "pin",
