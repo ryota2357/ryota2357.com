@@ -1,7 +1,7 @@
 ---
 title: "tmuxへのattachをいい感じにするコマンドを作った (tmux-connect)"
 postdate: "2024-10-27T15:58"
-update: "2024-11-21T07:32"
+update: "2024-11-21T20:09"
 tags: ["tmux", "Bash"]
 ---
 
@@ -96,7 +96,7 @@ find_tmux_cmd() {
 
   if [[ ${#tmux_paths[@]} -gt 0 ]]; then
     for path in "${tmux_paths[@]}"; do
-      if [[ -x "$path" ]]; then
+      if [[ -x $path ]]; then
         echo "$path"
         return
       fi
@@ -119,7 +119,7 @@ select_session() {
 
   # Display a list of sessions to the user (`select` command like)
   echo "Select a session:"
-  # Use an array (-a), not a associative array (-A). Because if the user choiced "01", it will be treated as octal number.
+  # Use an array (-a), not a associative array (-A). Because if the user choiced "01", it will be treated as number.
   # Note: The index of the array is no need to be continuous. (i.e. we can starts from 1)
   declare -a session_map
   local i=1 line session_name
@@ -128,14 +128,14 @@ select_session() {
     echo "$i) $session_name"
     session_map["$i"]=$session_name
     ((i++))
-  done <<< "$session_list"
+  done <<<"$session_list"
   echo "$i) Create New Session"
 
   # Prompt the user to select a session, re-prompt if the selection is out of range
   local choice
   while true; do
     read -rp "Enter a number: " choice
-    if [[ "$choice" =~ ^[0-9]+$ && "$choice" -ge 1 && "$choice" -le "$i" ]]; then
+    if [[ $choice =~ ^[0-9]+$ && $choice -ge 1 && $choice -le $i ]]; then
       break
     else
       echo "Invalid selection. Please choose a valid number."
@@ -143,7 +143,7 @@ select_session() {
   done
 
   # Create a new session or attach to an existing one based on the user's choice
-  if [[ "$choice" -eq "$i" ]]; then
+  if [[ $choice -eq $i ]]; then
     exec "$tmux_cmd" new-session
   else
     exec "$tmux_cmd" attach-session -t "${session_map[$choice]}"
@@ -155,14 +155,14 @@ create_or_attach_session() {
 
   # List all sessions name sorted by creation time
   local session_list
-  session_list=$(                                                     \
-    "$tmux_cmd" list-sessions -F '#{session_created} #{session_name}' \
-      | sort                                                          \
-      | awk -F ' ' '{ print $2 }'                                     \
+  session_list=$(
+    "$tmux_cmd" list-sessions -F '#{session_created} #{session_name}' |
+      sort |
+      awk -F ' ' '{ print $2 }'
   )
 
   # Create a new session if no sessions exist
-  if [[ -z "$session_list" ]]; then
+  if [[ -z $session_list ]]; then
     exec "$tmux_cmd" new-session
   fi
 
@@ -170,7 +170,7 @@ create_or_attach_session() {
   session_count=$(echo "$session_list" | wc -l)
 
   # If there is only one session, automatically attach to it
-  if [[ "$session_count" -eq 1 ]]; then
+  if [[ $session_count -eq 1 ]]; then
     local session_name
     session_name=$(echo "$session_list" | cut -d: -f1)
     exec "$tmux_cmd" attach-session -t "$session_name"
@@ -184,19 +184,19 @@ main() {
   local tmux_paths=()
   while [[ $# -gt 0 ]]; do
     case $1 in
-      -p|--paths)
-        IFS=',' read -ra tmux_paths <<< "$2"
-        shift 2
-        ;;
-      -h|--help)
-        display_help
-        exit 0
-        ;;
-      *)
-        echo "Unknown option: $1" >&2
-        display_help
-        exit 1
-        ;;
+    -p | --paths)
+      IFS=',' read -ra tmux_paths <<<"$2"
+      shift 2
+      ;;
+    -h | --help)
+      display_help
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      display_help
+      exit 1
+      ;;
     esac
   done
 
