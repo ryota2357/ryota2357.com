@@ -1,7 +1,7 @@
 ---
 title: "Firefoxでタブバーを消す方法のメモ"
 postdate: "2024-04-18T22:38"
-update: "2024-04-18T22:38"
+update: "2024-11-29T22:15"
 tags: ["Firefox"]
 ---
 
@@ -18,6 +18,12 @@ tags: ["Firefox"]
 最後に、 `{プロファイルフォルダー}/chrome/userChrome.css` に次の内容を記載する。
 
 ```css
+#TabsToolbar {
+  visibility: collapse !important;
+}
+#tabbrowser-tabs {
+  visibility: collapse !important;
+}
 #titlebar {
   visibility: collapse !important;
 }
