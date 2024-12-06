@@ -23,7 +23,6 @@ Change Key は `winget` で入手できなかった。次のリンクからイ�
 
 [Change Key - 窓の杜: https://forest.watch.impress.co.jp/library/software/changekey/](https://forest.watch.impress.co.jp/library/software/changekey/)
 
-
 Auto Hot Key は `winget` で：
 
 ```powershell
