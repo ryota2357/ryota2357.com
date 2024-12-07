@@ -1,0 +1,289 @@
+---
+title: "dotfiles での Nix 設定分割"
+postdate: "2024-12-07T18:06"
+update: "2024-12-07T18:06"
+tags: ["Nix"]
+---
+
+dotfiles に Nix を導入してから 4 ヶ月ほどたった。
+大量に設定をしているわけではないが、それでもファイルを分割・整理しないとやや管理が大変となる。
+2024 年末の僕の Nix ファイルの分割方法について書いてく。
+
+## ディレクトリ構造
+
+僕の dotfiles のディレクトリ構造の主要部分だけ切り出したものは次である。
+
+```
+.
+├── README.md
+├── flake.lock
+├── flake.nix
+├── bin/...
+├── config-files
+│   ├── _generate_nix
+│   ├── _generated.nix
+│   └── ...
+├── nix
+│   ├── apps
+│   │   └── default.nix
+│   ├── darwin
+│   │   ├── default.nix
+│   │   ├── homebrew.nix
+│   │   ├── nix.nix
+│   │   └── system.nix
+│   ├── formatter
+│   │   └── default.nix
+│   └── home
+│       ├── default.nix
+│       └── modules/..
+├── shell
+│   ├── fish/...
+│   └── zsh/..
+├── tmux/...
+└── vim/..
+
+```
+
+僕は Home Manager も使用しているが、これに寄せることはせず [ファイル配置ツールとして使用している](../nix-home-manager-as-a-file-placement-tool/)。
+そのため、vim や各種 shell の設定は通常(?)のシンボリックリンクを使用した dotfiles の構成と同じようにそれぞれのディレクトリに格納されている。
+
+nix/ 以下が Nix の各種設定が書かれておいて、flake.nix から `import` さてている。flake.nix から順に見ていく。
+
+## flake.nix
+
+flake.nix は次のような感じである。
+
+```nix
+
+{
+  description = "ryota2357's Nix configuration";
+  inputs = { 省略 };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-darwin,
+      neovim-nightly-overlay,
+    }:
+    let
+      system = "aarch64-darwin";
+    in
+    {
+      apps = (
+        import ./nix/apps {
+          inherit nixpkgs;
+        }
+      );
+
+      formatter = (
+        import ./nix/formatter {
+          inherit nixpkgs;
+        }
+      );
+
+      darwinConfigurations = (
+        import ./nix/darwin {
+          inherit system nix-darwin;
+        }
+      );
+
+      homeConfigurations = (
+        import ./nix/home {
+          inherit system home-manager;
+          username = "ryota2357";
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [
+              neovim-nightly-overlay.overlays.default
+            ];
+          };
+        }
+      );
+    };
+}
+```
+
+上から `nix run`, `nix fmt`, nix-darwin, Home Manager の設定を `import` している。
+flake.nix では使用するものを列挙するのみで、具体的な設定をせず、その設定に必要なものを注入するにとどめ、各 Nix ツールの独立を明確にしている。
+
+## nix/ 以下
+
+順に簡単に説明する。
+
+### nix/apps
+
+このディレクトリ以下にあるのは default.nix のみで、 `nix run` で実行できるものを用意している。
+
+僕は `home-manager` コマンドをグローバルにインストールしていないので、次のようにして `home-manager switch` を実行している。
+
+```console
+$ nix run .#home-manager-switch default
+```
+
+### nix/formatter
+
+ここは説明することがないので省略する。
+
+### nix/darwin
+
+このディレクトリ以下の default.nix は次の通りである。
+
+```nix
+{
+  system,
+  nix-darwin,
+}:
+{
+  default = nix-darwin.lib.darwinSystem {
+    inherit system;
+    modules = [
+      {
+        services.nix-daemon.enable = true;
+        nix = import ./nix.nix;
+        system = import ./system.nix;
+        homebrew = import ./homebrew.nix;
+      }
+    ];
+  };
+}
+```
+
+`nix`, `system`, `homebrew` の Attribute Set はここに書かず `import` で分割している。
+
+`modules` アトリビュートにはファイルパスを指定するものを多く見かけるが、nix 式を書くことができる。
+この default.nix のように Attribute Set を置くこともできるし、次のような関数を置くこともできる。
+
+```nix
+...
+    modules = [
+      { pkgs, ... }:
+      {
+        ...
+      }
+    ]
+...
+```
+
+### nix/home
+
+このディレクトリ以下の default.nix は次の通りである。
+
+```nix
+{
+  system,
+  username,
+  home-manager,
+  pkgs,
+}:
+let
+  isDarwin = builtins.elem system [
+    "aarch64-darwin"
+    "x86_64-darwin"
+  ];
+in
+{
+  default = home-manager.lib.homeManagerConfiguration {
+    inherit pkgs;
+    extraSpecialArgs = {
+      config-file = import ../../config-files/_generated.nix;
+    };
+    modules = [
+      {
+        home = {
+          inherit username;
+          homeDirectory = if isDarwin then "/Users/${username}" else throw "unsupported system: ${system}";
+          stateVersion = "24.11"; # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+        };
+      }
+      ./modules/direnv.nix
+      ...
+      ./modules/vim.nix
+      {
+        home.file.".local/bin".source = ../../bin;
+        home.packages = with pkgs; [
+          ffmpeg
+          fzf
+          ...
+        ];
+      }
+    ];
+  };
+}
+```
+
+./modules/\_.nix には次のような感じで `pkgs.*` と各ツールの設定ファイルがどこにあり、どこに配置するのかを記述している。
+次は `./modules/tmux.nix` である。
+
+```nix
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.tmux ];
+  xdg.configFile =
+    let
+      s = name: { source = ../../../tmux + "/${name}"; };
+    in
+    {
+      "tmux/tmux.conf" = s "tmux.conf";
+      "tmux/config" = s "config";
+    };
+}
+```
+
+`programs.tmux` で Nix 式を使用して設定をするのではなく、それぞれのツールの設定はそれぞれのファイルに記述し、Home Manager で配置するという方法をとっている。
+
+tmux や vim は複数の設定ファイルがあるので、dotfiles/vim や dotfiles/tmux に配置して、それらを source している。
+しかし、LaTeX や git, fd など設定が 1 ファイルのものを dotfiles/latex や dotfiles/git などとディレクトリを作るのは少しやりすぎなように思える。
+なので、そのような設定が 1 ファイルなものは dotfiles/config-files 以下にまとめている。
+
+nix/home/default.nix の中では、`extraSpecialArgs` の `config-file = import ../../config-files/_generated.nix;` でその config-files/ を import している。
+
+\_generated とあるが、複雑なものではなく次ような Attribute Set が記述されているだけである。
+
+```nix
+# This file is generated by _generate_nix. Do not modify it manually.
+{
+  "alacritty.toml" = ./. + "/alacritty.toml";
+  ...
+  "wezterm.lua" = ./. + "/wezterm.lua";
+}
+```
+
+これは次の bash スクリプトで生成している。
+
+```bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+cd "$(dirname "$0")" || exit 1
+
+main() {
+    local output_file="_generated.nix"
+    > "$output_file"
+
+    write() {
+        echo "$1" >> "$output_file"
+    }
+
+    write "# This file is generated by _generate_nix. Do not modify it manually."
+    write "{"
+    local file
+    for file in *; do
+        [[ -f $file && $file != _* ]] || continue
+        write "  \"$file\" = ./. + \"/$file\";"
+    done
+    write "}"
+
+    echo "Successfully generated $output_file"
+}
+
+main
+```
+
+## まとめ
+
+いろんな人の設定分割をみたが、僕は今の所この分割方法に落ち着いている。
+この方法は僕の Home Manager の使い方に合っていると思っている。
+
+この記事ではざっくりと nix ファイルの内容を説明した。より詳細は [ryota2357/dotfiles](https://github.com/ryota2357/dotfiles/tree/f1e6a967070a71e816b38200614c90714254d622) を確認して欲しい。
+分割方法が変わった時はまた記事を書こうと思う。
