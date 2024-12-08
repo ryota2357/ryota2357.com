@@ -1,7 +1,7 @@
 ---
 import "destyle.css";
 
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 
 import Footer from "@/components/Footer.astro";
 import HeadSEO from "@/components/HeadSEO.astro";
@@ -64,7 +64,7 @@ const canonicalURL = new URL(
         }
       }
     </style>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <Header />
