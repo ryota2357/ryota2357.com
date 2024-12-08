@@ -1,9 +1,11 @@
 ---
 title: "dotfiles での Nix 設定分割"
 postdate: "2024-12-07T18:06"
-update: "2024-12-07T18:06"
+update: "2024-12-08T14:28"
 tags: ["Nix"]
 ---
+
+> この記事は [ryota2357 Advent Calendar 2024](https://adventar.org/calendars/10716) の 7 日目の記事です。
 
 dotfiles に Nix を導入してから 4 ヶ月ほどたった。
 大量に設定をしているわけではないが、それでもファイルを分割・整理しないとやや管理が大変となる。
