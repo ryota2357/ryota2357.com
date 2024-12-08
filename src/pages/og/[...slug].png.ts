@@ -43,7 +43,7 @@ const generatorOtherPage = new OgImageGenerator(imageSize, {
 
 export function getStaticPaths() {
   const blogPostData = allBlogCollection.map((post) => ({
-    slug: path.join("blog/", post.slug),
+    slug: path.join("blog/", post.id),
     text: post.data.title,
   }));
 
@@ -53,7 +53,7 @@ export function getStaticPaths() {
   }));
 
   const blogYearData = allBlogCollection
-    .map((post) => util.getYearFromSlug(post.slug))
+    .map((post) => util.getYearFromSlug(post.id))
     .filter((year, index, self) => self.indexOf(year) === index)
     .map((year) => ({
       slug: path.join("/blog/", year),

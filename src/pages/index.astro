@@ -66,7 +66,7 @@ const top12BlogTagList = [...allBlogTagList]
                 .slice(0, 7)
                 .map((post) => (
                   <li>
-                    <a href={path.join("/blog", post.slug, "/")}>
+                    <a href={path.join("/blog", post.id, "/")}>
                       {post.data.title}
                     </a>
                   </li>

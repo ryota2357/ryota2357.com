@@ -27,7 +27,7 @@ export function GET(context: APIContext) {
   const site = context.site?.origin; // Astro.site is not defined here.
 
   const blogPost: SitemapItem[] = allBlogCollection.map((post) => ({
-    url: new URL(path.join("/blog/", post.slug, "/"), site),
+    url: new URL(path.join("/blog/", post.id, "/"), site),
     lastmod: post.data.update,
     priority: 0.7,
   }));
@@ -38,7 +38,7 @@ export function GET(context: APIContext) {
   }));
 
   const blogYear: SitemapItem[] = allBlogCollection
-    .map((post) => util.getYearFromSlug(post.slug))
+    .map((post) => util.getYearFromSlug(post.id))
     .filter((year, index, self) => self.indexOf(year) === index)
     .map((year) => ({
       url: new URL(path.join("/blog/", year, "/"), site),

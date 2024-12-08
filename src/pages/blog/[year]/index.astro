@@ -12,7 +12,7 @@ export const getStaticPaths = (() => {
   const allYearPosts = (() => {
     const ret: allYearPostsRecord = {};
     allBlogCollection.map((post) => {
-      const year = util.getYearFromSlug(post.slug);
+      const year = util.getYearFromSlug(post.id);
       if (ret[year]) {
         ret[year].push(post);
       } else {

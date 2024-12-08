@@ -1,6 +1,7 @@
 ---
 import path from "node:path";
 import { Image } from "astro:assets";
+import { render } from "astro:content";
 import { util, allBlogCollection } from "@/content";
 import Base from "@/layouts/Base.astro";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
@@ -16,8 +17,8 @@ export const getStaticPaths = (() => {
     .sort((a, b) => a.data.postdate.valueOf() - b.data.postdate.valueOf())
     .map((post, index, self) => ({
       params: {
-        year: util.getYearFromSlug(post.slug),
-        slug: util.stripYearFromSlug(post.slug),
+        year: util.getYearFromSlug(post.id),
+        slug: util.stripYearFromSlug(post.id),
       },
       props: {
         post,
@@ -30,7 +31,7 @@ export const getStaticPaths = (() => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post, prevPost, nextPost } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
 ---
 
@@ -71,14 +72,14 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
         <ul class="mx-0 my-4 grid grid-flow-col justify-between gap-3">
           <li>
             {prevPost && (
-              <a href={path.join("/blog", prevPost.slug, "/")} rel="prev">
+              <a href={path.join("/blog", prevPost.id, "/")} rel="prev">
                 ← {prevPost.data.title}
               </a>
             )}
           </li>
           <li>
             {nextPost && (
-              <a href={path.join("/blog", nextPost.slug, "/")} rel="next">
+              <a href={path.join("/blog", nextPost.id, "/")} rel="next">
                 {nextPost.data.title} →
               </a>
             )}
