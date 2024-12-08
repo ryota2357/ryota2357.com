@@ -1,7 +1,7 @@
 ---
 title: "Astro.jsをv4からv5にアップグレードした"
 postdate: "2024-12-08T15:28"
-update: "2024-12-08T15:28"
+update: "2024-12-08T15:34"
 tags: ["Astro"]
 ---
 
@@ -61,7 +61,7 @@ Content Layger に移行せず、Content Collection を引き続き使用する�
  });
 ```
 
-### CollectionEntry<C>["slug"] を CollectionEntry<C>["id"] にする
+### `CollectionEntry<C>["slug"]` を `CollectionEntry<C>["id"]` にする
 
 Content Layger にすると、`getCollection` で取得できていたオブジェクトから `slug` フィールドがなくなる。
 おそらく型エラーがでているはず (もしくは astro check とかででるはず) なので、それらを `id` フィールドに書き換える。
