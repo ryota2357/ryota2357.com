@@ -16,11 +16,11 @@ export const allBlogTagList = (() => {
 })();
 
 export const util = {
-  getYearFromSlug: (slug: CollectionEntry<"blog">["slug"]) => {
+  getYearFromSlug: (slug: CollectionEntry<"blog">["id"]) => {
     const { year } = valitateBlogSlug(slug);
     return year;
   },
-  stripYearFromSlug: (slug: CollectionEntry<"blog">["slug"]) => {
+  stripYearFromSlug: (slug: CollectionEntry<"blog">["id"]) => {
     const { slug: slugBody } = valitateBlogSlug(slug);
     return slugBody;
   },

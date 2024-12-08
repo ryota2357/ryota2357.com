@@ -15,7 +15,7 @@ export function GET(context: APIContext) {
       .map((post) => ({
         title: post.data.title,
         pubDate: post.data.postdate,
-        link: new URL(path.join("/blog/", post.slug), context.site).pathname,
+        link: new URL(path.join("/blog/", post.id), context.site).pathname,
       }))
       .sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf()),
   });

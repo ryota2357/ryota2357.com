@@ -25,7 +25,7 @@ get_file_path() {
       continue
     fi
 
-    file_path="../src/content/blog/${year}/${slug}/index.md"
+    file_path="../content/blog/${year}/${slug}/index.md"
     if [[ -f "$file_path" ]]; then
       read_prompt="Already exists. Input another slug: "
       continue
