@@ -1,13 +1,13 @@
 ---
 title: "Astro.jsをv4からv5にアップグレードした"
 postdate: "2024-12-08T15:28"
-update: "2024-12-08T15:34"
+update: "2024-12-09T13:05"
 tags: ["Astro"]
 ---
 
 > この記事は [ryota2357 Advent Calendar 2024](https://adventar.org/calendars/10716) の 8 日目の記事です。
 
-5 日ほど前の 12/5 に [Astro.js v5 がリリース](https://astro.build/blog/astro-5/)された。
+5 日ほど前の 12/3 に [Astro.js v5 がリリース](https://astro.build/blog/astro-5/)された。
 この v5 の一番の注目点は Content Layer であろう。
 
 このサイト現在は Astro.js で構築されている。
