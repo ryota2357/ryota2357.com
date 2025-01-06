@@ -1,7 +1,7 @@
 ---
 title: "treefmt-nix を flake.nix から使ってみる"
 postdate: "2024-12-17T00:18"
-update: "2024-12-17T00:18"
+update: "2025-01-07T00:24"
 tags: ["Nix"]
 ---
 
@@ -14,7 +14,7 @@ $ nix fmt
 Passing directories or non-Nix files (such as ".") is deprecated and will be unsupported soon, please use https://treefmt.com/ instead, e.g. via https://github.com/numtide/treefmt-nix
 ```
 
-僕は flake.nix は次のようにして、`nixfmt-rfc-style` を直接指定していた。このようにするのではなく、treefmt 等を使えとのことである。
+僕は flake.nix は次のようにして、`nixfmt-rfc-style` を直接指定していた。こうではなく、treefmt 等を使えとのことである。
 
 ```nix
 {
@@ -54,9 +54,9 @@ README.md では url を指定しているだけであったが、`inputs.nixpkg
 
 続いて、`outputs.formatter.<system>` に treefmt-nix の設定を記述していく。
 提として、この `<system>` の部分を省略し、かつ複数 system 対応した記述をしたい。
-僕個人は対象プロジェクトにおおじて次の 2 つを使い分けているので紹介する。
+僕個人は対象プロジェクトに応じて次の 2 つを使い分けているので紹介する。
 
-1 つめは [flake-utils](https://github.com/numtide/flake-utils) を使う。依存が増える代わりに `outputs.formatter` 以外も設定できるので便利である。
+1 つ目は [flake-utils](https://github.com/numtide/flake-utils) を使う。依存が増える代わりに `outputs.formatter` 以外も設定できるので便利である。
 
 ```nix
 {
@@ -76,7 +76,7 @@ README.md では url を指定しているだけであったが、`inputs.nixpkg
 }
 ```
 
-依存を増やしたくない場合、 `nixpkgs.lib.genAttrs` を使えば良い。
+2 つ目は依存を増やしたくない場合である。この場合は `nixpkgs.lib.genAttrs` を使えば良い。
 
 ```nix
 {
@@ -115,7 +115,7 @@ README.md では url を指定しているだけであったが、`inputs.nixpkg
 
 この例の通り、フォーマットの対象外にしたいものは `settings.formatter.<name>.excludes` を使えばいい。
 
-また、全てのフォーマッタに対して `excludes` したい、つまり global な excludes の設定の記述方法は次のようにしてできる。
+また、全てのフォーマッタに対して `excludes` したい、つまり global な excludes の設定の記述は次のようにしてできる。
 
 ```nix
 {
@@ -129,3 +129,18 @@ README.md では url を指定しているだけであったが、`inputs.nixpkg
 これは [treefmt-nix#171](https://github.com/numtide/treefmt-nix/issues/171) に書かれていた。(README にも書いておいてほしい...)
 
 `excludes` 以外のオプションに関しては [treefmt-nix/programs/](https://github.com/numtide/treefmt-nix/tree/0ce9d149d99bc383d1f2d85f31f6ebd146e46085/programs) 以下に各フォーマッタのデフォルト構成・オプションが記述されているのでそれを見ながら設定すれば良さそうである。
+
+例えば、`prettier` を markdown フォーマット専用として使いたい場合は次のようにする。
+ここで注意なのは `programs.prettier.includes` に `[ "*.md" ]` を設定するという点である。
+オプションを `settings.formatter.<name>` に設定するのか、`programs.<name>` に設定するのかは各フォーマッタの構成を見る必要がありそうだ。
+
+```nix
+{
+  programs = {
+    prettier = {
+      enable = true;
+      includes = [ "*.md" ];
+    };
+  };
+}
+```
