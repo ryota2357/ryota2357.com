@@ -17,7 +17,7 @@ jobs:
           deno-version: v2.x
 
       - name: Update dependencies
-        run: deno run -A jsr:@molt/cli $(find ./util/ -name "*.ts") --write
+        run: deno run -A jsr:@molt/cli $(find ./scripts/ -name "*.ts") --write
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
