@@ -8,5 +8,10 @@
     }
   },
   "exclude": ["./node_modules", "./dist"],
-  "include": [".astro/types.d.ts", "./src/**/*", "./plugins/*"]
+  "include": [
+    ".astro/types.d.ts",
+    "./src/**/*",
+    "./plugins/*",
+    "astro.config.ts"
+  ]
 }
