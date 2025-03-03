@@ -20,11 +20,12 @@
           packages = with pkgs; [
             nodejs_22
             pnpm
+
             astro-language-server
             tailwindcss-language-server
+            nil
           ];
         };
-        formatter = pkgs.nixfmt-rfc-style;
       }
     );
 }
