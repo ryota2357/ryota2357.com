@@ -1,7 +1,7 @@
 ---
 title: "プログラミング用合成フォント PleckJP の合成スクリプトの実装解説"
 postdate: "2023-08-25T01:05"
-update: "2023-08-25T01:05"
+update: "2025-03-07T17:58"
 tags: ["FontForge", "Python"]
 ---
 
@@ -11,6 +11,8 @@ tags: ["FontForge", "Python"]
 [**https://github.com/ryota2357/PleckJP**](https://github.com/ryota2357/PleckJP)
 
 なお、解説するスクリプトは [PleckJP v1.1.0](https://github.com/ryota2357/PleckJP/tree/v1.1.0) 現在のものである。
+
+(一部コードに誤りが見つかったため、そのコードは異なるバージョンのものを掲載しているが、その場合はバージョンを明記し、さらに v1.1.0 のコードも掲載している)
 
 ## 参考
 
@@ -200,6 +202,27 @@ ascent と descent に値をセットした後、em に値をセットすると 
 
 拡大と移動の行列を使ってスケーリングを行う。
 
+**v1.5.0にて修正**
+
+```python
+def font_resize_all_width(font, new_width: int) -> None:
+    for glyph in font.glyphs():
+        if glyph.width == new_width:
+            continue
+        # NOTE: U+0000（NULL）is always width 0
+        # ref: https://typedrawers.com/discussion/5068/advance-widths-for-c0-control-glyphs
+        if glyph.unicode == 0:
+            glyph.width = 0
+            continue
+        if glyph.width != 0:
+            fix_scale_mat = psMat.scale(float(new_width) / glyph.width)
+            glyph.transform(fix_scale_mat)
+        glyph.width = new_width
+```
+
+<details>
+<summary>v1.1.0のコード</summary>
+
 ```python
 def font_resize_all_width(font, new_width: int) -> None:
     for glyph in font.glyphs():
@@ -211,9 +234,11 @@ def font_resize_all_width(font, new_width: int) -> None:
         glyph.width = new_width
 ```
 
+</details>
+
 `glyph.width` が 0 であるグリフが存在することに注意すること。分岐してあげないとゼロ割り算をすることになる。
 
-width が 0 のグリフは `new_width` にせず、0 のままにしておいた方がいいのかもしれないが、今のところ問題は起きてないので、全部 `new_width` にする実装となっている。
+width が 0 のグリフは `new_width` にせず、0 のままにしておいた方がいいのかもしれないが、今のところ問題は起きてないので、~~全部~~ NULL文字以外全て (2025/3/7修正) `new_width` にする実装となっている。
 ちゃんと確認した方がいいかもしれない。(面倒...)
 
 <!-- prettier-ignore -->
