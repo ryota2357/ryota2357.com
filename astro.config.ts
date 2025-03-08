@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 import partytown from "@astrojs/partytown";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 // import remarkPrint from "./plugins/remark-print"
 import remarkResolveRelativePageLink from "./plugins/remark-resolve-relative-page-link";
@@ -9,7 +9,6 @@ import remarkResolveRelativePageLink from "./plugins/remark-resolve-relative-pag
 export default defineConfig({
   site: "https://ryota2357.com",
   integrations: [
-    tailwind(),
     partytown({
       config: {
         forward: ["dataLayer.push"],
@@ -22,6 +21,9 @@ export default defineConfig({
       // [remarkPrint, { node: true, vfile: false }],
       [remarkResolveRelativePageLink, { rootDirName: "blog" }],
     ],
+  },
+  vite: {
+    plugins: [tailwindcss()],
   },
   redirects: {
     "/blog/2021/fatal-error-wchar.h-file-not-found/":
