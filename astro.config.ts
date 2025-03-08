@@ -17,6 +17,10 @@ export default defineConfig({
   ],
   markdown: {
     smartypants: false,
+    remarkRehype: {
+      footnoteLabel: " ",
+      footnoteLabelTagName: "hr",
+    },
     remarkPlugins: [
       // [remarkPrint, { node: true, vfile: false }],
       [remarkResolveRelativePageLink, { rootDirName: "blog" }],
