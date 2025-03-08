@@ -41,8 +41,9 @@ $ npm i sass gatsby-plugin-sass
 
 ```scss
 html {
-  font-family: YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
-    "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
+  font-family:
+    YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3",
+    "ＭＳ ゴシック", sans-serif;
   background-color: #f6f5f5;
   color: #242424;
   font-size: 14px;
