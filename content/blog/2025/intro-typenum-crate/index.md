@@ -23,7 +23,7 @@ tags: ["Rust"]
 ```rust
 use typenum::{Sum, U2, P3, N2};
 
-// U: 符号なし整数（最も一般的）
+// U: 符号なし整数
 type A = U2;    // 2
 
 // P: 正の整数
