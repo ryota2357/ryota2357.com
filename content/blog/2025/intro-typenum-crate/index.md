@@ -1,16 +1,15 @@
 ---
 title: "Rust の型レベル数ライブラリ typenum の紹介"
-postdate: "2025-03-16T23:30"
-update: "2025-03-16T23:30"
+postdate: "2025-03-17T16:31"
+update: "2025-03-17T16:31"
 tags: ["Rust"]
-draft: true
 ---
 
 [`typenum`](https://crates.io/crates/typenum) は、コンパイル時に評価される型レベルの数を扱う crate である。
 
 型レベル数の主な用途として次のようなものがある。
 
-- 配列の長さを型として表現する
+- 配列の長さを型として表現
 - 単位（メートル、キログラムなど）を型として扱う際の数値計算
 - Typestate パターンでの状態遷移の順序関係の表現
 
@@ -49,6 +48,8 @@ assert_eq!(<Y as Integer>::to_i32(), -8);
 ```
 
 ## 型レベル数の実装
+
+[`typenum` v1.18.0](https://github.com/paholg/typenum/tree/v1.18.0) の実装を見ていく。
 
 ### 型レベル数の表現方法
 
@@ -185,15 +186,22 @@ where
 
 実際に型レベルでの加算がどのように解決されるのか、具体例を見ていこう。
 
-### 例1: Sum<U1, U2>
+### 例1: `Sum<U1, U2>`
 
 `Sum<U1, U2>`（1 + 2）の計算過程を追ってみる。
-まず型の表現を確認する。
+
+まず、`Sum` はエイリアスで [src/operator_alias.rs#L38](https://github.com/paholg/typenum/blob/v1.18.0/src/operator_aliases.rs#L38) に定義されている。
+
+```rust
+pub type Sum<A, B> = <A as Add<B>>::Output
+```
+
+次に `U1` と `U2` の定義を思い出そう。
 
 - `U1` = `UInt<UTerm, B1>` (2 進数: 1)
 - `U2` = `UInt<UInt<UTerm, B1>, B0>` (2 進数: 10)
 
-この状態で `U1 + U2` ではまず次の実装が適用される。
+この状態で `U1 + U2` (`Sum<U1, U2>`) ではまず次の実装が適用される。
 
 ```rust
 /// `UInt<Ul, B1> + UInt<Ur, B0> = UInt<Ul + Ur, B1>`
@@ -233,7 +241,7 @@ U1 + U2
 
 最後の `UInt<UInt<UTerm, B1>, B1>` は `U3` そのものであり、`Sum<U1, U2>` から `U3` が得られていることが確認できた。
 
-### 例2: Sum<U3, U2>
+### 例2: `Sum<U3, U2>`
 
 より複雑な例として `Sum<U3, U2>`（3 + 2）の場合を見てみよう。
 
@@ -247,8 +255,11 @@ U3 + U2
 
 `UInt<UTerm, B1> + UInt<UTerm, B1>` の部分で繰り上がりが発生し、`UInt<UInt<UTerm, B1>, B0>` という結果になっていることに注目しよう。
 
-## 発展的な話題
+## 型レベル数の活用例
 
-このような型レベルプログラミングの技術は、特に Typestate パターンを実装する際の状態遷移の制御に有用である。
+型レベル数をどのように活用しているかは、[`typenum` の逆依存](https://crates.io/crates/typenum/reverse_dependencies) crate を見れば多く知ることができる。
+
+ここで 1 つ例を挙げるなら、Typestate パターンを実装する際の状態遷移の制御に有用である。
 例えば、「状態 A は状態 B より前でなければならない」といった順序関係を、型レベル数を使って表現できる。
-Typestate パターンを用いた具体的な実装例については、別の記事で詳しく解説する予定である。
+
+なお、別の記事にて、Typestate パターンと Builder パターンを組み合わせた実装例を解説する予定である。
