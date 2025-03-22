@@ -1,7 +1,7 @@
 ---
 title: "Rust の型レベル数ライブラリ typenum の紹介"
 postdate: "2025-03-17T16:31"
-update: "2025-03-17T16:31"
+update: "2025-03-22T23:03"
 tags: ["Rust"]
 ---
 
@@ -262,4 +262,5 @@ U3 + U2
 ここで 1 つ例を挙げるなら、Typestate パターンを実装する際の状態遷移の制御に有用である。
 例えば、「状態 A は状態 B より前でなければならない」といった順序関係を、型レベル数を使って表現できる。
 
-なお、別の記事にて、Typestate パターンと Builder パターンを組み合わせた実装例を解説する予定である。
+~~なお、別の記事にて、Typestate パターンと Builder パターンを組み合わせた実装例を解説する予定である。~~  
+書きました：[Rust で型レベル数 (typenum) を使った Typestate な Builder パターンの実装サンプル](../typenum-typestate-builder-sample)
