@@ -1,18 +1,10 @@
-<!--?xml version="1.0" encoding="utf-8"?-->
-<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Original from https://icooon-mono.com/12421-タグアイコン11/ -->
 
-<!-- Downloaded from https://icooon-mono.com/12421-タグアイコン11// -->
-
-<svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="width: 256px; height: 256px; opacity: 1;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#4B4B4B;}
-</style>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve">
 <g>
-	<path class="st0" d="M473.705,237.612l-9.57-9.57L246.694,10.592L38.295,0l10.593,208.408l227.011,227.011L473.705,237.612z
-		 M66.848,28.561l168.073,8.548l200.503,200.502L275.899,397.128L75.396,196.625L66.848,28.561z" style="fill: rgb(36, 36, 36);"></path>
-	<polygon class="st0" points="52.572,288.672 52.575,288.672 52.572,288.663 	" style="fill: rgb(36, 36, 36);"></polygon>
-	<polygon class="st0" points="275.899,473.709 71.713,269.514 52.575,288.672 275.899,512 464.135,323.764 444.994,304.623 	" style="fill: rgb(36, 36, 36);"></polygon>
-	<path class="st0" d="M125.945,87.658c-12.338,12.347-12.338,32.333,0,44.671c12.338,12.338,32.333,12.338,44.671,0
-		c12.338-12.338,12.338-32.324,0-44.671C158.278,75.32,138.282,75.32,125.945,87.658z" style="fill: rgb(36, 36, 36);"></path>
+	<path d="M473.705,237.612l-9.57-9.57L246.694,10.592L38.295,0l10.593,208.408l227.011,227.011L473.705,237.612z M66.848,28.561l168.073,8.548l200.503,200.502L275.899,397.128L75.396,196.625L66.848,28.561z"></path>
+	<polygon points="52.572,288.672 52.575,288.672 52.572,288.663"></polygon>
+	<polygon points="275.899,473.709 71.713,269.514 52.575,288.672 275.899,512 464.135,323.764 444.994,304.623"></polygon>
+	<path d="M125.945,87.658c-12.338,12.347-12.338,32.333,0,44.671c12.338,12.338,32.333,12.338,44.671,0 c12.338-12.338,12.338-32.324,0-44.671C158.278,75.32,138.282,75.32,125.945,87.658z"></path>
 </g>
 </svg>
