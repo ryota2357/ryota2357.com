@@ -1,12 +1,11 @@
 ---
-import path from "node:path";
 import { render } from "astro:content";
-import { util, allBlogCollection } from "@/content";
-import Base from "@/layouts/Base.astro";
+import path from "node:path";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import dayjs from "dayjs";
-
+import { allBlogCollection, util } from "@/content";
 import TagIcon from "@/images/tag-icon.svg";
+import Base from "@/layouts/Base.astro";
 
 import "@/styles/blog-post-markdown-code.scss";
 import "@/styles/blog-post-markdown.scss";

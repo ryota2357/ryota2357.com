@@ -1,20 +1,19 @@
 import path from "node:path";
-import {
-  type ImageSize,
-  OgImageGenerator,
-  type TextStyle,
-} from "@/../plugins/og-image-generator";
-import { util, allBlogCollection, allBlogTagList } from "@/content";
 import { loadImage } from "@napi-rs/canvas";
 import type {
   APIContext,
   InferGetStaticParamsType,
   InferGetStaticPropsType,
 } from "astro";
-
+import {
+  type ImageSize,
+  OgImageGenerator,
+  type TextStyle,
+} from "@/../plugins/og-image-generator";
 import IBMPlexSansJP from "@/assets/IBMPlexSansJP-SemiBold.otf";
 import PagePNG from "@/assets/page.png";
 import PostPNG from "@/assets/post.png";
+import { allBlogCollection, allBlogTagList, util } from "@/content";
 
 function resolveObjPath(objPath: string) {
   const distRelative = path.join("./dist", objPath);

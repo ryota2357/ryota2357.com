@@ -1,9 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BlogList from "@/components/BlogList.astro";
-import { util, allBlogCollection } from "@/content";
-import Base from "@/layouts/Base.astro";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import BlogList from "@/components/BlogList.astro";
+import { allBlogCollection, util } from "@/content";
+import Base from "@/layouts/Base.astro";
 
 type Year = `${number}${number}${number}${number}`;
 type allYearPostsRecord = Record<Year, CollectionEntry<"blog">[]>;
