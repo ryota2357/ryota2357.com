@@ -1,7 +1,6 @@
-import { defineConfig } from "astro/config";
-
 import partytown from "@astrojs/partytown";
 import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
 
 // import remarkPrint from "./plugins/remark-print"
 import remarkResolveRelativePageLink from "./plugins/remark-resolve-relative-page-link";
