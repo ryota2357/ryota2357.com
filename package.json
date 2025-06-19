@@ -9,7 +9,7 @@
     "format": "prettier --write '**/*.{astro,ts,js,cjs,json,yaml,md}'",
     "format:check": "prettier --check '**/*.{astro,ts,js,cjs,json,yaml,md}'",
     "check": "biome check './'",
-    "check:apply": "biome check --apply './'",
+    "check:write": "biome check --write './'",
     "textlint": "textlint './content/**/*.md'",
     "textlint:fix": "textlint --fix './content/**/*.md'",
     "new-post": "./scripts/new-post",
