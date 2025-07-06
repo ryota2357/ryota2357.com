@@ -1,7 +1,7 @@
 ---
 title: "tmuxへのattachをいい感じにするコマンドを作った (tmux-connect)"
 postdate: "2024-10-27T15:58"
-update: "2024-11-21T20:09"
+update: "2025-07-06T17:20"
 tags: ["tmux", "Bash"]
 ---
 
@@ -134,7 +134,7 @@ select_session() {
   # Prompt the user to select a session, re-prompt if the selection is out of range
   local choice
   while true; do
-    read -rp "Enter a number: " choice
+    read -erp "Enter a number: " choice
     if [[ $choice =~ ^[0-9]+$ && $choice -ge 1 && $choice -le $i ]]; then
       break
     else
