@@ -23,6 +23,7 @@
 
             astro-language-server
             tailwindcss-language-server
+            vscode-css-languageserver
             nil
           ];
         };
