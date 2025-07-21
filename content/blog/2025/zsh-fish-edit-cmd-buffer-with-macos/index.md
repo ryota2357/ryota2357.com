@@ -1,7 +1,7 @@
 ---
 title: "zsh/fishで入力中のコマンドをvimで編集する方法とmacOSでの対応"
 postdate: "2025-07-21T21:35"
-update: "2025-07-21T21:35"
+update: "2025-07-21T21:48"
 tags: ["Zsh", "fish", "Vim", "Neovim"]
 ---
 
@@ -54,7 +54,7 @@ bindkey '^x^e' edit-command-line
 >    else
 > ```
 >
-> From: [https://github.com/fish-shell/fish-shell/share/functions/\_\_fish_anyeditor.fish](https://github.com/fish-shell/fish-shell/blob/db0f9c1d53e64721251663fc513ccfb16fed4f13/share/functions/__fish_anyeditor.fish)
+> From: [fish-shell/fish-shell/share/functions/\_\_fish_anyeditor.fish](https://github.com/fish-shell/fish-shell/blob/db0f9c1d53e64721251663fc513ccfb16fed4f13/share/functions/__fish_anyeditor.fish)
 
 以下のように書くと <key>Ctrl-x</key> + <key>Ctrl-e</key> で vim が開くようになる。
 
