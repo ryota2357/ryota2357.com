@@ -1,12 +1,12 @@
 ---
 title: "zsh/fishで入力中のコマンドをvimで編集する方法とmacOSでの対応"
-postdate: "2025-07-21T19:27"
-update: "2025-07-21T19:27"
+postdate: "2025-07-21T21:35"
+update: "2025-07-21T21:35"
 tags: ["Zsh", "fish", "Vim", "Neovim"]
 ---
 
 [zshで入力中のコマンドをすぐにNeovimで編集する方法](https://dev.classmethod.jp/articles/eetann-zle-edit-command-line/) という記事があった。
-zsh についてはこの記事に書いてある通りであるが、fish でも同じことができたのと、折り返し設定について macOS ではもう少しいい感じにする必要があったため、本記事ではその手順と設定を紹介する。
+zsh についてはこの記事に書いてある通りであるが、fish でも同じことができたのと、折り返し設定について macOS ではもう少しいい感じにする必要があったため、本記事ではその設定を紹介する。
 
 ## zsh での設定
 
