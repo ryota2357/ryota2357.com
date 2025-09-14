@@ -56,7 +56,7 @@ export function getStaticPaths() {
     .filter((year, index, self) => self.indexOf(year) === index)
     .map((year) => ({
       slug: path.join("/blog/", year),
-      text: `Blog.${year},`,
+      text: `Blog.${year}`,
     }));
 
   return [
