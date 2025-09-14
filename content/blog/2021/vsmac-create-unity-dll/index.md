@@ -71,7 +71,7 @@ using UnityEngine;
 
 ### コンパイラ設定
 
-初期のの設定では、DLL にすると XML コメントが表示されないので変更します。
+初期の設定では、DLL にすると XML コメントが表示されないので変更します。
 
 ```txt
 TestLibrary/
