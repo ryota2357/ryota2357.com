@@ -22,7 +22,7 @@
     "@napi-rs/canvas": "0.1.80",
     "@tailwindcss/postcss": "4.1.13",
     "@tailwindcss/vite": "4.1.13",
-    "astro": "5.13.7",
+    "astro": "5.14.3",
     "dayjs": "1.11.18",
     "destyle.css": "4.0.1",
     "sass": "1.92.1",
