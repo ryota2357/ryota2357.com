@@ -1,7 +1,7 @@
 ---
 title: "シェルの$PATHから特定のパスを取り除く方法"
 postdate: "2025-10-16T10:53"
-update: "2025-10-16T10:53"
+update: "2025-10-16T11:45"
 tags: ["Bash", "Zsh"]
 ---
 
@@ -121,7 +121,7 @@ bash の `read -a` は、zsh では `read -A` に相当するため、zsh では
 
 もちろん、この `path` の問題は bash では発生しないので、bash なら `path_i` とする必要はない。
 
-## 他記事で提案されていたものの問題点
+## 他記事で提案されていたスクリプトの問題点
 
 まず、「[$PATH から特定のパスだけを削除する - Qiita](https://qiita.com/ironsand/items/10e28d7589298090ec23)」のコードは次であった。
 
@@ -229,15 +229,13 @@ path_remove '/path\with\backslashes'
 echo "$PATH"
 ```
 
-これを ./test-path_remove として保存しを実行すると、
+これを ./test-path_remove として保存しを実行すると、パスの一部が破壊されてしまうことが確認できる。
 
 ```console
 $ ./test-path_remove
 /usr/bin:/path\with\backslashes:/bin
 /usr/bin:/pathwithbackslashes:/bin
 ```
-
-となり、パスが壊れてしまうことが確認できる。
 
 ## 付録
 
