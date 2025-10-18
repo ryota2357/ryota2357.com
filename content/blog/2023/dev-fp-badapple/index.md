@@ -76,7 +76,7 @@ int main(int argc, char* args[]) {
 これは次に説明する `Renderer` が使用している。
 `Frame` も `Movie` と同様、`Frame_new(width, height)` としてインスタンスを生成、`Frame_.*(&self, ...)` でメソッドが呼べる。
 
-最後に `Renderer` であるが、これは `Frame` に色を塗る delegate、関数オプジェクトである(実際は関数ポインタ)。
+最後に `Renderer` であるが、これは `Frame` に色を塗る delegate、関数オブジェクトである(実際は関数ポインタ)。
 `void Renderer(frame, time)` という関数であり、引数で受け取った frame (`Frame` のインスタンス)に自由に図形や文字などを塗ることが出来る。引数の time は自身(`Renderer`)が有効になってからの経過フレーム数であり、これを使うことでアニメーション等が実装できるようになっている。
 
 これらを踏まえて先ほどの `main()` を見てみる。
@@ -223,7 +223,7 @@ src/badapple
     └── bitset128.c
 ```
 
-Bad Apple!! のフレームデータは [Reyansh-Khobragade/bad-apple-nodejs](https://github.com/Reyansh-Khobragade/bad-apple-nodejs) を使わせてもらってい、[src/badapple/assets/frame.txt](https://github.com/ryota2357/fp15-project/blob/main/src/badapple/assets/frames.txt) に配置してある。フレームデータの 1 部を次に示す。
+Bad Apple!! のフレームデータは [Reyansh-Khobragade/bad-apple-nodejs](https://github.com/Reyansh-Khobragade/bad-apple-nodejs) を使わせてもらっており、[src/badapple/assets/frame.txt](https://github.com/ryota2357/fp15-project/blob/main/src/badapple/assets/frames.txt) に配置してある。フレームデータの 1 部を次に示す。
 
 ```txt
 256
@@ -363,7 +363,7 @@ badapple モジュールでの加工済み frame.txt と同様に行頭に `c:` 
 この情報があることで、C 側でマルチバイト文字を適切に読み込めるようにしている。
 
 なお、詳細は実装コード([src/typography/src/font_bitmap.c](https://github.com/ryota2357/fp15-project/blob/main/src/typography/src/font_bitmap.c))を見てもらいたいのだが、C 側で読み込んだマルチバイト文字は `Char32` という共用体を用いることでいい感じに数値としても扱えるようにしている。
-数値として扱い、適当な素数で数値を圧縮することで、文字とその文字のビットマップの key-value テープルを配列を用いて実現している。
+数値として扱い、適当な素数で数値を圧縮することで、文字とその文字のビットマップの key-value テーブルを配列を用いて実現している。
 
 `font_bitmap_init()` と `font_bitmap_get()` で分けた理由は badapple モジュールと同じく、デバッグしやすいように、が理由である。
 

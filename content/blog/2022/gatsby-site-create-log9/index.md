@@ -17,7 +17,7 @@ tags: ["Gatsby"]
 ちまちま変更したものをログとして残す。  
 siteMetadata とか、about ページの変更は残さない。随時変わるから。
 
-## 見出しに id をふる
+## 見出しに id を振る
 
 gatsby-remark-autolink-headers を追加する。
 
@@ -50,7 +50,7 @@ Game -> GameDev
 
 ## css
 
-気になってはいたたんだけど、そこまで問題じゃなかったから放置してたやつ。  
+気になってはいたんだけど、そこまで問題じゃなかったから放置してたやつ。  
 `style/style.scss` にするか `style/markdown.scss` にするか悩んだけど、`style/style.scss` に追加した。
 
 ```scss
@@ -76,7 +76,7 @@ h2 タグの `margin-top` を 3rem にした。
 ## Safari 対応
 
 safari で確認してたら about ページのプロフィール画像が円形になってなかった。  
-調べたら `z-index` なるものを追加すると治るらしい。  
+調べたら `z-index` なるものを追加すると直るらしい。  
 一応 `position: relative` も添えた。
 
 ```jsx
@@ -96,7 +96,7 @@ const About = ({ data, location }) => {
 ...
 ```
 
-## gatsby-plugin-manifes
+## gatsby-plugin-manifest
 
 よくわからないけど[ここ](https://takumon.com/2018/10/08/)を参考にして設定した。
 

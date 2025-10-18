@@ -7,7 +7,7 @@ tags: ["Homebrew"]
 
 # 問題
 
-`homebrew/homebrew-cask` には新しいバージョンの Cask が置いてあるのに、`brew update --fource` 等を行っても手元の `brew upgrade` で更新されない。
+`homebrew/homebrew-cask` には新しいバージョンの Cask が置いてあるのに、`brew update --force` 等を行っても手元の `brew upgrade` で更新されない。
 
 `brew outdated` を実行すると、`homebrew/homebrew-cask` には新しいバージョンが追加されているので、更新情報が来るのを期待するが、何も出力されない(全て最新になっていると言われる)。
 
@@ -34,7 +34,7 @@ Core cask tap JSON: 13 Apr 05:24 UTC       # ここは更新されてる...
 
 `HOMEBREW_NO_INSTALL_FROM_API` は開発用のものらしいので、更新したかった Cask を更新できたら、`brew update-reset` などを実行した方が良さそう。
 
-なぜ `brew update --fource` で更新を入れられないのか不明だが、上記方法で更新できた。
-数時間後に `brew update-reset && brew update --fource` をしたら `brew config` の Core cask tap last commit も更新された。
+なぜ `brew update --force` で更新を入れられないのか不明だが、上記方法で更新できた。
+数時間後に `brew update-reset && brew update --force` をしたら `brew config` の Core cask tap last commit も更新された。
 
 リポジトリの更新を反映するには少し時間をおく必要があるのかもしれない。

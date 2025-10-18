@@ -7,7 +7,7 @@ tags: ["Vim", "Neovim"]
 
 python 依存をなくすため、defx から ddu-ui-filer に乗り換えをした。
 
-アイコン表示がないのは寂しいし、ファイルタイプを一目で確認できないのはひょっと不便なので作って見た。  
+アイコン表示がないのは寂しいし、ファイルタイプを一目で確認できないのはちょっと不便なので作ってみた。  
 [defx-icons](https://github.com/kristijanhusak/defx-icons)を参考に作成している。
 
 **https://github.com/ryota2357/ddu-column-icon_filename**
@@ -26,9 +26,9 @@ call ddu#custom#patch_global({
 
 詳しくは[help](https://github.com/ryota2357/ddu-column-icon_filename/blob/main/doc/ddu-column-icon_filename.txt)を。
 
-## columParam について
+## columnParam について
 
-デファクトスタンダード(?)colum である[ddu-column-filename](https://github.com/Shougo/ddu-column-filename)とは異なる Param を用意した。その中でも filename にはなかった空白を制御する 2 つの Param について。
+デファクトスタンダード(?)な column である[ddu-column-filename](https://github.com/Shougo/ddu-column-filename)とは異なる Param を用意した。その中でも filename にはなかった空白を制御する 2 つの Param について。
 
 ### span
 
@@ -36,7 +36,7 @@ filename ではアイコンとファイル名の間のサイズを変更でき�
 
 アイコンを表示する場合、これをコントロールする必要がある。これはアイコン表示幅が使用しているフォントによって異なることがあるから。(strwidth()では 1 幅になるけど表示は 2 幅になるとかがある)
 
-次の画像は空白を 1 個つけているけど空白があるようには見えない。アイコン表示幅が 2 であるために空白が消えているように見えてしまう。(フォントは Cica を使用)
+次の画像は空白を 1 個つけているが、空白があるようには見えない。アイコン表示幅が 2 であるために空白が消えているように見えてしまう。(フォントは Cica を使用)
 
 ![spanの説明](./param-span1.png)
 
@@ -45,7 +45,7 @@ filename ではアイコンとファイル名の間のサイズを変更でき�
 ![spanの説明2](./param-sapn-font.png)
 
 これに対処するため `span` という Param を作った。  
-`iconWidth` という名前の Param で空白を追加することでコントロールしてもよかったのだが、今変更したいものはアイコンの幅ではなく、「アイコンとファイル名の間隔」なのではと思い `span` という名前で「アイコンとファイル名の間隔」を指定することにした。
+`iconWidth` という名前の Param で空白を追加することでコントロールしてもよかったのだが、今変更したいものはアイコンの幅ではなく、「アイコンとファイル名の間隔」ではないかと思い `span` という名前で「アイコンとファイル名の間隔」を指定することにした。
 
 ### padding
 
@@ -68,7 +68,7 @@ defx-icons とは異なるアイコンを使用しているものがある。
 
 <!-- textlint-enable ja-technical-writing/no-doubled-joshi -->
 
-対応しているファイルタイプは[ここの下の方](https://github.com/ryota2357/ddu-column-icon_filename/blob/main/denops/%40ddu-columns/icon_filename.ts)に定義してある。主要なものは対応するようにしたつもり。対応していないものに気がついた時は随時追加していく。
+対応しているファイルタイプは[ここの下の方](https://github.com/ryota2357/ddu-column-icon_filename/blob/main/denops/%40ddu-columns/icon_filename.ts)に定義してある。主要なものは対応するようにしたつもり。対応していないものに気がついたときは随時追加していく。
 
 ## 最後に
 

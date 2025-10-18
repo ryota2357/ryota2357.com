@@ -5,13 +5,13 @@ update: "2021-05-23T09:13"
 tags: ["Dart"]
 ---
 
-dart SKD のエラー・例外の一覧がなかったので。
+Dart SDK のエラー・例外の一覧がなかったので。
 [https://api.dart.dev/stable/2.13.1/index.html](https://api.dart.dev/stable/2.13.1/index.html)
 
 <details>
   <summary>エラーと例外の違い</summary>
 
-> Dart には Exception と Error の型があり、また数多くのあらかじめ定義されたそれらの副型がある。無論自分自身の例外を定義することも可能である。しかしながら、Dart のプログラムは非 null オブジェクト（単に Exception と Error のオブジェクトでなく）を例外としてスローし得る。Error と Exception に関しては、基本的に Error とそのサブクラスはプログラム・エラーであり、そのプログラムは修正が必要である。一方非エラーの Exception は実行時エラーである。これは通常プログラムであらかじめスローされるのを防止出来ない。  
+> Dart には Exception と Error の型があり、また数多くのあらかじめ定義されたそれらのサブタイプがある。無論自分自身の例外を定義することも可能である。しかしながら、Dart のプログラムは非 null オブジェクト（単に Exception と Error のオブジェクトだけでなく）を例外としてスローし得る。Error と Exception に関しては、基本的に Error とそのサブクラスはプログラム・エラーであり、そのプログラムは修正が必要である。一方非エラーの Exception は実行時エラーである。これは通常プログラムであらかじめスローされるのを防止できない。  
 > [Dart 2 Language Guide](https://www.cresc.co.jp/tech/java/Google_Dart2/language/exceptions/exceptions.html)
 
 </details>

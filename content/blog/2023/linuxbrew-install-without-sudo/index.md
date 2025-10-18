@@ -14,7 +14,7 @@ Linuxbrew は `sudo` なしでも入れることはできる。ちょっと公�
 `$HOME` (`~/`) 下にインストールする。  
 `$HOME` は僕の学校の PC だと、`/home0/y2022/学籍番号/` みたいなのになってる。
 
-まず、[Homebrew/brew](https://github.com/Homebrew/brew) を好きなディレクトに clone する。
+まず、[Homebrew/brew](https://github.com/Homebrew/brew) を好きなディレクトリに clone する。
 ここでは `~/.linuxbrew` に clone する。
 
 ```sh

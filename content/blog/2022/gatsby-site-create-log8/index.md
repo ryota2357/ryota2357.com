@@ -68,7 +68,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === `MarkdownRemark`) {
-    // ファイルパスからurlを生成
+    // ファイルパスからURLを生成
     // https://www.gatsbyjs.com/plugins/gatsby-source-filesystem/#createfilepath
     const value = createFilePath({ node, getNode });
 
@@ -135,19 +135,19 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 ## URL リンクの修正
 
-`gatsby-node.js` を整理してわかったのだけど、`exports.onCreateNode` で各ブログ記事の url を生成しているみたい。
+`gatsby-node.js` を整理してわかったのだけど、`exports.onCreateNode` で各ブログ記事の URL を生成しているみたい。
 
-現在、ブログ記事の url は `/blog/YYYY/hoge-fuga` って感じで先頭に `blog` とつけている。  
+現在、ブログ記事の URL は `/blog/YYYY/hoge-fuga` って感じで先頭に `blog` とつけている。  
 そのためいろいろなところで、
 
 ```jsx
 <Link to={`/blog${node.fields.slug}`>...
 ```
 
-というようにめんどくさいことをしている。  
+というように面倒くさいことをしている。  
 このことは [2.サイトのディレクトリ変更](../gatsby-site-create-log2/) を見るとよくわかると思う。
 
-url の生成方法がわかったのでいい感じに修正する。
+URL の生成方法がわかったのでいい感じに修正する。
 
 ### URL 生成部分の修正
 
@@ -290,7 +290,7 @@ export const pageQuery = graphql`
 ```
 
 次に、`gatsby-node.js` で tag ページを生成する。  
-set 使って全てのブログ記事の frontmatter から tag を収集してる。
+Set 使って全てのブログ記事の frontmatter から tag を収集してる。
 
 ```jsx
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -407,7 +407,7 @@ const TagsTemplate = ({ data, location, pageContext }) => {
           }}
         >
           {data.allMarkdownRemark.nodes.map((post, i) => {
-            // 最後の一個以外ボーダーで区切り線を入れる
+            // 最後の1個以外ボーダーで区切り線を入れる
             if (i >= data.allMarkdownRemark.nodes.length - 1)
               return <Card post={post} key={i} />;
             return (
@@ -461,7 +461,7 @@ Pages にはちゃんとあるのに...
 
 まあ、それはそうなんだけど。
 
-エスケープとか面倒なので frontmatter の tags の `C#` を無くして `CSharp` にした。  
+エスケープとか面倒なので frontmatter の tags の `C#` をなくして `CSharp` にした。  
 ついでにタグの名前が他は全て UpperCamel なので `gatsby` を `Gatsby` にしておいた。
 
 ## タグの一覧ページの作成
@@ -490,7 +490,7 @@ const Tag = ({ data, location }) => {
       <h1>Tag</h1>
       <ul>
         {counter.keys
-          .sort() // 文字列ソート(アルファベット, 50音)
+          .sort() // 文字列ソート(アルファベット, 五十音)
           .sort((a, b) => counter.get(b) - counter.get(a)) // 数が多い順のソート
           .map((key) => (
             <li style={{ margin: "1rem 0" }}>

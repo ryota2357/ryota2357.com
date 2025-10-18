@@ -26,10 +26,10 @@ tags: ["Neovim", "Vim", "LaTeX", "Event"]
 ## 1. はじめに
 
 初めまして、1 年の ryota2357 です。先に書いておくと、これは「Vim・Neovim 入門」の投稿ではありません。
-Vim・Noevim の説明から始まりますが、本題は僕の設定を紹介する、自己満足な投稿です。
+Vim・Neovim の説明から始まりますが、本題は僕の設定を紹介する、自己満足な投稿です。
 
-また、最近では Neovim の設定に Lua を使うことが増えていますが、ここではすべて Vim script で掲載してます。
-それと、僕の vimrc(init.lua) は https://github.com/ryota2357/dotfiles/tree/master/vim においてあるので見たい人はどうぞ。
+また、最近では Neovim の設定に Lua を使うことが増えていますが、ここではすべて Vim script で掲載しています。
+それと、僕の vimrc(init.lua) は https://github.com/ryota2357/dotfiles/tree/master/vim においてあるので、見たい人はどうぞ。
 
 それでは、よろしくお願いします。
 
@@ -39,13 +39,13 @@ Vim・Noevim の説明から始まりますが、本題は僕の設定を紹介�
 
 ### 1.1 なぜ Neovim なのか
 
-VSCode, Emacs, Atom, ... などたくさんのエディタがある中でなぜ Neovim か、と問われても、具体的な利点は言えません。サックっと環境構築したいなら VSCode を使うことを勧めます。
-僕が Neovim を利用する理由はただ「Vim 系 Editor が好きだから」に限ります。じゃあ Vim (not Neovim) ではないの？って言われると、それはそれで色々あるのですが。
+VSCode, Emacs, Atom, ... などたくさんのエディタがある中でなぜ Neovim か、と問われても、具体的な利点は言えません。サクッと環境構築したいなら VSCode を使うことを勧めます。
+僕が Neovim を利用する理由はただ「Vim 系エディタが好きだから」に限ります。じゃあ Vim (not Neovim) ではないの？って言われると、それはそれで色々あるのですが。
 
-それはさておき、Vim の利点を上げましょう。
+それはさておき、Vim の利点を挙げましょう。
 
 Vim は非常に柔軟なカスタマイズが可能です。設定ファイルをプログラミング言語(Vim script / Lua)で書きます。
-それに加え、日本語版も含めドキュメントが非常に充実してるため、初学者に優しい作りとなってます。
+それに加え、日本語版も含めドキュメントが非常に充実しているため、初学者に優しい作りとなっています。
 また、Vim 系の操作は非常に強力です。
 モードという概念、ホームポジションから離れないカーソル移動、独自のキーマッピング、テキストオブジェクトと呼ばれる概念の組み合わせで高速・快適にテキストを編集可能です。
 さらに、Vim のプラグインは作りやすく、組み合わせやすいです。初めから高度な知識は必要ありません。Node が必要、なんてこともありません。ファイル１つを適切な場所に置くだけでプラグイン開発を開始できます。
@@ -93,19 +93,20 @@ vimtex がどのようなプラグインなのかは次の図 lervag/vimtex の 
 それでも iTerm2 での日本語入力はメモ帳に入力するよりは少し不便かもしれません。Emacs のように IME がターミナルに組み込まれているわけではありませんから。
 しかし、それも問題ないのです。「vim-skk/skkeleton」というプラグインがあります。SKK という入力システムを提供する Vim プラグインです。
 
-次に「vim-skk/skkeleton」の REAME から画像を引用してきました。
+次に「vim-skk/skkeleton」の README から画像を引用してきました。
 
 ![vim-skk/skkeleton](./SKK.png)
 
-僕はこれを使わず、macOS 標準の IME で入力してます。けど、ここで紹介するのに使ったことないのは良くないな、と思って先日少し使ってみました。
+僕はこれを使わず、macOS 標準の IME で入力しています。しかし、ここで紹介するのに使ったことがないのは良くないな、と思って先日少し使ってみました。
+
 結論から言うと、僕には合いませんでした。
 skkeleton、SKK の入力は非常に素晴らしいと思います。実際、通常の変換(スペースバー押して変換するやつ)と SKK の変換どちらを使いたいか、と言われれば僕は SKK を選びます。
 しかし、僕が普段使っているライブ変換の方が僕は快適だと感じました。
-SKK が僕に合わないと感じた最大の理由は「送り仮名」です。僕は送り仮名を考えながら打つのがしんどかったです。慣れれば SKK はとても快適に入力できると思います。僕はもう少し使ってみようと思ってます。
+SKK が僕に合わないと感じた最大の理由は「送り仮名」です。僕は送り仮名を考えながら打つのがしんどかったです。慣れれば SKK はとても快適に入力できると思います。僕はもう少し使ってみようと思っています。
 
 ### 2.2 option と autocmd
 
-続いて日本語を入力する上で設定しておくといいかも？ってやつです。
+続いて、日本語を入力する上で設定しておくといいかも？ってやつを紹介します。
 
 まず option からです。
 
@@ -122,7 +123,7 @@ set matchpairs+=（:）,「:」,『:』,【:】,［:］,＜:＞
 
 " スクロールの余裕を設定
 " scrolloff は縦スクロール、sidescrolloff は横スクロールです。
-" 縦スクロールは普通のプログラム書く時の設定と同じでいと思いますが、
+" 縦スクロールは普通のプログラム書くときの設定と同じで良いと思いますが、
 " 横スクロールは大きめにしておくと良いでしょう。日本語は 1 文字で 2 幅です。
 set scrolloff=3
 set sidescrolloff=10
@@ -160,7 +161,7 @@ function! FixPunctuation() abort
 endfunction
 ```
 
-この autocmd は tex ファイルを保存時に「、」と「。」を「,」と「.」に変換し、末尾の不要なスペースを削除するものです。
+この autocmd は tex ファイルを保存する際に「、」と「。」を「,」と「.」に変換し、末尾の不要なスペースを削除するものです。
 
 例えば、次のようなテキストがあったとき、
 
@@ -188,8 +189,8 @@ augroup END
 ```
 
 \ と ? で、検索をした後、IME を off にするものです。
-プログラミングの時は検索対象が英語なのでいらないのですが、日本語書いているときは検索で IME on にして `Enter` とかで Cmdline を離れることがあるかと思います。
-その時 IME が off になってれば、すぐに `i` や `n` が入力できるので快適になります。
+プログラミングのときは検索対象が英語なのでいらないのですが、日本語を書いているときは検索で IME on にして `Enter` とかで Cmdline を離れることがあるかと思います。
+そのとき IME が off になっていれば、すぐに `i` や `n` が入力できるので快適になります。
 
 ## 3. Completion
 
@@ -208,24 +209,24 @@ ddc.vim の README の 1 行目を見てみましょう。
 
 さて、少し逸れますが注目したいのは「deno-powered」です。Deno です。
 
-Deno を知らない人向けに言うと、Deno とは Node.js の反省を踏まえて、Node.js の作者本人が作成している新しい Javascript/Typescript のランタイムのことです。Node.js と異なり、node_modules を生成しませんし、package.json もありません。
-詳細は省きますが Deno はその設計のため、インストール・アップデートが容易さ、依存関係の自動解決、スクリプト言語のような使い心地、環境を汚しにくい、などの多くの素晴らしい特徴を持っています。
+Deno を知らない人向けに言うと、Deno とは Node.js の反省を踏まえて、Node.js の作者本人が作成している新しい JavaScript/TypeScript のランタイムのことです。Node.js と異なり、node_modules を生成しませんし、package.json もありません。
+詳細は省きますが Deno はその設計のため、インストール・アップデートが容易、依存関係の自動解決、スクリプト言語のような使い心地、環境を汚しにくい、などの多くの素晴らしい特徴を持っています。
 この Deno を Vim でも使えるようにするプラグインが「vim-denops/denops.vim」です。lambdalisue さん中心に開発されています。(lambdalisue さんは「jupyter-vim-binding」「fern.vim」「gina.vim」の作者です。)
 
 次の引用は denops.vim のリポジトリの Description です。
 
 > An ecosystem of Vim/Neovim which allows developers to write cross-platform plugins in Deno
 
-denops.vim によって、Vim プラグインを Typescript で実装できるようになりました。
-これの嬉しいことは、より親しみやすい言語で開発ができるのはもちろん、Typescirpt で作られてきた Vim 以外の分野のライブラリ資源も活用できると言うことです。
-さらに、Typescript で書かれた部分は別のプロセスで動き、非同期処理も十分に行えるため、Vim への負荷を下げ、 Vim script よりも高速に処理が行えます。
+denops.vim によって、Vim プラグインを TypeScript で実装できるようになりました。
+これの嬉しいことは、より親しみやすい言語で開発ができるのはもちろん、TypeScript で作られてきた Vim 以外の分野のライブラリ資源も活用できるということです。
+さらに、TypeScript で書かれた部分は別のプロセスで動き、非同期処理も十分に行えるため、Vim への負荷を下げ、 Vim script よりも高速に処理が行えます。
 つまり、denops.vim を用いて作成されるプラグインは、実行速度・開発速度の両面で高速化されるのです。
 
 話を戻します、ddc.vim は denops.vim を用いて作成されたプラグインです。
 ddc.vim は、設定なしでは何も動きません。自分で 1 から設定する必要があります。さらに、他の補完プラグインにはよくあるスニペット展開や floating window によるプレビューといった機能もありません。
 純粋に補完機能のみを提供するプラグインです。
-しかしそのおかけで、自分が欲しい機能のみを取り入れた自動補完機能を作っていけるようになっています。
-より詳しく ddc.vim を知りたい人は Shougo さん本人による記事、https://zenn.dev/shougo/articles/ddc-vim-beta を読んでみるとその設計思想や特養がよくわかると思います。
+しかしそのおかげで、自分が欲しい機能のみを取り入れた自動補完機能を作っていけるようになっています。
+より詳しく ddc.vim を知りたい人は Shougo さん本人による記事、https://zenn.dev/shougo/articles/ddc-vim-beta を読んでみるとその設計思想や特徴がよくわかると思います。
 
 ### 3.2 ddc.vim の設定
 
@@ -283,7 +284,7 @@ Vim (not Neovim) の人は「prabirshrestha/vim-lsp」と「mattn/vim-lsp-settin
 
 1 つ目は PDF ビューワーについてです。
 
-僕は Skim を使っています、macOS 専用です。SynctTeX や自動リロード、ダークモードに対応している、シンプルで使いやすい PDF ビューワーです。
+僕は Skim を使っています、macOS 専用です。SyncTeX や自動リロード、ダークモードに対応している、シンプルで使いやすい PDF ビューワーです。
 
 ![skim のダークモード](./skim-dark.png)
 
@@ -312,7 +313,7 @@ vim-skim-synctex は基本的には問題なく使えると思うのですが、
 
 ちなみに、SyncTeX と set mouse=a は相性が悪いです。
 SyncTeX の backward-search では PDF ビューワーをクリックする必要があります。その時、ウィンドウのフォーカスは Vim を起動しているターミナルではなく、PDF ビューワーに当てられます。
-backward-search の後、Vim で編集を再開するにはターミナルをクリックしてフォーカスを戻す必要があります。この時 mouse=a が設定されていると、せっかく backward-search で移動したマウスカーソルがフォーカスを戻すためにクリックした場所へ移動していまします。
+backward-search の後、Vim で編集を再開するにはターミナルをクリックしてフォーカスを戻す必要があります。この時 mouse=a が設定されていると、せっかく backward-search で移動したマウスカーソルがフォーカスを戻すためにクリックした場所へ移動してしまいます。
 これを解決するには、次のような autocmd を用意すればいい感じにできます。
 
 ```vim
@@ -323,12 +324,12 @@ augroup Mouse
 augroup END
 
 function! s:OnFocusGained() abort
-  autocmd CursorMoved,CursorMovedI,ModeChanged,WinScrolled * ++once call s:EnebleLeftMouse()
-  noremap <LeftMouse> <Cmd>call <SID>EnebleLeftMouse()<CR>
-  inoremap <LeftMouse> <Cmd>call <SID>EnebleLeftMouse()<CR>
+  autocmd CursorMoved,CursorMovedI,ModeChanged,WinScrolled * ++once call s:EnableLeftMouse()
+  noremap <LeftMouse> <Cmd>call <SID>EnableLeftMouse()<CR>
+  inoremap <LeftMouse> <Cmd>call <SID>EnableLeftMouse()<CR>
 endfunction
 
-function! s:EnebleLeftMouse() abort
+function! s:EnableLeftMouse() abort
   noremap <LeftMouse> <LeftMouse>
   inoremap <LeftMouse> <LeftMouse>
 endfunction

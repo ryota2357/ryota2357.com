@@ -37,7 +37,7 @@ bindkey '^x^e' edit-command-line
 ## fish での設定
 
 `edit_command_buffer` を使用する。
-このコマンドにより起動するエディタは zsh と同じく環境変数 1. `VISUAL` 2. `EDITOR` の優先順位で参照する。
+このコマンドにより起動するエディタは zsh と同じく、環境変数 1. `VISUAL` 2. `EDITOR` の優先順位で参照する。
 
 > ```fish
 >     set -l editor (__fish_anyeditor)
@@ -62,7 +62,7 @@ bindkey '^x^e' edit-command-line
 bind ctrl-x,ctrl-e 'edit_command_buffer'
 ```
 
-## vim の設定 (wrap設定)
+## Vim の設定 (wrap設定)
 
 普段、`nowrap` でコーディングしている。しかし、コマンド編集の時は `wrap` の方が (ワンライナーなどを編集する時とかで) 都合がいい。
 つまり、`edit-command-line`, `edit_command_buffer` で開いた場合は `wrap` にしたいので、以下のようにする。
@@ -88,7 +88,7 @@ lrwxr-xr-x  1 root wheel   11  5  4 14:39 tmp -> private/tmp/
 lrwxr-xr-x  1 root wheel   11  5  4 14:39 var -> private/var/
 ```
 
-また、`BufRead` のパターンの理由はソースコード読むとわかる。
+また、`BufRead` のパターンの理由はソースコードを読むとわかる。
 
 入力中のコマンドの内容が書かれたファイルは：
 

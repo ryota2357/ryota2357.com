@@ -6,7 +6,7 @@ tags: ["Rust"]
 ---
 
 > これは [UEC Advent Calendar 2023](https://adventar.org/calendars/8704) の18日目の記事です。  
-> いい感じのネタがなかったので、普通に技術記事書きます。
+> 良い感じのネタがなかったので、普通に技術記事書きます。
 
 「[Simple but Powerful Pratt Parsing](https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html)」にて Pratt パーサーの実装は意外と簡単だとわかった。
 そこで Pratt パーサーの実装練習に次のような処理ができる電卓を実装してみる。
@@ -46,7 +46,7 @@ expr:  A   +   B   *   C
 power:   1   2   3   4
 ```
 
-の様になる。ここで、Binding Power に従い項を結合すると、
+のようになる。ここで、Binding Power に従い項を結合すると、
 
 ```txt
 expr:  A   +   (B   *  C)
@@ -85,7 +85,7 @@ power:                     1   2
 ここまで中置演算子の例を見てきたが前置・後置演算子についても同様である。
 例は省略するが、 Binding Power を `((), y)` や `(x, ())`（`()` は空な値）とすれば良い。
 
-この様な Binding Power を考慮したパースを行うプログラムは次の擬似コードの様に実装すれば良い。
+このような Binding Power を考慮したパースを行うプログラムは次の擬似コードのように実装すれば良い。
 （実際には処理の切り出し方が異なっていたり、演算子によってさらなる処理が必要なこともあるが、処理の流れは変わらない。）
 
 ```python
@@ -132,7 +132,7 @@ def expr_bp(tokens: トークン列, min_bp: 数値) -> Expr | 数値:
     return lhs
 ```
 
-関数 `expr_bp()` の形は次の様になっていることがわかる。
+関数 `expr_bp()` の形は次のようになっていることがわかる。
 
 ```txt
 function expr_bp(tokens, min_bp)
@@ -644,7 +644,7 @@ impl Token {
         }
 ```
 
-これで関数呼び出しが処理できる様になった。
+これで関数呼び出しが処理できるようになった。
 呼び出せる関数は、`eval()` 内で定義した `abs()` と `sqrt()` である。
 
 ```txt

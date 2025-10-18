@@ -11,7 +11,7 @@ tags: ["Astro"]
 この v5 の一番の注目点は Content Layer であろう。
 
 このサイト現在は Astro.js で構築されている。
-今回 v5 がリリースされたので Content Collection で管理・生成されていた各記事を Content Layger に移行した。
+今回 v5 がリリースされたので Content Collection で管理・生成されていた各記事を Content Layer に移行した。
 また、`ViewTransitions` コンポーネントの名前変更と、TypeScript 型ファイルの移動の対応も行った。
 これら v4 から v5 への移行で行ったことを書いていく。
 
@@ -22,27 +22,27 @@ Renovate のバージョンアップ PR にコミットを繋げている。
 
 ![PRのコミット](./commits.png)
 
-## Content Layger
+## Content Layer
 
-Experimental の時に Content Layer を使用した日本語記事があったのでこれを参考に導入した。コミットは [f6362ca](https://github.com/ryota2357/ryota2357.com/commit/f6362ca3a8719c6b4d86d9b72326fe9825438d6e)。
+Experimental の時に Content Layer を使用した日本語記事があったので、これを参考に導入した。コミットは [f6362ca](https://github.com/ryota2357/ryota2357.com/commit/f6362ca3a8719c6b4d86d9b72326fe9825438d6e)。
 
 [Astro4.14 Content Layer API - 趣味のNote](https://ubanis.com/note/astro414_content/)
 
 ### 記事(markdown)の移動
 
-Content Collection の時は Content を置けるのが src/content 以下に制限されていたが、Content Layger ではそれがなくなった。
+Content Collection の時は Content を置けるのが src/content 以下に制限されていたが、Content Layer ではそれがなくなった。
 これまでブログ記事は src/content/blog においていたのを content/blog に移動した。
 
-なお、Content Layger の設定は Content Collection の時と同様、src/content/config.ts で行うので、これは動かしてはいけない。
+なお、Content Layer の設定は Content Collection の時と同様、src/content/config.ts で行うので、これは動かしてはいけない。
 
-また、僕は Content Collection で記事以外に src/Content/works/ 以下で yaml ファイルを管理している。
-今回これらの Content Layger への移行は行わなかった。
-このことから、Astro.js v5 では Content Collection と Content Layger の共存可能であることがわかった。
+また、僕は Content Collection で記事以外に src/content/works/ 以下で yaml ファイルを管理している。
+今回これらの Content Layer への移行は行わなかった。
+このことから、Astro.js v5 では Content Collection と Content Layer の共存可能であることがわかった。
 
 ### src/content/config.ts の修正
 
-記事を Content Layger に移行するため該当部分を修正する。
-Content Layger に移行せず、Content Collection を引き続き使用するものに関しては修正する必要はない。
+記事を Content Layer に移行するため該当部分を修正する。
+Content Layer に移行せず、Content Collection を引き続き使用するものに関しては修正する必要はない。
 
 ```diff
  import { defineCollection, z } from "astro:content";
@@ -63,7 +63,7 @@ Content Layger に移行せず、Content Collection を引き続き使用する�
 
 ### `CollectionEntry<C>["slug"]` を `CollectionEntry<C>["id"]` にする
 
-Content Layger にすると、`getCollection` で取得できていたオブジェクトから `slug` フィールドがなくなる。
+Content Layer にすると、`getCollection` で取得できていたオブジェクトから `slug` フィールドがなくなる。
 おそらく型エラーがでているはず (もしくは astro check とかででるはず) なので、それらを `id` フィールドに書き換える。
 
 ```diff
@@ -142,5 +142,5 @@ src/env.d.ts から .astro/types.d.ts に移動された。コミットは [0f6a
 ## 最後に
 
 Astro.js は v3 の頃に [Gatsby.js から移行](../../2023/migrate-to-astro-from-gatsby)したので、今回でメジャーバージョンアップは 2 回目だった。
-v3 -> v4 は `get` を `GET` に変えるくらいの小さなものだったと記憶しているが、今回 v4 -> v5 は Content Layger への移行もありコードをいくつか書き換えた。
+v3 -> v4 は `get` を `GET` に変えるくらいの小さなものだったと記憶しているが、今回 v4 -> v5 は Content Layer への移行もありコードをいくつか書き換えた。
 しかしその作業は[参考記事](https://ubanis.com/note/astro414_content/)の存在もありスムーズに行えた。

@@ -49,7 +49,7 @@ dotfiles に Nix を導入してから 4 ヶ月ほどたった。
 僕は Home Manager も使用しているが、これに寄せることはせず [ファイル配置ツールとして使用している](../nix-home-manager-as-a-file-placement-tool/)。
 そのため、vim や各種 shell の設定は通常(?)のシンボリックリンクを使用した dotfiles の構成と同じようにそれぞれのディレクトリに格納されている。
 
-nix/ 以下が Nix の各種設定が書かれておいて、flake.nix から `import` さてている。flake.nix から順に見ていく。
+nix/ 以下に Nix の各種設定が書かれていて、flake.nix から `import` されている。flake.nix から順に見ていく。
 
 ## flake.nix
 
@@ -107,7 +107,7 @@ flake.nix は次のような感じである。
 ```
 
 上から `nix run`, `nix fmt`, nix-darwin, Home Manager の設定を `import` している。
-flake.nix では使用するものを列挙するのみで、具体的な設定をせず、その設定に必要なものを注入するにとどめ、各 Nix ツールの独立を明確にしている。
+flake.nix では使用するものを列挙するのみで、具体的な設定はせず、その設定に必要なものを注入するにとどめ、各 Nix ツールの独立を明確にしている。
 
 ## nix/ 以下
 

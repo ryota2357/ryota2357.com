@@ -5,7 +5,7 @@ update: "2021-05-22T13:26"
 tags: ["Flutter"]
 ---
 
-flutter web やってようとした時のこと。
+flutter web やろうとした時のこと。
 
 新規プロジェクトを作成しようとしたら、flutter sdk のパスを入れろと言われた。  
 brew cask で flutter sdk 入れてたのでどこにあるのかわからなかった。

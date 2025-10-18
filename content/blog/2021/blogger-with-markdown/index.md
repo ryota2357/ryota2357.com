@@ -7,7 +7,7 @@ tags: ["Blogger"]
 
 ## 目標
 
-class="markdown"を指定したタグでマークダウンがかけるようにする。
+class="markdown"を指定したタグでマークダウンが書けるようにする。
 
 ## 作業
 
@@ -17,11 +17,11 @@ marked.js を使います。
 
 以下のスクリプトを blogger の  
 「テーマ > カスタマイズのプルダウン > HTML を編集」  
-にて、body ダグの終わりの直前に記述します。
+にて、body タグの終わりの直前に記述します。
 
 ```html
 <!-- Marked.js -->
-<src ="https://cdn.jsdelivr.net/npm/marked/lib/marked.min.js" />
+<script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.min.js" />
 <script>
   let area = document.getElementById(&#39;markdown-renderer&#39;);
   let markdown = document.querySelectorAll(&#39;.markdown&#39;);
@@ -34,7 +34,7 @@ marked.js を使います。
 <!-- textlint-disable ja-technical-writing/no-doubled-joshi-->
 
 上と同じく「HTML を編集」から css を追加します。
-markdwon-renderer に対しての css は必須ではありません。  
+markdown-renderer に対しての css は必須ではありません。  
 display:none を設定することで、markdown クラス内の文字を非表示にします。
 
 <!-- textlint-enable ja-technical-writing/no-doubled-joshi-->
@@ -54,7 +54,7 @@ display:none を設定することで、markdown クラス内の文字を非表�
 
 ### テンプレートの作成
 
-必須ではないですが、毎回ダグを面倒なので新規記事の作成時に自動で追加されるようにします。  
+必須ではないですが、毎回タグを書くのが面倒なので新規記事の作成時に自動で追加されるようにします。  
 「設定 > 投稿 > 投稿テンプレート」  
 に以下を追加します。
 
@@ -64,7 +64,7 @@ display:none を設定することで、markdown クラス内の文字を非表�
 ```
 
 </script>
-  
+
 ## カスタマイズ
 
 ここまでで目標は達成しました。  
@@ -79,7 +79,7 @@ jQuery を使いました。
 <!-- jQuery -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" />
 
-<!-- a_tag opsion -->
+<!-- a_tag option -->
 <script>
   $(&#39;#markdown-renderer a&#39;).attr(&#39;target&#39;, &#39;_blank&#39;);
 </script>

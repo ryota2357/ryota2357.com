@@ -7,7 +7,7 @@ tags: ["Dart"]
 
 Dart 公式の meta.dart と dart:core ライブラリに定義されているアノテーションの一覧が欲しかったので作った。
 
-日本語はかなりざっくり書いてるので、原文ドキュメントを読むことも推奨。
+日本語はかなりざっくり書いているので、原文ドキュメントを読むことも推奨。
 
 [sdk/pkg/analysis_server/test/mock_packages/meta/lib/meta.dart](https://github.com/dart-lang/sdk/blob/5208456b5af83120d0cb21c6a2a4d2f07e9c89e6/pkg/analysis_server/test/mock_packages/meta/lib/meta.dart)
 
@@ -17,10 +17,10 @@ Dart 公式の meta.dart と dart:core ライブラリに定義されている�
 @Deprecated('message')
 ```
 
-を使用することが推奨されいる。[provide_deprecation_message](https://dart-lang.github.io/linter/lints/provide_deprecation_message.html)
+を使用することが推奨されている。[provide_deprecation_message](https://dart-lang.github.io/linter/lints/provide_deprecation_message.html)
 
 <details>
-  <summary>ドキュメント</summary> 
+  <summary>ドキュメント</summary>
 Create a deprecation annotation which specifies the migration path and expiration of the annotated feature.
 The message argument should be readable by programmers, and should state an alternative feature (if available) as well as when an annotated feature is expected to be removed
 </details>
@@ -39,9 +39,9 @@ The @override annotation applies to instance methods, instance getters, instance
 Further lints  can be used to enable more warnings based on @override annotations.
 </details>
 
-インターフェースメンバーをオーバーライドすることを示す。  
+インターフェースメンバをオーバーライドすることを示す。  
 親に存在しないメンバをオーバーライドしようとした時(typo とか)に警告を出してくれる。  
-このアノテーションにより、オーバーライドできてることをアナライザーが保証してくれる。
+このアノテーションにより、オーバーライドできていることをアナライザーが保証してくれる。
 
 ### @alwaysThrows
 
@@ -79,7 +79,7 @@ Tools, such as the analyzer, can also expect this contract to be enforced; that 
 
 ### @checked
 
-よくわからかったので deepl 翻訳そのまま。
+よくわからなかったので DeepL 翻訳そのまま。
 
 <details>
   <summary>ドキュメント</summary>
@@ -104,7 +104,7 @@ the declaration is referenced by a package that has not explicitly indicated its
 アノテーションをつけた API は実験的(experimental)であることを示す。
 
 クラスにつけた場合はそのメンバも、ライブラリにつけるとライブラリ内のトップレベルメンバ全てにこのアノテーションをつけたことと同じになる。  
-サブクラスは親にアノテーションがついていても適応されない。
+サブクラスは親にアノテーションがついていても適用されない。
 
 ### @factory
 
@@ -131,11 +131,11 @@ a class that has this annotation or extends, implements or mixes in a class that
 </details>
 
 イミュータブルなクラスにつける。  
-もしイミュータブルになってなければ警告される。
+もしイミュータブルになっていなければ警告される。
 
 ### @isTest
 
-deepl 翻訳そのまま。
+DeepL 翻訳そのまま。
 
 <details>
   <summary>ドキュメント</summary>
@@ -150,7 +150,7 @@ IDE などのツールでは、このような関数の呼び出しをファイ�
 
 ### @isTestGroup
 
-deepl 翻訳そのまま。
+DeepL 翻訳そのまま。
 
 <details>
   <summary>ドキュメント</summary>
@@ -186,7 +186,7 @@ the annotation is associated with anything other than an instance method, or
 a method that overrides a method that has this annotation can return without invoking the overridden method.
 </details>
 
-メソッド m をオーバーライドした時、その親のメソッド m も呼びたす必要があることを示す。 またメソッド m はオーバーライドされたとしても、暗黙的にこのアノテーションがつけられる。
+メソッド m をオーバーライドした時、その親のメソッド m も呼び出す必要があることを示す。 またメソッド m はオーバーライドされたとしても、暗黙的にこのアノテーションがつけられる。
 
 ### @optionalTypeArgs
 
@@ -213,7 +213,7 @@ a reference to a member `m` which has this annotation, declared in a class or mi
 </details>
 
 アノテーションのつけられたメンバはサブクラスとライブラリ内のみ表示されるようになる。  
-上記以外でそのメンバか呼ばれた時はアナライザーが警告する。
+上記以外でそのメンバが呼ばれた時はアナライザーが警告する。
 
 ### @required
 
@@ -227,7 +227,7 @@ an invocation of a method or function does not include an argument corresponding
 </details>
 
 多分、`required` 修飾子と同じ。  
-パラメータが必須であることを示し、呼び元でそのパラメータが指定されてないなら警告する。
+パラメータが必須であることを示し、呼び元でそのパラメータが指定されていないなら警告する。
 
 ### @sealed
 

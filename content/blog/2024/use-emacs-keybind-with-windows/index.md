@@ -9,7 +9,7 @@ tags: ["Windows", "Emacs"]
 
 今年の夏のインターンでは初の Windows での開発だった。
 
-僕は普段 macOS で開発しているため、標準で使える Emacs キーバインド重宝している。
+僕は普段 macOS で開発しているため、標準で使える Emacs キーバインドを重宝している。
 メインのテキストエディタである Neovim 内でも使用しているほどである。
 
 Windows 開発初日、CapsLock と Control の位置が Windows と macbook で異なることもあり、無駄に CapsLock を打つため、まともにタイピングができず、かなりストレスだった。

@@ -5,7 +5,7 @@ update: "2023-05-26T10:08"
 tags: ["Rust"]
 ---
 
-書いてたら思いの他長くなったので分割した。
+書いていたら思いのほか長くなったので分割した。
 
 - [#1 Lexer と Parser の実装](../dfa-regex-with-rust-1/)
 - [#2 NFA と DFA を構築して Regex を作る](../dfa-regex-with-rust-2/)
@@ -18,8 +18,8 @@ tags: ["Rust"]
 
 [https://zenn.dev/canalun/articles/regexp_and_automaton](https://zenn.dev/canalun/articles/regexp_and_automaton)
 
-NFA、DFA について基本的な知識はここで知った。  
-オートマトンで正規表現を表現しようとした時、どうすればいいかのざっくりとしたイメージがわかるようになる。
+NFA、DFA について基本的な知識はここで得た。  
+オートマトンで正規表現を表現しようとした時、どうすればいいかのざっくりとしたイメージが掴めるようになる。
 
 ### 正規表現エンジンを作ろう 1 ~ 6
 

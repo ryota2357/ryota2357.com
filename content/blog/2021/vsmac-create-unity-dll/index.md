@@ -67,7 +67,7 @@ using UnityEngine;
 1. UnityHub を開いて、右上の歯車マークから「一般 ＞ Unity エディタフォルダー」の場所を確認します。
 1. VisualStudio「.NET アセンブリ ＞ 参照...」より 1 を参考に「Unity.app」を探します。
 1. 「Shift + ⌘ ＋ G」を押して*hoge/Unity.app/Contents/Managed*と入力します。(hoge の部分は各自)
-1. UnityEngine.dll」を開く
+4. 「UnityEngine.dll」を開く
 
 ### コンパイラ設定
 
@@ -81,7 +81,7 @@ TestLibrary/
 ```
 
 オプション ＞ ビルド ＞ コンパイラ ＞ XML ドキュメントを生成する  
-にテェックを入れます。  
+にチェックを入れます。  
 他にも「オーバーフローチェック」や「最適化を有効」などのオプションがあるので必要に応じて有効にします。
 
 ### Unity で利用可能にする
@@ -106,5 +106,5 @@ TestLibrary/
 
 ## 参考
 
-[Mac 版 Visual Studio で Unity 用の DLL を出力する方法](https://blog.ariari.biz/2018/03/17/post-72/)  
-[Visual Studio ユーザーが Release ビルドをするときに必ずやってほしい 2 つの設定](https://qiita.com/lainzero/items/27681ddc96638e33758b)
+- [Mac 版 Visual Studio で Unity 用の DLL を出力する方法](https://blog.ariari.biz/2018/03/17/post-72/)
+- [Visual Studio ユーザーが Release ビルドをするときに必ずやってほしい 2 つの設定](https://qiita.com/lainzero/items/27681ddc96638e33758b)

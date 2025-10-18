@@ -27,7 +27,7 @@ Glyph Pen を取得するサンプルコードを次に示す。
 glyphPen = font[key].glyphPen(replace=False)
 ```
 
-ちなみに `font[key]` については次の通りである。`font[0x30]` などどしてあげれば良い。
+ちなみに `font[key]` については次の通りである。`font[0x30]` などとしてあげれば良い。
 
 > **font.\_\_getitem\_\_(key)**  
 > If key is an integer, then returns the glyph at that encoding. If a string then returns the glyph with that name. May not be assigned to.
@@ -135,7 +135,7 @@ font.selection.none()
 
 ### 応用(?)
 
-`font.copy()`, `font.paste()`, `font.pasteInto()`, `font.correctDirection()` も使えば、より柔軟に削除するもできる。
+`font.copy()`, `font.paste()`, `font.pasteInto()`, `font.correctDirection()` も使えば、より柔軟に削除できる。
 
 次のスクリプトは小文字の「m」の真ん中の縦棒を短くする処理を行う関数である。
 

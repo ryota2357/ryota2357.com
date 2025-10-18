@@ -21,6 +21,6 @@ Xcode のアップデートでコマンドラインツールが消えてしま�
 
 ## それでも解決しない
 
-StackOverflow にて同様の質問がありましたので、それを参考に色々するのが良いかと思います。
+StackOverflow にて同様の質問がありましたので、そちらを参考にするのが良いかと思います。
 ↓
 [https://stackoverflow.com/questions/46342411/wchar-h-file-not-found](https://stackoverflow.com/questions/46342411/wchar-h-file-not-found)

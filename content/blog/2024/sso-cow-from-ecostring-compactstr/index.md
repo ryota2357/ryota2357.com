@@ -8,7 +8,7 @@ tags: ["Rust"]
 > この記事は[電通大生による電通大生のためのAdvent Calendar 2024 その2](https://adventar.org/calendars/10198) の 7 日目の記事です。
 
 現在私は [lean_string](https://crates.io/crates/lean_string) という Rust のライブラリ (crate) を開発している。
-この create では [LeanString](https://docs.rs/lean_string/latest/lean_string/struct.LeanString.html) という、Small String Optimization と Clone-on-Write を実装した文字列構造体を公開している。
+この crate では [LeanString](https://docs.rs/lean_string/latest/lean_string/struct.LeanString.html) という、Small String Optimization と Clone-on-Write を実装した文字列構造体を公開している。
 アイデア・実装手法については、 [ecow](https://crates.io/crates/ecow) と [compact_str](https://crates.io/crates/compact_str) という crate を参考にした。
 
 この記事では `LeanString` の実装にあたり参考にした [`ecow::EcoString`](https://docs.rs/ecow/0.2.3/ecow/string/struct.EcoString.html) と [`compact_str::CompactString`](https://docs.rs/compact_str/0.8.0/compact_str/struct.CompactString.html) がどのように実装されているのかについて簡単に書いていく。
@@ -83,7 +83,7 @@ SSO により使用するメモリ容量を抑えられただけでなく、ヒ�
 (`CompactString` ではこの分岐をできるだけ回避する最適化も取り入れてはいるが、それでも多くの操作で分岐が必要となっている)
 
 Rust の標準ライブラリの `String` は SSO を実装していない。
-SSO の恩恵を受けたい場合は自分で実装するか `CompactString` ([compact_str](https://crates.io/crates/compact_str)) や `EcoString` ([ecow](https://crates.io/crates/ecow))、`SmolStr` ([smol_str](https://crates.io/crates/smol_str)) の様な外部 crate を使用する必要がある。
+SSO の恩恵を受けたい場合は自分で実装するか `CompactString` ([compact_str](https://crates.io/crates/compact_str)) や `EcoString` ([ecow](https://crates.io/crates/ecow))、`SmolStr` ([smol_str](https://crates.io/crates/smol_str)) のような外部 crate を使用する必要がある。
 
 ちなみに C++ の `std::string` は SSO が実装されている。その実装方法は Clang (stdlibc++), GCC (libc++) などで異なりインラインで格納できる容量に違いがあるらしい。
 

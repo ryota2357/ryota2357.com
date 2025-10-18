@@ -6,7 +6,7 @@ tags: ["Neovim", "C++", "競プロ"]
 ---
 
 Neovim に C++のデバッグ環境を作った。  
-こんな感じのできた。
+こんな感じにできた。
 
 ![デバッグの様子](./debugging.png)
 
@@ -26,7 +26,7 @@ nvim-dap は Neovim とデバッガをいい感じに繋いでくれるやつ。
 
 ## 設定
 
-プラグインマネージャに [dein.vim](https://github.com/Shougo/dein.vim) を使っている。(dein.vim の lua ラッパー [dein-snip.lua](https://github.com/ryota2357/dein-snip.lua) 使ってる)
+プラグインマネージャに [dein.vim](https://github.com/Shougo/dein.vim) を使っている。(dein.vim の lua ラッパー [dein-snip.lua](https://github.com/ryota2357/dein-snip.lua) を使ってる)
 
 ```toml
 [[plugins]]
@@ -49,7 +49,7 @@ Mason.nvim で入れる。
 [nvim-dap の Wiki](https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation) には「VSCode 拡張ダウンロードして解凍」って書いてあるけど Mason 使えばその必要はない。  
 快適だね。
 
-### nvim-dap の の設定
+### nvim-dap の設定
 
 `hook_source` はこんな感じ。  
 説明はコメントで。
@@ -155,7 +155,7 @@ endfunction
 
 ### UI (nvim-dap-ui)
 
-`on_source = 'nvim-dap'` を指定しておくと nvim-dap をソースした時(`DapBegin` コマンドを入力した時)に自動的に nvim-dap-ui をソースしてくれるようになる。
+`on_source = 'nvim-dap'` を指定しておくと nvim-dap を source したとき(`DapBegin` コマンドを入力したとき)に自動的に nvim-dap-ui も source されるようになる。
 
 ```toml
 [[plugins]]

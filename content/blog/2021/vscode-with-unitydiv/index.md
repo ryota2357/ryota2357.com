@@ -2,10 +2,10 @@
 title: "VSCodeでのUnity開発(MacOS)"
 postdate: "2021-04-18T09:52"
 update: "2021-04-18T09:52"
-tags: ["Unity", VSCode]
+tags: ["Unity", "VSCode"]
 ---
 
-VisualStudio の調子が悪いので VSCode でも Unity 開発できる様にしました。
+VisualStudio の調子が悪いので VSCode でも Unity 開発できるようにしました。
 
 ## はじめに
 
@@ -73,7 +73,7 @@ Unity 開発に必要な基本的で人気のある拡張機能をインスト�
 
 <div class="bcard-wrapper"><span class="bcard-header"><div class="bcard-site"><a href="https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug" rel="nofollow" target="_blank">https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug" rel="nofollow" target="_blank">Debugger for Unity - Visual Studio Marketplace</a></div><div class="bcard-description">Extension for Visual Studio Code - Unity debugger extension</div><a href="https://marketplace.visualstudio.com/items?itemName=Unity.unity-debug" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://unity.gallerycdn.vsassets.io/extensions/unity/unity-debug/3.0.2/1605217535175/Microsoft.VisualStudio.Services.Icons.Default)"></div></a></span></div>
 
-MonoBehaaiour 関係の関数のスニペットが使えるようにします。
+MonoBehaviour 関係の関数のスニペットが使えるようにします。
 これで、例えば `start` で `void Start(){...}` や、`update` で `void Update(){...}` が挿入されるようになります。
 
 <div class="bcard-wrapper"><span class="bcard-header"><div class="bcard-site"><a href="https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets" rel="nofollow" target="_blank"></a></div><div class="bcard-url"><a href="https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets" rel="nofollow" target="_blank">https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets</a></div></span><span class="bcard-main withogimg"><div class="bcard-title"><a href="https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets" rel="nofollow" target="_blank">MonoBehaviour Snippets - Visual Studio Marketplace</a></div><div class="bcard-description">Extension for Visual Studio Code - MonoBehaviour Snippets for Visual Studio Code</div><a href="https://marketplace.visualstudio.com/items?itemName=zrachod.mono-snippets" rel="nofollow" target="_blank"><div class="bcard-img" style="background-image: url(https://zrachod.gallerycdn.vsassets.io/extensions/zrachod/mono-snippets/0.0.2/1500683522677/Microsoft.VisualStudio.Services.Icons.Default)"></div></a></span></div>

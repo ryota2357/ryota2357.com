@@ -16,7 +16,7 @@ vim と neovim の両方対応[^1]。
 
 僕は latex を neovim で書いているのだけど、vimtex を使っていない。オールインワンな雰囲気のある vimtex は使いたくなかったからである。
 
-ddc.vim, nvim-lsp, vsnip で基本的には問題ないのだけど、synctex あったら便利だなーと思ってたので作った。
+ddc.vim, nvim-lsp, vsnip で基本的には問題ないのだけど、synctex あったら便利だなーと思っていたので作った。
 
 ## 説明
 
@@ -27,7 +27,7 @@ ddc.vim, nvim-lsp, vsnip で基本的には問題ないのだけど、synctex �
 | synctex#start()        | synctex を現在のバッファに対して開始         |
 | synctex#stop()         | synctex 停止                                 |
 | synctex#option()       | オプションをセットする (`:h synctex-option`) |
-| synctex#forwardSerch() | マウスカーソルの位置で forward serch を行う  |
+| synctex#forwardSerch() | カーソルの位置で forward search を行う       |
 
 あとデバッグ用に `synctex#status()` っていうのもあるんだけど、使うことはほぼないと思う。
 
@@ -55,13 +55,13 @@ tex = '''
 ### 補足
 
 synctex を使用するには、そもそも latex のコンパイル時に `synctex` オプションを有効にする必要がある。  
-latexmk を使ってるなら `.latexmkrc` の `$latex` の部分はこんな感じで有効にできる。
+latexmk を使っているなら `.latexmkrc` の `$latex` の部分はこんな感じで有効にできる。
 
 ```perl
 $latex = 'platex -synctex=1';
 ```
 
-`platex` じゃなくて `uplatex` を使ってる人(僕)も同じ。
+`platex` じゃなくて `uplatex` を使っている人(僕)も同じ。
 
 ```perl
 $latex = 'uplatex -synctex=1';
@@ -78,9 +78,9 @@ $latex = 'uplatex -synctex=1';
 メインの処理は [Application クラス](https://github.com/ryota2357/vim-skim-synctex/blob/main/denops/synctex/lib/application.ts)で、外部との通信関係は [SynctexServer クラス](https://github.com/ryota2357/vim-skim-synctex/blob/main/denops/synctex/lib/synctexServer.ts)で行っている。  
 denops から呼ばれる `main()` は、Application クラスの public メソッドを呼ぶだけのシンプルな内容にした。
 
-### forward serch
+### forward search
 
-apple script (javascript) を `call system()` で実行してる。  
+apple script (javascript) を `call system()` で実行している。  
 実装のメイン部分だけ切り出したのが次。Application 側から SynctexServer に「リクエストを送る」という形をとってみた。
 
 ```typescript
@@ -97,7 +97,7 @@ public async request(denops: Denops, request: ForwardSearchRequest) {
 }
 ```
 
-### backward serch
+### backward search
 
 サーバーを立てて、skim がそのサーバーに情報を `POST`、denops 側でそのリクエストを処理している。  
 リクエストの処理部分を抜き出すとこんな感じ。  
@@ -138,7 +138,7 @@ endfunction
 ```
 
 と書いて、起動時や起動直後に `call synctex#start` をすると `denops#notify` のところでエラーになる(denops サーバ立ち上がってない or synctex なんてプラグインない(読み込まれてない)ってなる)。  
-また、`denops#plugin#wait_async({plugin}, {callback})` と組み合わせたとても、エラーになってしまう。
+また、`denops#plugin#wait_async({plugin}, {callback})` と組み合わせたとしても、エラーになってしまう。
 
 ### 解決策
 

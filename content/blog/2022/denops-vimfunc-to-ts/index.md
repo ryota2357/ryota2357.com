@@ -5,14 +5,14 @@ update: "2022-06-12T21:33"
 tags: ["Vim", "Neovim", "Denops"]
 ---
 
-vim プラグインを作ってる時、vimscript で作った匿名関数を typescript に渡して任意のタイミングで typescript から実行したい時があった。  
+vim プラグインを作っているとき、vimscript で作った匿名関数を typescript に渡して任意のタイミングで typescript から実行したいときがあった。  
 他の変数と同じように `denops#notify()` とかで渡すと、関数は `null` になってしまう。
 
-結論から言うと、直接関数を渡す方法はわからなかった。しかし、`denops#callback#register()` と `denops#callback#call()` を用いると、id を経由することやりたいことはできた。
+結論から言うと、直接関数を渡す方法はわからなかった。しかし、`denops#callback#register()` と `denops#callback#call()` を用いると、id を経由することでやりたいことはできた。
 
 ## 例
 
-それぞれ、help を引用しておく。
+それぞれの help を引用しておく。
 
 <details>
 <summary>denops#callback#register()</summary>

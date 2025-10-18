@@ -53,7 +53,7 @@ README.md では url を指定しているだけであったが、`inputs.nixpkg
 ## outputs の書き方
 
 続いて、`outputs.formatter.<system>` に treefmt-nix の設定を記述していく。
-提として、この `<system>` の部分を省略し、かつ複数 system 対応した記述をしたい。
+前提として、この `<system>` の部分を省略し、かつ複数 system 対応した記述をしたい。
 僕個人は対象プロジェクトに応じて次の 2 つを使い分けているので紹介する。
 
 1 つ目は [flake-utils](https://github.com/numtide/flake-utils) を使う。依存が増える代わりに `outputs.formatter` 以外も設定できるので便利である。

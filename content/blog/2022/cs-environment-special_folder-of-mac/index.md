@@ -27,7 +27,7 @@ tags: ["CSharp"]
 ## 結果
 
 以下のようなスクリプトを実行した結果。  
-オプションに `DoNotVerify` を設定してるので、すでに存在するかどうかは考慮してない。
+オプションに `DoNotVerify` を設定しているので、すでに存在するかどうかは考慮してない。
 
 ```cs
 Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.Cookies, Environment.SpecialFolderOption.DoNotVerify));

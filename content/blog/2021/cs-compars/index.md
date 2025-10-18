@@ -31,7 +31,7 @@ Comparer\<T\> は比較の抽象クラス
 
 <!-- textlint-enable ja-technical-writing/ja-no-mixed-period -->
 
-1 つずつみていきます。
+1 つずつ見ていきます。
 
 ## IComparable / IComparable\<T\>
 
@@ -45,7 +45,7 @@ Comparer\<T\> は比較の抽象クラス
 
 「自身と他のオブジェクト」との比較を定義するインターフェースです。
 
-また、[CompareTo(Object)](https://docs.microsoft.com/ja-jp/dotnet/api/system.icomparable.compareto?view=net-5.0) / [CompareTo(T)](https://docs.microsoft.com/ja-jp/dotnet/api/system.icomparable-1.compareto?view=net-5.0) メソッドを実装させます。
+また、[CompareTo(Object)](https://docs.microsoft.com/ja-jp/dotnet/api/system.icomparable.compareto?view=net-5.0) / [CompareTo(T)](https://docs.microsoft.com/ja-jp/dotnet/api/system.icomparable-1.compareto?view=net-5.0) メソッドを実装する必要があります。
 
 ### 使用例
 
@@ -127,18 +127,18 @@ class TestComp : IComparable<TestComp> {
 > 2 つのオブジェクトを比較するために型が実装するメソッドを定義します。
 
 「他のオブジェクトと、他のオブジェクト」との比較を定義するインターフェースです。  
-IComparable 名前が似ていますが全くの別物で「自身と」ではなく、「他と他」との比較を比較します。
+IComparable と名前が似ていますが全くの別物で「自身と」ではなく、「他と他」を比較します。
 
-また、[Compare(Object, Object)](https://docs.microsoft.com/ja-jp/dotnet/api/system.collections.icomparer.compare?view=net-5.0) / [Compare\<T\>(T, T)](https://docs.microsoft.com/ja-jp/dotnet/api/system.collections.generic.icomparer-1.compare?view=net-5.0) メソッドを実装させます。
+また、[Compare(Object, Object)](https://docs.microsoft.com/ja-jp/dotnet/api/system.collections.icomparer.compare?view=net-5.0) / [Compare\<T\>(T, T)](https://docs.microsoft.com/ja-jp/dotnet/api/system.collections.generic.icomparer-1.compare?view=net-5.0) メソッドを実装する必要があります。
 
 ### 使用例
 
 int の配列を降順にソートしてみます。  
 Array.Sort()を使います。  
-(List\<T\>.Sort()は IComparer には対応していません。ジェネリックの方は対応してます。)
+(List\<T\>.Sort()は IComparer には対応していません。ジェネリックの方は対応しています。)
 
 <details>
-  <summary>ICompareを使った場合</summary>
+  <summary>IComparerを使った場合</summary>
 
 ```cs
 public class Program {
@@ -165,7 +165,7 @@ class MyComp : IComparer {
 また、List\<T\>.Sort()が使えるようになります。
 
 <details>
-  <summary>ICompare\<T\>を使った場合</summary>
+  <summary>IComparer\<T\>を使った場合</summary>
 
 ```cs
 public class Program {
@@ -192,7 +192,7 @@ class MyComp : IComparer<int> {
 
 > 同じ型の 2 つのオブジェクトを比較するメソッドを表します。
 
-他のはインターフェースでしたが、これはデリゲートです。  
+他はインターフェースでしたが、これはデリゲートです。  
 つまり関数であり、ラムダ式で表すことができます。
 
 ### 使用例
@@ -223,19 +223,19 @@ public class Program {
 > IComparer\<T\> ジェネリック インターフェイスの実装のための基本クラスを提供します。
 >
 > ```cs
-> public abstract class Comparer<T> : System.Collections.Generic.IComparer<T>, System.Collections.ICompar
+> public abstract class Comparer<T> : System.Collections.Generic.IComparer<T>, System.Collections.IComparer
 > ```
 
-IComparer と IComparer\<T\>の 2 つを継承するならば、このクラスを継承することでその 2 つの恩恵＋便利なメソッドがついてくるよ、という感じのものだろうか。
+IComparer と IComparer\<T\>の 2 つを継承するならば、このクラスを継承することでその 2 つの恩恵＋便利なメソッドがついてくる、という感じのものでしょうか。
 
 ### 使用例
 
-これら 2 つの継承が必要な状況としては C++でいう比較関数の様なものを作成するのに良いかもしれないです。  
-非ジェネリックな ArrayList と、ジェネリックな List の両方へ対応できる様になります。  
+これら 2 つの継承が必要な状況としては C++でいう比較関数のようなものを作成するのに良いかもしれません。  
+非ジェネリックな ArrayList と、ジェネリックな List の両方へ対応できるようになります。  
 (普通 ArrayList って使わないから...)
 
 <details>
-  <summary>いまいち必要な状況がわからないですが、比較関数の様なものを作ってみました。</summary>
+  <summary>いまいち必要な状況がわからないですが、比較関数のようなものを作ってみました。</summary>
 
 ```cs
 public class Program {

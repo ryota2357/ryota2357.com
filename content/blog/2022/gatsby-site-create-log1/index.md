@@ -150,7 +150,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 ## 日付を YYYY/MM/DD に
 
-`index.js` の fromtmatter 内 date(formatString: )を編集。
+`index.js` の frontmatter 内 date(formatString: )を編集。
 
 ```jsx
 ...

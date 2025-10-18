@@ -22,7 +22,7 @@ require('dein-snip').setup {
     load = {
         vim = {
             '~/dotfiles/vim/rc/option.rc.vim',
-            '~/dotfiles/vim/rc/maping.rc.vim'
+            '~/dotfiles/vim/rc/mapping.rc.vim'
         },
         toml = {
             { '~/dotfiles/vim/rc/dein.toml' },
@@ -43,7 +43,7 @@ require('dein-snip').setup {
 
 [help](https://github.com/ryota2357/dein-snip.lua/blob/main/doc/dein-snip.txt) にも書いてある通り、dein.vim のインストール場所変更やプラグインを入れる場所もちゃんと変えられる。
 
-デフォルトでは dein.vim は `~/.cache/dein/repos/github.com/Shougo/dein.vim` に、プラグインたちは `~/.cache/dein` をルートに入る。ここに入れてる人が一番多いのではないかと思う。
+デフォルトでは dein.vim は `~/.cache/dein/repos/github.com/Shougo/dein.vim` に、プラグインは `~/.cache/dein` をルートに入る。ここに入れている人が一番多いのではないかと思う。
 
 ## 内部でやってること
 
@@ -59,7 +59,7 @@ if not vim.fn.isdirectory(config.path.plugins) then
     vim.fn.mkdir(config.path.plugins, 'p')
 end
 
--- deinがrtpに入れる
+-- deinをrtpに入れる
 -- deinがダウンロードされてなかったらgit cloneしてくる。
 if not string.match(vim.o.runtimepath, '/dein.vim') then
     if vim.fn.isdirectory(config.path.dein) == 0 then
@@ -110,10 +110,10 @@ if dein.load_state(config.path.plugins) == 1 then
     -- load.toml に設定したtomlファイルを call dein#load_toml() する
     dein.load_toml(value[1], value[2])
 
-    -- load.directory に設定したルールを call dein#loacl() して反映する
+    -- load.directory に設定したルールを call dein#local() して反映する
     dein.local0(config.load.directory.path, config.load.directory.options, config.load.directory.names)
 
-    -- load.check_install に true が設定されてば、プラグインがインストールされてるかのチェックを行う
+    -- load.check_install に true が設定されていれば、プラグインがインストールされているかのチェックを行う
     if dein.check_install() == 1 then
         dein.install()
     end
@@ -126,7 +126,7 @@ if dein.load_state(config.path.plugins) == 1 then
 end
 ```
 
-まあ、vim スクリプトで書いてることをそのまま実装した感じ。
+まあ、vim スクリプトで書いていることをそのまま実装した感じ。
 
 ## 最後に
 

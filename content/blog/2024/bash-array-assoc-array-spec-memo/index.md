@@ -5,7 +5,7 @@ update: "2024-11-21T07:30"
 tags: ["Bash"]
 ---
 
-[Bash Reference Manual の Array](https://www.gnu.org/software/bash/manual/bash.html#Arrays) セクションを読めば十分であるが、動作サンプルも添えておいておく。
+[Bash Reference Manual の Array](https://www.gnu.org/software/bash/manual/bash.html#Arrays) セクションを読めば十分であるが、動作サンプルも添えておく。
 
 実行環境は次のとおりである。
 
@@ -148,11 +148,11 @@ tow
 
 $ array[5]="five"
 
-$ echo "${array[2]}"
+$ echo "${array[5]}"
 five
 
 $ echo "${array[@]}"
-tow file
+tow five
 
 $ for index in "${!array[@]}"; do echo "index=${index} value=${array[$index]}"; done
 index=2 value=tow

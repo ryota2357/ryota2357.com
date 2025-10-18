@@ -10,8 +10,8 @@ tags: ["Node"]
 
 ## npm プロジェクトの作成
 
-Node18 と Typescript 使ってやる。  
-適当に Node プロジェクト作って、Typescript 有効にしておく。
+Node18 と TypeScript を使って行う。  
+適当に Node プロジェクト作って、TypeScript 有効にしておく。
 
 ```sh
 $ npm i canvas
@@ -24,7 +24,7 @@ $ npm i canvas
 `generateImage()` を作る。
 
 先に実装全体を載せる。  
-タイトルの通り色々雑に作ってるので、汚いところは目を瞑ってほしい。
+タイトルの通り色々雑に作っているので、汚いところは目を瞑ってほしい。
 
 <details>
 <summary>実装全体</summary>
@@ -213,7 +213,7 @@ export const generateImage = async (params: Params) => {
 };
 ```
 
-`setupCanvas()` で Canvas 型の `canvas` を生成、`writeText()` で Canvas の Context に色々テキスト描画、Canvas を png 画像用の Image オブジェクトにして return してる。
+`setupCanvas()` で Canvas 型の `canvas` を生成、`writeText()` で Canvas の Context に色々テキスト描画、Canvas を png 画像用の Image オブジェクトにして return している。
 
 また、引数(`Params` 型)で生成する画像をどのようにするのかを制御できるようにしてある。
 
@@ -281,7 +281,7 @@ const image = await generateImage({
 
 </details>
 
-以下、`generateImage()` ないで使用している `setupCanvas()` と、`writeText()` を説明する。
+以下、`generateImage()` 内で使用している `setupCanvas()` と、`writeText()` を説明する。
 
 ### `setupCanvas()` の作成
 
@@ -378,7 +378,7 @@ const splitLine = ({
 
 複雑な処理はしていないので読めばわかると思うが大まかに説明をする。
 
-1. 与えられた文字列(text)を単語に分解する(`splitWord`)。この時、英字と一部記号の連続を 1 単語として数え(`isEnChar`、記号は今後増やすかもしれない)、日本語は 1 文字 1 単語とした。
+1. 与えられた文字列(text)を単語に分解する(`splitWord`)。このとき、英字と一部記号の連続を 1 単語として数え(`isEnChar`、記号は今後増やすかもしれない)、日本語は 1 文字 1 単語とした。
 2. 分解された単語をそれぞれ `textSize()` に渡して横幅を取得する。
 3. maxWidth を超えないように「1 行」を作っていく。
 
@@ -424,7 +424,7 @@ const writeText = ({
 };
 ```
 
-ごちゃごちゃしているけど、その理由は `style.padding` で配置する文字列のパディングを設定できるようにしてたり、`style.lineHeight` で文字の高さ(em)を設定できるようにしてるので、それらを考慮した文字列を配置する座標を計算しているからである。
+ごちゃごちゃしているけど、その理由は `style.padding` で配置する文字列のパディングを設定できるようにしたり、`style.lineHeight` で文字の高さ(em)を設定できるようにしているので、それらを考慮した文字列を配置する座標を計算しているからである。
 
 文字列は Canvas の context に対して、`context.fillText(文字、x座標, y座標)` で配置できる。
 

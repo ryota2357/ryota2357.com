@@ -180,7 +180,7 @@ Sccg はコアな部分(Sccg の核となる部分)とそれの付属部分(標�
 インスタンスの生成時にメタデータを記述しています。これにより、いつくかの `Source` や `Formatter` にメタデータを注入できます。
 
 続いて、builder に Source を登録しています。 `Use<T>()` メソッドを用いて `T` クラスを builder に登録できます。
-上記スクリプトでは Vim・Neovim 用の様々な Source を登録しています。
+上記スクリプトでは Vim・Neovim 用のさまざまな Source を登録しています。
 
 `Source` の登録の次に `Formatter` を登録しています。Vim と Neovim 用のテーマを作っているので `VimFormatter` と `NeovimFormatter` を登録しています。
 `Formatter` の次は `Converter` 、そして最後に `Writer` を登録しています。必要なものが全て登録しおわったら builder の `Build()` メソッドを呼び出すことでカラーテーマが生成されます。

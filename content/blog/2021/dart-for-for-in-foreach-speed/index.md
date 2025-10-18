@@ -13,9 +13,9 @@ benchmark_harness を使用してそれぞれの速度を測った。
 ## 環境
 
 ```txt
-MacOS BigSur 11.4
+MacOS Big Sur 11.4
 MacBook Pro (13-inch, 2018, Four Thunderbolt 3 Ports)
-プロセッサ 2.3 GHz クアッドコアIntel Core i5
+プロセッサ 2.3 GHz クアッドコア Intel Core i5
 メモリ 8GB
 ```
 

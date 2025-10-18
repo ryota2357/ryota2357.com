@@ -17,7 +17,7 @@ https://github.com/cohama/lexima.vim/pull/134
 
 ## lexima.vim 対応の pum#map#confirm()マッピング
 
-僕のマッピングは次の通り。これをベースとして自分にあったマッピングを設定するといいと思う。  
+僕のマッピングは次の通り。これをベースとして自分に合ったマッピングを設定すると良いと思う。  
 ただし、`lexima#expand('<CR>')` では意図するものにはならないことに注意である。`lexima#string#to_mappable('<CR>')` を通す必要がある。
 
 ```vim
@@ -28,7 +28,7 @@ execute printf("inoremap <expr><silent> <CR> pum#visible() ? pum#map#confirm() :
 
 ## 注意点
 
-前提として lexima.vim は読み込まれた時にデフォルトのルールを設定する。この時に\<CR\>のマッピングが生成されるので上記のマッピングは必ず lexima.vim が読み込まれた後に設定する必要がある。
+前提として lexima.vim は読み込まれたときにデフォルトのルールを設定する。このときに\<CR\>のマッピングが生成されるので上記のマッピングは必ず lexima.vim が読み込まれた後に設定する必要がある。
 
-lexima.vim には `g:lexima_no_default_rules` や `lexima#clear_rules()`、`lexima#set_default_rules()` と言ったルール定義を制御できる機能がついている。  
+lexima.vim には `g:lexima_no_default_rules` や `lexima#clear_rules()`、`lexima#set_default_rules()` といったルール定義を制御できる機能がついている。  
 これらを利用して上に示した\<CR\>マッピングが一番最後になるようにすれば良い。

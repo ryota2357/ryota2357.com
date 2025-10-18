@@ -10,7 +10,7 @@ tags: ["Nix"]
 今年の 8 月 2 日から nix をパッケージマネージャとして使い始め、10 月 3 日、Home Manager と nix-darwin を使い始めた。
 
 Home Manager の設定をしている人の記事を見ると、`programs.bash` や `programs.tmux` のようなアトリビュートに設定を記述しているものを多く見かける。
-しかし僕はこれら `programs.<name>` を使用せず、タイトルの通り、僕は Home Manager を config ファイルを配置するツールとしてのみ使用している。
+しかし僕はこれら `programs.<name>` を使用せず、タイトルの通り、Home Manager を config ファイルを配置するツールとしてのみ使用している。
 この運用の理由と方法について書いていく。
 
 ## `program.<name> = { ... }` の形式について
@@ -31,7 +31,7 @@ programs.git = {
 のような感じで色々設定できる。だが僕はこれがあまり好きではない。
 
 この方式は、ツール間で共通した記法 (Nix 式) で宣言的に記述できるという利点がある。
-しかし、Home Manager が Nix 式に基づいて「いい感じ」に各ツールの設定ファイルを生成しているので、実際に各ツールが読み込む設定は (実際に生成されたファイルを見ない限り) 直接確認できないという欠点がある。
+しかし、Home Manager が Nix 式に基づいて「いい感じに」各ツールの設定ファイルを生成しているので、実際に各ツールが読み込む設定は (実際に生成されたファイルを見ない限り) 直接確認できないという欠点がある。
 
 各ツールが実際に読み込むファイルを直接確認できず、Home Manager が「いい感じに」生成するために、実際に次のような問題が issue に上がったりしている。
 
@@ -41,7 +41,7 @@ issue タイトルの通り、Home Manager のバグであるのだが、この�
 
 <small>個人的な意見を加えるならば、僕は「いい感じ」というのを「設定をする」という場面において信用していない。設定の「いい感じ」は人によって大きく異なると思っているからだ。</small>
 
-そこで、僕は Home Mangaer を `xdg.configFile`, `home.packages`, `home.file` のみを使用して、各ツールの設定は各ツールの設定ファイルをちゃんと書くという方針で利用している。
+そこで、僕は Home Manager で `xdg.configFile`, `home.packages`, `home.file` のみを使用し、各ツールの設定は各ツールの設定ファイルをちゃんと書くという方針で利用している。
 
 ## ファイル配置
 
@@ -120,7 +120,7 @@ home-manager.lib.homeManagerConfiguration {
 }
 ```
 
-`home-mamager.lib.homeManagerConfiguration.modules` を使うことで、簡単にアトリビュートセットを deep marge できる。
+`home-mamager.lib.homeManagerConfiguration.modules` を使うことで、簡単にアトリビュートセットを deep merge できる。
 
 ## 終わりに
 

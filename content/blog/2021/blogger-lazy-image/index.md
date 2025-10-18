@@ -11,7 +11,7 @@ PageSpeed Insights で言われるやつです。
 html を書き換えるのは面倒なので、javascript を書いて自動で遅延読み込みされるようにしました。
 `lazysizes` というものを使います。
 
-GiiHub のリポジトリはこれ、[https://github.com/aFarkas/lazysizes](https://github.com/aFarkas/lazysizes)
+GitHub のリポジトリはこれ、[https://github.com/aFarkas/lazysizes](https://github.com/aFarkas/lazysizes)
 
 ## テンプレートの編集
 
@@ -25,7 +25,7 @@ blogger の「テーマ > HTML を編集」にて以下を挿入します(async 
 />
 ```
 
-続いて `</body>` ダグの直前に以下の javascript をスクリプトタグとかを使って埋め込めば OK です。
+続いて `</body>` タグの直前に以下の javascript をスクリプトタグとかを使って埋め込めば OK です。
 
 ```js
 // lazysizes
@@ -43,7 +43,7 @@ for (var img of imgs) {
 やってることは簡単です。
 
 1. CDN で lazysizes を取得
-1. img タグを取得して class、lazyload を追加
-1. img タグの src を data-src に変更
+2. img タグを取得して class に lazyload を追加
+3. img タグの src を data-src に変更
 
 以上です。

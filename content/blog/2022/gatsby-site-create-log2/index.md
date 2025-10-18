@@ -114,4 +114,4 @@ plugins: [
 ...
 ```
 
-YYYY を消したければ index.js と gatsby-node.js をいじればいいいのかな?わからん。
+YYYY を消したければ index.js と gatsby-node.js をいじればいいのかな?わからん。
