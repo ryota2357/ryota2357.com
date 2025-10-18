@@ -116,7 +116,7 @@ defer = { value = 'zsh-defer source "{{ file }}"', each = true }
 $ time ( zsh -i -c exit )
 ```
 
-`zplug` の時の速度を測りたかったのだけど「zplug コマンドが見つからない」エラーが出て、ちゃんと計測できなかったので、[ここの方法](https://qiita.com/vintersnow/items/7343b9bf60ea468a4180#%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB)を参考にプロファイルをとってみた。その結果、`zplug` と名前のついた処理についてだけで 800ms を超える時間がかかっていた(2018 年  MacBook Pro)。
+`zplug` の時の速度を測りたかったのだけど「zplug コマンドが見つからない」エラーが出て、ちゃんと計測できなかったので、[ここの方法](https://qiita.com/vintersnow/items/7343b9bf60ea468a4180#%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB)を参考にプロファイルをとってみた。その結果、`zplug` と名前のついた処理についてだけで 800ms を超える時間がかかっていた(2018 年 MacBook Pro)。
 
 `sheldon` に乗り換えて、十数回ほど計測した結果、2018 年 MacBook Pro では 50ms ほど、2021 年 MacBook Pro では 40ms ほどであった。
 

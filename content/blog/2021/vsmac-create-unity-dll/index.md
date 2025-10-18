@@ -67,7 +67,7 @@ using UnityEngine;
 1. UnityHub を開いて、右上の歯車マークから「一般 ＞ Unity エディタフォルダー」の場所を確認します。
 1. VisualStudio「.NET アセンブリ ＞ 参照...」より 1 を参考に「Unity.app」を探します。
 1. 「Shift + ⌘ ＋ G」を押して*hoge/Unity.app/Contents/Managed*と入力します。(hoge の部分は各自)
-4. 「UnityEngine.dll」を開く
+1. 「UnityEngine.dll」を開く
 
 ### コンパイラ設定
 
