@@ -1,16 +1,14 @@
 ---
-title: "シェルの$PATHから特定のパスを取り除く方法"
+title: "$PATHから特定のパスを取り除く方法"
 postdate: "2025-10-16T10:53"
-update: "2025-10-16T11:45"
+update: "2025-10-18T10:40"
 tags: ["Bash", "Zsh"]
 ---
 
-シェルの$PATH から特定のパスを取り除きたいと思い検索すると、次のような記事が見つかる。
+環境変数 `$PATH` から特定のパスを取り除きたいと思い検索すると、次のような記事が見つかる。
 
 - [\$PATH から特定のパスだけを削除する - Qiita](https://qiita.com/ironsand/items/10e28d7589298090ec23)
 - [PATHから特定のパスを抜く - Shohei Yoshida's Diary](https://syohex.hatenablog.com/entry/20150304/1425481941)
-
-が出てくる。
 
 これらの記事を否定するわけではないが、紹介されている手法には、空白文字や特殊文字を含むパスをうまく扱えないといった問題点が存在する。
 
@@ -130,7 +128,7 @@ path_remove ()  { export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '$0 != "'$1'
 ```
 
 ワンライナーで実装されていて良いのだが、そのために `awk` と `sed` という外部プログラムを使用しているのが気になる。
-ちなみに、shellcheck も落ちる。
+ちなみに shellcheck も落ちる。
 
 他にも、この実装は空白やタブを含むパスがあると `awk` でエラーになるという致命的な問題を抱えている。
 これは次の bash スクリプトで確かめられる。
@@ -229,7 +227,7 @@ path_remove '/path\with\backslashes'
 echo "$PATH"
 ```
 
-これを ./test-path_remove として保存しを実行すると、パスの一部が破壊されてしまうことが確認できる。
+これを ./test-path_remove として保存し実行すると、パスの一部が破壊されてしまうことが確認できる。
 
 ```console
 $ ./test-path_remove
