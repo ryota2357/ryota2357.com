@@ -20,6 +20,7 @@
           packages = with pkgs; [
             nodejs_22
             pnpm
+            shellcheck
 
             astro-language-server
             tailwindcss-language-server
@@ -27,6 +28,13 @@
             vscode-json-languageserver
             nil
           ];
+          shellHook = ''
+            currentHooksPath=$(git config --local --get core.hooksPath)
+            if [ "$currentHooksPath" != ".githooks" ]; then
+              echo "Setting Git hooksPath to .githooks..."
+              git config --local core.hooksPath .githooks
+            fi
+          '';
         };
       }
     );

@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+echo "Running pre-push hook..."
+
+push_info=$(cat)
+
+pnpm run format:check || exit 1
+
+PATTERN_BLOG='^content/blog/'
+PATTERN_HOOKS='^.githooks/'
+
+echo "$push_info" | while read -r _local_ref local_oid _remote_ref remote_oid; do
+  if [ "$remote_oid" = "0000000000000000000000000000000000000000" ]; then
+    range="$local_oid"
+  else
+    range="$remote_oid..$local_oid"
+  fi
+
+  changed_files=$(git diff --name-only "$range" 2>/dev/null)
+  if [ -z "$changed_files" ]; then
+    continue
+  fi
+
+  blog_changes=$(echo "$changed_files" | grep "$PATTERN_BLOG")
+  if [ -n "$blog_changes" ]; then
+    pnpm run textlint || exit 1
+  fi
+
+  hooks_changes=$(echo "$changed_files" | grep "$PATTERN_HOOKS")
+  if [ -n "$hooks_changes" ]; then
+    echo -e "\n> shellcheck .githooks/*"
+    shellcheck .githooks/* || exit 1
+  fi
+
+  code_changes=$(echo "$changed_files" | grep -v "$PATTERN_BLOG" | grep -v "$PATTERN_HOOKS")
+  if [ -n "$code_changes" ]; then
+    pnpm run typecheck || exit 1
+    pnpm run check || exit 1
+  fi
+done
+
+echo ''
+exit 0
