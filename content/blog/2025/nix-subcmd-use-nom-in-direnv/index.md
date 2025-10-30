@@ -1,13 +1,13 @@
 ---
 title: "direnv環境下でnixコマンドをラップして、nix buildなどを実行した際にnom buildが実行されるようにした"
 postdate: "2025-10-19T20:44"
-update: "2025-10-19T20:44"
+update: "2025-10-30T20:12"
 tags: ["Nix"]
 ---
 
 `nix build` だけじゃなく、`home-manager switch` などの内部で `nix build` が使われているケースでも `nom build` を使ってビルドされるようになる。
 
-この手法 (direnv 環境で `nix` をラップして `nom` を差し込む) は [kuuote/nixconf](https://github.com/kuuote/nixconf/) にて行われていた手法を参考にしている。
+この手法 (direnv 環境で `nix` をラップして `nom` を差し込む) は [kuuote/nixconf](https://github.com/kuuote/nixconf/) にて行われていた手法を参考にした。
 
 ## nom とは
 
@@ -224,10 +224,7 @@ macOS では `$PATH` や一部環境変数 (`TZ` や `HOME`) が引き継がれ�
 
 ## nix式全体
 
-`home-manager.lib.homeManagerConfiguration` の `modules` にそのまま突っ込める用の nix 式を折りたたんで置いておく。
-
-<details>
-<summary>direnv.nix</summary>
+`home-manager.lib.homeManagerConfiguration` の `modules` にそのまま突っ込める用の nix 式を置いておく。
 
 ```nix
 { pkgs, ... }:
@@ -320,5 +317,3 @@ in
   };
 }
 ```
-
-</details>
