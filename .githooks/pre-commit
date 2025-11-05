@@ -1,5 +1,17 @@
 #!/usr/bin/env bash
 
+# Ensure we are in the nix develop shell or direnv environment
+if [[ -z "${IN_NIX_SHELL:-}" ]] && [[ -z "${DIRENV_DIR:-}" ]]; then
+  SCRIPT_REENTRY_GUARD="__SCRIPT_$(basename "$0" | tr '-' '_')_ENTERED"
+  if [[ -n "${!SCRIPT_REENTRY_GUARD:-}" ]]; then
+    echo "Error: IN_NIX_SHELL and DIRENV_DIR are not set even after entering nix develop." >&2
+    echo "Please check your flake.nix devShell configuration or use direnv." >&2
+    exit 1
+  fi
+  export "$SCRIPT_REENTRY_GUARD"=1
+  exec nix develop --command "$0" "$@"
+fi
+
 echo "Running pre-commit hook..."
 
 pnpm run format:check || exit 1
