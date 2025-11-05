@@ -5,7 +5,7 @@ update: "2025-11-05T16:50"
 tags: ["Nix", "Git"]
 ---
 
-Git Hooks は `.git/hooks/` 以下に適切な名前の実行可能ファイル (hook script) を配置することで使用できますが、この手法では、配置した hook script が Git で管理できないという問題があります。
+Git Hooks は `.git/hooks/` 以下に適切な名前の実行可能ファイル (hook script) を配置することで使用できるが、この手法では、配置した hook script が Git で管理できないという問題がある。
 
 他の Git Hooks の導入手法として、Node.js プロジェクトなら [husky](https://github.com/typicode/husky) や、Nix なら [git-hooks.nix](https://github.com/cachix/git-hooks.nix) などのフレームワーク・ライブラリを使用する方法もある。
 
