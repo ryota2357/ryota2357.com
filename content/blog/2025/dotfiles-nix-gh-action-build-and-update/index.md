@@ -13,7 +13,7 @@ dotfiles では overlay を使用していたり、パッチを自分で当て�
 そこで私は [natsukium/dotfiles](https://github.com/natsukium/dotfiles) を参考にして、GitHub Actions で home-manager や nix-darwin の設定をビルドし、そのバイナリキャッシュを cachix に追加する workflow を作成した。
 また、GitHub Actions の schedule 機能で cron を指定して、定期的に `nix flake update` を行い Pull Request を作成する workflow も作成した。
 
-これらにより、ローカルでのビルドが不要になり、定期的作成されるに Pull Request をマージすることで、パッケージの更新も自動化できた。
+これらにより、ローカルでのビルドが不要になり、定期的作成される Pull Request をマージすることで、パッケージの更新も自動化できた。
 (Pull Request の自動 merge ももちろん可能だが、私は手動で行うことにした。)
 
 私の dotfiles は [ryota2357/dotfiles](https://github.com/ryota2357/dotfiles) に公開している。
