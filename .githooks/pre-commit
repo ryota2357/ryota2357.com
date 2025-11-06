@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Ensure we are in the nix develop shell or direnv environment
 if [[ -z "${IN_NIX_SHELL:-}" ]] && [[ -z "${DIRENV_DIR:-}" ]]; then
   SCRIPT_REENTRY_GUARD="__SCRIPT_$(basename "$0" | tr '-' '_')_ENTERED"
@@ -14,7 +16,7 @@ fi
 
 echo "Running pre-commit hook..."
 
-pnpm run format:check || exit 1
+pnpm run format:check
 
 staged_files=$(git diff --cached --name-only --diff-filter=ACM)
 if [ -z "$staged_files" ]; then
@@ -24,21 +26,21 @@ fi
 PATTERN_BLOG='^content/blog/'
 PATTERN_HOOKS='^.githooks/'
 
-blog_changes=$(echo "$staged_files" | grep "$PATTERN_BLOG")
+blog_changes=$(echo "$staged_files" | grep "$PATTERN_BLOG" || [ $? -eq 1 ])
 if [ -n "$blog_changes" ]; then
-  pnpm run textlint || exit 1
+  pnpm run textlint
 fi
 
-hooks_changes=$(echo "$staged_files" | grep "$PATTERN_HOOKS")
+hooks_changes=$(echo "$staged_files" | grep "$PATTERN_HOOKS" || [ $? -eq 1 ])
 if [ -n "$hooks_changes" ]; then
   echo -e "\n> shellcheck .githooks/*"
-  shellcheck .githooks/* || exit 1
+  shellcheck .githooks/*
 fi
 
-code_changes=$(echo "$staged_files" | grep -v "$PATTERN_BLOG" | grep -v "$PATTERN_HOOKS")
+code_changes=$(echo "$staged_files" | grep -v "$PATTERN_BLOG" | grep -v "$PATTERN_HOOKS" || [ $? -eq 1 ])
 if [ -n "$code_changes" ]; then
-  pnpm run typecheck || exit 1
-  pnpm run check || exit 1
+  pnpm run typecheck
+  pnpm run check
 fi
 
 echo ''
