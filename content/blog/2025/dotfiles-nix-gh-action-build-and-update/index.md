@@ -1,7 +1,7 @@
 ---
 title: "Nix な dotfiles を GitHub Actions でビルドして cachix にキャッシュする。定期的な自動 update もする。"
 postdate: "2025-11-05T23:21"
-update: "2025-11-05T23:21"
+update: "2025-11-06T13:39"
 tags: ["Nix"]
 ---
 
@@ -13,7 +13,8 @@ dotfiles では overlay を使用していたり、パッチを自分で当て�
 そこで私は [natsukium/dotfiles](https://github.com/natsukium/dotfiles) を参考にして、GitHub Actions で home-manager や nix-darwin の設定をビルドし、そのバイナリキャッシュを cachix に追加する workflow を作成した。
 また、GitHub Actions の schedule 機能で cron を指定して、定期的に `nix flake update` を行い Pull Request を作成する workflow も作成した。
 
-これらにより、ローカルでのビルドが不要になり、定期的に Pull Request をマージすることで、パッケージの更新も自動化できた。(自動 merge ももちろん可能だが、私は手動で行うことにした。)
+これらにより、ローカルでのビルドが不要になり、定期的作成されるに Pull Request をマージすることで、パッケージの更新も自動化できた。
+(Pull Request の自動 merge ももちろん可能だが、私は手動で行うことにした。)
 
 私の dotfiles は [ryota2357/dotfiles](https://github.com/ryota2357/dotfiles) に公開している。
 現在 (2025/11/05) の HEAD の commit hash は [`992fa65`](https://github.com/ryota2357/dotfiles/tree/992fa65db3e95d375b886045aaf4a4ccf67a5af2) である。
@@ -195,7 +196,7 @@ nix-community の Public Key は [ここ](https://app.cachix.org/cache/nix-commu
 
 ## cron で自動 update する
 
-最後に、flake の依存関係を自動で更新し、Pull Request を作成する workflow を作成する。
+最後に、flake.lock を自動で定期的に更新し、Pull Request を作成する workflow を作成する。
 
 その前に準備として、 GitHub App を作成しておく必要がある。
 Pull Request を `GITHUB_TOKEN` で作成すると、build workflow が走ってくれない。
@@ -228,7 +229,7 @@ GitHub App の Private Key は GitHub Secrets に登録しておく。
 
 GitHub Actions で 3 日に 1 回 `nix flake update` を実行し、Pull Request が作成されるようにする。
 
-Pull Request の本文を生成するために、やや長いコードになっているが、流れとしては、
+Pull Request の本文を生成するために (そして flake.lock 以外の更新も今後するときの追加が簡単になるように)、やや長いコードになっているが、流れとしては、
 
 1. `nix flake update` を実行
 2. actions/create-github-app-token を使用して GitHub App トークンを生成
