@@ -5,7 +5,7 @@ update: "2023-04-23T00:44"
 tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
 ---
 
-> これは MMA 部誌 2023 春 に投稿した内容です。
+> これは電気通信大学 MMA 部誌 2023 春 に投稿した内容です。
 >
 > MMA の部誌は[ここ](https://www.mma.club.uec.ac.jp/chofu-festa/index.html)で読めます。
 
