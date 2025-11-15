@@ -24,8 +24,8 @@ importers:
         specifier: 4.1.17
         version: 4.1.17(vite@6.4.1(@types/node@22.19.0)(jiti@2.6.1)(lightningcss@1.30.2)(sass@1.94.0)(yaml@2.8.1))
       astro:
-        specifier: 5.15.6
-        version: 5.15.6(@types/node@22.19.0)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(sass@1.94.0)(typescript@5.9.3)(yaml@2.8.1)
+        specifier: 5.15.8
+        version: 5.15.8(@types/node@22.19.0)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(sass@1.94.0)(typescript@5.9.3)(yaml@2.8.1)
       dayjs:
         specifier: 1.11.19
         version: 1.11.19
@@ -1274,8 +1274,8 @@ packages:
     resolution: {integrity: sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==}
     engines: {node: '>=8'}
 
-  astro@5.15.6:
-    resolution: {integrity: sha512-luLcw+FGkeUHYTfbmYjIWHB4T0D+3VSjCy8DKTXglJ2O3lU40AbwmPVBcnqhRnA1SneKzP5V5pzqjsHzUZ1+Rg==}
+  astro@5.15.8:
+    resolution: {integrity: sha512-QiiRnNPdxCcAGO2UlO07o+QeGgRfEC5Dlm0x35WPB/ixFK1T2bsNB6KaXri70cVkYY1GYgoRtrWv3HCR26o9aw==}
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -5018,7 +5018,7 @@ snapshots:
 
   astral-regex@2.0.0: {}
 
-  astro@5.15.6(@types/node@22.19.0)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(sass@1.94.0)(typescript@5.9.3)(yaml@2.8.1):
+  astro@5.15.8(@types/node@22.19.0)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(sass@1.94.0)(typescript@5.9.3)(yaml@2.8.1):
     dependencies:
       '@astrojs/compiler': 2.13.0
       '@astrojs/internal-helpers': 0.7.4
