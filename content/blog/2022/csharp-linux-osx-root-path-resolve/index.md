@@ -57,7 +57,7 @@ var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
 `Environment.GetFolderPath()` でシステム特殊フォルダのパスを取得できる。引数として `UserProfile` を指定すると `~` の絶対パスが取れた。
 
-ちなみに、引数に `UserProfile` 以外、例えば `Personal` でも `~` の絶対パスが取れた。ここら辺はよくわからない... [[C#] MacOS における Environment.GetFolderPath(Environment.SpecialFolder)](cs-environment-special_folder-of-mac)に僕の環境で取れた値の一覧を載せてる。
+ちなみに、引数に `UserProfile` 以外、例えば `Personal` でも `~` の絶対パスが取れた。ここら辺はよくわからない... [[C#] MacOS における Environment.GetFolderPath(Environment.SpecialFolder)](../cs-environment-special_folder-of-mac/)に僕の環境で取れた値の一覧を載せてる。
 
 あと、`Environment.SpecialFolder` のドキュメントには `UserProfile` について、
 
