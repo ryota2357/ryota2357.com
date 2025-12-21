@@ -2,7 +2,7 @@
 title: "Windows で Emacs キーバインドがしたかった"
 postdate: "2024-12-06T15:24"
 update: "2024-12-06T15:24"
-tags: ["Windows", "Emacs"]
+tags: ["Windows", "Emacs", "キーマッピング"]
 ---
 
 > この記事は [ryota2357 Advent Calendar 2024](https://adventar.org/calendars/10716) の 6 日目の記事です。
