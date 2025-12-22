@@ -35,4 +35,8 @@ async function generateSimpleHtmlFiles(outDir: URL) {
   );
 }
 
-await generateSimpleHtmlFiles(new URL(import.meta.resolve("./../../dist")));
+async function main() {
+  await generateSimpleHtmlFiles(new URL(import.meta.resolve("./../../dist")));
+}
+
+main();

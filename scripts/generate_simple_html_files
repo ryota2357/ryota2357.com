@@ -2,7 +2,7 @@
 
 if type deno > /dev/null 2>&1; then
     cd "$(dirname "$0")/src" || exit 1
-    deno run --allow-read --allow-write --no-lock main.ts
+    deno run --allow-read --allow-write --no-lock "$(basename "$0").ts"
 else
     echo "deno is not installed."
     exit 1

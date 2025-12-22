@@ -21,6 +21,7 @@
             nodejs_22
             pnpm
             shellcheck
+            deno
 
             astro-language-server
             tailwindcss-language-server
