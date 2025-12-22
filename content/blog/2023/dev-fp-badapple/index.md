@@ -13,7 +13,7 @@ Repository: **https://github.com/ryota2357/fp15-project**
 
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">大学の授業(基礎プログラミングおよび演習)で、C言語で画像(PPMファイル)を生成するプログラムを作って、それらを繋げて動画を作る、という課題があった<br>ちょっと頑張ってみた<br><br>初めてCMake使った<br>repo: <a href="https://t.co/MwCfVi0ydR">https://t.co/MwCfVi0ydR</a><br>共同作成者: <a href="https://twitter.com/yktr_drm06?ref_src=twsrc%5Etfw">@yktr_drm06</a> <a href="https://t.co/gOSscTrzkk">pic.twitter.com/gOSscTrzkk</a></p>&mdash; ryota2357 (@95s7k84695a) <a href="https://twitter.com/95s7k84695a/status/1623828960265244672?ref_src=twsrc%5Etfw">February 9, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-このプログラムは[やきとり](https://github.com/darumakka2)くんと共同で作成した。
+このプログラムは[やきとり](https://github.com/dyktr06)くんと共同で作成した。
 
 > 1. [プログラム全体の説明](#プログラム全体の説明)
 >    1. [main.c](#mainc)
