@@ -33,7 +33,10 @@ export function GET(context: APIContext) {
   }));
 
   const blogTag: SitemapItem[] = allBlogTagList.map((tag) => ({
-    url: new URL(path.join("/blog/tag/", tag.name, "/"), site),
+    url: new URL(
+      path.join("/blog/tag/", encodeURIComponent(tag.name), "/"),
+      site,
+    ),
     priority: 0.3,
   }));
 

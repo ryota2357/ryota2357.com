@@ -57,7 +57,11 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
       </div>
       <div class="tags">
         <TagIcon width={16} height={16} />
-        {post.data.tags.map((tag) => <a href={`/blog/tag/${tag}/`}>{tag}</a>)}
+        {
+          post.data.tags.map((tag) => (
+            <a href={`/blog/tag/${tag.replace("#", "%23")}/`}>{tag}</a>
+          ))
+        }
       </div>
     </div>
     <div id="markdown" itemprop="articleBody">

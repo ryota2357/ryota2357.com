@@ -44,7 +44,9 @@ const top12BlogTagList = [...allBlogTagList]
             top12BlogTagList
               .map(({ name, count }) => (
                 <span class="p-[0.3rem]">
-                  <a href={`/blog/tag/${name}/`}>{`${name}(${count})`}</a>
+                  <a
+                    href={`/blog/tag/${name.replace("#", "%23")}/`}
+                  >{`${name}(${count})`}</a>
                 </span>
               ))
               .concat(

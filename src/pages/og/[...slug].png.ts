@@ -47,7 +47,7 @@ export function getStaticPaths() {
   }));
 
   const blogTagData = allBlogTagList.map((tag) => ({
-    slug: path.join("blog/tag/", tag.name),
+    slug: path.join("blog/tag/", encodeURIComponent(tag.name)),
     text: `Blog.Tag.${tag.name}`,
   }));
 

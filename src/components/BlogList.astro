@@ -24,7 +24,7 @@ const { posts } = Astro.props;
           <div class="flex flex-row justify-end gap-2 text-[0.8rem]">
             {post.data.tags.map((tag) => (
               <a
-                href={`/blog/tag/${tag}/`}
+                href={`/blog/tag/${tag.replace("#", "%23")}/`}
                 class="rounded-sm bg-gray-900 px-3 py-1 text-white"
               >
                 {tag}
