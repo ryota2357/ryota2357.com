@@ -2,7 +2,7 @@
 title: "自作カラーテーマ「necodark」と自作ジェネレータ「Sccg」(MMA部誌2023春)"
 postdate: "2023-04-04T00:56"
 update: "2023-04-23T00:44"
-tags: ["CSharp", "Event", "Vim", "Neovim", "VSCode"]
+tags: ["C#", "Event", "Vim", "Neovim", "VSCode"]
 ---
 
 > これは電気通信大学 MMA 部誌 2023 春 に投稿した内容です。

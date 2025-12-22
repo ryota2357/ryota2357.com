@@ -2,7 +2,7 @@
 title: "Gatsby.jsからAstro.jsに移行した"
 postdate: "2023-10-12T22:43"
 update: "2023-10-12T22:43"
-tags: ["Astro", "Remark"]
+tags: ["Astro.js", "Remark"]
 ---
 
 僕のホームページ兼ブログ([ryota2357.com](https://ryota2357.com/))を Gatsby.js から Astro.js に移行した。

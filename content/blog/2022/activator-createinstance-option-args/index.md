@@ -2,7 +2,7 @@
 title: "Activator.CreateInstanceでオプション引数を扱う"
 postdate: "2022-09-23T12:45"
 update: "2022-09-23T12:45"
-tags: ["CSharp"]
+tags: ["C#"]
 ---
 
 `Activator.CreateInstance(typeof(T))` で `T` のコンストラクタがオプション引数を使っている場合、オプション引数を考慮したインスタンス生成をする方法。

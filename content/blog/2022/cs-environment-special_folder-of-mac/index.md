@@ -2,7 +2,7 @@
 title: "[C#] MacOSにおける Environment.GetFolderPath(Environment.SpecialFolder)"
 postdate: "2022-08-08T20:05"
 update: "2022-08-08T20:05"
-tags: ["CSharp"]
+tags: ["C#"]
 ---
 
 [Environment.GetFolderPath Method](https://docs.microsoft.com/en-us/dotnet/api/system.environment.getfolderpath?view=net-6.0)というメソッドがある。

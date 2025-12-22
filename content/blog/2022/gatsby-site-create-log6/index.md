@@ -2,7 +2,7 @@
 title: "6.投稿日と更新日を設置する (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-09T19:07"
 update: "2022-03-09T19:07"
-tags: ["Gatsby"]
+tags: ["Gatsby.js"]
 ---
 
 > このサイトを作るまでの記録。(時系列順)  

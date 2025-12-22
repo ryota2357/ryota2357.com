@@ -2,7 +2,7 @@
 title: "[C#] 比較の定義 (IComparable, IComparer, Comparison, Comparer)"
 postdate: "2021-02-11T11:00"
 update: "2021-02-11T11:00"
-tags: ["CSharp"]
+tags: ["C#"]
 ---
 
 <!-- textlint-disable ja-technical-writing/ja-no-mixed-period -->

@@ -2,7 +2,7 @@
 title: "1.セットアップ (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-09T16:30"
 update: "2022-03-09T16:30"
-tags: ["Gatsby"]
+tags: ["Gatsby.js"]
 ---
 
 > このサイトを作るまでの記録。(時系列順)  

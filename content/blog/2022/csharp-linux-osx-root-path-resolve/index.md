@@ -2,7 +2,7 @@
 title: "C# で Linux, OSX のルートパス(~/)を解決したかった"
 postdate: "2022-11-27T21:19"
 update: "2022-11-27T21:19"
-tags: ["CSharp"]
+tags: ["C#"]
 ---
 
 `Path.GetFullPath("~/hoge")` で `/User/your_name/hoge` のように展開してくれないのです。

@@ -2,7 +2,7 @@
 title: "node-canvasで雑にOG画像を生成する"
 postdate: "2022-12-30T00:32"
 update: "2023-05-11T08:59"
-tags: ["Node"]
+tags: ["Node.js"]
 ---
 
 ブログの OG 画像を Qiita と Zenn みたいにタイトルが書かれてるやつにしたかったので作った。  

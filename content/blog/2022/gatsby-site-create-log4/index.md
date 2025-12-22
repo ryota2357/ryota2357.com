@@ -2,7 +2,7 @@
 title: "4.ページの追加とデザイン (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-09T18:02"
 update: "2022-03-09T18:02"
-tags: ["Gatsby"]
+tags: ["Gatsby.js"]
 ---
 
 > このサイトを作るまでの記録。(時系列順)  

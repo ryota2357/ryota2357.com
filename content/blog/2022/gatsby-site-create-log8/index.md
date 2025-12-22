@@ -2,7 +2,7 @@
 title: "8.tag個別ページ作成 (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-11T18:23"
 update: "2022-03-11T18:23"
-tags: ["Gatsby"]
+tags: ["Gatsby.js"]
 ---
 
 > このサイトを作るまでの記録。(時系列順)  

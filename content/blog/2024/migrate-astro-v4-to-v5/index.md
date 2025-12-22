@@ -2,7 +2,7 @@
 title: "Astro.jsをv4からv5にアップグレードした"
 postdate: "2024-12-08T15:28"
 update: "2024-12-09T13:05"
-tags: ["Astro"]
+tags: ["Astro.js"]
 ---
 
 > この記事は [ryota2357 Advent Calendar 2024](https://adventar.org/calendars/10716) の 8 日目の記事です。

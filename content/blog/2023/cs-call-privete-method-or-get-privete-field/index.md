@@ -2,7 +2,7 @@
 title: "[C#] Privateなフィールドの取得とPrivateなメソッドの呼び出し (コピペ用)"
 postdate: "2023-02-26T18:27"
 update: "2023-02-26T18:27"
-tags: ["CSharp"]
+tags: ["C#"]
 ---
 
 コピペ用。

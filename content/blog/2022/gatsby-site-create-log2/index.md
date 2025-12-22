@@ -2,7 +2,7 @@
 title: "2.サイトのディレクトリ変更 (Gatsby-jsによるサイト構築記録)"
 postdate: "2022-03-09T17:21"
 update: "2022-03-10T10:01"
-tags: ["Gatsby"]
+tags: ["Gatsby.js"]
 ---
 
 <span style="font-size: 200%; color: red;">ここのやり方は悪いやり方です。</span>
