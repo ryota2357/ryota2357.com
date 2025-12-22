@@ -12,6 +12,7 @@
     "check:write": "biome check --write './'",
     "textlint": "textlint './content/**/*.md'",
     "textlint:fix": "textlint --fix './content/**/*.md'",
+    "linkcheck": "./scripts/linkcheck",
     "new-post": "./scripts/new-post",
     "postbuild": "./scripts/generate_simple_html_files",
     "preinstall": "npx -y only-allow pnpm"

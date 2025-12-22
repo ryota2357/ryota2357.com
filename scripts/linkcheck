@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if type deno > /dev/null 2>&1; then
+    cd "$(dirname "$0")/src" || exit 1
+    deno run --allow-net --allow-read --no-lock "$(basename "$0").ts"
+else
+    echo "deno is not installed."
+    exit 1
+fi
