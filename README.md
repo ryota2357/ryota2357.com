@@ -22,3 +22,10 @@ GitHub リポジトリは https://github.com/ryota2357/ryota2357.com です。
 私の Twitter (𝕏) または Bluesky の DM にご連絡ください。contact@ryota2357.com 宛にメールをお送りいただくことも可能ですが、こちらは返信が遅くなる可能性があります。
 また、誤りなどを見つけた場合には報告していただけると大変助かります。GitHub にて Issue や Pull Request を送っていただくことも可能です。
 ```
+
+## License
+
+このプロジェクトは、対象となるコンテンツによって異なるライセンスを採用しています。
+
+- ブログ記事: [Creative Commons Attribution 4.0 International (CC BY 4.0)](./LICENSE-CC-BY)
+- ソースコード: [MIT License](./LICENSE-MIT)
