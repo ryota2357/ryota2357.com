@@ -19,11 +19,11 @@
   },
   "dependencies": {
     "@astrojs/partytown": "2.1.4",
-    "@astrojs/rss": "4.0.14",
+    "@astrojs/rss": "4.0.15",
     "@napi-rs/canvas": "0.1.88",
     "@tailwindcss/postcss": "4.1.18",
     "@tailwindcss/vite": "4.1.18",
-    "astro": "5.16.6",
+    "astro": "5.16.10",
     "dayjs": "1.11.19",
     "destyle.css": "4.0.1",
     "sass": "1.97.2",
