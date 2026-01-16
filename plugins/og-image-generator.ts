@@ -115,7 +115,7 @@ function splitLine(
       if (char.length !== 1) {
         throw Error(`char length must be 1. length is ${char}`);
       }
-      return /[A-z]|_|\$|<|>/.test(char);
+      return /[A-Za-z]|_|\$|<|>/.test(char);
     };
 
     const ret = [""];
