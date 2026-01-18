@@ -1,7 +1,7 @@
 ---
 title: "SketchyBarを導入した"
 postdate: "2026-01-16T18:21"
-update: "2026-01-16T18:21"
+update: "2026-01-18T21:01"
 tags: ["SketchyBar", "macOS"]
 ---
 
@@ -331,7 +331,7 @@ fi
 
 ### 時刻
 
-秒単位で表示するため update_freq=1 に設定している。
+秒単位で表示するため `update_freq=1` に設定している。
 あとなぜか等幅フォントを使用していても時刻の文字幅が変わってしまうことがあるので、`label.width=80` で幅を固定した。
 
 ```bash
@@ -383,6 +383,7 @@ sketchybar --add event date_boundary
 時刻が 23:59:00 から 00:00:59 の 2 分間の間 `date_boundary` イベントを発火させている。
 
 ```bash
+# time.sh の続き
 [[ "${TIME%:*}" =~ ^(23:59|00:00)$ ]] && sketchybar --trigger date_boundary
 ```
 
@@ -450,9 +451,10 @@ add_item wifi right \
   --subscribe wifi_change
 ```
 
-macOS のメニューバーと同じく、インターネット共有 (Personal Hotspot) に接続しているかどうかも判定して、アイコンを切り替えている。
+`wifi.sh` では macOS のメニューバーと同じく、インターネット共有 (Personal Hotspot) に接続しているかどうかも判定して、アイコンを切り替えている。
 
 ```bash
+# wifi.sh
 if networksetup -getairportpower en0 | grep -q ": Off"; then
   sketchybar --set "$NAME" icon='􀙈' # wifi.slash
 elif route -n get default 2>/dev/null | grep -q "gateway: 172.20.10.1"; then
@@ -538,6 +540,7 @@ CPU 使用率の取得には `top` コマンドを使用している。
 ただ、`top` コマンドでの CPU 使用率はそこそこブレがあったので、3 回取得して平均を取るようにしている。
 
 ```bash
+# cpu.sh
 CPU=$(top -l 3 -n 0 | awk '/CPU usage/ {sum += $3 + $5} END {printf "%.1f", sum / 3}')
 sketchybar --set "$NAME" label="$CPU%"
 ```
