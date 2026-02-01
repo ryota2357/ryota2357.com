@@ -26,6 +26,10 @@
       "groupName": "dependencies",
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["minor", "patch", "digest"]
+    },
+    {
+      "groupName": "github-actions",
+      "matchManagers": ["github-actions"]
     }
   ]
 }
