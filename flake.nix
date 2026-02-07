@@ -18,7 +18,7 @@
       {
         devShells.default = pkgs.mkShellNoCC {
           packages = with pkgs; [
-            nodejs_22
+            nodejs-slim_24
             pnpm
             shellcheck
             deno
