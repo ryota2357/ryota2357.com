@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.6",
-    "@types/node": "24.10.11",
-    "@biomejs/biome": "2.3.14",
+    "@types/node": "24.10.13",
+    "@biomejs/biome": "2.3.15",
     "@types/unist": "3.0.3",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1",
