@@ -26,7 +26,7 @@ jobs:
           run_install: false
 
       - name: Setup Node
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: 24.14.0
           cache: pnpm
@@ -34,7 +34,7 @@ jobs:
       - name: Setup deno
         uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb # v2.0.3
         with:
-          deno-version: 2.7.1
+          deno-version: 2.7.3
 
       - name: Install dependencies
         run: pnpm install
