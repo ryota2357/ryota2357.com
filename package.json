@@ -24,7 +24,7 @@
     "@tailwindcss/postcss": "4.2.1",
     "@tailwindcss/vite": "4.2.1",
     "astro": "5.18.1",
-    "dayjs": "1.11.19",
+    "dayjs": "1.11.20",
     "destyle.css": "4.0.1",
     "sass": "1.98.0",
     "sharp": "0.34.5",
