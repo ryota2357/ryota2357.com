@@ -14,7 +14,7 @@ const blogCollection = defineCollection({
 });
 
 const worksCollection = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "**/index.yaml", base: "./content/works" }),
   schema: ({ image }) =>
     z.object({
       name: z.string(),
