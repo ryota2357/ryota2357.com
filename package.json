@@ -14,8 +14,7 @@
     "textlint:fix": "textlint --fix './content/**/*.md'",
     "linkcheck": "./scripts/linkcheck",
     "new-post": "./scripts/new-post",
-    "postbuild": "./scripts/generate_simple_html_files",
-    "preinstall": "npx -y only-allow pnpm"
+    "postbuild": "./scripts/generate_simple_html_files"
   },
   "dependencies": {
     "@astrojs/partytown": "2.1.5",
