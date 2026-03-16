@@ -4,4 +4,4 @@ node_modules/
 .pnpm-store/
 .claude/
 tests/playwright-results/
-playwright-report/
+tests/playwright-report/

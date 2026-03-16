@@ -17,7 +17,8 @@
     "postbuild": "./scripts/generate_simple_html_files",
     "vrt": "playwright test tests/vrt.spec.ts",
     "vrt:full": "FULL_VRT=1 playwright test tests/",
-    "vrt:update": "playwright test tests/vrt.spec.ts --update-snapshots"
+    "vrt:update": "playwright test tests/vrt.spec.ts --update-snapshots",
+    "vrt:ui": "FULL_VRT=1 playwright test tests/ --ui"
   },
   "dependencies": {
     "@astrojs/partytown": "2.1.5",

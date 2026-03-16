@@ -5,6 +5,8 @@ const port = 4321;
 export default defineConfig({
   testDir: "./tests",
   outputDir: "./tests/playwright-results",
+  fullyParallel: true,
+  reporter: [["html", { outputFolder: "./tests/playwright-report" }]],
   webServer: {
     command: `pnpm run preview --port ${port}`,
     url: `http://localhost:${port}/`,

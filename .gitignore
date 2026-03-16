@@ -20,4 +20,5 @@ pnpm-debug.log*
 
 # playwright
 tests/playwright-results/
-playwright-report/
+tests/playwright-report/
+tests/__screenshots__/vrt-full.spec.ts/

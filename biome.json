@@ -11,7 +11,7 @@
       "!**/.direnv",
       "!**/.astro",
       "!**/tests/playwright-results",
-      "!**/playwright-report"
+      "!**/tests/playwright-report"
     ]
   },
   "assist": {
