@@ -29,6 +29,7 @@
             vscode-json-languageserver
             nil
           ];
+          env.PLAYWRIGHT_BROWSERS_PATH = "0";
           shellHook = ''
             currentHooksPath=$(git config --local --get core.hooksPath)
             if [ "$currentHooksPath" != ".githooks" ]; then

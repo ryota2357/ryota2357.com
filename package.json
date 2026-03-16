@@ -14,7 +14,10 @@
     "textlint:fix": "textlint --fix './content/**/*.md'",
     "linkcheck": "./scripts/linkcheck",
     "new-post": "./scripts/new-post",
-    "postbuild": "./scripts/generate_simple_html_files"
+    "postbuild": "./scripts/generate_simple_html_files",
+    "vrt": "playwright test tests/vrt.spec.ts",
+    "vrt:full": "FULL_VRT=1 playwright test tests/",
+    "vrt:update": "playwright test tests/vrt.spec.ts --update-snapshots"
   },
   "dependencies": {
     "@astrojs/partytown": "2.1.5",
@@ -37,8 +40,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.7",
-    "@types/node": "24.12.0",
     "@biomejs/biome": "2.4.7",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "24.12.0",
     "@types/unist": "3.0.3",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1",

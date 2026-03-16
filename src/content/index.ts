@@ -1,7 +1,13 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 
-export const allBlogCollection = await getCollection("blog", ({ data }) =>
-  import.meta.env.PROD ? data.draft !== true : true,
+export const allBlogCollection = await getCollection(
+  "blog",
+  ({ data }) =>
+    data.vrt !== true && (import.meta.env.PROD ? data.draft !== true : true),
+);
+export const vrtBlogCollection = await getCollection(
+  "blog",
+  ({ data }) => data.vrt === true,
 );
 export const allWorksCollection = await getCollection("works");
 

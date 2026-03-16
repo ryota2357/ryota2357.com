@@ -9,7 +9,9 @@
       "!**/.pnpm-store",
       "!**/dist",
       "!**/.direnv",
-      "!**/.astro"
+      "!**/.astro",
+      "!**/tests/playwright-results",
+      "!**/playwright-report"
     ]
   },
   "assist": {

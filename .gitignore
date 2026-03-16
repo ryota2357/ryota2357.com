@@ -17,3 +17,7 @@ pnpm-debug.log*
 .env
 .env.production
 .direnv/
+
+# playwright
+tests/playwright-results/
+playwright-report/

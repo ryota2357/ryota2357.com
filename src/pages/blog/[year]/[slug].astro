@@ -3,7 +3,7 @@ import { render } from "astro:content";
 import path from "node:path";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import dayjs from "dayjs";
-import { allBlogCollection, util } from "@/content";
+import { allBlogCollection, util, vrtBlogCollection } from "@/content";
 import TagIcon from "@/images/tag-icon.svg";
 import Base from "@/layouts/Base.astro";
 
@@ -11,7 +11,7 @@ import "@/styles/blog-post-markdown-code.scss";
 import "@/styles/blog-post-markdown.scss";
 
 export const getStaticPaths = (() => {
-  return [...allBlogCollection]
+  const blogPaths = [...allBlogCollection]
     .sort((a, b) => a.data.postdate.valueOf() - b.data.postdate.valueOf())
     .map((post, index, self) => ({
       params: {
@@ -24,6 +24,18 @@ export const getStaticPaths = (() => {
         nextPost: index !== self.length - 1 ? self[index + 1] : undefined,
       },
     }));
+  const vrtPaths = vrtBlogCollection.map((post) => ({
+    params: {
+      year: util.getYearFromSlug(post.id),
+      slug: util.stripYearFromSlug(post.id),
+    },
+    props: {
+      post,
+      prevPost: undefined,
+      nextPost: undefined,
+    },
+  }));
+  return [...blogPaths, ...vrtPaths];
 }) satisfies GetStaticPaths;
 
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;

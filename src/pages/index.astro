@@ -39,7 +39,7 @@ const top12BlogTagList = [...allBlogTagList]
     <ContentBlock title="Blog">
       <div class="flex flex-row items-start gap-4">
         <h3 class="m-0 flex-none text-[1.3rem] font-bold">タグ</h3>
-        <div class="mx-0 my-auto flex flex-wrap">
+        <div class="mx-0 my-auto flex flex-wrap" data-vrt-mask>
           {
             top12BlogTagList
               .map(({ name, count }) => (
@@ -60,7 +60,10 @@ const top12BlogTagList = [...allBlogTagList]
       <div class="flex flex-row items-start gap-4">
         <h3 class="m-0 flex-none text-[1.3rem] font-bold">更新</h3>
         <div class="mx-0 my-auto flex flex-wrap">
-          <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
+          <ul
+            class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5"
+            data-vrt-mask
+          >
             {
               [...allBlogCollection]
                 .sort(

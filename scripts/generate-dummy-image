@@ -1,0 +1,75 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i python3 -p python3 python3Packages.numpy python3Packages.pillow
+
+import sys
+import numpy as np
+from PIL import Image
+
+
+def hsv_to_rgb(h, s, v):
+    """Vectorized HSV to RGB conversion. All inputs/outputs are numpy arrays in [0,1]."""
+    c = v * s
+    h6 = h * 6.0
+    x = c * (1.0 - np.abs(h6 % 2.0 - 1.0))
+    m = v - c
+
+    r = np.zeros_like(h)
+    g = np.zeros_like(h)
+    b = np.zeros_like(h)
+
+    mask0 = (h6 >= 0) & (h6 < 1)
+    mask1 = (h6 >= 1) & (h6 < 2)
+    mask2 = (h6 >= 2) & (h6 < 3)
+    mask3 = (h6 >= 3) & (h6 < 4)
+    mask4 = (h6 >= 4) & (h6 < 5)
+    mask5 = h6 >= 5
+
+    r[mask0] = c[mask0]; g[mask0] = x[mask0]
+    r[mask1] = x[mask1]; g[mask1] = c[mask1]
+    g[mask2] = c[mask2]; b[mask2] = x[mask2]
+    g[mask3] = x[mask3]; b[mask3] = c[mask3]
+    r[mask4] = x[mask4]; b[mask4] = c[mask4]
+    r[mask5] = c[mask5]; b[mask5] = x[mask5]
+
+    return r + m, g + m, b + m
+
+
+def generate_color_image(width, height):
+    hue = np.linspace(0, 1, width, endpoint=False)
+    y = np.linspace(0, 1, height)
+
+    hue_grid, y_grid = np.meshgrid(hue, y)
+
+    sat = np.where(y_grid <= 0.5, y_grid * 2.0, 1.0)
+    val = np.where(y_grid <= 0.5, 1.0, 1.0 - (y_grid - 0.5) * 2.0)
+
+    r, g, b = hsv_to_rgb(hue_grid, sat, val)
+
+    rgb = np.stack([r, g, b], axis=-1)
+    return (rgb * 255).astype(np.uint8)
+
+
+def main():
+    if len(sys.argv) != 3:
+        print(f"Usage: {sys.argv[0]} <width> <height>", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        width = int(sys.argv[1])
+        height = int(sys.argv[2])
+    except ValueError:
+        print("Error: width and height must be integers", file=sys.stderr)
+        sys.exit(1)
+
+    if width <= 0 or height <= 0:
+        print("Error: width and height must be positive", file=sys.stderr)
+        sys.exit(1)
+
+    pixels = generate_color_image(width, height)
+    filename = f"dummy_{width}x{height}.png"
+    Image.fromarray(pixels).save(filename)
+    print(f"Generated: {filename}")
+
+
+if __name__ == "__main__":
+    main()
