@@ -40,10 +40,10 @@
     "vfile": "6.0.3"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.7",
-    "@biomejs/biome": "2.4.7",
-    "@playwright/test": "1.58.2",
-    "@types/node": "24.12.0",
+    "@astrojs/check": "0.9.8",
+    "@biomejs/biome": "2.4.10",
+    "@playwright/test": "1.59.1",
+    "@types/node": "24.12.2",
     "@types/unist": "3.0.3",
     "prettier": "3.8.1",
     "prettier-plugin-astro": "0.14.1",
