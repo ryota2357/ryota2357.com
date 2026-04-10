@@ -18,13 +18,13 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@667a34cdef165d8d2b2e98dde39547c9daac7282 # v2.0.4
         with:
-          deno-version: 2.7.9
+          deno-version: 2.7.12
 
       - name: Update dependencies
         run: deno run -A jsr:@molt/cli $(find ./scripts/ -name "*.ts") --write
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           commit-message: "Update deno dependencies"
           title: "Update Deno dependencies"
