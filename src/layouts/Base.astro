@@ -25,11 +25,11 @@ const canonicalURL = new URL(
 
 <html lang="ja">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta charset="utf-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width">
+    <meta name="generator" content={Astro.generator}>
+    <link rel="sitemap" href="/sitemap-index.xml">
     <HeadSEO
       title={title}
       type={type}
@@ -69,9 +69,7 @@ const canonicalURL = new URL(
   </head>
   <body>
     <Header />
-    <main class="mx-auto my-0 max-w-[1080px] px-[10px] py-0">
-      <slot />
-    </main>
+    <main class="mx-auto my-0 max-w-[1080px] px-[10px] py-0"><slot /></main>
     <Footer />
   </body>
 </html>

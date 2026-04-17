@@ -42,8 +42,7 @@ const top12BlogTagList = [...allBlogTagList]
       <div class="flex flex-row items-start gap-4">
         <h3 class="m-0 flex-none text-[1.3rem] font-bold">タグ</h3>
         <div class="mx-0 my-auto flex flex-wrap" data-vrt-mask>
-          {
-            top12BlogTagList
+          {top12BlogTagList
               .map(({ name, count }) => (
                 <span class="p-[0.3rem]">
                   <a
@@ -55,8 +54,7 @@ const top12BlogTagList = [...allBlogTagList]
                 <span class="p-[0.3rem]">
                   <a href="/blog/tag/">一覧</a>
                 </span>,
-              )
-          }
+              )}
         </div>
       </div>
       <div class="flex flex-row items-start gap-4">
@@ -66,8 +64,7 @@ const top12BlogTagList = [...allBlogTagList]
             class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5"
             data-vrt-mask
           >
-            {
-              [...allBlogCollection]
+            {[...allBlogCollection]
                 .sort(
                   (a, b) => b.data.update.valueOf() - a.data.update.valueOf(),
                 )
@@ -78,8 +75,7 @@ const top12BlogTagList = [...allBlogTagList]
                       {post.data.title}
                     </a>
                   </li>
-                ))
-            }
+                ))}
           </ul>
         </div>
       </div>
@@ -94,9 +90,7 @@ const top12BlogTagList = [...allBlogTagList]
             Bluesky (@ryota2357.com)
           </a>
         </li>
-        <li>
-          <a href="https://github.com/ryota2357"> Github (ryota2357)</a>
-        </li>
+        <li><a href="https://github.com/ryota2357"> Github (ryota2357)</a></li>
         <li>
           <a href="https://atcoder.jp/users/ryota2357"> AtCoder (ryota2357)</a>
         </li>

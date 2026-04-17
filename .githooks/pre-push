@@ -18,8 +18,6 @@ echo "Running pre-push hook..."
 
 push_info=$(cat)
 
-pnpm run format:check
-
 PATTERN_BLOG='^content/blog/'
 PATTERN_HOOKS='^.githooks/'
 

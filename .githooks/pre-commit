@@ -16,8 +16,6 @@ fi
 
 echo "Running pre-commit hook..."
 
-pnpm run format:check
-
 staged_files=$(git diff --cached --name-only --diff-filter=ACM)
 if [ -z "$staged_files" ]; then
   exit 0

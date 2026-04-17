@@ -1,18 +1,12 @@
 {
   "$schema": "https://biomejs.dev/schemas/latest/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "files": {
-    "includes": [
-      "**",
-      "!**/package.json",
-      "!**/pnpm-lock.yaml",
-      "!**/node_modules",
-      "!**/.pnpm-store",
-      "!**/dist",
-      "!**/.direnv",
-      "!**/.astro",
-      "!**/tests/playwright-results",
-      "!**/tests/playwright-report"
-    ]
+    "includes": ["**", "!**/package.json", "!**/pnpm-lock.yaml"]
   },
   "assist": {
     "actions": {
@@ -45,26 +39,16 @@
       "arrowParentheses": "always"
     }
   },
+  "html": {
+    "formatter": {
+      "enabled": true,
+      "indentScriptAndStyle": true
+    },
+    "experimentalFullSupportEnabled": true
+  },
   "json": {
     "formatter": {
       "trailingCommas": "none"
     }
-  },
-  "overrides": [
-    {
-      "includes": ["**/*.astro"],
-      "linter": {
-        "rules": {
-          "style": {
-            "useConst": "off",
-            "useImportType": "off"
-          },
-          "correctness": {
-            "noUnusedVariables": "off",
-            "noUnusedImports": "off"
-          }
-        }
-      }
-    }
-  ]
+  }
 }

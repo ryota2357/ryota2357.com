@@ -45,9 +45,6 @@ jobs:
       - name: Biome check
         run: pnpm run check
 
-      - name: Format check
-        run: pnpm run format:check
-
       - name: Textlint check
         run: pnpm run textlint
 

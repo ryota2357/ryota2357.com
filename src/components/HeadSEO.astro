@@ -21,22 +21,22 @@ const ogImageSrc = (() => {
 const ogImageAlt = `OG Image for ${canonicalURL.toString()}`;
 ---
 
-<link rel="canonical" href={canonicalURL} />
+<link rel="canonical" href={canonicalURL}>
 
 {description && <meta name="description" content={description} />}
 
-<meta property="og:title" content={title} />
-<meta property="og:type" content={type} />
-<meta property="og:url" content={canonicalURL} />
-<meta property="og:image" content={ogImageSrc} />
-<meta property="og:image:alt" content={ogImageAlt} />
+<meta property="og:title" content={title}>
+<meta property="og:type" content={type}>
+<meta property="og:url" content={canonicalURL}>
+<meta property="og:image" content={ogImageSrc}>
+<meta property="og:image:alt" content={ogImageAlt}>
 {description && <meta property="og:description" content={description} />}
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@95s7k84695a" />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:image" content={ogImageSrc} />
-<meta name="twitter:image:alt" content={ogImageAlt} />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@95s7k84695a">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:image" content={ogImageSrc}>
+<meta name="twitter:image:alt" content={ogImageAlt}>
 {description && <meta name="twitter:description" content={description} />}
 
 {noindex && <meta name="robots" content="noindex" />}
@@ -46,7 +46,8 @@ const ogImageAlt = `OG Image for ${canonicalURL.toString()}`;
   is:inline
   async
   src="https://www.googletagmanager.com/gtag/js?id=G-PHXJBM615E"
-  type="text/partytown"></script>
+  type="text/partytown"
+></script>
 <script is:inline type="text/partytown">
   window.dataLayer = window.dataLayer || [];
   function gtag() {

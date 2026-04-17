@@ -32,8 +32,6 @@ posts.sort((a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf());
     <span class="text-[2.5rem]">{tagName}</span>
   </h1>
   <p>{posts.length}件</p>
-  <p>
-    <a href="/blog/tag/">タグの一覧</a>
-  </p>
+  <p><a href="/blog/tag/">タグの一覧</a></p>
   <BlogList posts={posts} />
 </Base>

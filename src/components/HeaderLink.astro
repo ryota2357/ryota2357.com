@@ -5,17 +5,15 @@ const slug = Astro.url.pathname;
 ---
 
 <span>
-  {
-    slug === href ? (
-      <span class="underline">
-        <slot />
-      </span>
-    ) : (
-      <a href={href}>
-        <slot />
-      </a>
-    )
-  }
+  {slug === href ? (
+    <span class="underline">
+      <slot />
+    </span>
+  ) : (
+    <a href={href}>
+      <slot />
+    </a>
+  )}
 </span>
 
 <style lang="scss">

@@ -56,32 +56,25 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
           投稿日:{" "}
           <time itemprop="datePublished">{formatTime(post.data.postdate)}</time>
         </p>
-        {
-          post.data.update.valueOf() !== post.data.postdate.valueOf() && (
+        {post.data.update.valueOf() !== post.data.postdate.valueOf() && (
             <p>
               更新日:{" "}
               <time itemprop="dateModified">
                 {formatTime(post.data.update)}
               </time>
             </p>
-          )
-        }
+          )}
       </div>
       <div class="tags">
         <TagIcon width={16} height={16} />
-        {
-          post.data.tags.map((tag) => (
+        {post.data.tags.map((tag) => (
             <a href={`/blog/tag/${tag.replace("#", "%23")}/`}>{tag}</a>
-          ))
-        }
+          ))}
       </div>
     </div>
-    <div id="markdown" itemprop="articleBody">
-      <Content />
-    </div>
+    <div id="markdown" itemprop="articleBody"><Content /></div>
   </article>
-  {
-    (
+  {(
       <nav>
         <ul class="mx-0 my-4 grid grid-flow-col justify-between gap-3">
           <li>
@@ -100,8 +93,7 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
           </li>
         </ul>
       </nav>
-    )
-  }
+    )}
 </Base>
 
 <style lang="scss">
