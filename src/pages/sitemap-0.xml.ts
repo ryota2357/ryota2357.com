@@ -18,7 +18,7 @@ const xmlString = `
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://ryota2357.com/works/</loc>
+    <loc>https://ryota2357.com/projects/</loc>
     <priority>0.5</priority>
   </url>
 </urlset>

@@ -5,7 +5,7 @@ import { loadLazyImages, ogImagePath } from "./vrt-utils";
 const pages = [
   { name: "home", path: "/" },
   { name: "about", path: "/about/" },
-  { name: "works", path: "/works/" },
+  { name: "projects", path: "/projects/" },
   { name: "blog__kitchen-sink", path: "/blog/0000/kitchen-sink/" },
   { name: "blog__kitchen-sink-ja", path: "/blog/0000/kitchen-sink-ja/" },
 ];

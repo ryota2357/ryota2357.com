@@ -1,0 +1,111 @@
+---
+import { Image } from "astro:assets";
+import dayjs from "dayjs";
+import { allProjectsCollection } from "@/content";
+import GitHubIcon from "@/images/github-invertocat.svg";
+import Base from "@/layouts/Base.astro";
+
+const STATUS_META = {
+  active: { color: "#16a34a", bg: "#dcfce7" },
+  maintained: { color: "#0969da", bg: "#dbeafe" },
+  wip: { color: "#d97706", bg: "#fef3c7" },
+  done: { color: "#6b7280", bg: "#e5e7eb" },
+  archived: { color: "#9ca3af", bg: "#eee" },
+} as const satisfies Record<string, { color: string; bg: string }>;
+
+const LANG_COLOR: Record<string, string> = {
+  Rust: "#dea584",
+  Lua: "#000080",
+  "Vim script": "#199f4b",
+  Python: "#3572A5",
+  "Unity / C#": "#178600",
+  C: "#555555",
+};
+
+const projects = allProjectsCollection
+  .map((entry) => entry.data)
+  .sort((a, b) => {
+    const aActive = a.status === "active" ? 0 : 1;
+    const bActive = b.status === "active" ? 0 : 1;
+    if (aActive !== bActive) return aActive - bActive;
+    return b.update.getTime() - a.update.getTime();
+  });
+
+function fmtYM(date: Date): string {
+  return dayjs(date).format("YYYY/MM");
+}
+---
+
+<Base title="Projects" type="website">
+  <h1 class="text-[2.5rem]">Projects</h1>
+  <p class="mt-1 mb-6 text-[0.92rem] text-[#666]">
+    開発しているライブラリ・Vim
+    プラグイン・プログラミング言語などの個人プロジェクト
+  </p>
+  <ul class="m-0 list-none p-0">
+    {projects.map((p) => (
+        <li class="border-b border-[#e5e3df] py-[1.1rem]">
+          <div class="flex items-start gap-4">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-baseline gap-x-[0.7rem] gap-y-1">
+                <h3 class="m-0 text-[1.25rem] font-bold leading-tight">
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="text-[#242424]"
+                  >
+                    {p.title}
+                  </a>
+                </h3>
+                <span class="inline-flex items-center gap-[0.35rem] text-[0.8rem] text-[#666]">
+                  <span
+                    class="inline-block h-[9px] w-[9px] rounded-full"
+                    style={{
+                      background: LANG_COLOR[p.lang] ?? "#888",
+                    }}
+                  />
+                  {p.lang}
+                </span>
+                <span
+                  class="rounded-full px-[7px] py-px text-[0.7rem] font-semibold uppercase tracking-[0.04em] leading-[1.6]"
+                  style={{
+                    color: STATUS_META[p.status].color,
+                    background: STATUS_META[p.status].bg,
+                  }}
+                >
+                  {p.status}
+                </span>
+              </div>
+              <p class="mt-[0.4rem] text-[#3a3a3a] leading-[1.65] whitespace-pre-line">
+                {p.description}
+              </p>
+              <div class="mt-2 flex flex-wrap items-center gap-x-[0.8rem] text-[0.8rem] text-[#888]">
+                <span>更新 {fmtYM(p.update)}</span>
+                <span>開始 {fmtYM(p.created)}</span>
+                {p.github && (
+                  <a
+                    href={`https://github.com/${p.github}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="inline-flex items-center gap-[0.3rem] text-[#888]"
+                  >
+                    <GitHubIcon width={14} height={14} />
+                    {p.github}
+                  </a>
+                )}
+              </div>
+            </div>
+            {p.image && (
+              <Image
+                src={p.image}
+                alt=""
+                class="h-24 w-24 shrink-0 rounded-[2px] bg-[#eee] object-cover"
+                data-vrt-mask={p.image.src.endsWith(".gif") || undefined}
+              />
+            )}
+          </div>
+        </li>
+      ))}
+  </ul>
+</Base>

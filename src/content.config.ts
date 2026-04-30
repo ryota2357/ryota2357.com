@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { glob } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import { z } from "astro/zod";
 
 const blogCollection = defineCollection({
@@ -14,25 +14,23 @@ const blogCollection = defineCollection({
   }),
 });
 
-const worksCollection = defineCollection({
-  loader: glob({ pattern: "**/index.yaml", base: "./content/works" }),
+const projectsCollection = defineCollection({
+  loader: file("./content/projects/data.yaml"),
   schema: ({ image }) =>
     z.object({
-      name: z.string(),
-      data: z.array(
-        z.object({
-          title: z.string(),
-          description: z.string(),
-          url: z.url(),
-          image: image(),
-          created: z.coerce.date(),
-          update: z.coerce.date(),
-        }),
-      ),
+      title: z.string(),
+      description: z.string(),
+      url: z.url(),
+      github: z.string().optional(),
+      lang: z.string(),
+      status: z.enum(["active", "maintained", "wip", "done", "archived"]),
+      image: image().optional(),
+      created: z.coerce.date(),
+      update: z.coerce.date(),
     }),
 });
 
 export const collections = {
   blog: blogCollection,
-  works: worksCollection,
+  projects: projectsCollection,
 };

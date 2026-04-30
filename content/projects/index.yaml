@@ -1,0 +1,159 @@
+# Status: active | maintained | wip | done | archived
+
+lico:
+  title: Lico
+  description: スクリプティング言語の自作実装。Lua風の構文に独自の機能を加えた、軽量・組み込み向けの動的型付け言語
+  url: https://github.com/ryota2357/lico
+  github: ryota2357/lico
+  lang: Rust
+  status: active
+  created: 2024-02-10
+  update: 2026-04-12
+
+lean_string:
+  title: lean_string
+  description: Rust 用の compact, clone-on-write な文字列型。短い文字列はインライン格納、長い文字列は参照カウントで共有
+  url: https://github.com/ryota2357/lean_string
+  github: ryota2357/lean_string
+  lang: Rust
+  status: maintained
+  created: 2024-08-22
+  update: 2026-02-18
+
+pleckjp:
+  title: PleckJP
+  description: Hack + IBM Plex Sans JP + Nerd Fonts を合成したプログラミングフォント
+  url: https://github.com/ryota2357/PleckJP
+  github: ryota2357/PleckJP
+  lang: Python
+  status: maintained
+  created: 2022-05-30
+  update: 2026-01-09
+
+vim-skim-synctex:
+  title: vim-skim-synctex
+  description: Skim.app との SyncTeX 連携を Vim/Neovim から行うためのプラグイン
+  url: https://github.com/ryota2357/vim-skim-synctex
+  github: ryota2357/vim-skim-synctex
+  lang: Vim script
+  status: done
+  created: 2023-06-14
+  update: 2024-04-01
+
+indexed_arena:
+  title: indexed_arena
+  description: 削除のないシンプルな index ベースのアリーナ。グラフ・AST 構築のための小さな Rust ユーティリティ
+  url: https://github.com/ryota2357/indexed_arena
+  github: ryota2357/indexed_arena
+  lang: Rust
+  status: done
+  created: 2024-05-09
+  update: 2024-09-22
+
+mical:
+  title: mical
+  description: フラット構造で読みやすさを重視した、最小限・行指向の設定言語
+  url: https://github.com/mical-lang/mical
+  github: mical-lang/mical
+  lang: Rust
+  status: wip
+  created: 2025-08-04
+  update: 2026-04-20
+
+repeatable-cube:
+  title: RepeatableCube
+  description: |-
+    unity1week「Re」にて制作
+    同じ動作を繰り返すCubeの繰り返し動作を変更して障害物を避けるゲーム
+  url: https://unityroom.com/games/repeatablecube
+  lang: Unity / C#
+  status: done
+  image: ./unity1week-re.png
+  created: 2022-12-20T13:32
+  update: 2022-12-24T20:08
+
+soroeru:
+  title: そろえる
+  description: |-
+    unity1week「そろえる」にて制作
+    複数のサイコロの目を同じする(そろえる)ゲーム
+  url: https://unityroom.com/games/soroeru_dice
+  lang: Unity / C#
+  status: done
+  image: ./unity1week-soroeru.gif
+  created: 2022-05-14T15:04
+  update: 2022-05-15T08:17
+
+kaikaikaikai:
+  title: 回回回回
+  description: |-
+    unity1week「回」にて制作
+    「回」って並べるとテトリミノに見えたので、テトリスを「回」転する円柱形にしてみたゲーム
+  url: https://unityroom.com/games/kaikaikaikai
+  lang: Unity / C#
+  status: done
+  image: ./unity1week-kai.jpg
+  created: 2021-03-04T14:28
+  update: 2021-03-06T11:37
+
+open-typing:
+  title: 開ける
+  description: |-
+    unity1week「あける」にて制作
+    ひたすら箱をあけるタイビング系のゲーム
+  url: https://unityroom.com/games/open_typing
+  lang: Unity / C#
+  status: done
+  image: ./unity1week-akeru.png
+  created: 2020-12-29T22:28
+  update: 2020-12-30T14:06
+
+veryordinary-goldfishscooping:
+  title: ごく普通の金魚すくい
+  description: |-
+    unity1week「ふえる」にて制作
+    金魚が増える金魚すくい良い感じに金魚を増やして高得点を目指すゲーム
+  url: https://unityroom.com/games/veryordinary_goldfishscooping
+  lang: Unity / C#
+  status: archived
+  image: ./unity1week-hueru.gif
+  created: 2020-08-19T08:22
+  update: 2020-08-19T12:20
+
+dividegroup:
+  title: DivideGroup
+  description: |-
+    unity1week「密」にて制作
+    マウスだけで遊べるシンプルな「密」と「疎」を分類するゲーム
+  url: https://unityroom.com/games/dividegroup
+  lang: Unity / C#
+  status: done
+  image: ./unity1week-mitu.gif
+  created: 2020-05-04T13:33
+  update: 2020-05-09T22:01
+
+reversestring:
+  title: ReverseString
+  description: |-
+    unity1week「逆」にて制作
+    糸通しに"逆"の要素を追加してみたゲーム
+  url: https://unityroom.com/games/reversestring
+  lang: Unity / C#
+  status: done
+  image: ./unity1week-gyaku.png
+  created: 2020-03-01T19:48
+  update: 2020-03-02T14:41
+
+fp15-badapple:
+  title: FP15 Bad Apple!!
+  description: |-
+    大学の授業(基礎プログラミング及び演習)にて制作
+    C言語でPPMファイル)生成するプログラムを作り、そのプログラムによって作られたPPMファイルをを繋げて動画を作るという課題
+    Bad Apple!! の影絵に歌詞をつけたGIFとMP4
+  url: https://github.com/ryota2357/fp15-project
+  github: ryota2357/fp15-project
+  lang: C
+  status: archived
+  image: ./fp15-badapple.gif
+  created: 2023-02-09T19:54
+  update: 2023-02-09T19:54
