@@ -18,9 +18,13 @@
       "ignoreTests": true
     },
     {
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "minimumReleaseAge": "2 days"
+    },
+    {
       "groupName": "devDependencies",
       "matchDepTypes": ["devDependencies"],
-      "ignoreTests": true
+      "matchUpdateTypes": ["minor", "patch", "digest"]
     },
     {
       "groupName": "dependencies",
