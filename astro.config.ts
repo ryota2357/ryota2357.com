@@ -33,5 +33,6 @@ export default defineConfig({
       "/blog/2021/fatal-error-wchar-h-file-not-found/",
     "/blog/2021/fatal-error-wcharh-file-not-found/":
       "/blog/2021/fatal-error-wchar-h-file-not-found/",
+    "/works/": "/projects/",
   },
 });

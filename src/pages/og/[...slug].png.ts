@@ -64,7 +64,7 @@ export function getStaticPaths() {
     { slug: "about", text: "About" },
     { slug: "blog", text: "Blog" },
     { slug: "blog/tag", text: "Blog.Tag" },
-    { slug: "works", text: "Works" },
+    { slug: "projects", text: "Projects" },
   ]
     .concat(...blogPostData)
     .concat(...blogTagData)

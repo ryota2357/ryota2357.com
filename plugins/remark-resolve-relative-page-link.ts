@@ -23,7 +23,7 @@ export default function resolveRelativePageLink(option: Option) {
     const rootPath = (() => {
       const currentFileDir = vfile.history.at(-1)?.split(path.sep).slice(0, -1);
       if (!currentFileDir) {
-        throw new Error("vfile.history is empty");
+        return undefined;
       }
       const lastIndex = currentFileDir.lastIndexOf(option.rootDirName);
       if (lastIndex === -1) {

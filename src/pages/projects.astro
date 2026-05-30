@@ -1,0 +1,110 @@
+---
+import { Image } from "astro:assets";
+import dayjs from "dayjs";
+import { allProjectsCollection } from "@/content";
+import GitHubIcon from "@/images/github-invertocat.svg";
+import Base from "@/layouts/Base.astro";
+
+const SECTIONS = [
+  { status: "active", heading: "Active" },
+  { status: "maintained", heading: "Maintained" },
+  { status: "completed", heading: "Completed" },
+  { status: "archived", heading: "Archived" },
+] as const;
+
+// ref: https://github.com/ozh/github-colors
+// biome-ignore format: keep "" and align
+const LANG_COLOR: Record<string, string> = {
+  "C":          "#555555",
+  "C#":         "#178600",
+  "Haskell":    "#5e5086",
+  "Lua":        "#000080",
+  "Python":     "#3572A5",
+  "Rust":       "#dea584",
+  "Svelte":     "#ff3e00",
+  "TypeScript": "#3178c6",
+  "Unity":      "#222c37",
+  "Vim script": "#199f4b",
+};
+
+const sections = SECTIONS.map((section) => ({
+  ...section,
+  projects: allProjectsCollection
+    .map((entry) => entry.data)
+    .filter((p) => p.status === section.status)
+    .sort((a, b) => b.updated.getTime() - a.updated.getTime()),
+})).filter((section) => section.projects.length > 0);
+
+function fmtYM(date: Date): string {
+  return dayjs(date).format("YYYY/MM/DD");
+}
+---
+
+<Base title="Projects" type="website">
+  <h1 class="text-[2.5rem]">Projects</h1>
+  {sections.map((section) => (
+    <section class="mt-8 first:mt-0">
+      <h2 class="m-0 mb-2 text-[1.4rem] font-bold">
+        {section.heading}
+      </h2>
+      <ul class="rounded-md border border-solid border-gray-600 bg-white px-3 py-0">
+        {section.projects.map((p) => (
+          <li class="flex items-start gap-4 px-0 py-2">
+            <div class="min-w-0 flex-1">
+              <div class="flex flex-wrap items-baseline gap-3">
+                <h3 class="m-0 text-[1.25rem] font-bold">
+                  <a href={p.url} target="_blank" rel="noreferrer">
+                    {p.title}
+                  </a>
+                </h3>
+                <div class="flex flex-wrap items-center gap-2 text-[0.8rem] text-gray-500">
+                  {p.langs.map((lang) => (
+                    <span class="inline-flex items-center gap-1">
+                      <span
+                        class="inline-block h-[9px] w-[9px] rounded-full"
+                        style={{background: LANG_COLOR[lang] ?? "#888"}}
+                      />
+                      {lang}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div class="mt-[0.4rem]" set:html={p.description} />
+              <div class="mt-2 flex flex-wrap items-center gap-x-3 text-[0.8rem] text-gray-500">
+                <span>更新: {fmtYM(p.updated)}</span>
+                <span>作成: {fmtYM(p.created)}</span>
+                {p.github && (
+                  <a
+                    href={`https://github.com/${p.github}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="inline-flex items-center gap-[0.3rem] text-gray-500"
+                  >
+                    <GitHubIcon width={14} height={14} />
+                    {p.github}
+                  </a>
+                )}
+              </div>
+            </div>
+            {p.image && (
+              <Image
+                src={p.image}
+                alt=""
+                class="h-24 w-auto shrink-0 rounded-sm bg-gray-100"
+                data-vrt-mask={p.image.src.endsWith(".gif") || undefined}
+              />
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>
+
+<style lang="scss">
+  ul {
+    li + li {
+      border-top: 1px solid #e3e3e3;
+    }
+  }
+</style>

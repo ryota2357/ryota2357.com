@@ -1,0 +1,284 @@
+- id: page-navigator
+  title: Page Navigator
+  description: |-
+    WIP <br>
+    キーボード操作でWebページ内操作やWebページ間操作を行うためのブラウザ拡張
+  url: https://github.com/ryota2357/page-navigator
+  github: ryota2357/page-navigator
+  langs: [TypeScript, Svelte]
+  status: active
+  created: 2026-05-11  # first commit (but after publish, change to it's date)
+  updated: 2026-05-29  # latest commit (but after publish, change to latest publish date)
+
+- id: typfill
+  title: Typfill
+  description: |-
+    フォーム入力から PDF を生成する Web アプリ <br>
+    WebAssembly (Typst) によるブラウザ内コンパイルで入力データを外部に送信せず完結させているほか、入力内容の localStorage への自動保存や URL fragment を用いたデータ共有機能も実装している
+  url: https://typfill.ryota2357.com/
+  github: ryota2357/typfill
+  langs: [TypeScript, Svelte]
+  status: active
+  created: 2026-04-26  # first Cloudflare deploy date (from compatibility_date in wrangler.toml)
+  updated: 2026-05-29  # latest commit
+
+- id: macos-ime
+  title: macos-ime
+  description: |-
+    TODO
+  url: https://github.com/ryota2357/macos-ime
+  github: ryota2357/macos-ime
+  langs: [C]
+  status: maintained
+  created: 2026-04-12
+  updated: 2026-04-14
+
+- id: mical
+  title: mical
+  description: |-
+    WIP <br>
+    TODO
+  url: https://mical-lang.github.io/mical/
+  github: mical-lang/mical
+  langs: [Rust]
+  status: active
+  created: 2026-02-10  # v0.0.0 (mical-cli)
+  updated: 2026-02-27  # v0.0.2 (mical-cli)
+
+- id: vm_stat2
+  title: vm_stat2
+  description: |-
+    TODO <br>
+    関連記事: [macOS のメモリ使用状況を Activity Monitor のようにわかりやすく表示させる CLI を作った](/blog/2026/vm_stat2-macos-memory-cli/)
+  url: https://github.com/ryota2357/vm_stat2
+  github: ryota2357/vm_stat2
+  langs: [C]
+  status: maintained
+  created: 2026-01-09
+  updated: 2026-04-14
+
+- id: lico
+  title: Lico
+  description: |-
+    TODO
+  url: https://github.com/ryota2357/lico
+  github: ryota2357/lico
+  langs: [Rust]
+  status: archived
+  created: 2023-08-09  # first commit
+  updated: 2025-04-18  # latest commit (lico_core)
+
+- id: lean_string
+  title: lean_string
+  description: |-
+    TODO
+  url: https://crates.io/crates/lean_string
+  github: ryota2357/lean_string
+  langs: [Rust]
+  status: maintained
+  created: 2024-12-08  # v0.0.1
+  updated: 2026-04-13  # v0.6.0
+
+- id: indexed_arena
+  title: indexed_arena
+  description: |-
+    TODO
+  url: https://crates.io/crates/indexed_arena
+  github: ryota2357/indexed_arena
+  langs: [Rust]
+  status: maintained
+  created: 2025-02-16  # v0.1.0
+  updated: 2025-04-17  # v0.4.2
+
+- id: toy-lisp-hs
+  title: toy-lisp.hs
+  description: |-
+    Haskell 学習兼大学の授業(コンピュータサイエンス実験Ⅱ)の課題として作成した、Common Lisp サブセットの AST インタプリタ <br>
+    SBCL の動作を参考にし、マクロやモジュール機能を除いた基本的な Common Lisp の機能 (スペシャル変数など含む) を実装しているが、関数の変数キャプチャ挙動に一部バグ(SBCLとの動作不一致)も残されている
+  url: https://github.com/ryota2357/toy-lisp.hs
+  github: ryota2357/toy-lisp.hs
+  langs: [Haskell]
+  status: completed
+  created: 2025-01-06  # first commit
+  updated: 2025-02-06  # latest commit
+
+- id: tiny-lang-to-wat
+  title: tiny-lang-to-wat
+  description: |-
+    大学の授業(コンピュータサイエンス実験Ⅰ)にて作成した、算術演算、第一級関数、再帰、条件式を備えた小さなプログラミング言語 <br>
+    flex, bison を使用した構文解析と、AST インタプリタ および WebAssembly Text Format へのコード生成を実装
+  url: https://github.com/ryota2357/tiny-lang-to-wat
+  github: ryota2357/tiny-lang-to-wat
+  langs: [C]
+  status: completed
+  created: 2024-07-11  # submit date (from uec submissions repository commit date)
+  updated: 2025-03-27  # latest commit
+
+- id: pleckjp
+  title: PleckJP
+  description: |-
+    Hack + IBM Plex Sans JP + Nerd Fonts を合成したプログラミングフォント <br>
+    関連記事: [プログラミング用合成フォント PleckJP を作った](/blog/2023/dev-font-pleckjp/)
+  url: https://github.com/ryota2357/PleckJP
+  github: ryota2357/PleckJP
+  langs: [Python]
+  status: maintained
+  created: 2023-05-08
+  updated: 2026-03-05
+
+- id: necodark
+  title: necodark
+  description: |
+    TODO
+  url: https://github.com/ryota2357/necodark
+  github: ryota2357/necodark
+  langs: [C#]
+  status: archived
+  image: ./necodark-top.png
+  created: 2023-03-06  # first commit
+  updated: 2023-09-04  # latest commit
+
+- id: sccg
+  title: Sccg
+  description: |
+    TODO
+  url: https://github.com/ryota2357/Sccg
+  github: ryota2357/Sccg
+  langs: [C#]
+  status: archived
+  image: ./sccg-structure.svg
+  created: 2023-03-05  # v0.1.0
+  updated: 2023-09-04  # latest commit
+
+- id: fp15-badapple
+  title: FP15 Bad Apple!!
+  description: |-
+    大学の授業(基礎プログラミング及び演習)の「C言語でPPMファイルを生成・連結して動画を作る」という課題にて、「Bad Apple!!」の影絵に歌詞をつけた動画を制作した <br>
+    関連記事: [大学の授業でBadAppleの動画作った記録](/blog/2023/dev-fp-badapple/)
+  url: https://github.com/ryota2357/fp15-project
+  github: ryota2357/fp15-project
+  langs: [C]
+  status: completed
+  image: ./fp15-badapple.gif
+  created: 2023-02-09T19:54
+  updated: 2023-02-09T19:54
+
+- id: repeatable-cube
+  title: RepeatableCube
+  description: |-
+    [unity1week「Re」](https://unityroom.com/unity1weeks/57)にて制作 <br>
+    同じ動作を繰り返すCubeの繰り返し動作を変更して障害物を避けるゲーム
+  url: https://unityroom.com/games/repeatablecube
+  langs: [Unity, C#]
+  status: completed
+  image: ./unity1week-re.png
+  created: 2022-12-20T13:32
+  updated: 2022-12-24T20:08
+
+- id: dein-snip-lua
+  title: dein-snip.lua
+  description: |-
+    TODO <br>
+    関連記事: [dein.vimのluaラッパー -αなプラグイン作った(dein-snip)](/blog/2022/dev-dein-snip/)
+  url: https://github.com/ryota2357/dein-snip.lua/
+  github: ryota2357/dein-snip.lua
+  langs: [Lua]
+  status: archived
+  created: 2022-08-4  # first commit
+  updated: 2023-01-4  # latest commit
+
+- id: ddu-column-icon_filename
+  title: ddu-column-icon_filename
+  description: |-
+    TODO <br>
+    関連記事: [ddu-ui-filerでアイコン表示するcolumn作った](https://ryota2357.com/blog/2022/dev-ddu-column-icon_filename/)
+  url: https://github.com/ryota2357/ddu-column-icon_filename
+  github: ryota2357/ddu-column-icon_filename
+  langs: [TypeScript]
+  status: archived
+  created: 2022-07-11  # first commit
+  updated: 2024-04-28  # latest commit
+
+- id: vim-skim-synctex
+  title: vim-skim-synctex
+  description: |-
+    ローカルサーバーを用いて Skim.app との SyncTeX を行うための Vim/Neovim プラグイン <br>
+    関連記事: [neovim(vim)とskimでsynctexできるようにするプラグイン作った](http://localhost:4321/blog/2022/dev-vim-skim-synctex/)
+  url: https://github.com/ryota2357/vim-skim-synctex
+  github: ryota2357/vim-skim-synctex
+  langs: [TypeScript, Vim script]
+  status: maintained
+  created: 2022-06-04
+  updated: 2026-01-14
+
+- id: soroeru
+  title: そろえる
+  description: |-
+    [unity1week「そろえる」](https://unityroom.com/unity1weeks/55)にて制作 <br>
+    複数のサイコロの目を同じする(そろえる)ゲーム
+  url: https://unityroom.com/games/soroeru_dice
+  langs: [Unity, C#]
+  status: completed
+  image: ./unity1week-soroeru.gif
+  created: 2022-05-14T15:04
+  updated: 2022-05-15T08:17
+
+- id: kaikaikaikai
+  title: 回回回回
+  description: |-
+    [unity1week「回」](https://unityroom.com/unity1weeks/51)にて制作  <br>
+    「回」って並べるとテトリミノに見えたので、テトリスを「回」転する円柱形にしてみたゲーム
+  url: https://unityroom.com/games/kaikaikaikai
+  langs: [Unity, C#]
+  status: completed
+  image: ./unity1week-kai.jpg
+  created: 2021-03-04T14:28
+  updated: 2021-03-06T11:37
+
+- id: open-typing
+  title: 開ける
+  description: |-
+    [unity1week「あける」](https://unityroom.com/unity1weeks/18)にて制作 <br>
+    ひたすら箱をあけるタイビング系のゲーム
+  url: https://unityroom.com/games/open_typing
+  langs: [Unity, C#]
+  status: completed
+  image: ./unity1week-akeru.png
+  created: 2020-12-29T22:28
+  updated: 2020-12-30T14:06
+
+- id: veryordinary-goldfishscooping
+  title: ごく普通の金魚すくい
+  description: |-
+    [unity1week「ふえる」](https://unityroom.com/unity1weeks/17)にて制作 <br>
+    金魚が増える金魚すくい良い感じに金魚を増やして高得点を目指すゲーム
+  url: https://unityroom.com/games/veryordinary_goldfishscooping
+  langs: [Unity, C#]
+  status: completed
+  image: ./unity1week-hueru.gif
+  created: 2020-08-19T08:22
+  updated: 2020-08-19T12:20
+
+- id: dividegroup
+  title: DivideGroup
+  description: |-
+    [unity1week「密」](https://unityroom.com/unity1weeks/16)にて制作 <br>
+    マウスだけで遊べるシンプルな「密」と「疎」を分類するゲーム
+  url: https://unityroom.com/games/dividegroup
+  langs: [Unity, C#]
+  status: completed
+  image: ./unity1week-mitu.gif
+  created: 2020-05-04T13:33
+  updated: 2020-05-09T22:01
+
+- id: reversestring
+  title: ReverseString
+  description: |-
+    [unity1week「逆」](https://unityroom.com/unity1weeks/15)にて制作 <br>
+    糸通しに"逆"の要素を追加してみたゲーム
+  url: https://unityroom.com/games/reversestring
+  langs: [Unity, C#]
+  status: completed
+  image: ./unity1week-gyaku.png
+  created: 2020-03-01T19:48
+  updated: 2020-03-02T14:41

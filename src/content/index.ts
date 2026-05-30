@@ -9,7 +9,7 @@ export const vrtBlogCollection = await getCollection(
   "blog",
   ({ data }) => data.vrt === true,
 );
-export const allWorksCollection = await getCollection("works");
+export const allProjectsCollection = await getCollection("projects");
 
 export const allBlogTagList = (() => {
   const tagMap = allBlogCollection
