@@ -34,7 +34,9 @@
         "before": true,
         "after": true
       },
-      "ja-space-around-link": false
+      "ja-space-around-emphasis": false,
+      "ja-space-around-link": false,
+      "ja-space-around-strong": false
     }
   }
 }
