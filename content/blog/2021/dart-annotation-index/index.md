@@ -159,7 +159,7 @@ Tools, such as IDEs, can show invocations of such function in a file structure v
 The first parameter of the function must be the description of the group.
 </details>
 
-一連のテストを実行するテスト フレームワーク関数に注釈を付けるために使用します。
+一連のテストを実行するテストフレームワーク関数に注釈を付けるために使用します。
 IDE などのツールでは、このような関数の呼び出しをファイル構造ビューに表示でき、ユーザーが大きなテストファイルの中をナビゲートするのに役立ちます。
 この関数の最初のパラメータには、グループの説明を指定します。
 
