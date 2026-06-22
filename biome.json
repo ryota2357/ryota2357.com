@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!**/package.json", "!**/pnpm-lock.yaml"]
+    "includes": ["**", "!**/package.json", "!**/pnpm-lock.yaml", "!**/*.svg"]
   },
   "assist": {
     "actions": {
@@ -26,7 +26,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "preset": "recommended"
     }
   },
   "javascript": {
