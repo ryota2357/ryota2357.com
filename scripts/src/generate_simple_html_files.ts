@@ -1,5 +1,5 @@
-import { copy, exists, expandGlob } from "jsr:@std/fs@1.0.23";
-import { dirname, join } from "jsr:@std/path@1.1.4";
+import { copy, exists, expandGlob } from "jsr:@std/fs@1.0.24";
+import { dirname, join } from "jsr:@std/path@1.1.5";
 
 // /myPath/index.html => /myPath.html
 async function generateSimpleHtmlFiles(outDir: URL) {
