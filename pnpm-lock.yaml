@@ -22,10 +22,10 @@ importers:
         version: 4.3.2
       '@tailwindcss/vite':
         specifier: 4.3.2
-        version: 4.3.2(vite@7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0))
+        version: 4.3.2(vite@7.3.5(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0))
       astro:
         specifier: 6.4.8
-        version: 6.4.8(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0)
+        version: 6.4.8(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0)
       dayjs:
         specifier: 1.11.21
         version: 1.11.21
@@ -37,7 +37,7 @@ importers:
         version: 1.101.0
       sharp:
         specifier: 0.35.3
-        version: 0.35.3(@types/node@24.13.2)
+        version: 0.35.3(@types/node@24.13.3)
       tailwindcss:
         specifier: 4.3.2
         version: 4.3.2
@@ -64,14 +64,14 @@ importers:
         specifier: 0.9.9
         version: 0.9.9(prettier@3.8.3)(typescript@6.0.3)
       '@biomejs/biome':
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.4
+        version: 2.5.4
       '@playwright/test':
-        specifier: 1.61.0
-        version: 1.61.0
+        specifier: 1.61.1
+        version: 1.61.1
       '@types/node':
-        specifier: 24.13.2
-        version: 24.13.2
+        specifier: 24.13.3
+        version: 24.13.3
       '@types/unist':
         specifier: 3.0.3
         version: 3.0.3
@@ -82,8 +82,8 @@ importers:
         specifier: 1.3.0
         version: 1.3.0
       textlint-rule-preset-ja-spacing:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.0.2
+        version: 3.0.2
       textlint-rule-preset-ja-technical-writing:
         specifier: 12.0.2
         version: 12.0.2
@@ -171,59 +171,59 @@ packages:
     resolution: {integrity: sha512-4zBIxpPzowiZpusoFkyGVwakdRJUyuH5PxQ/PrqghfdFWWasvnCdPfQXHrenDai+gyLARulZjZowCOj6fjT4pA==}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@2.5.0':
-    resolution: {integrity: sha512-4kURkd9hAPrdDM3C9n82ycYgx8hvQcW6MjKTEejruj8rK0N8P3OPpdy8BvI8kt3KWY4ycF5XtDOrktetEfhfuw==}
+  '@biomejs/biome@2.5.4':
+    resolution: {integrity: sha512-xy5FNE5kQJKyK5MR1gJy6ztXYx4WBAbYGlK04lMEgmyPRWKybY9NFwiG9yo0XdzOU8Xvhj41u034J1ywfoWfMw==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.5.0':
-    resolution: {integrity: sha512-Mn3Fwi3SA5fgmfCPqmzpWF2DLZnms3BVAhM088nTnGrTZmHS3wwIjcoZPqpXeNgd3DrrLH6xp8vTLIBuJoZiXw==}
+  '@biomejs/cli-darwin-arm64@2.5.4':
+    resolution: {integrity: sha512-4o3NFRobXHynkgcFVrlZsoDAFtF2ldlEGN8sORSws5ZQqyY4PXnPUIylu4ksfyHuwkfvDREuWh3JK+niRwGq3w==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.5.0':
-    resolution: {integrity: sha512-rg3VPL5P8mYro6pqlXYXuJWph21slVp3SZtAqWSrkZs40d2gTzYmHF8E/X1iTID25btmNKltNDJ926sqVBp7DQ==}
+  '@biomejs/cli-darwin-x64@2.5.4':
+    resolution: {integrity: sha512-D32P5HkU2Y6PySuC/WsVDTOgsDwVFmujzhhhOQjajtATpVWFDXuVd3oRbsWNSEA+aaFzyzZm22szsyydBYlSyQ==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.5.0':
-    resolution: {integrity: sha512-vQdM4oSGaf7ZNeGO9w5+Y8SBtyser9M6znxYbm7Ec8wInxJu1WiKxFYZW5Auj2d80bcVvefuGGRxoFOE0eee8g==}
+  '@biomejs/cli-linux-arm64-musl@2.5.4':
+    resolution: {integrity: sha512-Rpm5/AT1m+DlJmUoYvS4/vXc+0tXJPJ2NQz25TGPyHVF5JrWy75PE0GH6kVxsKtQDuCH4OgzquZq0R4kj/wCVg==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-arm64@2.5.0':
-    resolution: {integrity: sha512-tl+LW8fdD96/xdeWtWwc82LIOc5CoY7N2AsogLTp5R4ECErYt+8Jl/N68ezN9vzSiqPTxw6vjcihoLPYKZHrlw==}
+  '@biomejs/cli-linux-arm64@2.5.4':
+    resolution: {integrity: sha512-pSEfW7B8kTsXUjUxC1xVVK+y85Ht3C5XxZ9gclmC7/3Ku9Vqz8jmI7k0p/BNIjQ6t4sFERI2sFeH73ybiZl6YQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-linux-x64-musl@2.5.0':
-    resolution: {integrity: sha512-+9hIcMngJ+yGUahXqZuZ8CoWKJE9SAZsFsM3QDvXpNsLbXZ9lqVzgBhOk/jTSYkOA0GLP9eu3teukqpLUojHMg==}
+  '@biomejs/cli-linux-x64-musl@2.5.4':
+    resolution: {integrity: sha512-aby/PohmmgbShcHqFsZVzG8H6D98+P+A6xRWRrQcLW1pCjabcov5UUlke4UqNQBYTkDQav+jB4zyyDDeKB2GaA==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-x64@2.5.0':
-    resolution: {integrity: sha512-zpEGf4RQbFEh8Vt7OmavLyyOzRbtcE9osCqrS1kfvt8jDvxwhKXLSf7n0ebr/ov0RJ9ssP+lhs6C8a9WwFvrQA==}
+  '@biomejs/cli-linux-x64@2.5.4':
+    resolution: {integrity: sha512-FNxojWJkL7EajAuzBgoLe0T2G0y112M4lBrDIFl/DomFTx8yqenYOIdsRLNXvOvBBofE8hJi85LjzLmBDpY7/Q==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-win32-arm64@2.5.0':
-    resolution: {integrity: sha512-jB0wAvTLI4itx5VidqVUejPQFhRUxiZ9l9FvZ26D5fl6t3qme+ZB4PD3bTSeL1vZ8NI2Rx/zj6H9zcESuGHKGw==}
+  '@biomejs/cli-win32-arm64@2.5.4':
+    resolution: {integrity: sha512-emoXexPZIPAZkz2RKmA95WJUqK3I5MJNYtwEbL5ESciRzhmFMMyekDhNG8hpeOaK+ZGRDxAU4wvGuA5IHQ0h0w==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.5.0':
-    resolution: {integrity: sha512-VT/lF+GId+67j8aDfLkxdxNoVApsPSTbyAtB3jJq0IWTrY77WXfbPfpngxq0bA6JCEv/7k8C9qWjDRKRznDlyw==}
+  '@biomejs/cli-win32-x64@2.5.4':
+    resolution: {integrity: sha512-U1jaluLw1qQc2Tx7/CeSoL9N5XcqIH+GWjpUAy1ouB5nVjSCMNO+NNHdY3RAs8zxNurLWAdj6pehQdCA2zyU+Q==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -965,8 +965,8 @@ packages:
     resolution: {integrity: sha512-tmmZ3lQxAe/k/+rNnXQRawJ4NjxO2hqiOLTHvWchtGZULp4RyFeh6aU4XdOYBFe2KE1oShQTv4AblOs2iOrNnQ==}
     engines: {node: '>= 10.0.0'}
 
-  '@playwright/test@1.61.0':
-    resolution: {integrity: sha512-cKA5B6lpFEMyMGjxF54QihfYpB4FkEGH+qZhtArDEG+wezQAJY8Pq6C7T1SjWz+FFzt3TbyoXBQYk/0292TdJA==}
+  '@playwright/test@1.61.1':
+    resolution: {integrity: sha512-8nKv6+0RJSL9FE4jYOEGXnPeM/Hg12qZpmqzZjRh3qM0Y7c3z1mrOTfFLids72RDQYVh9WpLEfR5WdpNX4fkig==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -1373,8 +1373,8 @@ packages:
   '@types/nlcst@2.0.3':
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
 
-  '@types/node@24.13.2':
-    resolution: {integrity: sha512-fRa09kZTgu8o71KFcDjUFuc7F+dEbZYZmkI0mg5YBTRs0yMKjYHsq/c0urDKeDb+D5qVgXOdFcuu+DZPKOITwA==}
+  '@types/node@24.13.3':
+    resolution: {integrity: sha512-Dh8vAsV36ig5wa9OX4pXvMc9D3Veibfw2wix0CUwYODLD8nkj9UsLjASr49nPg+2eKzxhBV+v7L8pXvT4e639Q==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -2961,13 +2961,13 @@ packages:
     resolution: {integrity: sha512-wQ0b/W4Fr01qtpHlqSqspcj3EhBvimsdh0KlHhH8HRZnMsEa0ea2fTULOXOS9ccQr3om+GcGRk4e+isrZWV8qQ==}
     engines: {node: '>=16.20.0'}
 
-  playwright-core@1.61.0:
-    resolution: {integrity: sha512-caX7TrY3Ml6egyDX0WUcTHDxodl/b51y5wJOdCEA36QviK/s2g081hvmGs8eaE3DWb6NYZQ6BjO/QkNRPenoPA==}
+  playwright-core@1.61.1:
+    resolution: {integrity: sha512-h7Qlt6m4REp25qvIdvbDtVmD4LqVXfpRxhORv9L0jzETM05p4fuPJ3dKyuSXQxDSbXnmS79HAgi9589lGSpLkg==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.61.0:
-    resolution: {integrity: sha512-Z+7BeeqQPRRzklHsVFP4KTGIyMxKUmfeRA4WisM6G3/XW6nwGeX6fX9qYaDa+CiUqpOkb2f6X3nar05R3kSuJQ==}
+  playwright@1.61.1:
+    resolution: {integrity: sha512-DWnY5o3YbLWK4GovuAVwpqL+1VwGNdUGrRr++8j8PtQQzvAVZUIMjKQ90fY689sEJZJBbZVw1rXaOKSTitkzPQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3369,8 +3369,8 @@ packages:
   textlint-rule-helper@2.5.0:
     resolution: {integrity: sha512-QIbFPtyqLy0g5BJn8mryk9iHzGYicNaFIpLFPiEnb4RXxrEGeQ2W2aARQ9yEXLIAqo+OwK4ndWBAWkbgJEPzTQ==}
 
-  textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana@3.0.0:
-    resolution: {integrity: sha512-tyrHoTEuaW5BqoGsePJhYw07OmH5LhWpx2g8eWfVeaDfQJITJKS3mSXdOGhN++8Y+EkTAx7Z/ePIjBxJTGNcFg==}
+  textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana@3.0.2:
+    resolution: {integrity: sha512-jeWjD7gwV1zzO/el0fHaLP5Hu9ihvCJp5yjisaKk5s4w7jgoDKcT0aqyP2HFZd99bOrFWea0GecCFvJt6/B8ew==}
 
   textlint-rule-ja-no-abusage@3.0.0:
     resolution: {integrity: sha512-DIqPZgYTwTsvjX6Bgj7GA8vlwGMObagJpNoUtkucOaoy7E7GwUOL+knqFjcTtlkWSmoKpIkw5OWW5CV3kivlfQ==}
@@ -3381,11 +3381,14 @@ packages:
   textlint-rule-ja-no-redundant-expression@4.0.1:
     resolution: {integrity: sha512-r8Qe6S7u9N97wD0gcrASqBUdZs5CMEVlgc8Ul+D2NQFiOi1BoseOMo5I9yUsEZMAL46yh/eaw9+EWz6IDlPWeA==}
 
-  textlint-rule-ja-no-space-around-parentheses@3.0.0:
-    resolution: {integrity: sha512-vrNIrZa8cx8Yw5EIcE9uMqolM0xr9YUGhqtdB+yz2dQGV8Ptml7rSfUNFbPDDOYqjJE33bTD14dv5cjqfHo1vw==}
+  textlint-rule-ja-no-space-around-parentheses@3.0.2:
+    resolution: {integrity: sha512-/G1MNHo65kIhFFD+2/0CIZ5HuKa+GXkpHkUr3EREa2HQP52rzP8L6cwYfl+gtlEKZ8iCQMfN0SbPulodALVErw==}
 
-  textlint-rule-ja-no-space-between-full-width@3.0.0:
-    resolution: {integrity: sha512-Awhbyex7x26OnQmvbGNUZ2PF5RaH2fKHAM8SkxGyXK/IfCN1P7vnoGKk4ud6CWlEx6yKHDOJ0D9/2KgkZQr1sg==}
+  textlint-rule-ja-no-space-around-slash@3.0.2:
+    resolution: {integrity: sha512-OdgDIh1AXxv8idIsWI6pN8xwTal+1Zb4033XKqxq7sZ7clk3CNqC5p+BUORUNMA/KeloYUo6o1lSGWPePmD+GQ==}
+
+  textlint-rule-ja-no-space-between-full-width@3.0.2:
+    resolution: {integrity: sha512-fQ1z01IgrG4HCuZUZ2YZiOXdBA4hQE92gbe+SXXKGjOYD+99mVq0nmqdjjRY3HPSy7IAcqlefKdK9DQ32FH85A==}
 
   textlint-rule-ja-no-successive-word@2.0.1:
     resolution: {integrity: sha512-XKTXkHwMu86SnGaj73B67U4apDdTquDKF3SfG24tRbzMyJoGe/Iba5VMId8sp8QHeTonp1bYOSxjZsbkpGyCNw==}
@@ -3393,26 +3396,26 @@ packages:
   textlint-rule-ja-no-weak-phrase@2.0.0:
     resolution: {integrity: sha512-jZ1/3VnE8Bz/p0CCe/+BVOmWE1cZwpDkjKb6hnq39nGk3OD4XPW7biYavK/4/mZhk4bh2+Vtu1xV26lg8d+vBw==}
 
-  textlint-rule-ja-space-after-exclamation@3.0.0:
-    resolution: {integrity: sha512-iYv5G8Tvi3KmycvkY4Fd8byqkfFwp8lm1uB2On8chu55HYDhJ4EqKV2TZRQlJX5kNZk4+zKkrI1yiFTaUCQ80g==}
+  textlint-rule-ja-space-after-exclamation@3.0.2:
+    resolution: {integrity: sha512-EiKXAD43vNVR7sWlCP1+QvMJQYSDpwxXodLOFHKWEYnUJACTm/54YBb8943oMhDbdWXPOVaBzU6XtX5lmBkIrw==}
 
-  textlint-rule-ja-space-after-question@3.0.0:
-    resolution: {integrity: sha512-KYId9c6wTgVfIyJkbnlEkWpOpLKfdyYbZXIyjjAqZvfY8WOEttWLO6LCpbOooyIP+ZS6tqxaY4Q1gmIQD1wbPA==}
+  textlint-rule-ja-space-after-question@3.0.2:
+    resolution: {integrity: sha512-t3aTXVX1ma/3V8E6G2mwkrHoLfu/3bTV4l6p6yySfOdb2wNiahmD08Cy71sD20CHzHxk57Ocx2OXFKKJx+9s2A==}
 
-  textlint-rule-ja-space-around-code@3.0.0:
-    resolution: {integrity: sha512-7gNOYLGBhrFjnkYlPU5MUN/Wp/nAyWxqdzcbsv7Jm+80m7kXDymC2TbrnNImC1AF87YgRGgX4OsgmoTnvsZppg==}
+  textlint-rule-ja-space-around-code@3.0.2:
+    resolution: {integrity: sha512-n9q9IBRie6ck3Bkapj+XMUT+lDD8lx0jH7YjIrDTzNRdIE76COF3NycMyhZm/o1i7tyQMggGarCmNaK1xcUKWg==}
 
-  textlint-rule-ja-space-around-emphasis@3.0.0:
-    resolution: {integrity: sha512-1BZmoVXfhJqJqONGiaMF13PqIvRAVD3f8/ziDvT3OLNXHhGuvVhaeEKXTnzMGHOeYbkqYjunSwjEArumVT9mVw==}
+  textlint-rule-ja-space-around-emphasis@3.0.2:
+    resolution: {integrity: sha512-Oxut/HrzeamAaCw9Ll1vnYTi5YOKfWwL+dgnVeRKkJkDGIvpPgIer510HaovNHHAv2d3FzEkW3PxPKva4N3WUA==}
 
-  textlint-rule-ja-space-around-link@3.0.0:
-    resolution: {integrity: sha512-qExiAO25+tE/KZdi/JaumDuuyZ13Ed4oZG1tnjUNA/6n8hpm9wg9nFU9xQ4feBW7r43lwD5VW99W0qk+eoNs8A==}
+  textlint-rule-ja-space-around-link@3.0.2:
+    resolution: {integrity: sha512-lh+7girFo0gt706/0bT3Yyf+QHdAnyaC8ybidbDN+NlDfkFi31qPdiFPrdTlQXwD9FfZelwBGAHVFAz22eoG4g==}
 
-  textlint-rule-ja-space-around-strong@3.0.0:
-    resolution: {integrity: sha512-6SN0Ax3j3cqdJmyRyQtQRjcd6AyGW0nuk6/ffsZyFoodu2QjBcUcMQgFcEsPrp1YINkedHCcQ4pqmk9OZYHkGw==}
+  textlint-rule-ja-space-around-strong@3.0.2:
+    resolution: {integrity: sha512-uKxjaikPv8BuznFS7kPu8eqPGtOTiSpKw2+P8vf+bNbN2FzJq4RHXDjhhj2R5rUmIPPFgAcurDHPZ/A1WE66HQ==}
 
-  textlint-rule-ja-space-between-half-and-full-width@3.0.0:
-    resolution: {integrity: sha512-L1pxdF5TzhyAgwEjpI7fOkOgxVSclEHKW7UsLG6dQPRxzhdFs9ewWAsN4unYXtwpixWgqjYKTOQwClUT2Eb03g==}
+  textlint-rule-ja-space-between-half-and-full-width@3.0.2:
+    resolution: {integrity: sha512-wdX0fCy7K7IBfxcflnEbkgx0j4mNQ7XRPGP7DFMHxJhqigZBkbrV/+uu2UwoBMxHd5CDJrPdxllrcrfNZoe4Ew==}
 
   textlint-rule-ja-unnatural-alphabet@2.0.1:
     resolution: {integrity: sha512-n93V8qh6OKdh8OB6yLT+9Xl8DSoZ7gWi51tWdhlLEPIWgBm18nLMgm6Ck+nVc3eENOdRcQURWUpCGotI8wTemA==}
@@ -3456,8 +3459,8 @@ packages:
   textlint-rule-no-zero-width-spaces@1.0.1:
     resolution: {integrity: sha512-AkxpzBILGB4YsXddzHx2xqpXmqMv5Yd+PQm4anUV+ADSJuwLP1Jd6yHf/LOtu9j3ps8K3XM9vQrXRK73z0bU3A==}
 
-  textlint-rule-preset-ja-spacing@3.0.0:
-    resolution: {integrity: sha512-Tbx0Nz6t5ZEYz9nSpiaBZp/GCBfKGVT6UrunlKDdT1GlHwgMbojX7vIXgxV789wKcH1d452eIb9uNAhUq3N8NA==}
+  textlint-rule-preset-ja-spacing@3.0.2:
+    resolution: {integrity: sha512-6uFVfqSBHjexMfTLO2jq/QOczSgYuPRVPgOsTrh60RItQiznk2oHAKL5rLdn0STty3fxqTx+6cFnkjqw4VaEkA==}
 
   textlint-rule-preset-ja-technical-writing@12.0.2:
     resolution: {integrity: sha512-BBVY6oA5V799k5wRfP+gCpDHsp6vWjWX2UT+/KLlAFFsNdmRB8Z6qyOnqiOjfzmLGIRgoMcPI1dXj5upOqnD6Q==}
@@ -4125,39 +4128,39 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
-  '@biomejs/biome@2.5.0':
+  '@biomejs/biome@2.5.4':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.5.0
-      '@biomejs/cli-darwin-x64': 2.5.0
-      '@biomejs/cli-linux-arm64': 2.5.0
-      '@biomejs/cli-linux-arm64-musl': 2.5.0
-      '@biomejs/cli-linux-x64': 2.5.0
-      '@biomejs/cli-linux-x64-musl': 2.5.0
-      '@biomejs/cli-win32-arm64': 2.5.0
-      '@biomejs/cli-win32-x64': 2.5.0
+      '@biomejs/cli-darwin-arm64': 2.5.4
+      '@biomejs/cli-darwin-x64': 2.5.4
+      '@biomejs/cli-linux-arm64': 2.5.4
+      '@biomejs/cli-linux-arm64-musl': 2.5.4
+      '@biomejs/cli-linux-x64': 2.5.4
+      '@biomejs/cli-linux-x64-musl': 2.5.4
+      '@biomejs/cli-win32-arm64': 2.5.4
+      '@biomejs/cli-win32-x64': 2.5.4
 
-  '@biomejs/cli-darwin-arm64@2.5.0':
+  '@biomejs/cli-darwin-arm64@2.5.4':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.5.0':
+  '@biomejs/cli-darwin-x64@2.5.4':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.5.0':
+  '@biomejs/cli-linux-arm64-musl@2.5.4':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.5.0':
+  '@biomejs/cli-linux-arm64@2.5.4':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.5.0':
+  '@biomejs/cli-linux-x64-musl@2.5.4':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.5.0':
+  '@biomejs/cli-linux-x64@2.5.4':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.5.0':
+  '@biomejs/cli-win32-arm64@2.5.4':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.5.0':
+  '@biomejs/cli-win32-x64@2.5.4':
     optional: true
 
   '@cacheable/memory@2.0.9':
@@ -4689,9 +4692,9 @@ snapshots:
       '@parcel/watcher-win32-x64': 2.5.6
     optional: true
 
-  '@playwright/test@1.61.0':
+  '@playwright/test@1.61.1':
     dependencies:
-      playwright: 1.61.0
+      playwright: 1.61.1
 
   '@qwik.dev/partytown@0.13.2':
     dependencies:
@@ -4889,12 +4892,12 @@ snapshots:
       postcss: 8.5.15
       tailwindcss: 4.3.2
 
-  '@tailwindcss/vite@4.3.2(vite@7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0))':
+  '@tailwindcss/vite@4.3.2(vite@7.3.5(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0))':
     dependencies:
       '@tailwindcss/node': 4.3.2
       '@tailwindcss/oxide': 4.3.2
       tailwindcss: 4.3.2
-      vite: 7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)
+      vite: 7.3.5(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)
 
   '@textlint-rule/textlint-rule-no-invalid-control-character@3.0.0': {}
 
@@ -5139,7 +5142,7 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/node@24.13.2':
+  '@types/node@24.13.3':
     dependencies:
       undici-types: 7.18.2
 
@@ -5269,7 +5272,7 @@ snapshots:
 
   astral-regex@2.0.0: {}
 
-  astro@6.4.8(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0):
+  astro@6.4.8(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.61.1)(sass@1.101.0)(yaml@2.9.0):
     dependencies:
       '@astrojs/compiler': 4.0.0
       '@astrojs/internal-helpers': 0.10.0
@@ -5321,8 +5324,8 @@ snapshots:
       unist-util-visit: 5.1.0
       unstorage: 1.17.5
       vfile: 6.0.3
-      vite: 7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)
-      vitefu: 1.1.3(vite@7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0))
+      vite: 7.3.5(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)
+      vitefu: 1.1.3(vite@7.3.5(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0))
       xxhash-wasm: 1.1.0
       yargs-parser: 22.0.0
       zod: 4.4.3
@@ -7145,11 +7148,11 @@ snapshots:
 
   pkce-challenge@5.0.1: {}
 
-  playwright-core@1.61.0: {}
+  playwright-core@1.61.1: {}
 
-  playwright@1.61.0:
+  playwright@1.61.1:
     dependencies:
-      playwright-core: 1.61.0
+      playwright-core: 1.61.1
     optionalDependencies:
       fsevents: 2.3.2
 
@@ -7571,7 +7574,7 @@ snapshots:
       '@img/sharp-win32-x64': 0.34.5
     optional: true
 
-  sharp@0.35.3(@types/node@24.13.2):
+  sharp@0.35.3(@types/node@24.13.3):
     dependencies:
       '@img/colour': 1.1.0
       detect-libc: 2.1.2
@@ -7602,7 +7605,7 @@ snapshots:
       '@img/sharp-win32-arm64': 0.35.3
       '@img/sharp-win32-ia32': 0.35.3
       '@img/sharp-win32-x64': 0.35.3
-      '@types/node': 24.13.2
+      '@types/node': 24.13.3
 
   shebang-command@2.0.0:
     dependencies:
@@ -7771,7 +7774,7 @@ snapshots:
       structured-source: 4.0.0
       unist-util-visit: 2.0.3
 
-  textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana@3.0.0:
+  textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana@3.0.2:
     dependencies:
       textlint-rule-helper: 2.5.0
 
@@ -7795,11 +7798,15 @@ snapshots:
       textlint-rule-helper: 2.5.0
       textlint-util-to-string: 3.3.4
 
-  textlint-rule-ja-no-space-around-parentheses@3.0.0:
+  textlint-rule-ja-no-space-around-parentheses@3.0.2:
     dependencies:
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-ja-no-space-between-full-width@3.0.0:
+  textlint-rule-ja-no-space-around-slash@3.0.2:
+    dependencies:
+      textlint-rule-helper: 2.5.0
+
+  textlint-rule-ja-no-space-between-full-width@3.0.2:
     dependencies:
       regx: 1.0.4
       textlint-rule-helper: 2.5.0
@@ -7815,31 +7822,31 @@ snapshots:
       morpheme-match: 2.0.4
       morpheme-match-all: 2.0.5
 
-  textlint-rule-ja-space-after-exclamation@3.0.0:
+  textlint-rule-ja-space-after-exclamation@3.0.2:
     dependencies:
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-ja-space-after-question@3.0.0:
+  textlint-rule-ja-space-after-question@3.0.2:
     dependencies:
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-ja-space-around-code@3.0.0:
+  textlint-rule-ja-space-around-code@3.0.2:
     dependencies:
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-ja-space-around-emphasis@3.0.0:
+  textlint-rule-ja-space-around-emphasis@3.0.2:
     dependencies:
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-ja-space-around-link@3.0.0:
+  textlint-rule-ja-space-around-link@3.0.2:
     dependencies:
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-ja-space-around-strong@3.0.0:
+  textlint-rule-ja-space-around-strong@3.0.2:
     dependencies:
       textlint-rule-helper: 2.5.0
 
-  textlint-rule-ja-space-between-half-and-full-width@3.0.0:
+  textlint-rule-ja-space-between-half-and-full-width@3.0.2:
     dependencies:
       '@textlint/regexp-string-matcher': 2.0.2
       textlint-rule-helper: 2.5.0
@@ -7921,18 +7928,19 @@ snapshots:
 
   textlint-rule-no-zero-width-spaces@1.0.1: {}
 
-  textlint-rule-preset-ja-spacing@3.0.0:
+  textlint-rule-preset-ja-spacing@3.0.2:
     dependencies:
-      textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana: 3.0.0
-      textlint-rule-ja-no-space-around-parentheses: 3.0.0
-      textlint-rule-ja-no-space-between-full-width: 3.0.0
-      textlint-rule-ja-space-after-exclamation: 3.0.0
-      textlint-rule-ja-space-after-question: 3.0.0
-      textlint-rule-ja-space-around-code: 3.0.0
-      textlint-rule-ja-space-around-emphasis: 3.0.0
-      textlint-rule-ja-space-around-link: 3.0.0
-      textlint-rule-ja-space-around-strong: 3.0.0
-      textlint-rule-ja-space-between-half-and-full-width: 3.0.0
+      textlint-rule-ja-nakaguro-or-halfwidth-space-between-katakana: 3.0.2
+      textlint-rule-ja-no-space-around-parentheses: 3.0.2
+      textlint-rule-ja-no-space-around-slash: 3.0.2
+      textlint-rule-ja-no-space-between-full-width: 3.0.2
+      textlint-rule-ja-space-after-exclamation: 3.0.2
+      textlint-rule-ja-space-after-question: 3.0.2
+      textlint-rule-ja-space-around-code: 3.0.2
+      textlint-rule-ja-space-around-emphasis: 3.0.2
+      textlint-rule-ja-space-around-link: 3.0.2
+      textlint-rule-ja-space-around-strong: 3.0.2
+      textlint-rule-ja-space-between-half-and-full-width: 3.0.2
 
   textlint-rule-preset-ja-technical-writing@12.0.2:
     dependencies:
@@ -8305,7 +8313,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0):
+  vite@7.3.5(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0):
     dependencies:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.4)
@@ -8314,16 +8322,16 @@ snapshots:
       rollup: 4.61.1
       tinyglobby: 0.2.17
     optionalDependencies:
-      '@types/node': 24.13.2
+      '@types/node': 24.13.3
       fsevents: 2.3.3
       jiti: 2.7.0
       lightningcss: 1.32.0
       sass: 1.101.0
       yaml: 2.9.0
 
-  vitefu@1.1.3(vite@7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)):
+  vitefu@1.1.3(vite@7.3.5(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)):
     optionalDependencies:
-      vite: 7.3.5(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)
+      vite: 7.3.5(@types/node@24.13.3)(jiti@2.7.0)(lightningcss@1.32.0)(sass@1.101.0)(yaml@2.9.0)
 
   volar-service-css@0.0.70(@volar/language-service@2.4.28):
     dependencies:
