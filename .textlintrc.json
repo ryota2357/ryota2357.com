@@ -28,6 +28,7 @@
       "ja-no-space-between-full-width": true,
       "ja-nakaguro-or-halfwidth-space-between-katakana": true,
       "ja-no-space-around-parentheses": true,
+      "ja-no-space-around-slash": false,
       "ja-space-after-exclamation": true,
       "ja-space-after-question": true,
       "ja-space-around-code": {
