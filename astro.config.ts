@@ -1,3 +1,4 @@
+import { unified } from "@astrojs/markdown-remark";
 import partytown from "@astrojs/partytown";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
@@ -7,6 +8,7 @@ import remarkResolveRelativePageLink from "./plugins/remark-resolve-relative-pag
 
 export default defineConfig({
   site: "https://ryota2357.com",
+  compressHTML: true,
   integrations: [
     partytown({
       config: {
@@ -15,15 +17,17 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    smartypants: false,
-    remarkRehype: {
-      footnoteLabel: " ",
-      footnoteLabelTagName: "hr",
-    },
-    remarkPlugins: [
-      // [remarkPrint, { node: true, vfile: false }],
-      [remarkResolveRelativePageLink, { rootDirName: "blog" }],
-    ],
+    processor: unified({
+      smartypants: false,
+      remarkRehype: {
+        footnoteLabel: " ",
+        footnoteLabelTagName: "hr",
+      },
+      remarkPlugins: [
+        // [remarkPrint, { node: true, vfile: false }],
+        [remarkResolveRelativePageLink, { rootDirName: "blog" }],
+      ],
+    }),
   },
   vite: {
     plugins: [tailwindcss()],
