@@ -21,7 +21,7 @@
   "dependencies": {
     "@astrojs/partytown": "2.1.7",
     "@astrojs/rss": "4.0.19",
-    "@napi-rs/canvas": "1.0.3",
+    "@napi-rs/canvas": "1.0.6",
     "@tailwindcss/postcss": "4.3.3",
     "@tailwindcss/vite": "4.3.3",
     "astro": "6.4.8",
