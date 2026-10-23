@@ -43,18 +43,18 @@ const top12BlogTagList = [...allBlogTagList]
         <h3 class="m-0 flex-none text-[1.3rem] font-bold">タグ</h3>
         <div class="mx-0 my-auto flex flex-wrap" data-vrt-mask>
           {top12BlogTagList
-              .map(({ name, count }) => (
-                <span class="p-[0.3rem]">
-                  <a
-                    href={`/blog/tag/${name.replace("#", "%23")}/`}
-                  >{`${name}(${count})`}</a>
-                </span>
-              ))
-              .concat(
-                <span class="p-[0.3rem]">
-                  <a href="/blog/tag/">一覧</a>
-                </span>,
-              )}
+            .map(({ name, count }) => (
+              <span class="p-[0.3rem]">
+                <a
+                  href={`/blog/tag/${name.replace("#", "%23")}/`}
+                >{`${name}(${count})`}</a>
+              </span>
+            ))
+            .concat(
+              <span class="p-[0.3rem]">
+                <a href="/blog/tag/">一覧</a>
+              </span>,
+            )}
         </div>
       </div>
       <div class="flex flex-row items-start gap-4">
@@ -65,17 +65,15 @@ const top12BlogTagList = [...allBlogTagList]
             data-vrt-mask
           >
             {[...allBlogCollection]
-                .sort(
-                  (a, b) => b.data.update.valueOf() - a.data.update.valueOf(),
-                )
-                .slice(0, 7)
-                .map((post) => (
-                  <li>
-                    <a href={path.join("/blog", post.id, "/")}>
-                      {post.data.title}
-                    </a>
-                  </li>
-                ))}
+              .sort((a, b) => b.data.update.valueOf() - a.data.update.valueOf())
+              .slice(0, 7)
+              .map((post) => (
+                <li>
+                  <a href={path.join("/blog", post.id, "/")}>
+                    {post.data.title}
+                  </a>
+                </li>
+              ))}
           </ul>
         </div>
       </div>

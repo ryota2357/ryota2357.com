@@ -57,43 +57,41 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
           <time itemprop="datePublished">{formatTime(post.data.postdate)}</time>
         </p>
         {post.data.update.valueOf() !== post.data.postdate.valueOf() && (
-            <p>
-              更新日:{" "}
-              <time itemprop="dateModified">
-                {formatTime(post.data.update)}
-              </time>
-            </p>
-          )}
+          <p>
+            更新日:{" "}
+            <time itemprop="dateModified">{formatTime(post.data.update)}</time>
+          </p>
+        )}
       </div>
       <div class="tags">
         <TagIcon width={16} height={16} />
         {post.data.tags.map((tag) => (
-            <a href={`/blog/tag/${tag.replace("#", "%23")}/`}>{tag}</a>
-          ))}
+          <a href={`/blog/tag/${tag.replace("#", "%23")}/`}>{tag}</a>
+        ))}
       </div>
     </div>
     <div id="markdown" itemprop="articleBody"><Content /></div>
   </article>
   {(
-      <nav>
-        <ul class="mx-0 my-4 grid grid-flow-col justify-between gap-3">
-          <li>
-            {prevPost && (
-              <a href={path.join("/blog", prevPost.id, "/")} rel="prev">
-                ← {prevPost.data.title}
-              </a>
-            )}
-          </li>
-          <li>
-            {nextPost && (
-              <a href={path.join("/blog", nextPost.id, "/")} rel="next">
-                {nextPost.data.title} →
-              </a>
-            )}
-          </li>
-        </ul>
-      </nav>
-    )}
+    <nav>
+      <ul class="mx-0 my-4 grid grid-flow-col justify-between gap-3">
+        <li>
+          {prevPost && (
+            <a href={path.join("/blog", prevPost.id, "/")} rel="prev">
+              ← {prevPost.data.title}
+            </a>
+          )}
+        </li>
+        <li>
+          {nextPost && (
+            <a href={path.join("/blog", nextPost.id, "/")} rel="next">
+              {nextPost.data.title} →
+            </a>
+          )}
+        </li>
+      </ul>
+    </nav>
+  )}
 </Base>
 
 <style lang="scss">

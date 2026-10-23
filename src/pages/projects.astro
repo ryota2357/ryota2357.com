@@ -44,9 +44,7 @@ function fmtYM(date: Date): string {
   <h1 class="text-[2.5rem]">Projects</h1>
   {sections.map((section) => (
     <section class="mt-8 first:mt-0">
-      <h2 class="m-0 mb-2 text-[1.4rem] font-bold">
-        {section.heading}
-      </h2>
+      <h2 class="m-0 mb-2 text-[1.4rem] font-bold">{section.heading}</h2>
       <ul class="rounded-md border border-solid border-gray-600 bg-white px-3 py-0">
         {section.projects.map((p) => (
           <li class="flex items-start gap-4 px-0 py-2">
@@ -62,7 +60,7 @@ function fmtYM(date: Date): string {
                     <span class="inline-flex items-center gap-1">
                       <span
                         class="inline-block h-[9px] w-[9px] rounded-full"
-                        style={{background: LANG_COLOR[lang] ?? "#888"}}
+                        style={{ background: LANG_COLOR[lang] ?? "#888" }}
                       />
                       {lang}
                     </span>
