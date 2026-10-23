@@ -14,11 +14,11 @@ const sortedAllBlogTagList = [...allBlogTagList]
   </h1>
   <ul class="mt-8 list-inside list-disc">
     {sortedAllBlogTagList.map(({ name, count }) => (
-        <li>
-          <a
-            href={`/blog/tag/${name.replace("#", "%23")}/`}
-          >{`${name}(${count})`}</a>
-        </li>
-      ))}
+      <li>
+        <a
+          href={`/blog/tag/${name.replace("#", "%23")}/`}
+        >{`${name}(${count})`}</a>
+      </li>
+    ))}
   </ul>
 </Base>
