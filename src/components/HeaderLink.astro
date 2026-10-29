@@ -1,31 +1,27 @@
 ---
 type Props = { href: string };
 const { href } = Astro.props;
-const slug = Astro.url.pathname;
+const isCurrent = Astro.url.pathname === href;
 ---
 
-<span>
-  {slug === href ? (
-    <span class="current">
-      <slot />
-    </span>
-  ) : (
-    <a href={href}>
-      <slot />
-    </a>
-  )}
-</span>
+{isCurrent ? (
+  // biome-ignore lint/a11y/useValidAnchor: The HTML spec marks up the current page in a navigation as a placeholder link without href.
+  <a aria-current="page">
+    <slot />
+  </a>
+) : (
+  <a href={href}>
+    <slot />
+  </a>
+)}
 
 <style>
-  .current {
-    text-decoration: underline;
-  }
-
   a {
     text-decoration: underline transparent;
     transition: text-decoration-color 0.2s ease-in-out;
 
-    &:hover {
+    &:hover,
+    &[aria-current="page"] {
       text-decoration-color: currentColor;
     }
   }

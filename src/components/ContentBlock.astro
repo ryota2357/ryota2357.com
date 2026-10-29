@@ -6,13 +6,13 @@ type Props = {
 const { title } = Astro.props;
 ---
 
-<div class="content-block">
+<section>
   <h2>{title}</h2>
   <div class="body"><slot /></div>
-</div>
+</section>
 
 <style>
-  .content-block {
+  section {
     display: flex;
     flex-direction: column;
     align-items: flex-start;

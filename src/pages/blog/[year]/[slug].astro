@@ -2,7 +2,7 @@
 import { render } from "astro:content";
 import path from "node:path";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
-import dayjs from "dayjs";
+import Time from "@/components/Time.astro";
 import { allBlogCollection, util, vrtBlogCollection } from "@/content";
 import TagIcon from "@/images/tag-icon.svg";
 import Base from "@/layouts/Base.astro";
@@ -39,56 +39,65 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await render(post);
-const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
 ---
 
 <Base title={post.data.title} type="article">
   <article itemscope itemtype="http://schema.org/Article">
-    <div class="post-front">
+    <header>
       <h1 itemprop="headline">
         {post.data.title}
       </h1>
       <div class="dates">
         <p>
           投稿日:{" "}
-          <time itemprop="datePublished">{formatTime(post.data.postdate)}</time>
+          <Time
+            itemprop="datePublished"
+            date={post.data.postdate}
+            format="YYYY/MM/DD (HH:mm)"
+          />
         </p>
         {post.data.update.valueOf() !== post.data.postdate.valueOf() && (
           <p>
             更新日:{" "}
-            <time itemprop="dateModified">{formatTime(post.data.update)}</time>
+            <Time
+              itemprop="dateModified"
+              date={post.data.update}
+              format="YYYY/MM/DD (HH:mm)"
+            />
           </p>
         )}
       </div>
       <div class="tags">
-        <TagIcon width={16} height={16} />
-        {post.data.tags.map((tag) => (
-          <a href={`/blog/tag/${tag.replace("#", "%23")}/`}>{tag}</a>
-        ))}
+        <TagIcon width={16} height={16} aria-hidden="true" />
+        <ul aria-label="タグ">
+          {post.data.tags.map((tag) => (
+            <li>
+              <a href={`/blog/tag/${tag.replace("#", "%23")}/`}>{tag}</a>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </header>
     <div class="markdown" itemprop="articleBody"><Content /></div>
   </article>
-  {(
-    <nav>
-      <ul class="pager">
-        <li>
-          {prevPost && (
-            <a href={path.join("/blog", prevPost.id, "/")} rel="prev">
-              ← {prevPost.data.title}
-            </a>
-          )}
-        </li>
-        <li>
-          {nextPost && (
-            <a href={path.join("/blog", nextPost.id, "/")} rel="next">
-              {nextPost.data.title} →
-            </a>
-          )}
-        </li>
-      </ul>
-    </nav>
-  )}
+  <nav aria-label="前後の記事">
+    <ul class="pager">
+      <li>
+        {prevPost && (
+          <a href={path.join("/blog", prevPost.id, "/")} rel="prev">
+            ← {prevPost.data.title}
+          </a>
+        )}
+      </li>
+      <li>
+        {nextPost && (
+          <a href={path.join("/blog", nextPost.id, "/")} rel="next">
+            {nextPost.data.title} →
+          </a>
+        )}
+      </li>
+    </ul>
+  </nav>
 </Base>
 
 <style>
@@ -98,7 +107,7 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
     box-shadow: 0 0 10px #323232;
   }
 
-  .post-front {
+  header {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
@@ -117,13 +126,18 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
     color: var(--color-text-muted);
   }
 
-  .tags {
-    display: inline-flex;
+  .tags,
+  .tags ul {
+    display: flex;
     align-items: center;
     gap: 0.3rem;
   }
 
-  .tags a:not(:last-child)::after {
+  .tags li {
+    display: flex;
+  }
+
+  .tags li:not(:last-child)::after {
     content: ",";
   }
 

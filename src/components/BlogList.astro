@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import path from "node:path";
-import dayjs from "dayjs";
+import Time from "@/components/Time.astro";
 
 type Props = {
   posts: CollectionEntry<"blog">[];
@@ -10,47 +10,46 @@ type Props = {
 const { posts } = Astro.props;
 ---
 
-<div>
-  <ul>
-    {posts.map((post) => (
-      <li>
-        <div class="date">{dayjs(post.data.postdate).format("YYYY/MM/DD")}</div>
-        <div class="title">
-          <a href={path.join("/blog", post.id, "/")}>{post.data.title}</a>
-        </div>
-        <div class="tags">
-          {post.data.tags.map((tag) => (
-            <a href={`/blog/tag/${tag.replace("#", "%23")}/`} class="tag">
-              {tag}
-            </a>
-          ))}
-        </div>
-      </li>
-    ))}
-  </ul>
-</div>
+<ul class="posts">
+  {posts.map((post) => (
+    <li>
+      <Time date={post.data.postdate} format="YYYY/MM/DD" class="date" />
+      <h2>
+        <a href={path.join("/blog", post.id, "/")}>{post.data.title}</a>
+      </h2>
+      <ul class="tags">
+        {post.data.tags.map((tag) => (
+          <li>
+            <a href={`/blog/tag/${tag.replace("#", "%23")}/`}>{tag}</a>
+          </li>
+        ))}
+      </ul>
+    </li>
+  ))}
+</ul>
 
 <style>
-  ul {
+  .posts {
     padding: 0 0.5rem;
     background-color: var(--color-surface);
     border: 1px solid var(--color-card-border);
     border-radius: 0.375rem;
   }
 
-  li {
+  .posts > li {
     padding: 0.5rem 0;
   }
 
-  li + li {
+  .posts > li + li {
     border-top: 1px solid var(--color-divider);
   }
 
   .date {
+    display: block;
     color: var(--color-text-muted);
   }
 
-  .title {
+  h2 {
     font-size: 1.2rem;
     font-weight: bold;
   }
@@ -62,7 +61,8 @@ const { posts } = Astro.props;
     font-size: 0.8rem;
   }
 
-  .tag {
+  .tags a {
+    display: block;
     padding: 0.25rem 0.75rem;
     color: #fff;
     background-color: oklch(21% 0.034 264.665);

@@ -5,8 +5,8 @@ type Props = Record<PropertyKey, never>;
 ---
 
 <header>
-  <div class="site-title"><a href="/">ryota2357</a></div>
-  <nav>
+  <a href="/" class="site-title">ryota2357</a>
+  <nav aria-label="メイン">
     <ul>
       <li><HeaderLink href="/">Home</HeaderLink></li>
       <li><HeaderLink href="/about/">About</HeaderLink></li>
@@ -29,10 +29,10 @@ type Props = Record<PropertyKey, never>;
     font-weight: bold;
     color: var(--color-text-strong);
     user-select: none;
-  }
 
-  .site-title a:hover {
-    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   nav {

@@ -22,7 +22,7 @@ const top12BlogTagList = [...allBlogTagList]
       loading="eager"
       class="avatar"
     />
-    <p class="name">ryota2357</p>
+    <h1 class="name">ryota2357</h1>
   </div>
   <div class="blocks">
     <ContentBlock title="Affiliation">
@@ -37,38 +37,29 @@ const top12BlogTagList = [...allBlogTagList]
     <ContentBlock title="Blog">
       <div class="row">
         <h3>タグ</h3>
-        <div class="row-body" data-vrt-mask>
-          {top12BlogTagList
-            .map(({ name, count }) => (
-              <span class="tag">
-                <a
-                  href={`/blog/tag/${name.replace("#", "%23")}/`}
-                >{`${name}(${count})`}</a>
-              </span>
-            ))
-            .concat(
-              <span class="tag">
-                <a href="/blog/tag/">一覧</a>
-              </span>,
-            )}
-        </div>
+        <ul class="row-body tags" data-vrt-mask>
+          {top12BlogTagList.map(({ name, count }) => (
+            <li>
+              <a
+                href={`/blog/tag/${name.replace("#", "%23")}/`}
+              >{`${name}(${count})`}</a>
+            </li>
+          ))}
+          <li><a href="/blog/tag/">一覧</a></li>
+        </ul>
       </div>
       <div class="row">
         <h3>更新</h3>
-        <div class="row-body">
-          <ul class="bullets" data-vrt-mask>
-            {[...allBlogCollection]
-              .sort((a, b) => b.data.update.valueOf() - a.data.update.valueOf())
-              .slice(0, 7)
-              .map((post) => (
-                <li>
-                  <a href={path.join("/blog", post.id, "/")}>
-                    {post.data.title}
-                  </a>
-                </li>
-              ))}
-          </ul>
-        </div>
+        <ul class="row-body bullets" data-vrt-mask>
+          {[...allBlogCollection]
+            .sort((a, b) => b.data.update.valueOf() - a.data.update.valueOf())
+            .slice(0, 7)
+            .map((post) => (
+              <li>
+                <a href={path.join("/blog", post.id, "/")}>{post.data.title}</a>
+              </li>
+            ))}
+        </ul>
       </div>
     </ContentBlock>
     <ContentBlock title="Links">
@@ -140,12 +131,15 @@ const top12BlogTagList = [...allBlogTagList]
   }
 
   .row-body {
-    display: flex;
-    flex-wrap: wrap;
     margin: auto 0;
   }
 
-  .tag {
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tags > li {
     padding: 0.3rem;
   }
 </style>

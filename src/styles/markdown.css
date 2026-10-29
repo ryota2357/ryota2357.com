@@ -41,6 +41,13 @@
   :is(ul, ol) :is(ul, ol) {
     margin-left: 1.2rem;
   }
+  .contains-task-list {
+    list-style: none;
+  }
+  .task-list-item input {
+    appearance: auto;
+    margin-right: 0.25em;
+  }
   li {
     line-height: 1.5;
   }

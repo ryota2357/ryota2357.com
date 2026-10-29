@@ -12,7 +12,7 @@ const sortedAllBlogCollection = [...allBlogCollection].sort(
 <Base title="Blog" type="website">
   <PageTitle title="Blog" />
   <p class="tag-index-link"><a href="/blog/tag/">タグの一覧</a></p>
-  <div><BlogList posts={sortedAllBlogCollection} /></div>
+  <BlogList posts={sortedAllBlogCollection} />
 </Base>
 
 <style>

@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import dayjs from "dayjs";
 import PageTitle from "@/components/PageTitle.astro";
+import Time from "@/components/Time.astro";
 import { allProjectsCollection } from "@/content";
 import GitHubIcon from "@/images/github-invertocat.svg";
 import Base from "@/layouts/Base.astro";
@@ -35,10 +35,6 @@ const sections = SECTIONS.map((section) => ({
     .filter((p) => p.status === section.status)
     .sort((a, b) => b.updated.getTime() - a.updated.getTime()),
 })).filter((section) => section.projects.length > 0);
-
-function fmtYM(date: Date): string {
-  return dayjs(date).format("YYYY/MM/DD");
-}
 ---
 
 <Base title="Projects" type="website">
@@ -70,8 +66,12 @@ function fmtYM(date: Date): string {
               </div>
               <div class="description" set:html={p.description} />
               <div class="meta">
-                <span>更新: {fmtYM(p.updated)}</span>
-                <span>作成: {fmtYM(p.created)}</span>
+                <span>
+                  更新: <Time date={p.updated} format="YYYY/MM/DD" />
+                </span>
+                <span>
+                  作成: <Time date={p.created} format="YYYY/MM/DD" />
+                </span>
                 {p.github && (
                   <a
                     href={`https://github.com/${p.github}`}
@@ -79,7 +79,7 @@ function fmtYM(date: Date): string {
                     rel="noreferrer"
                     class="github"
                   >
-                    <GitHubIcon width={14} height={14} />
+                    <GitHubIcon width={14} height={14} aria-hidden="true" />
                     {p.github}
                   </a>
                 )}
