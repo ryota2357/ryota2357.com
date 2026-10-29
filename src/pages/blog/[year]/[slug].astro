@@ -7,8 +7,8 @@ import { allBlogCollection, util, vrtBlogCollection } from "@/content";
 import TagIcon from "@/images/tag-icon.svg";
 import Base from "@/layouts/Base.astro";
 
-import "@/styles/blog-post-markdown-code.scss";
-import "@/styles/blog-post-markdown.scss";
+import "@/styles/blog-post-markdown-code.css";
+import "@/styles/blog-post-markdown.css";
 
 export const getStaticPaths = (() => {
   const blogPaths = [...allBlogCollection]
@@ -94,27 +94,25 @@ const formatTime = (time: Date) => dayjs(time).format("YYYY/MM/DD (HH:mm)");
   )}
 </Base>
 
-<style lang="scss">
+<style>
   article {
     background-color: #ffffff;
     box-shadow: 0 0 10px #323232;
     padding: 1.4em;
-    .post-front {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      margin-bottom: 2rem;
-      .tags {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.3rem;
-        a {
-          &:not(:last-child)::after {
-            content: ",";
-          }
-        }
-      }
-    }
+  }
+  article .post-front {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+  article .post-front .tags {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  article .post-front .tags a:not(:last-child)::after {
+    content: ",";
   }
 </style>

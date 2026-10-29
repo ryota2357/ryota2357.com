@@ -1,5 +1,7 @@
 #markdown {
-  p, li, table {
+  p,
+  li,
+  table {
     code {
       font-size: 1rem;
       background-color: #e6e6e6;
