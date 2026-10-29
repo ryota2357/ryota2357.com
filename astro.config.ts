@@ -1,6 +1,5 @@
 import { unified } from "@astrojs/markdown-remark";
 import partytown from "@astrojs/partytown";
-import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
 // import remarkPrint from "./plugins/remark-print"
@@ -28,9 +27,6 @@ export default defineConfig({
         [remarkResolveRelativePageLink, { rootDirName: "blog" }],
       ],
     }),
-  },
-  vite: {
-    plugins: [tailwindcss()],
   },
   redirects: {
     "/blog/2021/fatal-error-wchar.h-file-not-found/":

@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import BlogList from "@/components/BlogList.astro";
+import PageTitle from "@/components/PageTitle.astro";
 import { allBlogCollection, util } from "@/content";
 import Base from "@/layouts/Base.astro";
 
@@ -35,7 +36,7 @@ posts.sort((a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf());
 ---
 
 <Base title={`Blog in ${year}`} type="website" noindex={true}>
-  <h1 class="text-[2.5rem]">Blog in {year}</h1>
+  <PageTitle title={`Blog in ${year}`} />
   <p>{posts.length}件</p>
   <BlogList posts={posts} />
 </Base>

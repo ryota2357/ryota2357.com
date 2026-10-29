@@ -6,7 +6,29 @@ type Props = {
 const { title } = Astro.props;
 ---
 
-<div class="flex flex-col items-start gap-4">
-  <h2 class="text-[1.6rem] font-bold">{title}</h2>
-  <div class="flex w-full flex-col gap-4 pl-4 text-[1rem]"><slot /></div>
+<div class="content-block">
+  <h2>{title}</h2>
+  <div class="body"><slot /></div>
 </div>
+
+<style>
+  .content-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding-left: 1rem;
+  }
+</style>

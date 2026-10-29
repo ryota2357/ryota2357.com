@@ -38,38 +38,19 @@ const canonicalURL = new URL(
       canonicalURL={canonicalURL}
     />
     <title>{title}</title>
-    <style is:global>
-      :root {
-        font-family:
-          YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
-          "ヒラギノ角ゴ ProN W3", "ＭＳ ゴシック", sans-serif;
-        background-color: #f6f5f5;
-        color: #242424;
-        font-size: 16px;
-        line-height: 1.5;
-        /* ref: https://ics.media/entry/240411/ */
-        overflow-wrap: anywhere;
-        word-break: normal;
-        line-break: strict;
-        a:hover {
-          text-decoration: underline;
-        }
-        @media screen and (max-width: 425px) {
-          font-size: 15px;
-        }
-        @media screen and (max-width: 375px) {
-          font-size: 14px;
-        }
-        @media screen and (max-width: 320px) {
-          font-size: 13px;
-        }
-      }
-    </style>
     <ClientRouter />
   </head>
   <body>
     <Header />
-    <main class="mx-auto my-0 max-w-[1080px] px-[10px] py-0"><slot /></main>
+    <main><slot /></main>
     <Footer />
   </body>
 </html>
+
+<style>
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+</style>

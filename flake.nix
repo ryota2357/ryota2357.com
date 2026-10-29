@@ -24,7 +24,6 @@
             deno
 
             astro-language-server
-            tailwindcss-language-server
             vscode-css-languageserver
             vscode-json-languageserver
             nil

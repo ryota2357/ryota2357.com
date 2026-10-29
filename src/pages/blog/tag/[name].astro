@@ -27,11 +27,21 @@ posts.sort((a, b) => b.data.postdate.valueOf() - a.data.postdate.valueOf());
 
 <Base title={`Blog.Tag.${tagName}`} type="website" noindex={true}>
   <h1>
-    <span class="text-[1.6rem]"><a href="/blog/">Blog</a>.</span>
-    <span class="text-[1.6rem]"><a href="/blog/tag/">Tag</a>.</span>
-    <span class="text-[2.5rem]">{tagName}</span>
+    <span class="parent"><a href="/blog/">Blog</a>.</span>
+    <span class="parent"><a href="/blog/tag/">Tag</a>.</span>
+    <span class="current">{tagName}</span>
   </h1>
   <p>{posts.length}件</p>
   <p><a href="/blog/tag/">タグの一覧</a></p>
   <BlogList posts={posts} />
 </Base>
+
+<style>
+  .parent {
+    font-size: 1.6rem;
+  }
+
+  .current {
+    font-size: 2.5rem;
+  }
+</style>

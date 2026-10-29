@@ -1,0 +1,114 @@
+:root {
+  --color-bg: #f6f5f5;
+  --color-text: #242424;
+  --color-text-strong: #000;
+  --color-text-muted: oklch(55.1% 0.027 264.364);
+  --color-surface: #fff;
+  --color-card-border: oklch(44.6% 0.03 256.802);
+  --color-divider: #e3e3e3;
+  --color-link: #0969da;
+
+  --font-sans:
+    YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3",
+    "ＭＳ ゴシック", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+}
+
+html {
+  /* Percentages keep the reader's default font size setting in effect. */
+  font-size: 100%; /* 16px */
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  tab-size: 4;
+  /* ref: https://ics.media/entry/240411/ */
+  overflow-wrap: anywhere;
+  word-break: normal;
+  line-break: strict;
+
+  @media (width <= 425px) {
+    font-size: 93.75%; /* 15px */
+  }
+  @media (width <= 375px) {
+    font-size: 87.5%; /* 14px */
+  }
+  @media (width <= 320px) {
+    font-size: 81.25%; /* 13px */
+  }
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: revert;
+  outline-offset: revert;
+}
+
+img,
+svg,
+video {
+  display: block;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+strong,
+b {
+  font-weight: bolder;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+del,
+s {
+  text-decoration: line-through;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+summary {
+  list-style: disclosure-closed inside;
+  /* A summary is not an item of the list it may sit in. */
+  counter-increment: list-item 0;
+
+  details[open] > & {
+    list-style-type: disclosure-open;
+  }
+}

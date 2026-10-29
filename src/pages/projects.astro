@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import dayjs from "dayjs";
+import PageTitle from "@/components/PageTitle.astro";
 import { allProjectsCollection } from "@/content";
 import GitHubIcon from "@/images/github-invertocat.svg";
 import Base from "@/layouts/Base.astro";
@@ -41,25 +42,25 @@ function fmtYM(date: Date): string {
 ---
 
 <Base title="Projects" type="website">
-  <h1 class="text-[2.5rem]">Projects</h1>
+  <PageTitle title="Projects" />
   {sections.map((section) => (
-    <section class="mt-8 first:mt-0">
-      <h2 class="m-0 mb-2 text-[1.4rem] font-bold">{section.heading}</h2>
-      <ul class="rounded-md border border-solid border-gray-600 bg-white px-3 py-0">
+    <section>
+      <h2>{section.heading}</h2>
+      <ul>
         {section.projects.map((p) => (
-          <li class="flex items-start gap-4 px-0 py-2">
-            <div class="min-w-0 flex-1">
-              <div class="flex flex-wrap items-baseline gap-3">
-                <h3 class="m-0 text-[1.25rem] font-bold">
+          <li>
+            <div class="summary">
+              <div class="heading">
+                <h3>
                   <a href={p.url} target="_blank" rel="noreferrer">
                     {p.title}
                   </a>
                 </h3>
-                <div class="flex flex-wrap items-center gap-2 text-[0.8rem] text-gray-500">
+                <div class="langs">
                   {p.langs.map((lang) => (
-                    <span class="inline-flex items-center gap-1">
+                    <span class="lang">
                       <span
-                        class="inline-block h-[9px] w-[9px] rounded-full"
+                        class="lang-color"
                         style={{ background: LANG_COLOR[lang] ?? "#888" }}
                       />
                       {lang}
@@ -67,8 +68,8 @@ function fmtYM(date: Date): string {
                   ))}
                 </div>
               </div>
-              <div class="mt-[0.4rem]" set:html={p.description} />
-              <div class="mt-2 flex flex-wrap items-center gap-x-3 text-[0.8rem] text-gray-500">
+              <div class="description" set:html={p.description} />
+              <div class="meta">
                 <span>更新: {fmtYM(p.updated)}</span>
                 <span>作成: {fmtYM(p.created)}</span>
                 {p.github && (
@@ -76,7 +77,7 @@ function fmtYM(date: Date): string {
                     href={`https://github.com/${p.github}`}
                     target="_blank"
                     rel="noreferrer"
-                    class="inline-flex items-center gap-[0.3rem] text-gray-500"
+                    class="github"
                   >
                     <GitHubIcon width={14} height={14} />
                     {p.github}
@@ -88,7 +89,7 @@ function fmtYM(date: Date): string {
               <Image
                 src={p.image}
                 alt=""
-                class="h-24 w-auto shrink-0 rounded-sm bg-gray-100"
+                class="thumbnail"
                 data-vrt-mask={p.image.src.endsWith(".gif") || undefined}
               />
             )}
@@ -100,7 +101,98 @@ function fmtYM(date: Date): string {
 </Base>
 
 <style>
-  ul li + li {
-    border-top: 1px solid #e3e3e3;
+  section {
+    margin-top: 2rem;
+  }
+
+  h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  ul {
+    padding: 0 0.75rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: 0.375rem;
+  }
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  li + li {
+    border-top: 1px solid var(--color-divider);
+  }
+
+  .summary {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .langs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .lang-color {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .description {
+    margin-top: 0.4rem;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .github {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .thumbnail {
+    flex-shrink: 0;
+    width: auto;
+    height: 6rem;
+    background-color: oklch(96.7% 0.003 264.542);
+    border-radius: 0.25rem;
   }
 </style>

@@ -1,0 +1,70 @@
+/*
+ * Based on The New CSS Reset (MIT License, Copyright (c) 2021 Elad Shechter)
+ * https://github.com/elad2412/the-new-css-reset
+ *
+ * This also discards presentational attributes such as `<td align>`; restore
+ * their effect explicitly where they are used.
+ */
+
+/*
+ * Replaced elements keep their user-agent styles, which also carry the
+ * `width`/`height` attributes of `<img>`. `html`: unsetting it breaks `hyphens`
+ * in Chromium. SVG: avoids a Firefox bug with sprites. Dialogs and popovers
+ * need user-agent styles to position themselves in the top layer, and tools
+ * such as Playwright inject popovers.
+ */
+*:where(
+  :not(
+    html,
+    iframe,
+    canvas,
+    img,
+    svg,
+    video,
+    audio,
+    dialog,
+    [popover],
+    svg *,
+    symbol *
+  )
+) {
+  all: unset;
+  display: revert;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* `display: revert` keeps `display: list-item`, which would show `disc` markers. */
+  list-style: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+pre {
+  white-space: revert;
+}
+
+a {
+  cursor: revert;
+}
+
+/* Firefox: nested lists would continue the parent's numbering. */
+ol {
+  counter-reset: revert;
+}
+
+/* `display: revert` reverts to the element's display, ignoring `hidden`. */
+:where([hidden]) {
+  display: none;
+}
+
+/* Safari still draws the disclosure triangle with this pseudo-element. */
+::-webkit-details-marker {
+  display: none;
+}

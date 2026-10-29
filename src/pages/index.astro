@@ -13,24 +13,20 @@ const top12BlogTagList = [...allBlogTagList]
 ---
 
 <Base title="Home" type="website">
-  <div class="flex flex-col items-center gap-2">
+  <div class="profile">
     <Image
       src={AvatarImage}
       alt="Avatar"
       width={200}
       height={200}
       loading="eager"
-      style={{
-        position: "relative",
-        zIndex: "1",
-        borderRadius: "50%",
-      }}
+      class="avatar"
     />
-    <p class="text-[1.6rem] font-bold">ryota2357</p>
+    <p class="name">ryota2357</p>
   </div>
-  <div class="mt-8 flex flex-col gap-8">
+  <div class="blocks">
     <ContentBlock title="Affiliation">
-      <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
+      <ul class="bullets">
         <li>
           電気通信大学大学院 情報理工学研究科 情報・ネットワーク工学専攻 1年
         </li>
@@ -39,31 +35,28 @@ const top12BlogTagList = [...allBlogTagList]
       </ul>
     </ContentBlock>
     <ContentBlock title="Blog">
-      <div class="flex flex-row items-start gap-4">
-        <h3 class="m-0 flex-none text-[1.3rem] font-bold">タグ</h3>
-        <div class="mx-0 my-auto flex flex-wrap" data-vrt-mask>
+      <div class="row">
+        <h3>タグ</h3>
+        <div class="row-body" data-vrt-mask>
           {top12BlogTagList
             .map(({ name, count }) => (
-              <span class="p-[0.3rem]">
+              <span class="tag">
                 <a
                   href={`/blog/tag/${name.replace("#", "%23")}/`}
                 >{`${name}(${count})`}</a>
               </span>
             ))
             .concat(
-              <span class="p-[0.3rem]">
+              <span class="tag">
                 <a href="/blog/tag/">一覧</a>
               </span>,
             )}
         </div>
       </div>
-      <div class="flex flex-row items-start gap-4">
-        <h3 class="m-0 flex-none text-[1.3rem] font-bold">更新</h3>
-        <div class="mx-0 my-auto flex flex-wrap">
-          <ul
-            class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5"
-            data-vrt-mask
-          >
+      <div class="row">
+        <h3>更新</h3>
+        <div class="row-body">
+          <ul class="bullets" data-vrt-mask>
             {[...allBlogCollection]
               .sort((a, b) => b.data.update.valueOf() - a.data.update.valueOf())
               .slice(0, 7)
@@ -79,7 +72,7 @@ const top12BlogTagList = [...allBlogTagList]
       </div>
     </ContentBlock>
     <ContentBlock title="Links">
-      <ul class="list-inside list-disc [&>li]:px-0 [&>li]:py-0.5">
+      <ul class="bullets">
         <li>
           <a href="https://twitter.com/95s7k84695a"> Twitter (@95s7k84695a)</a>
         </li>
@@ -101,3 +94,58 @@ const top12BlogTagList = [...allBlogTagList]
     </ContentBlock>
   </div>
 </Base>
+
+<style>
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .avatar {
+    border-radius: 50%;
+  }
+
+  .name {
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+
+  .blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .bullets {
+    list-style: disc inside;
+  }
+
+  .bullets > li {
+    padding: 0.125rem 0;
+  }
+
+  .row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  h3 {
+    flex: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+
+  .row-body {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto 0;
+  }
+
+  .tag {
+    padding: 0.3rem;
+  }
+</style>

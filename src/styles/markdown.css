@@ -1,0 +1,129 @@
+:where(.markdown) {
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  h2 {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: solid 2.5px var(--color-divider);
+  }
+  h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  h4 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 1rem 0;
+  }
+  a {
+    color: var(--color-link);
+  }
+  ul {
+    list-style: disc inside;
+  }
+  ol {
+    list-style: decimal inside;
+  }
+  :is(ul, ol) :is(ul, ol) {
+    margin-left: 1.2rem;
+  }
+  li {
+    line-height: 1.5;
+  }
+  blockquote {
+    padding: 0 1rem;
+    color: #57606a;
+    border-left: 0.25em solid #d0d7de;
+  }
+  summary {
+    font-weight: bold;
+    cursor: pointer;
+  }
+  img {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  table {
+    border-collapse: collapse;
+    white-space: nowrap;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    line-height: 1.15;
+  }
+  tr {
+    background-color: #ffffff;
+    border-top: 1px solid #d5dbe2;
+    &:nth-child(2n) {
+      background-color: #f6f8fa;
+    }
+  }
+  th,
+  td {
+    padding: 0.5rem;
+    vertical-align: top;
+    border: 1px solid #d0d7de;
+    /* The reset discards the `align` attribute that column alignment is written in. */
+    &[align="left"] {
+      text-align: left;
+    }
+    &[align="center"] {
+      text-align: center;
+    }
+    &[align="right"] {
+      text-align: right;
+    }
+  }
+  th {
+    font-weight: bold;
+    text-align: left;
+  }
+  hr {
+    border-top: 1px solid;
+  }
+  .footnotes {
+    margin-top: 3rem;
+    hr {
+      border-top-color: #646464;
+    }
+    li p {
+      display: inline-block;
+      margin: 0.1rem;
+    }
+  }
+
+  :is(p, li, table) code {
+    font-size: 1rem;
+    background-color: #e6e6e6;
+    border-radius: 6px;
+    padding: 0.1rem 0.3rem;
+  }
+  pre {
+    background-color: #282828;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 1.2;
+    code {
+      font-size: 0.85rem;
+    }
+  }
+  small code {
+    font-size: 0.8rem;
+  }
+}

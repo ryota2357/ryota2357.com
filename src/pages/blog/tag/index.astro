@@ -9,10 +9,10 @@ const sortedAllBlogTagList = [...allBlogTagList]
 
 <Base title="Blog.Tag" type="website" noindex={true}>
   <h1>
-    <span class="text-[1.6rem]"><a href="/blog/">Blog</a>.</span>
-    <span class="text-[2.5rem]">Tag</span>
+    <span class="parent"><a href="/blog/">Blog</a>.</span>
+    <span class="current">Tag</span>
   </h1>
-  <ul class="mt-8 list-inside list-disc">
+  <ul class="tags">
     {sortedAllBlogTagList.map(({ name, count }) => (
       <li>
         <a
@@ -22,3 +22,18 @@ const sortedAllBlogTagList = [...allBlogTagList]
     ))}
   </ul>
 </Base>
+
+<style>
+  .parent {
+    font-size: 1.6rem;
+  }
+
+  .current {
+    font-size: 2.5rem;
+  }
+
+  .tags {
+    margin-top: 2rem;
+    list-style: disc inside;
+  }
+</style>

@@ -11,21 +11,16 @@ const { posts } = Astro.props;
 ---
 
 <div>
-  <ul class="rounded-md border border-solid border-gray-600 bg-white px-2 py-0">
+  <ul>
     {posts.map((post) => (
-      <li class="px-0 py-2">
-        <div class="text-gray-500">
-          {dayjs(post.data.postdate).format("YYYY/MM/DD")}
-        </div>
-        <div class="text-[1.2rem] font-bold">
+      <li>
+        <div class="date">{dayjs(post.data.postdate).format("YYYY/MM/DD")}</div>
+        <div class="title">
           <a href={path.join("/blog", post.id, "/")}>{post.data.title}</a>
         </div>
-        <div class="flex flex-row justify-end gap-2 text-[0.8rem]">
+        <div class="tags">
           {post.data.tags.map((tag) => (
-            <a
-              href={`/blog/tag/${tag.replace("#", "%23")}/`}
-              class="rounded-sm bg-gray-900 px-3 py-1 text-white"
-            >
+            <a href={`/blog/tag/${tag.replace("#", "%23")}/`} class="tag">
               {tag}
             </a>
           ))}
@@ -36,7 +31,41 @@ const { posts } = Astro.props;
 </div>
 
 <style>
-  ul li + li {
-    border-top: 1px solid #e3e3e3;
+  ul {
+    padding: 0 0.5rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-card-border);
+    border-radius: 0.375rem;
+  }
+
+  li {
+    padding: 0.5rem 0;
+  }
+
+  li + li {
+    border-top: 1px solid var(--color-divider);
+  }
+
+  .date {
+    color: var(--color-text-muted);
+  }
+
+  .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .tags {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.75rem;
+    color: #fff;
+    background-color: oklch(21% 0.034 264.665);
+    border-radius: 0.25rem;
   }
 </style>

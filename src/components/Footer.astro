@@ -5,19 +5,12 @@ import CCBYImage from "@/images/cc-by.png";
 type Props = Record<PropertyKey, never>;
 ---
 
-<footer class="mt-8 text-center text-[0.8rem]">
-  <div class="mx-auto max-w-[960px] px-2">
+<footer>
+  <div class="license">
     <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.ja">
-      <Image
-        src={CCBYImage}
-        alt="CC-BY License"
-        style={{
-          height: "2rem",
-          width: "auto",
-        }}
-      />
+      <Image src={CCBYImage} alt="CC-BY License" class="license-badge" />
     </a>
-    <p class="text-left">
+    <p class="license-text">
       注があるものを除いて、このサイトの内容物は
       <a href="https://creativecommons.org/licenses/by/4.0/deed.ja"
         >クリエイティブ・コモンズ 表示 4.0 ライセンス</a
@@ -27,8 +20,29 @@ type Props = Record<PropertyKey, never>;
   </div>
   <p data-vrt-mask>
     Built with{" "}
-    <a href="https://astro.build/" style={{ color: "inherit" }}>
-      {Astro.generator}
-    </a>
+    <a href="https://astro.build/">{Astro.generator}</a>
   </p>
 </footer>
+
+<style>
+  footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .license {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+  }
+
+  .license-badge {
+    width: auto;
+    height: 2rem;
+  }
+
+  .license-text {
+    text-align: left;
+  }
+</style>

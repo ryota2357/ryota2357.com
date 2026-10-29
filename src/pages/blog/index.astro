@@ -1,5 +1,6 @@
 ---
 import BlogList from "@/components/BlogList.astro";
+import PageTitle from "@/components/PageTitle.astro";
 import { allBlogCollection } from "@/content";
 import Base from "@/layouts/Base.astro";
 
@@ -9,7 +10,13 @@ const sortedAllBlogCollection = [...allBlogCollection].sort(
 ---
 
 <Base title="Blog" type="website">
-  <h1 class="text-[2.5rem]">Blog</h1>
-  <p class="mx-0 my-2"><a href="/blog/tag/">タグの一覧</a></p>
+  <PageTitle title="Blog" />
+  <p class="tag-index-link"><a href="/blog/tag/">タグの一覧</a></p>
   <div><BlogList posts={sortedAllBlogCollection} /></div>
 </Base>
+
+<style>
+  .tag-index-link {
+    margin: 0.5rem 0;
+  }
+</style>

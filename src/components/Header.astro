@@ -4,14 +4,10 @@ import HeaderLink from "./HeaderLink.astro";
 type Props = Record<PropertyKey, never>;
 ---
 
-<header class="mx-3 mt-2 mb-4 flex flex-row flex-wrap justify-between">
-  <div
-    class="text-[2.1rem] font-bold text-black select-none [&_a:hover]:no-underline"
-  >
-    <a href="/">ryota2357</a>
-  </div>
-  <nav class="mt-auto">
-    <ul class="flex content-start text-[1.4rem] [&>li]:mx-[0.7rem] [&>li]:my-0">
+<header>
+  <div class="site-title"><a href="/">ryota2357</a></div>
+  <nav>
+    <ul>
       <li><HeaderLink href="/">Home</HeaderLink></li>
       <li><HeaderLink href="/about/">About</HeaderLink></li>
       <li><HeaderLink href="/blog/">Blog</HeaderLink></li>
@@ -19,3 +15,36 @@ type Props = Record<PropertyKey, never>;
     </ul>
   </nav>
 </header>
+
+<style>
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0.5rem 0.75rem 1rem;
+  }
+
+  .site-title {
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: var(--color-text-strong);
+    user-select: none;
+  }
+
+  .site-title a:hover {
+    text-decoration: none;
+  }
+
+  nav {
+    margin-top: auto;
+  }
+
+  ul {
+    display: flex;
+    font-size: 1.4rem;
+  }
+
+  li {
+    margin: 0 0.7rem;
+  }
+</style>

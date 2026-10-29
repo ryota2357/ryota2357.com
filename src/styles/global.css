@@ -1,2 +1,5 @@
-@import "destyle.css" layer(destyle);
-@import "tailwindcss";
+@layer reset, base, markdown;
+
+@import "./reset.css" layer(reset);
+@import "./base.css" layer(base);
+@import "./markdown.css" layer(markdown);

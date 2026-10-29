@@ -3,10 +3,19 @@ import Base from "@/layouts/Base.astro";
 ---
 
 <Base title="404: Not Found" type="website">
-  <h1
-    class="mx-0 my-20 flex flex-col content-center justify-center text-[3rem] text-black"
-  >
-    <span class="text-center">404</span>
-    <span class="text-center">Not Found</span>
+  <h1>
+    <span>404</span>
+    <span>Not Found</span>
   </h1>
 </Base>
+
+<style>
+  h1 {
+    display: flex;
+    flex-direction: column;
+    margin: 5rem 0;
+    font-size: 3rem;
+    text-align: center;
+    color: var(--color-text-strong);
+  }
+</style>
