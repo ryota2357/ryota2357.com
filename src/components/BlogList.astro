@@ -13,7 +13,7 @@ const { posts } = Astro.props;
 <ul class="posts">
   {posts.map((post) => (
     <li>
-      <Time date={post.data.postdate} format="YYYY/MM/DD" class="date" />
+      <Time date={post.data.postdate} format="date" class="date" />
       <h2>
         <a href={path.join("/blog", post.id, "/")}>{post.data.title}</a>
       </h2>

@@ -67,10 +67,10 @@ const sections = SECTIONS.map((section) => ({
               <div class="description" set:html={p.description} />
               <div class="meta">
                 <span>
-                  更新: <Time date={p.updated} format="YYYY/MM/DD" />
+                  更新: <Time date={p.updated} format="date" />
                 </span>
                 <span>
-                  作成: <Time date={p.created} format="YYYY/MM/DD" />
+                  作成: <Time date={p.created} format="date" />
                 </span>
                 {p.github && (
                   <a

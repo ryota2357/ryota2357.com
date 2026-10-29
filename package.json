@@ -24,7 +24,6 @@
     "@astrojs/rss": "4.0.19",
     "@napi-rs/canvas": "1.0.12",
     "astro": "7.4.1",
-    "dayjs": "1.11.23",
     "sharp": "0.35.5",
     "typescript": "6.0.3",
     "unified": "11.0.5",

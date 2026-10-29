@@ -53,7 +53,7 @@ const { Content } = await render(post);
           <Time
             itemprop="datePublished"
             date={post.data.postdate}
-            format="YYYY/MM/DD (HH:mm)"
+            format="datetime"
           />
         </p>
         {post.data.update.valueOf() !== post.data.postdate.valueOf() && (
@@ -62,7 +62,7 @@ const { Content } = await render(post);
             <Time
               itemprop="dateModified"
               date={post.data.update}
-              format="YYYY/MM/DD (HH:mm)"
+              format="datetime"
             />
           </p>
         )}
