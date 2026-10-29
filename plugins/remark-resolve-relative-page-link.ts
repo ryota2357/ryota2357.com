@@ -2,7 +2,6 @@ import path from "node:path";
 import type { Node } from "unist";
 import { type Check, convert } from "unist-util-is";
 import { CONTINUE, visit } from "unist-util-visit";
-import { ensure, is } from "unknownutil";
 import type { VFile } from "vfile";
 
 type Option = {
@@ -12,9 +11,8 @@ type Option = {
 export default function resolveRelativePageLink(option: Option) {
   const isRelativePageLink: Check = (node) => {
     const isLink = convert("link");
-    if (isLink(node) && "url" in node) {
-      const url = ensure(node.url, is.String);
-      return url.startsWith("../") && path.extname(url) === "";
+    if (isLink(node) && "url" in node && typeof node.url === "string") {
+      return node.url.startsWith("../") && path.extname(node.url) === "";
     }
     return false;
   };
