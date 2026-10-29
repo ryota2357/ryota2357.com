@@ -10,6 +10,7 @@ const { date, format, ...attrs } = Astro.props;
 
 const parts = Object.fromEntries(
   new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Tokyo",
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
@@ -21,7 +22,10 @@ const parts = Object.fromEntries(
     .map(({ type, value }) => [type, value]),
 );
 const ymd = `${parts.year}/${parts.month}/${parts.day}`;
-const text = format === "date" ? ymd : `${ymd} (${parts.hour}:${parts.minute})`;
+const [datetime, text] =
+  format === "date"
+    ? [`${parts.year}-${parts.month}-${parts.day}`, ymd]
+    : [date.toISOString(), `${ymd} (${parts.hour}:${parts.minute})`];
 ---
 
-<time datetime={date.toISOString()} {...attrs}>{text}</time>
+<time datetime={datetime} {...attrs}>{text}</time>

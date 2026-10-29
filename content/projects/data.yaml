@@ -7,8 +7,8 @@
   github: ryota2357/page-navigator
   langs: [TypeScript, Svelte]
   status: active
-  created: 2026-05-11  # first commit (but after publish, change to it's date)
-  updated: 2026-05-29  # latest commit (but after publish, change to latest publish date)
+  created: "2026-05-11"  # first commit (but after publish, change to it's date)
+  updated: "2026-05-29"  # latest commit (but after publish, change to latest publish date)
 
 - id: typfill
   title: Typfill
@@ -19,8 +19,8 @@
   github: ryota2357/typfill
   langs: [TypeScript, Svelte]
   status: active
-  created: 2026-04-26  # first Cloudflare deploy date (from compatibility_date in wrangler.toml)
-  updated: 2026-05-29  # latest commit
+  created: "2026-04-26"  # first Cloudflare deploy date (from compatibility_date in wrangler.toml)
+  updated: "2026-05-29"  # latest commit
 
 - id: macos-ime
   title: macos-ime
@@ -30,8 +30,8 @@
   github: ryota2357/macos-ime
   langs: [C]
   status: maintained
-  created: 2026-04-12
-  updated: 2026-04-14
+  created: "2026-04-12"
+  updated: "2026-04-14"
 
 - id: mical
   title: mical
@@ -42,8 +42,8 @@
   github: mical-lang/mical
   langs: [Rust]
   status: active
-  created: 2026-02-10  # v0.0.0 (mical-cli)
-  updated: 2026-02-27  # v0.0.2 (mical-cli)
+  created: "2026-02-10"  # v0.0.0 (mical-cli)
+  updated: "2026-02-27"  # v0.0.2 (mical-cli)
 
 - id: vm_stat2
   title: vm_stat2
@@ -54,8 +54,8 @@
   github: ryota2357/vm_stat2
   langs: [C]
   status: maintained
-  created: 2026-01-09
-  updated: 2026-04-14
+  created: "2026-01-09"
+  updated: "2026-04-14"
 
 - id: lico
   title: Lico
@@ -65,8 +65,8 @@
   github: ryota2357/lico
   langs: [Rust]
   status: archived
-  created: 2023-08-09  # first commit
-  updated: 2025-04-18  # latest commit (lico_core)
+  created: "2023-08-09"  # first commit
+  updated: "2025-04-18"  # latest commit (lico_core)
 
 - id: lean_string
   title: lean_string
@@ -76,8 +76,8 @@
   github: ryota2357/lean_string
   langs: [Rust]
   status: maintained
-  created: 2024-12-08  # v0.0.1
-  updated: 2026-04-13  # v0.6.0
+  created: "2024-12-08"  # v0.0.1
+  updated: "2026-04-13"  # v0.6.0
 
 - id: indexed_arena
   title: indexed_arena
@@ -87,8 +87,8 @@
   github: ryota2357/indexed_arena
   langs: [Rust]
   status: maintained
-  created: 2025-02-16  # v0.1.0
-  updated: 2025-04-17  # v0.4.2
+  created: "2025-02-16"  # v0.1.0
+  updated: "2025-04-17"  # v0.4.2
 
 - id: toy-lisp-hs
   title: toy-lisp.hs
@@ -99,8 +99,8 @@
   github: ryota2357/toy-lisp.hs
   langs: [Haskell]
   status: completed
-  created: 2025-01-06  # first commit
-  updated: 2025-02-06  # latest commit
+  created: "2025-01-06"  # first commit
+  updated: "2025-02-06"  # latest commit
 
 - id: tiny-lang-to-wat
   title: tiny-lang-to-wat
@@ -111,8 +111,8 @@
   github: ryota2357/tiny-lang-to-wat
   langs: [C]
   status: completed
-  created: 2024-07-11  # submit date (from uec submissions repository commit date)
-  updated: 2025-03-27  # latest commit
+  created: "2024-07-11"  # submit date (from uec submissions repository commit date)
+  updated: "2025-03-27"  # latest commit
 
 - id: pleckjp
   title: PleckJP
@@ -123,8 +123,8 @@
   github: ryota2357/PleckJP
   langs: [Python]
   status: maintained
-  created: 2023-05-08
-  updated: 2026-03-05
+  created: "2023-05-08"
+  updated: "2026-03-05"
 
 - id: necodark
   title: necodark
@@ -135,8 +135,8 @@
   langs: [C#]
   status: archived
   image: ./necodark-top.png
-  created: 2023-03-06  # first commit
-  updated: 2023-09-04  # latest commit
+  created: "2023-03-06"  # first commit
+  updated: "2023-09-04"  # latest commit
 
 - id: sccg
   title: Sccg
@@ -147,8 +147,8 @@
   langs: [C#]
   status: archived
   image: ./sccg-structure.svg
-  created: 2023-03-05  # v0.1.0
-  updated: 2023-09-04  # latest commit
+  created: "2023-03-05"  # v0.1.0
+  updated: "2023-09-04"  # latest commit
 
 - id: fp15-badapple
   title: FP15 Bad Apple!!
@@ -160,8 +160,8 @@
   langs: [C]
   status: completed
   image: ./fp15-badapple.gif
-  created: 2023-02-09T19:54
-  updated: 2023-02-09T19:54
+  created: "2023-02-09T19:54"
+  updated: "2023-02-09T19:54"
 
 - id: repeatable-cube
   title: RepeatableCube
@@ -172,8 +172,8 @@
   langs: [Unity, C#]
   status: completed
   image: ./unity1week-re.png
-  created: 2022-12-20T13:32
-  updated: 2022-12-24T20:08
+  created: "2022-12-20T13:32"
+  updated: "2022-12-24T20:08"
 
 - id: dein-snip-lua
   title: dein-snip.lua
@@ -184,8 +184,8 @@
   github: ryota2357/dein-snip.lua
   langs: [Lua]
   status: archived
-  created: 2022-08-4  # first commit
-  updated: 2023-01-4  # latest commit
+  created: "2022-08-04"  # first commit
+  updated: "2023-01-04"  # latest commit
 
 - id: ddu-column-icon_filename
   title: ddu-column-icon_filename
@@ -196,8 +196,8 @@
   github: ryota2357/ddu-column-icon_filename
   langs: [TypeScript]
   status: archived
-  created: 2022-07-11  # first commit
-  updated: 2024-04-28  # latest commit
+  created: "2022-07-11"  # first commit
+  updated: "2024-04-28"  # latest commit
 
 - id: vim-skim-synctex
   title: vim-skim-synctex
@@ -208,8 +208,8 @@
   github: ryota2357/vim-skim-synctex
   langs: [TypeScript, Vim script]
   status: maintained
-  created: 2022-06-04
-  updated: 2026-01-14
+  created: "2022-06-04"
+  updated: "2026-01-14"
 
 - id: soroeru
   title: そろえる
@@ -220,8 +220,8 @@
   langs: [Unity, C#]
   status: completed
   image: ./unity1week-soroeru.gif
-  created: 2022-05-14T15:04
-  updated: 2022-05-15T08:17
+  created: "2022-05-14T15:04"
+  updated: "2022-05-15T08:17"
 
 - id: kaikaikaikai
   title: 回回回回
@@ -232,8 +232,8 @@
   langs: [Unity, C#]
   status: completed
   image: ./unity1week-kai.jpg
-  created: 2021-03-04T14:28
-  updated: 2021-03-06T11:37
+  created: "2021-03-04T14:28"
+  updated: "2021-03-06T11:37"
 
 - id: open-typing
   title: 開ける
@@ -244,8 +244,8 @@
   langs: [Unity, C#]
   status: completed
   image: ./unity1week-akeru.png
-  created: 2020-12-29T22:28
-  updated: 2020-12-30T14:06
+  created: "2020-12-29T22:28"
+  updated: "2020-12-30T14:06"
 
 - id: veryordinary-goldfishscooping
   title: ごく普通の金魚すくい
@@ -256,8 +256,8 @@
   langs: [Unity, C#]
   status: completed
   image: ./unity1week-hueru.gif
-  created: 2020-08-19T08:22
-  updated: 2020-08-19T12:20
+  created: "2020-08-19T08:22"
+  updated: "2020-08-19T12:20"
 
 - id: dividegroup
   title: DivideGroup
@@ -268,8 +268,8 @@
   langs: [Unity, C#]
   status: completed
   image: ./unity1week-mitu.gif
-  created: 2020-05-04T13:33
-  updated: 2020-05-09T22:01
+  created: "2020-05-04T13:33"
+  updated: "2020-05-09T22:01"
 
 - id: reversestring
   title: ReverseString
@@ -280,5 +280,5 @@
   langs: [Unity, C#]
   status: completed
   image: ./unity1week-gyaku.png
-  created: 2020-03-01T19:48
-  updated: 2020-03-02T14:41
+  created: "2020-03-01T19:48"
+  updated: "2020-03-02T14:41"

@@ -2,12 +2,21 @@ import { defineCollection } from "astro:content";
 import { file, glob, type Loader } from "astro/loaders";
 import { z } from "astro/zod";
 
+// Dates in content are written in JST without an offset.
+const jstDate = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$/)
+  .transform((value) => {
+    const dateTime = value.includes("T") ? value : `${value}T00:00`;
+    return new Date(`${dateTime}+09:00`);
+  });
+
 const blogCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./content/blog" }),
   schema: z.object({
     title: z.string(),
-    postdate: z.coerce.date(),
-    update: z.coerce.date(),
+    postdate: jstDate,
+    update: jstDate,
     tags: z.array(z.string()),
     draft: z.boolean().optional().default(false),
     vrt: z.boolean().optional().default(false),
@@ -44,8 +53,8 @@ const projectsCollection = defineCollection({
       langs: z.array(z.string()),
       status: z.enum(["active", "maintained", "completed", "archived"]),
       image: image().optional(),
-      created: z.coerce.date(),
-      updated: z.coerce.date(),
+      created: jstDate,
+      updated: jstDate,
     }),
 });
 
