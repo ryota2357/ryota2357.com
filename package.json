@@ -23,7 +23,7 @@
     "@astrojs/partytown": "2.1.9",
     "@astrojs/rss": "4.0.19",
     "@napi-rs/canvas": "1.0.13",
-    "astro": "7.4.2",
+    "astro": "7.4.7",
     "sharp": "0.35.5",
     "typescript": "6.0.3",
     "unified": "11.0.5",
